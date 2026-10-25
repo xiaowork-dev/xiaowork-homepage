@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">XiaoWork ERP 截图占位</title>
+  <desc id="desc">设计占位资源，真实项目截图尚未提供，不代表实际产品界面。</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#634854"/><stop offset="1" stop-color="#32213e"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#f5e5d9" stroke-opacity=".045"/></pattern>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h960v600H0z"/>
+  <path fill="url(#grid)" d="M0 0h960v600H0z"/>
+  <circle cx="830" cy="120" r="210" fill="none" stroke="#f5e5d9" stroke-opacity=".06"/>
+  <circle cx="830" cy="120" r="160" fill="none" stroke="#f5e5d9" stroke-opacity=".06"/>
+  <rect x="54" y="50" width="168" height="34" rx="17" fill="#f5e5d9" fill-opacity=".09" stroke="#f5e5d9" stroke-opacity=".2"/>
+  <g fill="#e5cddc" font-family="Segoe UI,Microsoft YaHei,sans-serif">
+    <text x="76" y="73" font-size="15" letter-spacing="2">PLACEHOLDER</text>
+    <text x="58" y="210" font-size="20" letter-spacing="4" opacity=".8">CONNECT · BUILD · IMPROVE</text>
+    <text x="54" y="292" font-size="66" font-weight="600" letter-spacing="-2">XiaoWork ERP</text>
+    <text x="58" y="347" font-size="23">真实项目截图待补充</text>
+    <text x="58" y="532" font-size="17" opacity=".8">XIAOWORK / PROJECT COLLECTION</text>
+    <text x="741" y="527" font-size="170" opacity=".08" font-weight="600">E</text>
+  </g>
+  <path d="M58 450h65m-7-7 7 7-7 7" stroke="#d8b3c1" stroke-width="2" fill="none"/>
+</svg>

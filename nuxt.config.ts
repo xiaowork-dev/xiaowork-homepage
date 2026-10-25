@@ -1,4 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
+import { normalizeSiteUrl } from './shared/seo'
+
+const siteUrl = normalizeSiteUrl(process.env.NUXT_PUBLIC_SITE_URL)
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-25',
@@ -8,6 +11,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   vite: { plugins: [tailwindcss()] },
   typescript: { strict: true },
+  runtimeConfig: { public: { siteUrl } },
   app: {
     head: {
       htmlAttrs: { lang: 'zh-CN' },
@@ -21,6 +25,10 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    prerender: { routes: ['/', '/projects', '/about'], crawlLinks: true, failOnError: true },
+    prerender: {
+      routes: ['/', '/projects', '/about', '/robots.txt', ...(siteUrl ? ['/sitemap.xml'] : [])],
+      crawlLinks: true,
+      failOnError: true,
+    },
   },
 })

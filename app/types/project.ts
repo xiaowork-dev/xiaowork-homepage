@@ -1,5 +1,11 @@
 export type ProjectCategory = 'website' | 'application' | 'open-source'
-export type ProjectStatus = 'planning' | 'in-development' | 'live' | 'maintained'
+export type ProjectStatus = 'unconfirmed' | 'planning' | 'in-development' | 'live' | 'maintained'
+
+export interface ProjectCover {
+  cover: string
+  coverAlt: string
+  coverKind: 'placeholder' | 'screenshot'
+}
 
 export interface Project {
   id: string
@@ -8,6 +14,7 @@ export interface Project {
   summary: string
   cover: string
   coverAlt: string
+  coverKind?: ProjectCover['coverKind']
   category: ProjectCategory
   techStack: string[]
   status: ProjectStatus

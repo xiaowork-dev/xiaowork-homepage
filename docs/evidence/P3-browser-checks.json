@@ -1,0 +1,89 @@
+{
+  "filters": [
+    {
+      "label": "网站",
+      "expectedCount": 2,
+      "empty": false,
+      "names": ["XiaoWork Blog", "XiaoWork Nav"],
+      "outline": "solid",
+      "selected": "网站 2",
+      "status": "显示 2 个项目"
+    },
+    {
+      "label": "应用与工具",
+      "expectedCount": 1,
+      "empty": false,
+      "names": ["XiaoWork ERP"],
+      "outline": "solid",
+      "selected": "应用与工具 1",
+      "status": "显示 1 个项目"
+    },
+    {
+      "label": "开源与学习",
+      "expectedCount": 0,
+      "empty": true,
+      "names": [],
+      "outline": "solid",
+      "selected": "开源与学习 0",
+      "status": "显示 0 个项目"
+    }
+  ],
+  "restoreFocus": {
+    "count": "显示 3 个项目",
+    "focused": "全部项目 3",
+    "outline": "solid"
+  },
+  "menuEscape": {
+    "expanded": "false",
+    "focused": "菜单",
+    "mobileNavPresent": false
+  },
+  "pages": [
+    {
+      "canonical": null,
+      "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+      "disabledProjectEntries": 0,
+      "externalLinks": [
+        {
+          "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+          "label": "GitHub · 本站源码（新窗口）",
+          "rel": "noopener noreferrer"
+        }
+      ],
+      "ogDescription": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+      "ogTitle": "关于 XiaoWork — 开发者与创作",
+      "path": "/about",
+      "theme": "light",
+      "title": "关于 XiaoWork — 开发者与创作"
+    },
+    {
+      "canonical": null,
+      "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+      "disabledProjectEntries": 3,
+      "externalLinks": [
+        {
+          "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+          "label": "GitHub：查看本站源码（新窗口）",
+          "rel": "noopener noreferrer"
+        }
+      ],
+      "ogDescription": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+      "ogTitle": "XiaoWork — 个人品牌与项目展示",
+      "path": "/",
+      "theme": "light",
+      "title": "XiaoWork — 个人品牌与项目展示"
+    },
+    {
+      "canonical": null,
+      "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+      "disabledProjectEntries": 3,
+      "externalLinks": [],
+      "ogDescription": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+      "ogTitle": "项目与作品 — XiaoWork",
+      "path": "/projects",
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork"
+    }
+  ],
+  "console": []
+}

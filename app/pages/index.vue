@@ -8,7 +8,7 @@ const highlights = [
   { icon: 'spark', title: '持续创造', detail: '把每一个想法，写成作品' },
 ] as const
 
-useSeoMeta({ title: 'XiaoWork — 个人品牌与项目展示' })
+useSiteSeo('home')
 </script>
 
 <template>

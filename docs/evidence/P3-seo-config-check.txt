@@ -1,0 +1,1 @@
+PASS optional origin normalization, local HTTP and rejection of paths, credentials, queries, fragments and invalid protocols

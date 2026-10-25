@@ -2,28 +2,36 @@
 import type { Project } from '~/types/project'
 import { categoryLabels, statusLabels } from '~/data/projects'
 
-withDefaults(defineProps<{ project: Project; headingLevel?: 2 | 3 }>(), { headingLevel: 3 })
+const props = withDefaults(defineProps<{ project: Project; headingLevel?: 2 | 3 }>(), {
+  headingLevel: 3,
+})
+const coverFailed = ref(false)
+watch(
+  () => props.project.cover,
+  () => {
+    coverFailed.value = false
+  },
+)
 </script>
 
 <template>
   <article class="project-card">
     <div class="project-cover">
       <img
-        :src="project.cover"
-        :alt="project.coverAlt"
+        :src="coverFailed ? '/images/projects/placeholder.svg' : project.cover"
+        :alt="coverFailed ? `${project.name} 封面暂不可用，显示占位图` : project.coverAlt"
         width="960"
         height="600"
         loading="lazy"
         decoding="async"
         class="aspect-[8/5] w-full object-cover"
+        @error="coverFailed = true"
       />
     </div>
     <div class="project-title-row">
       <component :is="`h${headingLevel}`">{{ project.name }}</component>
       <span class="project-status"
-        ><span aria-hidden="true" />{{
-          project.isPlaceholder ? '资料待确认' : statusLabels[project.status]
-        }}</span
+        ><span aria-hidden="true" />{{ statusLabels[project.status] }}</span
       >
     </div>
     <p class="project-summary">{{ project.summary }}</p>
@@ -42,6 +50,7 @@ withDefaults(defineProps<{ project: Project; headingLevel?: 2 | 3 }>(), { headin
           target="_blank"
           rel="noopener noreferrer"
           class="text-link"
+          :aria-label="`访问 ${project.name} 官网（新窗口）`"
           >查看项目 <AppIcon name="arrow-up-right"
         /></a>
         <a
@@ -50,6 +59,7 @@ withDefaults(defineProps<{ project: Project; headingLevel?: 2 | 3 }>(), { headin
           target="_blank"
           rel="noopener noreferrer"
           class="text-link"
+          :aria-label="`查看 ${project.name} GitHub 源码（新窗口）`"
           >查看源码 <AppIcon name="arrow-up-right"
         /></a>
         <span

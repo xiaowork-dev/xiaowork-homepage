@@ -264,6 +264,83 @@
   .site-footer {
     @apply border-t border-line;
   }
+  .page-title {
+    @apply mt-4 text-3xl font-semibold tracking-tight sm:text-5xl;
+    text-wrap: balance;
+  }
+  .page-introduction {
+    @apply mt-5 max-w-3xl text-sm leading-8 text-muted sm:text-base;
+  }
+  .content-note {
+    @apply max-w-3xl border-l-2 border-line pl-4 text-sm leading-7 text-subtle;
+  }
+  .catalog-toolbar {
+    @apply my-8 flex flex-wrap items-center justify-between gap-5;
+  }
+  .category-filters {
+    @apply flex flex-wrap gap-2;
+  }
+  .category-filter {
+    @apply inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-muted transition-colors hover:bg-surface hover:text-ink;
+  }
+  .category-filter span {
+    @apply text-xs;
+    font-variant-numeric: tabular-nums;
+  }
+  .category-filter[aria-pressed='true'] {
+    @apply border-accent bg-accent text-accent-ink;
+  }
+  .empty-state {
+    @apply rounded-3xl border border-dashed border-line px-6 py-14 text-center;
+    background: var(--highlight);
+  }
+  .empty-state > .app-icon {
+    @apply mx-auto mb-5 size-7 text-accent;
+  }
+  .empty-state h2 {
+    @apply text-xl font-semibold;
+  }
+  .empty-state p {
+    @apply mt-3 text-sm leading-7 text-muted;
+  }
+  .about-overview {
+    @apply mt-8 grid gap-6 lg:grid-cols-2;
+  }
+  .content-panel {
+    @apply min-w-0 rounded-3xl border border-line bg-surface p-6 sm:p-8;
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+  .content-panel h2 {
+    @apply text-xl font-semibold tracking-tight sm:text-2xl;
+  }
+  .capability-list {
+    @apply mt-6 space-y-5;
+  }
+  .capability-list > div {
+    @apply flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-5;
+  }
+  .capability-list dt {
+    @apply text-sm text-muted;
+  }
+  .principle-grid {
+    @apply grid gap-6 md:grid-cols-3;
+  }
+  .principle-number {
+    @apply inline-flex size-10 items-center justify-center rounded-xl border border-line text-sm text-accent;
+    background: var(--tag);
+  }
+  .contact-list {
+    @apply mt-6 space-y-5;
+  }
+  .contact-list > li {
+    @apply flex flex-wrap items-center justify-between gap-5 border-t border-line pt-6;
+  }
+  .contact-list h3 {
+    @apply font-medium;
+  }
+  .contact-list p {
+    @apply mt-2 text-sm leading-7 text-muted;
+  }
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xl focus:bg-accent focus:px-4 focus:py-3 focus:text-accent-ink;
   }

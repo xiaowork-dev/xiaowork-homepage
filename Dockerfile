@@ -4,6 +4,8 @@ ENV NUXT_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY . .
+ARG NUXT_PUBLIC_SITE_URL=""
+ENV NUXT_PUBLIC_SITE_URL=${NUXT_PUBLIC_SITE_URL}
 RUN npm run postinstall && npm run generate
 
 FROM nginx:1.30.6-alpine AS runtime
