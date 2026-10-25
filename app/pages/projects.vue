@@ -15,7 +15,12 @@ useSeoMeta({ title: '项目 — XiaoWork', description: '浏览 XiaoWork 的网�
       </p>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      <ProjectCard v-for="project in sortedProjects" :key="project.id" :project="project" />
+      <ProjectCard
+        v-for="project in sortedProjects"
+        :key="project.id"
+        :project="project"
+        :heading-level="2"
+      />
     </div>
   </section>
 </template>

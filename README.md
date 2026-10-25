@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。当前阶段为 **P1 项目初始化**；页面已具备基础骨架，最终视觉实现属于 P2。
+XiaoWork 个人品牌与开发者作品展示站。当前已完成 **P2 首页视觉与响应式布局**，待人工视觉验收；项目列表完整功能、关于内容与 SEO 属于 P3。
 
 ## 本地运行
 
@@ -27,7 +27,8 @@ npm run dev
 
 ## 当前可用功能
 
-- `/`：品牌介绍骨架与配置驱动的精选项目卡片。
+- `/`：紫色渐变与网格 Hero、品牌介绍、技术标签、GitHub 源码入口与精选项目卡片。
+- 首页项目布局：手机单列、768–1199px 双列、1200px 起三列；暖白浅色与紫黑深色主题。
 - `/projects`：全部示例项目；分类筛选在 P3 实现。
 - `/about`：关于页骨架，未编造个人履历或联系方式。
 - 响应式导航、深色/浅色切换、本地偏好持久化、键盘焦点和减少动效支持。
@@ -46,6 +47,7 @@ app/
   components/             # 导航、页脚、主题按钮、标签、项目卡片
   composables/useTheme.ts # 主题状态与持久化
   data/projects.ts        # 项目配置与展示排序
+  data/site.ts            # Hero 文案、技术方向与已确认的本站 GitHub 地址
   layouts/default.vue     # 共用页面布局
   pages/                  # /、/projects、/about
   types/project.ts        # 项目类型与受约束的状态/分类
@@ -56,17 +58,17 @@ docs/                     # 进度、阶段交付、部署说明
 
 新增项目时，在 `app/data/projects.ts` 添加符合 `Project` 类型的对象，并把封面放到 `public/images/projects/`。按 `order` 排序，`featured` 控制首页展示，首页最多六项。`demoUrl` 和 `repositoryUrl` 缺省时不渲染外链；正式地址使用 HTTPS。
 
-Blog、Nav、ERP 均为 **P1 示例资料**；真实技术栈、状态、截图和地址尚未确认。配置内 `planning` 仅为样例枚举，界面统一标注“示例资料 · 待确认”，不表示项目实际状态。确认后补齐字段并移除 `isPlaceholder`。
+Blog、Nav、ERP 均为 **待确认的示例资料**；真实技术栈、状态、截图和地址尚未确认。封面明确标记 PLACEHOLDER / 真实项目截图待补充；配置内 `planning` 仅为样例枚举，界面显示“资料待确认”，不表示项目实际状态。缺少技术栈时显示“技术栈待确认”，没有访问地址时仅显示不可交互的“入口待确认”。确认后补齐字段并移除 `isPlaceholder`。首页与页脚 GitHub 指向已确认的本站代码仓库，并非三个项目的源码地址。
 
 ## Docker
 
 容器通过 Node 多阶段构建生成静态文件，最终由非 root Nginx 提供服务；生产运行无需 Node。Linux 主机仅需 Docker Engine 与 Compose 插件，具体要求、升级和回滚见 [部署指南](docs/DEPLOYMENT.md)。
 
 ```bash
-bash deploy.sh p1-local
+bash deploy.sh v1.0.0-p2
 # 准备新版本源码后，使用新且唯一的版本标签
-bash update.sh v1.0.0-p2
-bash rollback.sh p1-local
+bash update.sh v1.0.0-p3
+bash rollback.sh v1.0.0-p2
 ```
 
 默认仅绑定 `127.0.0.1:3100`，首次执行自动从 `.env.example` 创建 `.env`。开发服务与容器不要同时使用同一端口。本阶段未连接生产服务器。
@@ -74,10 +76,10 @@ bash rollback.sh p1-local
 ## 开发与交付约定
 
 - [原始设计规范](XiaoWork_Homepage_V1_Design_Spec.md)、[P0 交付](XiaoWork_Homepage_P0_Delivery.md) 和原始 PNG 保留原样。
-- [项目最新进度](docs/PROGRESS.md) 与 [P1 交付](docs/deliveries/P1-delivery.md) 记录实际完成与验证范围。
-- P2 开发首页视觉和响应式；P3 完善项目筛选、关于资料及 SEO；P4 完成部署场景验收；P5 最终验收。
-- Git 仓库使用 `main`。当前缺少提交身份和 GitHub 地址；后续由用户提供身份及远程仓库后，每个验证通过的阶段自动提交并推送。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
-- 正式域名、GitHub、项目地址与联系方式待确认；完整 Open Graph、sitemap 等在 P3 接入。
+- [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md) 与 [P2 交付及截图索引](docs/deliveries/P2-delivery.md) 记录实际完成与验证范围。
+- P2 已完成首页视觉、双主题和响应式；P3 完善项目筛选、关于资料及 SEO；P4 完成部署场景验收；P5 最终验收。
+- Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
+- 正式域名、各项目地址、真实截图与联系方式待确认；完整 Open Graph、sitemap 等在 P3 接入。
 
 ## 已知依赖问题
 

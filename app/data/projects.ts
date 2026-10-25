@@ -13,14 +13,14 @@ export const statusLabels: Record<ProjectStatus, string> = {
   maintained: '维护中',
 }
 
-// P1 sample content only. Real screenshots, stacks, status and public URLs await confirmation.
+// Placeholder content only. Real screenshots, stacks, status and public URLs await confirmation.
 export const projects = [
   {
     id: 'xiaowork-blog',
     slug: 'blog',
     name: 'XiaoWork Blog',
-    summary: '技术文章、经验与开发过程的记录空间。项目内容与公开入口待确认。',
-    cover: '/images/projects/placeholder.svg',
+    summary: '记录技术探索、开发过程与实践心得，让经验沉淀为可以分享的文字。',
+    cover: '/images/projects/blog-placeholder.svg',
     coverAlt: 'XiaoWork Blog 封面占位图，真实截图待补充',
     category: 'website',
     techStack: [],
@@ -33,8 +33,8 @@ export const projects = [
     id: 'xiaowork-nav',
     slug: 'nav',
     name: 'XiaoWork Nav',
-    summary: '个人常用站点的快捷导航工具。本站仅展示项目，不重复提供收藏导航。',
-    cover: '/images/projects/placeholder.svg',
+    summary: '把常用站点与开发资源有序收纳，为日常工作保留一个简洁、高效的起点。',
+    cover: '/images/projects/nav-placeholder.svg',
     coverAlt: 'XiaoWork Nav 封面占位图，真实截图待补充',
     category: 'website',
     techStack: [],
@@ -47,8 +47,8 @@ export const projects = [
     id: 'xiaowork-erp',
     slug: 'erp',
     name: 'XiaoWork ERP',
-    summary: '企业资源管理系统的项目展示。演示方式与可公开内容待确认。',
-    cover: '/images/projects/placeholder.svg',
+    summary: '面向企业资源管理的系统开发实践，探索业务流程与软件工程的连接。',
+    cover: '/images/projects/erp-placeholder.svg',
     coverAlt: 'XiaoWork ERP 封面占位图，真实截图待补充',
     category: 'application',
     techStack: [],

@@ -2,7 +2,7 @@ name: xiaowork-homepage
 
 services:
   web:
-    image: xiaowork-homepage:${IMAGE_TAG:-p1-local}
+    image: xiaowork-homepage:${IMAGE_TAG:-p2-local}
     build:
       context: .
       target: runtime
