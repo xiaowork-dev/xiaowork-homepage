@@ -44,7 +44,7 @@
 ## Git 与最近交付
 
 - `main` / `origin/main`，GitHub 为用户创建的 `xiaowork-dev/xiaowork-homepage`；使用既有仓库级身份，正常提交推送，不强推。
-- P3 实现与交付证据一并提交；真实提交 SHA 和推送核验结果在后续独立文档提交中补记于 [P3 Git 部分](deliveries/P3-delivery.md#8-git-交付)，最新 SHA 以 Git 历史和交付回复为准。
+- P3 实现、文档及验收证据提交为 `422685c2d2eae2375a23392619fc17783d68de40`，已推送 `origin/main` 并用 `git ls-remote` 确认一致。核验结果以独立文档提交补记于 [P3 Git 部分](deliveries/P3-delivery.md#8-git-交付)，最新文档 SHA 以 Git 历史和交付回复为准。
 - [P3 交付](deliveries/P3-delivery.md)、[运行说明](../README.md)、[内容配置](CONTENT.md)、[部署/更新/回滚](DEPLOYMENT.md)。
 
 ## 下一步与本机运行
