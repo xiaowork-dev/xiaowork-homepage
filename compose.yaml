@@ -1,0 +1,18 @@
+name: xiaowork-homepage
+
+services:
+  web:
+    image: xiaowork-homepage:${IMAGE_TAG:-p1-local}
+    build:
+      context: .
+      target: runtime
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:${HTTP_PORT:-3100}:8080'
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

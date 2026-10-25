@@ -1,0 +1,17 @@
+.git
+.nuxt
+.output
+dist
+node_modules
+.cache
+.data
+.deploy
+.env
+.env.*
+!.env.example
+*.log
+coverage
+docs
+.vscode
+XiaoWork_Homepage_*
+README.md

@@ -1,0 +1,10 @@
+node_modules
+.nuxt
+.output
+dist
+.deploy
+coverage
+package-lock.json
+XiaoWork_Homepage_V1_Design_Spec.md
+XiaoWork_Homepage_P0_Delivery.md
+XiaoWork_Homepage_V1_Visual_Reference.png

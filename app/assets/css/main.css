@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* P0 visual tokens. Keep future visual calibration in this single source. */
+:root {
+  color-scheme: dark;
+  --page: #1b0c26;
+  --surface: #2d1744;
+  --hero-start: #472b46;
+  --hero-end: #28132e;
+  --ink: #f3ded6;
+  --muted: #d3b9cb;
+  --subtle: #b49bb4;
+  --line: rgb(211 185 203 / 22%);
+  --accent: #d5b1c1;
+  --accent-ink: #29172e;
+  --grid: rgb(243 222 214 / 2.5%);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --page: #faf6f9;
+  --surface: #fffafd;
+  --hero-start: #f0e0eb;
+  --hero-end: #f7edf2;
+  --ink: #362139;
+  --muted: #654963;
+  --subtle: #785c74;
+  --line: rgb(83 48 87 / 20%);
+  --accent: #785171;
+  --accent-ink: #fff9fc;
+  --grid: rgb(83 48 87 / 3%);
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+    min-width: 320px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .hero-surface {
+    @apply rounded-[2rem] border border-line p-7 sm:p-12 lg:p-16;
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(125deg, var(--hero-start), var(--hero-end));
+    background-size:
+      32px 32px,
+      32px 32px,
+      auto;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 font-medium text-accent-ink transition-opacity hover:opacity-85;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-2xl border border-line px-5 py-3 font-medium text-ink transition-colors hover:bg-surface;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xl focus:bg-accent focus:px-4 focus:py-3 focus:text-accent-ink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
