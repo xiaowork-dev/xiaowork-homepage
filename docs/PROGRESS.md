@@ -25,7 +25,7 @@
 - 键盘焦点、移动菜单 Enter/Escape/跳转收起、卡片轻微 hover；发布 CSS 包含减少动效规则。
 - check、build、generate、Docker 镜像构建和健康启动、HTTP 冒烟均通过；冒烟覆盖 5 种路径、18 个资源、health、404 和重定向。
 - 真实浏览器截图与审计报告在 `docs/evidence/P2-*`；三份 P0 原件 SHA256 保持一致。
-- 用户创建 GitHub 仓库，身份已仅配置于本仓库；P1 已正常推送 `origin/main` 并核对远端 SHA。
+- 用户创建 GitHub 仓库，身份已仅配置于本仓库；P1 `eead14e` 和 P2 `f01cfb7` 已正常推送 `origin/main`，均核对远端 SHA。后续文档提交补记 P2 核验结果。
 
 ## 当前遗留与边界
 

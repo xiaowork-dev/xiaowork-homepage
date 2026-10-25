@@ -114,7 +114,8 @@ Dockerfile、Nginx、一键部署/更新/回滚脚本保持 P1 已验证逻辑�
 
 - 用户已创建 `xiaowork-dev/xiaowork-homepage` 并提供提交姓名/邮箱；只配置本仓库 Git 身份。
 - P1 完整工程和交付记录已单独提交并推送 `origin/main`：`eead14e81078bfd87b37cff6f8e5e4ec7254dcf6`，已用 `git ls-remote` 核对。
-- P2 实现提交的 SHA 与远端核验会在实现提交推送成功后，以独立文档提交补记于此，避免伪造尚未产生的 SHA。
+- P2 实现（代码、交付文档、截图与审计证据）提交：`f01cfb705de60ae5b02db1815cdcfbeacf0247c4`。已成功推送 `origin/main`，随后 `git ls-remote origin refs/heads/main` 返回相同 SHA，工作区干净。
+- 本段以随后独立的文档提交补记真实推送结果；该文档提交的最终 SHA 以 Git 历史及交付回复为准，不自引用。P1、P2 均未使用强制推送。
 - 后续经过验证的阶段继续正常提交推送，不强推或改写远端历史。
 
 ## 8. 遗留问题与 P3 建议
