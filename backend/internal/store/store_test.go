@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/migrations"
 )
 
 func initialized(t *testing.T) (*sql.DB, string) {
@@ -34,7 +36,7 @@ func TestMigrationAndPersistence(t *testing.T) {
 	if accounts != 0 || projects != 0 {
 		t.Fatal("schema initialization must not create a default account or sample content")
 	}
-	if _, err := db.Exec("INSERT INTO workspace(id, revision, updated_at) VALUES(1, 7, 1)"); err != nil {
+	if _, err := db.Exec("UPDATE workspace SET revision=7,updated_at=1 WHERE id=1"); err != nil {
 		t.Fatal(err)
 	}
 	db.Close()
@@ -75,13 +77,74 @@ func TestMissingAndUnknownDatabaseRejected(t *testing.T) {
 		t.Fatal("must not adopt an unknown database")
 	}
 	known, _ := initialized(t)
-	known.Exec("UPDATE schema_migrations SET version=99")
+	known.Exec("UPDATE schema_migrations SET version=99 WHERE version=2")
 	if err := Check(context.Background(), known); err == nil {
 		t.Fatal("must reject a newer schema")
 	}
-	known.Exec("UPDATE schema_migrations SET version=1, checksum='changed'")
+	known.Exec("UPDATE schema_migrations SET version=2 WHERE version=99")
+	known.Exec("UPDATE schema_migrations SET checksum='changed' WHERE version=1")
 	if err := Check(context.Background(), known); err == nil {
 		t.Fatal("must reject changed migration bytes at the same schema version")
+	}
+}
+
+func TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "legacy.sqlite")
+	db, err := Open(path, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	ctx := context.Background()
+	if _, err := db.Exec(`CREATE TABLE schema_migrations(version INTEGER PRIMARY KEY,applied_at TEXT NOT NULL,checksum TEXT NOT NULL)`); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := db.Exec(migrations.Initial); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := db.Exec("INSERT INTO schema_migrations VALUES(1,'legacy',?)", migrationChecksum(1)); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := db.Exec("INSERT INTO workspace(id,revision,updated_at) VALUES(1,11,1)"); err != nil {
+		t.Fatal(err)
+	}
+	if err := Check(ctx, db); err == nil {
+		t.Fatal("serve must refuse old schema before explicit upgrade")
+	}
+	if err := Migrate(ctx, db); err != nil {
+		t.Fatal(err)
+	}
+	if err := Check(ctx, db); err != nil {
+		t.Fatal(err)
+	}
+	var revision, count int
+	if err := db.QueryRow("SELECT revision FROM workspace WHERE id=1").Scan(&revision); err != nil || revision != 11 {
+		t.Fatalf("lost old workspace: %d %v", revision, err)
+	}
+	if err := db.QueryRow("SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 2 {
+		t.Fatalf("history: %d %v", count, err)
+	}
+	if _, err := db.Exec("UPDATE schema_migrations SET checksum='tampered' WHERE version=1"); err != nil {
+		t.Fatal(err)
+	}
+	if err := Check(ctx, db); err == nil {
+		t.Fatal("latest version cannot hide modified old checksum")
+	}
+	if err := Migrate(ctx, db); err == nil {
+		t.Fatal("explicit migration must also reject changed old checksum")
+	}
+}
+
+func TestMigrationGapRejected(t *testing.T) {
+	db, _ := initialized(t)
+	if _, err := db.Exec("DELETE FROM schema_migrations WHERE version=1"); err != nil {
+		t.Fatal(err)
+	}
+	if err := Check(context.Background(), db); err == nil {
+		t.Fatal("missing earlier migration must fail")
+	}
+	if err := Migrate(context.Background(), db); err == nil {
+		t.Fatal("missing earlier migration cannot be reconstructed implicitly")
 	}
 }
 

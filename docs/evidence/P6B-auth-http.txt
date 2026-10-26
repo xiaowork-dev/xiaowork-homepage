@@ -1,0 +1,115 @@
+=== RUN   TestPasswordEncodingAndValidation
+--- PASS: TestPasswordEncodingAndValidation (0.56s)
+=== RUN   TestOfflineInitializationDoesNotOverwriteAndResetRevokes
+--- PASS: TestOfflineInitializationDoesNotOverwriteAndResetRevokes (0.68s)
+=== RUN   TestSecretExclusiveCreationAndPermissions
+--- PASS: TestSecretExclusiveCreationAndPermissions (0.01s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	1.311s
+=== RUN   TestAuthenticationHTTPSLifecycleAndCSRF
+    auth_test.go:146: HTTP GET /workspace expected=401 actual=401
+    auth_test.go:147: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:147: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:160: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:161: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:165: HTTP POST /auth/logout expected=403 actual=403
+    auth_test.go:166: HTTP POST /auth/logout expected=403 actual=403
+    auth_test.go:179: HTTP POST /auth/logout foreign Origin expected=403 actual=403
+    auth_test.go:180: HTTP POST /auth/logout expected=204 actual=204
+    auth_test.go:181: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestAuthenticationHTTPSLifecycleAndCSRF (0.35s)
+=== RUN   TestLoginFailureRateLimitNonceReplayAndRecovery
+    auth_test.go:191: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:194: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:195: HTTP POST /auth/login expected=403 actual=403
+    auth_test.go:197: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:197: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:197: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:197: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:197: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:197: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:197: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:197: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:199: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:199: HTTP POST /auth/login expected=429 actual=429
+    auth_test.go:201: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:201: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:203: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:203: HTTP POST /auth/login expected=401 actual=401
+--- PASS: TestLoginFailureRateLimitNonceReplayAndRecovery (1.12s)
+=== RUN   TestPasswordChangeRevokesAllSessionsAndSessionExpiry
+    auth_test.go:210: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:210: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:211: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:211: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:212: HTTP POST /auth/reauth expected=200 actual=200
+    auth_test.go:214: HTTP POST /auth/password expected=204 actual=204
+    auth_test.go:215: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:216: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:217: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:217: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:218: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:218: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:220: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:222: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:223: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:223: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:225: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestPasswordChangeRevokesAllSessionsAndSessionExpiry (1.27s)
+=== RUN   TestLoginChallengeCapsAndExpiry
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:236: HTTP GET /auth/login-challenge expected=429 actual=429
+    auth_test.go:238: HTTP POST /auth/login expected=403 actual=403
+    auth_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:239: HTTP POST /auth/login expected=200 actual=200
+--- PASS: TestLoginChallengeCapsAndExpiry (0.45s)
+=== RUN   TestProxyHeadersCannotSpoofHTTPSOrSource
+--- PASS: TestProxyHeadersCannotSpoofHTTPSOrSource (0.00s)
+=== RUN   TestAuthenticationCapacityLimits
+--- PASS: TestAuthenticationCapacityLimits (2.00s)
+=== RUN   TestRejectedRequestsDoNotRefreshIdleSession
+    auth_test.go:293: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:293: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:295: HTTP GET /unknown-authenticated-route expected=404 actual=404
+    auth_test.go:296: HTTP POST /auth/password expected=400 actual=400
+    auth_test.go:298: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestRejectedRequestsDoNotRefreshIdleSession (0.52s)
+=== RUN   TestLoginNonceConsumedAtomically
+    auth_test.go:304: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:328: HTTP POST /auth/login simultaneous same nonce expected=200+403 actual=403+200
+--- PASS: TestLoginNonceConsumedAtomically (0.53s)
+=== RUN   TestAuthenticationRejectsUnknownAndCaseAliasedJSON
+    auth_test.go:334: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:334: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:340: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:340: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:340: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:342: HTTP POST /auth/logout expected=400 actual=400
+    auth_test.go:343: HTTP GET /auth/session?ignoredField=true expected=400 actual=400
+--- PASS: TestAuthenticationRejectsUnknownAndCaseAliasedJSON (0.50s)
+=== RUN   TestManagementRequiresApprovedOriginSecretAndHTTPS
+--- PASS: TestManagementRequiresApprovedOriginSecretAndHTTPS (0.04s)
+=== RUN   TestHealthReadinessAndUnimplementedPublishing
+    server_test.go:61: HTTP GET /projects expected=401 actual=401
+    server_test.go:62: HTTP GET /auth/login-challenge expected=200 actual=200
+    server_test.go:62: HTTP POST /auth/login expected=200 actual=200
+2026/10/26 19:51:06 request error id=req_4c2063f3569fd018173534a55dcd266b code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /publish-jobs expected=503 actual=503
+2026/10/26 19:51:06 request error id=req_a1ec58ac7755b986ae9f6663533059ca code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /preview-jobs expected=503 actual=503
+2026/10/26 19:51:06 request error id=req_c4743a604622b92e7d6e0d6e387efe2c code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /rollback-jobs expected=503 actual=503
+    server_test.go:69: HTTP GET /not-a-real-interface expected=404 actual=404
+2026/10/26 19:51:06 request error id=req_3d8aff7693455aa672bce4540752749f code=NOT_READY
+--- PASS: TestHealthReadinessAndUnimplementedPublishing (0.54s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	7.419s

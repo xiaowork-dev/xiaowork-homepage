@@ -1,30 +1,33 @@
 # XiaoWork Homepage 项目进度
 
-> 最后更新：2026-10-26（Asia/Shanghai）  
-> 当前阶段：**V1.1 P6-A 架构设计与隔离工程骨架完成；下一步 P6-B。V1.0 维持内部部署，公网安全门槛未解除。**
+> 最后更新：2026-10-26（Asia/Shanghai）
+> 当前阶段：**V1.1 P6-B 认证、草稿 API 与持久化完成；下一步 P6-C 管理界面。V1.0 维持内部部署，公网安全门槛未解除。**
 
 ## 阶段状态
 
-| 阶段          | 状态                                                  | 交付                                                                                                        |
-| ------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| P0～P2        | 需求、工程、首页视觉已验收，原件保留                  | [P0](../XiaoWork_Homepage_P0_Delivery.md)、[P1](deliveries/P1-delivery.md)、[P2](deliveries/P2-delivery.md) |
-| P3、P4        | 项目/关于/SEO、交互/性能已验收                        | [P3](deliveries/P3-delivery.md)、[P4](deliveries/P4-delivery.md)                                            |
-| P5-A          | 用户基本通过工程验收                                  | [P5-A](deliveries/P5A-delivery.md)                                                                          |
-| P5-B 预检     | 历史本机预检完成，旧NPM方案已替换                     | [预检](deliveries/P5B-preflight.md)                                                                         |
-| P5-B 内部部署 | OpenResty回环方案、权限修复、服务器验收完成           | [生产交付](deliveries/P5-production-delivery.md)、[修复](deliveries/P5-permission-fix.md)                   |
-| P5-B 公网发布 | 未放行：用户不接受剩余high风险                        | [发布门槛](P5-RELEASE-CHECKLIST.md)                                                                         |
-| P6-A          | 架构、数据库/API/发布设计与本地骨架已验证             | [P6-A交付](deliveries/P6A-delivery.md)、[架构](architecture/V1.1-ARCHITECTURE.md)                           |
-| P6-B～P6-E    | 未实现；认证/CRUD、管理UI、发布集成、完整测试依次推进 | [实施计划](architecture/V1.1-ARCHITECTURE.md#9-阶段计划和实际完成边界)                                      |
+| 阶段        | 状态                                                      | 交付                                                                                                        |
+| ----------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| P0～P2      | 需求、工程、首页视觉已验收，原件保留                      | [P0](../XiaoWork_Homepage_P0_Delivery.md)、[P1](deliveries/P1-delivery.md)、[P2](deliveries/P2-delivery.md) |
+| P3、P4      | 项目/关于/SEO、交互/性能已验收                            | [P3](deliveries/P3-delivery.md)、[P4](deliveries/P4-delivery.md)                                            |
+| P5-A        | 用户基本通过工程验收                                      | [P5-A](deliveries/P5A-delivery.md)                                                                          |
+| P5-B        | OpenResty 回环内部部署完成；high 风险未获接受，公网未放行 | [生产交付](deliveries/P5-production-delivery.md)、[发布门槛](P5-RELEASE-CHECKLIST.md)                       |
+| P6-A        | 架构、数据库/API/发布设计与隔离骨架已验收                 | [P6-A](deliveries/P6A-delivery.md)、[架构](architecture/V1.1-ARCHITECTURE.md)                               |
+| P6-B        | 单管理员认证、草稿内容/图片 API、导入与持久化已验证       | [P6-B](deliveries/P6B-delivery.md)、[API](V1.1-API-USAGE.md)、[安全测试](P6B-SECURITY-TESTS.md)             |
+| P6-C        | 下一阶段：中文 Vue 管理 UI                                | [接口清单](V1.1-API-USAGE.md#7-尚未实现与-p6-c-对接清单)                                                    |
+| P6-D / P6-E | 未实现：静态发布与恢复 / 完整上线准备                     | [发布设计](architecture/V1.1-PUBLISHING.md)                                                                 |
 
 ## 最新完成与证据
 
-- 独立功能分支 `feat/v1.1-admin-p6a`，基于 main `14f9b1fba6504b1367aad6165a0b72c37e495927`；不自动合并或部署。
-- 完成[数据库](architecture/V1.1-DATABASE.md)、[API/认证/上传安全](architecture/V1.1-API-SECURITY.md)、[发布/预览/回滚](architecture/V1.1-PUBLISHING.md)及迁移设计。前台保持静态，管理UI独立，Go API持有SQLite，受限离线worker构建完整静态快照；实际FS与HTTP核验后才报告成功。
-- 新增Go1.27/modernc SQLite骨架、显式空库迁移、版本/checksum拒绝策略、健康接口。没有默认账户、业务导入、登录、CRUD、上传、worker或发布接口；管理入口统一503/no-store/noindex。
-- 本地 `compose.admin-dev.yaml` 独立项目：3210回环gateway、内部API/前台、独立DB/uploads卷；真实启动/健康、容器替换、重复初始化和卷保留通过。[开发说明](V1.1-DEVELOPMENT.md)、[Docker证据](evidence/P6A-docker.json)。
-- 10项Go顶层测试、go vet、govulncheck、前台规范/类型/4项查询SEO测试、生产构建、静态生成、前台和管理关闭状态HTTP检查通过；详细范围见P6-A交付。govulncheck无发现不等于完整后台安全验收。
-- 本轮只读核对服务器仍为 `2616ef60e7e9fd7ff6d62d26806bd56673525d52`，健康且三页/health均200；没有远程写入、生产容器/反代/DNS/数据库变更。npm仍7 high，用户拒绝风险决定继续有效。
-- 浏览器实际查看本地三页及/admin阶段说明；本轮无UI视觉变更，未重跑完整双主题/五宽度矩阵、Lighthouse或真实认证/备份恢复。
+- 继续 `feat/v1.1-admin-p6a`，P6-B 开发基线 `e6205c074191a2a1ea021234cf7ae26cc70fbd7a`；main 保持 `14f9b1fba6504b1367aad6165a0b72c37e495927`，本轮不连接生产服务器。
+- 真正的 TTY 隐藏密码初始化、Argon2id、SQLite Session、Secure/HttpOnly/Strict Cookie、login challenge、CSRF、限速、过期、退出、再认证和改密撤销全部旧会话。
+- 项目/分类 CRUD、归档恢复、原子排序、资料/技术标签/社交/SEO 设置；所有编辑只写草稿，使用 `If-Match` revision 和事务历史/审计，冲突返回409。新增项目提供24h幂等请求保护。
+- 图片真实格式/尺寸校验、JPEG/PNG/WebP解码重编码、私有持久化、引用保护及软删除；SVG上传禁止。上传图片不自动成为公开资源。
+- 001原件保留，追加002，全部历史checksum核验；真实schema1→2保留卷升级。V1.0的3项目/3分类及品牌资料一次性导入，来源SHA/manifest/payload哈希登记；重复不覆盖编辑，状态和素材仍明确待确认。
+- 可信本地 HTTPS `https://localhost:3443`；不信任CA时验证失败，显式信任公开CA后真实登录通过。API无宿主端口，gateway仅回环3210/3443，受信代理精确到私有control网络的gateway地址。[开发说明](V1.1-DEVELOPMENT.md)
+- 最终隔离 Linux：**48个Go顶层测试、224条HTTP结果记录、0失败、0跳过**，go vet通过；POSIX密钥权限、软链接、独立绝对期限都实际执行。[Go证据](evidence/P6B-go-tests.txt)
+- Docker重新构建并替换API/gateway，原管理员Session、revision、已编辑草稿与图片哈希保留；重复导入不覆盖；API/frontend/gateway healthy、init退出0。[Docker证据](evidence/P6B-docker.json)、[持久化](evidence/P6B-docker-persistence.txt)
+- V1.0源码/正式Compose/部署脚本未改；TypeScript、ESLint、Prettier、4项前台测试、build、generate、三页/SEO/22资源/health/404 HTTP冒烟通过。未在本阶段重跑全浏览器视觉矩阵或Lighthouse。
+- npm审计仍 **7 high / 0 critical**，node-forge1.4.0无本轮确认兼容修复；Go扫描symbol0/package0，module1为未导入openpgp的GO-2026-5932。[安全记录](P6B-SECURITY-TESTS.md)
 
 ## V1.0 运行与验收基线
 
@@ -40,25 +43,23 @@
 - 专属SSH隧道及本轮本机测试资源已清理；服务器内部健康实例和原开发服务保留。无全局清理、DNS/证书/防火墙/SSH或无关容器变更。
 - 默认部署文档已改1Panel OpenResty，应用、依赖、视觉原件与既有更新/回滚脚本保留。
 
-## 阻塞与下一步
+## 阻塞、范围与下一步
 
-P6-B优先实现受控管理员CLI、Argon2id/Session/CSRF/限速、项目/分类/资料/设置CRUD、素材验证引用和当前TS内容一次性导入，先在隔离环境集成与安全测试。P6-C再做真实中文管理UI，P6-D实现静态发布和故障恢复，P6-E执行多服务升级/回滚和备份恢复。P6-A骨架不可作为后台成品上线。
+P6-C接入中文管理登录、仪表盘、项目/分类、排序、图片、资料与网站设置；处理401/403/409/413/415/422/428/429，并保留冲突表单输入，提供键盘排序。`/admin/`仍是明确阶段说明，未实现管理UI。
 
-| 项目 | 当前事实及下一步                                                                                                   |
-| ---- | ------------------------------------------------------------------------------------------------------------------ |
-| 安全 | 7 high/0 critical，同一node-forge GHSA；官方无兼容修复，用户暂不接受。等待修复复验或明确风险决定，不能判安全通过   |
-| 端口 | 服务器监听和DNAT只127；本机IPv4 TCP与HTTP超时结果不一致，IPv6 AccessDenied。须独立双栈出口补测，不能宣称完整防绕过 |
-| 公网 | 未新增根域vhost、证书/跳转、DNS或Cloudflare配置；Full(strict)实际设置未知，Host/SNI限制未验收                      |
-| 内容 | 用户允许首版明确占位；Blog/Nav/ERP真实封面/栈/状态/地址、更多个人资料及可选简历后补，ERP需脱敏授权                 |
-| 覆盖 | 公网Lighthouse/真实INP、OS镜像CVE、离线恢复、Firefox/Safari/真实设备/完整读屏未覆盖                                |
+P6-D才实现静态快照、受限worker、私有预览、发布、任务对账及版本恢复。当前相关API经认证后503，不伪报发布成功。P6-E执行完整备份恢复、发布故障/多服务升级回滚、资源峰值、安全/浏览器/性能与生产预检。V1.0发布脚本不能直接升级此功能分支。
 
-安全放行后再仅配置本站OpenResty、根域证书与Cloudflare，补测公网和防绕过，不改整机80/443白名单影响其他站。
+| 项目     | 当前事实                                                                                                         |
+| -------- | ---------------------------------------------------------------------------------------------------------------- |
+| 安全     | npm high仍未修复，用户未接受公网风险。Go未用openpgp的模块级告警保留；不得把局部测试当完整安全认证。              |
+| 内容     | Blog/Nav/ERP真实封面/技术栈/状态/地址，更多公开个人资料与简历后补；ERP截图需要脱敏确认。                         |
+| 公网     | 本阶段无生产访问或变更；根域代理、证书、DNS、Full(strict)及Host/SNI防绕过未因V1.1开发放行。                      |
+| 验证边界 | 尚无后台UI浏览器验收、真实EXIF/GPS资料全集、25M像素峰值压测、OS镜像CVE、离线恢复、worker切换恢复或公网性能验证。 |
 
-## Git与交接
+## Git 与交接
 
-- V1.1实现、架构和交付提交`6d9a0680df44063336ef1d0a800294b52347fbd7`已推送`feat/v1.1-admin-p6a`并远端核验；本段随后以纯文档提交记录。main和服务器不跟随功能分支更新，记录提交自身SHA见最终回复及Git。
+P6-B代码、说明、证据、交付与进度同次正常提交推送当前功能分支；已完成提交SHA与远端核验在随后交付记录及最终回复登记。P6-A实现SHA为`6d9a0680df44063336ef1d0a800294b52347fbd7`，已推送。
 
-- main正常提交推送：方案53d063f85bf8dd6bdf461cc5f30334808f1d66cf、修复2616ef60e7e9fd7ff6d62d26806bd56673525d52均已核验。服务器保持精确已审修复版，不因纯文档提交自动更新。
-- 本次交付/脱敏证据同次提交；自身最终SHA/推送结果见最终回复和远端查询，不强推或改写历史。
-- 最新交付：[P6-A架构与本地骨架](deliveries/P6A-delivery.md)；服务器基线见[P5生产部署（内部完成）](deliveries/P5-production-delivery.md)。实际目录/备份/主机信息仅.cache/p5-production-private/，已Git忽略，禁止推送。
-- 下次先读本页、交付和发布清单。代理方案授权不等于用户接受high风险，不擅自开放公网。
+本轮不合并main、不强推、不更新服务器。V1.0服务器历史版本`2616ef60e7e9fd7ff6d62d26806bd56673525d52`仅引用已有交付，本轮未重新连接核验。
+
+最新交付：[P6-B](deliveries/P6B-delivery.md)。下次先读本页、API使用和交付；本地私有会话/密钥/数据只在忽略目录与开发卷，禁止推送。

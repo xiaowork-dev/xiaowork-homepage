@@ -1,0 +1,5 @@
+HTTP GET /auth/session expected=200 actual=200
+HTTP GET /workspace expected=200 actual=200
+PASS V1.0 IDs/order/featured/unconfirmed placeholder data retained
+HTTP GET /media/med_d02f7b0e07cda1e9398ea185cc95c0a4/content expected=200 actual=200
+PASS account/session/draft revision/media survived API container recreation and re-import

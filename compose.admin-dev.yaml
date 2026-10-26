@@ -1,17 +1,28 @@
-# P6-A local scaffold only. Never pass this file to V1 production release scripts.
+# P6-B isolated local API environment. Never use this file for V1 production releases.
 name: xiaowork-homepage-v11-dev
 
 x-api: &api
-  image: xiaowork-homepage-api:p6a-dev
+  image: xiaowork-homepage-api:p6b-dev
   read_only: true
   cap_drop: [ALL]
   security_opt: [no-new-privileges:true]
   tmpfs:
     - /tmp:size=32m,mode=1777
+  environment:
+    XIAOWORK_ORIGIN: https://localhost:${V11_DEV_HTTPS_PORT:-3443}
+    XIAOWORK_SECRET_PATH: /secrets/session.key
+    XIAOWORK_UPLOAD_DIR: /uploads
+    XIAOWORK_DEV_AUTHORITY_DIR: /authority
+    XIAOWORK_DEV_TLS_DIR: /tls
+    XIAOWORK_IMPORT_PATH: /seed/v1.json
+    XIAOWORK_TRUSTED_PROXY_CIDRS: 192.168.247.2/32
   volumes:
     - admin-db:/data
     - admin-uploads:/uploads
-  networks: [isolated]
+    - admin-secrets:/secrets:ro
+  networks:
+    control:
+      ipv4_address: 192.168.247.3
   logging:
     driver: json-file
     options:
@@ -21,7 +32,15 @@ x-api: &api
 services:
   api-init:
     <<: *api
-    command: [migrate]
+    command: [prepare-dev]
+    volumes:
+      - admin-db:/data
+      - admin-secrets:/secrets
+      - admin-authority:/authority
+      - admin-tls:/tls
+    networks:
+      control:
+        ipv4_address: 192.168.247.4
     restart: 'no'
     healthcheck:
       disable: true
@@ -54,12 +73,15 @@ services:
         max-file: '3'
   gateway:
     image: nginx:1.30.6-alpine
-    user: nginx
+    user: '10001:10001'
     entrypoint: [nginx, -g, 'daemon off;']
     ports:
       - '127.0.0.1:${V11_DEV_PORT:-3210}:8080'
+      - '127.0.0.1:${V11_DEV_HTTPS_PORT:-3443}:8443'
     volumes:
       - ./deploy/admin-dev/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/admin-dev/locations.conf:/etc/nginx/xiaowork-locations.conf:ro
+      - admin-tls:/tls:ro
     depends_on:
       frontend:
         condition: service_healthy
@@ -70,7 +92,11 @@ services:
     security_opt: [no-new-privileges:true]
     tmpfs:
       - /tmp:size=32m,mode=1777
-    networks: [edge, isolated]
+    networks:
+      edge:
+      isolated:
+      control:
+        ipv4_address: 192.168.247.2
     healthcheck:
       test: [CMD, wget, -q, -O, /dev/null, 'http://127.0.0.1:8080/health.json']
       interval: 5s
@@ -86,7 +112,15 @@ networks:
   edge:
   isolated:
     internal: true
+  control:
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.247.0/28
 
 volumes:
   admin-db:
   admin-uploads:
+  admin-secrets:
+  admin-authority:
+  admin-tls:

@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-26",
+  "scope": "P6-B local Docker only; no production access",
+  "project": "xiaowork-homepage-v11-dev",
+  "schema": 2,
+  "sqlite": "3.54.1",
+  "priorSchema": 1,
+  "priorDatabaseBackup": "Git-ignored local cache; API stopped before copy",
+  "recreation": {
+    "oldContainerId": "0de0a9fb6a0698f90d3f80eb7ff348de7e6ed82a9d0887a110a8fd5a0f1a9cfd",
+    "newContainerId": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+    "keptVolumes": true,
+    "sameSessionHTTPS": "200",
+    "sameRevision": true,
+    "sameDraft": true,
+    "sameMediaSHA256": true,
+    "importAgain": "AlreadyImported=true"
+  },
+  "tls": {
+    "untrustedCA": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+    "trustedCA": "verified chain and hostname; real login 200",
+    "verificationDisabled": false,
+    "caPrivateKeyMountedToAPI": false,
+    "caPrivateKeyMountedToGateway": false
+  },
+  "containers": [
+    {
+      "service": "api-init",
+      "containerId": "452e2a1162ac89d3d2f84cc9582de1ae3e90a6c5a67085f8eaaa936c68b0e1d1",
+      "image": "xiaowork-homepage-api:p6b-dev",
+      "imageId": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "state": "exited",
+      "health": null,
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_control"],
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-authority",
+          "destination": "/authority",
+          "rw": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "rw": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-secrets",
+          "destination": "/secrets",
+          "rw": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-tls",
+          "destination": "/tls",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "service": "api",
+      "containerId": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "image": "xiaowork-homepage-api:p6b-dev",
+      "imageId": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_control"],
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "rw": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-secrets",
+          "destination": "/secrets",
+          "rw": false
+        },
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-uploads",
+          "destination": "/uploads",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "service": "frontend",
+      "containerId": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "image": "xiaowork-homepage:p6a-dev",
+      "imageId": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "nginx",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_isolated"],
+      "mounts": []
+    },
+    {
+      "service": "gateway",
+      "containerId": "2334204f953d744028c05b655283e27631df09e2741df8bc71812e1421aa3cea",
+      "image": "nginx:1.30.6-alpine",
+      "imageId": "sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3210"
+          }
+        ],
+        "8443/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3443"
+          }
+        ]
+      },
+      "networks": [
+        "xiaowork-homepage-v11-dev_control",
+        "xiaowork-homepage-v11-dev_edge",
+        "xiaowork-homepage-v11-dev_isolated"
+      ],
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-dev_admin-tls",
+          "destination": "/tls",
+          "rw": false
+        },
+        {
+          "name": null,
+          "destination": "/etc/nginx/nginx.conf",
+          "rw": false
+        },
+        {
+          "name": null,
+          "destination": "/etc/nginx/xiaowork-locations.conf",
+          "rw": false
+        }
+      ]
+    }
+  ]
+}

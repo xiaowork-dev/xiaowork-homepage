@@ -1,0 +1,298 @@
+{
+  "manifest": [
+    {
+      "byteSize": 914,
+      "path": "app/components/SiteFooter.vue",
+      "sha256": "04f13271ffa1ee950163012f569d23bce6e78f6e480e51e6bf34017a9a8516da"
+    },
+    {
+      "byteSize": 1749,
+      "path": "app/data/about.ts",
+      "sha256": "4f8eb34f11a7980cc2efac9da5b77969146b09acf4e898bc74b956e2a554c698"
+    },
+    {
+      "byteSize": 710,
+      "path": "app/data/project-covers.ts",
+      "sha256": "72b566b3a295e221434f2a8644e5000521c52f37f9c0b7050598609f4e25dd8f"
+    },
+    {
+      "byteSize": 1866,
+      "path": "app/data/projects.ts",
+      "sha256": "93a0b03e133094dcf96f0fc2ceb5f194b70cd69180b0d95c65cc144b2c8dd11e"
+    },
+    {
+      "byteSize": 657,
+      "path": "app/data/site.ts",
+      "sha256": "52d6ce6ae937950b138eee07d8d7e0dc00614b5d6846a7efa3e51f48d047a93c"
+    },
+    {
+      "byteSize": 1138,
+      "path": "nuxt.config.ts",
+      "sha256": "234c533ed4aeaaf10651ebe517fce160924c56466f21b8130a9bf94a5ba000af"
+    },
+    {
+      "byteSize": 212,
+      "path": "public/favicon.svg",
+      "sha256": "cd89f01b8ac63b23db74e7e66f39f333847a3e7eeb687d89e583399b185eddec"
+    },
+    {
+      "byteSize": 1667,
+      "path": "public/images/projects/blog/placeholder.svg",
+      "sha256": "f054b5ff5e0f2a5eb638d45b7a65f92fd61f4186df4db44262f6c6d4114fb649"
+    },
+    {
+      "byteSize": 1669,
+      "path": "public/images/projects/erp/placeholder.svg",
+      "sha256": "a315ab86c654e1e4687ce9799913804db1d23ff1fab36f103c5c397118f2f0fb"
+    },
+    {
+      "byteSize": 1672,
+      "path": "public/images/projects/nav/placeholder.svg",
+      "sha256": "95689b2efa0c40fbbbc937486efd2393a187156282a01b392eb90333e1d384ec"
+    },
+    {
+      "byteSize": 102888,
+      "path": "public/images/social/xiaowork-share.png",
+      "sha256": "ff7415457338281effe69d191045f84bdfbebc6f3a902a8ccfafc739b5050ef5"
+    },
+    {
+      "byteSize": 1415,
+      "path": "shared/seo.ts",
+      "sha256": "22074bd9490b74c3e1966c3423379af505af161584add89ff1b84396234a5f38"
+    }
+  ],
+  "manifestSha256": "16b09f83320a4e19eb768dc05c773aa49480a019d982e70b79f155e0367dc45a",
+  "payload": {
+    "assets": [
+      {
+        "alt": "XiaoWork Blog 封面占位图，真实截图待补充",
+        "byteSize": 1667,
+        "height": 600,
+        "id": "builtin-cover-blog",
+        "mediaType": "image/svg+xml",
+        "path": "images/projects/blog/placeholder.svg",
+        "sha256": "f054b5ff5e0f2a5eb638d45b7a65f92fd61f4186df4db44262f6c6d4114fb649",
+        "width": 960
+      },
+      {
+        "alt": "XiaoWork Nav 封面占位图，真实截图待补充",
+        "byteSize": 1672,
+        "height": 600,
+        "id": "builtin-cover-nav",
+        "mediaType": "image/svg+xml",
+        "path": "images/projects/nav/placeholder.svg",
+        "sha256": "95689b2efa0c40fbbbc937486efd2393a187156282a01b392eb90333e1d384ec",
+        "width": 960
+      },
+      {
+        "alt": "XiaoWork ERP 封面占位图，真实截图待补充",
+        "byteSize": 1669,
+        "height": 600,
+        "id": "builtin-cover-erp",
+        "mediaType": "image/svg+xml",
+        "path": "images/projects/erp/placeholder.svg",
+        "sha256": "a315ab86c654e1e4687ce9799913804db1d23ff1fab36f103c5c397118f2f0fb",
+        "width": 960
+      },
+      {
+        "alt": "XiaoWork — Developer & Creator，网站、应用与实用工具",
+        "byteSize": 102888,
+        "height": 630,
+        "id": "builtin-social-share",
+        "mediaType": "image/png",
+        "path": "images/social/xiaowork-share.png",
+        "sha256": "ff7415457338281effe69d191045f84bdfbebc6f3a902a8ccfafc739b5050ef5",
+        "width": 1200
+      },
+      {
+        "alt": "XiaoWork 品牌图标",
+        "byteSize": 212,
+        "height": 64,
+        "id": "builtin-brand-icon",
+        "mediaType": "image/svg+xml",
+        "path": "favicon.svg",
+        "sha256": "cd89f01b8ac63b23db74e7e66f39f333847a3e7eeb687d89e583399b185eddec",
+        "width": 64
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-website",
+        "name": "网站",
+        "order": 1,
+        "slug": "website"
+      },
+      {
+        "id": "cat-application",
+        "name": "应用与工具",
+        "order": 2,
+        "slug": "application"
+      },
+      {
+        "id": "cat-open-source",
+        "name": "开源与学习",
+        "order": 3,
+        "slug": "open-source"
+      }
+    ],
+    "profile": {
+      "about": {
+        "brandIntroduction": "XiaoWork 是个人品牌与开发作品的统一入口，连接网站、应用和实用工具，也记录持续开发与实践的过程。",
+        "capabilities": [
+          {
+            "technologies": ["Java", "Spring Boot", "MySQL"],
+            "title": "服务与数据"
+          },
+          {
+            "technologies": ["Vue", "Nuxt"],
+            "title": "界面与体验"
+          },
+          {
+            "technologies": ["Docker"],
+            "title": "构建与交付"
+          }
+        ],
+        "contacts": [
+          {
+            "description": "查看 XiaoWork Homepage 的公开代码与开发记录。",
+            "label": "GitHub · 本站源码",
+            "url": "https://github.com/xiaowork-dev/xiaowork-homepage"
+          }
+        ],
+        "personalIntroduction": [],
+        "principles": [
+          {
+            "description": "围绕实际需求构建功能，选择清晰、适度的技术方案。",
+            "title": "保持简洁"
+          },
+          {
+            "description": "让内容易于理解，让界面在不同设备和主题下都清晰可用。",
+            "title": "重视体验"
+          },
+          {
+            "description": "用可维护的代码、验证与交付记录，让作品能够持续迭代。",
+            "title": "持续维护"
+          }
+        ]
+      },
+      "site": {
+        "avatarAssetId": null,
+        "brandAssetId": "builtin-brand-icon",
+        "directions": ["全栈开发", "独立创造", "Web · Applications · Tools"],
+        "githubUrl": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "introduction": [
+          "用代码构建想法，用作品连接可能。",
+          "专注网站、应用与实用工具的开发，在持续实践中打磨体验与细节。"
+        ],
+        "name": "XiaoWork",
+        "role": "Developer & Creator",
+        "technologies": ["Java", "Spring Boot", "Vue", "Nuxt", "MySQL", "Docker"]
+      }
+    },
+    "projects": [
+      {
+        "category": "website",
+        "cover": {
+          "id": "builtin-cover-blog",
+          "kind": "builtin"
+        },
+        "coverAlt": "XiaoWork Blog 封面占位图，真实截图待补充",
+        "coverKind": "placeholder",
+        "demoUrl": null,
+        "description": "",
+        "featured": true,
+        "id": "xiaowork-blog",
+        "isPlaceholder": true,
+        "name": "XiaoWork Blog",
+        "order": 1,
+        "repositoryUrl": null,
+        "slug": "blog",
+        "status": "unconfirmed",
+        "summary": "记录技术探索、开发过程与实践心得，让经验沉淀为可以分享的文字。",
+        "techStack": [],
+        "visible": true
+      },
+      {
+        "category": "website",
+        "cover": {
+          "id": "builtin-cover-nav",
+          "kind": "builtin"
+        },
+        "coverAlt": "XiaoWork Nav 封面占位图，真实截图待补充",
+        "coverKind": "placeholder",
+        "demoUrl": null,
+        "description": "",
+        "featured": true,
+        "id": "xiaowork-nav",
+        "isPlaceholder": true,
+        "name": "XiaoWork Nav",
+        "order": 2,
+        "repositoryUrl": null,
+        "slug": "nav",
+        "status": "unconfirmed",
+        "summary": "把常用站点与开发资源有序收纳，为日常工作保留一个简洁、高效的起点。",
+        "techStack": [],
+        "visible": true
+      },
+      {
+        "category": "application",
+        "cover": {
+          "id": "builtin-cover-erp",
+          "kind": "builtin"
+        },
+        "coverAlt": "XiaoWork ERP 封面占位图，真实截图待补充",
+        "coverKind": "placeholder",
+        "demoUrl": null,
+        "description": "",
+        "featured": true,
+        "id": "xiaowork-erp",
+        "isPlaceholder": true,
+        "name": "XiaoWork ERP",
+        "order": 3,
+        "repositoryUrl": null,
+        "slug": "erp",
+        "status": "unconfirmed",
+        "summary": "面向企业资源管理的系统开发实践，探索业务流程与软件工程的连接。",
+        "techStack": [],
+        "visible": true
+      }
+    ],
+    "settings": {
+      "defaultSeoDescription": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+      "defaultShareAssetId": "builtin-social-share",
+      "footerText": "用代码构建想法。",
+      "homeIntroduction": [
+        "用代码构建想法，用作品连接可能。",
+        "专注网站、应用与实用工具的开发，在持续实践中打磨体验与细节。"
+      ],
+      "pages": {
+        "about": {
+          "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+          "shareAssetId": null,
+          "title": "关于 XiaoWork — 开发者与创作"
+        },
+        "home": {
+          "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+          "shareAssetId": null,
+          "title": "XiaoWork — 个人品牌与项目展示"
+        },
+        "projects": {
+          "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+          "shareAssetId": null,
+          "title": "项目与作品 — XiaoWork"
+        }
+      },
+      "siteDescription": "XiaoWork 个人品牌主页，展示网站、应用与软件开发项目。",
+      "siteTitle": "XiaoWork — 个人品牌与项目展示",
+      "socialLinks": [
+        {
+          "label": "GitHub · 本站源码",
+          "url": "https://github.com/xiaowork-dev/xiaowork-homepage"
+        }
+      ]
+    }
+  },
+  "payloadSha256": "841fbca75e7cc57ee5ea7a087c24da16e608f51ca49940859e563a92914487ca",
+  "schemaVersion": 1,
+  "sourceRevision": "e6205c074191a2a1ea021234cf7ae26cc70fbd7a"
+}

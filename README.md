@@ -1,19 +1,22 @@
 # XiaoWork Homepage
 
-V1.1 正在独立分支 `feat/v1.1-admin-p6a` 开发。P6-A 提供[后台架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 与认证安全](docs/architecture/V1.1-API-SECURITY.md)、[静态发布与恢复](docs/architecture/V1.1-PUBLISHING.md)设计，以及本地 Go/SQLite 工程骨架；没有登录、管理表单、CRUD、上传或发布功能。前台仍为 V1.0 静态站，生产配置与实例保持原样。阶段结果见 [P6-A 交付](docs/deliveries/P6A-delivery.md)。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。P6-B 已实现 Go/SQLite 单管理员认证、草稿项目/分类/资料/SEO 设置 API、安全图片上传、revision 并发控制与 V1.0 数据导入。管理 UI、静态预览/发布/版本恢复分别留给 P6-C、P6-D；API 不能直接修改公开网站。前台保持 V1.0 静态站，生产容器与发布门槛不变。
+
+- [P6-B 交付](docs/deliveries/P6B-delivery.md)、[当前进度](docs/PROGRESS.md)
+- [架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 安全设计](docs/architecture/V1.1-API-SECURITY.md)、[发布设计](docs/architecture/V1.1-PUBLISHING.md)
+- [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
 
 ## V1.1 隔离开发环境
 
-本机 Docker Linux Engine / Compose 可直接启动，不需要宿主安装 Go：
-
 ```bash
 docker compose -f compose.admin-dev.yaml up -d --build --wait --wait-timeout 120
-docker compose -f compose.admin-dev.yaml ps -a
-# 停止本地开发环境并保留独立数据卷
-docker compose -f compose.admin-dev.yaml down
+docker compose -f compose.admin-dev.yaml exec -it api /homepage-api init-admin
+docker compose -f compose.admin-dev.yaml exec -T api /homepage-api import-v1
 ```
 
-入口 `http://127.0.0.1:3210`；仅 gateway 映射回环端口。API 不映射宿主端口，DB 与 uploads 使用该项目独立命名卷，不复用生产数据或 `.env`。`/admin/` 和管理 API 明确返回 503；健康入口 `/dev-health/api` 可核验骨架。认证实现后需本地 HTTPS 验证 Secure Cookie，当前 HTTP 环境不能用于认证验收。端口冲突、模块网络问题及可选宿主 Go 测试见[开发说明](docs/V1.1-DEVELOPMENT.md)。不要使用 V1.0 的 `release.sh` 或 `deploy.sh` 部署本功能分支。
+初始化命令通过真实 TTY 隐藏读取自选密码，不接受密码参数、环境变量、管道或默认密码。HTTP 前台入口 `http://127.0.0.1:3210`，管理 API 使用可信本地 HTTPS `https://localhost:3443/api/admin/v1`；`/admin/` 暂为明确的 P6-C 待实现说明。认证、CSRF 和登录限速真实运行，写入须携带 `If-Match` 工作区版本。公开站 origin 固定为 `https://xiaoworks.com`，不会由表单修改。
+
+只有 gateway 绑定本机回环端口。API、SQLite、上传、session secret 和本地 TLS 使用独立隔离网络/持久卷，不复用生产数据。启动前检查端口和 control 网段冲突；先导出公开开发 CA，客户端显式信任后执行 HTTPS 验收，不能关闭证书校验。完整步骤、模块网络问题和保留卷重建见 [开发说明](docs/V1.1-DEVELOPMENT.md)。停止使用 `docker compose -f compose.admin-dev.yaml down`，不要添加 `-v`。不要使用 V1.0 的发布脚本部署本分支。
 
 ## V1.0 当前状态
 
@@ -57,7 +60,7 @@ npm run dev
 
 ## 技术与目录
 
-V1.0 使用 Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4，采用静态数据与预渲染。V1.1 的 Go/SQLite 骨架与前台隔离，尚未接入公开页面。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
+V1.0 使用 Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4，采用静态数据与预渲染。V1.1 的 Go/SQLite 认证与草稿 API 和前台隔离，尚未接入公开页面。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
 
 ```text
 app/

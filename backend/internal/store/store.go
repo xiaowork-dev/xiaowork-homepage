@@ -17,7 +17,7 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-const SchemaVersion = 1
+const SchemaVersion = 2
 
 // Open uses one connection for the scaffold. Every new connection receives all pragmas.
 // Production concurrency and migration locking are P6-B/E acceptance items.
@@ -89,47 +89,85 @@ func SafeSQLiteVersion(version string) bool {
 }
 
 func Check(ctx context.Context, db *sql.DB) error {
-	var count, version int
-	if err := db.QueryRowContext(ctx, "SELECT count(*), coalesce(max(version), 0) FROM schema_migrations").Scan(&count, &version); err != nil {
-		return errors.New("database schema is not initialized")
+	version, err := checkHistory(ctx, db)
+	if err != nil {
+		return err
 	}
-	if count != 1 || version != SchemaVersion {
-		return errors.New("unsupported database schema; refusing to serve")
-	}
-	var checksum string
-	if err := db.QueryRowContext(ctx, "SELECT checksum FROM schema_migrations WHERE version=?", SchemaVersion).Scan(&checksum); err != nil || checksum != migrationChecksum() {
-		return errors.New("migration checksum mismatch; refusing schema drift")
+	if version != SchemaVersion {
+		return errors.New("unsupported database schema; run explicit migrations before serving")
 	}
 	return db.PingContext(ctx)
 }
 
-func migrationChecksum() string {
-	return fmt.Sprintf("%x", sha256.Sum256([]byte(migrations.Initial)))
+func migrationChecksum(version int) string {
+	return fmt.Sprintf("%x", sha256.Sum256([]byte(migrations.All[version-1])))
 }
 
-// Migrate only installs the P6-A schema into an empty database or checks the same version.
-// It will not adopt an unknown existing database, seed an account, or downgrade a schema.
+type historyQuerier interface {
+	QueryContext(context.Context, string, ...any) (*sql.Rows, error)
+}
+
+// Every previously applied checksum is checked, not only the latest migration.
+func checkHistory(ctx context.Context, db historyQuerier) (int, error) {
+	rows, err := db.QueryContext(ctx, "SELECT version, checksum FROM schema_migrations ORDER BY version")
+	if err != nil {
+		return 0, errors.New("database schema is not initialized")
+	}
+	defer rows.Close()
+	version := 0
+	for rows.Next() {
+		var current int
+		var checksum string
+		if err := rows.Scan(&current, &checksum); err != nil {
+			return 0, err
+		}
+		if current != version+1 || current > SchemaVersion {
+			return 0, errors.New("unsupported or incomplete migration history")
+		}
+		if checksum != migrationChecksum(current) {
+			return 0, errors.New("migration checksum mismatch; refusing schema drift")
+		}
+		version = current
+	}
+	return version, rows.Err()
+}
+
+// Migrate explicitly upgrades reviewed, contiguous migrations. It never adopts
+// unknown tables, seeds accounts/business content, or downgrades a schema.
 func Migrate(ctx context.Context, db *sql.DB) error {
-	var count int
-	if err := db.QueryRowContext(ctx, "SELECT count(*) FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").Scan(&count); err != nil {
-		return err
-	}
-	if count != 0 {
-		return Check(ctx, db)
-	}
 	tx, err := db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	if _, err = tx.ExecContext(ctx, "CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL, checksum TEXT NOT NULL)"); err != nil {
+	var count int
+	if err := tx.QueryRowContext(ctx, "SELECT count(*) FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").Scan(&count); err != nil {
 		return err
 	}
-	if _, err = tx.ExecContext(ctx, migrations.Initial); err != nil {
+	if count == 0 {
+		if _, err := tx.ExecContext(ctx, "CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL, checksum TEXT NOT NULL)"); err != nil {
+			return err
+		}
+	}
+	// Acquire the write lock before observing the applied version. Concurrent
+	// explicit upgrades cannot both select and apply the same pending migration.
+	if _, err := tx.ExecContext(ctx, "UPDATE schema_migrations SET version=version WHERE 0"); err != nil {
+		return errors.New("refusing to adopt an unknown database")
+	}
+	version, err := checkHistory(ctx, tx)
+	if err != nil {
 		return err
 	}
-	if _, err = tx.ExecContext(ctx, "INSERT INTO schema_migrations(version, applied_at, checksum) VALUES (?, ?, ?)", SchemaVersion, time.Now().UTC().Format(time.RFC3339Nano), migrationChecksum()); err != nil {
-		return err
+	if count != 0 && version == 0 {
+		return errors.New("refusing a database without reviewed migration history")
+	}
+	for next := version + 1; next <= SchemaVersion; next++ {
+		if _, err := tx.ExecContext(ctx, migrations.All[next-1]); err != nil {
+			return err
+		}
+		if _, err := tx.ExecContext(ctx, "INSERT INTO schema_migrations(version, applied_at, checksum) VALUES (?, ?, ?)", next, time.Now().UTC().Format(time.RFC3339Nano), migrationChecksum(next)); err != nil {
+			return err
+		}
 	}
 	return tx.Commit()
 }

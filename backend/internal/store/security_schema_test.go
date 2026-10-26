@@ -90,12 +90,12 @@ func TestAssetMetadataSoftDeletionProtectsEveryReferenceKind(t *testing.T) {
 			securityExec(t, db, "INSERT INTO asset_metadata(asset_id,created_at,updated_at) VALUES('a',1,1)")
 			switch reference {
 			case "project":
-				securityExec(t, db, "INSERT INTO workspace(id,updated_at) VALUES(1,1)")
+				securityExec(t, db, "UPDATE workspace SET updated_at=1 WHERE id=1")
 				securityExec(t, db, "INSERT INTO project_categories(id,slug,name,created_at,updated_at) VALUES('c','category','Category',1,1)")
 				securityExec(t, db, "INSERT INTO project_drafts(id,category_id,slug,name,summary,created_at,updated_at) VALUES('p','c','project','Project','',1,1)")
 				securityExec(t, db, "INSERT INTO project_draft_assets(project_id,role,asset_id) VALUES('p','cover','a')")
 			case "document":
-				securityExec(t, db, "INSERT INTO workspace(id,updated_at) VALUES(1,1)")
+				securityExec(t, db, "UPDATE workspace SET updated_at=1 WHERE id=1")
 				securityExec(t, db, "INSERT INTO workspace_documents(kind,content_json,updated_at) VALUES('site','{}',1)")
 				securityExec(t, db, "INSERT INTO document_draft_assets(document_kind,field_path,asset_id) VALUES('site','shareImage','a')")
 			case "snapshot":

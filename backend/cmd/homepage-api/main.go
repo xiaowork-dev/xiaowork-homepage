@@ -1,19 +1,29 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
+	"net/netip"
+	"net/url"
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"syscall"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store"
+	"golang.org/x/term"
 )
 
 func main() {
@@ -22,74 +32,209 @@ func main() {
 		os.Exit(1)
 	}
 }
-
 func run() error {
 	if len(os.Args) != 2 {
-		return errors.New("usage: homepage-api <serve|migrate|info|healthcheck>")
+		return errors.New("usage: homepage-api <serve|migrate|info|healthcheck|init-secret|init-admin|reset-admin|import-v1|prepare-dev|dev-ca>")
 	}
 	command := os.Args[1]
 	if command == "healthcheck" {
 		client := http.Client{Timeout: 2 * time.Second}
-		response, err := client.Get("http://127.0.0.1:8081/readyz")
-		if err != nil {
+		res, e := client.Get("http://127.0.0.1:8081/readyz")
+		if e != nil {
 			return errors.New("healthcheck failed")
 		}
-		defer response.Body.Close()
-		if response.StatusCode != http.StatusOK {
+		defer res.Body.Close()
+		if res.StatusCode != 200 {
 			return errors.New("healthcheck not ready")
 		}
 		return nil
 	}
-	if command != "serve" && command != "migrate" && command != "info" {
+	secretPath := env("XIAOWORK_SECRET_PATH", ".data/v11-dev/secrets/session.key")
+	authority := env("XIAOWORK_DEV_AUTHORITY_DIR", ".data/v11-dev/authority")
+	tlsDir := env("XIAOWORK_DEV_TLS_DIR", ".data/v11-dev/tls")
+	origin := env("XIAOWORK_ORIGIN", "https://localhost:3443")
+	if command == "dev-ca" {
+		b, e := os.ReadFile(filepath.Join(authority, "ca.crt"))
+		if e != nil {
+			return errors.New("local CA absent; run explicit prepare-dev first")
+		}
+		_, e = os.Stdout.Write(b)
+		return e
+	}
+	if command == "init-secret" {
+		if e := os.MkdirAll(filepath.Dir(secretPath), 0700); e != nil {
+			return e
+		}
+		if e := authn.CreateSecret(secretPath); e != nil {
+			return e
+		}
+		fmt.Println("Persistent session key created; no account created")
+		return nil
+	}
+	allowed := map[string]bool{"serve": true, "migrate": true, "info": true, "init-admin": true, "reset-admin": true, "import-v1": true, "prepare-dev": true}
+	if !allowed[command] {
 		return errors.New("unsupported command")
 	}
-	path := env("XIAOWORK_DB_PATH", ".data/v11-dev/content.sqlite")
-	if command == "migrate" {
-		if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
-			return err
+	create := command == "migrate" || command == "prepare-dev"
+	if command == "prepare-dev" {
+		u, e := url.Parse(origin)
+		if e != nil || u.Scheme != "https" || (u.Hostname() != "localhost" && u.Hostname() != "127.0.0.1" && u.Hostname() != "::1") {
+			return errors.New("prepare-dev only accepts a loopback HTTPS origin")
 		}
 	}
-	db, err := store.Open(path, command == "migrate")
-	if err != nil {
-		return err
+	path := env("XIAOWORK_DB_PATH", ".data/v11-dev/content.sqlite")
+	if create {
+		if e := os.MkdirAll(filepath.Dir(path), 0700); e != nil {
+			return e
+		}
+	}
+	db, e := store.Open(path, create)
+	if e != nil {
+		return e
 	}
 	defer db.Close()
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 	defer cancel()
-	if command == "migrate" {
-		if err := store.Migrate(ctx, db); err != nil {
-			return err
+	if create {
+		if e = store.Migrate(ctx, db); e != nil {
+			return e
 		}
-		fmt.Println("P6-A schema initialized; no administrator or content has been seeded")
+		if command == "prepare-dev" {
+			if e = os.MkdirAll(filepath.Dir(secretPath), 0700); e != nil {
+				return e
+			}
+			if _, e = os.Lstat(secretPath); os.IsNotExist(e) {
+				e = authn.CreateSecret(secretPath)
+			}
+			if e != nil {
+				return e
+			}
+			if _, e = authn.ReadSecret(secretPath); e != nil {
+				return e
+			}
+			if e = devtls.Ensure(authority, tlsDir); e != nil {
+				return e
+			}
+		}
+		fmt.Printf("schema=%d prepared explicitly; no account or business content seeded\n", store.SchemaVersion)
 		return nil
 	}
-	if err := store.Check(ctx, db); err != nil {
-		return err
+	if e = store.Check(ctx, db); e != nil {
+		return e
 	}
 	if command == "info" {
-		var version string
-		if err := db.QueryRowContext(ctx, "SELECT sqlite_version()").Scan(&version); err != nil {
-			return err
+		var v string
+		if e = db.QueryRowContext(ctx, "SELECT sqlite_version()").Scan(&v); e != nil {
+			return e
 		}
-		fmt.Printf("schema=%d sqlite=%s stage=p6a-scaffold\n", store.SchemaVersion, version)
+		fmt.Printf("schema=%d sqlite=%s stage=p6b-api\n", store.SchemaVersion, v)
 		return nil
 	}
-	server := httpapi.Server(env("XIAOWORK_LISTEN", "127.0.0.1:8081"), db)
+	if command == "init-admin" || command == "reset-admin" {
+		if !term.IsTerminal(int(os.Stdin.Fd())) {
+			return errors.New("administrator commands require an interactive TTY; password arguments, environment variables and pipes are not accepted")
+		}
+		var count int
+		if e = db.QueryRowContext(ctx, "SELECT count(*) FROM administrators").Scan(&count); e != nil {
+			return e
+		}
+		if command == "init-admin" && count != 0 {
+			return errors.New("administrator already exists; refusing initialization")
+		}
+		if command == "reset-admin" && count != 1 {
+			return errors.New("initialize the administrator first")
+		}
+		username := ""
+		if command == "init-admin" {
+			fmt.Fprint(os.Stderr, "Administrator username: ")
+			line, e := bufio.NewReader(os.Stdin).ReadString('\n')
+			if e != nil {
+				return errors.New("cannot read username")
+			}
+			username = strings.TrimSpace(line)
+			if !authn.ValidUsername(username) {
+				return errors.New("invalid username")
+			}
+		}
+		fmt.Fprint(os.Stderr, "New password (12-128 characters, hidden): ")
+		password, e := term.ReadPassword(int(os.Stdin.Fd()))
+		fmt.Fprintln(os.Stderr)
+		if e != nil {
+			return errors.New("cannot securely read password")
+		}
+		defer clear(password)
+		if e = authn.ValidatePassword(password); e != nil {
+			return e
+		}
+		fmt.Fprint(os.Stderr, "Confirm new password (hidden): ")
+		confirmation, e := term.ReadPassword(int(os.Stdin.Fd()))
+		fmt.Fprintln(os.Stderr)
+		if e != nil {
+			return errors.New("cannot securely read confirmation")
+		}
+		defer clear(confirmation)
+		if !bytes.Equal(password, confirmation) {
+			return errors.New("password confirmation does not match")
+		}
+		if command == "init-admin" {
+			e = authn.InitAdministrator(ctx, db, username, password)
+		} else {
+			e = authn.ResetAdministrator(ctx, db, password)
+		}
+		if e != nil {
+			return e
+		}
+		fmt.Println("Administrator operation completed; credentials were not printed")
+		return nil
+	}
+	if command == "import-v1" {
+		file, e := os.Open(env("XIAOWORK_IMPORT_PATH", "seed/v1.json"))
+		if e != nil {
+			return errors.New("reviewed seed file unavailable")
+		}
+		defer file.Close()
+		result, e := contentdata.Import(ctx, db, io.LimitReader(file, 4<<20))
+		if e != nil {
+			return e
+		}
+		fmt.Printf("V1 import complete: %+v\n", result)
+		return nil
+	}
+	secret, e := authn.ReadSecret(secretPath)
+	if e != nil {
+		return e
+	}
+	defer clear(secret)
+	var proxies []netip.Prefix
+	for _, raw := range strings.Split(os.Getenv("XIAOWORK_TRUSTED_PROXY_CIDRS"), ",") {
+		if raw == "" {
+			continue
+		}
+		p, e := netip.ParsePrefix(strings.TrimSpace(raw))
+		if e != nil || p.Bits() == 0 {
+			return errors.New("invalid trusted proxy CIDR")
+		}
+		proxies = append(proxies, p)
+	}
+	app, e := httpapi.New(db, httpapi.Config{Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies})
+	if e != nil {
+		return e
+	}
+	server := httpapi.Server(env("XIAOWORK_LISTEN", "127.0.0.1:8081"), app.Handler())
 	stop, done := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer done()
-	errors := make(chan error, 1)
-	go func() { errors <- server.ListenAndServe() }()
-	log.Print("P6-A API scaffold started; management endpoints disabled")
+	errs := make(chan error, 1)
+	go func() { errs <- server.ListenAndServe() }()
+	log.Print("P6-B private draft API started; publishing unavailable")
 	select {
-	case err := <-errors:
-		return err
+	case e := <-errs:
+		return e
 	case <-stop.Done():
-		shutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
-		return server.Shutdown(shutdown)
+		return server.Shutdown(ctx)
 	}
 }
-
 func env(key, fallback string) string {
 	if value := os.Getenv(key); value != "" {
 		return value
