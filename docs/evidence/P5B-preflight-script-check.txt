@@ -1,0 +1,5 @@
+PASS bash -n release.sh
+PASS bash -n deploy.sh
+PASS bash -n update.sh
+PASS bash -n rollback.sh
+PASS bash -n deploy/common.sh

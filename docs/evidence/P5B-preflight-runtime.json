@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-26T14:06:31.8851948+08:00",
+  "imageId": "sha256:a5eca4912bab9b002d6bc2b69b20c9c87ec882864a2b2b6bd5d9756763c5a13f",
+  "labels": {
+    "io.xiaowork.site-url": "",
+    "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>",
+    "org.opencontainers.image.revision": "bde8113e469e5517a7b0b081ab8c08694c2227ad",
+    "org.opencontainers.image.source": "https://github.com/xiaowork-dev/xiaowork-homepage"
+  },
+  "user": "nginx",
+  "health": "healthy",
+  "healthcheck": {
+    "Test": ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/health.json || exit 1"],
+    "Interval": 10000000000,
+    "Timeout": 3000000000,
+    "StartPeriod": 5000000000,
+    "Retries": 6
+  },
+  "readOnly": true,
+  "capDrop": ["ALL"],
+  "securityOpt": ["no-new-privileges:true"],
+  "tmpfs": {
+    "/tmp": "size=64m,mode=1777"
+  },
+  "logConfig": {
+    "Type": "local",
+    "Config": {
+      "max-file": "3",
+      "max-size": "10m"
+    }
+  },
+  "ports": {
+    "8080/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "60295"
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+PASS standalone preflight containers remaining: 0
+PASS isolated proxy project containers remaining: 0
+PASS labeled preflight networks remaining: 0
+PASS removed only newly created tag xiaowork-homepage:p5b-preflight-bde8113
+Scope: exact local preflight resources only; no global cleanup, no other project container operations.

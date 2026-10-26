@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-26T14:08:55.0646064+08:00",
+  "project": "xiaowork-p5b-preflight",
+  "health": "healthy",
+  "user": "nginx",
+  "readOnly": true,
+  "capDrop": ["ALL"],
+  "securityOpt": ["no-new-privileges:true"],
+  "portBindings": {},
+  "ports": {
+    "80/tcp": null,
+    "8080/tcp": null
+  },
+  "networks": ["xiaowork-p5b-preflight-net"],
+  "aliases": ["xiaowork-p5b-preflight-web-1", "web", "xiaowork-p5b-preflight-app"],
+  "logConfig": {
+    "Type": "json-file",
+    "Config": {
+      "max-file": "3",
+      "max-size": "10m"
+    }
+  }
+}

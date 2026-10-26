@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收；P5-A 完成上线资料核对、精确 Git 版本发布入口、NPM 共网配置与最终本机验收。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。P5-B 生产操作尚未授权或执行。
+XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。尚未连接生产服务器，生产操作未授权或执行。
 
 ## 本地运行
 
@@ -103,12 +103,13 @@ bash rollback.sh v1.0.0-p5a
 - [原始设计规范](XiaoWork_Homepage_V1_Design_Spec.md)、[P0 交付](XiaoWork_Homepage_P0_Delivery.md) 和原始 PNG 保留原样。
 - [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md)、[P2 交付及截图](docs/deliveries/P2-delivery.md) 与 [P3 交付](docs/deliveries/P3-delivery.md) 记录实际完成与验证范围。
 - P2～P4 已验收；[P4 交付](docs/deliveries/P4-delivery.md) 保留历史数据。[P5-A 交付](docs/deliveries/P5A-delivery.md)、[上线资料](docs/P5-CONTENT-CHECKLIST.md)、[部署方案](docs/P5-DEPLOYMENT-PLAN.md) 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md) 记录当前结论；正式内容、域名、环境与风险决定齐备，并获独立授权后才能进入 P5-B。
+- [P5-B 部署预检](docs/deliveries/P5B-preflight.md) 记录最新本机 Docker/HTTP/脚本与安全复查。应用无宿主端口映射已验证；真实源站 IP+Host/SNI 防绕过、NPM/Cloudflare/TLS 和目标主机尚未检查，另获明确授权后才能登录或上线。
 - Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
 - 正式域名、各项目地址、真实截图与联系方式待确认；接入时仅需修改内容配置和构建环境，无需新增后台。
 
 ## 已知依赖问题
 
-2026-10-26 P5-A 再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。见 `docs/evidence/P5A-npm-audit.json`、`P5A-advisory-check.json` 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md)。安全审计未通过，正式发布前须修复或明确接受剩余风险。
+2026-10-26 P5-B 部署预检再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。见 `docs/evidence/P5B-preflight-npm-audit.json`、`P5B-preflight-advisory.json` 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md)。安全审计未通过，正式发布前须修复或明确接受剩余风险。
 
 ## 性能复测
 

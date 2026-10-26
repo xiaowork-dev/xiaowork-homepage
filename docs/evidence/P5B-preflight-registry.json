@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-26T14:05:07.1315664+08:00",
+  "packages": [
+    {
+      "package": "nuxt",
+      "latest": "4.6.2",
+      "source": "https://registry.npmjs.org/nuxt/latest"
+    },
+    {
+      "package": "@nuxt/nitro-server",
+      "latest": "4.6.2",
+      "source": "https://registry.npmjs.org/%40nuxt%2Fnitro-server/latest"
+    },
+    {
+      "package": "nitropack",
+      "latest": "2.13.5",
+      "source": "https://registry.npmjs.org/nitropack/latest"
+    },
+    {
+      "package": "listhen",
+      "latest": "1.10.1",
+      "source": "https://registry.npmjs.org/listhen/latest"
+    },
+    {
+      "package": "node-forge",
+      "latest": "1.4.0",
+      "source": "https://registry.npmjs.org/node-forge/latest"
+    }
+  ]
+}

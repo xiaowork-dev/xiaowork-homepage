@@ -1,0 +1,32 @@
+{
+  "proxyHasPublishedPorts": false,
+  "proxyNetworks": {
+    "proxy": {
+      "name": "xiaowork-p5b-preflight-net",
+      "ipam": {},
+      "external": true
+    }
+  },
+  "runtime": {
+    "read_only": true,
+    "tmpfs": ["/tmp:size=64m,mode=1777"],
+    "cap_drop": ["ALL"],
+    "security_opt": ["no-new-privileges:true"],
+    "logging": {
+      "driver": "json-file",
+      "options": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  },
+  "directPorts": [
+    {
+      "mode": "ingress",
+      "host_ip": "127.0.0.1",
+      "target": 8080,
+      "published": "3100",
+      "protocol": "tcp"
+    }
+  ]
+}

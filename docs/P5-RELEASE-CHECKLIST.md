@@ -19,10 +19,14 @@
 
 ## P5-B 放行前（当前未完成）
 
+仅本机 [P5-B 部署预检](deliveries/P5B-preflight.md) 已完成，不代表下列生产授权/放行项已完成。
+
 - [ ] 用户明确授权目标服务器、域名、NPM/Cloudflare 的生产操作及变更窗口。
 - [ ] [正式资料清单](P5-CONTENT-CHECKLIST.md)中的发布范围确认：真实资料接入或明确允许保留待确认状态；ERP 截图可公开且脱敏。
 - [ ] 正式 HTTPS origin、唯一规范域/别名、源站/TLS/DNS/Cloudflare 信息明确。
 - [ ] 目标主机、部署路径、NPM 拓扑、外部网络/唯一别名及资源余量明确。
+- [ ] 同名 Compose 项目、既有部署目录、共享网别名与同域 Proxy Host/DNS 冲突已核对，不会接管其他服务。
+- [ ] 源站 IP + Host/SNI、IPv4/IPv6 和应用端口绕过防护方案明确；不以无端口映射、橙云或 Full (strict) 单独判为通过，不擅改整机规则。
 - [ ] 上游 high 风险已兼容修复并复验，或由用户明确接受记录中的剩余风险；不能标为审计通过。
 - [ ] 基础镜像 OS/CVE、真实 Linux 主机与发布前备份/恢复条件检查。
 - [ ] 真实图片/文案/域名加入后重新构建和本机验证，选定完整已验收 SHA；不复用 localhost SEO 镜像。
@@ -36,6 +40,7 @@
 - [ ] 先只读检查存量服务，不覆盖其他容器/网络/端口，按 [部署方案](P5-DEPLOYMENT-PLAN.md) 操作。
 - [ ] 应用只走共享网络，NPM 上游健康，容器非 root/只读/限权/日志轮转生效。
 - [ ] Cloudflare Full (strict)、源站证书、正式 HTTPS、公网 HTTP/别名跳转无循环。
+- [ ] 正常 Cloudflare 链路可用，直接源站 Host/SNI 与不必要端口无法绕过预期入口；其他网站/证书验证/管理访问无回归。
 - [ ] 公网三页/404/资源/health；canonical/OG/分享图、sitemap 与 robots 正确。
 - [ ] CDN/浏览器缓存、安全头、日志无异常，其他站点正常。
 - [ ] 三页真实浏览器双主题/移动端与外链实测，真实素材 Lighthouse；发布后收集真实用户 LCP/CLS/INP，不把 TBT 当作 INP。

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-26T14:07:55.9434605+08:00",
+  "note": "Official document reachability only; these status codes do not validate production configuration.",
+  "officialReferences": [
+    {
+      "source": "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/",
+      "statusCode": 200
+    },
+    {
+      "source": "https://nginxproxymanager.com/advanced-config/",
+      "statusCode": 200
+    },
+    {
+      "source": "https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/",
+      "statusCode": 200
+    },
+    {
+      "source": "https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/",
+      "statusCode": 200
+    },
+    {
+      "source": "https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/",
+      "statusCode": 200
+    }
+  ]
+}

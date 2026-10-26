@@ -1,0 +1,16 @@
+
+> xiaowork-homepage@1.0.0-p5a test
+> node --test scripts/*.test.mjs
+
+✔ combined filters match terms across name, summary and stack without mutating source (3.8947ms)
+✔ sorts respect recommendation, featured priority and natural names (12.4035ms)
+✔ query input rejects unknown and repeated parameters; search is bounded (0.522ms)
+✔ SEO origin accepts empty and loopback but rejects unsafe public origins (1.2017ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 317.7819

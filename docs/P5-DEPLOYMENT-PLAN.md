@@ -53,6 +53,14 @@ XIAOWORK_COMPOSE_FILE=compose.proxy.yaml bash release.sh deploy "$REVIEWED_SHA"
 
 NPM Proxy Host：正式域名，scheme `http`，Forward Hostname 为确认的 `PROXY_SERVICE_ALIAS`，port `8080`；加入现有同一共享网络。只修改此站对应项。Cloudflare DNS/代理与 Full (strict) 在用户授权范围内配置。所有真实名称在 P5-B 记录，不在本稿猜测。
 
+## 入口防绕过与存量服务检查
+
+P5-B 本机预检见 [预检报告](deliveries/P5B-preflight.md)。无应用宿主端口映射不等于源站无法绕过 Cloudflare：真实主机 80/443 仍可能通过源站 IP + 正确 Host/SNI 进入 NPM。Full (strict) 是回源 TLS 校验，不能单独当作源站访问限制。
+
+授权后的只读巡检需明确 IPv4/IPv6、防火墙、Docker 网络/端口模式、Cloudflare 来源限制或适用的 Authenticated Origin Pulls/mTLS；再制定只影响本站的方案并实测正常代理访问及源站直连拒绝。不得直接改整机 80/443 白名单或 NPM 全局配置，以免影响 DNS-only 网站、证书验证或管理访问。不能隔离且不能确认影响范围时停止。
+
+同样需检查固定 Compose 项目名 `xiaowork-homepage` 是否已被使用、目录归属以及共享网唯一别名冲突；NPM 不使用通用 `web` 别名。首次 deploy 健康失败返回非零，不具备 update 相同的自动恢复；已有运行版本应使用 update。首次上线需另备仅撤销本站新增容器/路由/记录的恢复步骤。
+
 ## 一键更新与回滚
 
 ```bash

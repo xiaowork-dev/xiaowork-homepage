@@ -1,0 +1,6 @@
+{
+  "checkedAt": "2026-10-26T14:09:58.3480562+08:00",
+  "secretPatternMatchingFiles": [],
+  "trackedEnvironmentOrKeyFiles": [".env.example"],
+  "scope": "Limited tracked-text pattern scan; not a full secret or image CVE audit."
+}
