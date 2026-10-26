@@ -1,0 +1,26 @@
+xiaowork-homepage-p5a-check-web-1
+xiaowork-homepage-p5a-final-web-1
+xiaowork-homepage-p5a-proxy-web-1
+xiaowork-homepage-p5a-edge
+xiaowork-homepage-p5a-seo
+xiaowork-homepage-p5a-check-web-1
+xiaowork-homepage-p5a-final-web-1
+xiaowork-homepage-p5a-proxy-web-1
+xiaowork-homepage-p5a-edge
+xiaowork-homepage-p5a-seo
+xiaowork-homepage-p5a-check_default
+xiaowork-homepage-p5a-final_default
+xiaowork-homepage-p5a-proxy
+Untagged: xiaowork-homepage:p5a-qa-base
+Deleted: sha256:7c10d2cdefc1904852378ab190fca648d0241801fff1d0ee52677e0da014d4e1
+Untagged: xiaowork-homepage:p5a-qa-update
+Deleted: sha256:4af356cc69caf2664f2fb147b49c3389686e178730e3b1215872a67a3421d8e2
+Untagged: xiaowork-homepage:p5a-health-failure
+Deleted: sha256:8119d28c057a2bb99740bf0ebb2f9f2a3bc8514c6ba94248946bd40d55fff59d
+Untagged: xiaowork-homepage:p5a-seo-check
+Deleted: sha256:05fd4dec0af980fa3cc69b74e18489ee797520d756661231b2ef346f91025be8
+NOTICE: independent original container list changed; not restored or modified by this task
+cfe78ea42033 xn-fresh2
+Removed verified test source directory: D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\p5a-deploy
+Removed verified test source directory: D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\p5a-proxy
+Removed verified test source directory: D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\p5a-release-source

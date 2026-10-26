@@ -1,0 +1,47 @@
+Using existing image p5a-qa-final. Choose a new tag to build changed sources.
+ Container xiaowork-homepage-p5a-proxy-web-1 Creating
+ Container xiaowork-homepage-p5a-proxy-web-1 Created
+ Container xiaowork-homepage-p5a-proxy-web-1 Starting
+ Container xiaowork-homepage-p5a-proxy-web-1 Started
+ Container xiaowork-homepage-p5a-proxy-web-1 Waiting
+ Container xiaowork-homepage-p5a-proxy-web-1 Healthy
+XiaoWork p5a-qa-final is healthy.
+ Container xiaowork-homepage-p5a-proxy-web-1 Running
+ Container xiaowork-homepage-p5a-proxy-web-1 Waiting
+ Container xiaowork-homepage-p5a-proxy-web-1 Healthy
+Rolled back to p5a-qa-final.
+ports={} networks={"xiaowork-homepage-p5a-proxy":{"IPAMConfig":{},"Links":null,"Aliases":["xiaowork-homepage-p5a-proxy-web-1","web","xiaowork-homepage-p5a"],"DriverOpts":null,"GwPriority":0,"NetworkID":"0a7af0503f7853fa1754ffc62ff4d31f82c606cfad85463072aaf57cbae3440e","EndpointID":"34a99433d50a003f14a8fbaf0837e9fa570dfaec4d135540299d65cc505c7725","Gateway":"192.168.16.1","IPAddress":"192.168.16.2","MacAddress":"4a:f8:11:47:ad:75","IPPrefixLen":20,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"DNSNames":["xiaowork-homepage-p5a-proxy-web-1","web","xiaowork-homepage-p5a","4805a5a46c55"]}} readonly=true health=healthy
+
+> xiaowork-homepage@1.0.0-p5a smoke
+> node scripts/smoke.mjs http://127.0.0.1:3108 --static-headers
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[TypeError: fetch failed] {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:3108
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2083:16) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3108
+  }
+}
+
+Node.js v24.22.1
+Initial test-only proxy config failed: fastcgi temp path was outside /tmp on readonly root. Set all temporary paths to /tmp and restart only the isolated edge.
+
+> xiaowork-homepage@1.0.0-p5a smoke
+> node scripts/smoke.mjs http://127.0.0.1:3108 --static-headers
+
+PASS page and SEO /
+PASS page and SEO /projects
+PASS page and SEO /projects/
+PASS page and SEO /about
+PASS page and SEO /about/
+PASS robots and domainless sitemap
+PASS 22 local assets
+PASS health endpoint and 404 status
+{}

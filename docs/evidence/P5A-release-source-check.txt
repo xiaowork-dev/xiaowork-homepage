@@ -1,0 +1,10 @@
+PASS reject short SHA: Usage: bash release.sh <deploy|update> <reviewed-full-commit-sha>
+PASS reject invalid action: Usage: bash release.sh <deploy|update> <reviewed-full-commit-sha>
+PASS reject dirty checkout: Release checkout has uncommitted files. Preserve them before releasing.
+PASS reject non-main branch: Release checkout must be on main.
+PASS reject wrong remote: origin does not match the confirmed XiaoWork repository.
+PASS reject commit outside origin/main: Requested commit is not on fetched origin/main.
+PASS fetched reviewed SHA, fast-forwarded, handed exact SHA/tag to deploy, preserved env/state
+PASS reject old commit without reset or invoking rollback
+PASS exact current SHA handed to update
+Scope: real local Git/bare-remote workflow; deploy/update command stubs, actual Docker tests are separate. No GitHub test commits or production access.

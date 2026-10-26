@@ -3,6 +3,7 @@ node_modules
 .output
 dist
 .deploy
+.cache
 coverage
 package-lock.json
 XiaoWork_Homepage_V1_Design_Spec.md

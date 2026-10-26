@@ -1,0 +1,43 @@
+[
+  {
+    "container": "xiaowork-homepage-p5a-final-web-1",
+    "image": "xiaowork-homepage:p5a-release-candidate",
+    "user": "nginx",
+    "readOnly": true,
+    "health": "healthy",
+    "ports": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "3106"
+        }
+      ]
+    },
+    "capDrop": ["ALL"],
+    "securityOpt": ["no-new-privileges:true"],
+    "logging": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  },
+  {
+    "container": "xiaowork-homepage-p5a-proxy-web-1",
+    "image": "xiaowork-homepage:p5a-qa-final",
+    "user": "nginx",
+    "readOnly": true,
+    "health": "healthy",
+    "ports": {},
+    "capDrop": ["ALL"],
+    "securityOpt": ["no-new-privileges:true"],
+    "logging": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    }
+  }
+]

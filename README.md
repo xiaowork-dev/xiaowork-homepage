@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。P2 视觉和 P3 功能已通过阶段验收；P4 完善搜索排序、素材后备、静态资源性能与本机发布准备。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。
+XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收；P5-A 完成上线资料核对、精确 Git 版本发布入口、NPM 共网配置与最终本机验收。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。P5-B 生产操作尚未授权或执行。
 
 ## 本地运行
 
@@ -86,25 +86,29 @@ npm run smoke -- <本地服务地址> <构建时配置的正式origin>
 容器通过 Node 多阶段构建生成静态文件，最终由非 root Nginx 提供服务；生产运行无需 Node。Linux 主机仅需 Docker Engine 与 Compose 插件，具体要求、升级和回滚见 [部署指南](docs/DEPLOYMENT.md)。
 
 ```bash
-bash deploy.sh v1.0.0-p4
+bash deploy.sh v1.0.0-p5a
 # 准备新版本源码后，使用新且唯一的版本标签
 bash update.sh <新的唯一版本标签>
-bash rollback.sh v1.0.0-p4
+bash rollback.sh v1.0.0-p5a
 ```
 
 默认仅绑定 `127.0.0.1:3100`，首次执行自动从 `.env.example` 创建 `.env`。开发服务与容器不要同时使用同一端口。本阶段未连接生产服务器。
+
+同机 Nginx Proxy Manager 使用独立 `compose.proxy.yaml`（Compose 2.24.4+），应用不映射宿主端口。在 `.env` 填入已确认的 `PROXY_NETWORK` / `PROXY_SERVICE_ALIAS` 后，首次执行 `XIAOWORK_COMPOSE_FILE=compose.proxy.yaml bash deploy.sh <唯一标签>`。成功后记录网络模式，后续更新/回滚沿用；正式环境必须先获 P5-B 授权。
+
+`bash release.sh <deploy|update> <已验收完整40位SHA>` 从确认的 GitHub main 获取精确提交，校验干净工作区、来源与快进关系，再调用现有部署脚本。不会判断任意 main 提交是否已验收，也不自动部署最新 main。标签和镜像记录源码/构建域名，复用镜像时拒绝不匹配配置。操作步骤与生产信息需求见 [P5 部署方案](docs/P5-DEPLOYMENT-PLAN.md)。
 
 ## 开发与交付约定
 
 - [原始设计规范](XiaoWork_Homepage_V1_Design_Spec.md)、[P0 交付](XiaoWork_Homepage_P0_Delivery.md) 和原始 PNG 保留原样。
 - [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md)、[P2 交付及截图](docs/deliveries/P2-delivery.md) 与 [P3 交付](docs/deliveries/P3-delivery.md) 记录实际完成与验证范围。
-- P2 视觉与 P3 功能已验收；P4 交互、性能和上线前准备详见 [P4 交付](docs/deliveries/P4-delivery.md)；P5 在资料和授权齐备后进行正式发布验收。
+- P2～P4 已验收；[P4 交付](docs/deliveries/P4-delivery.md) 保留历史数据。[P5-A 交付](docs/deliveries/P5A-delivery.md)、[上线资料](docs/P5-CONTENT-CHECKLIST.md)、[部署方案](docs/P5-DEPLOYMENT-PLAN.md) 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md) 记录当前结论；正式内容、域名、环境与风险决定齐备，并获独立授权后才能进入 P5-B。
 - Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
 - 正式域名、各项目地址、真实截图与联系方式待确认；接入时仅需修改内容配置和构建环境，无需新增后台。
 
 ## 已知依赖问题
 
-2026-10-26 P4 重新执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本，注册表最新仍为 1.4.0；未执行强制修复、Nuxt 降级或传递依赖覆盖。本项目未使用其 RSA 签名验证功能，最终静态 Nginx 镜像不包含 Node 依赖；开发/构建风险仍需跟踪。见 `docs/evidence/P4-npm-audit.json`、`P4-advisory-check.json` 与 [上线前检查](docs/RELEASE-CHECKLIST.md)。安全审计未通过，不应将功能检查通过理解为所有风险已清零。
+2026-10-26 P5-A 再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。见 `docs/evidence/P5A-npm-audit.json`、`P5A-advisory-check.json` 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md)。安全审计未通过，正式发布前须修复或明确接受剩余风险。
 
 ## 性能复测
 

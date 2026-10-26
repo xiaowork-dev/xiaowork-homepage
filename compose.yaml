@@ -2,12 +2,13 @@ name: xiaowork-homepage
 
 services:
   web:
-    image: xiaowork-homepage:${IMAGE_TAG:-p4-local}
+    image: xiaowork-homepage:${IMAGE_TAG:-p5a-local}
     build:
       context: .
       target: runtime
       args:
         NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-}
+        VCS_REF: ${XIAOWORK_SOURCE_REVISION:-}
     ports:
       - '${BIND_ADDRESS:-127.0.0.1}:${HTTP_PORT:-3100}:8080'
     restart: unless-stopped

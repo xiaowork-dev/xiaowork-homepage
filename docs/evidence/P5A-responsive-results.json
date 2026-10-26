@@ -1,0 +1,1112 @@
+[
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 519,
+        "width": 432,
+        "x": 48,
+        "y": 802.7916870117188
+      },
+      {
+        "height": 519,
+        "width": 432,
+        "x": 504,
+        "y": 802.7916870117188
+      },
+      {
+        "height": 519,
+        "width": 432,
+        "x": 960,
+        "y": 802.7916870117188
+      }
+    ],
+    "clientWidth": 1440,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "432px 432px 432px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 1440,
+    "theme": "dark",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 48,
+        "y": 802.7916870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 498.8854370117187,
+        "y": 802.7916870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 949.7708740234376,
+        "y": 802.7916870117188
+      }
+    ],
+    "clientWidth": 1425,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "426.885px 426.885px 426.885px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 1425,
+    "theme": "light",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 48,
+        "y": 577.6666870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 498.8854370117187,
+        "y": 577.6666870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 949.7708740234376,
+        "y": 577.6666870117188
+      }
+    ],
+    "clientWidth": 1425,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "426.885px 426.885px 426.885px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 1425,
+    "theme": "dark",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 48,
+        "y": 577.6666870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 498.8854370117187,
+        "y": 577.6666870117188
+      },
+      {
+        "height": 515.8021240234375,
+        "width": 426.8854370117187,
+        "x": 949.7708740234376,
+        "y": 577.6666870117188
+      }
+    ],
+    "clientWidth": 1425,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "426.885px 426.885px 426.885px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 1425,
+    "theme": "light",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 1425,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 1425,
+    "theme": "dark",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 1425,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 1425,
+    "theme": "light",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 1440
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 935.4375
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1398.854248046875
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1862.2708740234375
+      }
+    ],
+    "clientWidth": 305,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "264.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 305,
+    "theme": "dark",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 935.4375
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1398.854248046875
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1862.2708740234375
+      }
+    ],
+    "clientWidth": 305,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "264.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 305,
+    "theme": "light",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 747
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1210.416748046875
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1673.8333740234375
+      }
+    ],
+    "clientWidth": 305,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "264.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 305,
+    "theme": "dark",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 747
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1210.416748046875
+      },
+      {
+        "height": 439.4166870117187,
+        "width": 264.66668701171875,
+        "x": 20,
+        "y": 1673.8333740234375
+      }
+    ],
+    "clientWidth": 305,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "264.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 305,
+    "theme": "light",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 305,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 305,
+    "theme": "dark",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 305,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 305,
+    "theme": "light",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 320
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 782.5104370117188
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1261.6771240234375
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1740.84375
+      }
+    ],
+    "clientWidth": 375,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "334.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 375,
+    "theme": "dark",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 782.5104370117188
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1261.6771240234375
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1740.84375
+      }
+    ],
+    "clientWidth": 375,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "334.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 375,
+    "theme": "light",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 719
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1198.166748046875
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1677.3333740234375
+      }
+    ],
+    "clientWidth": 375,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "334.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 375,
+    "theme": "dark",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 719
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1198.166748046875
+      },
+      {
+        "height": 455.1666870117187,
+        "width": 334.66668701171875,
+        "x": 20,
+        "y": 1677.3333740234375
+      }
+    ],
+    "clientWidth": 375,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "334.667px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 375,
+    "theme": "light",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 375,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 375,
+    "theme": "dark",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 375,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 375,
+    "theme": "light",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 390
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 750.8541870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 388.3333435058594,
+        "y": 750.8541870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 1231.5625
+      }
+    ],
+    "clientWidth": 753,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "332.333px 332.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 753,
+    "theme": "dark",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 750.8541870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 388.3333435058594,
+        "y": 750.8541870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 1231.5625
+      }
+    ],
+    "clientWidth": 753,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "332.333px 332.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 753,
+    "theme": "light",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 545.6666870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 388.3333435058594,
+        "y": 545.6666870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 1026.375
+      }
+    ],
+    "clientWidth": 753,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "332.333px 332.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 753,
+    "theme": "dark",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 545.6666870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 388.3333435058594,
+        "y": 545.6666870117188
+      },
+      {
+        "height": 456.7083435058594,
+        "width": 332.3333435058594,
+        "x": 32,
+        "y": 1026.375
+      }
+    ],
+    "clientWidth": 753,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "332.333px 332.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 753,
+    "theme": "light",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 753,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 753,
+    "theme": "dark",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 753,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 753,
+    "theme": "light",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 768
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 764.5416870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 516.3333740234375,
+        "y": 764.5416870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 1315.25
+      }
+    ],
+    "clientWidth": 1009,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "444.333px 444.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 1009,
+    "theme": "dark",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 1024
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 764.5416870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 516.3333740234375,
+        "y": 764.5416870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 1315.25
+      }
+    ],
+    "clientWidth": 1009,
+    "description": "XiaoWork 个人品牌主页，分享网站、应用与实用工具的开发实践，探索精选作品与技术方向。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "444.333px 444.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/",
+    "scrollWidth": 1009,
+    "theme": "light",
+    "title": "XiaoWork — 个人品牌与项目展示",
+    "viewport": 1024
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 561.6666870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 516.3333740234375,
+        "y": 561.6666870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 1112.375
+      }
+    ],
+    "clientWidth": 1009,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "444.333px 444.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 1009,
+    "theme": "dark",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 1024
+  },
+  {
+    "canonical": null,
+    "cards": [
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 561.6666870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 516.3333740234375,
+        "y": 561.6666870117188
+      },
+      {
+        "height": 526.7083740234375,
+        "width": 444.3333435058594,
+        "x": 48,
+        "y": 1112.375
+      }
+    ],
+    "clientWidth": 1009,
+    "description": "浏览 XiaoWork Blog、XiaoWork Nav 与 XiaoWork ERP，按分类探索网站、应用和工具，了解项目资料与公开入口。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": "444.333px 444.333px",
+    "h1": 1,
+    "overlaps": false,
+    "path": "/projects/",
+    "scrollWidth": 1009,
+    "theme": "light",
+    "title": "项目与作品 — XiaoWork",
+    "viewport": 1024
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 1009,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 1009,
+    "theme": "dark",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 1024
+  },
+  {
+    "canonical": null,
+    "cards": [],
+    "clientWidth": 1009,
+    "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+    "external": [
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ],
+    "grid": null,
+    "h1": 1,
+    "overlaps": false,
+    "path": "/about/",
+    "scrollWidth": 1009,
+    "theme": "light",
+    "title": "关于 XiaoWork — 开发者与创作",
+    "viewport": 1024
+  }
+]

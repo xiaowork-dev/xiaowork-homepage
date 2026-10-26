@@ -1,0 +1,22 @@
+[
+  {
+    "package": "nuxt",
+    "latest": "4.6.2"
+  },
+  {
+    "package": "@nuxt/nitro-server",
+    "latest": "4.6.2"
+  },
+  {
+    "package": "nitropack",
+    "latest": "2.13.5"
+  },
+  {
+    "package": "listhen",
+    "latest": "1.10.1"
+  },
+  {
+    "package": "node-forge",
+    "latest": "1.4.0"
+  }
+]

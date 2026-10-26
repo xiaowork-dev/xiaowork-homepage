@@ -9,6 +9,13 @@ node_modules
 .env
 .env.*
 !.env.example
+**/.ssh
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.tar
+**/*.tar.gz
 *.log
 coverage
 docs

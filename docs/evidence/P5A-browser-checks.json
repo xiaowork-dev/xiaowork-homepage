@@ -1,0 +1,207 @@
+[
+  {
+    "check": "website",
+    "state": {
+      "focus": "",
+      "names": ["XiaoWork Blog", "XiaoWork Nav"],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=website",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "name-desc",
+    "state": {
+      "focus": "",
+      "names": ["XiaoWork Nav", "XiaoWork Blog"],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=website&sort=name-desc",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "search-nav",
+    "state": {
+      "focus": "project-search",
+      "names": ["XiaoWork Nav"],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=website&q=nav&sort=name-desc",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "combined-empty",
+    "state": {
+      "empty": "没有找到匹配的项目",
+      "focus": "",
+      "names": [],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=application&q=nav&sort=name-desc",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "reset-and-focus",
+    "state": {
+      "focus": "project-search",
+      "names": ["XiaoWork Blog", "XiaoWork Nav", "XiaoWork ERP"],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "browser-back",
+    "state": {
+      "empty": "没有找到匹配的项目",
+      "focus": "project-search",
+      "names": [],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=application&q=nav&sort=name-desc",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "empty-category",
+    "state": {
+      "empty": "这个分类还没有项目",
+      "focus": "",
+      "names": [],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?category=open-source",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "light-refresh",
+    "state": {
+      "focus": "",
+      "names": ["XiaoWork Blog", "XiaoWork Nav", "XiaoWork ERP"],
+      "theme": "light",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects/",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "dark-refresh",
+    "state": {
+      "focus": "",
+      "names": ["XiaoWork Blog", "XiaoWork Nav", "XiaoWork ERP"],
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects/",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "result-count",
+    "value": "显示 3 / 3 个项目"
+  },
+  {
+    "check": "mobile-menu-enter",
+    "expanded": "true"
+  },
+  {
+    "check": "mobile-menu-escape",
+    "state": {
+      "expanded": "false",
+      "focused": "menu-button"
+    }
+  },
+  {
+    "check": "current-page-menu-close",
+    "expanded": "false"
+  },
+  {
+    "check": "mobile-about-navigation",
+    "state": {
+      "menu": false,
+      "origin": null,
+      "path": "/about",
+      "title": "关于 XiaoWork — 开发者与创作"
+    }
+  },
+  {
+    "check": "about-project-enter",
+    "path": "http://127.0.0.1:3106/projects"
+  },
+  {
+    "check": "hero-project-enter",
+    "path": "http://127.0.0.1:3106/projects"
+  },
+  {
+    "check": "console",
+    "logs": []
+  },
+  {
+    "check": "button-search-and-query-refresh",
+    "state": {
+      "empty": "没有找到匹配的项目",
+      "focus": "",
+      "names": [],
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects/?q=zz-p5a-no-result",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "featured-sort",
+    "state": {
+      "focus": "project-search",
+      "names": ["XiaoWork Blog", "XiaoWork Nav", "XiaoWork ERP"],
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?sort=featured",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "ascending-sort",
+    "state": {
+      "focus": "project-search",
+      "names": ["XiaoWork Blog", "XiaoWork ERP", "XiaoWork Nav"],
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3106/projects?sort=name-asc",
+      "routeAnnouncement": "项目与作品 — XiaoWork"
+    }
+  },
+  {
+    "check": "below-fold-home-covers",
+    "state": {
+      "images": [
+        {
+          "alt": "XiaoWork Blog 封面占位图，真实截图待补充",
+          "complete": true,
+          "height": 150,
+          "loading": "eager",
+          "width": 240
+        },
+        {
+          "alt": "XiaoWork Nav 封面占位图，真实截图待补充",
+          "complete": true,
+          "height": 150,
+          "loading": "lazy",
+          "width": 240
+        },
+        {
+          "alt": "XiaoWork ERP 封面占位图，真实截图待补充",
+          "complete": true,
+          "height": 150,
+          "loading": "lazy",
+          "width": 240
+        }
+      ],
+      "scrollY": 1130.6666259765625
+    }
+  }
+]

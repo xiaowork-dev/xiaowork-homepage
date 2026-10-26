@@ -1,0 +1,8 @@
+.env
+.deploy/current
+.cache/test
+.ssh/id_ed25519
+private.pem
+private.key
+certificate.pfx
+backup.tar.gz

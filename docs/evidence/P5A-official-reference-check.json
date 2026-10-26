@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Docker Compose reset/override",
+    "url": "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/",
+    "status": 200,
+    "note": "HTTP 200, but no reset/version passage was extracted. Actual proxy config was tested on Compose 5.6.0; 2.24.4+ is the conservative requirement for this plan."
+  },
+  {
+    "name": "NPM shared network",
+    "url": "https://nginxproxymanager.com/advanced-config/",
+    "status": 200,
+    "note": "Read official same-host custom-network guidance: upstream services can remain unpublished on host ports."
+  },
+  {
+    "name": "Cloudflare Full strict",
+    "url": "https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/",
+    "status": 200,
+    "note": "Read official origin certificate conditions: valid time, trusted issuer or Origin CA, and matching requested hostname."
+  },
+  {
+    "name": "Cloudflare redirect loops",
+    "url": "https://developers.cloudflare.com/ssl/troubleshooting/too-many-redirects/",
+    "status": 200,
+    "note": "HTTP 200. Extracted content was navigation rather than the redirect section, so no body excerpt is treated as verified evidence. Production redirect behavior remains a P5-B test."
+  }
+]

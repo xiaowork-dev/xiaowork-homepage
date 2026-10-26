@@ -4,7 +4,7 @@
 
 本方案用于 Nuxt 静态生成站点。最终容器为 Nginx，不包含数据库、用户上传目录或服务端 Node 运行时。P1 提供部署基础与本地验证，生产连接和部署需另行授权。
 
-Linux 主机需 Docker Engine、Docker Compose 插件（支持 `up --wait`，建议 2.20+）、Bash、可访问镜像仓库与 npm 注册表的网络，以及足够的构建内存。构建在容器内完成，宿主不需要安装 Node/npm。源码必须包含 `package-lock.json`。不要覆盖既有反向代理、80/443 端口或其他服务。
+Linux 主机需 Docker Engine、Docker Compose 插件（回环模式支持 `up --wait`，建议 2.20+；代理模式须 2.24.4+）、Bash、可访问镜像仓库与 npm 注册表的网络，以及足够的构建内存。Git 版本发布入口另需 Git。构建在容器内完成，宿主不需要安装 Node/npm。源码必须包含 `package-lock.json`。不要覆盖既有反向代理、80/443 端口或其他服务。
 
 所有命令在项目目录执行；部署脚本自身也能从其他目录定位项目。Windows 开发可使用 Git Bash 运行脚本；生产以 Linux Bash 为准。Docker Desktop 须运行 Linux 容器。
 
@@ -13,7 +13,7 @@ Linux 主机需 Docker Engine、Docker Compose 插件（支持 `up --wait`，建
 ```bash
 cp .env.example .env
 # 根据实际环境编辑 .env
-bash deploy.sh v1.0.0-p4
+bash deploy.sh v1.0.0-p5a
 docker compose --env-file .env ps
 curl --fail http://127.0.0.1:3100/health.json
 ```
@@ -24,7 +24,7 @@ curl --fail http://127.0.0.1:3100/health.json
 | ---------------------- | ----------------- | ---------------------------------------------------------------------------- |
 | `BIND_ADDRESS`         | `127.0.0.1`       | 绑定宿主回环地址                                                             |
 | `HTTP_PORT`            | `3100`            | 宿主服务端口，部署前检查是否占用                                             |
-| `IMAGE_TAG`            | `p4-local`        | 手动 Compose 的镜像标签，脚本参数优先                                        |
+| `IMAGE_TAG`            | `p5a-local`       | 手动 Compose 的镜像标签，脚本参数优先                                        |
 | `NUXT_PUBLIC_SITE_URL` | 空                | 已确认的正式 HTTPS origin；构建时生成 SEO 与 sitemap，不能仅在容器运行时修改 |
 | `XIAOWORK_ENV_FILE`    | 项目根目录 `.env` | 可选脚本环境变量，指定外部配置的绝对路径                                     |
 
@@ -34,11 +34,11 @@ P3 增加可选的构建参数 `NUXT_PUBLIC_SITE_URL`。域名未确认时留空
 
 ## 一键更新
 
-1. 保留旧镜像、`.env` 和 `.deploy/`，把经过验证的新版本源码准备到项目目录。若已建立 GitHub 流程，可先执行 `git pull --ff-only`；脚本不会自行切分支或覆盖工作区。
+1. 保留旧镜像、`.env` 和 `.deploy/`，把经过验证的新版本源码准备到项目目录。优先用 `bash release.sh update <已验收完整40位SHA>` 获取确认仓库 main 中的精确提交并调用更新；不把任意最新 main 当作已验证版本。手动使用 update.sh 时自行准备已验收源码。
 2. 执行一条更新命令：
 
 ```bash
-bash update.sh v1.0.0-p2
+bash update.sh <新的唯一版本标签>
 ```
 
 脚本先检查配置并构建新镜像；构建失败不会替换运行容器。启动后等待健康检查，失败时自动尝试恢复上一镜像，并返回非零状态。恢复也失败会输出明确错误，需要查看日志。更新期间单副本可能有短暂停机，不承诺零停机。
@@ -74,7 +74,7 @@ docker image load -i /path/outside-project/xiaowork-v1.0.0-p1.tar
 ## 反向代理与 HTTPS
 
 - 默认 `127.0.0.1:3100 → 容器 8080`，适合同机宿主 Nginx。不会占用 80/443。
-- 如果 Nginx Proxy Manager 运行在容器里，它的 `127.0.0.1` 指向自己。应按实际拓扑将两个服务加入同一外部 Docker 网络，并通过 `web:8080` 转发，再移除不需要的宿主端口映射；该变更属于部署环境配置，P1 不预设网络名。
+- 如果 Nginx Proxy Manager 运行在同机容器里，它的 `127.0.0.1` 指向自己。使用 `compose.proxy.yaml`：填好 `.env` 的 `PROXY_NETWORK` / 唯一 `PROXY_SERVICE_ALIAS` 后，首次执行 `XIAOWORK_COMPOSE_FILE=compose.proxy.yaml bash deploy.sh <唯一标签>`；应用没有宿主端口映射，NPM 经确认的别名 `:8080` 访问。网络必须已存在；脚本不自动改动 NPM。Compose 2.24.4+ 才使用此配置。
 - 反代在另一台机器时不能直接访问回环地址，需要按真实私网拓扑设置绑定地址、访问控制、TLS 与 DNS，不能直接套用共网方案。
 - 正式域名与证书配置待部署授权后确定；本项目不安装或接管已有 NPM、不修改防火墙或 SSH。
 
@@ -103,3 +103,15 @@ P4 开启 HTML/CSS/JS/JSON/SVG/XML 的 gzip（小于 1024 字节不压缩），�
 回滚依赖旧镜像存在且环境仍兼容。构建失败应保留旧容器；新容器不健康时 update.sh 尝试恢复旧镜像并返回非零。配置错误发生在替换前；旧镜像本身也不健康、磁盘满或 Docker 不可用时自动恢复可能失败，必须人工排障。不宣称单副本无停机或涵盖所有故障。
 
 P4 的实际脚本验收结果和范围见 [交付文档](deliveries/P4-delivery.md)。正式发布前执行 [上线检查](RELEASE-CHECKLIST.md)，确认真实域名/内容、可接受的依赖风险及独立生产授权。
+
+## P5-A 发布入口与配置保护
+
+详细生产方案见 [P5 部署准备](P5-DEPLOYMENT-PLAN.md)，资料和授权门槛见 [P5 发布清单](P5-RELEASE-CHECKLIST.md)。P5-A 没有连接生产。
+
+`release.sh <deploy|update> <完整SHA>` 校验仓库身份、main、干净工作区、远端 main 包含目标提交及当前 HEAD 可快进到目标；fetch 后精确快进并执行已有脚本，标签为 `git-<SHA前12位>`。不自动选择“最新”、不 reset、不覆盖环境文件，也不替代人工验收。首次 clone 即处于较新 main、目标 SHA 较旧时会拒绝；请选择最终已验收提交，或在新专用 checkout 里明确准备目标版本，不能强制回退现有部署目录。
+
+构建镜像保存 `org.opencontainers.image.revision` 和 `io.xiaowork.site-url`；手动无 Git 发布的本地构建 revision 可为空，不伪造来源。deploy 复用镜像时检查 origin，且 release 入口会核对 SHA，防止静态产物域名/来源错配。P4 历史镜像未含这些标签，可能拒绝用 deploy 重复复用；恢复旧镜像仍用 rollback.sh，不重建或覆盖它。
+
+成功后 `.deploy/compose-file` 记录 `compose.yaml` 或 `compose.proxy.yaml`；后续三种脚本自动沿用。显式指定不同模式会拒绝；不要随意删除记录绕过检查。首次部署中途失败尚无成功记录时，重试仍须显式选择原代理配置。普通 Docker Compose 命令不读该记录，生产人工检查要加 `-f compose.proxy.yaml` 和正确 `IMAGE_TAG`，例如 `docker compose --env-file .env -f compose.proxy.yaml ps`。
+
+P5-A 共网和失败恢复的本机实测结果见 [P5-A 交付](deliveries/P5A-delivery.md)。本机反代测试不等于 NPM 管理界面、Cloudflare、DNS、证书或正式 Linux 主机验收；生产版另需确认公网跳转和回退备份。基础镜像目前锁版本标签，尚未锁 digest，也未完成 OS CVE 扫描。

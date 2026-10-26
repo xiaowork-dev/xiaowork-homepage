@@ -1,0 +1,1 @@
+PASS final release candidate JS/CSS hashes identical to browser/Lighthouse candidate

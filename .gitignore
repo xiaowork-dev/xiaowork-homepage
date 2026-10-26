@@ -10,5 +10,12 @@ coverage/
 .env
 .env.*
 !.env.example
+.ssh/
+*.pem
+*.key
+*.p12
+*.pfx
+*.tar
+*.tar.gz
 .DS_Store
 Thumbs.db

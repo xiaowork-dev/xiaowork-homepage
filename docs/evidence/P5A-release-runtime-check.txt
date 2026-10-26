@@ -1,0 +1,6 @@
+ Container xiaowork-homepage-p5a-final-web-1 Recreate
+ Container xiaowork-homepage-p5a-final-web-1 Recreated
+ Container xiaowork-homepage-p5a-final-web-1 Starting
+ Container xiaowork-homepage-p5a-final-web-1 Started
+ Container xiaowork-homepage-p5a-final-web-1 Waiting
+ Container xiaowork-homepage-p5a-final-web-1 Healthy

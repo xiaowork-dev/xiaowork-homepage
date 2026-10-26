@@ -1,0 +1,435 @@
+{
+  "note": "P5-A lab measurements, no production origin or real-user INP/CrUX. P4 and P5-A use Chrome 155/Lighthouse 13.5 and default mobile simulation. No application JS/CSS or visual changes in P5-A; score differences cannot be attributed to an optimization.",
+  "comparisons": {
+    "previous": {
+      "runs": 3,
+      "performance": 98,
+      "metrics": {
+        "first-contentful-paint": 1713.3268000000003,
+        "largest-contentful-paint": 2041.6536,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 39.500000000000114,
+        "speed-index": 3170.3158121310043
+      },
+      "transferredBytes": 127539
+    },
+    "current": {
+      "runs": 3,
+      "performance": 98,
+      "metrics": {
+        "first-contentful-paint": 1714.2712,
+        "largest-contentful-paint": 2035.5423999999996,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 46.5,
+        "speed-index": 3110.917083988171
+      },
+      "transferredBytes": 127538
+    }
+  },
+  "runs": [
+    {
+      "file": "P5A-lighthouse-about-mobile.json",
+      "url": "http://127.0.0.1:3106/about/",
+      "fetchedAt": "2026-10-26T05:15:39.757Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        }
+      },
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1705.6454000000003,
+        "largest-contentful-paint": 1812.9681,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 32.5,
+        "speed-index": 2914.933135962162
+      },
+      "transferredBytes": 126592,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "file": "P5A-lighthouse-home-desktop.json",
+      "url": "http://127.0.0.1:3106/",
+      "fetchedAt": "2026-10-26T05:15:56.603Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "desktop",
+        "screenEmulation": {
+          "mobile": false,
+          "width": 1350,
+          "height": 940,
+          "deviceScaleFactor": 1,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 40,
+          "throughputKbps": 10240,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0,
+          "cpuSlowdownMultiplier": 1
+        }
+      },
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 420.3737,
+        "largest-contentful-paint": 452.56055,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 0,
+        "speed-index": 726.0830183138116
+      },
+      "transferredBytes": 130872,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P5A-lighthouse-home-mobile-1.json",
+      "url": "http://127.0.0.1:3106/",
+      "fetchedAt": "2026-10-26T05:14:33.570Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        }
+      },
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1714.2712,
+        "largest-contentful-paint": 2035.5423999999996,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 43.499999999999886,
+        "speed-index": 3110.917083988171
+      },
+      "transferredBytes": 127538,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P5A-lighthouse-home-mobile-2.json",
+      "url": "http://127.0.0.1:3106/",
+      "fetchedAt": "2026-10-26T05:14:50.930Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        }
+      },
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1719.0409999999997,
+        "largest-contentful-paint": 2037.0819999999999,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 46.5,
+        "speed-index": 3101.357100062751
+      },
+      "transferredBytes": 127538,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P5A-lighthouse-home-mobile-3.json",
+      "url": "http://127.0.0.1:3106/",
+      "fetchedAt": "2026-10-26T05:15:07.884Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        }
+      },
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1707.7170999999998,
+        "largest-contentful-paint": 1883.5756499999998,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 54,
+        "speed-index": 3120.5086800559425
+      },
+      "transferredBytes": 127538,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P5A-lighthouse-projects-mobile.json",
+      "url": "http://127.0.0.1:3106/projects/",
+      "fetchedAt": "2026-10-26T05:15:24.017Z",
+      "lighthouse": "13.5.0",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        }
+      },
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1658.1994,
+        "largest-contentful-paint": 2037.2991000000002,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 6,
+        "speed-index": 1658.1994
+      },
+      "transferredBytes": 127411,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "file": "-DS_Hvqe.js",
+      "bytes": 4036,
+      "gzipBytes": 1719
+    },
+    {
+      "file": "-vuMLnsr.js",
+      "bytes": 2687,
+      "gzipBytes": 1183
+    },
+    {
+      "file": "B2glv523.js",
+      "bytes": 1288,
+      "gzipBytes": 703
+    },
+    {
+      "file": "BpvN3i_j.js",
+      "bytes": 21693,
+      "gzipBytes": 9073
+    },
+    {
+      "file": "C4g4lj38.js",
+      "bytes": 4631,
+      "gzipBytes": 2244
+    },
+    {
+      "file": "CBFF6bZ7.js",
+      "bytes": 4586,
+      "gzipBytes": 2251
+    },
+    {
+      "file": "D1_uimp3.js",
+      "bytes": 4685,
+      "gzipBytes": 2181
+    },
+    {
+      "file": "DFGuHEHp.js",
+      "bytes": 1510,
+      "gzipBytes": 908
+    },
+    {
+      "file": "DrerTl8B.js",
+      "bytes": 96289,
+      "gzipBytes": 34280
+    },
+    {
+      "file": "dUav87kz.js",
+      "bytes": 84088,
+      "gzipBytes": 32248
+    },
+    {
+      "file": "entry.DriltLJa.css",
+      "bytes": 29065,
+      "gzipBytes": 5684
+    },
+    {
+      "file": "erQVWTmW.js",
+      "bytes": 5050,
+      "gzipBytes": 2551
+    },
+    {
+      "file": "error-404.DpKY_dMl.css",
+      "bytes": 2701,
+      "gzipBytes": 925
+    },
+    {
+      "file": "error-500.CmR4p1fc.css",
+      "bytes": 1951,
+      "gzipBytes": 722
+    },
+    {
+      "file": "Nioyjgu3.js",
+      "bytes": 427,
+      "gzipBytes": 396
+    },
+    {
+      "file": "Ry3f0qPu.js",
+      "bytes": 2485,
+      "gzipBytes": 1259
+    }
+  ],
+  "assetTotals": {
+    "bytes": 267172,
+    "gzipBytes": 98327
+  }
+}

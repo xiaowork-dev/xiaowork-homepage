@@ -1,0 +1,33 @@
+
+> xiaowork-homepage@1.0.0-p5a test
+> node --test scripts/*.test.mjs
+
+✔ combined filters match terms across name, summary and stack without mutating source (1.9735ms)
+✔ sorts respect recommendation, featured priority and natural names (10.0952ms)
+✔ query input rejects unknown and repeated parameters; search is bounded (0.3659ms)
+✔ SEO origin accepts empty and loopback but rejects unsafe public origins (0.4647ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 203.3617
+
+> xiaowork-homepage@1.0.0-p5a check
+> npm run lint && npm run format:check && npm run typecheck
+
+
+> xiaowork-homepage@1.0.0-p5a lint
+> eslint . --max-warnings 0
+
+
+> xiaowork-homepage@1.0.0-p5a format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> xiaowork-homepage@1.0.0-p5a typecheck
+> nuxt typecheck

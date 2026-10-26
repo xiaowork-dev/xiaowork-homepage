@@ -1,0 +1,6 @@
+
+> xiaowork-homepage@1.0.0-p5a format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
