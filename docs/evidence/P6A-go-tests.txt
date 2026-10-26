@@ -1,0 +1,35 @@
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+=== RUN   TestScaffoldFailsClosed
+--- PASS: TestScaffoldFailsClosed (0.06s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	0.215s
+=== RUN   TestLoginChallengeLifetimeAndOneWayConsumption
+--- PASS: TestLoginChallengeLifetimeAndOneWayConsumption (0.07s)
+=== RUN   TestIdempotencyEndpointScopeRetentionAndImmutability
+--- PASS: TestIdempotencyEndpointScopeRetentionAndImmutability (0.06s)
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot
+--- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind (0.24s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced (0.05s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project (0.07s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document (0.06s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot (0.06s)
+=== RUN   TestSessionReauthenticationCannotOutliveSession
+--- PASS: TestSessionReauthenticationCannotOutliveSession (0.05s)
+=== RUN   TestMigrationAndPersistence
+    store_test.go:59: actual SQLite core=3.54.1 integrity=ok
+--- PASS: TestMigrationAndPersistence (0.06s)
+=== RUN   TestMissingAndUnknownDatabaseRejected
+--- PASS: TestMissingAndUnknownDatabaseRejected (0.08s)
+=== RUN   TestJobRequiresOwnReconciliation
+--- PASS: TestJobRequiresOwnReconciliation (0.06s)
+=== RUN   TestSnapshotAndAssetConstraints
+--- PASS: TestSnapshotAndAssetConstraints (0.06s)
+=== RUN   TestReviewedSQLiteBaseline
+--- PASS: TestReviewedSQLiteBaseline (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.816s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]

@@ -22,3 +22,6 @@ docs
 .vscode
 XiaoWork_Homepage_*
 README.md
+backend
+admin
+compose.admin-dev.yaml

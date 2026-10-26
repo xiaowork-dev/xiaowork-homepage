@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-26",
+  "scope": "Read-only repository and the user's confirmed SSH alias; no production mutation",
+  "repository": {
+    "localMain": "14f9b1fba6504b1367aad6165a0b72c37e495927",
+    "remoteMain": "14f9b1fba6504b1367aad6165a0b72c37e495927",
+    "initialWorktree": "clean",
+    "developmentBranch": "feat/v1.1-admin-p6a"
+  },
+  "server": {
+    "sshAlias": "xiaowork-main",
+    "sourceRevision": "2616ef60e7e9fd7ff6d62d26806bd56673525d52",
+    "imageRevision": "2616ef60e7e9fd7ff6d62d26806bd56673525d52",
+    "worktree": "clean",
+    "image": "xiaowork-homepage:git-2616ef60e7e9",
+    "health": "healthy",
+    "restarts": 0,
+    "user": "nginx",
+    "readonlyRoot": true,
+    "binding": "127.0.0.1:3100:8080",
+    "composeMode": "compose.yaml",
+    "buildOrigin": "https://xiaoworks.com",
+    "http": { "/": 200, "/projects/": 200, "/about/": 200, "/health.json": 200 },
+    "publicReleaseGate": "not released; existing high-risk refusal remains in force",
+    "notCheckedAgain": ["public DNS/TLS", "other services", "OpenResty topology", "OS CVEs"]
+  },
+  "environment": {
+    "node": "24.22.1",
+    "npm": "11.19.1",
+    "go": "1.27.3 windows/amd64",
+    "dockerContext": "desktop-linux",
+    "dockerEngine": "29.8.2",
+    "compose": "5.6.0",
+    "existingLocalPort": "127.0.0.1:3100 preserved"
+  },
+  "officialChecks": {
+    "goRelease": "go.dev release JSON reports go1.27.3 stable",
+    "sqliteModule": "Go official module proxy reports modernc.org/sqlite v1.61.0; minimum Go 1.26.0",
+    "sqliteActualCore": "3.54.1 (Go tests)",
+    "advisory": "GHSA-86w9-cpqp-85rv",
+    "advisoryUpdated": "2026-10-01T21:09:10Z",
+    "affectedNodeForge": "<=1.4.0",
+    "firstPatchedVersion": null
+  }
+}

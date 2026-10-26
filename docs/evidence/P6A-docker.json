@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-26",
+  "scope": "Local Docker Desktop P6-A scaffold only",
+  "project": "xiaowork-homepage-v11-dev",
+  "composeConfig": "PASS",
+  "containers": [
+    {
+      "service": "api",
+      "image": "xiaowork-homepage-api:p6a-dev",
+      "imageId": "sha256:6dd97ff71da1387a9d4cb656b1b697ec102dd879d9494e52776cbe8b5cbc1a9b",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_isolated"],
+      "mounts": [
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "rw": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-dev_admin-uploads",
+          "destination": "/uploads",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "service": "api-init",
+      "image": "xiaowork-homepage-api:p6a-dev",
+      "imageId": "sha256:6dd97ff71da1387a9d4cb656b1b697ec102dd879d9494e52776cbe8b5cbc1a9b",
+      "state": "exited",
+      "health": null,
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_isolated"],
+      "mounts": [
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "rw": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-dev_admin-uploads",
+          "destination": "/uploads",
+          "rw": true
+        }
+      ]
+    },
+    {
+      "service": "frontend",
+      "image": "xiaowork-homepage:p6a-dev",
+      "imageId": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "nginx",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {},
+      "networks": ["xiaowork-homepage-v11-dev_isolated"],
+      "mounts": []
+    },
+    {
+      "service": "gateway",
+      "image": "nginx:1.30.6-alpine",
+      "imageId": "sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "nginx",
+      "readonlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "portBindings": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3210"
+          }
+        ]
+      },
+      "networks": ["xiaowork-homepage-v11-dev_edge", "xiaowork-homepage-v11-dev_isolated"],
+      "mounts": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/etc/nginx/nginx.conf",
+          "rw": false
+        }
+      ]
+    }
+  ],
+  "persistence": {
+    "operation": "Force recreate all scaffold containers, rerun explicit api-init, preserve named volumes",
+    "databaseBefore": "481689c2458cac8dddac1d0ba1152e44e893d16bcfe2105d9ea9fc0b6068de77",
+    "databaseAfter": "481689c2458cac8dddac1d0ba1152e44e893d16bcfe2105d9ea9fc0b6068de77",
+    "uploadsSentinel": "survived container replacement; removed after check",
+    "schemaInfo": "schema=1 sqlite=3.54.1 stage=p6a-scaffold",
+    "note": "Prior empty prototype volumes replaced only before final schema freeze; final schema volumes preserved. No production account/content uploaded."
+  }
+}

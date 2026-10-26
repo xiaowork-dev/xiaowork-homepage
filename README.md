@@ -1,4 +1,21 @@
-# XiaoWork Homepage V1.0
+# XiaoWork Homepage
+
+V1.1 正在独立分支 `feat/v1.1-admin-p6a` 开发。P6-A 提供[后台架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 与认证安全](docs/architecture/V1.1-API-SECURITY.md)、[静态发布与恢复](docs/architecture/V1.1-PUBLISHING.md)设计，以及本地 Go/SQLite 工程骨架；没有登录、管理表单、CRUD、上传或发布功能。前台仍为 V1.0 静态站，生产配置与实例保持原样。阶段结果见 [P6-A 交付](docs/deliveries/P6A-delivery.md)。
+
+## V1.1 隔离开发环境
+
+本机 Docker Linux Engine / Compose 可直接启动，不需要宿主安装 Go：
+
+```bash
+docker compose -f compose.admin-dev.yaml up -d --build --wait --wait-timeout 120
+docker compose -f compose.admin-dev.yaml ps -a
+# 停止本地开发环境并保留独立数据卷
+docker compose -f compose.admin-dev.yaml down
+```
+
+入口 `http://127.0.0.1:3210`；仅 gateway 映射回环端口。API 不映射宿主端口，DB 与 uploads 使用该项目独立命名卷，不复用生产数据或 `.env`。`/admin/` 和管理 API 明确返回 503；健康入口 `/dev-health/api` 可核验骨架。认证实现后需本地 HTTPS 验证 Secure Cookie，当前 HTTP 环境不能用于认证验收。端口冲突、模块网络问题及可选宿主 Go 测试见[开发说明](docs/V1.1-DEVELOPMENT.md)。不要使用 V1.0 的 `release.sh` 或 `deploy.sh` 部署本功能分支。
+
+## V1.0 当前状态
 
 XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。当前生产方案已按用户要求改为已有 **1Panel + OpenResty**，目标 SSH 别名为 `xiaowork-main`，正式主站为 `https://xiaoworks.com`，不配置 www。用户允许首版保留明确占位内容；上游 7 high 风险尚未获接受，当前只放行内部部署和预览，公网路由与 DNS 尚未放行。方案说明见 [OpenResty 调整记录](docs/deliveries/P5-openresty-plan.md)，内部部署已完成，服务器容器 healthy，正式 origin 的 HTTP/SEO、30 组响应式与隧道浏览器验收通过；公网仍未发布。详见 [实际生产交付](docs/deliveries/P5-production-delivery.md) 和 [最新进度](docs/PROGRESS.md)。
 
@@ -40,7 +57,7 @@ npm run dev
 
 ## 技术与目录
 
-Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4，采用静态数据与预渲染，不引入数据库或后台。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
+V1.0 使用 Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4，采用静态数据与预渲染。V1.1 的 Go/SQLite 骨架与前台隔离，尚未接入公开页面。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
 
 ```text
 app/
@@ -104,8 +121,8 @@ bash rollback.sh v1.0.0-p5a
 - [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md)、[P2 交付及截图](docs/deliveries/P2-delivery.md) 与 [P3 交付](docs/deliveries/P3-delivery.md) 记录实际完成与验证范围。
 - P2～P4 已验收；[P4 交付](docs/deliveries/P4-delivery.md)、[P5-A 交付](docs/deliveries/P5A-delivery.md) 和 [P5-B 部署预检](docs/deliveries/P5B-preflight.md) 保留各阶段的历史范围，不代表本次生产验收。[上线资料](docs/P5-CONTENT-CHECKLIST.md)、[部署方案](docs/P5-DEPLOYMENT-PLAN.md) 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md) 已同步当前 OpenResty 方案。
 - 公网发布仍须解决或明确接受上游 high 风险，并完成本站 OpenResty/TLS、Cloudflare、源站 IP+Host/SNI 防绕过与其他站点回归检查；内部部署成功不等于公网已放行。
-- Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
-- 正式域名已确认；各项目地址、真实截图与更多联系方式仍待补，用户允许首版明确占位。接入时仅需修改内容配置和构建环境，无需新增后台。
+- V1.0 发布使用 `main`，V1.1 先使用独立功能分支，测试后再按正常合并流程进入 main；远端为 `xiaowork-dev/xiaowork-homepage`。每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、数据库、上传、备份、依赖或构建产物提交到 Git。
+- 正式域名已确认；各项目地址、真实截图与更多联系方式仍待补，用户允许首版明确占位。V1.0 仍通过配置及重新构建更新内容；V1.1 后台与发布机制按 P6-B～P6-E 分步实现。
 
 ## 已知依赖问题
 

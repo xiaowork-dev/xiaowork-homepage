@@ -1,0 +1,8 @@
+**
+!backend
+!backend/**
+backend/.data
+backend/bin
+backend/**/*.sqlite*
+backend/**/*.db*
+backend/**/*.log

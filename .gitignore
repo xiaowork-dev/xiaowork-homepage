@@ -19,3 +19,8 @@ coverage/
 *.tar.gz
 .DS_Store
 Thumbs.db
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+backend/bin/

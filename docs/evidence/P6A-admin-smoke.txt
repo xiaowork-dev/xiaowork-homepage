@@ -1,0 +1,26 @@
+PASS GET /dev-health/api 200 no-store noindex no-cookie
+PASS GET /admin 307 no-store noindex no-cookie
+PASS GET /admin/ 503 no-store noindex no-cookie
+PASS GET /admin/login 503 no-store noindex no-cookie
+PASS GET /admin/projects 503 no-store noindex no-cookie
+PASS GET /api/admin/v1 503 no-store noindex no-cookie
+PASS POST /api/admin/v1 503 no-store noindex no-cookie
+PASS PUT /api/admin/v1 503 no-store noindex no-cookie
+PASS DELETE /api/admin/v1 503 no-store noindex no-cookie
+PASS GET /api/admin/v1/auth/login 503 no-store noindex no-cookie
+PASS POST /api/admin/v1/auth/login 503 no-store noindex no-cookie
+PASS PUT /api/admin/v1/auth/login 503 no-store noindex no-cookie
+PASS DELETE /api/admin/v1/auth/login 503 no-store noindex no-cookie
+PASS GET /api/admin/v1/projects 503 no-store noindex no-cookie
+PASS POST /api/admin/v1/projects 503 no-store noindex no-cookie
+PASS PUT /api/admin/v1/projects 503 no-store noindex no-cookie
+PASS DELETE /api/admin/v1/projects 503 no-store noindex no-cookie
+PASS GET /api/admin/v1/media 503 no-store noindex no-cookie
+PASS POST /api/admin/v1/media 503 no-store noindex no-cookie
+PASS PUT /api/admin/v1/media 503 no-store noindex no-cookie
+PASS DELETE /api/admin/v1/media 503 no-store noindex no-cookie
+PASS GET /api/admin/v1/publish-jobs 503 no-store noindex no-cookie
+PASS POST /api/admin/v1/publish-jobs 503 no-store noindex no-cookie
+PASS PUT /api/admin/v1/publish-jobs 503 no-store noindex no-cookie
+PASS DELETE /api/admin/v1/publish-jobs 503 no-store noindex no-cookie
+P6-A local scaffold smoke PASS; authentication and content APIs remain unimplemented.
