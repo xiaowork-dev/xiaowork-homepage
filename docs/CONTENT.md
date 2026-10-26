@@ -27,7 +27,7 @@ Blog、Nav、ERP 的名称和展示定位来自已确认的 P0/P2 内容。用�
 }
 ```
 
-不要把以上示例直接当作真实项目上线。保持 `id` 和 `slug` 唯一，`order` 使用明确顺序；分类可用 `website`、`application`、`open-source`。分类文案集中在 `categoryLabels`，空分类会提供空状态和恢复全部按钮。当前筛选为页面内状态，重新进入页面恢复全部项目。
+不要把以上示例直接当作真实项目上线。保持 `id` 和 `slug` 唯一，`order` 使用明确顺序；分类可用 `website`、`application`、`open-source`。分类文案集中在 `categoryLabels`，空分类会提供空状态和恢复全部按钮。P4 的分类、搜索与排序保存到 URL 查询参数 `category`、`q`、`sort`，可刷新或通过浏览器返回恢复。搜索按 Enter 或“搜索”按钮提交，匹配名称、简介与已确认的技术栈，多个关键词需全部匹配，不区分大小写。推荐顺序使用 `order`，也支持精选优先和名称正/倒序；不根据未确认日期编造“最新”排序。
 
 状态可选 `unconfirmed`、`planning`、`in-development`、`live`、`maintained`。没有逐项确认时保留 `unconfirmed`，不要根据封面或仓库存在推断上线状态。`isPlaceholder` 是保留的兼容字段，不覆盖状态显示；封面类型由 `coverKind` 管理。
 
@@ -37,7 +37,7 @@ Blog、Nav、ERP 的名称和展示定位来自已确认的 P0/P2 内容。用�
 
 各项目资源目录为 `public/images/projects/<slug>/`。前三个项目通过 `app/data/project-covers.ts` 单独注册。可以新增真实封面并更新该注册表，也可以在项目对象直接配置封面字段，不需要修改组件。
 
-详见 [封面接入说明](../public/images/projects/README.md)。真实截图建议 16:10，提供准确 alt。截图类型与真实状态分开维护；ERP 必须先确认是可公开的演示截图且没有业务、客户、账号或权限敏感信息。错误图片路径会回退到明确占位图。
+详见 [封面接入说明](../public/images/projects/README.md)。真实截图建议 16:10，提供准确 alt；`cover` 兼容 PNG/JPEG/SVG/WebP/AVIF，`coverSources` 可选配置 AVIF/WebP 变体。截图类型与真实状态分开维护；ERP 必须先确认是可公开的演示截图且没有业务、客户、账号或权限敏感信息。错误图片路径会回退到明确占位图，占位图也失败时保留比例并展示文字，不反复请求。
 
 ## 关于页与公开联系
 

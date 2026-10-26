@@ -64,7 +64,12 @@ useSiteSeo('home')
         /></NuxtLink>
       </div>
       <div class="project-grid">
-        <ProjectCard v-for="project in featuredProjects" :key="project.id" :project="project" />
+        <ProjectCard
+          v-for="(project, index) in featuredProjects"
+          :key="project.id"
+          :project="project"
+          :eager="index === 0"
+        />
       </div>
     </section>
   </div>

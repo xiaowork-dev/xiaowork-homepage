@@ -1,9 +1,19 @@
 import assert from 'node:assert/strict'
 import { normalizeSiteUrl, pageSeo } from '../shared/seo.ts'
 
-const base = new URL(process.argv[2] || 'http://127.0.0.1:3100')
-const expectedOrigin = normalizeSiteUrl(process.argv[3])
+const args = process.argv.slice(2).filter((arg) => !arg.startsWith('--'))
+const checkStaticHeaders = process.argv.includes('--static-headers')
+const base = new URL(args[0] || 'http://127.0.0.1:3100')
+const expectedOrigin = normalizeSiteUrl(args[1])
 const resources = new Set(['/theme-init.js', '/favicon.svg', '/images/social/xiaowork-share.png'])
+
+function securityHeaders(response) {
+  if (!checkStaticHeaders) return
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff')
+  assert.equal(response.headers.get('x-frame-options'), 'DENY')
+  assert.equal(response.headers.get('referrer-policy'), 'strict-origin-when-cross-origin')
+  assert.match(response.headers.get('permissions-policy') || '', /camera=\(\)/)
+}
 
 function metaValues(html, property) {
   return [...html.matchAll(/<meta\b[^>]*>/g)]
@@ -21,6 +31,11 @@ for (const path of ['/', '/projects', '/projects/', '/about', '/about/']) {
     response = await fetch(destination)
   }
   assert.equal(response.status, 200, `${path} must respond with 200`)
+  securityHeaders(response)
+  if (checkStaticHeaders) {
+    assert.equal(response.headers.get('cache-control'), 'no-cache')
+    assert.equal(response.headers.get('content-encoding'), 'gzip', 'HTML should be compressed')
+  }
   const html = await response.text()
   assert.match(html, /<h1\b/, `${path} must contain prerendered page content`)
   assert.match(html, /<html[^>]*lang="zh-CN"/, 'Page language must be declared')
@@ -86,6 +101,18 @@ for (const path of resources) {
   const response = await fetch(new URL(path, base))
   assert.equal(response.status, 200, `Missing asset ${path}`)
   assert.ok(!response.headers.get('content-type')?.includes('text/html'), `HTML fallback: ${path}`)
+  securityHeaders(response)
+  if (checkStaticHeaders) {
+    const cache = response.headers.get('cache-control') || ''
+    assert.match(
+      cache,
+      path.startsWith('/_nuxt/')
+        ? /max-age=31536000, immutable/
+        : path.startsWith('/images/')
+          ? /max-age=86400/
+          : /no-cache/,
+    )
+  }
 }
 console.log(`PASS ${resources.size} local assets`)
 
@@ -94,4 +121,5 @@ assert.equal(health.status, 200)
 assert.equal((await health.json()).status, 'ok')
 const missing = await fetch(new URL('/__xiaowork_missing_route__', base))
 assert.equal(missing.status, 404, 'Unknown paths must preserve 404 status')
+securityHeaders(missing)
 console.log('PASS health endpoint and 404 status')

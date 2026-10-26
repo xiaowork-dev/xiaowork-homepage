@@ -1,0 +1,59 @@
+{
+  "image": "xiaowork-homepage:p4-release-candidate",
+  "lighthouse": "13.5.0",
+  "audit": {
+    "id": "label-content-name-mismatch",
+    "title": "Elements with visible text labels do not have matching accessible names.",
+    "description": "Visible text labels that do not match the accessible name can result in a confusing experience for screen reader users. [Learn more about accessible names](https://dequeuniversity.com/rules/axe/4.13/label-content-name-mismatch).",
+    "score": 0,
+    "scoreDisplayMode": "binary",
+    "details": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "node",
+          "valueType": "node",
+          "subItemsHeading": {
+            "key": "relatedNode",
+            "valueType": "node"
+          },
+          "label": "Failing Elements"
+        }
+      ],
+      "items": [
+        {
+          "node": {
+            "type": "node",
+            "lhId": "1-0-A",
+            "path": "1,HTML,1,BODY,0,DIV,2,DIV,2,MAIN,1,DIV,3,SECTION,2,UL,1,LI,1,A",
+            "selector": "section.content-panel > ul.contact-list > li > a.button-secondary",
+            "boundingRect": {
+              "top": 2216,
+              "bottom": 2262,
+              "left": 45,
+              "right": 133,
+              "width": 88,
+              "height": 46
+            },
+            "snippet": "<a href=\"https://github.com/xiaowork-dev/xiaowork-homepage\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button-secondary\" aria-label=\"GitHub · 本站源码（新窗口）\">",
+            "nodeLabel": "前往",
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        }
+      ],
+      "debugData": {
+        "type": "debugdata",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ]
+      }
+    }
+  }
+}

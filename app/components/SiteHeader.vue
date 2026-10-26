@@ -51,7 +51,13 @@ watch(
       class="mobile-navigation"
       @keydown.esc="closeMenu"
     >
-      <NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="nav-link">
+      <NuxtLink
+        v-for="link in links"
+        :key="link.to"
+        :to="link.to"
+        class="nav-link"
+        @click="closeMenu"
+      >
         {{ link.label }}
       </NuxtLink>
     </nav>

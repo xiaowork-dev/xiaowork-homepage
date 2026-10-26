@@ -2,14 +2,26 @@
 import type { Project } from '~/types/project'
 import { categoryLabels, statusLabels } from '~/data/projects'
 
-const props = withDefaults(defineProps<{ project: Project; headingLevel?: 2 | 3 }>(), {
-  headingLevel: 3,
+const props = withDefaults(
+  defineProps<{ project: Project; headingLevel?: 2 | 3; eager?: boolean }>(),
+  {
+    headingLevel: 3,
+    eager: false,
+  },
+)
+const coverFailure = ref(0)
+const coverImage = useTemplateRef<HTMLImageElement>('coverImage')
+function handleCoverError() {
+  coverFailure.value = Math.min(coverFailure.value + 1, 2)
+}
+onMounted(() => {
+  // Eager images can fail before hydration attaches their error listener.
+  if (coverImage.value?.complete && !coverImage.value.naturalWidth) handleCoverError()
 })
-const coverFailed = ref(false)
 watch(
   () => props.project.cover,
   () => {
-    coverFailed.value = false
+    coverFailure.value = 0
   },
 )
 </script>
@@ -17,16 +29,34 @@ watch(
 <template>
   <article class="project-card">
     <div class="project-cover">
-      <img
-        :src="coverFailed ? '/images/projects/placeholder.svg' : project.cover"
-        :alt="coverFailed ? `${project.name} 封面暂不可用，显示占位图` : project.coverAlt"
-        width="960"
-        height="600"
-        loading="lazy"
-        decoding="async"
-        class="aspect-[8/5] w-full object-cover"
-        @error="coverFailed = true"
-      />
+      <picture v-if="coverFailure < 2">
+        <source
+          v-if="!coverFailure && project.coverSources?.avif"
+          :srcset="project.coverSources.avif"
+          type="image/avif"
+        />
+        <source
+          v-if="!coverFailure && project.coverSources?.webp"
+          :srcset="project.coverSources.webp"
+          type="image/webp"
+        />
+        <img
+          ref="coverImage"
+          :src="coverFailure ? '/images/projects/placeholder.svg' : project.cover"
+          :alt="coverFailure ? `${project.name} 封面暂不可用，显示占位图` : project.coverAlt"
+          width="960"
+          height="600"
+          :loading="eager ? 'eager' : 'lazy'"
+          :fetchpriority="eager ? 'high' : 'auto'"
+          decoding="async"
+          class="aspect-[8/5] w-full object-cover"
+          @error="handleCoverError"
+        />
+      </picture>
+      <div v-else class="cover-unavailable" role="img" :aria-label="`${project.name} 封面暂不可用`">
+        <AppIcon name="layers" />
+        <span>封面暂不可用</span>
+      </div>
     </div>
     <div class="project-title-row">
       <component :is="`h${headingLevel}`">{{ project.name }}</component>
@@ -50,7 +80,7 @@ watch(
           target="_blank"
           rel="noopener noreferrer"
           class="text-link"
-          :aria-label="`访问 ${project.name} 官网（新窗口）`"
+          :aria-label="`查看项目：${project.name} 官网（新窗口）`"
           >查看项目 <AppIcon name="arrow-up-right"
         /></a>
         <a
@@ -59,7 +89,7 @@ watch(
           target="_blank"
           rel="noopener noreferrer"
           class="text-link"
-          :aria-label="`查看 ${project.name} GitHub 源码（新窗口）`"
+          :aria-label="`查看源码：${project.name} GitHub（新窗口）`"
           >查看源码 <AppIcon name="arrow-up-right"
         /></a>
         <span

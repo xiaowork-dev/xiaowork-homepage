@@ -13,7 +13,7 @@ Linux 主机需 Docker Engine、Docker Compose 插件（支持 `up --wait`，建
 ```bash
 cp .env.example .env
 # 根据实际环境编辑 .env
-bash deploy.sh v1.0.0-p1
+bash deploy.sh v1.0.0-p4
 docker compose --env-file .env ps
 curl --fail http://127.0.0.1:3100/health.json
 ```
@@ -24,7 +24,7 @@ curl --fail http://127.0.0.1:3100/health.json
 | ---------------------- | ----------------- | ---------------------------------------------------------------------------- |
 | `BIND_ADDRESS`         | `127.0.0.1`       | 绑定宿主回环地址                                                             |
 | `HTTP_PORT`            | `3100`            | 宿主服务端口，部署前检查是否占用                                             |
-| `IMAGE_TAG`            | `p3-local`        | 手动 Compose 的镜像标签，脚本参数优先                                        |
+| `IMAGE_TAG`            | `p4-local`        | 手动 Compose 的镜像标签，脚本参数优先                                        |
 | `NUXT_PUBLIC_SITE_URL` | 空                | 已确认的正式 HTTPS origin；构建时生成 SEO 与 sitemap，不能仅在容器运行时修改 |
 | `XIAOWORK_ENV_FILE`    | 项目根目录 `.env` | 可选脚本环境变量，指定外部配置的绝对路径                                     |
 
@@ -88,6 +88,18 @@ curl --fail http://127.0.0.1:3100/projects/
 docker compose --env-file .env stop web
 ```
 
-镜像与 Compose 采用非 root、只读根文件系统、临时 `/tmp`、移除 Linux capabilities、`no-new-privileges`。健康检查请求真实静态文件，返回成功才认定就绪。404 返回实际 404，不把所有未知路径伪装成首页。`/_nuxt/` 哈希资源长期缓存，页面与主题初始化脚本不长期缓存。
+镜像与 Compose 采用非 root、只读根文件系统、临时 `/tmp`、移除 Linux capabilities、`no-new-privileges`。健康检查请求真实静态文件，返回成功才认定就绪。404 返回实际 404，不把所有未知路径伪装成首页。日志输出到 stdout/stderr，Compose 的 json-file 驱动按每文件 10 MB、最多 3 个文件轮转；实际磁盘占用还受 Docker 日志元数据影响。
+
+P4 开启 HTML/CSS/JS/JSON/SVG/XML 的 gzip（小于 1024 字节不压缩），并发送 `Vary: Accept-Encoding`。`/_nuxt/` 哈希资源缓存一年且 immutable，`/images/` 缓存一天；页面、payload 和主题初始化脚本使用 no-cache 重新验证。替换封面/分享图使用新文件名，避免一天内缓存旧图。`security-headers.conf` 在带缓存头的 location 中显式引入，确保 nosniff、Referrer-Policy、禁止 iframe 嵌入和敏感设备权限限制不因 Nginx add_header 继承规则失效。
+
+可使用 `npm run smoke -- <本地服务URL> --static-headers` 同时检查默认域名模式与 Nginx 缓存、安全头和 HTML 压缩；配置 origin 的镜像把 origin 放在 URL 后、flag 前。反代应保留相关头；TLS/HSTS 和实际 CDN 缓存由正式拓扑验收，当前未操作生产。
 
 部署脚本不执行 `down -v`、prune、删除镜像、改防火墙等操作。健康检查只验证站点服务可读，浏览器功能和视觉仍需独立验收。
+
+## 本地隔离验收与故障恢复
+
+验收使用独立源码副本、独立 `COMPOSE_PROJECT_NAME`、独立 `.env` 和 `.deploy`，选择空闲回环端口。不要在真实部署目录注入故障。建议按 deploy → update → rollback → 重复 deploy 验证，保存实际标签和健康结果，再在副本中测试构建失败及健康检查失败。失败时检查脚本退出码、运行镜像和 `.deploy/current` 三者，不能只看“恢复”日志。
+
+回滚依赖旧镜像存在且环境仍兼容。构建失败应保留旧容器；新容器不健康时 update.sh 尝试恢复旧镜像并返回非零。配置错误发生在替换前；旧镜像本身也不健康、磁盘满或 Docker 不可用时自动恢复可能失败，必须人工排障。不宣称单副本无停机或涵盖所有故障。
+
+P4 的实际脚本验收结果和范围见 [交付文档](deliveries/P4-delivery.md)。正式发布前执行 [上线检查](RELEASE-CHECKLIST.md)，确认真实域名/内容、可接受的依赖风险及独立生产授权。

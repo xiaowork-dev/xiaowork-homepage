@@ -1,0 +1,7 @@
+image=xiaowork-homepage:p4-qa-final health=healthy user=nginx readonly=true caps=["ALL"] security=["no-new-privileges:true"] log={"Type":"json-file","Config":{"max-file":"3","max-size":"10m"}} ports={"8080/tcp":[{"HostIp":"127.0.0.1","HostPort":"3103"}]}
+PASS_no_Node_runtime
+PASS_root_filesystem_write_denied
+PASS_tmp_writable
+    image/avif                                       avif;
+    image/webp                                       webp;
+PASS isolated P4 containers/network and temporary source copy cleaned; release images retained; no global cleanup.

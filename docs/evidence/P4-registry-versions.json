@@ -1,0 +1,7 @@
+{
+  "nuxt": "4.6.2",
+  "@nuxt/nitro-server": "4.6.2",
+  "nitropack": "2.13.5",
+  "listhen": "1.10.1",
+  "node-forge": "1.4.0"
+}

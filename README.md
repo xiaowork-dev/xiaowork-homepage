@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。P2 首页已通过用户验收；P3 提供项目分类、配置化关于页与基础 SEO。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。
+XiaoWork 个人品牌与开发者作品展示站。P2 视觉和 P3 功能已通过阶段验收；P4 完善搜索排序、素材后备、静态资源性能与本机发布准备。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。
 
 ## 本地运行
 
@@ -18,6 +18,7 @@ npm run dev
 | ---------------------------------------- | ------------------------------------------------- |
 | `npm run dev`                            | 本地开发与热更新，默认仅绑定回环地址              |
 | `npm run check`                          | ESLint（零警告）、Prettier、TypeScript 检查       |
+| `npm test`                               | 搜索/分类组合、排序、查询边界与 SEO origin 测试   |
 | `npm run smoke -- http://127.0.0.1:3100` | 服务启动后检查路由、资源、重定向、健康接口和 404  |
 | `npm run lint:fix`                       | 自动修复可修复的代码问题                          |
 | `npm run format`                         | 格式化工程文件；原始 P0 资料已排除                |
@@ -29,7 +30,7 @@ npm run dev
 
 - `/`：紫色渐变与网格 Hero、品牌介绍、技术标签、GitHub 源码入口与精选项目卡片。
 - 首页项目布局：手机单列、768–1199px 双列、1200px 起三列；暖白浅色与紫黑深色主题。
-- `/projects`：所有项目、分类计数与筛选、空状态；沿用首页的单/双/三列卡片与双主题。
+- `/projects`：所有项目、分类计数、关键词搜索、推荐/精选/名称排序、空状态与重置；筛选条件保存到 URL，支持刷新、分享和浏览器返回。搜索按 Enter 或按钮提交。
 - `/about`：品牌与开发者介绍、技术方向、项目开发原则与已确认的 GitHub 本站源码入口；个人履历、其他联系方式和可选简历由配置补充。
 - 响应式导航、深色/浅色切换、本地偏好持久化、键盘焦点和减少动效支持。
 - `/health.json`：用于静态容器健康检查。
@@ -61,7 +62,7 @@ deploy/                   # Nginx 配置及脚本公共逻辑
 docs/                     # 进度、阶段交付、部署说明
 ```
 
-新增项目时，在 `app/data/projects.ts` 添加符合 `Project` 类型的对象，并把封面放到 `public/images/projects/<slug>/`。按 `order` 排序，`featured` 控制首页展示，首页最多六项。分类计数与筛选自动更新，无需修改页面组件。`demoUrl` 和 `repositoryUrl` 缺省时不渲染外链；只有确认可用的 HTTPS 地址才可以填写。详见 [内容配置指南](docs/CONTENT.md)。
+新增项目时，在 `app/data/projects.ts` 添加符合 `Project` 类型的对象，并把封面放到 `public/images/projects/<slug>/`。按 `order` 排序，`featured` 控制首页展示，首页最多六项。分类计数与筛选自动更新，无需修改页面组件。封面支持可选 AVIF/WebP 变体、固定比例、懒加载与两层失败后备。`demoUrl` 和 `repositoryUrl` 缺省时不渲染外链；只有确认可用的 HTTPS 地址才可以填写。详见 [内容配置指南](docs/CONTENT.md) 与 [封面替换步骤](public/images/projects/README.md)。
 
 Blog、Nav、ERP 的项目名称与展示定位已接入；真实技术栈、具体状态、截图和地址尚未确认。用户明确这些站点仍在修复或开发，素材后续提供。封面沿用明确标注 PLACEHOLDER 的资源；状态采用 `unconfirmed`，显示“资料待确认”。技术栈为空时显示“技术栈待确认”，没有地址时显示不可交互的“入口待确认”。封面类型、项目状态、精选标记各自独立，不能由是否有截图推断是否上线。首页、页脚和关于页 GitHub 均指向已确认的本站代码仓库，并非其他项目源码或个人联系方式。Git 提交邮箱不会自动公开到关于页。
 
@@ -85,10 +86,10 @@ npm run smoke -- <本地服务地址> <构建时配置的正式origin>
 容器通过 Node 多阶段构建生成静态文件，最终由非 root Nginx 提供服务；生产运行无需 Node。Linux 主机仅需 Docker Engine 与 Compose 插件，具体要求、升级和回滚见 [部署指南](docs/DEPLOYMENT.md)。
 
 ```bash
-bash deploy.sh v1.0.0-p3
+bash deploy.sh v1.0.0-p4
 # 准备新版本源码后，使用新且唯一的版本标签
 bash update.sh <新的唯一版本标签>
-bash rollback.sh v1.0.0-p3
+bash rollback.sh v1.0.0-p4
 ```
 
 默认仅绑定 `127.0.0.1:3100`，首次执行自动从 `.env.example` 创建 `.env`。开发服务与容器不要同时使用同一端口。本阶段未连接生产服务器。
@@ -97,10 +98,16 @@ bash rollback.sh v1.0.0-p3
 
 - [原始设计规范](XiaoWork_Homepage_V1_Design_Spec.md)、[P0 交付](XiaoWork_Homepage_P0_Delivery.md) 和原始 PNG 保留原样。
 - [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md)、[P2 交付及截图](docs/deliveries/P2-delivery.md) 与 [P3 交付](docs/deliveries/P3-delivery.md) 记录实际完成与验证范围。
-- P2 首页已验收；P3 完成项目筛选、关于页与 SEO 工程，真实资料待补；P4 深入验收部署、更新与故障恢复；P5 最终验收。
+- P2 视觉与 P3 功能已验收；P4 交互、性能和上线前准备详见 [P4 交付](docs/deliveries/P4-delivery.md)；P5 在资料和授权齐备后进行正式发布验收。
 - Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
 - 正式域名、各项目地址、真实截图与联系方式待确认；接入时仅需修改内容配置和构建环境，无需新增后台。
 
 ## 已知依赖问题
 
-2026-10-25 P3 重新执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 的 `GHSA-86w9-cpqp-85rv`。审计仍提议退回 Nuxt 4.1.3；未执行强制修复、降级或传递依赖覆盖。本项目未使用其 RSA 签名验证功能，最终静态 Nginx 镜像不包含 Node 依赖；构建/开发依赖告警仍需跟踪上游兼容修复。此项不代表安全审计通过，原始报告保存在 `docs/evidence/P3-npm-audit.json`。
+2026-10-26 P4 重新执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本，注册表最新仍为 1.4.0；未执行强制修复、Nuxt 降级或传递依赖覆盖。本项目未使用其 RSA 签名验证功能，最终静态 Nginx 镜像不包含 Node 依赖；开发/构建风险仍需跟踪。见 `docs/evidence/P4-npm-audit.json`、`P4-advisory-check.json` 与 [上线前检查](docs/RELEASE-CHECKLIST.md)。安全审计未通过，不应将功能检查通过理解为所有风险已清零。
+
+## 性能复测
+
+使用独立静态容器，在本机 Chrome 上运行 `npm exec --yes --package=lighthouse@13.5.0 -- lighthouse <本地URL> --chrome-flags="--headless=new --disable-extensions" --output=json --output-path=<报告路径>`。默认手机、模拟网络/CPU；桌面增加 `--preset=desktop`。每组建议三次，避免与构建同时运行。不要对开发热更新服务评分。P4 原始报告与中位数比较在 `docs/evidence/P4-*`，可运行 `node scripts/performance-summary.mjs` 重新汇总现存报告和生成资源体积。
+
+Lighthouse 的 TBT 不能替代真实用户 INP。域名和真实访问数据尚缺时，INP/CrUX 为上线后待测。系统字体没有远程字体请求；主题恢复脚本保留同步加载以避免错误主题闪烁。静态容器提供 gzip、哈希资源一年缓存、图片一天缓存和页面重新验证，部署与缓存失效规则见部署指南。

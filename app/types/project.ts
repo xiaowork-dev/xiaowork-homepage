@@ -5,6 +5,7 @@ export interface ProjectCover {
   cover: string
   coverAlt: string
   coverKind: 'placeholder' | 'screenshot'
+  coverSources?: { avif?: string; webp?: string }
 }
 
 export interface Project {
@@ -15,6 +16,7 @@ export interface Project {
   cover: string
   coverAlt: string
   coverKind?: ProjectCover['coverKind']
+  coverSources?: ProjectCover['coverSources']
   category: ProjectCategory
   techStack: string[]
   status: ProjectStatus

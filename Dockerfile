@@ -10,6 +10,7 @@ RUN npm run postinstall && npm run generate
 
 FROM nginx:1.30.6-alpine AS runtime
 COPY deploy/nginx.conf /etc/nginx/nginx.conf
+COPY deploy/security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=build --chown=nginx:nginx /app/.output/public /usr/share/nginx/html
 USER nginx
 EXPOSE 8080

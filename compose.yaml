@@ -2,7 +2,7 @@ name: xiaowork-homepage
 
 services:
   web:
-    image: xiaowork-homepage:${IMAGE_TAG:-p3-local}
+    image: xiaowork-homepage:${IMAGE_TAG:-p4-local}
     build:
       context: .
       target: runtime
@@ -18,3 +18,8 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'

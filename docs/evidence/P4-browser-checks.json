@@ -1,0 +1,273 @@
+[
+  {
+    "test": "search-enter-case-insensitive",
+    "url": "http://127.0.0.1:3103/projects?q=erp",
+    "names": ["XiaoWork ERP"]
+  },
+  {
+    "test": "combined-empty",
+    "url": "http://127.0.0.1:3103/projects?category=website&q=erp",
+    "empty": true
+  },
+  {
+    "test": "browser-back-filter-state",
+    "url": "http://127.0.0.1:3103/projects?q=erp",
+    "names": ["XiaoWork ERP"],
+    "input": "",
+    "note": "input is the static value attribute, not the live DOM property; live value verified in subsequent settled-history check."
+  },
+  {
+    "test": "direct-query-reload",
+    "url": "http://127.0.0.1:3103/projects/?q=erp",
+    "names": ["XiaoWork ERP"]
+  },
+  {
+    "test": "reset-focus",
+    "state": {
+      "active": "project-search",
+      "count": 3,
+      "outline": "solid"
+    }
+  },
+  {
+    "test": "name-sort",
+    "url": "http://127.0.0.1:3103/projects?sort=name-asc",
+    "names": ["XiaoWork Blog", "XiaoWork ERP", "XiaoWork Nav"]
+  },
+  {
+    "test": "dark-theme-reload",
+    "theme": "dark"
+  },
+  {
+    "test": "mobile-menu-enter",
+    "expanded": "true"
+  },
+  {
+    "test": "mobile-menu-escape",
+    "focus": "菜单",
+    "expanded": "false"
+  },
+  {
+    "test": "mobile-menu-navigate",
+    "url": "http://127.0.0.1:3103/projects",
+    "expanded": "false"
+  },
+  {
+    "test": "mobile-search-button",
+    "url": "http://127.0.0.1:3103/projects?q=Nav",
+    "names": ["XiaoWork Nav"],
+    "input": "Nav"
+  },
+  {
+    "test": "back-from-about-restores-catalog",
+    "url": "http://127.0.0.1:3103/projects?q=Nav",
+    "input": "Nav",
+    "sort": "recommended",
+    "count": 1,
+    "note": "This initial observation ran before sort navigation settled. See mobile-history-after-navigation-settled for the authoritative rerun."
+  },
+  {
+    "test": "descending-sort-settled",
+    "url": "http://127.0.0.1:3103/projects?sort=name-desc",
+    "names": ["XiaoWork Nav", "XiaoWork ERP", "XiaoWork Blog"]
+  },
+  {
+    "test": "browser-back-sort-settled",
+    "url": "http://127.0.0.1:3103/projects?sort=name-desc",
+    "sort": "name-desc",
+    "names": ["XiaoWork Nav", "XiaoWork ERP", "XiaoWork Blog"]
+  },
+  {
+    "test": "light-theme-reload",
+    "theme": "light"
+  },
+  {
+    "test": "hero-keyboard-tab",
+    "focus": {
+      "outline": "solid",
+      "text": "GitHub：查看本站源码（新窗口）"
+    }
+  },
+  {
+    "test": "card-and-links",
+    "data": {
+      "cards": [
+        {
+          "disabled": "入口待确认",
+          "height": 515.8021240234375,
+          "links": 0
+        },
+        {
+          "disabled": "入口待确认",
+          "height": 515.8021240234375,
+          "links": 0
+        },
+        {
+          "disabled": "入口待确认",
+          "height": 515.8021240234375,
+          "links": 0
+        }
+      ],
+      "external": [
+        {
+          "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+          "label": "GitHub：查看本站源码（新窗口）",
+          "rel": "noopener noreferrer"
+        }
+      ],
+      "scrollY": 258
+    }
+  },
+  {
+    "test": "normal-console-before-fault-tests",
+    "logs": []
+  },
+  {
+    "test": "seo-dom-and-motion-rules",
+    "data": {
+      "canonical": null,
+      "description": "了解 XiaoWork 品牌、开发方向与项目开发原则，查看已确认的公开联系入口与本站源码。",
+      "font": "\"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "h1": 1,
+      "hasReducedMotionRule": true,
+      "lang": "zh-CN",
+      "main": 1,
+      "ogTitle": "关于 XiaoWork — 开发者与创作",
+      "reducedMotionActive": false,
+      "title": "关于 XiaoWork — 开发者与创作",
+      "url": "http://127.0.0.1:3103/about"
+    }
+  },
+  {
+    "test": "mobile-history-after-navigation-settled",
+    "url": "http://127.0.0.1:3103/projects?q=Nav&sort=name-desc",
+    "state": {
+      "count": 1,
+      "input": "Nav",
+      "sort": "name-desc"
+    }
+  },
+  {
+    "test": "current-mobile-link-closes-menu",
+    "expanded": "false"
+  },
+  {
+    "test": "empty-category-keyboard",
+    "visible": true
+  },
+  {
+    "test": "empty-reset-keyboard",
+    "data": {
+      "count": 3,
+      "focus": "project-search"
+    }
+  },
+  {
+    "test": "cover-404-fallback",
+    "data": {
+      "alt": "XiaoWork Blog 封面占位图，真实截图待补充",
+      "box": 235.1354217529297,
+      "height": 0,
+      "src": "http://127.0.0.1:3105/images/projects/blog/placeholder.svg",
+      "width": 0
+    },
+    "note": "Initial candidate reproduced a missed pre-hydration error. Fixed in p4-release-candidate; see cover-404-fixed-after-hydration."
+  },
+  {
+    "test": "cover-404-fixed-after-hydration",
+    "data": {
+      "alt": "XiaoWork Blog 封面暂不可用，显示占位图",
+      "box": 235.1354217529297,
+      "height": 600,
+      "src": "http://127.0.0.1:3105/images/projects/placeholder.svg",
+      "width": 960
+    }
+  },
+  {
+    "test": "cover-and-fallback-404-text-fresh-origin",
+    "data": {
+      "height": 235.1354217529297,
+      "imagesInFirstCard": 0,
+      "text": "封面暂不可用",
+      "width": 376.21875
+    }
+  },
+  {
+    "test": "final-candidate-normal",
+    "measurement": {
+      "cards": [
+        {
+          "height": 515.8021240234375,
+          "width": 426.8854370117187,
+          "x": 48,
+          "y": 577.6666870117188
+        },
+        {
+          "height": 515.8021240234375,
+          "width": 426.8854370117187,
+          "x": 498.8854370117187,
+          "y": 577.6666870117188
+        },
+        {
+          "height": 515.8021240234375,
+          "width": 426.8854370117187,
+          "x": 949.7708740234376,
+          "y": 577.6666870117188
+        }
+      ],
+      "clientWidth": 1425,
+      "columns": 3,
+      "h1": 1,
+      "height": 1000,
+      "images": [
+        {
+          "complete": true,
+          "loading": "eager",
+          "priority": "high",
+          "src": "http://127.0.0.1:3103/images/projects/blog/placeholder.svg",
+          "width": 240
+        },
+        {
+          "complete": true,
+          "loading": "lazy",
+          "priority": "auto",
+          "src": "http://127.0.0.1:3103/images/projects/nav/placeholder.svg",
+          "width": 240
+        },
+        {
+          "complete": true,
+          "loading": "lazy",
+          "priority": "auto",
+          "src": "http://127.0.0.1:3103/images/projects/erp/placeholder.svg",
+          "width": 240
+        }
+      ],
+      "outside": [],
+      "overlap": false,
+      "scrollWidth": 1425,
+      "theme": "dark",
+      "title": "项目与作品 — XiaoWork",
+      "url": "http://127.0.0.1:3103/projects/",
+      "width": 1440
+    }
+  },
+  {
+    "test": "final-candidate-responsiveness",
+    "image": "p4-release-candidate",
+    "samples": 30,
+    "failures": 0
+  },
+  {
+    "test": "visible-label-in-accessible-name-fixed",
+    "label": "前往 GitHub · 本站源码（新窗口）"
+  },
+  {
+    "test": "confirmed-github-button",
+    "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "clicked": true,
+    "newIabTabObserved": false,
+    "note": "IAB did not expose an external-window handle; external browser destination was not inspected. Repository existence is independently verified via Git remote."
+  }
+]

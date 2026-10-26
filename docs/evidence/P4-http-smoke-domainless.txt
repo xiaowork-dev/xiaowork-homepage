@@ -1,0 +1,12 @@
+
+> xiaowork-homepage@1.0.0-p4 smoke
+> node scripts/smoke.mjs http://127.0.0.1:3103 --static-headers
+
+PASS page and SEO /
+PASS page and SEO /projects
+PASS page and SEO /projects/
+PASS page and SEO /about
+PASS page and SEO /about/
+PASS robots and domainless sitemap
+PASS 22 local assets
+PASS health endpoint and 404 status

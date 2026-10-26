@@ -86,7 +86,7 @@ useSiteSeo('about')
             target="_blank"
             rel="noopener noreferrer"
             class="button-secondary"
-            :aria-label="`${contact.label}（新窗口）`"
+            :aria-label="`前往 ${contact.label}（新窗口）`"
             >前往 <AppIcon name="arrow-up-right"
           /></a>
         </li>
