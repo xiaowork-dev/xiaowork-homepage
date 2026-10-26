@@ -1,0 +1,166 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.01kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:1.30.6-alpine
+#2 ...
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [auth] library/nginx:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/node:24.22.1-alpine
+#5 ...
+
+#2 [internal] load metadata for docker.io/library/nginx:1.30.6-alpine
+#2 DONE 2.2s
+
+#5 [internal] load metadata for docker.io/library/node:24.22.1-alpine
+#5 DONE 2.2s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 249B done
+#6 DONE 0.0s
+
+#7 [build 1/6] FROM docker.io/library/node:24.22.1-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53
+#7 resolve docker.io/library/node:24.22.1-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53 0.0s done
+#7 DONE 0.0s
+
+#8 [runtime 1/4] FROM docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951
+#8 resolve docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 3.31kB 0.0s done
+#9 DONE 0.0s
+
+#10 [build 2/6] WORKDIR /app
+#10 CACHED
+
+#11 [build 3/6] COPY package.json package-lock.json ./
+#11 CACHED
+
+#12 [build 4/6] RUN npm ci --ignore-scripts --no-audit --no-fund
+#12 CACHED
+
+#13 [build 5/6] COPY . .
+#13 CACHED
+
+#14 [build 6/6] RUN npm run postinstall && npm run generate
+#14 2.864
+#14 2.864 > xiaowork-homepage@1.0.0-p5a postinstall
+#14 2.864 > nuxt prepare
+#14 2.864
+#14 8.756 ◆ Types generated in .nuxt.
+#14 9.724
+#14 9.724 > xiaowork-homepage@1.0.0-p5a generate
+#14 9.724 > nuxt generate
+#14 9.724
+#14 9.860 Building Nuxt for production...
+#14 9.861 ● Loading Nuxt config
+#14 10.16 ● Nuxt 4.6.2 (with Nitro 2.13.5, Vite 8.3.5 and Vue 3.5.44)
+#14 10.17 ● Setting up modules
+#14 10.26 ● Preparing app
+#14 10.81 ● Nitro preset: static
+#14 10.82 ● Generating types
+#14 11.65 ● Bundling client
+#14 13.04 ℹ Building client...
+#14 13.14 ℹ vite v8.3.5 building client environment for production...
+#14 13.36 transforming...
+#14 17.06 ● Bundling client (5.40s · 7.19s)
+#14 18.49 ✓ 194 modules transformed.
+#14 18.99 rendering chunks...
+#14 19.37 computing gzip size...
+#14 19.39 ℹ node_modules/.cache/nuxt/.nuxt/dist/client/manifest.json                  3.28 kB │ gzip:  0.62 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/error-500.CmR4p1fc.css   1.95 kB │ gzip:  0.72 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/error-404.DpKY_dMl.css   2.70 kB │ gzip:  0.92 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/entry.DriltLJa.css      29.06 kB │ gzip:  5.68 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/Nioyjgu3.js              0.42 kB │ gzip:  0.39 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/B2glv523.js              1.28 kB │ gzip:  0.70 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DFGuHEHp.js              1.51 kB │ gzip:  0.90 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/Ry3f0qPu.js              2.48 kB │ gzip:  1.26 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/-vuMLnsr.js              2.68 kB │ gzip:  1.18 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/-DS_Hvqe.js              4.03 kB │ gzip:  1.72 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/CBFF6bZ7.js              4.58 kB │ gzip:  2.25 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/C4g4lj38.js              4.63 kB │ gzip:  2.25 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/D1_uimp3.js              4.68 kB │ gzip:  2.18 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/erQVWTmW.js              5.05 kB │ gzip:  2.55 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/BpvN3i_j.js             21.69 kB │ gzip:  9.12 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/dUav87kz.js             84.08 kB │ gzip: 32.59 kB
+#14 19.39 node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/DrerTl8B.js             96.28 kB │ gzip: 34.69 kB
+#14 19.39
+#14 19.40 ℹ ✓ built in 6.26s
+#14 19.40 ✔ Client built in 6356ms
+#14 19.40 ● Bundling server
+#14 19.40 ℹ Building server...
+#14 19.42 ℹ vite v8.3.5 building ssr environment for production...
+#14 19.58 transforming...
+#14 20.64 ✓ 109 modules transformed.
+#14 20.71 rendering chunks...
+#14 20.79 ℹ node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-styles.BF-pIkoo.mjs           0.08 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-styles.BipnMLxW.mjs           0.08 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/styles.mjs                                    0.33 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/site-7K5asYry.js                        0.56 kB │ map:   0.97 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/useSiteSeo-qMIqLxpz.js                  2.14 kB │ map:   2.10 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-styles-1.mjs-CdLClIq9.js      2.32 kB │ map:   4.40 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/AppIcon-BdGmZD7i.js                     2.36 kB │ map:   3.36 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-styles-1.mjs-rcIgKBzA.js      3.07 kB │ map:   6.22 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-Buk-P2K3.js                   3.66 kB │ map:   4.76 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/pages-CzlYQ9qn.js                       5.39 kB │ map:   7.52 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-BG_yn17E.js                   5.42 kB │ map:   6.91 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/projects-DW21DqCx.js                    6.99 kB │ map:  16.61 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/about-BUpn0iyD.js                       7.19 kB │ map:  12.63 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/ProjectCard-BUh1m7J1.js                 7.84 kB │ map:  13.43 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/default-_hXG8XnY.js                    10.43 kB │ map:  14.53 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_plugin-vue_export-helper-VFiqYm1a.js  11.04 kB │ map:  32.75 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/nuxt-link-DlMX7jrI.js                  12.60 kB │ map:  28.21 kB
+#14 20.79 node_modules/.cache/nuxt/.nuxt/dist/server/server.mjs                                   46.02 kB │ map: 142.07 kB
+#14 20.79
+#14 20.79 ℹ ✓ built in 1.37s
+#14 20.80 ✔ Server built in 1394ms
+#14 20.80 ● Building Nitro server
+#14 20.81 [nitro] ℹ Initializing prerenderer
+#14 24.25 [nitro] ℹ Prerendering 7 initial routes with crawler
+#14 24.40 [nitro]   ├─ /robots.txt (137ms)
+#14 24.40 [nitro]   ├─ /sitemap.xml (138ms)
+#14 24.41 [nitro]   ├─ /404.html (139ms)
+#14 24.41 [nitro]   ├─ /200.html (138ms)
+#14 24.43 [nitro]   ├─ /projects (165ms)
+#14 24.43 [nitro]   ├─ /projects/_payload.json?_b=7dcae07b-0d40-4252-a22a-e356c53418e8 (5ms) (skipped)
+#14 24.44 [nitro]   ├─ /about (161ms)
+#14 24.44 [nitro]   ├─ /about/_payload.json?_b=7dcae07b-0d40-4252-a22a-e356c53418e8 (3ms) (skipped)
+#14 24.44 [nitro]   ├─ / (170ms)
+#14 24.45 [nitro]   ├─ /_payload.json?_b=7dcae07b-0d40-4252-a22a-e356c53418e8 (2ms) (skipped)
+#14 24.45 [nitro]   ├─ /projects/_payload.json (6ms)
+#14 24.45 [nitro]   ├─ /about/_payload.json (4ms)
+#14 24.45 [nitro]   ├─ /_payload.json (2ms)
+#14 24.45 [nitro] ℹ Prerendered 10 routes in 3.603 seconds
+#14 24.52 [nitro] ✔ Generated public .output/public
+#14 24.56 [nitro] ✔ You can preview this build using npx serve .output/public
+#14 24.56 config 311ms · modules 90ms · app 563ms · types 824ms · client 7.75s · server 1.39s · nitro 3.75s
+#14 24.56 ◆ ✨ You can now deploy .output/public to any static hosting! (14.6s)
+#14 DONE 25.6s
+
+#15 [runtime 2/4] COPY deploy/nginx.conf /etc/nginx/nginx.conf
+#15 CACHED
+
+#16 [runtime 3/4] COPY deploy/security-headers.conf /etc/nginx/security-headers.conf
+#16 CACHED
+
+#17 [runtime 4/4] COPY --from=build --chown=nginx:nginx /app/.output/public /usr/share/nginx/html
+#17 DONE 0.1s
+
+#18 exporting to image
+#18 exporting layers 0.1s done
+#18 exporting manifest sha256:91dd3db70d7784412298b9766df0685e354a8dbe7bd30272647b9df928ab2801 0.0s done
+#18 exporting config sha256:5417c256bfa8a485cd9d0943e40de394a9fc868e0543b3f53a1f9d7bbefbf3a1 0.0s done
+#18 exporting attestation manifest sha256:19f9b2daba4ccc8bad32d1dfb76b939cdf2ec376a5787da9a578d7c5adb7cbc2 0.0s done
+#18 exporting manifest list sha256:a939f543453a79544e049c004c35504c915d4344b8e636a2f3e92f499fe2f405 0.0s done
+#18 naming to docker.io/library/xiaowork-homepage:p5-production-origin-check-bc3f11c
+#18 naming to docker.io/library/xiaowork-homepage:p5-production-origin-check-bc3f11c done
+#18 unpacking to docker.io/library/xiaowork-homepage:p5-production-origin-check-bc3f11c 0.1s done
+#18 DONE 0.4s

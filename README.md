@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。真实项目素材与个人资料按用户安排后续提供，当前保留明确占位。尚未连接生产服务器，生产操作未授权或执行。
+XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。当前生产方案已按用户要求改为已有 **1Panel + OpenResty**，目标 SSH 别名为 `xiaowork-main`，正式主站为 `https://xiaoworks.com`，不配置 www。用户允许首版保留明确占位内容；上游 7 high 风险尚未获接受，当前只放行内部部署和预览，公网路由与 DNS 尚未放行。方案说明见 [OpenResty 调整记录](docs/deliveries/P5-openresty-plan.md)，实际执行状态以 [最新进度](docs/PROGRESS.md) 为准。
 
 ## 本地运行
 
@@ -68,7 +68,7 @@ Blog、Nav、ERP 的项目名称与展示定位已接入；真实技术栈、具
 
 ## 域名与 SEO
 
-正式域名未确认，`NUXT_PUBLIC_SITE_URL` 默认留空：页面已有独立描述和分享标题，但不输出 canonical、`og:url` 或绝对分享图地址；robots 不声明 sitemap，`/sitemap.xml` 返回 404，避免发布虚构域名。
+正式主站已确认为 `https://xiaoworks.com`，不使用 www。生产部署 `.env` 必须填写 `NUXT_PUBLIC_SITE_URL=https://xiaoworks.com`，并重新构建镜像。仓库 `.env.example` 继续保留空值作为安全的本地默认值；空值模式不输出 canonical、`og:url` 或绝对分享图地址，robots 不声明 sitemap，`/sitemap.xml` 返回 404。
 
 确认域名后，在本地 `.env` 或构建环境填写 `NUXT_PUBLIC_SITE_URL`（HTTPS 的完整 origin，无路径、查询、账号或密码）。然后重新执行 `npm run generate`，或用新版本标签构建 Docker 镜像。Docker Compose 会把它作为 build arg 传入；静态 Nginx 容器启动时修改环境变量不会改写已生成网页。同机调试允许 HTTP 的 localhost / 127.0.0.1 / [::1] origin。
 
@@ -92,9 +92,9 @@ bash update.sh <新的唯一版本标签>
 bash rollback.sh v1.0.0-p5a
 ```
 
-默认仅绑定 `127.0.0.1:3100`，首次执行自动从 `.env.example` 创建 `.env`。开发服务与容器不要同时使用同一端口。本阶段未连接生产服务器。
+当前生产采用 `compose.yaml`，显式配置 `BIND_ADDRESS=127.0.0.1`、`HTTP_PORT=3100`，映射到容器 `8080`。首次执行自动从 `.env.example` 创建 `.env`；执行前必须填写正式 origin。开发服务与容器不要同时使用同一端口。
 
-同机 Nginx Proxy Manager 使用独立 `compose.proxy.yaml`（Compose 2.24.4+），应用不映射宿主端口。在 `.env` 填入已确认的 `PROXY_NETWORK` / `PROXY_SERVICE_ALIAS` 后，首次执行 `XIAOWORK_COMPOSE_FILE=compose.proxy.yaml bash deploy.sh <唯一标签>`。成功后记录网络模式，后续更新/回滚沿用；正式环境必须先获 P5-B 授权。
+已有 OpenResty 使用 host 网络，可通过 `http://127.0.0.1:3100` 访问 Homepage。应用使用 Compose 的独立默认网络，不加入 NPM 共享网络，不将 3100 绑定到公网。`compose.proxy.yaml` 保留历史兼容能力，不作为当前生产方案；已有代理模式实例若要迁移，必须先备份并制定显式迁移计划，不能删除 `.deploy/compose-file` 绕过保护。
 
 `bash release.sh <deploy|update> <已验收完整40位SHA>` 从确认的 GitHub main 获取精确提交，校验干净工作区、来源与快进关系，再调用现有部署脚本。不会判断任意 main 提交是否已验收，也不自动部署最新 main。标签和镜像记录源码/构建域名，复用镜像时拒绝不匹配配置。操作步骤与生产信息需求见 [P5 部署方案](docs/P5-DEPLOYMENT-PLAN.md)。
 
@@ -102,14 +102,14 @@ bash rollback.sh v1.0.0-p5a
 
 - [原始设计规范](XiaoWork_Homepage_V1_Design_Spec.md)、[P0 交付](XiaoWork_Homepage_P0_Delivery.md) 和原始 PNG 保留原样。
 - [项目最新进度](docs/PROGRESS.md)、[P1 交付](docs/deliveries/P1-delivery.md)、[P2 交付及截图](docs/deliveries/P2-delivery.md) 与 [P3 交付](docs/deliveries/P3-delivery.md) 记录实际完成与验证范围。
-- P2～P4 已验收；[P4 交付](docs/deliveries/P4-delivery.md) 保留历史数据。[P5-A 交付](docs/deliveries/P5A-delivery.md)、[上线资料](docs/P5-CONTENT-CHECKLIST.md)、[部署方案](docs/P5-DEPLOYMENT-PLAN.md) 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md) 记录当前结论；正式内容、域名、环境与风险决定齐备，并获独立授权后才能进入 P5-B。
-- [P5-B 部署预检](docs/deliveries/P5B-preflight.md) 记录最新本机 Docker/HTTP/脚本与安全复查。应用无宿主端口映射已验证；真实源站 IP+Host/SNI 防绕过、NPM/Cloudflare/TLS 和目标主机尚未检查，另获明确授权后才能登录或上线。
+- P2～P4 已验收；[P4 交付](docs/deliveries/P4-delivery.md)、[P5-A 交付](docs/deliveries/P5A-delivery.md) 和 [P5-B 部署预检](docs/deliveries/P5B-preflight.md) 保留各阶段的历史范围，不代表本次生产验收。[上线资料](docs/P5-CONTENT-CHECKLIST.md)、[部署方案](docs/P5-DEPLOYMENT-PLAN.md) 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md) 已同步当前 OpenResty 方案。
+- 公网发布仍须解决或明确接受上游 high 风险，并完成本站 OpenResty/TLS、Cloudflare、源站 IP+Host/SNI 防绕过与其他站点回归检查；内部部署成功不等于公网已放行。
 - Git 使用 `main`，远端为 `xiaowork-dev/xiaowork-homepage`。提交身份已按用户提供的信息配置在本仓库，每个验证通过的阶段自动提交并推送，不强推。不要把 `.env`、密钥、依赖或构建产物提交到 Git。
-- 正式域名、各项目地址、真实截图与联系方式待确认；接入时仅需修改内容配置和构建环境，无需新增后台。
+- 正式域名已确认；各项目地址、真实截图与更多联系方式仍待补，用户允许首版明确占位。接入时仅需修改内容配置和构建环境，无需新增后台。
 
 ## 已知依赖问题
 
-2026-10-26 P5-B 部署预检再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。见 `docs/evidence/P5B-preflight-npm-audit.json`、`P5B-preflight-advisory.json` 和 [发布门槛](docs/P5-RELEASE-CHECKLIST.md)。安全审计未通过，正式发布前须修复或明确接受剩余风险。
+2026-10-26 生产准备阶段再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。本轮脱敏公开证据见 `docs/evidence/P5-production-npm-audit.json`、`P5-production-advisory.json` 和 `P5-production-registry.json`；原始运维记录仅保留在已忽略的本机缓存。用户目前不接受剩余 high 风险，安全审计未通过，不开放本站公网入口。
 
 ## 性能复测
 

@@ -1,0 +1,33 @@
+{
+  "scope": "Local Docker build using reviewed bc3f11c source and confirmed production origin; not a public production website",
+  "origin": "https://xiaoworks.com",
+  "sourceSha": "bc3f11c3fe084fcfe8313a901a972643dafe0fe3",
+  "desktop": {
+    "theme": "dark",
+    "canonical": "https://xiaoworks.com/",
+    "clientWidth": 1425,
+    "width": 1440,
+    "scrollWidth": 1425
+  },
+  "mobile": {
+    "theme": "light",
+    "canonical": "https://xiaoworks.com/about/",
+    "clientWidth": 375,
+    "width": 390,
+    "scrollWidth": 375
+  },
+  "interactions": [
+    "website category returns two items",
+    "name descending places Nav before Blog",
+    "Nav search returns one item",
+    "reset restores all items",
+    "light theme preserved after reload",
+    "about internal link works",
+    "mobile menu expands"
+  ],
+  "screenshots": [
+    "P5-production-local-home-desktop.jpg",
+    "P5-production-local-about-mobile-light.jpg"
+  ],
+  "limits": "Not a full breakpoint/device matrix; not public-domain or remote-server browser acceptance."
+}

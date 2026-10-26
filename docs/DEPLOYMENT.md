@@ -2,9 +2,9 @@
 
 ## 适用范围与前提
 
-本方案用于 Nuxt 静态生成站点。最终容器为 Nginx，不包含数据库、用户上传目录或服务端 Node 运行时。P1 提供部署基础与本地验证，生产连接和部署需另行授权。
+本方案用于 Nuxt 静态生成站点。最终容器为 Nginx，不包含数据库、用户上传目录或服务端 Node 运行时。当前生产目标为已确认的 SSH 别名 `xiaowork-main`，使用已有 **1Panel + OpenResty**，主站 `https://xiaoworks.com`，不配置 www。用户已允许内部部署与明确占位内容，尚未接受上游 high 风险；本站公网路由与 DNS 继续保持未放行。实际执行结果见 [最新进度](PROGRESS.md)。
 
-Linux 主机需 Docker Engine、Docker Compose 插件（回环模式支持 `up --wait`，建议 2.20+；代理模式须 2.24.4+）、Bash、可访问镜像仓库与 npm 注册表的网络，以及足够的构建内存。Git 版本发布入口另需 Git。构建在容器内完成，宿主不需要安装 Node/npm。源码必须包含 `package-lock.json`。不要覆盖既有反向代理、80/443 端口或其他服务。
+Linux 主机需 Docker Engine、Docker Compose 插件（当前回环模式需支持 `up --wait`，建议 2.20+）、Bash、可访问镜像仓库与 npm 注册表的网络，以及足够的构建内存。Git 版本发布入口另需 Git。目标只读巡检已识别 Debian 12、已有 OpenResty host 网络及当时未占用的 3100；实际执行前仍要复核端口和资源。构建在容器内完成，宿主不需要安装 Node/npm。源码必须包含 `package-lock.json`。不要覆盖既有反向代理、80/443 端口或其他服务。
 
 所有命令在项目目录执行；部署脚本自身也能从其他目录定位项目。Windows 开发可使用 Git Bash 运行脚本；生产以 Linux Bash 为准。Docker Desktop 须运行 Linux 容器。
 
@@ -12,25 +12,29 @@ Linux 主机需 Docker Engine、Docker Compose 插件（回环模式支持 `up -
 
 ```bash
 cp .env.example .env
-# 根据实际环境编辑 .env
-bash deploy.sh v1.0.0-p5a
+# 编辑未跟踪的 .env：
+# BIND_ADDRESS=127.0.0.1
+# HTTP_PORT=3100
+# NUXT_PUBLIC_SITE_URL=https://xiaoworks.com
+# REVIEWED_SHA 必须来自本次已验收版本，不自动跟随最新 main。
+XIAOWORK_COMPOSE_FILE=compose.yaml bash release.sh deploy "$REVIEWED_SHA"
 docker compose --env-file .env ps
 curl --fail http://127.0.0.1:3100/health.json
 ```
 
-省略复制步骤时脚本会自动创建默认 `.env`，不会覆盖已有配置。`deploy.sh` 检查 Docker、Compose 和配置，然后构建并等待健康检查通过；重复使用相同标签会复用原镜像。需要构建新源码时使用新标签。
+省略复制步骤时脚本会自动创建默认 `.env`，不会覆盖已有配置；正式 origin 不会自动从文档填入，必须在运行前设置。`release.sh` 选择精确已审 SHA，再调用 `deploy.sh` 检查 Docker、Compose、构建和健康。重复使用相同标签会检查并复用原镜像；需要构建新源码或新 origin 时使用新标签。以上是执行说明，不表示已经执行生产部署。
 
-| 配置项                 | 默认值            | 说明                                                                         |
-| ---------------------- | ----------------- | ---------------------------------------------------------------------------- |
-| `BIND_ADDRESS`         | `127.0.0.1`       | 绑定宿主回环地址                                                             |
-| `HTTP_PORT`            | `3100`            | 宿主服务端口，部署前检查是否占用                                             |
-| `IMAGE_TAG`            | `p5a-local`       | 手动 Compose 的镜像标签，脚本参数优先                                        |
-| `NUXT_PUBLIC_SITE_URL` | 空                | 已确认的正式 HTTPS origin；构建时生成 SEO 与 sitemap，不能仅在容器运行时修改 |
-| `XIAOWORK_ENV_FILE`    | 项目根目录 `.env` | 可选脚本环境变量，指定外部配置的绝对路径                                     |
+| 配置项                 | 默认值            | 说明                                                                                |
+| ---------------------- | ----------------- | ----------------------------------------------------------------------------------- |
+| `BIND_ADDRESS`         | `127.0.0.1`       | 绑定宿主回环地址                                                                    |
+| `HTTP_PORT`            | `3100`            | 宿主服务端口，部署前检查是否占用                                                    |
+| `IMAGE_TAG`            | `p5a-local`       | 手动 Compose 的镜像标签，脚本参数优先                                               |
+| `NUXT_PUBLIC_SITE_URL` | 空                | 生产设为 `https://xiaoworks.com`；构建时生成 SEO 与 sitemap，不能仅在容器运行时修改 |
+| `XIAOWORK_ENV_FILE`    | 项目根目录 `.env` | 可选脚本环境变量，指定外部配置的绝对路径                                            |
 
 无需填写秘密或正式域名即可本地验证。版本标签只能含 Docker 支持的字母、数字、点、下划线与连字符。省略首次部署标签时，优先使用当前 Git 短 SHA；无提交则为 `p1-local`。正式发布应显式提供唯一版本号。
 
-P3 增加可选的构建参数 `NUXT_PUBLIC_SITE_URL`。域名未确认时留空，网页省略绝对 canonical / 分享 URL，robots 不声明 sitemap，`/sitemap.xml` 为 404。确认后在 `.env` 填入真实 HTTPS origin（无子路径、查询或凭据）；`deploy.sh` / `update.sh` 经 Compose build args 传入 Nuxt 静态生成，自动输出三个页面的 canonical / 分享信息与 sitemap。修改域名需要使用**新的镜像标签并重新构建**；复用旧标签、只重启或仅修改容器环境不会改变静态 SEO。回滚时也会恢复旧镜像里构建的域名配置。不要在公共站点使用调试域名或 localhost origin。
+生产构建参数 `NUXT_PUBLIC_SITE_URL` 固定使用已确认的 `https://xiaoworks.com`，无 www。仓库模板仍留空，方便本地验证；空值时网页省略绝对 canonical / 分享 URL，robots 不声明 sitemap，`/sitemap.xml` 为 404。`deploy.sh` / `update.sh` 经 Compose build args 传入 Nuxt 静态生成，自动输出三个页面的 canonical / 分享信息与 sitemap。修改域名需要使用**新的镜像标签并重新构建**；复用旧标签、只重启或仅修改容器环境不会改变静态 SEO。回滚时也会恢复旧镜像里构建的域名配置。不要在公共站点使用调试域名或 localhost origin。
 
 ## 一键更新
 
@@ -73,10 +77,11 @@ docker image load -i /path/outside-project/xiaowork-v1.0.0-p1.tar
 
 ## 反向代理与 HTTPS
 
-- 默认 `127.0.0.1:3100 → 容器 8080`，适合同机宿主 Nginx。不会占用 80/443。
-- 如果 Nginx Proxy Manager 运行在同机容器里，它的 `127.0.0.1` 指向自己。使用 `compose.proxy.yaml`：填好 `.env` 的 `PROXY_NETWORK` / 唯一 `PROXY_SERVICE_ALIAS` 后，首次执行 `XIAOWORK_COMPOSE_FILE=compose.proxy.yaml bash deploy.sh <唯一标签>`；应用没有宿主端口映射，NPM 经确认的别名 `:8080` 访问。网络必须已存在；脚本不自动改动 NPM。Compose 2.24.4+ 才使用此配置。
-- 反代在另一台机器时不能直接访问回环地址，需要按真实私网拓扑设置绑定地址、访问控制、TLS 与 DNS，不能直接套用共网方案。
-- 正式域名与证书配置待部署授权后确定；本项目不安装或接管已有 NPM、不修改防火墙或 SSH。
+- 当前采用 `compose.yaml`，显式绑定 `127.0.0.1:3100 → 容器 8080`，应用使用项目独立默认 Docker 网络。不要设置 `0.0.0.0`、公网 IP 或 IPv6 通配地址，不加入 NPM 网络。
+- 已有 1Panel 管理的 OpenResty 使用 host 网络，与宿主共用网络命名空间，因而可将本站上游设为 `http://127.0.0.1:3100`。不新装或接管反代，不占用额外公网 80/443。
+- 本站 OpenResty vhost、证书、HTTPS 跳转和 Cloudflare 记录须待风险放行后单独验收；目前不新增公网路由、修改 DNS 或切换 TLS。最终目标是根域 `xiaoworks.com` 的 Cloudflare 橙云与 Full (strict)，有效证书必须覆盖根域，不配置 www。
+- 回环端口限制不等于禁止通过源站 80/443 携带正确 Host/SNI 直连。正式开放前需设计只影响本站的访问控制并实际验证；不为本站修改整机 80/443 白名单，不修改其他站点或无关 NPM 配置。
+- `compose.proxy.yaml` 仅保留历史兼容能力（Compose 2.24.4+），不作为当前生产模式。未来换拓扑须重新检查访问控制；已有模式迁移须计划、备份与验证，不可删状态文件绕过保护。
 
 ## 日志、健康与停止
 
@@ -92,7 +97,7 @@ docker compose --env-file .env stop web
 
 P4 开启 HTML/CSS/JS/JSON/SVG/XML 的 gzip（小于 1024 字节不压缩），并发送 `Vary: Accept-Encoding`。`/_nuxt/` 哈希资源缓存一年且 immutable，`/images/` 缓存一天；页面、payload 和主题初始化脚本使用 no-cache 重新验证。替换封面/分享图使用新文件名，避免一天内缓存旧图。`security-headers.conf` 在带缓存头的 location 中显式引入，确保 nosniff、Referrer-Policy、禁止 iframe 嵌入和敏感设备权限限制不因 Nginx add_header 继承规则失效。
 
-可使用 `npm run smoke -- <本地服务URL> --static-headers` 同时检查默认域名模式与 Nginx 缓存、安全头和 HTML 压缩；配置 origin 的镜像把 origin 放在 URL 后、flag 前。反代应保留相关头；TLS/HSTS 和实际 CDN 缓存由正式拓扑验收，当前未操作生产。
+内部部署后使用 `npm run smoke -- http://127.0.0.1:3100 https://xiaoworks.com --static-headers`，同时检查正式 origin 产物及 Nginx 缓存、安全头和 HTML 压缩。该命令需要在可访问对应回环服务且已安装检查工具的环境运行；也可通过已有只读安全转发从本地验证，不向公网暴露端口。反代应保留相关头；TLS/HSTS、CDN、公网 Lighthouse 和实际浏览器由公网放行后另行验收，内部 HTTP 通过不等于 HTTPS 已上线。
 
 部署脚本不执行 `down -v`、prune、删除镜像、改防火墙等操作。健康检查只验证站点服务可读，浏览器功能和视觉仍需独立验收。
 
@@ -106,12 +111,12 @@ P4 的实际脚本验收结果和范围见 [交付文档](deliveries/P4-delivery
 
 ## P5-A 发布入口与配置保护
 
-详细生产方案见 [P5 部署准备](P5-DEPLOYMENT-PLAN.md)，资料和授权门槛见 [P5 发布清单](P5-RELEASE-CHECKLIST.md)。P5-A 没有连接生产。
+详细生产方案见 [P5 部署准备](P5-DEPLOYMENT-PLAN.md)，资料和授权门槛见 [P5 发布清单](P5-RELEASE-CHECKLIST.md)，本次调整见 [OpenResty 方案](deliveries/P5-openresty-plan.md)。P5-A 未连接生产的结论仅适用于历史阶段。
 
 `release.sh <deploy|update> <完整SHA>` 校验仓库身份、main、干净工作区、远端 main 包含目标提交及当前 HEAD 可快进到目标；fetch 后精确快进并执行已有脚本，标签为 `git-<SHA前12位>`。不自动选择“最新”、不 reset、不覆盖环境文件，也不替代人工验收。首次 clone 即处于较新 main、目标 SHA 较旧时会拒绝；请选择最终已验收提交，或在新专用 checkout 里明确准备目标版本，不能强制回退现有部署目录。
 
 构建镜像保存 `org.opencontainers.image.revision` 和 `io.xiaowork.site-url`；手动无 Git 发布的本地构建 revision 可为空，不伪造来源。deploy 复用镜像时检查 origin，且 release 入口会核对 SHA，防止静态产物域名/来源错配。P4 历史镜像未含这些标签，可能拒绝用 deploy 重复复用；恢复旧镜像仍用 rollback.sh，不重建或覆盖它。
 
-成功后 `.deploy/compose-file` 记录 `compose.yaml` 或 `compose.proxy.yaml`；后续三种脚本自动沿用。显式指定不同模式会拒绝；不要随意删除记录绕过检查。首次部署中途失败尚无成功记录时，重试仍须显式选择原代理配置。普通 Docker Compose 命令不读该记录，生产人工检查要加 `-f compose.proxy.yaml` 和正确 `IMAGE_TAG`，例如 `docker compose --env-file .env -f compose.proxy.yaml ps`。
+成功后 `.deploy/compose-file` 记录 `compose.yaml` 或 `compose.proxy.yaml`；后续三种脚本自动沿用。当前首次部署显式选择 `compose.yaml`；后续保持该记录。显式指定不同模式会拒绝；不要随意删除记录绕过检查。首次部署中途失败尚无成功记录时，重试仍须显式选择原模式。普通 Docker Compose 命令不读该记录，人工检查当前模式应使用 `docker compose --env-file .env -f compose.yaml ps`，重启/恢复还须明确正确的 `IMAGE_TAG`。
 
-P5-A 共网和失败恢复的本机实测结果见 [P5-A 交付](deliveries/P5A-delivery.md)。本机反代测试不等于 NPM 管理界面、Cloudflare、DNS、证书或正式 Linux 主机验收；生产版另需确认公网跳转和回退备份。基础镜像目前锁版本标签，尚未锁 digest，也未完成 OS CVE 扫描。
+P5-A 共网和失败恢复的本机实测结果见 [P5-A 交付](deliveries/P5A-delivery.md)，不作为本次 OpenResty 生产验收。本次只读脚本兼容性检查确认无须更改脚本即可选用回环模式；尚需实际内部部署健康检查及最终公网 TLS/DNS/防绕过验收。基础镜像目前锁版本标签，尚未锁 digest；OS CVE 状态须在最终交付独立记录。

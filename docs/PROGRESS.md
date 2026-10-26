@@ -1,58 +1,45 @@
 # XiaoWork Homepage V1.0 项目进度
 
 > 最后更新：2026-10-26（Asia/Shanghai）  
-> 当前阶段：P5-A 基本通过用户工程验收；P5-B 部署预检完成。仅获本机预检授权，未连接生产服务器或执行正式部署，资料/域名、环境及风险处置待确认。
+> 当前阶段：P5-B 方案改为 1Panel OpenResty；生产目标只读巡检及正式 origin 本机构建验证完成，准备部署服务器内部预览。**公网发布未放行**。
 
 ## 阶段状态
 
-Nuxt 4 / Vue 3 / TypeScript / Tailwind 静态站，TS 配置管理内容，非 root Nginx；保持 P0 原件和已验收视觉，不引入数据库或后台。
+| 阶段          | 状态                                                     | 交付                                                                                                        |
+| ------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| P0～P2        | 需求、工程与首页视觉已验收，原件保留                     | [P0](../XiaoWork_Homepage_P0_Delivery.md)、[P1](deliveries/P1-delivery.md)、[P2](deliveries/P2-delivery.md) |
+| P3            | 项目、关于及 SEO 已验收                                  | [P3](deliveries/P3-delivery.md)                                                                             |
+| P4            | 交互、响应式、性能和发布机制已验收                       | [P4](deliveries/P4-delivery.md)                                                                             |
+| P5-A          | 用户确认基本通过工程验收                                 | [P5-A](deliveries/P5A-delivery.md)                                                                          |
+| P5-B 预检     | 本机预检已完成；旧 NPM 拓扑已由用户后续指令替换          | [历史预检](deliveries/P5B-preflight.md)                                                                     |
+| P5-B 方案调整 | 目标已确认、只读巡检完成，默认 OpenResty host + 回环上游 | [新方案](deliveries/P5-openresty-plan.md)                                                                   |
+| P5-B 内部部署 | 待使用已审完整 SHA 执行                                  | [部署计划](P5-DEPLOYMENT-PLAN.md)                                                                           |
+| P5-B 公网发布 | 受阻：用户未接受未修复的 high 风险                       | [发布门槛](P5-RELEASE-CHECKLIST.md)                                                                         |
 
-| 阶段                    | 状态                                          | 交付                                          |
-| ----------------------- | --------------------------------------------- | --------------------------------------------- |
-| P0 需求与视觉           | 已完成，原件保留                              | [P0](../XiaoWork_Homepage_P0_Delivery.md)     |
-| P1 工程基础             | 已验收并推送                                  | [P1](deliveries/P1-delivery.md)，`eead14e`    |
-| P2 首页视觉             | 用户已验收                                    | [P2](deliveries/P2-delivery.md)，`f01cfb7`    |
-| P3 项目、关于与 SEO     | 用户已阶段验收                                | [P3](deliveries/P3-delivery.md)，`422685c`    |
-| P4 交互、性能与上线准备 | 用户已验收                                    | [P4 交付与截图](deliveries/P4-delivery.md)    |
-| P5-A 发布准备           | 用户确认基本通过工程验收                      | [P5-A](deliveries/P5A-delivery.md)，`bde8113` |
-| P5-B 部署预检           | 已完成本机预检，未连接生产服务器              | [预检报告](deliveries/P5B-preflight.md)       |
-| P5-B 正式发布           | 生产登录/变更未授权，资料、环境和风险决定未齐 | [P5 发布门槛](P5-RELEASE-CHECKLIST.md)        |
+## 本轮已完成
 
-## 已完成与验证
+- 用户确认 SSH 别名 `xiaowork-main` 是德国主力 VPS，授权本站独立部署；既有主机校验成功。原始 SSH、主机信息及其他服务清单仅保存在忽略的本机私有记录。
+- Debian 12 / x86_64，4 CPU，约 20 GiB 内存；Docker 29.9.1 / Compose 5.6.0，1Panel 服务正常；OpenResty 为 host 网络。3100 端口和本站独立路径/Compose 项目无冲突。已保存 15 个既有容器与 8 份代理配置哈希基线；未修改这些资源。
+- 用户将全部网站默认反代调整为 **1Panel OpenResty**。沿用 `compose.yaml`，仅 `127.0.0.1:3100 -> 8080`，不接入 NPM 网络。现有 deploy/update/rollback 与模式记忆兼容，不改已验收应用代码。
+- 正式 origin 已确认 `https://xiaoworks.com`，不用 www。用户允许首版保留明确占位内容；Blog/Nav/ERP 的真实截图、栈、状态和网址仍未确认，没有虚构外链。
+- 本机以基线 `bc3f11c3fe084fcfe8313a901a972643dafe0fe3` 和正式 origin 重建静态镜像，prepare/generate 实际执行成功；正式 canonical、OG、sitemap、robots、22 资源、缓存/安全头及三页 HTTP 冒烟通过。npm ci 层命中缓存，不冒称本轮无缓存安装。
+- 本机实际浏览器：1440 深色首页、390 浅色关于页无横向溢出，分类、搜索、排序、重置、主题刷新、内链和移动菜单通过。范围与截图见 [本机证据](evidence/P5-production-local-browser.json)；不冒称服务器或公网验收。
+- 本轮审计仍 **7 high / 0 critical**，同一 node-forge GHSA 链，官方尚未列兼容修复。用户明确暂不接受风险，仅推进内部部署。最终静态 Nginx 不运行 Node，不能因此把依赖标为已修复。
+- 公共 DNS 检查：根域 A/AAAA 无回答，本机公网域名不能解析；未修改 Cloudflare、证书、现有站点或域名路由，Full (strict) 的账户实际设置未核验。
 
-- 首页、项目、关于页和深浅主题保留；P4 增加项目搜索、推荐/精选/名称排序与 URL 状态恢复，支持刷新、返回、组合空状态、键盘重置。
-- 修复 320px 搜索区域被排序挤窄、当前链接未关闭移动菜单、图片在 hydration 前失败未触发后备、关于入口可见文字与无障碍名称不匹配等实际问题。
-- 独立项目封面支持可选 AVIF/WebP 变体，固定 16:10，首张优先、其他懒加载，两层失败后备；占位和文字后备均经过独立故障源实测。
-- 保持配置化关于页、项目分类/状态/精选/顺序和真实资料边界；三项目依然明确占位，无假地址或编造技术栈/经历。
-- 三页独立 SEO、品牌分享图、robots、可选 origin/canonical/sitemap 保留；默认和本机 origin 两分支 HTTP 验证通过，各五种页面路径、22 资源及 health/404。
-- 四项单测、ESLint 零警告、Prettier、TypeScript、build 与 generate 均通过。最终静态镜像从 lockfile 独立构建成功。
-- 最终五档宽度 320/390/768/1024/1440 × 三页 × 两主题共 30 组无横向溢出或卡片重叠；搜索、分类、排序、主题刷新、菜单键盘、内链和返回均实际浏览器验证。
-- P5-A Lighthouse 13.5 / Chrome155：首页手机三次均98，LCP中位2.036s、CLS0、TBT46.5ms、传输127,538B；桌面100、项目手机99、关于手机98。全部JS/CSS仍267,172B/gzip98,327B，与P4相同，不把实验波动算优化收益。默认深色自动可访问性/最佳实践/SEO均100；INP/CrUX未测。
-- gzip、图片一天缓存、哈希资源一年缓存、页面重新验证、安全头继承和日志轮转均配置并实测；非 root/只读、临时 /tmp、cap drop 和权限限制保留。
-- 独立 Compose 副本实际跑通部署、更新、回滚、重跑、旧标签拒绝；构建失败保留旧容器，健康失败自动恢复且 current 不变。仅操作本次隔离容器，无生产连接或全局清理。
-- P5-A补齐精确已验收Git SHA获取入口，拒绝错误来源/分支/脏工作区/旧提交；保留环境与部署状态。代理Compose无宿主映射，共享测试网经独立Nginx代理HTTP实测通过；网络模式成功后记忆，origin/SHA错配拒绝复用镜像。
-- [资料清单](P5-CONTENT-CHECKLIST.md)、[部署计划](P5-DEPLOYMENT-PLAN.md) 和 [P5 发布清单](P5-RELEASE-CHECKLIST.md) 区分准备与生产授权；三页/两主题/五宽30组浏览器和六份Lighthouse原始报告保存在P5A证据中。
-- 原始三份 P0 文件 SHA256 不变；README、内容、部署、发布检查与阶段交付同步。
+## 已验收工程能力保留
 
-## 遗留与上线门槛
+Nuxt 4 静态站、配置化内容、深浅主题、URL 搜索/分类/排序与返回恢复、320～1440 响应式、独立封面及失败后备、语义/焦点/减少动效规则保留。P5-A 曾通过四项单测、ESLint/Prettier/TS、生产 build/generate、隔离部署/更新/回滚及失败恢复、30 组浏览器检查。历史 Lighthouse 首页手机 98、桌面100、项目手机99、关于手机98；这些不是本轮正式域名性能结果。原始设计资料未改。
 
-P5-B 本轮重新核验 GitHub 与 P5-A 完整提交一致；五份 Bash 语法、四项单测、Docker 构建（安装/生成层命中缓存）、独立回环 HTTP 冒烟、真实代理 Compose 健康/无宿主映射通过。本机 SSH 配置可复用但目标未选择，未运行 SSH；生产网络、NPM、TLS/DNS 和防源站绕过未测。两个测试容器、专用网络及本轮新增镜像标签已清理，无全局清理。详见 [预检及证据](deliveries/P5B-preflight.md)。
+## 下一步与阻塞
 
-| 项目         | 现状                                                                                  | 下一步                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| 真实项目资料 | Blog/Nav/ERP 截图、真实技术栈/状态、官网/源码待补                                     | 按 [内容指南](CONTENT.md) 接入，ERP 须确认可公开且脱敏                                       |
-| 个人/品牌    | 详细介绍、公开联系、可选简历和最终品牌素材待补                                        | 不推断经历或自动公开 Git 邮箱                                                                |
-| 正式域名     | origin 留空，sitemap=404，无假 canonical                                              | 确认 HTTPS origin 后用新标签重建并复验                                                       |
-| 安全         | P5-B 预检再次 audit 仍7 high，同源node-forge1.4.0；官方未列修复版本，相关包latest未变 | 发布前/每周重查，不force/降级；静态Nginx无Node但构建风险保留；生产变更前需修复或明确接受风险 |
-| 性能         | 使用占位图的本机实验室数据；INP/CrUX 未测，部分指标未改善                             | 素材到齐后复测，发布后采集真实核心网页指标                                                   |
-| 验收         | 未覆盖 Firefox/Safari、真实设备、完整读屏、系统减少动效仿真、浅色独立 Lighthouse      | P5 补测；已有规则/实际浅色页面检查不等于这些测试完成                                         |
-| 部署         | 未做生产拓扑/TLS/DNS、真实 Linux 服务器、备份介质恢复及 OS 镜像 CVE 扫描              | 获独立授权后准备具体发布/回滚方案                                                            |
-| 入口隔离     | 本机代理无宿主映射已实测，真实源站 IP+Host/SNI 绕过未测                               | 确认 NPM/Cloudflare 来源限制，不能为本站擅改整机规则影响其他网站                             |
-| Windows      | 中文路径 Nitro external dependency 警告仍有，构建成功                                 | 兼容更新时复查；未修改 node_modules                                                          |
+1. 提交并推送新方案，用核验后的完整 SHA 部署独立内部预览，设置正式 origin，保留非 root/只读/健康检查/日志轮转。
+2. 验证 OpenResty host 内回环可达、SSH 隧道 HTTP/浏览器，以及其他服务基线；不新增公网路由或 DNS。
+3. 安全修复或用户明确接受剩余 high 风险后，方可继续本站专属 OpenResty、根域证书、Cloudflare 橙云/Full (strict) 与防源站绕过方案，不能修改整机 80/443 白名单影响其他站点。
+4. 真实项目/个人资料和可选简历后补；上线后复测真实素材、公开链路 Lighthouse/INP，OS 镜像 CVE、Safari/Firefox/真实设备和完整读屏仍未覆盖。
 
-## Git 与交接
+## Git 与私有运维记录
 
-- 既有 `main` / `origin/main`，远端 `xiaowork-dev/xiaowork-homepage`，沿用用户提供的仓库级身份。P4 实现、配置、交付和证据提交 `95b9cf77d8c41494f42d0399ff32818edad16b57` 已正常推送，并通过 `git ls-remote` 核验一致；结果以独立文档提交补记在 [P4 Git 部分](deliveries/P4-delivery.md#9-git-交付)，不自引用该记录自身 SHA。未强推或改写历史。
-- P5-A `bde8113e469e5517a7b0b081ab8c08694c2227ad` 已推送，P5-B 预检重新通过远端 SHA 核验。最近交付：[P5-B 部署预检](deliveries/P5B-preflight.md)。本轮文档与证据同次提交；自身SHA/推送结果以最终回复和远端核验为准，不自引用。
-- 下一步：确认资料发布范围/正式origin、风险决定、SSH Host别名/路径、NPM共网/唯一别名、DNS/Cloudflare/TLS、防源站绕过与备份窗口；另获目标主机只读登录授权后巡检，再明确生产变更范围。当前停在预检，不能把本次授权扩展为 SSH 或上线授权。不要在聊天发送密码、私钥或API Key。
-- P5-A 保留的本机开发预览为 `http://127.0.0.1:3100/projects`，本轮未操作该服务；本次仅清理P5-B预检命名的隔离资源，不做全局清理或操作其他项目。不把localhost SEO测试镜像用于正式发布。
+- 沿用已授权身份、`main` / `origin/main`；本轮起始 SHA `bc3f11c3fe084fcfe8313a901a972643dafe0fe3` 已与 GitHub 核对一致。不强推、不改写历史。
+- 本次代码配置注释、方案文档和本机证据一并提交；当前提交自身 SHA/推送结果以最终回复和远端查询为准。
+- `.cache/p5-production-private/` 只作本机私有运维记录，禁止推送。未保存或输出私钥/密码/API Token；不修改无关网站、容器、DNS、证书、SSH或防火墙，不做全局清理。
