@@ -158,6 +158,11 @@ Lighthouse 为实验室检测，TBT **不能替代 INP**。正式域名和真实
 
 ## 9. Git 交付
 
-本阶段代码、配置、文档与证据一起正常提交到既有 main，并推送 origin/main。提交前不会自引用尚不存在的 SHA；实际提交 SHA、推送与远端核验结果在提交后通过独立文档记录补入本节，最终回复同时报告。当前以 Git 历史和远端状态为准，不伪造成功记录。
+本阶段代码、配置、交付文档、20 张实际截图与检测证据已一并正常提交、推送到既有 `origin/main`：
+
+- 实现提交：`95b9cf77d8c41494f42d0399ff32818edad16b57`，`feat: complete P4 interaction and release readiness`。
+- `git push origin main` 成功，远端从 `9d5983d` 前进到 `95b9cf7`；随后 `git ls-remote origin refs/heads/main` 返回相同完整 SHA。
+- 核验时工作区干净，与上游同步；暂存范围不含原始 P0 文件、真实环境文件、部署状态、缓存、依赖或构建产物。
+- 本节通过随后独立文档提交补记实际结果，不自引用该文档提交自身 SHA；最新文档 SHA 以 Git 历史及最终回复为准。未强推或改写历史。
 
 关联：[P0](../../XiaoWork_Homepage_V1_Design_Spec.md)、[P1](P1-delivery.md)、[P2](P2-delivery.md)、[P3](P3-delivery.md)、[进度](../PROGRESS.md)、[运行说明](../../README.md)、[发布检查](../RELEASE-CHECKLIST.md)。

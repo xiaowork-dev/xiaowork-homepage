@@ -45,7 +45,7 @@ Nuxt 4 / Vue 3 / TypeScript / Tailwind 静态站，TS 配置管理内容，非 r
 
 ## Git 与交接
 
-- 既有 `main` / `origin/main`，远端 `xiaowork-dev/xiaowork-homepage`，沿用用户提供的仓库级身份。验证完成后将代码、配置、交付与证据一起正常提交推送；真实 SHA 与核验结果通过独立文档补记在 [P4 Git 部分](deliveries/P4-delivery.md#9-git-交付)，不自引用当前待提交文件的 SHA。
+- 既有 `main` / `origin/main`，远端 `xiaowork-dev/xiaowork-homepage`，沿用用户提供的仓库级身份。P4 实现、配置、交付和证据提交 `95b9cf77d8c41494f42d0399ff32818edad16b57` 已正常推送，并通过 `git ls-remote` 核验一致；结果以独立文档提交补记在 [P4 Git 部分](deliveries/P4-delivery.md#9-git-交付)，不自引用该记录自身 SHA。未强推或改写历史。
 - 最近交付：[P4](deliveries/P4-delivery.md)；参考 [README](../README.md)、[内容](CONTENT.md)、[部署与回滚](DEPLOYMENT.md)、[发布门槛](RELEASE-CHECKLIST.md)。
 - 下一步：用户验收 P4，资料到齐后接入真实内容；获得独立生产授权再进入 P5 正式发布。没有自动开始生产动作。
 - 本机开发预览保留 `http://127.0.0.1:3100/projects`。P4 隔离验收容器/网络和临时副本清理后保留版本镜像，供本机回归；不把 localhost origin 的 SEO 测试镜像用于正式发布。
