@@ -1,6 +1,6 @@
 # XiaoWork Homepage V1.0
 
-XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。当前生产方案已按用户要求改为已有 **1Panel + OpenResty**，目标 SSH 别名为 `xiaowork-main`，正式主站为 `https://xiaoworks.com`，不配置 www。用户允许首版保留明确占位内容；上游 7 high 风险尚未获接受，当前只放行内部部署和预览，公网路由与 DNS 尚未放行。方案说明见 [OpenResty 调整记录](docs/deliveries/P5-openresty-plan.md)，实际执行状态以 [最新进度](docs/PROGRESS.md) 为准。
+XiaoWork 个人品牌与开发者作品展示站。P2～P4 已通过用户阶段验收，P5-A 基本通过工程验收；P5-B 已完成本机部署预检。当前生产方案已按用户要求改为已有 **1Panel + OpenResty**，目标 SSH 别名为 `xiaowork-main`，正式主站为 `https://xiaoworks.com`，不配置 www。用户允许首版保留明确占位内容；上游 7 high 风险尚未获接受，当前只放行内部部署和预览，公网路由与 DNS 尚未放行。方案说明见 [OpenResty 调整记录](docs/deliveries/P5-openresty-plan.md)，内部部署已完成，服务器容器 healthy，正式 origin 的 HTTP/SEO、30 组响应式与隧道浏览器验收通过；公网仍未发布。详见 [实际生产交付](docs/deliveries/P5-production-delivery.md) 和 [最新进度](docs/PROGRESS.md)。
 
 ## 本地运行
 

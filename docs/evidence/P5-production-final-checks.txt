@@ -1,0 +1,17 @@
+
+> xiaowork-homepage@1.0.0-p5a check
+> npm run lint && npm run format:check && npm run typecheck
+
+
+> xiaowork-homepage@1.0.0-p5a lint
+> eslint . --max-warnings 0
+
+
+> xiaowork-homepage@1.0.0-p5a format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> xiaowork-homepage@1.0.0-p5a typecheck
+> nuxt typecheck

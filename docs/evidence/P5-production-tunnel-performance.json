@@ -1,0 +1,23 @@
+{
+  "scope": "Single mobile lab run via cross-border SSH tunnel, not production Cloudflare/HTTPS",
+  "sourceSha": "2616ef60e7e9fd7ff6d62d26806bd56673525d52",
+  "version": "13.5.0",
+  "fetchedAt": "2026-10-26T08:31:42.866Z",
+  "scores": {
+    "performance": 82.0,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "lcpMs": 3651.2581499999997,
+    "cls": 0,
+    "tbtMs": 39.5,
+    "fcpMs": 2948.1721
+  },
+  "warnings": [
+    "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+  ],
+  "realUserInp": "not measured",
+  "publicDomainLighthouse": "not run"
+}

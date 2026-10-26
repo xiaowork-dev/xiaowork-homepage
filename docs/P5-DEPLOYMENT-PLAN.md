@@ -1,6 +1,6 @@
 # P5 生产部署方案：1Panel + OpenResty
 
-日期：2026-10-26。用户已确认目标 SSH 别名 `xiaowork-main`，正式主站 `https://xiaoworks.com`，无 www；生产反代统一使用已有 **1Panel + OpenResty**。本稿同步方案及发布边界，不代表已执行服务器内部部署或公网开放；实际状态见 [项目进度](PROGRESS.md) 和最终生产交付。
+日期：2026-10-26。用户已确认目标 SSH 别名 `xiaowork-main`，正式主站 `https://xiaoworks.com`，无 www；生产反代统一使用已有 **1Panel + OpenResty**。内部部署已完成，公网仍未发布；本稿保留操作方案，实际版本、测试和阻塞见 [项目进度](PROGRESS.md) 与 [生产交付](deliveries/P5-production-delivery.md)。
 
 ## 当前拓扑
 

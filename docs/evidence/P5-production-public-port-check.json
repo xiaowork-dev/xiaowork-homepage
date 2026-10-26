@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-26T16:33:49.6961541+08:00",
+  "scope": "Single client viewpoint, does not prove global firewall policy",
+  "results": [
+    {
+      "family": "IPv4",
+      "port": 3100,
+      "outcome": "connected"
+    },
+    {
+      "family": "IPv6",
+      "port": 3100,
+      "outcome": "AccessDenied"
+    }
+  ],
+  "directIpv4Http": {
+    "curlExit": 28,
+    "result": "timed out; no HTTP response or Homepage content received"
+  },
+  "serverSide": {
+    "sshExit": 0,
+    "listenCount": 1,
+    "onlyLoopbackListen": true,
+    "natRuleCount": 1,
+    "natRestrictedToLoopback": true,
+    "status": "healthy 0"
+  },
+  "acceptance": "Inconclusive external reachability: IPv4 TCP/HTTP results differ; IPv6 client access denied. Loopback listener/NAT verified; global or Cloudflare bypass protection not accepted."
+}

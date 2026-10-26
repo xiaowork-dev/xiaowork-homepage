@@ -1,6 +1,6 @@
 # P5 发布门槛与执行清单
 
-2026-10-26。当前方案为已有 1Panel + OpenResty，目标 `xiaowork-main`，主站 `https://xiaoworks.com`，无 www。勾选只表示已实际完成的事项；服务器内部部署与公网发布分开验收。最终事实见 [项目进度](PROGRESS.md) 和生产交付。
+2026-10-26。当前方案为已有 1Panel + OpenResty，目标 `xiaowork-main`，主站 `https://xiaoworks.com`，无 www。勾选只表示已实际完成的事项；服务器内部部署与公网发布分开验收。最终事实见 [项目进度](PROGRESS.md) 和 [生产交付](deliveries/P5-production-delivery.md)。
 
 ## P5-A 历史本机工程验收
 
@@ -22,16 +22,16 @@
 - [x] 现有脚本可选 `compose.yaml`，回环 `127.0.0.1:3100:8080`、项目独立默认网络，不接 NPM 网。
 - [x] 本机以正式 origin 重新生成并完成 HTTP/SEO 及部分浏览器检查；这不是服务器已部署或公网已验收。
 
-## 服务器内部部署（尚待执行记录）
+## 服务器内部部署（已完成，见生产交付）
 
-- [ ] 复核资源、端口、目录/项目归属、版本与 GitHub 同步，记录完整已审 SHA。
-- [ ] 专用目录准备正式 `.env`，build origin 为 `https://xiaoworks.com`，回环地址与端口显式指定。
-- [ ] 首次使用 `compose.yaml` 与现有 release/deploy；已有本站实例使用 update。
-- [ ] 镜像正式域名重新构建，不复用空域名/localhost 产物，OCI revision 与构建 origin 正确。
-- [ ] 容器 healthy、非 root/只读/限权/日志轮转生效，只发布回环 3100，未接 NPM 网络。
-- [ ] 内部三页/资源/404/health、canonical/OG/分享图/sitemap/robots 及实际浏览器验证。
-- [ ] 保存镜像、`.env`、`.deploy`、源码 SHA 与备份，明确首次失败撤销或旧版本回滚方法。
-- [ ] 复查其他站点和无关容器未因本站操作受影响。
+- [x] 复核资源、端口、目录/项目归属、版本与 GitHub 同步，记录完整已审 SHA。
+- [x] 专用目录准备正式 `.env`，build origin 为 `https://xiaoworks.com`，回环地址与端口显式指定。
+- [x] 首次使用 `compose.yaml` 与现有 release/deploy；已有本站实例使用 update。
+- [x] 镜像正式域名重新构建，不复用空域名/localhost 产物，OCI revision 与构建 origin 正确。
+- [x] 容器 healthy、非 root/只读/限权/日志轮转生效，只发布回环 3100，未接 NPM 网络。
+- [x] 内部三页/资源/404/health、canonical/OG/分享图/sitemap/robots 及实际浏览器验证。
+- [x] 保存镜像、`.env`、`.deploy`、源码 SHA 与备份，明确首次失败撤销或旧版本回滚方法。
+- [x] 15 个既有容器状态与 8 份代理配置哈希前后一致；未执行其他业务完整登录/写入流程回归。
 
 ## 公网放行门槛（当前关闭）
 

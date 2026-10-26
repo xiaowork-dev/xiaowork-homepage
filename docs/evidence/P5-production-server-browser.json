@@ -1,0 +1,323 @@
+{
+  "scope": "Actual German VPS static container via loopback SSH tunnel, not public Cloudflare/HTTPS acceptance",
+  "sourceSha": "2616ef60e7e9fd7ff6d62d26806bd56673525d52",
+  "origin": "https://xiaoworks.com",
+  "checks": [
+    {
+      "test": "Nav search",
+      "titles": ["XiaoWork Nav"]
+    },
+    {
+      "test": "website category and name descending after route settles",
+      "titles": ["XiaoWork Nav", "XiaoWork Blog"]
+    },
+    {
+      "test": "browser back restores category query",
+      "url": "/projects?category=website"
+    },
+    {
+      "test": "empty category",
+      "passed": true
+    },
+    {
+      "test": "light theme after reload",
+      "theme": "light"
+    },
+    {
+      "test": "mobile menu opens, about navigation closes menu",
+      "passed": true
+    },
+    {
+      "links": [
+        {
+          "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://github.com/xiaowork-dev/xiaowork-homepage",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        }
+      ],
+      "test": "confirmed external links"
+    },
+    {
+      "test": "dark theme after reload",
+      "theme": "dark"
+    }
+  ],
+  "responsive": [
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/",
+      "scroll": 305,
+      "theme": "dark",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 305,
+      "theme": "dark",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 305,
+      "theme": "dark",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/",
+      "scroll": 375,
+      "theme": "dark",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 375,
+      "theme": "dark",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 375,
+      "theme": "dark",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 2,
+      "client": 753,
+      "h1": 1,
+      "path": "/",
+      "scroll": 753,
+      "theme": "dark",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 2,
+      "client": 753,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 753,
+      "theme": "dark",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 3,
+      "client": 753,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 753,
+      "theme": "dark",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 2,
+      "client": 1009,
+      "h1": 1,
+      "path": "/",
+      "scroll": 1009,
+      "theme": "dark",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 2,
+      "client": 1009,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 1009,
+      "theme": "dark",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 3,
+      "client": 1009,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 1009,
+      "theme": "dark",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/",
+      "scroll": 1425,
+      "theme": "dark",
+      "viewport": 1440
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 1425,
+      "theme": "dark",
+      "viewport": 1440
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 1425,
+      "theme": "dark",
+      "viewport": 1440
+    },
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/",
+      "scroll": 305,
+      "theme": "light",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 305,
+      "theme": "light",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 305,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 305,
+      "theme": "light",
+      "viewport": 320
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/",
+      "scroll": 375,
+      "theme": "light",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 375,
+      "theme": "light",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 1,
+      "client": 375,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 375,
+      "theme": "light",
+      "viewport": 390
+    },
+    {
+      "cardColumns": 2,
+      "client": 753,
+      "h1": 1,
+      "path": "/",
+      "scroll": 753,
+      "theme": "light",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 2,
+      "client": 753,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 753,
+      "theme": "light",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 3,
+      "client": 753,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 753,
+      "theme": "light",
+      "viewport": 768
+    },
+    {
+      "cardColumns": 2,
+      "client": 1009,
+      "h1": 1,
+      "path": "/",
+      "scroll": 1009,
+      "theme": "light",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 2,
+      "client": 1009,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 1009,
+      "theme": "light",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 3,
+      "client": 1009,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 1009,
+      "theme": "light",
+      "viewport": 1024
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/",
+      "scroll": 1425,
+      "theme": "light",
+      "viewport": 1440
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/projects/",
+      "scroll": 1425,
+      "theme": "light",
+      "viewport": 1440
+    },
+    {
+      "cardColumns": 3,
+      "client": 1425,
+      "h1": 1,
+      "path": "/about/",
+      "scroll": 1425,
+      "theme": "light",
+      "viewport": 1440
+    }
+  ],
+  "limits": "Chromium emulated viewports; not physical devices, Firefox/Safari or complete screen-reader audit. Card column count on about refers to principle articles."
+}

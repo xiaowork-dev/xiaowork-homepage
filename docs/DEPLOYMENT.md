@@ -119,4 +119,4 @@ P4 的实际脚本验收结果和范围见 [交付文档](deliveries/P4-delivery
 
 成功后 `.deploy/compose-file` 记录 `compose.yaml` 或 `compose.proxy.yaml`；后续三种脚本自动沿用。当前首次部署显式选择 `compose.yaml`；后续保持该记录。显式指定不同模式会拒绝；不要随意删除记录绕过检查。首次部署中途失败尚无成功记录时，重试仍须显式选择原模式。普通 Docker Compose 命令不读该记录，人工检查当前模式应使用 `docker compose --env-file .env -f compose.yaml ps`，重启/恢复还须明确正确的 `IMAGE_TAG`。
 
-P5-A 共网和失败恢复的本机实测结果见 [P5-A 交付](deliveries/P5A-delivery.md)，不作为本次 OpenResty 生产验收。本次只读脚本兼容性检查确认无须更改脚本即可选用回环模式；尚需实际内部部署健康检查及最终公网 TLS/DNS/防绕过验收。基础镜像目前锁版本标签，尚未锁 digest；OS CVE 状态须在最终交付独立记录。
+P5-A 共网和失败恢复的本机实测结果见 [P5-A 交付](deliveries/P5A-delivery.md)，不作为本次 OpenResty 生产验收。本次已用现有脚本完成回环内部部署、健康/正式 origin HTTP 与浏览器验证；实际版本、备份与首次失败修复见 [生产交付](deliveries/P5-production-delivery.md)。公网 TLS/DNS/防绕过仍未验收。基础镜像目前锁版本标签，尚未锁 digest；OS CVE 状态须在最终交付独立记录。

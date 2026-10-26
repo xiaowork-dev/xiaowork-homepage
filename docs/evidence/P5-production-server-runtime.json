@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-26T16:38:39.5878487+08:00",
+  "sshAlias": "xiaowork-main",
+  "sourceSha": "2616ef60e7e9fd7ff6d62d26806bd56673525d52",
+  "imageTag": "xiaowork-homepage:git-2616ef60e7e9",
+  "imageId": "sha256:d5c79a723ce3c541a2a566ee60d1a6f0795d7121992179176315f956fa8c2c03",
+  "health": "healthy",
+  "restartCount": 0,
+  "user": "nginx",
+  "readOnly": true,
+  "capDrop": ["ALL"],
+  "securityOpt": ["no-new-privileges:true"],
+  "logging": {
+    "Config": {
+      "max-file": "3",
+      "max-size": "10m"
+    },
+    "Type": "json-file"
+  },
+  "portBindings": {
+    "8080/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "3100"
+      }
+    ]
+  },
+  "siteUrl": "https://xiaoworks.com",
+  "network": "xiaowork-homepage_default",
+  "compose": "compose.yaml",
+  "openRestyHostUpstreamChecks": ["/ 200", "/projects/ 200", "/about/ 200", "/health.json 200"],
+  "environmentFileMode": "600",
+  "serverBinding": {
+    "sshExit": 0,
+    "listenCount": 1,
+    "onlyLoopbackListen": true,
+    "natRuleCount": 1,
+    "natRestrictedToLoopback": true,
+    "status": "healthy 0"
+  },
+  "otherServices": {
+    "checkedAt": "2026-10-26T16:30:29.832437+08:00",
+    "existingContainers": 15,
+    "changedExistingContainers": 0,
+    "existingProxyConfigs": 8,
+    "changedExistingProxyConfigs": 0,
+    "newProxyConfigCount": 0,
+    "fullBusinessWorkflowTests": false
+  },
+  "publicVhostCreated": false,
+  "cloudflareModified": false,
+  "publicReleaseApproved": false
+}

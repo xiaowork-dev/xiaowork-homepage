@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-26T16:47:23.3998018+08:00",
+  "dedicatedSshTunnelClosed": true,
+  "ownLocalTestContainerRemoved": true,
+  "ownLocalTestImageTagRemoved": true,
+  "serverInternalInstanceRetained": true,
+  "originalLocalDevelopmentServiceTouched": false,
+  "globalCleanupRun": false
+}
