@@ -1,7 +1,7 @@
 # XiaoWork Homepage V1.0 项目进度
 
 > 最后更新：2026-10-26（Asia/Shanghai）  
-> 当前阶段：P5-B 方案改为 1Panel OpenResty；生产目标只读巡检及正式 origin 本机构建验证完成，准备部署服务器内部预览。**公网发布未放行**。
+> 当前阶段：P5-B 方案改为 1Panel OpenResty；生产目标只读巡检及正式 origin 本机构建验证完成，首次内部部署镜像构建成功但配置权限导致健康失败，已停止本站容器，权限修复已通过 0600 输入隔离回归，待新 SHA 重试。**公网发布未放行**。
 
 ## 阶段状态
 
@@ -13,7 +13,7 @@
 | P5-A          | 用户确认基本通过工程验收                                 | [P5-A](deliveries/P5A-delivery.md)                                                                          |
 | P5-B 预检     | 本机预检已完成；旧 NPM 拓扑已由用户后续指令替换          | [历史预检](deliveries/P5B-preflight.md)                                                                     |
 | P5-B 方案调整 | 目标已确认、只读巡检完成，默认 OpenResty host + 回环上游 | [新方案](deliveries/P5-openresty-plan.md)                                                                   |
-| P5-B 内部部署 | 待使用已审完整 SHA 执行                                  | [部署计划](P5-DEPLOYMENT-PLAN.md)                                                                           |
+| P5-B 内部部署 | 首发权限问题已修复并隔离验证，待新 SHA 重试              | [权限修复](deliveries/P5-permission-fix.md)                                                                 |
 | P5-B 公网发布 | 受阻：用户未接受未修复的 high 风险                       | [发布门槛](P5-RELEASE-CHECKLIST.md)                                                                         |
 
 ## 本轮已完成

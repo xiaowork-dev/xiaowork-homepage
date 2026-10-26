@@ -1,0 +1,33 @@
+P5 production Nginx configuration permission regression
+Checked at: 2026-10-26T16:15:22.522833+08:00
+Scope: isolated local Docker regression; not a remote or public production acceptance.
+Source baseline SHA: 53d063f85bf8dd6bdf461cc5f30334808f1d66cf
+Dockerfile includes the current uncommitted COPY --chmod=644 fix.
+Dockerfile SHA256: 51255be524287f18b3b879ec13a3b4a46b43fe05d5d2aa917f979a089a75831d
+PASS simulated build context deploy/nginx.conf mode=0o600
+PASS simulated build context deploy/security-headers.conf mode=0o600
+PASS Docker build with 0600 source configuration; elapsed seconds=55.98
+Local regression image: xiaowork-homepage:p5-permission-fix-03ae9d01
+Image ID: sha256:de672158f34fa68daca39592485db9d52e37182092f1e246d6c6e703a7ffaddd
+PASS image origin=https://xiaoworks.com; USER=nginx
+PASS container health=healthy; restart count=0
+PASS temporary loopback binding=127.0.0.1:58717:8080
+PASS read-only filesystem, tmpfs, cap-drop ALL, no-new-privileges, rotated JSON logs
+PASS final configuration 644 root:root /etc/nginx/nginx.conf
+PASS final configuration 644 root:root /etc/nginx/security-headers.conf
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+Formal-origin HTTP smoke with --static-headers:
+PASS page and SEO /
+PASS page and SEO /projects
+PASS page and SEO /projects/
+PASS page and SEO /about
+PASS page and SEO /about/
+PASS robots and configured sitemap
+PASS 22 local assets
+PASS health endpoint and 404 status
+PASS result: restrictive 0600 checkout permissions no longer prevent non-root Nginx startup.
+Cleanup: removed only this regression container xiaowork-p5-permission-fix-03ae9d01
+Cleanup: removed only this regression image tag xiaowork-homepage:p5-permission-fix-03ae9d01
+Cleanup: removed both temporary raw-tar and gzip-tar build contexts; retained only local logs/helper.
+Harness note: initial raw-tar stdin transport failed before application build (BuildKit COMPRESSION_ERROR). The gzip-tar retry above completed the full application build and regression successfully.

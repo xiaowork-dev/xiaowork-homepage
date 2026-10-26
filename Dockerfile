@@ -14,8 +14,8 @@ ARG VCS_REF=""
 LABEL org.opencontainers.image.source="https://github.com/xiaowork-dev/xiaowork-homepage" \
       org.opencontainers.image.revision="${VCS_REF}" \
       io.xiaowork.site-url="${NUXT_PUBLIC_SITE_URL}"
-COPY deploy/nginx.conf /etc/nginx/nginx.conf
-COPY deploy/security-headers.conf /etc/nginx/security-headers.conf
+COPY --chmod=644 deploy/nginx.conf /etc/nginx/nginx.conf
+COPY --chmod=644 deploy/security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=build --chown=nginx:nginx /app/.output/public /usr/share/nginx/html
 USER nginx
 EXPOSE 8080
