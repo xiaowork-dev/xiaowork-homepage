@@ -91,4 +91,11 @@ P6-C 依次接入：challenge/login/session → 登录/退出/改密 → dashboa
 
 UI 需正确处理 401/403/409/413/415/422/428/429，冲突时保留未保存输入，不自动覆盖；拖拽排序同时提供键盘操作，私有 contentUrl 不作为永久公开地址。发布/预览/恢复继续禁用并说明 P6-D。
 
-敏感运行资料仅在忽略目录与本地 Docker 卷：不提交数据库、上传图、密码、Cookie、CSRF、秘密或私钥。P6-B 的实现、文档和必要脱敏证据同次正常提交推送当前功能分支；为避免同次提交 SHA 自引用，实际实现 SHA 和已发生的远端核验结果在推送后的纯文档登记及最终回复补充。不合并 main、不强推、不部署生产。
+敏感运行资料仅在忽略目录与本地 Docker 卷：不提交数据库、上传图、密码、Cookie、CSRF、秘密或私钥。不合并 main、不强推、不部署生产。
+
+## 8. 已完成的 Git 提交与推送
+
+- 分支：`feat/v1.1-admin-p6a`。
+- P6-B 实现、说明、交付及脱敏证据同次提交：`ae05c1fe7e76e84cbaa0171ccbef8da7bd06656b`（`feat: implement P6-B secure admin APIs and draft persistence`）。
+- `git push origin feat/v1.1-admin-p6a` 实际退出 0；随后 `git ls-remote --heads origin feat/v1.1-admin-p6a main` 核实功能分支指向该完整 SHA，main 仍为 `14f9b1fba6504b1367aad6165a0b72c37e495927`。
+- 推送后工作区干净。以上是已发生事实；本段为随后纯文档登记，不将它自身的提交 SHA 写入同一文件。最终文档提交及再次推送结果在最终回复报告。
