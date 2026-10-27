@@ -1,0 +1,304 @@
+{
+  "date": "2026-10-27T08:39:23.116Z",
+  "project": "xiaowork-homepage-v11-p6d-e2e",
+  "origin": "https://localhost:3445",
+  "scope": "Dedicated local HTTPS Docker volumes only; no production connection",
+  "tlsVerificationDisabled": false,
+  "hostCertificateStoreModified": false,
+  "cases": [
+    {
+      "name": "真实 HTTPS 登录与独立本地发布门槛",
+      "result": "PASS",
+      "detail": "浏览器验证 CA 和主机名；未忽略证书错误"
+    }
+  ],
+  "http": [
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/login",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-DUCEpmQe.css",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/theme-init.js",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-hIyWDbcu.js",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 401
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/publishing",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-DUCEpmQe.css",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/theme-init.js",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-hIyWDbcu.js",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/releases",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/releases",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/xiaowork-blog",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "PUT",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "PUT",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/releases",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "POST",
+      "path": "/api/admin/v1/preview-jobs",
+      "status": 202
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_e01152cf8f945c9dcd84d1fe39554822",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_e01152cf8f945c9dcd84d1fe39554822",
+      "status": 200
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_e01152cf8f945c9dcd84d1fe39554822",
+      "status": 200
+    }
+  ],
+  "resources": [
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-DUCEpmQe.css",
+      "status": 200,
+      "type": "stylesheet"
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/theme-init.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-hIyWDbcu.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-DUCEpmQe.css",
+      "status": 200,
+      "type": "stylesheet"
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/theme-init.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "page": "admin",
+      "method": "GET",
+      "path": "/admin/assets/index-hIyWDbcu.js",
+      "status": 200,
+      "type": "script"
+    }
+  ],
+  "consoleErrors": [],
+  "responsive": [],
+  "browser": "151.0.7922.34",
+  "result": "FAIL",
+  "failure": {
+    "step": "save draft A and build private preview through UI",
+    "message": "Publication task preview ended failed: BUILD_FAILED"
+  },
+  "certificateTrustRemoved": true
+}

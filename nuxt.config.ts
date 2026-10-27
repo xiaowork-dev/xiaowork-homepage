@@ -60,9 +60,16 @@ export default defineNuxtConfig({
     },
   ],
   css: ['~/assets/css/main.css'],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    ...(publication ? { cacheDir: '.nuxt/cache/vite' } : {}),
+  },
   typescript: { strict: true },
-  experimental: { payloadExtraction: false, appManifest: false },
+  experimental: {
+    payloadExtraction: false,
+    appManifest: false,
+    ...(publication ? { chromeDevtoolsProjectSettings: false, buildCache: false } : {}),
+  },
   runtimeConfig: { public: { siteUrl } },
   hooks: {
     'nitro:config'(config) {

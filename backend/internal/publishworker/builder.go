@@ -60,7 +60,10 @@ func (FixedBuilder) Build(parent context.Context, job publishmodel.Assignment) (
 	defer cancel()
 	cmd := exec.CommandContext(ctx, NodeExecutable, NuxtCLI, "generate", work)
 	cmd.Dir = work
-	cmd.Env = []string{"PATH=/usr/local/bin:/usr/bin", "HOME=" + work, "TMPDIR=" + filepath.Join(work, "tmp"), "NODE_ENV=production", "CI=1", "NUXT_TELEMETRY_DISABLED=1", "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com", "XIAOWORK_SNAPSHOT_FILE=" + filepath.Join(work, "content-snapshot.json"), "XIAOWORK_SNAPSHOT_SHA256=" + job.SnapshotSHA256, "XIAOWORK_RELEASE_ID=" + job.ReleaseID}
+	// Nuxt's own output lock lives under node_modules/.cache even when build
+	// caching is off. Dependencies stay read-only: this worker already holds
+	// the kernel publisher lock and each job owns a fresh private workdir.
+	cmd.Env = []string{"PATH=/usr/local/bin:/usr/bin", "HOME=" + work, "TMPDIR=" + filepath.Join(work, "tmp"), "NODE_ENV=production", "CI=1", "NUXT_LOCK=0", "NUXT_TELEMETRY_DISABLED=1", "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com", "XIAOWORK_SNAPSHOT_FILE=" + filepath.Join(work, "content-snapshot.json"), "XIAOWORK_SNAPSHOT_SHA256=" + job.SnapshotSHA256, "XIAOWORK_RELEASE_ID=" + job.ReleaseID}
 	if job.Kind == "preview" {
 		cmd.Env = append(cmd.Env, "XIAOWORK_PREVIEW_ID="+job.ReleaseID)
 	}

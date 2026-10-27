@@ -1,33 +1,33 @@
 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
 === RUN   TestPasswordEncodingAndValidation
---- PASS: TestPasswordEncodingAndValidation (1.30s)
+--- PASS: TestPasswordEncodingAndValidation (1.42s)
 === RUN   TestOfflineInitializationDoesNotOverwriteAndResetRevokes
---- PASS: TestOfflineInitializationDoesNotOverwriteAndResetRevokes (0.98s)
+--- PASS: TestOfflineInitializationDoesNotOverwriteAndResetRevokes (1.21s)
 === RUN   TestSecretExclusiveCreationAndPermissions
 --- PASS: TestSecretExclusiveCreationAndPermissions (0.00s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	2.303s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	2.653s
 === RUN   TestV1ImportPreservesContentAndNeverOverwritesEdits
---- PASS: TestV1ImportPreservesContentAndNeverOverwritesEdits (0.05s)
+--- PASS: TestV1ImportPreservesContentAndNeverOverwritesEdits (0.06s)
 === RUN   TestImportRejectsTamperingAndNonemptyWorkspaceAtomically
 --- PASS: TestImportRejectsTamperingAndNonemptyWorkspaceAtomically (0.02s)
 === RUN   TestProjectLifecycleCategoryReferencesAndAtomicOrdering
 --- PASS: TestProjectLifecycleCategoryReferencesAndAtomicOrdering (0.03s)
 === RUN   TestProfileSettingsShareIntroductionAndPreserveOtherFields
---- PASS: TestProfileSettingsShareIntroductionAndPreserveOtherFields (0.02s)
+--- PASS: TestProfileSettingsShareIntroductionAndPreserveOtherFields (0.04s)
 === RUN   TestContentValidationRejectsActiveHTMLAndUnsafeURLs
---- PASS: TestContentValidationRejectsActiveHTMLAndUnsafeURLs (0.02s)
+--- PASS: TestContentValidationRejectsActiveHTMLAndUnsafeURLs (0.03s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.147s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.204s
 === RUN   TestLocalTLSIsStableAndRefusesPartialState
---- PASS: TestLocalTLSIsStableAndRefusesPartialState (0.00s)
+--- PASS: TestLocalTLSIsStableAndRefusesPartialState (0.01s)
 === RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions
 === RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.key
 === RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.key
 === RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.crt
 === RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.crt
---- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions (0.01s)
+--- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions (0.02s)
     --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.key (0.00s)
     --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.key (0.00s)
     --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.crt (0.00s)
@@ -36,7 +36,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.14
 === RUN   TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/ca
 === RUN   TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/server
 --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions (0.01s)
-    --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/ca (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/ca (0.01s)
     --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/server (0.00s)
 === RUN   TestLocalTLSRejectsInitiallyBroadPOSIXDirectories
 === RUN   TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/ca
@@ -45,7 +45,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.14
     --- PASS: TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/ca (0.00s)
     --- PASS: TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/server (0.00s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.057s
 === RUN   TestAuthenticationHTTPSLifecycleAndCSRF
     auth_test.go:153: HTTP GET /workspace expected=401 actual=401
     auth_test.go:154: HTTP GET /auth/login-challenge expected=200 actual=200
@@ -57,7 +57,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:186: HTTP POST /auth/logout foreign Origin expected=403 actual=403
     auth_test.go:187: HTTP POST /auth/logout expected=204 actual=204
     auth_test.go:188: HTTP GET /auth/session expected=401 actual=401
---- PASS: TestAuthenticationHTTPSLifecycleAndCSRF (0.96s)
+--- PASS: TestAuthenticationHTTPSLifecycleAndCSRF (0.78s)
 === RUN   TestLoginFailureRateLimitNonceReplayAndRecovery
     auth_test.go:198: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:201: HTTP POST /auth/login expected=401 actual=401
@@ -76,7 +76,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:208: HTTP POST /auth/login expected=200 actual=200
     auth_test.go:210: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:210: HTTP POST /auth/login expected=401 actual=401
---- PASS: TestLoginFailureRateLimitNonceReplayAndRecovery (1.36s)
+--- PASS: TestLoginFailureRateLimitNonceReplayAndRecovery (1.97s)
 === RUN   TestPasswordChangeRevokesAllSessionsAndSessionExpiry
     auth_test.go:217: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:217: HTTP POST /auth/login expected=200 actual=200
@@ -95,7 +95,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:230: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:230: HTTP POST /auth/login expected=200 actual=200
     auth_test.go:232: HTTP GET /auth/session expected=401 actual=401
---- PASS: TestPasswordChangeRevokesAllSessionsAndSessionExpiry (1.49s)
+--- PASS: TestPasswordChangeRevokesAllSessionsAndSessionExpiry (1.93s)
 === RUN   TestLoginChallengeCapsAndExpiry
     auth_test.go:240: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:240: HTTP GET /auth/login-challenge expected=200 actual=200
@@ -111,7 +111,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:245: HTTP POST /auth/login expected=403 actual=403
     auth_test.go:246: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:246: HTTP POST /auth/login expected=200 actual=200
---- PASS: TestLoginChallengeCapsAndExpiry (0.37s)
+--- PASS: TestLoginChallengeCapsAndExpiry (0.44s)
 === RUN   TestProxyHeadersCannotSpoofHTTPSOrSource
 --- PASS: TestProxyHeadersCannotSpoofHTTPSOrSource (0.00s)
 === RUN   TestAuthenticationCapacityLimits
@@ -122,11 +122,11 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:302: HTTP GET /unknown-authenticated-route expected=404 actual=404
     auth_test.go:303: HTTP POST /auth/password expected=400 actual=400
     auth_test.go:305: HTTP GET /auth/session expected=401 actual=401
---- PASS: TestRejectedRequestsDoNotRefreshIdleSession (0.40s)
+--- PASS: TestRejectedRequestsDoNotRefreshIdleSession (0.36s)
 === RUN   TestLoginNonceConsumedAtomically
     auth_test.go:311: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:335: HTTP POST /auth/login simultaneous same nonce expected=200+403 actual=403+200
---- PASS: TestLoginNonceConsumedAtomically (0.38s)
+--- PASS: TestLoginNonceConsumedAtomically (0.37s)
 === RUN   TestAuthenticationRejectsUnknownAndCaseAliasedJSON
     auth_test.go:341: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:341: HTTP POST /auth/login expected=200 actual=200
@@ -135,7 +135,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:347: HTTP POST /auth/reauth expected=400 actual=400
     auth_test.go:349: HTTP POST /auth/logout expected=400 actual=400
     auth_test.go:350: HTTP GET /auth/session?ignoredField=true expected=400 actual=400
---- PASS: TestAuthenticationRejectsUnknownAndCaseAliasedJSON (0.42s)
+--- PASS: TestAuthenticationRejectsUnknownAndCaseAliasedJSON (0.37s)
 === RUN   TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity
     auth_test.go:357: HTTP GET /auth/login-challenge expected=200 actual=200
     auth_test.go:357: HTTP POST /auth/login expected=200 actual=200
@@ -177,14 +177,14 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     auth_test.go:366: HTTP GET /workspace expected=200 actual=200
     auth_test.go:375: HTTP GET /auth/session expected=401 actual=401
     auth_test.go:376: HTTPS absolute-expiry isolation: last successful interaction one second before unchanged 12h deadline; exact deadline rejected with 401
---- PASS: TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity (0.45s)
+--- PASS: TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity (0.44s)
 === RUN   TestHTTPMethodContractAndOversizeMutationRollback
     common_test.go:9: HTTP GET /auth/login-challenge expected=200 actual=200
     common_test.go:9: HTTP POST /auth/login expected=200 actual=200
     common_test.go:10: HTTP PATCH /projects expected=405 actual=405
     common_test.go:17: HTTP POST /projects expected=422 actual=422
     common_test.go:18: HTTP GET /workspace expected=200 actual=200
---- PASS: TestHTTPMethodContractAndOversizeMutationRollback (0.40s)
+--- PASS: TestHTTPMethodContractAndOversizeMutationRollback (0.42s)
 === RUN   TestHTTPIdempotencyExpiresAfterRetention
     common_test.go:29: HTTP GET /auth/login-challenge expected=200 actual=200
     common_test.go:29: HTTP POST /auth/login expected=200 actual=200
@@ -193,7 +193,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     common_test.go:38: HTTP GET /auth/login-challenge expected=200 actual=200
     common_test.go:38: HTTP POST /auth/login expected=200 actual=200
     common_test.go:40: HTTP POST /projects expected=201 actual=201
---- PASS: TestHTTPIdempotencyExpiresAfterRetention (0.50s)
+--- PASS: TestHTTPIdempotencyExpiresAfterRetention (0.62s)
 === RUN   TestContentHTTPRevisionIdempotencyAndHistory
     content_test.go:108: HTTP GET /auth/login-challenge expected=200 actual=200
     content_test.go:108: HTTP POST /auth/login expected=200 actual=200
@@ -203,13 +203,13 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     content_test.go:122: HTTP POST /projects expected=201 actual=201
     content_test.go:129: HTTP POST /projects expected=201 actual=201
     content_test.go:134: HTTP POST /projects expected=409 actual=409
-    content_test.go:137: HTTP PUT /projects/prj_1d63f365e38f209a1048baca9f70c6f4 expected=409 actual=409
-    content_test.go:138: HTTP PUT /projects/prj_1d63f365e38f209a1048baca9f70c6f4 expected=200 actual=200
+    content_test.go:137: HTTP PUT /projects/prj_b1a802e13019b9079d8a9b99d3e055b7 expected=409 actual=409
+    content_test.go:138: HTTP PUT /projects/prj_b1a802e13019b9079d8a9b99d3e055b7 expected=200 actual=200
     content_test.go:150: HTTP GET /projects?unknown=1 expected=400 actual=400
     content_test.go:151: HTTP GET /projects?limit=2&limit=3 expected=400 actual=400
     content_test.go:152: HTTP GET /projects?limit=2 expected=200 actual=200
     content_test.go:154: HTTP GET /projects?limit=2&cursor=eyJyZXZpc2lvbiI6Mywib2Zmc2V0IjoyLCJraW5kIjoicHJvamVjdHMiLCJhcmNoaXZlZCI6ImZhbHNlIn0 expected=200 actual=200
---- PASS: TestContentHTTPRevisionIdempotencyAndHistory (0.33s)
+--- PASS: TestContentHTTPRevisionIdempotencyAndHistory (0.42s)
 === RUN   TestContentHTTPAtomicConcurrentSavesAndValidation
     content_test.go:161: HTTP GET /auth/login-challenge expected=200 actual=200
     content_test.go:161: HTTP POST /auth/login expected=200 actual=200
@@ -223,15 +223,15 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     content_test.go:202: HTTP PUT /projects/xiaowork-blog expected=403 actual=403
     content_test.go:203: HTTP PUT /projects/order expected=422 actual=422
     content_test.go:204: HTTP PUT /projects/order expected=200 actual=200
---- PASS: TestContentHTTPAtomicConcurrentSavesAndValidation (0.35s)
+--- PASS: TestContentHTTPAtomicConcurrentSavesAndValidation (0.43s)
 === RUN   TestContentHTTPCategoriesLifecycleProfileAndSettings
     content_test.go:208: HTTP GET /auth/login-challenge expected=200 actual=200
     content_test.go:208: HTTP POST /auth/login expected=200 actual=200
     content_test.go:211: HTTP POST /categories expected=201 actual=201
-    content_test.go:211: HTTP PUT /categories/cat_7739169376929d562fef6b5956be300c expected=200 actual=200
-    content_test.go:211: HTTP PUT /categories/cat_7739169376929d562fef6b5956be300c expected=400 actual=400
+    content_test.go:211: HTTP PUT /categories/cat_10611d88d3a98000553f8e3fe748dd54 expected=200 actual=200
+    content_test.go:211: HTTP PUT /categories/cat_10611d88d3a98000553f8e3fe748dd54 expected=400 actual=400
     content_test.go:211: HTTP DELETE /categories/cat-website expected=409 actual=409
-    content_test.go:211: HTTP DELETE /categories/cat_7739169376929d562fef6b5956be300c expected=200 actual=200
+    content_test.go:211: HTTP DELETE /categories/cat_10611d88d3a98000553f8e3fe748dd54 expected=200 actual=200
     content_test.go:211: HTTP POST /projects/xiaowork-blog/archive expected=200 actual=200
     content_test.go:225: HTTP GET /projects?archived=true expected=200 actual=200
     content_test.go:211: HTTP POST /projects/xiaowork-blog/restore expected=200 actual=200
@@ -241,7 +241,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     content_test.go:245: HTTP GET /profile expected=200 actual=200
     content_test.go:211: HTTP PUT /settings expected=400 actual=400
     content_test.go:253: HTTP GET /dashboard expected=200 actual=200
---- PASS: TestContentHTTPCategoriesLifecycleProfileAndSettings (0.35s)
+--- PASS: TestContentHTTPCategoriesLifecycleProfileAndSettings (0.41s)
 === RUN   TestMediaHTTPSLifecycleAndRejectedUploads
     media_http_test.go:109: HTTP GET /auth/login-challenge expected=200 actual=200
     media_http_test.go:109: HTTP POST /auth/login expected=200 actual=200
@@ -259,41 +259,41 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     media_http_test.go:141: HTTPS GET /media?%zz=1 expected=400 actual=400
     media_http_test.go:141: HTTPS GET /media?unknown=1 expected=400 actual=400
     media_http_test.go:141: HTTPS GET /media?limit=1&limit=2 expected=400 actual=400
-    media_http_test.go:141: HTTPS GET /media/med_2a9903675ab3d68445d26364d67fddbf?unknown=1 expected=400 actual=400
-    media_http_test.go:141: HTTPS GET /media/med_2a9903675ab3d68445d26364d67fddbf/content?%zz=1 expected=400 actual=400
-    media_http_test.go:143: HTTPS PATCH /media/med_2a9903675ab3d68445d26364d67fddbf?unknown=1 expected=400 actual=400
-    media_http_test.go:144: HTTPS DELETE /media/med_2a9903675ab3d68445d26364d67fddbf?unknown=1 expected=400 actual=400
-    media_http_test.go:145: HTTPS GET /media/med_2a9903675ab3d68445d26364d67fddbf/content expected=401 actual=401
-    media_http_test.go:146: HTTPS GET /media/med_2a9903675ab3d68445d26364d67fddbf/content expected=200 actual=200
-    media_http_test.go:150: HTTPS PATCH /media/med_2a9903675ab3d68445d26364d67fddbf expected=400 actual=400
-    media_http_test.go:151: HTTPS PATCH /media/med_2a9903675ab3d68445d26364d67fddbf expected=400 actual=400
-    media_http_test.go:152: HTTPS PATCH /media/med_2a9903675ab3d68445d26364d67fddbf expected=200 actual=200
+    media_http_test.go:141: HTTPS GET /media/med_3885e5e9610d5b41f658ae1748c58005?unknown=1 expected=400 actual=400
+    media_http_test.go:141: HTTPS GET /media/med_3885e5e9610d5b41f658ae1748c58005/content?%zz=1 expected=400 actual=400
+    media_http_test.go:143: HTTPS PATCH /media/med_3885e5e9610d5b41f658ae1748c58005?unknown=1 expected=400 actual=400
+    media_http_test.go:144: HTTPS DELETE /media/med_3885e5e9610d5b41f658ae1748c58005?unknown=1 expected=400 actual=400
+    media_http_test.go:145: HTTPS GET /media/med_3885e5e9610d5b41f658ae1748c58005/content expected=401 actual=401
+    media_http_test.go:146: HTTPS GET /media/med_3885e5e9610d5b41f658ae1748c58005/content expected=200 actual=200
+    media_http_test.go:150: HTTPS PATCH /media/med_3885e5e9610d5b41f658ae1748c58005 expected=400 actual=400
+    media_http_test.go:151: HTTPS PATCH /media/med_3885e5e9610d5b41f658ae1748c58005 expected=400 actual=400
+    media_http_test.go:152: HTTPS PATCH /media/med_3885e5e9610d5b41f658ae1748c58005 expected=200 actual=200
     media_http_test.go:161: HTTPS GET /media?limit=1 expected=200 actual=200
     media_http_test.go:162: HTTPS GET /media?cursor=invalid! expected=400 actual=400
     media_http_test.go:163: HTTPS GET /media?limit=1000 expected=400 actual=400
     media_http_test.go:164: HTTPS POST /media expected=409 actual=409
-    media_http_test.go:165: HTTPS DELETE /media/med_2a9903675ab3d68445d26364d67fddbf expected=200 actual=200
-    media_http_test.go:170: HTTPS GET /media/med_2a9903675ab3d68445d26364d67fddbf/content expected=404 actual=404
-    media_http_test.go:171: HTTPS PATCH /media/med_2a9903675ab3d68445d26364d67fddbf expected=404 actual=404
+    media_http_test.go:165: HTTPS DELETE /media/med_3885e5e9610d5b41f658ae1748c58005 expected=200 actual=200
+    media_http_test.go:170: HTTPS GET /media/med_3885e5e9610d5b41f658ae1748c58005/content expected=404 actual=404
+    media_http_test.go:171: HTTPS PATCH /media/med_3885e5e9610d5b41f658ae1748c58005 expected=404 actual=404
     media_http_test.go:172: HTTPS POST /media expected=409 actual=409
---- PASS: TestMediaHTTPSLifecycleAndRejectedUploads (0.43s)
+--- PASS: TestMediaHTTPSLifecycleAndRejectedUploads (0.49s)
 === RUN   TestMediaHTTPSReferenceProtectionAndCorruptContent
     media_http_test.go:183: HTTP GET /auth/login-challenge expected=200 actual=200
     media_http_test.go:183: HTTP POST /auth/login expected=200 actual=200
     media_http_test.go:185: HTTPS POST /media expected=201 actual=201
-    media_http_test.go:196: HTTPS DELETE /media/med_4733be86e05cc9d55c6cd9f1479bcc85 expected=409 actual=409
-    media_http_test.go:200: HTTPS DELETE /media/med_4733be86e05cc9d55c6cd9f1479bcc85 expected=409 actual=409
-    media_http_test.go:205: HTTPS DELETE /media/med_4733be86e05cc9d55c6cd9f1479bcc85 expected=409 actual=409
-    media_http_test.go:206: HTTPS GET /media/med_4733be86e05cc9d55c6cd9f1479bcc85 expected=200 actual=200
-2026/10/27 08:32:58 request error id=req_adc3f7b4b4dae37fc400be6d2f332777 code=INTERNAL_ERROR
-    media_http_test.go:219: HTTPS GET /media/med_4733be86e05cc9d55c6cd9f1479bcc85/content expected=500 actual=500
-2026/10/27 08:32:58 request error id=req_60c720c6eca4b34193e550e25b678dbe code=INTERNAL_ERROR
-    media_http_test.go:220: HTTPS PATCH /media/med_4733be86e05cc9d55c6cd9f1479bcc85 expected=500 actual=500
-2026/10/27 08:32:58 request error id=req_45861c925fa24c6f13393e2bb685dc07 code=INTERNAL_ERROR
+    media_http_test.go:196: HTTPS DELETE /media/med_0e9c6a410947c2acb128437b111ca59a expected=409 actual=409
+    media_http_test.go:200: HTTPS DELETE /media/med_0e9c6a410947c2acb128437b111ca59a expected=409 actual=409
+    media_http_test.go:205: HTTPS DELETE /media/med_0e9c6a410947c2acb128437b111ca59a expected=409 actual=409
+    media_http_test.go:206: HTTPS GET /media/med_0e9c6a410947c2acb128437b111ca59a expected=200 actual=200
+2026/10/27 08:46:51 request error id=req_dc587d666c46caafc005c2aeab501712 code=INTERNAL_ERROR
+    media_http_test.go:219: HTTPS GET /media/med_0e9c6a410947c2acb128437b111ca59a/content expected=500 actual=500
+2026/10/27 08:46:51 request error id=req_4239af527c35dbccf433c6322d9fa822 code=INTERNAL_ERROR
+    media_http_test.go:220: HTTPS PATCH /media/med_0e9c6a410947c2acb128437b111ca59a expected=500 actual=500
+2026/10/27 08:46:51 request error id=req_a8e770eab4a8c3baf721e2218efc8bd2 code=INTERNAL_ERROR
     media_http_test.go:221: HTTPS POST /media expected=500 actual=500
-2026/10/27 08:32:58 request error id=req_5a8aaca829f10b9628e266e8962463b3 code=INTERNAL_ERROR
-    media_http_test.go:225: HTTPS GET /media/med_4733be86e05cc9d55c6cd9f1479bcc85/content expected=500 actual=500
---- PASS: TestMediaHTTPSReferenceProtectionAndCorruptContent (0.33s)
+2026/10/27 08:46:51 request error id=req_dbbfd9987dbc9d813d959c1b8639da0c code=INTERNAL_ERROR
+    media_http_test.go:225: HTTPS GET /media/med_0e9c6a410947c2acb128437b111ca59a/content expected=500 actual=500
+--- PASS: TestMediaHTTPSReferenceProtectionAndCorruptContent (0.43s)
 === RUN   TestMediaHTTPSConcurrentDecoderCapacityRecovers
 === RUN   TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false
     media_http_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
@@ -306,41 +306,41 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     media_http_test.go:273: HTTPS POST /media expected=429 actual=429
     media_http_test.go:278: HTTPS POST /categories expected=201 actual=201
     media_http_test.go:317: HTTPS POST /media expected=201 actual=201
---- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers (0.67s)
-    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false (0.33s)
-    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true (0.34s)
+--- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers (0.92s)
+    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false (0.49s)
+    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true (0.43s)
 === RUN   TestMediaPrivateStorageIsContentAddressedAndNeverOverwrites
 --- PASS: TestMediaPrivateStorageIsContentAddressedAndNeverOverwrites (0.00s)
 === RUN   TestMediaStorageRefusesTraversalSymlinksAndMissingContent
 --- PASS: TestMediaStorageRefusesTraversalSymlinksAndMissingContent (0.00s)
 === RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob
 === RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false
-    publication_fault_integration_test.go:25: HTTP GET /auth/login-challenge expected=200 actual=200
-    publication_fault_integration_test.go:25: HTTP POST /auth/login expected=200 actual=200
-    publication_fault_integration_test.go:129: two overlapping verified HTTPS submissions; duplicate=false accepted=1 conflict=1; exactly one sealed snapshot/job/assignment/idempotency record
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=false accepted=1 conflict=1; exactly one sealed snapshot/job/assignment/idempotency record
 === RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true
-    publication_fault_integration_test.go:25: HTTP GET /auth/login-challenge expected=200 actual=200
-    publication_fault_integration_test.go:25: HTTP POST /auth/login expected=200 actual=200
-    publication_fault_integration_test.go:129: two overlapping verified HTTPS submissions; duplicate=true accepted=2 conflict=0; exactly one sealed snapshot/job/assignment/idempotency record
---- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (0.73s)
-    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (0.37s)
-    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.36s)
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=true accepted=2 conflict=0; exactly one sealed snapshot/job/assignment/idempotency record
+--- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (0.80s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (0.40s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.40s)
 === RUN   TestPublicationRealSQLiteResultFailureReconcilesExistingActivation
-    publication_fault_integration_test.go:140: HTTP GET /auth/login-challenge expected=200 actual=200
-    publication_fault_integration_test.go:140: HTTP POST /auth/login expected=200 actual=200
-    publication_fault_integration_test.go:142: HTTP POST /auth/reauth expected=200 actual=200
-    publication_fault_integration_test.go:142: HTTP POST /publish-jobs expected=202 actual=202
-    publication_fault_integration_test.go:143: private protocol POST /claim expected=200 actual=200
-    publication_fault_integration_test.go:145: private protocol POST /jobs/job_7c6fa85be5cef008f4f6c392feb3ba98/heartbeat expected=200 actual=200
-    publication_fault_integration_test.go:145: private protocol POST /jobs/job_7c6fa85be5cef008f4f6c392feb3ba98/prepared expected=200 actual=200
-    publication_fault_integration_test.go:178: private protocol POST /jobs/job_7c6fa85be5cef008f4f6c392feb3ba98/result expected=409 actual=409
-    publication_fault_integration_test.go:194: HTTP POST /preview-jobs expected=409 actual=409
-    publication_fault_integration_test.go:195: HTTP GET /publishing-status expected=200 actual=200
-    publication_fault_integration_test.go:206: private protocol POST /claim expected=200 actual=200
-    publication_fault_integration_test.go:210: private protocol POST /jobs/job_7c6fa85be5cef008f4f6c392feb3ba98/result expected=409 actual=409
-    publication_fault_integration_test.go:212: private protocol POST /jobs/job_7c6fa85be5cef008f4f6c392feb3ba98/result expected=200 actual=200
-    publication_fault_integration_test.go:238: actual SQLite trigger aborted completion after 21 real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild
---- PASS: TestPublicationRealSQLiteResultFailureReconcilesExistingActivation (0.57s)
+    publication_fault_integration_test.go:139: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:139: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /auth/reauth expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /publish-jobs expected=202 actual=202
+    publication_fault_integration_test.go:142: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_dd46181416d1338c435910f7aea27519/heartbeat expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_dd46181416d1338c435910f7aea27519/prepared expected=200 actual=200
+    publication_fault_integration_test.go:181: private protocol POST /jobs/job_dd46181416d1338c435910f7aea27519/result expected=409 actual=409
+    publication_fault_integration_test.go:201: HTTP POST /preview-jobs expected=409 actual=409
+    publication_fault_integration_test.go:202: HTTP GET /publishing-status expected=200 actual=200
+    publication_fault_integration_test.go:213: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:217: private protocol POST /jobs/job_dd46181416d1338c435910f7aea27519/result expected=409 actual=409
+    publication_fault_integration_test.go:219: private protocol POST /jobs/job_dd46181416d1338c435910f7aea27519/result expected=200 actual=200
+    publication_fault_integration_test.go:245: actual SQLite trigger aborted completion after 7 real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild
+--- PASS: TestPublicationRealSQLiteResultFailureReconcilesExistingActivation (0.65s)
 === RUN   TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure
     publication_test.go:121: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:121: HTTP POST /auth/login expected=200 actual=200
@@ -355,19 +355,19 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     publication_test.go:145: HTTP POST /publish-jobs expected=202 actual=202
     publication_test.go:149: HTTP POST /publish-jobs expected=409 actual=409
     publication_test.go:150: HTTP POST /preview-jobs expected=409 actual=409
-2026/10/27 08:33:01 request error id=req_750ac6b75b788e9544f5be1574a242a0 code=WORKER_UNAVAILABLE
+2026/10/27 08:46:54 request error id=req_17eb0c99b2074c98af15739e7eff4768 code=WORKER_UNAVAILABLE
     publication_test.go:152: HTTP POST /preview-jobs expected=503 actual=503
---- PASS: TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure (0.63s)
+--- PASS: TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure (0.67s)
 === RUN   TestPublicationRealFilesystemHTTPProofAndRecovery
     publication_test.go:214: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:214: HTTP POST /auth/login expected=200 actual=200
     publication_test.go:215: HTTP POST /auth/reauth expected=200 actual=200
     publication_test.go:215: HTTP POST /publish-jobs expected=202 actual=202
     publication_test.go:216: private protocol POST /claim expected=200 actual=200
-    publication_test.go:218: private protocol POST /jobs/job_fa6a043b9231ea77b9dec84c60671119/heartbeat expected=200 actual=200
-    publication_test.go:218: private protocol POST /jobs/job_fa6a043b9231ea77b9dec84c60671119/prepared expected=200 actual=200
-    publication_test.go:220: private protocol POST /jobs/job_fa6a043b9231ea77b9dec84c60671119/result expected=200 actual=200
-    publication_test.go:225: private protocol POST /jobs/job_fa6a043b9231ea77b9dec84c60671119/result expected=200 actual=200
+    publication_test.go:218: private protocol POST /jobs/job_31337f56e99a16175b243c4c12b7d67d/heartbeat expected=200 actual=200
+    publication_test.go:218: private protocol POST /jobs/job_31337f56e99a16175b243c4c12b7d67d/prepared expected=200 actual=200
+    publication_test.go:220: private protocol POST /jobs/job_31337f56e99a16175b243c4c12b7d67d/result expected=200 actual=200
+    publication_test.go:225: private protocol POST /jobs/job_31337f56e99a16175b243c4c12b7d67d/result expected=200 actual=200
     publication_test.go:235: HTTP POST /publish-jobs expected=202 actual=202
     publication_test.go:240: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:240: HTTP POST /auth/login expected=200 actual=200
@@ -380,41 +380,41 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     publication_test.go:259: HTTP POST /auth/reauth expected=200 actual=200
     publication_test.go:259: HTTP POST /publish-jobs expected=202 actual=202
     publication_test.go:260: private protocol POST /claim expected=200 actual=200
-    publication_test.go:262: private protocol POST /jobs/job_305e82ceb43f10d1c3b7e596fc6d5779/heartbeat expected=200 actual=200
-    publication_test.go:262: private protocol POST /jobs/job_305e82ceb43f10d1c3b7e596fc6d5779/prepared expected=200 actual=200
-    publication_test.go:269: private protocol POST /jobs/job_305e82ceb43f10d1c3b7e596fc6d5779/result expected=200 actual=200
-    publication_test.go:278: private protocol POST /jobs/job_305e82ceb43f10d1c3b7e596fc6d5779/result expected=200 actual=200
---- PASS: TestPublicationRealFilesystemHTTPProofAndRecovery (1.20s)
+    publication_test.go:262: private protocol POST /jobs/job_16c389b397ee8e19a63ab5bfa1082bf8/heartbeat expected=200 actual=200
+    publication_test.go:262: private protocol POST /jobs/job_16c389b397ee8e19a63ab5bfa1082bf8/prepared expected=200 actual=200
+    publication_test.go:269: private protocol POST /jobs/job_16c389b397ee8e19a63ab5bfa1082bf8/result expected=200 actual=200
+    publication_test.go:278: private protocol POST /jobs/job_16c389b397ee8e19a63ab5bfa1082bf8/result expected=200 actual=200
+--- PASS: TestPublicationRealFilesystemHTTPProofAndRecovery (1.06s)
 === RUN   TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy
     publication_test.go:288: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:288: HTTP POST /auth/login expected=200 actual=200
     publication_test.go:292: HTTP POST /preview-jobs expected=202 actual=202
     publication_test.go:293: private protocol POST /claim expected=200 actual=200
-    publication_test.go:298: private protocol POST /jobs/job_06026b152cb53a3d97db26c0f632e678/heartbeat expected=200 actual=200
-    publication_test.go:298: private protocol POST /jobs/job_06026b152cb53a3d97db26c0f632e678/prepared expected=200 actual=200
-    publication_test.go:303: private protocol POST /jobs/job_06026b152cb53a3d97db26c0f632e678/result expected=200 actual=200
-    publication_test.go:322: HTTP GET /previews/pre_084b862eef5b2c3ba78c87733feac2b1/ expected=401 actual=401
-    publication_test.go:322: HTTP GET /previews/pre_084b862eef5b2c3ba78c87733feac2b1/projects/ expected=401 actual=401
-    publication_test.go:322: HTTP GET /previews/pre_084b862eef5b2c3ba78c87733feac2b1/_releases/pre_084b862eef5b2c3ba78c87733feac2b1/assets/image.png expected=401 actual=401
+    publication_test.go:298: private protocol POST /jobs/job_bdd3036f19d2bc602e56546269bab7da/heartbeat expected=200 actual=200
+    publication_test.go:298: private protocol POST /jobs/job_bdd3036f19d2bc602e56546269bab7da/prepared expected=200 actual=200
+    publication_test.go:303: private protocol POST /jobs/job_bdd3036f19d2bc602e56546269bab7da/result expected=200 actual=200
+    publication_test.go:322: HTTP GET /previews/pre_35dd6d411741c3456a98d983a2b9104e/ expected=401 actual=401
+    publication_test.go:322: HTTP GET /previews/pre_35dd6d411741c3456a98d983a2b9104e/projects/ expected=401 actual=401
+    publication_test.go:322: HTTP GET /previews/pre_35dd6d411741c3456a98d983a2b9104e/_releases/pre_35dd6d411741c3456a98d983a2b9104e/assets/image.png expected=401 actual=401
     publication_test.go:325: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:325: HTTP POST /auth/login expected=200 actual=200
-    publication_test.go:327: HTTP GET /previews/pre_084b862eef5b2c3ba78c87733feac2b1/ expected=404 actual=404
---- PASS: TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy (0.77s)
+    publication_test.go:327: HTTP GET /previews/pre_35dd6d411741c3456a98d983a2b9104e/ expected=404 actual=404
+--- PASS: TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy (0.65s)
 === RUN   TestWorkerLeaseRecoveryAndSnapshotImmutability
     publication_test.go:331: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:331: HTTP POST /auth/login expected=200 actual=200
     publication_test.go:332: HTTP POST /preview-jobs expected=202 actual=202
     publication_test.go:333: private protocol POST /claim expected=200 actual=200
-    publication_test.go:337: private protocol POST /jobs/job_4cda2e916cbdbcf28fd9dd20d838a30c/heartbeat expected=409 actual=409
+    publication_test.go:337: private protocol POST /jobs/job_bd58414f1e8ba2a8726d86846fe1db8d/heartbeat expected=409 actual=409
     publication_test.go:339: private protocol POST /claim expected=200 actual=200
-    publication_test.go:343: private protocol POST /jobs/job_4cda2e916cbdbcf28fd9dd20d838a30c/result expected=409 actual=409
-    publication_test.go:344: private protocol POST /jobs/job_4cda2e916cbdbcf28fd9dd20d838a30c/result expected=200 actual=200
---- PASS: TestWorkerLeaseRecoveryAndSnapshotImmutability (0.53s)
+    publication_test.go:343: private protocol POST /jobs/job_bd58414f1e8ba2a8726d86846fe1db8d/result expected=409 actual=409
+    publication_test.go:344: private protocol POST /jobs/job_bd58414f1e8ba2a8726d86846fe1db8d/result expected=200 actual=200
+--- PASS: TestWorkerLeaseRecoveryAndSnapshotImmutability (0.40s)
 === RUN   TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot
     publication_test.go:355: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:355: HTTP POST /auth/login expected=200 actual=200
     publication_test.go:367: HTTP POST /preview-jobs expected=422 actual=422
---- PASS: TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot (0.44s)
+--- PASS: TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot (0.38s)
 === RUN   TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry
     publication_test.go:381: HTTP GET /auth/login-challenge expected=200 actual=200
     publication_test.go:381: HTTP POST /auth/login expected=200 actual=200
@@ -422,30 +422,30 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.045s
     publication_test.go:385: HTTP GET /publishing-status expected=200 actual=200
     publication_test.go:385: HTTP GET /publishing-status expected=200 actual=200
     publication_test.go:395: HTTP GET /publishing-status expected=401 actual=401
---- PASS: TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry (0.44s)
+--- PASS: TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry (0.40s)
 === RUN   TestProductionPublicationConfigurationFailsClosed
 --- PASS: TestProductionPublicationConfigurationFailsClosed (0.00s)
 === RUN   TestManagementRequiresApprovedOriginSecretAndHTTPS
---- PASS: TestManagementRequiresApprovedOriginSecretAndHTTPS (0.02s)
+--- PASS: TestManagementRequiresApprovedOriginSecretAndHTTPS (0.01s)
 === RUN   TestHealthReadinessAndUnimplementedPublishing
     server_test.go:61: HTTP GET /projects expected=401 actual=401
     server_test.go:62: HTTP GET /auth/login-challenge expected=200 actual=200
     server_test.go:62: HTTP POST /auth/login expected=200 actual=200
-2026/10/27 08:33:05 request error id=req_111bfb4dbede6f8b49531c012788d57a code=WORKER_UNAVAILABLE
+2026/10/27 08:46:57 request error id=req_ca16e5055d982b56d5f6150911038c0e code=WORKER_UNAVAILABLE
     server_test.go:64: HTTP POST /publish-jobs expected=503 actual=503
-2026/10/27 08:33:05 request error id=req_8eb38b37db8dec1c98960b18fda7645a code=WORKER_UNAVAILABLE
+2026/10/27 08:46:57 request error id=req_5a1f61aff09852996ab667239d68f119 code=WORKER_UNAVAILABLE
     server_test.go:64: HTTP POST /preview-jobs expected=503 actual=503
-2026/10/27 08:33:05 request error id=req_007d56cef61914bf5fb94d360b9dd577 code=WORKER_UNAVAILABLE
+2026/10/27 08:46:57 request error id=req_21fc924a4721e9f1be27a0b08a34aeab code=WORKER_UNAVAILABLE
     server_test.go:64: HTTP POST /rollback-jobs expected=503 actual=503
     server_test.go:69: HTTP GET /not-a-real-interface expected=404 actual=404
-2026/10/27 08:33:05 request error id=req_e900700d23de4fa56f841736100495f8 code=NOT_READY
---- PASS: TestHealthReadinessAndUnimplementedPublishing (0.40s)
+2026/10/27 08:46:57 request error id=req_342dce73b87d62881e9adc52c18c5e08 code=NOT_READY
+--- PASS: TestHealthReadinessAndUnimplementedPublishing (0.39s)
 === RUN   TestWorkerRealUnixSocketIsPrivateAndPublicPathsCannotClaim
     worker_socket_linux_test.go:18: HTTP GET /auth/login-challenge expected=200 actual=200
     worker_socket_linux_test.go:18: HTTP POST /auth/login expected=200 actual=200
---- PASS: TestWorkerRealUnixSocketIsPrivateAndPublicPathsCannotClaim (0.38s)
+--- PASS: TestWorkerRealUnixSocketIsPrivateAndPublicPathsCannotClaim (0.40s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	17.318s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	18.631s
 === RUN   TestSanitizeReencodesAndStripsMetadata
 --- PASS: TestSanitizeReencodesAndStripsMetadata (0.00s)
 === RUN   TestSanitizeRealWebPAndRejectsConcealedLargeFrame
@@ -458,7 +458,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	17.318s
 === RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/image.svgimage/svg+xml
 === RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/bad.pngimage/png
 === RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/huge.pngimage/png
---- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode (0.00s)
+--- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode (0.01s)
     --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.jpgimage/jpeg (0.00s)
     --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.pngimage/jpeg (0.00s)
     --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/../escape.pngimage/png (0.00s)
@@ -467,7 +467,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	17.318s
     --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/bad.pngimage/png (0.00s)
     --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/huge.pngimage/png (0.00s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.015s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.018s
 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
 === RUN   TestActivationCrashProcessHelper
 --- PASS: TestActivationCrashProcessHelper (0.00s)
@@ -476,23 +476,23 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.015
 === RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/before-current-rename
 === RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/after-current-rename
 === RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/after-receipt
---- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary (0.06s)
-    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-intent (0.01s)
-    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/before-current-rename (0.02s)
+--- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary (0.07s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-intent (0.02s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/before-current-rename (0.01s)
     --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-current-rename (0.02s)
-    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-receipt (0.01s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-receipt (0.02s)
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/alter
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/remove
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/extra
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest
 === RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink
---- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption (0.01s)
+--- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption (0.02s)
     --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/alter (0.00s)
     --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/remove (0.00s)
     --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/extra (0.00s)
-    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest (0.00s)
-    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink (0.00s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest (0.01s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink (0.01s)
 === RUN   TestGeneratedNamesAndPathContainment
 --- PASS: TestGeneratedNamesAndPathContainment (0.00s)
 === RUN   TestKernelLockExcludesSeparateStores
@@ -506,13 +506,13 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.015
 === RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/before-current-rename
 === RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-current-rename
 === RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-receipt
---- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion (0.04s)
+--- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion (0.03s)
     --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-intent (0.01s)
     --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/before-current-rename (0.01s)
     --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-current-rename (0.01s)
     --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-receipt (0.01s)
 === RUN   TestAtomicActivationRollbackAndIndependentRecoveryProof
---- PASS: TestAtomicActivationRollbackAndIndependentRecoveryProof (0.01s)
+--- PASS: TestAtomicActivationRollbackAndIndependentRecoveryProof (0.02s)
 === RUN   TestStalePreviousDoesNotCreateIntentOrSwitch
 --- PASS: TestStalePreviousDoesNotCreateIntentOrSwitch (0.00s)
 === RUN   TestPreparationFaultsDoNotPublishOrOverwrite
@@ -524,11 +524,11 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.015
     --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/after-copy (0.00s)
     --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/before-file-rename (0.00s)
     --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/before-release-rename (0.00s)
-    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/after-release-rename (0.01s)
+    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/after-release-rename (0.00s)
 === RUN   TestRecoveryNeverClobbersUnrelatedCurrent
 --- PASS: TestRecoveryNeverClobbersUnrelatedCurrent (0.01s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.163s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.186s
 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
 === RUN   TestProcessTreeHelper
 --- PASS: TestProcessTreeHelper (0.00s)
@@ -539,12 +539,12 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.163s
 === RUN   TestBuildOutputAncestorSymlinkCannotRedirectMarker
 --- PASS: TestBuildOutputAncestorSymlinkCannotRedirectMarker (0.00s)
 === RUN   TestRunnerPublishRequiresActualPreparedAndReconciledResult
---- PASS: TestRunnerPublishRequiresActualPreparedAndReconciledResult (0.03s)
+--- PASS: TestRunnerPublishRequiresActualPreparedAndReconciledResult (0.01s)
 === RUN   TestRunnerBuildAndValidationFailuresNeverActivate
 === RUN   TestRunnerBuildAndValidationFailuresNeverActivate/build
 === RUN   TestRunnerBuildAndValidationFailuresNeverActivate/bad-html
 === RUN   TestRunnerBuildAndValidationFailuresNeverActivate/bad-approval
---- PASS: TestRunnerBuildAndValidationFailuresNeverActivate (0.01s)
+--- PASS: TestRunnerBuildAndValidationFailuresNeverActivate (0.02s)
     --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/build (0.00s)
     --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/bad-html (0.00s)
     --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/bad-approval (0.01s)
@@ -555,9 +555,9 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.163s
 === RUN   TestRunnerCrashBetweenCurrentAndReceiptRecoversWithoutRebuild
 --- PASS: TestRunnerCrashBetweenCurrentAndReceiptRecoversWithoutRebuild (0.01s)
 === RUN   TestRunnerPreviewNeverChangesCurrentAndHasIndependentProof
---- PASS: TestRunnerPreviewNeverChangesCurrentAndHasIndependentProof (0.00s)
+--- PASS: TestRunnerPreviewNeverChangesCurrentAndHasIndependentProof (0.01s)
 === RUN   TestUnixClientActualSocketStrictFiniteProtocol
---- PASS: TestUnixClientActualSocketStrictFiniteProtocol (0.01s)
+--- PASS: TestUnixClientActualSocketStrictFiniteProtocol (0.02s)
 === RUN   TestSealedAssignmentStrictProjection
 === RUN   TestSealedAssignmentStrictProjection/hash
 === RUN   TestSealedAssignmentStrictProjection/private
@@ -585,7 +585,7 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.163s
 === RUN   TestActualOutputValidationAndFailureGates/bad-chunk
 === RUN   TestActualOutputValidationAndFailureGates/noindex
 === RUN   TestActualOutputValidationAndFailureGates/missing-project
---- PASS: TestActualOutputValidationAndFailureGates (0.01s)
+--- PASS: TestActualOutputValidationAndFailureGates (0.03s)
     --- PASS: TestActualOutputValidationAndFailureGates/wrong-seo (0.00s)
     --- PASS: TestActualOutputValidationAndFailureGates/wrong-marker (0.00s)
     --- PASS: TestActualOutputValidationAndFailureGates/missing-resource (0.00s)
@@ -605,21 +605,21 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.163s
 === RUN   TestMarkerNeverOverwritesBuildControlledFile
 --- PASS: TestMarkerNeverOverwritesBuildControlledFile (0.00s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.314s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.341s
 === RUN   TestVersionTwoPublicationUpgradePreservesExistingWorkspaceAndChecksums
 --- PASS: TestVersionTwoPublicationUpgradePreservesExistingWorkspaceAndChecksums (0.02s)
 === RUN   TestLoginChallengeLifetimeAndOneWayConsumption
 --- PASS: TestLoginChallengeLifetimeAndOneWayConsumption (0.01s)
 === RUN   TestIdempotencyEndpointScopeRetentionAndImmutability
---- PASS: TestIdempotencyEndpointScopeRetentionAndImmutability (0.02s)
+--- PASS: TestIdempotencyEndpointScopeRetentionAndImmutability (0.01s)
 === RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind
 === RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced
 === RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project
 === RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document
 === RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot
---- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind (0.06s)
-    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced (0.01s)
-    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project (0.01s)
+--- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind (0.08s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced (0.02s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project (0.02s)
     --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document (0.02s)
     --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot (0.02s)
 === RUN   TestSessionReauthenticationCannotOutliveSession
@@ -632,13 +632,13 @@ ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.
 === RUN   TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum
 --- PASS: TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum (0.02s)
 === RUN   TestMigrationGapRejected
---- PASS: TestMigrationGapRejected (0.01s)
+--- PASS: TestMigrationGapRejected (0.02s)
 === RUN   TestJobRequiresOwnReconciliation
---- PASS: TestJobRequiresOwnReconciliation (0.02s)
+--- PASS: TestJobRequiresOwnReconciliation (0.03s)
 === RUN   TestSnapshotAndAssetConstraints
---- PASS: TestSnapshotAndAssetConstraints (0.01s)
+--- PASS: TestSnapshotAndAssetConstraints (0.02s)
 === RUN   TestReviewedSQLiteBaseline
 --- PASS: TestReviewedSQLiteBaseline (0.00s)
 PASS
-ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.237s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.311s
 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]
