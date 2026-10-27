@@ -1,0 +1,30 @@
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=false accepted=1 conflict=1; exactly one sealed snapshot/job/assignment/idempotency record
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=true accepted=2 conflict=0; exactly one sealed snapshot/job/assignment/idempotency record
+--- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (1.80s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (1.11s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.69s)
+=== RUN   TestPublicationRealSQLiteResultFailureReconcilesExistingActivation
+    publication_fault_integration_test.go:139: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:139: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /auth/reauth expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /publish-jobs expected=202 actual=202
+    publication_fault_integration_test.go:142: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_2cbf2ae3c8160c7c1188d1b2adcdda2c/heartbeat expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_2cbf2ae3c8160c7c1188d1b2adcdda2c/prepared expected=200 actual=200
+    publication_fault_integration_test.go:181: private protocol POST /jobs/job_2cbf2ae3c8160c7c1188d1b2adcdda2c/result expected=409 actual=409
+    publication_fault_integration_test.go:201: HTTP POST /preview-jobs expected=409 actual=409
+    publication_fault_integration_test.go:202: HTTP GET /publishing-status expected=200 actual=200
+    publication_fault_integration_test.go:213: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:217: private protocol POST /jobs/job_2cbf2ae3c8160c7c1188d1b2adcdda2c/result expected=409 actual=409
+    publication_fault_integration_test.go:219: private protocol POST /jobs/job_2cbf2ae3c8160c7c1188d1b2adcdda2c/result expected=200 actual=200
+    publication_fault_integration_test.go:245: actual SQLite trigger aborted completion after 7 real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild
+--- PASS: TestPublicationRealSQLiteResultFailureReconcilesExistingActivation (1.01s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	2.840s

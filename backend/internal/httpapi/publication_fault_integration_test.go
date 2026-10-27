@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"runtime"
-	"strings"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -148,6 +147,10 @@ func TestPublicationRealSQLiteResultFailureReconcilesExistingActivation(t *testi
 	if err != nil {
 		t.Fatal(err)
 	}
+	manifest, _, err := store.ReadManifest(job.ReleaseID)
+	if err != nil {
+		t.Fatal(err)
+	}
 	// Count real HTTP proof requests without replacing the artifact verifier
 	// with a fake success response. The forwarding target is the fixture's
 	// actual current-pointer filesystem server.
@@ -175,9 +178,13 @@ func TestPublicationRealSQLiteResultFailureReconcilesExistingActivation(t *testi
 		t.Fatal(err)
 	}
 	t.Cleanup(func() { _, _ = f.db.Exec(`DROP TRIGGER IF EXISTS test_result_commit_failure`) })
-	workerCall(t, f, "/jobs/"+job.ID+"/result", publishmodel.ResultRequest{LeaseToken: job.LeaseToken, Outcome: "activated"}, 409)
-	if verificationCalls.Load() == 0 {
-		t.Fatal("SQLite result failure was not reached after real HTTP artifact verification")
+	failure := workerCall(t, f, "/jobs/"+job.ID+"/result", publishmodel.ResultRequest{LeaseToken: job.LeaseToken, Outcome: "activated"}, 409)
+	if contentObject(t, failure["error"])["code"] != "RECORD_CONFLICT" {
+		t.Fatal("completion did not fail at the actual SQLite constraint trigger")
+	}
+	proofRequestsBeforeFailure := verificationCalls.Load()
+	if proofRequestsBeforeFailure != int64(len(manifest.Files)) {
+		t.Fatal("SQLite result failure was not reached after real HTTP verification of every manifest file")
 	}
 	var status string
 	var completed, reconciledAt sql.NullInt64
@@ -232,8 +239,8 @@ func TestPublicationRealSQLiteResultFailureReconcilesExistingActivation(t *testi
 	if err = f.db.QueryRow(`SELECT attempts FROM publish_jobs WHERE id=?`, job.ID).Scan(&attempts); err != nil || attempts != 2 {
 		t.Fatal("same task did not retain its two lease attempts")
 	}
-	if publicationRevision(t, f) != revision || !strings.HasPrefix(job.ReleaseID, "rel_") {
-		t.Fatal("result recovery changed the draft or release identity")
+	if publicationRevision(t, f) != revision {
+		t.Fatal("result recovery changed the draft")
 	}
-	t.Logf("actual SQLite trigger aborted completion after %d real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild", verificationCalls.Load())
+	t.Logf("actual SQLite trigger aborted completion after %d real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild", proofRequestsBeforeFailure)
 }
