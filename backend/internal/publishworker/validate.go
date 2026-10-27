@@ -125,7 +125,7 @@ func ValidateAssignment(job publishmodel.Assignment, source, builder string) (pu
 	}
 	for _, id := range []*string{snapshot.SiteProfile.AvatarAssetID, snapshot.SiteProfile.BrandAssetID, snapshot.SiteSettings.DefaultShareAssetID, snapshot.SiteSettings.Pages.Home.ShareAssetID, snapshot.SiteSettings.Pages.Projects.ShareAssetID, snapshot.SiteSettings.Pages.About.ShareAssetID} {
 		if id != nil {
-			if _, ok := media[*id]; !ok {
+			if _, ok := media[*id]; !ok && !builtins[*id] {
 				return snapshot, errors.New("missing document media")
 			}
 		}

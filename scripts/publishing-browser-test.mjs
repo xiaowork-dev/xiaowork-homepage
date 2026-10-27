@@ -191,9 +191,9 @@ async function saveDraft(version) {
       }
       const session = await get('/auth/session')
       let workspace = await get('/workspace')
-      const put = async (route, body) => {
+      const put = async (route, body, method = 'PUT') => {
         const response = await fetch(base + route, {
-          method: 'PUT',
+          method,
           credentials: 'same-origin',
           cache: 'no-store',
           headers: {
@@ -205,12 +205,54 @@ async function saveDraft(version) {
           body: JSON.stringify(body),
         })
         if (!response.ok) throw new Error('Draft fixture write failed: ' + response.status)
+        const result = (await response.json()).data
         workspace = await get('/workspace')
+        return result
       }
       const brand = `XiaoWork ${version} ${marker}`
       const project = workspace.projects.find((item) => item.visible && !item.archivedAt)
       if (!project || !workspace.profile || !workspace.settings)
         throw new Error('Seed workspace incomplete')
+      const canvas = document.createElement('canvas')
+      canvas.width = 960
+      canvas.height = 600
+      const graphics = canvas.getContext('2d')
+      if (!graphics) throw new Error('Canvas fixture unavailable')
+      graphics.fillStyle = version === 'A' ? '#33234c' : '#243d4d'
+      graphics.fillRect(0, 0, canvas.width, canvas.height)
+      graphics.fillStyle = '#fff8ed'
+      graphics.font = 'bold 44px sans-serif'
+      graphics.fillText('P6D test fixture', 50, 210)
+      graphics.font = '32px sans-serif'
+      graphics.fillText(`Snapshot ${version} / ${marker}`, 50, 280)
+      graphics.font = '28px sans-serif'
+      graphics.fillText('Synthetic image; not a project screenshot', 50, 350)
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'))
+      if (!blob) throw new Error('Canvas fixture encoding failed')
+      const multipart = new FormData()
+      multipart.append('file', blob, `p6d-fixture-${version}-${marker}.png`)
+      const uploaded = await fetch(base + '/media', {
+        method: 'POST',
+        credentials: 'same-origin',
+        cache: 'no-store',
+        headers: { 'X-CSRF-Token': session.csrfToken, 'If-Match': '"' + workspace.revision + '"' },
+        body: multipart,
+      })
+      if (uploaded.status !== 201)
+        throw new Error('Synthetic fixture upload failed: ' + uploaded.status)
+      const { media } = (await uploaded.json()).data
+      workspace = await get('/workspace')
+      await put(
+        '/media/' + media.id,
+        {
+          displayName: `P6D synthetic fixture ${version} ${marker}`,
+          alt: `P6D synthetic test fixture ${version}; not a project screenshot`,
+          publicUseConfirmed: true,
+          publicConfirmationNote:
+            'Locally drawn canvas test fixture; no personal, customer or business data; explicitly not a real project screenshot.',
+        },
+        'PATCH',
+      )
       const fields = [
         'slug',
         'name',
@@ -231,6 +273,10 @@ async function saveDraft(version) {
       const projectInput = Object.fromEntries(fields.map((field) => [field, project[field]]))
       projectInput.name = `Publication ${version} ${marker}`
       projectInput.featured = true
+      projectInput.cover = { kind: 'media', id: media.id }
+      projectInput.coverAlt = `P6D synthetic test fixture ${version}; not a project screenshot`
+      projectInput.coverKind = 'placeholder'
+      projectInput.isPlaceholder = true
       projectInput.summary = `Isolated local ${version} snapshot ${marker}; project facts remain unconfirmed.`
       await put('/projects/' + project.id, projectInput)
       const profile = structuredClone(workspace.profile)
@@ -245,7 +291,12 @@ async function saveDraft(version) {
         settings.pages[key].description = `Isolated ${version} ${key} description ${marker}.`
       }
       await put('/settings', settings)
-      return { brand, projectName: projectInput.name, revision: workspace.revision }
+      return {
+        brand,
+        projectName: projectInput.name,
+        revision: workspace.revision,
+        media: { id: media.id, sha256: media.sha256, path: 'media/' + media.sha256 + '.png' },
+      }
     },
     { version, marker },
   )
@@ -344,6 +395,7 @@ try {
 
   currentStep = 'save draft A and build private preview through UI'
   const contentA = await saveDraft('A')
+  report.syntheticMedia = [{ version: 'A', ...contentA.media, realProjectScreenshot: false }]
   const previewJob = await create('preview')
   const previewRelease = (await read('/releases')).items.find(
     (item) => item.id === previewJob.releaseId,
@@ -377,6 +429,12 @@ try {
     assert.ok(match, 'Preview must load authenticated JS, CSS and image resources')
     representative.push(match)
   }
+  const previewMediaPath = previewPath + 'assets/' + contentA.media.path
+  assert.ok(
+    privateResources.includes(previewMediaPath),
+    'Preview must load the sanitized synthetic media',
+  )
+  if (!representative.includes(previewMediaPath)) representative.push(previewMediaPath)
   const anonymousContext = await browser.newContext({ ignoreHTTPSErrors: false })
   const anonymous = await anonymousContext.newPage()
   observe(anonymous, 'anonymous')
@@ -406,6 +464,9 @@ try {
     assert.ok(match, 'A must request a versioned JS, CSS and image')
     aPaths.push(match)
   }
+  const aMediaPath = '/_releases/' + publicationA.releaseId + '/assets/' + contentA.media.path
+  assert.ok(aResources.includes(aMediaPath), 'Published A must load its sanitized synthetic media')
+  if (!aPaths.includes(aMediaPath)) aPaths.push(aMediaPath)
   const aProofBefore = await immutableProof(oldTab, aPaths)
   assert.ok(aProofBefore.every((item) => item.status === 200))
   await screenshot('P6D-publication-A.png', oldTab)
@@ -413,6 +474,8 @@ try {
 
   currentStep = 'save B without public change, then publish B'
   const contentB = await saveDraft('B')
+  report.syntheticMedia.push({ version: 'B', ...contentB.media, realProjectScreenshot: false })
+  assert.notEqual(contentB.media.sha256, contentA.media.sha256)
   const beforePublishB = await context.newPage()
   observe(beforePublishB, 'draft-B-public-A')
   await beforePublishB.goto(origin + '/')
@@ -491,6 +554,61 @@ try {
     '三页公开内容、SEO、资源恢复 A；SQLite 草稿 revision/资料/项目保持 B',
   )
 
+  currentStep = 'public three-page responsive themes and complete images'
+  for (const width of [320, 390, 768, 1024, 1440]) {
+    await oldTab.setViewportSize({ width, height: width <= 390 ? 844 : 1000 })
+    for (const theme of ['dark', 'light']) {
+      for (const route of ['/', '/projects/', '/about/']) {
+        await oldTab.goto(origin + route)
+        await verifyPublic(oldTab, contentA, publicationA.releaseId, route)
+        if ((await oldTab.locator('html').getAttribute('data-theme')) !== theme)
+          await oldTab.getByRole('button', { name: '切换深色或浅色主题', exact: true }).click()
+        assert.equal(await oldTab.locator('html').getAttribute('data-theme'), theme)
+        const imageElements = oldTab.locator('main img')
+        for (const img of await imageElements.all()) {
+          await img.scrollIntoViewIfNeeded()
+          await img.evaluate(async (element) => {
+            await element.decode()
+          })
+        }
+        const dimensions = await oldTab.evaluate(() => ({
+          viewport: innerWidth,
+          scroll: document.documentElement.scrollWidth,
+          images: [...document.querySelectorAll('main img')].map((img) => ({
+            path: new URL(img.currentSrc).pathname,
+            loaded: img.complete && img.naturalWidth > 0 && img.naturalHeight > 0,
+            width: img.getBoundingClientRect().width,
+            height: img.getBoundingClientRect().height,
+          })),
+        }))
+        assert.ok(
+          dimensions.scroll <= dimensions.viewport,
+          `Public overflow at ${width} ${theme} ${route}`,
+        )
+        assert.ok(
+          dimensions.images.every((img) => img.loaded && img.width > 0 && img.height > 0),
+          `Incomplete image at ${width} ${theme} ${route}`,
+        )
+        report.responsive.push({
+          scope: 'public',
+          width,
+          theme,
+          route,
+          ...dimensions,
+          result: 'PASS',
+        })
+        if (width === 1440 && route === '/')
+          await screenshot(`P6D-public-home-${theme}.png`, oldTab)
+        if (width === 390 && theme === 'dark' && route === '/')
+          await screenshot('P6D-public-home-mobile.png', oldTab)
+      }
+    }
+  }
+  record(
+    '公开静态三页五宽度双主题',
+    '30组无页面级横向溢出，滚动触发全部图片并完成decode；保存首页深/浅/手机实际截图',
+  )
+
   currentStep = 'publication responsive themes and mobile navigation'
   for (const width of [320, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 960 })
@@ -508,6 +626,7 @@ try {
         `Publication overflow at ${width} ${theme}`,
       )
       report.responsive.push({
+        scope: 'admin',
         width,
         theme,
         route: '/admin/publishing',
@@ -624,7 +743,10 @@ try {
   console.error(`FAIL ${currentStep}: ${message}`)
   if (page && !page.isClosed()) {
     try {
-      await page.locator('input[type="password"]').fill('')
+      for (const input of await page.locator('input[type="password"]').all())
+        await input.evaluate((element) => {
+          element.value = ''
+        })
       await screenshot('P6D-browser-failure.png')
     } catch {
       /* Browser may have disconnected; never dump private DOM or request bodies. */

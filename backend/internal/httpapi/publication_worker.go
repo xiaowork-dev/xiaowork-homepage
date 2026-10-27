@@ -364,8 +364,7 @@ func (a *App) workerResult(w http.ResponseWriter, r *http.Request) {
 		if err == nil && current == j.PreviousReleaseID {
 			status = "failed"
 			action = "none"
-			code = "BUILD_FAILED"
-			summary = "构建或验证失败，公开版本未改变。"
+			code, summary = safeWorkerFailure(body.ErrorCode)
 		}
 	}
 	now := a.now().Unix()
@@ -404,6 +403,36 @@ func (a *App) workerResult(w http.ResponseWriter, r *http.Request) {
 	a.workerSeen.Store(now)
 	writeData(w, r, 200, publishmodel.ResultResponse{Status: status, Action: action, ExpectedPreviousReleaseID: j.PreviousReleaseID})
 }
+
+// Preserve only fixed protocol diagnostics. Worker output and underlying build
+// errors must never become administrator-visible text or persisted secrets.
+func safeWorkerFailure(code string) (string, string) {
+	switch code {
+	case "INVALID_ASSIGNMENT":
+		return code, "发布任务契约校验失败，公开版本未改变。"
+	case "MARKER_WRITE_FAILED":
+		return code, "版本标记写入失败，公开版本未改变。"
+	case "ARTIFACT_VALIDATION_FAILED":
+		return code, "静态产物校验失败，公开版本未改变。"
+	case "LEASE_LOST":
+		return code, "发布任务租约失效，公开版本未改变。"
+	case "ARTIFACT_PREPARE_FAILED":
+		return code, "静态产物准备失败，公开版本未改变。"
+	case "PREVIEW_RECEIPT_FAILED":
+		return code, "预览核验凭据写入失败，公开版本未改变。"
+	case "ROLLBACK_TARGET_INVALID":
+		return code, "恢复目标版本校验失败，公开版本未改变。"
+	case "ACTIVATION_NOT_COMPLETED":
+		return code, "版本切换未完成，公开版本未改变。"
+	case "INTERRUPTED_PREVIEW":
+		return code, "预览任务被中断，公开版本未改变。"
+	case "INTERRUPTED_BEFORE_ACTIVATION":
+		return code, "发布任务在切换前中断，公开版本未改变。"
+	default:
+		return "BUILD_FAILED", "构建或验证失败，公开版本未改变。"
+	}
+}
+
 func (a *App) verifyRestored(ctx context.Context, j publicationJob) error {
 	s, e := publishfs.OpenReadOnly(a.config.PublicationsDir)
 	if e != nil {
