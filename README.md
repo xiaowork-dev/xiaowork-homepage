@@ -1,8 +1,9 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。P6-C 已接入独立 Vue 中文管理后台，提供真实登录、仪表盘、项目/分类、图片、品牌资料、网站 SEO 与改密操作，复用 Go/SQLite 的认证与草稿 API。所有保存仅修改私有草稿；静态预览、发布、历史恢复留给 P6-D，当前明确禁用。前台保持 V1.0 静态站，生产容器与发布门槛不变。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite 认证与草稿 API。P6-D 已增加不可变快照、独立离线 Worker、私有静态预览、全站静态发布、HTTP 对账与同构建器内容恢复；当前正在完成最终隔离验收。发布默认关闭，仅能显式开启本地 HTTPS 测试，不能对正式管理 origin 启用。前台保留 V1.0 视觉与静态架构，未连接或修改生产。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
+- [P6-D 实现基线](docs/deliveries/P6D-implementation.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)
 - [架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 安全设计](docs/architecture/V1.1-API-SECURITY.md)、[发布设计](docs/architecture/V1.1-PUBLISHING.md)
 - [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
 

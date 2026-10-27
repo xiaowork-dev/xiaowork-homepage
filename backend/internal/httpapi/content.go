@@ -10,6 +10,7 @@ import (
 	"strconv"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata"
 )
 
 func (a *App) registerContent(mux *http.ServeMux) {
@@ -121,8 +122,37 @@ func (a *App) getDashboard(w http.ResponseWriter, r *http.Request) {
 		writeError(w, r, err)
 		return
 	}
-	a.contentRead(w, r, func(ctx context.Context, tx *sql.Tx, _ int64) (map[string]any, error) {
-		return contentdata.Dashboard(ctx, tx)
+	current := ""
+	verified := false
+	if a.config.LocalPublish {
+		current, _ = a.currentRelease()
+		if current != "" {
+			verified = a.verifyActive(r.Context(), current) == nil
+		}
+	}
+	a.contentRead(w, r, func(ctx context.Context, tx *sql.Tx, revision int64) (map[string]any, error) {
+		data, err := contentdata.Dashboard(ctx, tx)
+		if err != nil || !a.config.LocalPublish {
+			return data, err
+		}
+		data["workerAvailable"] = a.workerAvailable()
+		data["publicationState"] = "local-only"
+		data["activeVerified"] = verified
+		if current != "" {
+			data["activeReleaseId"] = current
+		}
+		review := a.reviewWithQuery(ctx, tx, revision, current, verified || current == "")
+		data["draftDiff"] = map[string]any{"available": review.Available, "changed": len(review.Added) + len(review.Modified) + len(review.Hidden) + len(review.Archived), "added": len(review.Added), "modified": len(review.Modified), "removed": len(review.Hidden) + len(review.Archived)}
+		if verified {
+			var snapshotID string
+			if e := tx.QueryRowContext(ctx, `SELECT snapshot_id FROM releases WHERE id=?`, current).Scan(&snapshotID); e == nil {
+				snapshot, _, _, e := publishdata.Load(ctx, tx, snapshotID)
+				if e == nil {
+					data["counts"].(map[string]any)["publishedProjects"] = len(snapshot.VisibleProjects)
+				}
+			}
+		}
+		return data, nil
 	})
 }
 

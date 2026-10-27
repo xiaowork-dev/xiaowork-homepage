@@ -93,7 +93,7 @@ export interface Dashboard {
   revision: string
   activeReleaseId: string | null
   activeVerified: boolean
-  publicationState: 'not-integrated'
+  publicationState: 'not-integrated' | 'local-only' | 'verified' | 'recovery-required'
   workerAvailable: boolean
   counts: {
     projects: number
@@ -175,3 +175,52 @@ export interface SettingsResult {
   revision: string
 }
 export type WriteMethod = 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+
+export type PublicationKind = 'publish' | 'preview' | 'rollback'
+export interface PublicationJob {
+  id: string
+  kind: PublicationKind
+  status: string
+  phase: string | null
+  snapshotId: string
+  workspaceRevision: string
+  releaseId: string
+  targetReleaseId: string | null
+  createdAt: string
+  startedAt: string | null
+  completedAt: string | null
+  error: { code: string; message: string } | null
+  activeVerified: boolean
+}
+export interface PublishedRelease {
+  id: string
+  snapshotId: string
+  kind: 'publication' | 'preview'
+  workspaceRevision: string
+  createdAt: string
+  expiresAt: string | null
+  active: boolean
+  verified: boolean
+  previewUrl: string | null
+}
+export interface PublishingStatus {
+  enabled: boolean
+  localOnly: boolean
+  workerAvailable: boolean
+  activeReleaseId: string | null
+  activeVerified: boolean
+  blockingJob: PublicationJob | null
+  reason: string
+  review?: {
+    revision: string
+    available: boolean
+    added: { id: string; name: string }[]
+    modified: { id: string; name: string }[]
+    hidden: { id: string; name: string }[]
+    archived: { id: string; name: string }[]
+    profileChanged: boolean
+    settingsChanged: boolean
+    categoriesChanged: boolean
+    mediaChanged: boolean
+  }
+}

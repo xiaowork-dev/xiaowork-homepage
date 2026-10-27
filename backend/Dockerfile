@@ -5,8 +5,8 @@ ARG GOPROXY=https://proxy.golang.org,direct
 RUN GOPROXY=${GOPROXY} go mod download
 COPY backend/ ./
 RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -trimpath -ldflags="-s -w" -o /homepage-api ./cmd/homepage-api \
-    && mkdir -p /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls \
-    && chmod 700 /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls
+    && mkdir -p /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls /runtime/run/publishing \
+    && chmod 700 /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls /runtime/run/publishing
 
 FROM scratch AS runtime
 COPY --from=build /homepage-api /homepage-api

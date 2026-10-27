@@ -280,7 +280,7 @@ func (a *App) authorize(next http.Handler) http.Handler {
 			}
 		}
 		p.ReauthUntil = reauth.Int64
-		interactive := r.URL.Path != apiPrefix+"/auth/session" && r.URL.Path != apiPrefix+"/dashboard" && r.URL.Path != apiPrefix+"/jobs" && !strings.HasPrefix(r.URL.Path, apiPrefix+"/jobs/")
+		interactive := r.URL.Path != apiPrefix+"/auth/session" && r.URL.Path != apiPrefix+"/dashboard" && r.URL.Path != apiPrefix+"/publishing-status" && r.URL.Path != apiPrefix+"/jobs" && !strings.HasPrefix(r.URL.Path, apiPrefix+"/jobs/")
 		p.IdleExpiresAt = min(lastInteractive+1800, p.ExpiresAt)
 		response := &authResponseWriter{ResponseWriter: w}
 		next.ServeHTTP(response, r.WithContext(context.WithValue(r.Context(), principalKey{}, p)))

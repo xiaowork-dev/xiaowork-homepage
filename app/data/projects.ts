@@ -1,11 +1,19 @@
 import type { Project, ProjectCategory, ProjectStatus } from '../types/project'
 import { projectCovers } from './project-covers'
+import { mediaURL, snapshot } from '#shared/content'
 
-export const categoryLabels: Record<ProjectCategory, string> = {
+const defaultCategories: Record<ProjectCategory, string> = {
   website: '网站',
   application: '应用与工具',
   'open-source': '开源与学习',
 }
+export const categoryLabels: Record<ProjectCategory, string> = snapshot
+  ? Object.fromEntries(
+      [...snapshot.categories]
+        .sort((a, b) => a.order - b.order)
+        .map((category) => [category.slug, category.name]),
+    )
+  : defaultCategories
 
 export const statusLabels: Record<ProjectStatus, string> = {
   unconfirmed: '资料待确认',
@@ -16,7 +24,7 @@ export const statusLabels: Record<ProjectStatus, string> = {
 }
 
 // Placeholder content only. Real screenshots, stacks, status and public URLs await confirmation.
-export const projects = [
+const defaults = [
   {
     id: 'xiaowork-blog',
     slug: 'blog',
@@ -57,6 +65,15 @@ export const projects = [
     isPlaceholder: true,
   },
 ] satisfies Project[]
+
+export const projects: Project[] = snapshot
+  ? snapshot.visibleProjects.map((project) => ({
+      ...project,
+      cover: mediaURL(project.cover.id)!,
+      demoUrl: (project.demoUrl as Project['demoUrl']) ?? undefined,
+      repositoryUrl: (project.repositoryUrl as Project['repositoryUrl']) ?? undefined,
+    }))
+  : defaults
 
 export const sortedProjects: Project[] = [...projects].sort((a, b) => a.order - b.order)
 export const featuredProjects = sortedProjects.filter((project) => project.featured).slice(0, 6)

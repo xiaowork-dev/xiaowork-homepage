@@ -26,6 +26,7 @@ const navigation = [
   { to: '/media', label: '图片资源', icon: 'media' },
   { to: '/profile', label: '品牌与个人资料', icon: 'profile' },
   { to: '/settings', label: '网站与 SEO', icon: 'settings' },
+  { to: '/publishing', label: '发布、预览与历史', icon: 'link' },
 ]
 function toggleTheme() {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'

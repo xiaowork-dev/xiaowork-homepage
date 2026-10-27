@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Project } from '~/types/project'
 import { categoryLabels, statusLabels } from '~/data/projects'
+import { assetURL } from '#shared/content'
 
 const props = withDefaults(
   defineProps<{ project: Project; headingLevel?: 2 | 3; eager?: boolean }>(),
@@ -42,7 +43,7 @@ watch(
         />
         <img
           ref="coverImage"
-          :src="coverFailure ? '/images/projects/placeholder.svg' : project.cover"
+          :src="coverFailure ? assetURL('/images/projects/placeholder.svg') : project.cover"
           :alt="coverFailure ? `${project.name} 封面暂不可用，显示占位图` : project.coverAlt"
           width="960"
           height="600"

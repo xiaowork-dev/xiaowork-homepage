@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { admin } from '../lib/admin'
-import type { Dashboard } from '../lib/types'
+import type { Dashboard, PublishingStatus } from '../lib/types'
+const publishing = ref<PublishingStatus | null>(null)
 const data = ref<Dashboard | null>(null),
   loading = ref(false),
   error = ref('')
@@ -45,6 +46,11 @@ async function load() {
   error.value = ''
   try {
     data.value = await admin.get<Dashboard>('/dashboard')
+    try {
+      publishing.value = await admin.get<PublishingStatus>('/publishing-status')
+    } catch {
+      publishing.value = null
+    }
   } catch (cause) {
     error.value = cause instanceof Error ? cause.message : '读取失败，请重试。'
   } finally {
@@ -118,11 +124,15 @@ onMounted(load)
         <section class="panel form-section">
           <div class="section-heading">
             <h2>公开发布状态</h2>
-            <span class="badge badge--warning">尚未接入</span>
+            <span class="badge badge--warning">{{
+              publishing?.enabled ? '仅本地验收' : '尚未启用'
+            }}</span>
           </div>
-          <p class="muted">
-            发布 worker 将在 P6-D
-            实现。当前无法核验公开版本、已发布项目数及草稿差异；这里不会把草稿统计当作公开结果。
+          <p v-if="publishing?.enabled" class="muted">
+            {{ publishing.reason }}每次发布需核对全站变化；排队不代表更新完成。
+          </p>
+          <p v-else class="muted">
+            发布服务尚未接入或尚未启用。当前无法核验公开版本及草稿差异；这里不会把草稿统计当作公开结果。
           </p>
           <dl class="summary-list">
             <div>
@@ -133,18 +143,24 @@ onMounted(load)
             </div>
             <div>
               <dt>公开版本</dt>
-              <dd>尚未核验</dd>
+              <dd>
+                <code v-if="publishing?.activeReleaseId">{{ publishing.activeReleaseId }}</code
+                ><span v-else>尚未核验</span>
+              </dd>
             </div>
             <div>
-              <dt>已发布项目</dt>
-              <dd>暂无可信统计</dd>
+              <dt>当前版本核验</dt>
+              <dd>{{ publishing?.activeVerified ? '已核验一致' : '尚无可信结果' }}</dd>
             </div>
           </dl>
-          <div class="actions">
+          <div v-if="!publishing?.enabled" class="actions">
             <button class="button button--secondary" disabled>预览 · P6-D</button
             ><button class="button button--primary" disabled>发布 · P6-D</button
             ><button class="button button--secondary" disabled>历史恢复 · P6-D</button>
           </div>
+          <RouterLink to="/publishing" class="button button--secondary"
+            >查看发布、预览与历史</RouterLink
+          >
         </section>
         <section class="panel form-section">
           <h2>内容维护</h2>

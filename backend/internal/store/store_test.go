@@ -121,7 +121,7 @@ func TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum(t *testi
 	if err := db.QueryRow("SELECT revision FROM workspace WHERE id=1").Scan(&revision); err != nil || revision != 11 {
 		t.Fatalf("lost old workspace: %d %v", revision, err)
 	}
-	if err := db.QueryRow("SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != 2 {
+	if err := db.QueryRow("SELECT count(*) FROM schema_migrations").Scan(&count); err != nil || count != SchemaVersion {
 		t.Fatalf("history: %d %v", count, err)
 	}
 	if _, err := db.Exec("UPDATE schema_migrations SET checksum='tampered' WHERE version=1"); err != nil {

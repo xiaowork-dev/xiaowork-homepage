@@ -9,7 +9,7 @@ useSiteSeo('about')
   <div>
     <section class="hero-surface" aria-labelledby="about-title">
       <p class="eyebrow">XIAOWORK / ABOUT</p>
-      <h1 id="about-title" class="page-title">关于 XiaoWork</h1>
+      <h1 id="about-title" class="page-title">关于 {{ siteProfile.name }}</h1>
       <p class="page-introduction">{{ aboutProfile.brandIntroduction }}</p>
       <NuxtLink to="/projects" class="button-primary mt-7"
         >浏览作品 <AppIcon name="arrow-right"
@@ -18,6 +18,15 @@ useSiteSeo('about')
 
     <div class="about-overview">
       <section class="content-panel" aria-labelledby="developer-title">
+        <img
+          v-if="siteProfile.avatarUrl"
+          :src="siteProfile.avatarUrl"
+          :alt="`${siteProfile.name} 头像`"
+          width="96"
+          height="96"
+          loading="lazy"
+          class="mb-6 rounded-2xl"
+        />
         <p class="eyebrow">THE DEVELOPER</p>
         <h2 id="developer-title">
           {{ siteProfile.name }} <span class="text-muted">/ 开发者</span>

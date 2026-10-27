@@ -1,3 +1,5 @@
+import { mediaURL, snapshot } from '#shared/content'
+
 interface SiteProfile {
   name: string
   role: string
@@ -5,9 +7,11 @@ interface SiteProfile {
   directions: string[]
   technologies: string[]
   githubUrl?: `https://${string}`
+  avatarUrl?: string
+  brandUrl?: string
 }
 
-export const siteProfile: SiteProfile = {
+const defaults: SiteProfile = {
   name: 'XiaoWork',
   role: 'Developer & Creator',
   introduction: [
@@ -18,3 +22,12 @@ export const siteProfile: SiteProfile = {
   technologies: ['Java', 'Spring Boot', 'Vue', 'Nuxt', 'MySQL', 'Docker'],
   githubUrl: 'https://github.com/xiaowork-dev/xiaowork-homepage',
 }
+
+export const siteProfile: SiteProfile = snapshot
+  ? {
+      ...snapshot.siteProfile,
+      githubUrl: (snapshot.siteProfile.githubUrl as SiteProfile['githubUrl']) ?? undefined,
+      avatarUrl: mediaURL(snapshot.siteProfile.avatarAssetId),
+      brandUrl: mediaURL(snapshot.siteProfile.brandAssetId),
+    }
+  : defaults

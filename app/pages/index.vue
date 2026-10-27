@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { featuredProjects } from '~/data/projects'
 import { siteProfile } from '~/data/site'
+import { snapshot } from '#shared/content'
+
+const introduction = snapshot?.siteSettings.homeIntroduction ?? siteProfile.introduction
 
 const highlights = [
   { icon: 'code', title: '全栈开发', detail: '从界面体验，到服务实现' },
@@ -21,7 +24,7 @@ useSiteSeo('home')
         {{ siteProfile.name }} <span>— {{ siteProfile.role }}</span>
       </h1>
       <div class="hero-introduction">
-        <p v-for="line in siteProfile.introduction" :key="line">{{ line }}</p>
+        <p v-for="line in introduction" :key="line">{{ line }}</p>
       </div>
       <div class="hero-actions">
         <NuxtLink to="/projects" class="button-primary">
@@ -71,6 +74,9 @@ useSiteSeo('home')
           :eager="index === 0"
         />
       </div>
+      <p v-if="!featuredProjects.length" class="content-note">
+        精选作品正在整理，欢迎浏览全部项目。
+      </p>
     </section>
   </div>
 </template>

@@ -1,7 +1,9 @@
 import { pageSeo } from '#shared/seo'
+import { snapshot } from '#shared/content'
+import { publicOrigin } from '#shared/publication'
 
 export default defineEventHandler((event) => {
-  const origin = useRuntimeConfig(event).public.siteUrl
+  const origin = snapshot ? publicOrigin : useRuntimeConfig(event).public.siteUrl
   if (!origin)
     throw createError({ statusCode: 404, statusMessage: 'Site domain is not configured' })
   const escapeXml = (value: string) =>

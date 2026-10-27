@@ -9,5 +9,8 @@ var Initial string
 //go:embed 002_content_history.sql
 var ContentHistory string
 
+//go:embed 003_publication_details.sql
+var PublicationDetails string
+
 // All is ordered and append-only; applied migration bytes must not change.
-var All = []string{Initial, ContentHistory}
+var All = []string{Initial, ContentHistory, PublicationDetails}

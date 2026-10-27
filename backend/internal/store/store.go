@@ -17,7 +17,7 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-const SchemaVersion = 2
+const SchemaVersion = 3
 
 // Open uses one connection for the scaffold. Every new connection receives all pragmas.
 // Production concurrency and migration locking are P6-B/E acceptance items.

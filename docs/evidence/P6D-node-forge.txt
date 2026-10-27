@@ -1,0 +1,18 @@
+node-forge@1.4.1
+node_modules/node-forge
+  node-forge@"^1.4.0" from listhen@1.10.1
+  node_modules/listhen
+    listhen@"^1.10.1" from nitropack@2.13.5
+    node_modules/nitropack
+      nitropack@"^2.13.4" from @nuxt/nitro-server@4.6.2
+      node_modules/@nuxt/nitro-server
+        @nuxt/nitro-server@"4.6.2" from nuxt@4.6.2
+        node_modules/nuxt
+          nuxt@"4.6.2" from the root project
+          peer nuxt@"^4.6.2" from @nuxt/nitro-server@4.6.2
+          peer nuxt@"4.6.2" from @nuxt/vite-builder@4.6.2
+          node_modules/@nuxt/vite-builder
+            @nuxt/vite-builder@"4.6.2" from nuxt@4.6.2
+          peer nuxt@"^4.6.2" from @nuxt/vite-server@4.6.2
+          node_modules/@nuxt/vite-server
+            @nuxt/vite-server@"4.6.2" from nuxt@4.6.2

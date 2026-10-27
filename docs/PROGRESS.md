@@ -1,20 +1,21 @@
 # XiaoWork Homepage 项目进度
 
 > 最后更新：2026-10-27（Asia/Shanghai）
-> 当前阶段：**V1.1 P6-C 中文管理 UI 与真实草稿 API 已完成本地验收；下一步 P6-D 静态发布服务。V1.0 维持内部部署，公网安全门槛未解除。**
+> 当前阶段：**V1.1 P6-D 静态发布实现已进入隔离验收；尚未完成最终浏览器闭环。V1.0 维持内部部署，公网门槛未解除。**
 
 ## 阶段状态
 
-| 阶段        | 状态                                                      | 交付                                                                                                        |
-| ----------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| P0～P2      | 需求、工程、首页视觉已验收，原件保留                      | [P0](../XiaoWork_Homepage_P0_Delivery.md)、[P1](deliveries/P1-delivery.md)、[P2](deliveries/P2-delivery.md) |
-| P3、P4      | 项目/关于/SEO、交互/性能已验收                            | [P3](deliveries/P3-delivery.md)、[P4](deliveries/P4-delivery.md)                                            |
-| P5-A        | 用户基本通过工程验收                                      | [P5-A](deliveries/P5A-delivery.md)                                                                          |
-| P5-B        | OpenResty 回环内部部署完成；high 风险未获接受，公网未放行 | [生产交付](deliveries/P5-production-delivery.md)、[发布门槛](P5-RELEASE-CHECKLIST.md)                       |
-| P6-A        | 架构、数据库/API/发布设计与隔离骨架已验收                 | [P6-A](deliveries/P6A-delivery.md)、[架构](architecture/V1.1-ARCHITECTURE.md)                               |
-| P6-B        | 单管理员认证、草稿内容/图片 API、导入与持久化已验证       | [P6-B](deliveries/P6B-delivery.md)、[API](V1.1-API-USAGE.md)、[安全测试](P6B-SECURITY-TESTS.md)             |
-| P6-C        | 中文 Vue 管理 UI、真实 HTTPS 浏览器验收完成               | [P6-C](deliveries/P6C-delivery.md)、[操作](V1.1-ADMIN-USAGE.md)、[测试](P6C-TEST-RECORD.md)                 |
-| P6-D / P6-E | 未实现：静态发布与恢复 / 完整上线准备                     | [发布设计](architecture/V1.1-PUBLISHING.md)                                                                 |
+| 阶段   | 状态                                                         | 交付                                                                                                        |
+| ------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| P0～P2 | 需求、工程、首页视觉已验收，原件保留                         | [P0](../XiaoWork_Homepage_P0_Delivery.md)、[P1](deliveries/P1-delivery.md)、[P2](deliveries/P2-delivery.md) |
+| P3、P4 | 项目/关于/SEO、交互/性能已验收                               | [P3](deliveries/P3-delivery.md)、[P4](deliveries/P4-delivery.md)                                            |
+| P5-A   | 用户基本通过工程验收                                         | [P5-A](deliveries/P5A-delivery.md)                                                                          |
+| P5-B   | OpenResty 回环内部部署完成；high 风险未获接受，公网未放行    | [生产交付](deliveries/P5-production-delivery.md)、[发布门槛](P5-RELEASE-CHECKLIST.md)                       |
+| P6-A   | 架构、数据库/API/发布设计与隔离骨架已验收                    | [P6-A](deliveries/P6A-delivery.md)、[架构](architecture/V1.1-ARCHITECTURE.md)                               |
+| P6-B   | 单管理员认证、草稿内容/图片 API、导入与持久化已验证          | [P6-B](deliveries/P6B-delivery.md)、[API](V1.1-API-USAGE.md)、[安全测试](P6B-SECURITY-TESTS.md)             |
+| P6-C   | 中文 Vue 管理 UI、真实 HTTPS 浏览器验收完成                  | [P6-C](deliveries/P6C-delivery.md)、[操作](V1.1-ADMIN-USAGE.md)、[测试](P6C-TEST-RECORD.md)                 |
+| P6-D   | 快照、Worker、预览/发布/恢复与后台已实现，最终隔离验收进行中 | [实现基线](deliveries/P6D-implementation.md)、[操作](V1.1-PUBLISH-OPERATIONS.md)                            |
+| P6-E   | 待执行完整上线准备、跨服务升级及备份恢复验收                 | [发布设计](architecture/V1.1-PUBLISHING.md)                                                                 |
 
 ## 最新完成与证据
 

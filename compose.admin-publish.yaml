@@ -1,0 +1,208 @@
+# Local P6-D acceptance only. This is not a production deployment override.
+name: xiaowork-homepage-v11-p6d-dev
+
+x-hardening: &hardening
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  logging:
+    driver: json-file
+    options:
+      max-size: '10m'
+      max-file: '3'
+
+x-api: &api
+  <<: *hardening
+  image: xiaowork-homepage-api:p6d-dev
+  tmpfs: ['/tmp:size=32m,mode=1777']
+  environment: &api-env
+    XIAOWORK_ORIGIN: https://localhost:3445
+    XIAOWORK_SECRET_PATH: /secrets/session.key
+    XIAOWORK_UPLOAD_DIR: /uploads
+    XIAOWORK_DEV_AUTHORITY_DIR: /authority
+    XIAOWORK_DEV_TLS_DIR: /tls
+    XIAOWORK_IMPORT_PATH: /seed/v1.json
+    XIAOWORK_TRUSTED_PROXY_CIDRS: 192.168.249.2/32
+    XIAOWORK_LOCAL_PUBLISH: ${V11_LOCAL_PUBLISH:-0}
+    XIAOWORK_PUBLICATIONS_DIR: /publications
+    XIAOWORK_WORKER_SOCKET: /run/publishing/publisher.sock
+    XIAOWORK_PUBLICATION_VERIFY_URL: http://publication-static:8080
+    XIAOWORK_SOURCE_REVISION: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
+    XIAOWORK_BUILDER_ID: ${V11_BUILDER_ID:-xiaowork-nuxt-p6d-v1}
+  volumes:
+    - admin-db:/data
+    - admin-uploads:/uploads
+    - admin-secrets:/secrets:ro
+    - type: volume
+      source: admin-publications
+      target: /publications
+      read_only: true
+      volume: { nocopy: true }
+    - admin-publisher-socket:/run/publishing
+  networks:
+    control:
+      ipv4_address: 192.168.249.3
+
+services:
+  publication-init:
+    <<: *hardening
+    image: xiaowork-homepage-worker:p6d-dev
+    network_mode: none
+    user: '10001:10001'
+    entrypoint: [/usr/local/bin/node, -e]
+    command:
+      - "const fs=require('node:fs');for(const p of ['releases','preview','staging','activations'])fs.mkdirSync('/publications/'+p,{recursive:true,mode:0o700});fs.accessSync('/publications',fs.constants.W_OK);"
+    volumes:
+      - admin-publications:/publications
+    restart: 'no'
+  api-init:
+    <<: *api
+    command: [prepare-dev]
+    environment:
+      <<: *api-env
+      XIAOWORK_LOCAL_PUBLISH: '0'
+    volumes:
+      - admin-db:/data
+      - admin-secrets:/secrets
+      - admin-authority:/authority
+      - admin-tls:/tls
+      - admin-publisher-socket:/run/publishing
+    networks:
+      control:
+        ipv4_address: 192.168.249.4
+    restart: 'no'
+    healthcheck: { disable: true }
+    depends_on:
+      publication-init: { condition: service_completed_successfully }
+  api:
+    <<: *api
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    depends_on:
+      api-init: { condition: service_completed_successfully }
+    restart: 'no'
+  worker:
+    <<: *hardening
+    profiles: [publisher]
+    image: xiaowork-homepage-worker:p6d-dev
+    build:
+      context: .
+      dockerfile: backend/worker.Dockerfile
+      args:
+        VCS_REF: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
+        BUILDER_ID: ${V11_BUILDER_ID:-xiaowork-nuxt-p6d-v1}
+    command:
+      - -socket
+      - /run/publishing/publisher.sock
+      - -root
+      - /publications
+      - -source-revision
+      - ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
+      - -builder-id
+      - ${V11_BUILDER_ID:-xiaowork-nuxt-p6d-v1}
+    network_mode: none
+    user: '10001:10001'
+    cpus: 2
+    mem_limit: 3g
+    pids_limit: 256
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+      - /work:size=768m,mode=0700,uid=10001,gid=10001
+    volumes:
+      - admin-publications:/publications
+      - admin-uploads:/uploads:ro
+      - admin-publisher-socket:/run/publishing
+    depends_on:
+      api: { condition: service_healthy }
+    healthcheck:
+      test: [CMD-SHELL, 'test -S /run/publishing/publisher.sock && kill -0 1']
+      interval: 5s
+      timeout: 3s
+      retries: 6
+    restart: 'no'
+  frontend:
+    <<: *hardening
+    image: xiaowork-homepage:p6d-legacy
+    build:
+      context: .
+      target: runtime
+      args:
+        NUXT_PUBLIC_SITE_URL: https://xiaoworks.com
+    tmpfs: ['/tmp:size=64m,mode=1777']
+    networks: [isolated]
+  publication-static:
+    <<: *hardening
+    image: nginx:1.30.6-alpine
+    user: '10001:10001'
+    entrypoint: [nginx, -g, 'daemon off;']
+    tmpfs: ['/tmp:size=32m,mode=1777']
+    volumes:
+      - type: volume
+        source: admin-publications
+        target: /publications
+        read_only: true
+        volume: { nocopy: true }
+      - ./deploy/admin-publish/static.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/security-headers.conf:/etc/nginx/security-headers.conf:ro
+    networks:
+      isolated:
+      control:
+        ipv4_address: 192.168.249.5
+    depends_on:
+      frontend: { condition: service_healthy }
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, 'http://127.0.0.1:8080/health.json']
+      interval: 5s
+      timeout: 3s
+      retries: 6
+  gateway:
+    <<: *hardening
+    image: xiaowork-homepage-admin-gateway:p6d-dev
+    build:
+      context: .
+      dockerfile: admin/Dockerfile
+    user: '10001:10001'
+    entrypoint: [nginx, -g, 'daemon off;']
+    ports:
+      - '127.0.0.1:3212:8080'
+      - '127.0.0.1:3445:3445'
+    volumes:
+      - ./deploy/admin-publish/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/admin-publish/locations.conf:/etc/nginx/xiaowork-locations.conf:ro
+      - ./deploy/admin-dev/admin-headers.conf:/etc/nginx/xiaowork-admin-headers.conf:ro
+      - ./deploy/admin-dev/admin-locations.conf:/etc/nginx/xiaowork-admin-locations.conf:ro
+      - admin-tls:/tls:ro
+    tmpfs: ['/tmp:size=32m,mode=1777']
+    networks:
+      edge:
+      isolated:
+      control:
+        ipv4_address: 192.168.249.2
+    depends_on:
+      api: { condition: service_healthy }
+      publication-static: { condition: service_healthy }
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, 'http://127.0.0.1:8080/health.json']
+      interval: 5s
+      timeout: 3s
+      retries: 6
+
+networks:
+  edge:
+  isolated:
+    internal: true
+  control:
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.249.0/28
+
+volumes:
+  admin-db:
+  admin-uploads:
+  admin-secrets:
+  admin-authority:
+  admin-tls:
+  admin-publications:
+  admin-publisher-socket:

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { siteProfile } from '~/data/site'
 const menuOpen = ref(false)
 const menuButton = useTemplateRef<HTMLButtonElement>('menuButton')
 function closeMenu() {
@@ -21,8 +22,16 @@ watch(
 
 <template>
   <header class="site-container site-header">
-    <NuxtLink to="/" class="brand" aria-label="XiaoWork 首页">
-      XiaoWork<span class="text-accent">.</span>
+    <NuxtLink to="/" class="brand" :aria-label="`${siteProfile.name} 首页`">
+      <img
+        v-if="siteProfile.brandUrl"
+        :src="siteProfile.brandUrl"
+        alt=""
+        width="28"
+        height="28"
+        class="mr-2 inline-block align-middle"
+      />
+      {{ siteProfile.name }}<span class="text-accent">.</span>
     </NuxtLink>
     <div class="flex items-center gap-3 sm:gap-6">
       <nav aria-label="主导航" class="hidden items-center gap-2 sm:flex">

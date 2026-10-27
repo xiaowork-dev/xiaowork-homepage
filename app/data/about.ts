@@ -1,4 +1,5 @@
 import { siteProfile } from './site'
+import { snapshot } from '#shared/content'
 
 interface PublicContact {
   label: string
@@ -15,7 +16,7 @@ interface AboutProfile {
   resume?: { label: string; url: `/${string}` | `https://${string}` }
 }
 
-export const aboutProfile: AboutProfile = {
+const defaults: AboutProfile = {
   brandIntroduction:
     'XiaoWork 是个人品牌与开发作品的统一入口，连接网站、应用和实用工具，也记录持续开发与实践的过程。',
   // Add only user-confirmed public biography. Never infer a biography from Git identity.
@@ -41,3 +42,11 @@ export const aboutProfile: AboutProfile = {
       ]
     : [],
 }
+
+export const aboutProfile: AboutProfile = snapshot
+  ? {
+      ...snapshot.aboutProfile,
+      contacts: snapshot.aboutProfile.contacts as PublicContact[],
+      resume: (snapshot.aboutProfile.resume as AboutProfile['resume']) ?? undefined,
+    }
+  : defaults

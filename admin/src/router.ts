@@ -9,6 +9,7 @@ import MediaPage from './pages/MediaPage.vue'
 import ProfilePage from './pages/ProfilePage.vue'
 import SettingsPage from './pages/SettingsPage.vue'
 import PasswordPage from './pages/PasswordPage.vue'
+import PublishingPage from './pages/PublishingPage.vue'
 
 let restored = false
 export const router = createRouter({
@@ -31,6 +32,12 @@ export const router = createRouter({
       meta: { title: '品牌与个人资料' },
     },
     { path: '/settings', name: 'settings', component: SettingsPage, meta: { title: '网站与 SEO' } },
+    {
+      path: '/publishing',
+      name: 'publishing',
+      component: PublishingPage,
+      meta: { title: '发布与历史' },
+    },
     { path: '/account', name: 'password', component: PasswordPage, meta: { title: '修改密码' } },
     { path: '/:pathMatch(.*)*', redirect: '/' },
   ],

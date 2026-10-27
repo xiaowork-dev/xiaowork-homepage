@@ -14,7 +14,9 @@ const hydrated = ref(false)
 onMounted(() => {
   hydrated.value = true
 })
-const filters = computed(() => parseCatalogQuery(hydrated.value ? route.query : {}))
+const filters = computed(() =>
+  parseCatalogQuery(hydrated.value ? route.query : {}, Object.keys(categoryLabels)),
+)
 const searchDraft = ref(filters.value.search)
 const searchInput = useTemplateRef<HTMLInputElement>('searchInput')
 watch(
@@ -64,7 +66,7 @@ const hasFilters = computed(
       <p class="eyebrow">XIAOWORK / PROJECTS</p>
       <h1 id="projects-title" class="page-title">项目与作品</h1>
       <p class="page-introduction">从网站到应用，把想法写成作品，也把每一次探索留在这里。</p>
-      <p class="content-note mt-6">
+      <p v-if="sortedProjects.some((project) => project.isPlaceholder)" class="content-note mt-6">
         项目资料正在整理。封面、技术栈、状态与公开入口将在确认后补充。
       </p>
     </div>

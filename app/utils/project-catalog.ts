@@ -10,11 +10,13 @@ export interface CatalogFilters {
 }
 
 // Query strings are public input. Ignore unknown values and bound search length.
-export function parseCatalogQuery(query: Record<string, unknown>): CatalogFilters {
+export function parseCatalogQuery(
+  query: Record<string, unknown>,
+  categories = ['website', 'application', 'open-source'],
+): CatalogFilters {
   return {
     category:
-      typeof query.category === 'string' &&
-      ['website', 'application', 'open-source'].includes(query.category)
+      typeof query.category === 'string' && categories.includes(query.category)
         ? (query.category as ProjectCategory)
         : 'all',
     search: typeof query.q === 'string' ? query.q.trim().slice(0, 100) : '',

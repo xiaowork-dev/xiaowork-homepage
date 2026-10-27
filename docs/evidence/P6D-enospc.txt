@@ -1,0 +1,5 @@
+=== RUN   TestRealTinyFilesystemENOSPCPreservesActiveRelease
+    enospc_linux_test.go:58: actual kernel ENOSPC; current remains A; full retained A manifest verified; no B activation
+--- PASS: TestRealTinyFilesystemENOSPCPreservesActiveRelease (0.01s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.016s

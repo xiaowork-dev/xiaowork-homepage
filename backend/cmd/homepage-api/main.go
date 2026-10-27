@@ -216,22 +216,39 @@ func run() error {
 		}
 		proxies = append(proxies, p)
 	}
-	app, e := httpapi.New(db, httpapi.Config{Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies})
+	app, e := httpapi.New(db, httpapi.Config{Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies,
+		LocalPublish: os.Getenv("XIAOWORK_LOCAL_PUBLISH") == "1", PublicationsDir: os.Getenv("XIAOWORK_PUBLICATIONS_DIR"), PublicationVerifyURL: os.Getenv("XIAOWORK_PUBLICATION_VERIFY_URL"), WorkerSocket: os.Getenv("XIAOWORK_WORKER_SOCKET"), SourceRevision: os.Getenv("XIAOWORK_SOURCE_REVISION"), BuilderID: os.Getenv("XIAOWORK_BUILDER_ID")})
 	if e != nil {
 		return e
 	}
 	server := httpapi.Server(env("XIAOWORK_LISTEN", "127.0.0.1:8081"), app.Handler())
 	stop, done := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer done()
-	errs := make(chan error, 1)
+	errs := make(chan error, 2)
+	var workerServer *http.Server
+	if os.Getenv("XIAOWORK_LOCAL_PUBLISH") == "1" {
+		listener, err := app.WorkerListener()
+		if err != nil {
+			return err
+		}
+		defer listener.Close()
+		workerServer = httpapi.Server("", app.WorkerHandler())
+		workerServer.WriteTimeout = 90 * time.Second
+		go func() { errs <- workerServer.Serve(listener) }()
+	}
 	go func() { errs <- server.ListenAndServe() }()
-	log.Print("P6-B private draft API started; publishing unavailable")
+	log.Print("private draft API started; production publishing disabled")
 	select {
 	case e := <-errs:
 		return e
 	case <-stop.Done():
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
+		if workerServer != nil {
+			if e = workerServer.Shutdown(ctx); e != nil {
+				return e
+			}
+		}
 		return server.Shutdown(ctx)
 	}
 }

@@ -11,17 +11,24 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"sync/atomic"
 	"time"
 )
 
 const apiPrefix = "/api/admin/v1"
 
 type Config struct {
-	Origin            string
-	Secret            []byte
-	UploadDir         string
-	TrustedProxyCIDRs []netip.Prefix
-	Clock             func() time.Time
+	Origin               string
+	Secret               []byte
+	UploadDir            string
+	TrustedProxyCIDRs    []netip.Prefix
+	Clock                func() time.Time
+	PublicationsDir      string
+	PublicationVerifyURL string
+	WorkerSocket         string
+	SourceRevision       string
+	BuilderID            string
+	LocalPublish         bool
 }
 type App struct {
 	db         *sql.DB
@@ -30,6 +37,7 @@ type App struct {
 	authSlots  chan struct{}
 	authQueue  chan struct{}
 	uploadSlot chan struct{}
+	workerSeen atomic.Int64
 }
 
 func New(db *sql.DB, config Config) (*App, error) {
@@ -57,6 +65,9 @@ func New(db *sql.DB, config Config) (*App, error) {
 		clock = time.Now
 	}
 	config.Secret = append([]byte(nil), config.Secret...)
+	if err = validatePublicationConfig(config); err != nil {
+		return nil, err
+	}
 	return &App{db: db, config: config, now: clock, authSlots: make(chan struct{}, 2), authQueue: make(chan struct{}, 4), uploadSlot: make(chan struct{}, 1)}, nil
 }
 func (a *App) Handler() http.Handler {
@@ -64,12 +75,7 @@ func (a *App) Handler() http.Handler {
 	a.registerAuth(management)
 	a.registerContent(management)
 	a.registerMedia(management)
-	unavailable := func(w http.ResponseWriter, r *http.Request) {
-		writeError(w, r, problem(503, "WORKER_UNAVAILABLE", "静态预览、发布与恢复将在 P6-D 实现。"))
-	}
-	for _, p := range []string{"/publish-jobs", "/preview-jobs", "/rollback-jobs", "/jobs", "/jobs/", "/releases", "/releases/", "/previews/"} {
-		management.HandleFunc(apiPrefix+p, unavailable)
-	}
+	a.registerPublishing(management)
 	management.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		var allowed []string
 		for _, method := range []string{"GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"} {

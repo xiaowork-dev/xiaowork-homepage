@@ -1,4 +1,4 @@
-export type ProjectCategory = 'website' | 'application' | 'open-source'
+export type ProjectCategory = string
 export type ProjectStatus = 'unconfirmed' | 'planning' | 'in-development' | 'live' | 'maintained'
 
 export interface ProjectCover {
