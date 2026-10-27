@@ -1,0 +1,2142 @@
+{
+  "date": "2026-10-27T06:51:25.108Z",
+  "project": "xiaowork-homepage-v11-p6c-e2e",
+  "origin": "https://localhost:3444",
+  "scope": "Dedicated local Docker test volumes only; no production connection",
+  "browser": "151.0.7922.34",
+  "tlsVerificationDisabled": false,
+  "certificateTrustRemoved": true,
+  "hostCertificateStoreModified": false,
+  "cases": [
+    {
+      "name": "可信 HTTPS 与登录页面",
+      "result": "PASS",
+      "detail": "真实 CA 链与主机名验证；未忽略证书错误"
+    },
+    {
+      "name": "错误密码与真实登录限速",
+      "result": "PASS",
+      "detail": "401；未知测试账户第 6 次验证 429，页面显示等待反馈"
+    },
+    {
+      "name": "真实登录、Secure Cookie 与存储约束",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Session 刷新恢复与发布功能禁用",
+      "result": "PASS",
+      "detail": "发布服务尚未接入，没有已发布假统计"
+    },
+    {
+      "name": "分类新增和编辑",
+      "result": "PASS",
+      "detail": "保存至真实 SQLite"
+    },
+    {
+      "name": "分类排序与未引用删除",
+      "result": "PASS",
+      "detail": "完整ID原子排序及真实删除"
+    },
+    {
+      "name": "浏览器 CSRF 回归",
+      "result": "PASS",
+      "detail": "拦截测试请求移除CSRF后真实API拒绝403，页面提示且保留表单"
+    },
+    {
+      "name": "项目新增、编辑、筛选及刷新持久化",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "项目键盘与拖拽排序",
+      "result": "PASS",
+      "detail": "提交完整 ID 集合至真实原子排序接口"
+    },
+    {
+      "name": "多会话 409 与未保存导航保护",
+      "result": "PASS",
+      "detail": "旧版本不覆盖，取消离开保留输入；明确对照和确认后真实保存200"
+    },
+    {
+      "name": "归档、恢复与分类引用保护",
+      "result": "PASS",
+      "detail": "恢复后不自动公开"
+    },
+    {
+      "name": "真实图片上传与私有预览",
+      "result": "PASS",
+      "detail": "上传到独立持久卷，经 Go 校验重编码；匿名私有图片请求401"
+    },
+    {
+      "name": "项目图片更换与引用删除保护",
+      "result": "PASS",
+      "detail": "真实保存 media 引用；UI禁删且直接DELETE真实返回409 MEDIA_REFERENCED"
+    },
+    {
+      "name": "未引用图片管理",
+      "result": "PASS",
+      "detail": "通过真实 API 软删除，不清理持久卷物理文件"
+    },
+    {
+      "name": "个人资料与网站设置真实保存",
+      "result": "PASS",
+      "detail": "刷新保留，正式主域不提供编辑字段"
+    },
+    {
+      "name": "真实请求中断反馈",
+      "result": "PASS",
+      "detail": "明确网络错误，已加载表单不被清空"
+    },
+    {
+      "name": "Session 过期与重新认证",
+      "result": "PASS",
+      "detail": "仅隔离测试 DB 将当前 Session 的绝对期限设为过去；真实 API 返回 401，表单保留"
+    },
+    {
+      "name": "错误当前密码反馈",
+      "result": "PASS",
+      "detail": "有效Session保留，未错误弹出会话过期"
+    },
+    {
+      "name": "修改密码后重新登录",
+      "result": "PASS",
+      "detail": "旧密码 401，新密码 200"
+    },
+    {
+      "name": "Docker 容器重建持久化",
+      "result": "PASS",
+      "detail": "原浏览器 Cookie、项目/资料/设置/revision 和私有图片仍有效；未删除卷"
+    },
+    {
+      "name": "响应式、双主题与键盘",
+      "result": "PASS",
+      "detail": "5 宽度 × 2 主题 × 7 页面无页面级横向溢出；菜单 Escape 关闭；刷新保持主题"
+    },
+    {
+      "name": "管理 CSP 与前端运行",
+      "result": "PASS",
+      "detail": "未观察到 pageerror 或 CSP 拒绝，无 unsafe-eval/inline"
+    },
+    {
+      "name": "真实退出登录",
+      "result": "PASS",
+      "detail": "会话撤销后管理请求 401"
+    }
+  ],
+  "http": [
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 429
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/categories",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/categories/cat_c97897b91e8970ee8d3422dea7025c66",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/categories",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/categories/order",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/v1/categories/cat_e335af8906a4cbd96a4ca8b8bc39dce9",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/projects",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 403
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/order",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/order",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405/archive",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405/restore",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/media",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 401
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/prj_2ac13774798e49ec4bffdca49d083405",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/media",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_2544b91863ae3eebe9bb3112e3595813/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/admin/v1/media/med_2544b91863ae3eebe9bb3112e3595813",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/password",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/password",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/profile",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/settings",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_7f73ebdccbe644f6b647bee1db8a0ea4/content",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/dashboard",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/logout",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "status": 401
+    }
+  ],
+  "consoleErrors": [],
+  "responsive": [
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/projects",
+      "viewport": 320,
+      "scroll": 305,
+      "table": {
+        "client": 239,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/categories",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/media",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/profile",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/settings",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "route": "/account",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/projects",
+      "viewport": 320,
+      "scroll": 305,
+      "table": {
+        "client": 239,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/categories",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/media",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/profile",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/settings",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "route": "/account",
+      "viewport": 320,
+      "scroll": 305,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/projects",
+      "viewport": 390,
+      "scroll": 375,
+      "table": {
+        "client": 301,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/categories",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/media",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/profile",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/settings",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "route": "/account",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/projects",
+      "viewport": 390,
+      "scroll": 375,
+      "table": {
+        "client": 301,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/categories",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/media",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/profile",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/settings",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "route": "/account",
+      "viewport": 390,
+      "scroll": 375,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/projects",
+      "viewport": 768,
+      "scroll": 753,
+      "table": {
+        "client": 643,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/categories",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/media",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/profile",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/settings",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "route": "/account",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/projects",
+      "viewport": 768,
+      "scroll": 753,
+      "table": {
+        "client": 643,
+        "scroll": 760
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/categories",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/media",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/profile",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/settings",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "route": "/account",
+      "viewport": 768,
+      "scroll": 753,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/projects",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/categories",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/media",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/profile",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/settings",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "route": "/account",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/projects",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/categories",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/media",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/profile",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/settings",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "route": "/account",
+      "viewport": 1024,
+      "scroll": 1009,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/projects",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/categories",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/media",
+      "viewport": 1440,
+      "scroll": 1425,
+      "mediaCardWidth": 339,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/profile",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/settings",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "route": "/account",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/projects",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/categories",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/media",
+      "viewport": 1440,
+      "scroll": 1425,
+      "mediaCardWidth": 339,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/profile",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/settings",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "route": "/account",
+      "viewport": 1440,
+      "scroll": 1425,
+      "result": "PASS"
+    }
+  ],
+  "untrustedBrowser": "ERR_CERT_AUTHORITY_INVALID",
+  "tls": {
+    "issuer": "XiaoWork isolated development CA",
+    "protocol": "TLS 1.3",
+    "subjectName": "localhost",
+    "validFrom": 1793079321,
+    "validTo": 1801028181
+  },
+  "result": "PASS"
+}

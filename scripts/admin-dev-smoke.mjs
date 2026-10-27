@@ -22,9 +22,14 @@ const ready = await request('/dev-health/api', 200)
 assert.equal((await ready.json()).data.stage, 'p6b-api')
 const redirect = await request('/admin', 307)
 assert.equal(redirect.headers.get('location'), '/admin/')
-for (const path of ['/admin/', '/admin/login', '/admin/projects']) {
-  const response = await request(path, 503)
-  assert.match(await response.text(), /P6-B/)
+for (const path of ['/admin/', '/admin/login', '/admin/projects', '/admin/account']) {
+  const response = await request(path, 200)
+  assert.match(await response.text(), /<html[^>]*lang="zh-CN"/)
+  assert.match(await response.headers.get('content-security-policy'), /script-src 'self'/)
+  assert.ok(!response.headers.get('content-security-policy').includes('unsafe-eval'))
+}
+for (const path of ['/admin/unknown-page', '/admin/assets/missing.js']) {
+  await request(path, 404)
 }
 for (const path of [
   '/api/admin/v1',
@@ -38,4 +43,6 @@ for (const path of [
     assert.equal((await response.json()).error.code, 'HTTPS_REQUIRED')
   }
 }
-console.log('P6-B HTTP downgrade protection PASS; use trusted HTTPS for authenticated API tests.')
+console.log(
+  'P6-C admin static routes and HTTP downgrade protection PASS; use trusted HTTPS for authentication.',
+)

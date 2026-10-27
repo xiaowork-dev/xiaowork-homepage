@@ -1,0 +1,83 @@
+import js from '@eslint/js'
+import tsParser from '@typescript-eslint/parser'
+import vue from 'eslint-plugin-vue'
+
+const browserGlobals = Object.fromEntries(
+  [
+    'window',
+    'document',
+    'navigator',
+    'location',
+    'history',
+    'localStorage',
+    'sessionStorage',
+    'fetch',
+    'Request',
+    'Response',
+    'Headers',
+    'AbortController',
+    'AbortSignal',
+    'URL',
+    'URLSearchParams',
+    'XMLHttpRequest',
+    'FormData',
+    'File',
+    'Blob',
+    'crypto',
+    'CustomEvent',
+    'Event',
+    'EventTarget',
+    'setTimeout',
+    'clearTimeout',
+    'setInterval',
+    'clearInterval',
+    'console',
+    'performance',
+    'TextEncoder',
+    'TextDecoder',
+    'HTMLElement',
+    'HTMLInputElement',
+    'HTMLSelectElement',
+    'HTMLTextAreaElement',
+    'HTMLDialogElement',
+    'Image',
+    'ResizeObserver',
+    'IntersectionObserver',
+    'structuredClone',
+    'requestAnimationFrame',
+    'cancelAnimationFrame',
+    'matchMedia',
+    'queueMicrotask',
+  ].map((name) => [name, 'readonly']),
+)
+
+export default [
+  { ignores: ['dist/**', 'node_modules/**'] },
+  js.configs.recommended,
+  ...vue.configs['flat/recommended'],
+  {
+    files: ['**/*.ts', '**/*.vue'],
+    languageOptions: { globals: browserGlobals, parserOptions: { parser: tsParser } },
+    rules: {
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+      'vue/multi-word-component-names': 'off',
+      // Prettier owns template layout; semantic Vue rules remain enabled.
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/multiline-html-element-content-newline': 'off',
+      'vue/html-indent': 'off',
+      'vue/html-closing-bracket-newline': 'off',
+      'vue/html-self-closing': [
+        'error',
+        { html: { void: 'always', normal: 'always', component: 'always' } },
+      ],
+    },
+  },
+  { files: ['**/*.ts'], languageOptions: { parser: tsParser } },
+  { files: ['**/*.js'], languageOptions: { globals: browserGlobals } },
+  {
+    files: ['**/*.mjs'],
+    languageOptions: { globals: { ...browserGlobals, process: 'readonly', Buffer: 'readonly' } },
+  },
+]

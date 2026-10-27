@@ -1,7 +1,7 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({
-  ignores: ['.output/**', 'dist/**', '.deploy/**', '.cache/**', 'coverage/**'],
+  ignores: ['.output/**', 'dist/**', '.deploy/**', '.cache/**', 'coverage/**', 'admin/**'],
   rules: {
     'vue/html-self-closing': [
       'error',

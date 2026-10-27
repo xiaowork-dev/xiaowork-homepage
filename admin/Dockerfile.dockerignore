@@ -1,0 +1,10 @@
+**
+!admin
+!admin/**
+admin/node_modules
+admin/dist
+admin/.cache
+admin/coverage
+!deploy
+!deploy/admin-dev
+!deploy/admin-dev/**

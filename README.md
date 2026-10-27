@@ -1,8 +1,8 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。P6-B 已实现 Go/SQLite 单管理员认证、草稿项目/分类/资料/SEO 设置 API、安全图片上传、revision 并发控制与 V1.0 数据导入。管理 UI、静态预览/发布/版本恢复分别留给 P6-C、P6-D；API 不能直接修改公开网站。前台保持 V1.0 静态站，生产容器与发布门槛不变。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。P6-C 已接入独立 Vue 中文管理后台，提供真实登录、仪表盘、项目/分类、图片、品牌资料、网站 SEO 与改密操作，复用 Go/SQLite 的认证与草稿 API。所有保存仅修改私有草稿；静态预览、发布、历史恢复留给 P6-D，当前明确禁用。前台保持 V1.0 静态站，生产容器与发布门槛不变。
 
-- [P6-B 交付](docs/deliveries/P6B-delivery.md)、[当前进度](docs/PROGRESS.md)
+- [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
 - [架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 安全设计](docs/architecture/V1.1-API-SECURITY.md)、[发布设计](docs/architecture/V1.1-PUBLISHING.md)
 - [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
 
@@ -14,9 +14,11 @@ docker compose -f compose.admin-dev.yaml exec -it api /homepage-api init-admin
 docker compose -f compose.admin-dev.yaml exec -T api /homepage-api import-v1
 ```
 
-初始化命令通过真实 TTY 隐藏读取自选密码，不接受密码参数、环境变量、管道或默认密码。HTTP 前台入口 `http://127.0.0.1:3210`，管理 API 使用可信本地 HTTPS `https://localhost:3443/api/admin/v1`；`/admin/` 暂为明确的 P6-C 待实现说明。认证、CSRF 和登录限速真实运行，写入须携带 `If-Match` 工作区版本。公开站 origin 固定为 `https://xiaoworks.com`，不会由表单修改。
+初始化命令通过真实 TTY 隐藏读取自选密码，不接受密码参数、环境变量、管道或默认密码。HTTP 前台入口 `http://127.0.0.1:3210`，后台入口为可信本地 HTTPS `https://localhost:3443/admin/`，API 为同源 `/api/admin/v1`。先信任本项目公开开发 CA，再通过浏览器登录；HTTP 不能创建会话。认证、CSRF 和登录限速真实运行，写入携带表单原始 `If-Match` 版本；409 会保留输入并要求明确核对。公开站 origin 固定为 `https://xiaoworks.com`，不会由表单修改。
 
 只有 gateway 绑定本机回环端口。API、SQLite、上传、session secret 和本地 TLS 使用独立隔离网络/持久卷，不复用生产数据。启动前检查端口和 control 网段冲突；先导出公开开发 CA，客户端显式信任后执行 HTTPS 验收，不能关闭证书校验。完整步骤、模块网络问题和保留卷重建见 [开发说明](docs/V1.1-DEVELOPMENT.md)。停止使用 `docker compose -f compose.admin-dev.yaml down`，不要添加 `-v`。不要使用 V1.0 的发布脚本部署本分支。
+
+独立后台源码在 `admin/`，不引入大型 UI 框架。使用 `npm --prefix admin ci` 安装；`npm run admin:check`、`npm run admin:test`、`npm run admin:build` 执行规范、类型、测试与构建，`npm --prefix admin run format:check` 检查格式。真实 HTTPS 浏览器测试使用 `npm run admin:e2e`，需先准备专用测试镜像，详见 [开发说明](docs/V1.1-DEVELOPMENT.md)。所有验收账号和数据仅存在独立本地测试卷，不能用于生产。
 
 ## V1.0 当前状态
 

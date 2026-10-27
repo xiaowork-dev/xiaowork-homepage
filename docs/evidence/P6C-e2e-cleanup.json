@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-27T14:57:09.1204755+08:00",
+  "project": "xiaowork-homepage-v11-p6c-e2e",
+  "remainingComposeContainers": 0,
+  "remainingBrowserContainers": 0,
+  "retainedVolumes": [
+    "xiaowork-homepage-v11-p6c-e2e_admin-authority",
+    "xiaowork-homepage-v11-p6c-e2e_admin-db",
+    "xiaowork-homepage-v11-p6c-e2e_admin-secrets",
+    "xiaowork-homepage-v11-p6c-e2e_admin-tls",
+    "xiaowork-homepage-v11-p6c-e2e_admin-uploads"
+  ],
+  "testPortListeners": [],
+  "volumesDeleted": false,
+  "globalCleanupExecuted": false
+}

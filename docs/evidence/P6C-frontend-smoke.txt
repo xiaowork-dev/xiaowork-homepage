@@ -1,0 +1,8 @@
+PASS page and SEO /
+PASS page and SEO /projects
+PASS page and SEO /projects/
+PASS page and SEO /about
+PASS page and SEO /about/
+PASS robots and configured sitemap
+PASS 22 local assets
+PASS health endpoint and 404 status

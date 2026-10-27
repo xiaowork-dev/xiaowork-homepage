@@ -1,0 +1,37 @@
+{
+  "name": "xiaowork-homepage-admin",
+  "version": "1.1.0-p6c",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.19.1",
+  "engines": {
+    "node": ">=24.15.0 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3211",
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "lint": "eslint . --max-warnings 0",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "vue": "3.5.44",
+    "vue-router": "5.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "@typescript-eslint/parser": "8.72.0",
+    "@vitejs/plugin-vue": "6.0.10",
+    "eslint": "10.13.0",
+    "eslint-plugin-vue": "10.11.1",
+    "playwright-core": "1.62.1",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "vite": "8.3.5",
+    "vue-tsc": "3.3.13"
+  }
+}

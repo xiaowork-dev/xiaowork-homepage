@@ -21,6 +21,10 @@
     "typecheck": "nuxt typecheck",
     "smoke": "node scripts/smoke.mjs",
     "test": "node --test scripts/*.test.mjs",
+    "admin:check": "npm --prefix admin run check",
+    "admin:test": "npm --prefix admin test",
+    "admin:build": "npm --prefix admin run build",
+    "admin:e2e": "node scripts/admin-browser-test.mjs",
     "check": "npm run lint && npm run format:check && npm run typecheck"
   },
   "dependencies": {

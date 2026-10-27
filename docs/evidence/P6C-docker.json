@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-27T14:52:35.8086423+08:00",
+  "scope": "Local development only; environment values and host source paths omitted",
+  "containers": [
+    {
+      "service": "api",
+      "project": "xiaowork-homepage-v11-dev",
+      "image": "xiaowork-homepage-api:p6b-dev",
+      "imageId": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readOnlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "ports": {
+        "8081/tcp": null
+      },
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-secrets",
+          "destination": "/secrets",
+          "readWrite": false
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-uploads",
+          "destination": "/uploads",
+          "readWrite": true
+        }
+      ],
+      "logConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      }
+    },
+    {
+      "service": "api-init",
+      "project": "xiaowork-homepage-v11-dev",
+      "image": "xiaowork-homepage-api:p6b-dev",
+      "imageId": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "state": "exited",
+      "health": null,
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readOnlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-authority",
+          "destination": "/authority",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-db",
+          "destination": "/data",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-secrets",
+          "destination": "/secrets",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-tls",
+          "destination": "/tls",
+          "readWrite": true
+        }
+      ],
+      "logConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      }
+    },
+    {
+      "service": "frontend",
+      "project": "xiaowork-homepage-v11-dev",
+      "image": "xiaowork-homepage:p6a-dev",
+      "imageId": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "nginx",
+      "readOnlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "ports": {
+        "80/tcp": null,
+        "8080/tcp": null
+      },
+      "mounts": [],
+      "logConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      }
+    },
+    {
+      "service": "gateway",
+      "project": "xiaowork-homepage-v11-dev",
+      "image": "xiaowork-homepage-admin-gateway:p6c-dev",
+      "imageId": "sha256:659114d8cbe29751eaa9d7036e1bde490fca1efbc2e0664e219458fc1bc9ce11",
+      "state": "running",
+      "health": "healthy",
+      "exitCode": 0,
+      "user": "10001:10001",
+      "readOnlyRoot": true,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3210"
+          }
+        ],
+        "8443/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3443"
+          }
+        ]
+      },
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-dev_admin-tls",
+          "destination": "/tls",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/nginx.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-admin-headers.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-admin-locations.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-locations.conf",
+          "readWrite": false
+        }
+      ],
+      "logConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      }
+    }
+  ]
+}
