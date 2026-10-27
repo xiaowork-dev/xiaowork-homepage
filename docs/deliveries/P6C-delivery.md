@@ -99,4 +99,6 @@
 
 开发基线：`2a3111784dcf4f089b4501d69dc6e569ca035ef9`。目标分支：`feat/v1.1-admin-p6a`；main基线：`14f9b1fba6504b1367aad6165a0b72c37e495927`。
 
-代码、必要配置、文档和脱敏证据同次正常提交；实际实现SHA与远端核验结果在提交推送后登记。本文件不循环写入它自身尚未生成的SHA。不强推、不合并main、不部署生产。
+- 代码、配置、交付及脱敏证据已同次正常提交：`c095bad0e9096002eba4b2607e4d2ce3d9ada49b`（`feat: deliver P6-C Vue admin with real draft workflows`）。
+- `git push origin feat/v1.1-admin-p6a` 实际退出0，随后 `git ls-remote --heads origin feat/v1.1-admin-p6a main` 核验远端功能分支指向上述完整SHA，main仍为`14f9b1fba6504b1367aad6165a0b72c37e495927`，工作区干净。
+- 本节为推送后的纯文档登记，不循环写入该登记提交自身的SHA；最终文档提交与再次推送结果以最终回复和Git为准。不强推、不合并main、不部署生产。
