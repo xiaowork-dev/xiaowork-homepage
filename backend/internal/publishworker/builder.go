@@ -12,8 +12,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth"
 )
 
 const SourceRoot = "/builder"
@@ -38,6 +40,9 @@ func (FixedBuilder) Build(parent context.Context, job publishmodel.Assignment) (
 	}
 	if err := checkOrphanBuild(WorkRoot); err != nil {
 		return "", noop, err
+	}
+	if !storagehealth.CanWrite(storagehealth.Inspect("build", WorkRoot, storagehealth.BuildMinimumFreeBytes)) {
+		return "", noop, errors.New("insufficient private build capacity")
 	}
 	work := filepath.Join(WorkRoot, job.ID)
 	if err := os.Mkdir(work, 0700); err != nil {
@@ -215,7 +220,7 @@ func copyMedia(uploadRoot, work string, job publishmodel.Assignment) error {
 			continue
 		}
 		ext := extension(asset.MediaType)
-		if asset.StorageKind != "upload" || ext == "" || ext == "svg" || !publishfs.ValidHash(asset.SHA256) || asset.PublicPath != "media/"+asset.SHA256+"."+ext || asset.Bytes <= 0 || asset.Bytes > 32<<20 {
+		if asset.StorageKind != "upload" || ext == "" || ext == "svg" || !publishfs.ValidHash(asset.SHA256) || asset.PublicPath != "media/"+asset.SHA256+"."+ext || asset.Bytes <= 0 || asset.Bytes > contentlimits.MaxPublishedFileBytes {
 			return publishfs.ErrUnsafe
 		}
 		target := filepath.Join(work, "public", filepath.FromSlash(asset.PublicPath))

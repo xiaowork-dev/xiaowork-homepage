@@ -6,3 +6,11 @@ backend/bin
 backend/**/*.sqlite*
 backend/**/*.db*
 backend/**/*.log
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+**/.env
+**/.env.*
+backend/cmd/p6e-fault-*/
+backend/internal/httpapi/p6e_fault_linux.go

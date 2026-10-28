@@ -17,15 +17,17 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits"
+
 	_ "golang.org/x/image/webp"
 )
 
 const (
-	MaxOriginalBytes  = 10 << 20
-	MaxMultipartBytes = 11 << 20
-	MaxDerivedBytes   = 32 << 20
-	MaxDimension      = 8192
-	MaxPixels         = 25_000_000
+	MaxOriginalBytes  = contentlimits.MaxOriginalImageBytes
+	MaxMultipartBytes = contentlimits.MaxMultipartBytes
+	MaxDerivedBytes   = contentlimits.MaxPublishedFileBytes
+	MaxDimension      = contentlimits.MaxImageDimension
+	MaxPixels         = contentlimits.MaxImagePixels
 )
 
 var (

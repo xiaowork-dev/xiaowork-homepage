@@ -14,6 +14,9 @@ x-hardening: &hardening
 x-api: &api
   <<: *hardening
   image: xiaowork-homepage-api:p6d-dev
+  cpus: 1
+  mem_limit: 768m
+  pids_limit: 128
   tmpfs: ['/tmp:size=32m,mode=1777']
   environment: &api-env
     XIAOWORK_ORIGIN: https://localhost:3445
@@ -79,6 +82,8 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+      args:
+        VCS_REF: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
     depends_on:
       api-init: { condition: service_completed_successfully }
     restart: 'no'
@@ -129,11 +134,17 @@ services:
       target: runtime
       args:
         NUXT_PUBLIC_SITE_URL: https://xiaoworks.com
+        VCS_REF: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
     tmpfs: ['/tmp:size=64m,mode=1777']
     networks: [isolated]
   publication-static:
     <<: *hardening
-    image: nginx:1.30.6-alpine
+    image: xiaowork-homepage-publication-static:p6e-dev
+    build:
+      context: .
+      dockerfile: deploy/admin-publish/static.Dockerfile
+      args:
+        VCS_REF: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
     user: '10001:10001'
     entrypoint: [nginx, -g, 'daemon off;']
     tmpfs: ['/tmp:size=32m,mode=1777']
@@ -162,6 +173,8 @@ services:
     build:
       context: .
       dockerfile: admin/Dockerfile
+      args:
+        VCS_REF: ${V11_SOURCE_REVISION:?Set the reviewed complete source SHA}
     user: '10001:10001'
     entrypoint: [nginx, -g, 'daemon off;']
     ports:

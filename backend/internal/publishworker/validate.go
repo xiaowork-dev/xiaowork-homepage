@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
 )
@@ -71,7 +72,7 @@ func ValidateAssignment(job publishmodel.Assignment, source, builder string) (pu
 	media := map[string]publishmodel.Media{}
 	for _, m := range snapshot.MediaManifest {
 		ext := extension(m.MediaType)
-		if m.ID == "" || media[m.ID].ID != "" || !publishfs.ValidHash(m.SHA256) || ext == "" || ext == "svg" || m.Path != "media/"+m.SHA256+"."+ext || m.ByteSize < 1 || m.ByteSize > 32<<20 || m.Width < 1 || m.Width > 8192 || m.Height < 1 || m.Height > 8192 || m.Width*m.Height > 25_000_000 {
+		if m.ID == "" || media[m.ID].ID != "" || !publishfs.ValidHash(m.SHA256) || ext == "" || ext == "svg" || m.Path != "media/"+m.SHA256+"."+ext || m.ByteSize < 1 || m.ByteSize > contentlimits.MaxPublishedFileBytes || m.Width < 1 || m.Width > contentlimits.MaxImageDimension || m.Height < 1 || m.Height > contentlimits.MaxImageDimension || m.Width*m.Height > contentlimits.MaxImagePixels {
 			return snapshot, errors.New("invalid snapshot media")
 		}
 		media[m.ID] = m
@@ -199,7 +200,7 @@ func ValidateOutput(directory string, job publishmodel.Assignment, snapshot publ
 		if err != nil {
 			return err
 		}
-		if !info.Mode().IsRegular() {
+		if !info.Mode().IsRegular() || info.Size() > contentlimits.MaxPublishedFileBytes {
 			return publishfs.ErrUnsafe
 		}
 		if !allowedArtifact(name, job, snapshot) {

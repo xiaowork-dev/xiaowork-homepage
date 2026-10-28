@@ -5,6 +5,7 @@ export function canCreatePublication(status: PublishingStatus | null): boolean {
     status?.enabled === true &&
     status.localOnly === true &&
     status.workerAvailable === true &&
+    (status.storage?.state === 'ok' || status.storage?.state === 'warning') &&
     status.blockingJob === null &&
     (status.activeReleaseId === null ||
       (typeof status.activeReleaseId === 'string' &&

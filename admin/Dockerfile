@@ -6,6 +6,11 @@ COPY admin/ ./
 RUN npm run build
 
 FROM nginx:1.30.6-alpine AS runtime
+ARG VCS_REF=""
+LABEL org.opencontainers.image.source="https://github.com/xiaowork-dev/xiaowork-homepage" \
+      org.opencontainers.image.revision="${VCS_REF}"
+COPY --chmod=644 deploy/harden-nginx.sh /tmp/harden-nginx.sh
+RUN sh /tmp/harden-nginx.sh && rm /tmp/harden-nginx.sh
 COPY --from=build --chown=10001:10001 /admin/dist /srv/admin
 COPY --chmod=644 deploy/admin-dev/nginx.conf /etc/nginx/nginx.conf
 COPY --chmod=644 deploy/admin-dev/locations.conf /etc/nginx/xiaowork-locations.conf

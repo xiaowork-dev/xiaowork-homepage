@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
     <section class="panel stack" aria-labelledby="upload-title">
       <h2 id="upload-title">上传图片</h2>
       <p class="help-text">
-        PNG、JPEG、WebP，原图最多 10 MiB，单边 ≤ 8,192 px、总像素 ≤ 2,500
+        PNG、JPEG、WebP，原图最多 10 MiB，重编码后最多 16 MiB，单边 ≤ 8,192 px、总像素 ≤ 2,500
         万。服务端再次校验并重编码、剥离元数据；SVG、GIF、AVIF 上传暂不支持。
       </p>
       <div

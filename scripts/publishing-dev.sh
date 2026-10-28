@@ -29,7 +29,7 @@ case "${1:-status}" in
       exit 1
     }
     "${compose[@]}" config --quiet
-    "${compose[@]}" build api worker gateway frontend
+    "${compose[@]}" build api worker gateway frontend publication-static
     ;;
   start|status|stop) ;;
   *) echo 'Usage: scripts/publishing-dev.sh build|start|status|stop' >&2; exit 2 ;;

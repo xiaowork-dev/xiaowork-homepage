@@ -211,6 +211,22 @@ export interface PublishingStatus {
   activeVerified: boolean
   blockingJob: PublicationJob | null
   reason: string
+  storage?: {
+    state: 'ok' | 'warning' | 'critical'
+    areas: {
+      name: string
+      state: string
+      freeBytes: number
+      totalBytes: number
+      usedBytes: number
+      files: number
+      usageComplete: boolean
+    }[]
+    minimumFreeBytes: number
+    warningFreeBytes: number
+    usageSampledAt: string
+    historicalResourcesRetained: boolean
+  }
   review?: {
     revision: string
     available: boolean

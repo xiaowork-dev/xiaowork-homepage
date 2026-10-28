@@ -9,6 +9,8 @@ ENV NUXT_PUBLIC_SITE_URL=${NUXT_PUBLIC_SITE_URL}
 RUN npm run postinstall && npm run generate
 
 FROM nginx:1.30.6-alpine AS runtime
+COPY --chmod=644 deploy/harden-nginx.sh /tmp/harden-nginx.sh
+RUN sh /tmp/harden-nginx.sh && rm /tmp/harden-nginx.sh
 ARG NUXT_PUBLIC_SITE_URL=""
 ARG VCS_REF=""
 LABEL org.opencontainers.image.source="https://github.com/xiaowork-dev/xiaowork-homepage" \

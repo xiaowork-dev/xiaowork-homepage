@@ -21,6 +21,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth"
 )
 
 type mediaReferences struct {
@@ -248,6 +249,10 @@ func (a *App) uploadMedia(w http.ResponseWriter, r *http.Request) {
 	}
 	if current != expected {
 		writeError(w, r, &apiError{Status: 409, Code: "REVISION_CONFLICT", Message: "内容已被其他操作更新，请刷新后重试。", CurrentRevision: revisionLabel(current)})
+		return
+	}
+	if !storagehealth.CanWrite(storagehealth.Inspect("uploads", a.config.UploadDir, storagehealth.MinimumFreeBytes)) {
+		writeError(w, r, problem(507, "STORAGE_CAPACITY", "图片存储余量不足或无法核实，请先检查本站容量。"))
 		return
 	}
 	select {

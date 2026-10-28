@@ -9,6 +9,9 @@ RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -trimpath -ldflags="-s 
     && chmod 700 /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls /runtime/run/publishing
 
 FROM scratch AS runtime
+ARG VCS_REF=""
+LABEL org.opencontainers.image.source="https://github.com/xiaowork-dev/xiaowork-homepage" \
+      org.opencontainers.image.revision="${VCS_REF}"
 COPY --from=build /homepage-api /homepage-api
 COPY --from=build --chown=10001:10001 /runtime/ /
 COPY backend/seed/v1.json /seed/v1.json

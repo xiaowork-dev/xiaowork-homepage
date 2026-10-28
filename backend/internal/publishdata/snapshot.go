@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
 )
 
@@ -89,6 +90,7 @@ func Project(ctx context.Context, tx contentdata.Queryer, id string, revision, n
 		ids = append(ids, id)
 	}
 	sort.Strings(ids)
+	var mediaBytes int64
 	for _, assetID := range ids {
 		var m publishmodel.Media
 		var kind, key string
@@ -98,8 +100,12 @@ func Project(ctx context.Context, tx contentdata.Queryer, id string, revision, n
 		if err != nil {
 			return s, nil, "", err
 		}
-		if deleted.Valid || !publishmodel.HexHash.MatchString(m.SHA256) {
+		if deleted.Valid || !publishmodel.HexHash.MatchString(m.SHA256) || m.ByteSize < 1 || m.ByteSize > contentlimits.MaxPublishedFileBytes {
 			return s, nil, "", errors.New("snapshot media unavailable")
+		}
+		mediaBytes += m.ByteSize
+		if mediaBytes > contentlimits.MaxSnapshotMediaBytes {
+			return s, nil, "", errors.New("snapshot media exceeds build budget")
 		}
 		if kind == "builtin" {
 			expected, ok := publishmodel.BuiltinPaths[m.ID]

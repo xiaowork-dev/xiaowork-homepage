@@ -15,6 +15,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
@@ -54,7 +55,7 @@ func (a *App) verifyHTTP(ctx context.Context, m publishmodel.Manifest) error {
 	client := &http.Client{Transport: transport, Timeout: 5 * time.Second, CheckRedirect: func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse }}
 	found := map[string]bool{}
 	for _, file := range m.Files {
-		if file.Bytes > 16<<20 {
+		if file.Bytes > contentlimits.MaxPublishedFileBytes {
 			return errors.New("HTTP artifact resource over verification budget")
 		}
 		req, e := http.NewRequestWithContext(ctx, "GET", a.config.PublicationVerifyURL+"/"+file.Path, nil)
@@ -257,11 +258,11 @@ func (a *App) servePreview(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-	if expected == nil || expected.Bytes > 16<<20 {
+	if expected == nil || expected.Bytes > contentlimits.MaxPublishedFileBytes {
 		writeError(w, r, problem(404, "NOT_FOUND", "预览资源不存在。"))
 		return
 	}
-	raw, e := s.ReadPublic(id, name, 16<<20)
+	raw, e := s.ReadPublic(id, name, contentlimits.MaxPublishedFileBytes)
 	if e != nil || int64(len(raw)) != expected.Bytes || publishfs.Hash(raw) != expected.SHA256 {
 		writeError(w, r, problem(503, "PREVIEW_UNAVAILABLE", "预览资源完整性校验失败。"))
 		return

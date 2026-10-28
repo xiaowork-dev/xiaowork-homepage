@@ -17,6 +17,7 @@ test('publication actions default closed and require the explicit isolated backe
     blockingJob: null,
     activeReleaseId: null,
     activeVerified: false,
+    storage: { state: 'ok' },
   }
   assert.equal(canCreatePublication(status), true)
   for (const value of [
@@ -25,6 +26,9 @@ test('publication actions default closed and require the explicit isolated backe
     { ...status, enabled: false },
     { ...status, localOnly: false },
     { ...status, workerAvailable: false },
+    { ...status, storage: undefined },
+    { ...status, storage: { state: 'critical' } },
+    { ...status, storage: { state: 'unknown' } },
     { ...status, blockingJob: { id: 'job_test' } },
     { ...status, blockingJob: undefined },
     { ...status, activeReleaseId: 'rel_a', activeVerified: false },

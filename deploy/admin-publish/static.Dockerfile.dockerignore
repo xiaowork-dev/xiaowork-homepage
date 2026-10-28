@@ -1,0 +1,6 @@
+**
+!deploy
+!deploy/harden-nginx.sh
+!deploy/security-headers.conf
+!deploy/admin-publish
+!deploy/admin-publish/static.conf

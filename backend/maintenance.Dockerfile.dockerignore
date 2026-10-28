@@ -1,0 +1,14 @@
+**
+!backend/
+!backend/**
+backend/bin/
+backend/.data/
+backend/**/testdata/private/
+**/*.sqlite
+**/*.sqlite-*
+**/*.db
+**/*.db-*
+**/*.key
+**/*.pem
+backend/cmd/p6e-fault-*/
+backend/internal/httpapi/p6e_fault_linux.go

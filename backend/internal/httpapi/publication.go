@@ -190,6 +190,7 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 	}
 	fingerprint, _ := contentdata.CanonicalJSON(map[string]any{"body": body, "revision": expected})
 	fingerprintHash := publishfs.Hash(fingerprint)
+	capacity := a.observeStorage(r.Context(), false)
 	tx, e := a.db.BeginTx(r.Context(), nil)
 	if e != nil {
 		writeError(w, r, e)
@@ -269,6 +270,10 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 			writeError(w, r, problem(503, "RECOVERY_REQUIRED", "当前指针不属于已核验版本。"))
 			return
 		}
+	}
+	if capacity.State == "critical" {
+		writeError(w, r, problem(507, "STORAGE_CAPACITY", "存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"))
+		return
 	}
 	id := newID("job")
 	snapshotID := body.SnapshotID
@@ -388,6 +393,7 @@ func (a *App) publishingStatus(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data := map[string]any{"enabled": a.config.LocalPublish, "localOnly": true, "workerAvailable": a.workerAvailable(), "activeReleaseId": nil, "activeVerified": false, "blockingJob": nil, "reason": "仅允许独立本地环境，生产发布安全门槛尚未解除。"}
+	data["storage"] = a.observeStorage(r.Context(), true)
 	if a.config.LocalPublish {
 		current, currentErr := a.currentRelease()
 		verified := currentErr == nil && current == ""

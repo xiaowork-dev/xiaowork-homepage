@@ -113,6 +113,14 @@ function readableTime(value: string | null) {
     ? '时间不可用'
     : date.toLocaleString('zh-CN', { hour12: false })
 }
+function storageSize(value: number) {
+  return `${(value / 1024 ** 2).toLocaleString('zh-CN', { maximumFractionDigits: 1 })} MiB`
+}
+const storageLabels: Record<string, string> = {
+  database: '数据库',
+  uploads: '私有图片',
+  publications: '静态版本',
+}
 function previewLink(release: PublishedRelease) {
   if (
     release.kind !== 'preview' ||
@@ -395,6 +403,36 @@ onBeforeUnmount(() => {
       </p>
       <p v-if="refreshRequired" class="help-text">
         状态已变化或请求结果不明确。请先点「重新读取草稿与发布状态」核对，不能直接再次提交。
+      </p>
+    </section>
+    <section v-if="status?.storage" class="panel form-section" aria-labelledby="storage-title">
+      <h2 id="storage-title">存储容量与资源保护</h2>
+      <p class="muted">
+        {{
+          status.storage.state === 'critical'
+            ? '容量不足或无法核实：新任务已停止受理，请先备份并检查容量。'
+            : status.storage.state === 'warning'
+              ? '可用空间接近预警线，请安排扩容或受控维护。'
+              : '当前可用空间正常。'
+        }}
+        历史成功版本和引用资源继续保留，不自动清理。
+      </p>
+      <dl class="summary-list">
+        <div v-for="area in status.storage.areas" :key="area.name">
+          <dt>{{ storageLabels[area.name] ?? '本站存储' }}</dt>
+          <dd>
+            {{
+              area.state === 'unknown'
+                ? '无法核实'
+                : `可用 ${storageSize(area.freeBytes)} / 总量 ${storageSize(area.totalBytes)}`
+            }}； {{ area.usageComplete ? '目录占用' : '目录占用尚未完整测量，已计' }}
+            {{ storageSize(area.usedBytes) }}
+          </dd>
+        </div>
+      </dl>
+      <p class="help-text">
+        余量低于 512 MiB 或 2% 时停止新发布；低于 1 GiB 或 10% 时预警。原图最多 10
+        MiB，重编码及发布单文件最多 16 MiB。目录占用采样最长缓存一分钟，提交时重新检查可用空间。
       </p>
     </section>
     <section class="panel form-section" aria-labelledby="publication-review-title">

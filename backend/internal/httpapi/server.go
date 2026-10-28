@@ -38,6 +38,7 @@ type App struct {
 	authQueue  chan struct{}
 	uploadSlot chan struct{}
 	workerSeen atomic.Int64
+	storage    storageObservation
 }
 
 func New(db *sql.DB, config Config) (*App, error) {
@@ -68,7 +69,11 @@ func New(db *sql.DB, config Config) (*App, error) {
 	if err = validatePublicationConfig(config); err != nil {
 		return nil, err
 	}
-	return &App{db: db, config: config, now: clock, authSlots: make(chan struct{}, 2), authQueue: make(chan struct{}, 4), uploadSlot: make(chan struct{}, 1)}, nil
+	a := &App{db: db, config: config, now: clock, authSlots: make(chan struct{}, 2), authQueue: make(chan struct{}, 4), uploadSlot: make(chan struct{}, 1)}
+	if err = a.initializeStorage(context.Background()); err != nil {
+		return nil, err
+	}
+	return a, nil
 }
 func (a *App) Handler() http.Handler {
 	management := http.NewServeMux()
