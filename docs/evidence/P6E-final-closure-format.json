@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-28T14:21:21.455Z",
+  "date": "2026-10-28T14:26:45.389Z",
   "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
   "scope": "Git-tracked and nonignored files; respect .prettierignore and supported parsers",
   "command": "Prettier API check + git diff --check",
@@ -320,7 +320,7 @@
     },
     {
       "file": "docs/PROGRESS.md",
-      "sha256": "ace1b1c09d0a74024b95d4ec72f696bfde738aea3aa98aab5f80c8ea1b5caa44"
+      "sha256": "ea36f1e00d9e1869be14a7108afe6a49a88b54dbacf82d0e1ac4b98300fa8f69"
     },
     {
       "file": "docs/RELEASE-CHECKLIST.md",
@@ -360,7 +360,7 @@
     },
     {
       "file": "docs/V1.1-PRODUCTION-CHECKLIST.md",
-      "sha256": "d6242e269c1d915b77e6fb36e898946c87cd936bf5b2fae7d2f2740cdb515f1e"
+      "sha256": "1e3e645c9d5a6d4e710fa8ef45e04f0a78a5917445265efcfa85f18111e19de4"
     },
     {
       "file": "docs/V1.1-PRODUCTION-PLAN.md",
@@ -460,7 +460,7 @@
     },
     {
       "file": "docs/deliveries/P6E-delivery.md",
-      "sha256": "fcc1816af9d60946baab82efc080e7ae7a6e245748082de8a4ad272b69506631"
+      "sha256": "d3b6cc485a3c955f0000552981be7931a1584fc66a3b5606038fa1f6ec72bf3a"
     },
     {
       "file": "docs/deliveries/P6E-reconciliation-diagnostics.md",

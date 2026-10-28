@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28T14:25:54.650Z",
+  "branch": "feat/v1.1-admin-p6a",
+  "runtimeSource": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "verifiedEvidenceCommit": "f0aa61f04529d43407205061f3ed3b62f39b6da1",
+  "remoteRefs": {
+    "refs/heads/feat/v1.1-admin-p6a": "f0aa61f04529d43407205061f3ed3b62f39b6da1",
+    "refs/heads/main": "14f9b1fba6504b1367aad6165a0b72c37e495927"
+  },
+  "push": "NORMAL_FAST_FORWARD_CONFIRMED",
+  "mainChanged": false,
+  "productionTouched": false,
+  "acceptance": "PARTIAL_BLOCKED_CURRENT_REPAIR",
+  "note": "Receipt for the already pushed engineering/evidence commit. A later documentation receipt commit is verified separately in the final response; this file does not claim its own future SHA."
+}

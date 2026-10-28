@@ -106,4 +106,6 @@
 
 本轮起始远端功能分支为 `7b17165111faeaa14b93b5b1f0f0e492868e27c8`。main基线 `14f9b1fba6504b1367aad6165a0b72c37e495927`。最终运行源码817的六镜像已独立冻结；本次文档/测试提交SHA、推送和远端main复核以最终Git结果及回复为准，不在文件中循环记录自身尚未生成的SHA。
 
+工程与完整证据提交 **`f0aa61f04529d43407205061f3ed3b62f39b6da1`** 已正常推送，`git ls-remote`确认功能分支与该SHA一致，main仍为上述基线，工作区当时干净。[实际Git回执](../evidence/P6E-final-git-receipt.json)。本段随后仅补记已发生的事实，后补文档提交SHA与最终推送核对在最终回复中报告，不改变817运行组身份或解除其修复阻塞。
+
 历史 be5c 十二故障、aa23376 单API修复、旧格式检查、旧性能和旧同源码生命周期证据继续保留在Git及原文件中；它们只解释演进，不用来替代最终组六角色的新证据。[诊断专项](P6E-reconciliation-diagnostics.md)、[P6-E工程基线](P6E-safety-foundation.md)、[历史故障矩阵](../P6E-FAULT-TESTS.md)。
