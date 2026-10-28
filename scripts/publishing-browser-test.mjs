@@ -302,13 +302,15 @@ async function saveDraft(version) {
   )
 }
 async function verifyPublic(p, content, releaseId, route) {
+  const expectedTitle = `${content.brand} ${route === '/' ? 'home' : route.replaceAll('/', '')}`
+  // Nuxt client navigation does not create a new document load event. Wait
+  // for its route and head update, rather than asserting against the old h1.
+  await p.waitForURL((url) => url.pathname.replace(/\/$/, '') === route.replace(/\/$/, ''))
+  await p.waitForFunction((title) => document.title === title, expectedTitle)
   await p.locator('h1').waitFor()
   await p.waitForLoadState('networkidle')
   assert.ok((await p.locator('body').innerText()).includes(content.brand))
-  assert.equal(
-    await p.title(),
-    `${content.brand} ${route === '/' ? 'home' : route.replaceAll('/', '')}`,
-  )
+  assert.equal(await p.title(), expectedTitle)
   assert.equal(
     await p.locator('meta[name="description"]').getAttribute('content'),
     `Isolated ${content.brand.includes(' B ') ? 'B' : 'A'} ${route === '/' ? 'home' : route.replaceAll('/', '')} description ${marker}.`,
@@ -729,6 +731,9 @@ try {
     (item) => item.name === '__Host-xiaowork-admin',
   )
   assert.ok(sessionCookie?.value)
+  // The offline fixture shortens expiry to created_at+1 and refuses a session
+  // that is still younger than that interval. Keep that safety condition.
+  await pause(2200)
   expireSession(createHash('sha256').update(sessionCookie.value).digest('hex'))
   await checkDenied(preview, representative, 'expired-session')
   record(

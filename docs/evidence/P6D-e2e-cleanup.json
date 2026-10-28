@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-28T16:48:36.1084649+08:00",
+  "project": "xiaowork-homepage-v11-p6d-e2e",
+  "command": "project-scoped compose down, without -v",
+  "remainingProjectContainers": [],
+  "retainedVolumes": [
+    "xiaowork-homepage-v11-p6d-e2e_admin-authority",
+    "xiaowork-homepage-v11-p6d-e2e_admin-db",
+    "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+    "xiaowork-homepage-v11-p6d-e2e_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6d-e2e_admin-secrets",
+    "xiaowork-homepage-v11-p6d-e2e_admin-tls",
+    "xiaowork-homepage-v11-p6d-e2e_admin-uploads"
+  ],
+  "temporaryBrowserContainers": [],
+  "debug9323Containers": [],
+  "hostTrustStoreModified": false,
+  "result": "PASS"
+}

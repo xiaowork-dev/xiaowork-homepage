@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-28T08:24:15.815Z",
+  "origin": "http://127.0.0.1:3212",
+  "scope": "Local public static HTTP only; no production request",
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "XiaoWork A 513661ff home",
+      "description": "Isolated A home description 513661ff.",
+      "canonical": "https://xiaoworks.com/",
+      "openGraph": {
+        "title": "XiaoWork A 513661ff home",
+        "description": "Isolated A home description 513661ff.",
+        "url": "https://xiaoworks.com/",
+        "image": "https://xiaoworks.com/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/social/xiaowork-share.png"
+      },
+      "releaseId": "rel_84c4dd3b464732e6c5e8fa3ce38d8daa",
+      "snapshotSha256": "de979f7accf37e53fbee6adcc8736aa0ff7d85198a273a75adeda95222caa6e4",
+      "htmlSha256": "d1b1dd49ab1779f60bb3242b809248ae315772e955964ef8678bc96b1acc75c8",
+      "cache": "no-store"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "title": "XiaoWork A 513661ff projects",
+      "description": "Isolated A projects description 513661ff.",
+      "canonical": "https://xiaoworks.com/projects/",
+      "openGraph": {
+        "title": "XiaoWork A 513661ff projects",
+        "description": "Isolated A projects description 513661ff.",
+        "url": "https://xiaoworks.com/projects/",
+        "image": "https://xiaoworks.com/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/social/xiaowork-share.png"
+      },
+      "releaseId": "rel_84c4dd3b464732e6c5e8fa3ce38d8daa",
+      "snapshotSha256": "de979f7accf37e53fbee6adcc8736aa0ff7d85198a273a75adeda95222caa6e4",
+      "htmlSha256": "f3d073c60fffd48b8f79db16e822bbc96367c20819f51544aca3d4b4a38e833c",
+      "cache": "no-store"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "title": "XiaoWork A 513661ff about",
+      "description": "Isolated A about description 513661ff.",
+      "canonical": "https://xiaoworks.com/about/",
+      "openGraph": {
+        "title": "XiaoWork A 513661ff about",
+        "description": "Isolated A about description 513661ff.",
+        "url": "https://xiaoworks.com/about/",
+        "image": "https://xiaoworks.com/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/social/xiaowork-share.png"
+      },
+      "releaseId": "rel_84c4dd3b464732e6c5e8fa3ce38d8daa",
+      "snapshotSha256": "de979f7accf37e53fbee6adcc8736aa0ff7d85198a273a75adeda95222caa6e4",
+      "htmlSha256": "26aa48b0bd49488b4d800f1e6af65234eb61789654d57df7198aa2591ce907a1",
+      "cache": "no-store"
+    }
+  ],
+  "assets": [
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/social/xiaowork-share.png",
+      "status": 200,
+      "sha256": "ff7415457338281effe69d191045f84bdfbebc6f3a902a8ccfafc739b5050ef5",
+      "bytes": 102888
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/theme-init.js",
+      "status": 200,
+      "sha256": "2e5460848de3282fac7d4391c8fa67be31412794838cc0d918cde7edd619e06d",
+      "bytes": 362
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/entry.BYjPERKq.css",
+      "status": 200,
+      "sha256": "3248e05bfe67f14bef70899803a8bfd02b79ebb4e910466e39761e2b1308bdcd",
+      "bytes": 29270
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/DpJRpXXm.js",
+      "status": 200,
+      "sha256": "2f61518a0278b809e0797911cdad209ea679566fe59eaab293518c4060980632",
+      "bytes": 93368
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/Fvzt0gZy.js",
+      "status": 200,
+      "sha256": "129777954570e9b713c765f16b123ec0c1cc95b3601e16cbc347d626451c82f6",
+      "bytes": 84354
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/wWgtFiOo.js",
+      "status": 200,
+      "sha256": "ad7fd1d14854acc41d489099d8489b759031d73f012739951293b41a60c741ba",
+      "bytes": 21642
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/DULHrlUW.js",
+      "status": 200,
+      "sha256": "9393ca6d53c329f8189b3ea4b5dec1fd1402b29cb7f85c80d011d6c9133d162f",
+      "bytes": 5039
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/No7t4Bah.js",
+      "status": 200,
+      "sha256": "59043755644ee392561df04daee9293fd644373175a466014aef788758521224",
+      "bytes": 6440
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/Drc2wDbw.js",
+      "status": 200,
+      "sha256": "f104f11a1c01c209edcca3bcb29030bd9a09cbfdcf30f96fd26f3646b3c1c455",
+      "bytes": 611
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/CTIjkr3i.js",
+      "status": 200,
+      "sha256": "306c7dd662ce650ab48a36267649b0d6fb2ad6deee3aa6ae0b4997a3b49f87b3",
+      "bytes": 2656
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/CfFXyZvf.js",
+      "status": 200,
+      "sha256": "3143430ea1b6cc84d8449452b2f6f160009cb3c4470da659f8d493cef41e4114",
+      "bytes": 1930
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/D1wqpmK2.js",
+      "status": 200,
+      "sha256": "af986c3db932cf627783a1f6e4bd7a4374c47102c4800682a4fec97a3f02e9fe",
+      "bytes": 4943
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/error-404.D74tt8E9.css",
+      "status": 200,
+      "sha256": "52ac5b49a0005a17a67ad5ba0bf05999f8e6ac982002de2095fd871f82102d5b",
+      "bytes": 2701
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/ESY6t5Ns.js",
+      "status": 200,
+      "sha256": "29a579dbeb20517f56e8ed3cbc9a75748db908e11634a0b9ba678ef775c40a7b",
+      "bytes": 4036
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/error-500.BvPheiRf.css",
+      "status": 200,
+      "sha256": "8b5d063f103670fa944db2b8773a843ce1f47fde0473c68d8f7997ec89cab635",
+      "bytes": 1951
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/BuM8rV54.js",
+      "status": 200,
+      "sha256": "6d2ba1fe862aeeb4984aefa6c214e31293c625b44ddcfb71cb82efb870d78963",
+      "bytes": 2687
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/favicon.svg",
+      "status": 200,
+      "sha256": "cd89f01b8ac63b23db74e7e66f39f333847a3e7eeb687d89e583399b185eddec",
+      "bytes": 212
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/media/ad7b219cb346e14ce6193b35ab32e4ece6b93dd02005e368e50548f2b9715749.png",
+      "status": 200,
+      "sha256": "ad7b219cb346e14ce6193b35ab32e4ece6b93dd02005e368e50548f2b9715749",
+      "bytes": 33158
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/projects/nav/placeholder.svg",
+      "status": 200,
+      "sha256": "95689b2efa0c40fbbbc937486efd2393a187156282a01b392eb90333e1d384ec",
+      "bytes": 1672
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/assets/images/projects/erp/placeholder.svg",
+      "status": 200,
+      "sha256": "a315ab86c654e1e4687ce9799913804db1d23ff1fab36f103c5c397118f2f0fb",
+      "bytes": 1669
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/CUNaSXEX.js",
+      "status": 200,
+      "sha256": "d29ffe54860768a4837d4686b760615a60c24f64e83282f9653657a9a89d7780",
+      "bytes": 5160
+    },
+    {
+      "path": "/_releases/rel_84c4dd3b464732e6c5e8fa3ce38d8daa/_nuxt/wtn5SEOF.js",
+      "status": 200,
+      "sha256": "9461fa65cfe452a1b1e425abf68b48b61417a20092d6313cd28374d8af4cd9c2",
+      "bytes": 4914
+    }
+  ],
+  "protectedPaths": [
+    {
+      "path": "/manifest.json",
+      "status": 404
+    },
+    {
+      "path": "/staging/",
+      "status": 404
+    },
+    {
+      "path": "/preview/",
+      "status": 404
+    },
+    {
+      "path": "/activations/",
+      "status": 404
+    },
+    {
+      "path": "/releases/",
+      "status": 404
+    }
+  ],
+  "current": {
+    "schemaVersion": 1,
+    "releaseId": "rel_84c4dd3b464732e6c5e8fa3ce38d8daa",
+    "snapshotId": "snap_7937deaa4398bfafbb53798770f7f54a",
+    "snapshotSha256": "de979f7accf37e53fbee6adcc8736aa0ff7d85198a273a75adeda95222caa6e4",
+    "workspaceRevision": "ws-39"
+  },
+  "robots": {
+    "status": 200,
+    "text": "User-agent: *\nAllow: /\nSitemap: https://xiaoworks.com/sitemap.xml\n"
+  },
+  "sitemap": {
+    "status": 200,
+    "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><url><loc>https://xiaoworks.com/</loc></url><url><loc>https://xiaoworks.com/projects/</loc></url><url><loc>https://xiaoworks.com/about/</loc></url></urlset>\n"
+  },
+  "result": "PASS"
+}

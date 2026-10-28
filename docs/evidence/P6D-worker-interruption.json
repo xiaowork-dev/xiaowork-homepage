@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-28T08:39:03.105Z",
+  "project": "xiaowork-homepage-v11-p6d-e2e",
+  "tlsVerificationDisabled": false,
+  "cases": [
+    {
+      "name": "真实 Nuxt 构建中 SIGKILL Worker",
+      "detail": "Observed Node process; old public HTML and version bytes unchanged; overlapping job rejected409",
+      "result": "PASS"
+    },
+    {
+      "name": "真实 Worker 停机后拒绝任务",
+      "detail": "Availability elapsed in real time; authenticated CSRF-protected request503; no fake success",
+      "result": "PASS"
+    },
+    {
+      "name": "重启后同任务按真实租约恢复核对",
+      "detail": "Original task failed before activation; current HTML/version and draft remain unchanged; no rebuild or duplicate success",
+      "result": "PASS"
+    }
+  ],
+  "samples": [
+    {
+      "status": "running",
+      "phase": "building",
+      "errorCode": null
+    },
+    {
+      "status": "failed",
+      "phase": null,
+      "errorCode": "INTERRUPTED_BEFORE_ACTIVATION"
+    }
+  ],
+  "activeReleaseId": "rel_64d371127a3729f011b09ae6bf80b1c5",
+  "draftRevision": "ws-44",
+  "publicBefore": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "1ab04a2304446df2b793f851a21f4574ae161e456a1b86df723268e289eac760"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "f96cd05f769ad4ff6fc808f2e7073fd848fd075623df323642eca0e18792f477"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "e59a592001ec61a02808f170aca75546aa5cd8cf5f2f62885951e7121ec7f3e2"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "bca7469dc3ffe6e39904715a14f7a859f36d2ac6dca3c974a667877ad869bb1c"
+    }
+  ],
+  "jobId": "job_f8cfc39ae9183ccd7e9ad92c181105e0",
+  "observedProcesses": ["fixed Nuxt generator for the exact queued job"],
+  "publicAfter": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "1ab04a2304446df2b793f851a21f4574ae161e456a1b86df723268e289eac760"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "f96cd05f769ad4ff6fc808f2e7073fd848fd075623df323642eca0e18792f477"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "e59a592001ec61a02808f170aca75546aa5cd8cf5f2f62885951e7121ec7f3e2"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "bca7469dc3ffe6e39904715a14f7a859f36d2ac6dca3c974a667877ad869bb1c"
+    }
+  ],
+  "finalJob": {
+    "id": "job_f8cfc39ae9183ccd7e9ad92c181105e0",
+    "status": "failed",
+    "phase": null,
+    "error": {
+      "code": "INTERRUPTED_BEFORE_ACTIVATION",
+      "message": "发布任务在切换前中断，公开版本未改变。"
+    },
+    "completedAt": "2026-10-28T08:41:16Z"
+  },
+  "result": "PASS",
+  "certificateTrustRemoved": true
+}

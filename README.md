@@ -1,9 +1,9 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite 认证与草稿 API。P6-D 已增加不可变快照、独立离线 Worker、私有静态预览、全站静态发布、HTTP 对账与同构建器内容恢复；当前正在完成最终隔离验收。发布默认关闭，仅能显式开启本地 HTTPS 测试，不能对正式管理 origin 启用。前台保留 V1.0 视觉与静态架构，未连接或修改生产。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-D 本地预览、发布 A/B、旧标签版本一致性、恢复 A 并保留草稿 B，以及保卷重建已经真实浏览器验证。完整故障验收仍部分完成，正式发布保持关闭，仅能显式开启独立 localhost HTTPS 测试。保留 V1.0 视觉与静态架构，未连接或修改生产。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
-- [P6-D 实现基线](docs/deliveries/P6D-implementation.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)
+- [P6-D 交付与验收边界](docs/deliveries/P6D-delivery.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)、[故障矩阵](docs/P6D-FAULT-TESTS.md)
 - [架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 安全设计](docs/architecture/V1.1-API-SECURITY.md)、[发布设计](docs/architecture/V1.1-PUBLISHING.md)
 - [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
 
@@ -63,7 +63,7 @@ npm run dev
 
 ## 技术与目录
 
-V1.0 使用 Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4，采用静态数据与预渲染。V1.1 的 Go/SQLite 认证与草稿 API 和前台隔离，尚未接入公开页面。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
+V1.0 使用 Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS 4。V1.1 草稿仍与访客隔离；显式启用的本地发布通过不可变快照重新生成全站 HTML、客户端数据、SEO 和版本资源，无快照构建继续读取原 TS 配置。直接依赖使用精确版本，完整依赖树由 `package-lock.json` 固定；TypeScript 采用 Nuxt 本版本自身使用的 6.0.3 基线。
 
 ```text
 app/
@@ -132,7 +132,11 @@ bash rollback.sh v1.0.0-p5a
 
 ## 已知依赖问题
 
-2026-10-26 生产准备阶段再次执行 `npm audit --json`，仍报告 7 个 high 级依赖条目，根因相同：Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`。官方公告未提供修复版本；五项相关包的 npm 最新版本均与安装版本相同。未执行强制修复、Nuxt 降级或传递依赖覆盖。虽然 npm 将 Nuxt 列为 dependencies，这条链在本站用于开发/构建，最终静态 Nginx 镜像不包含 Node。本站未使用 RSA 验签功能，但不能据此声称依赖安全；开发/构建风险仍需跟踪。本轮脱敏公开证据见 `docs/evidence/P5-production-npm-audit.json`、`P5-production-advisory.json` 和 `P5-production-registry.json`；原始运维记录仅保留在已忽略的本机缓存。用户目前不接受剩余 high 风险，安全审计未通过，不开放本站公网入口。
+历史生产基线：2026-10-26 的 P5 审计报告 7 个 high 依赖条目，根因是 Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`；当时未发现兼容修复，未强制升级或降级 Nuxt。证据保留于 `docs/evidence/P5-production-npm-audit.json`、`P5-production-advisory.json` 和 `P5-production-registry.json`。生产旧镜像没有在 P6-D 更新，本轮没有连接服务器重查；用户尚未接受的生产安全风险与公网发布门槛仍有效。
+
+当前 V1.1 本地分支：P6-D 已兼容更新 node-forge 至 1.4.1，官方 npm gitHead、版本 tag 和 lock integrity 已核对。2026-10-28 最终根审计为 **7 low / 0 high / 0 critical**，来自 deepmerge 4.3.1 构建链；官方最新仍为 4.3.1，未采用不兼容 Nuxt 降级。admin 审计为 0。node-forge 旧公告仍未登记 first_patched_version，影响范围为 <=1.4.0，不能将当前审计结果等同完整安全认证。详见 [最终审计](docs/evidence/P6D-npm-audit.json) 与 [来源核对](docs/evidence/P6D-node-forge-source.json)。
+
+Go 扫描结果为 symbol 0 / package 0 / module 1：未导入的 openpgp 存在 `GO-2026-5932` 模块级告警，尚无修复版本，不能标记为已解决。[Go 扫描](docs/evidence/P6D-govulncheck.txt)。Nuxt 依赖链用于开发与静态构建，访客 Nginx 镜像不运行 Node；固定依赖、离线 Worker 和权限限制只能缩小攻击面，不能消除漏洞，也不解除生产发布门槛。
 
 ## 性能复测
 

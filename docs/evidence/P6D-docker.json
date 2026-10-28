@@ -1,0 +1,893 @@
+{
+  "date": "2026-10-28T08:47:27.090Z",
+  "project": "xiaowork-homepage-v11-p6d-e2e",
+  "scope": "Read-only local Docker inspection; no container or volume mutations",
+  "privateConfigurationRead": false,
+  "expectedSource": "16adc47b1f20a65f8ec0218ac4e9cbebac7ba1d2",
+  "containers": [
+    {
+      "id": "e15bb78d5054ad9c60540c58a1887746ffbdb5a82f5a6fd6d4242c2e253b70b9",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-gateway-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "gateway",
+      "imageId": "sha256:08198d0c067fd2445b4f829c4f007e40f60c911e258d01596d8fa82f38cf1764",
+      "state": "running",
+      "startedAt": "2026-10-28T08:29:14.793023071Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": "healthy",
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "xiaowork-homepage-v11-p6d-e2e_control",
+      "networks": [
+        "xiaowork-homepage-v11-p6d-e2e_control",
+        "xiaowork-homepage-v11-p6d-e2e_edge",
+        "xiaowork-homepage-v11-p6d-e2e_isolated"
+      ],
+      "ports": {
+        "3445/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3445"
+          }
+        ],
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3212"
+          }
+        ],
+        "9323/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "9323"
+          }
+        ]
+      },
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-tls",
+          "destination": "/tls",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/nginx.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-admin-headers.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-admin-locations.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/xiaowork-locations.conf",
+          "readWrite": false
+        }
+      ],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "d16062ebbbf4208724780adbaeb137634e810899950cd662654e59dd782554c3",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-worker-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "worker",
+      "imageId": "sha256:d2cd1b6ff657a93944c555314dbec2e17b0c475931918bcbfb74f1b2dc2a80d3",
+      "state": "running",
+      "startedAt": "2026-10-28T08:40:02.683066737Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": "healthy",
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "none",
+      "networks": ["none"],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+          "destination": "/publications",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-uploads",
+          "destination": "/uploads",
+          "readWrite": false
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "readWrite": true
+        }
+      ],
+      "memory": 3221225472,
+      "nanoCpus": 2000000000,
+      "pidsLimit": 256,
+      "tmpfs": {
+        "/tmp": "size=64m,mode=1777",
+        "/work": "size=768m,mode=0700,uid=10001,gid=10001"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "7740e64d5c2716c916d6ae53d755b2a2da79b4acd2d52d54ee0f883a48b837a1",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-api-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "api",
+      "imageId": "sha256:f87414a1dbf5de2658174cc9f0813a66a74670914685390ac02e81805000aab9",
+      "state": "running",
+      "startedAt": "2026-10-28T08:29:04.976122436Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": "healthy",
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "xiaowork-homepage-v11-p6d-e2e_control",
+      "networks": ["xiaowork-homepage-v11-p6d-e2e_control"],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-db",
+          "destination": "/data",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+          "destination": "/publications",
+          "readWrite": false
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-secrets",
+          "destination": "/secrets",
+          "readWrite": false
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-uploads",
+          "destination": "/uploads",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "readWrite": true
+        }
+      ],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "68a5c31b5977065a53b14f64dc24702c0875a6163e2a6cfdc74a87a90b8a5d32",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-publication-static-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "publication-static",
+      "imageId": "sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+      "state": "running",
+      "startedAt": "2026-10-28T08:29:08.974560359Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": "healthy",
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "xiaowork-homepage-v11-p6d-e2e_control",
+      "networks": [
+        "xiaowork-homepage-v11-p6d-e2e_control",
+        "xiaowork-homepage-v11-p6d-e2e_isolated"
+      ],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+          "destination": "/publications",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/nginx.conf",
+          "readWrite": false
+        },
+        {
+          "type": "bind",
+          "volume": null,
+          "destination": "/etc/nginx/security-headers.conf",
+          "readWrite": false
+        }
+      ],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "6283b899387c00428e79c4db4be93f1c1f437dad5ff5af45946454f383df7a4f",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-api-init-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "api-init",
+      "imageId": "sha256:f87414a1dbf5de2658174cc9f0813a66a74670914685390ac02e81805000aab9",
+      "state": "exited",
+      "startedAt": "2026-10-28T08:40:01.460306461Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": null,
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "xiaowork-homepage-v11-p6d-e2e_control",
+      "networks": ["xiaowork-homepage-v11-p6d-e2e_control"],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-authority",
+          "destination": "/authority",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-db",
+          "destination": "/data",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-secrets",
+          "destination": "/secrets",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-tls",
+          "destination": "/tls",
+          "readWrite": true
+        },
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "readWrite": true
+        }
+      ],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "17bcf0fa946cf9fa8b0f6982c46bcecb473735c2ce710537fdf50c105cb5e7be",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-frontend-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "frontend",
+      "imageId": "sha256:9b0771e0f2f9d28db8b7a34fdb7113a67d7fe53722e3710a81cf4f5fe5b11aa8",
+      "state": "running",
+      "startedAt": "2026-10-28T08:29:03.710823715Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": "healthy",
+      "user": "nginx",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "xiaowork-homepage-v11-p6d-e2e_isolated",
+      "networks": ["xiaowork-homepage-v11-p6d-e2e_isolated"],
+      "ports": {},
+      "mounts": [],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=64m,mode=1777"
+      },
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    },
+    {
+      "id": "afa9fd653efdc1776f168746d64aeea00adf75b899b66ce00231cf10f42e7344",
+      "name": "/xiaowork-homepage-v11-p6d-e2e-publication-init-1",
+      "project": "xiaowork-homepage-v11-p6d-e2e",
+      "service": "publication-init",
+      "imageId": "sha256:d2cd1b6ff657a93944c555314dbec2e17b0c475931918bcbfb74f1b2dc2a80d3",
+      "state": "exited",
+      "startedAt": "2026-10-28T08:40:00.776077036Z",
+      "exitCode": 0,
+      "restartCount": 0,
+      "health": null,
+      "user": "10001:10001",
+      "readOnly": true,
+      "privileged": false,
+      "capDrop": ["ALL"],
+      "securityOpt": ["no-new-privileges:true"],
+      "networkMode": "none",
+      "networks": ["none"],
+      "ports": {},
+      "mounts": [
+        {
+          "type": "volume",
+          "volume": "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+          "destination": "/publications",
+          "readWrite": true
+        }
+      ],
+      "memory": 0,
+      "nanoCpus": 0,
+      "pidsLimit": null,
+      "tmpfs": null,
+      "logType": "json-file",
+      "logMaxSize": "10m",
+      "logMaxFile": "3"
+    }
+  ],
+  "volumes": [
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-db",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-uploads",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-secrets",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-authority",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-tls",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-publications",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6d-e2e_admin-publisher-socket",
+      "project": "xiaowork-homepage-v11-p6d-e2e"
+    }
+  ],
+  "checks": [
+    {
+      "name": "local Docker Desktop Linux Engine",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: api",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: api",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "service belongs to fixed whitelist: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "exact project ownership: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "exactly seven isolated services",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: api",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: api",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: api",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: api",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: api",
+      "result": "PASS"
+    },
+    {
+      "name": "healthy service: api",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: api",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "initialization exited successfully: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: api-init",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "healthy service: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: worker",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "initialization exited successfully: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: publication-init",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "healthy service: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: publication-static",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "healthy service: gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "non-root and read-only: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "drop ALL and no-new-privileges: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded JSON logs: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "no privileged socket/SSH/home mount: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "only dedicated named volumes: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "healthy service: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "no host port mapping: frontend",
+      "result": "PASS"
+    },
+    {
+      "name": "gateway only expected IPv4 loopback ports",
+      "result": "PASS"
+    },
+    {
+      "name": "required gateway visitor/HTTPS bindings",
+      "result": "PASS"
+    },
+    {
+      "name": "offline worker and publication initializer",
+      "result": "PASS"
+    },
+    {
+      "name": "worker resource limits",
+      "result": "PASS"
+    },
+    {
+      "name": "worker volume isolation",
+      "result": "PASS"
+    },
+    {
+      "name": "API/static read-only publication volume",
+      "result": "PASS"
+    },
+    {
+      "name": "runtime API has no CA private-key volume",
+      "result": "PASS"
+    },
+    {
+      "name": "gateway TLS read-only and no account/DB volumes",
+      "result": "PASS"
+    },
+    {
+      "name": "API confined to control network",
+      "result": "PASS"
+    },
+    {
+      "name": "worker immutable image/source identity",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-db",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-uploads",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-secrets",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-authority",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-tls",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-publications",
+      "result": "PASS"
+    },
+    {
+      "name": "dedicated persisted volume: admin-publisher-socket",
+      "result": "PASS"
+    },
+    {
+      "name": "exact eleven-container pre-existing baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-homepage-v11-dev-gateway-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-homepage-v11-dev-api-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-homepage-v11-dev-frontend-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-blog-web-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-blog-api-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-blog-db-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-blog-mailpit-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-erp-014a-20261016-backend-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-erp-014a-20261016-edge-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-erp-014a-20261016-mysql-1",
+      "result": "PASS"
+    },
+    {
+      "name": "pre-existing identity/start/state unchanged: /xiaowork-erp-014a-20261016-frontend-1",
+      "result": "PASS"
+    }
+  ],
+  "otherContainers": [
+    {
+      "id": "9bf5e702960cc4eaaad2c505fa95465e37b07199db40e1df6dd0d06294fbb403",
+      "name": "/xiaowork-homepage-v11-dev-gateway-1",
+      "imageId": "sha256:659114d8cbe29751eaa9d7036e1bde490fca1efbc2e0664e219458fc1bc9ce11",
+      "startedAt": "2026-10-27T06:51:55.044641557Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "name": "/xiaowork-homepage-v11-dev-api-1",
+      "imageId": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "startedAt": "2026-10-26T12:11:23.556151356Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "name": "/xiaowork-homepage-v11-dev-frontend-1",
+      "imageId": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "startedAt": "2026-10-26T11:01:39.857796054Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "a52769dc37025009dd8e3a500e7079b07ffb240c27dfb9c45b817bfc13d5f393",
+      "name": "/xiaowork-blog-web-1",
+      "imageId": "sha256:af3b8c1bdaa14a7b087fbf6f70cd3b01e720061560583c62af8f99c485beb7a1",
+      "startedAt": "2026-10-24T13:05:24.021151685Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "70d1b6559dbf939f2687be0d19e45d3dfd3eac4a254ddb557d9d7c497e5fa548",
+      "name": "/xiaowork-blog-api-1",
+      "imageId": "sha256:6a3fa616440f711c9040e178fffcc7c712af46a12c232e2593eea7d9454ed652",
+      "startedAt": "2026-10-24T13:05:48.57103492Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "2e2827478db64c9950f9a4e79e873a303e637c338035e9b3d0abaa8d0ba005ab",
+      "name": "/xiaowork-blog-db-1",
+      "imageId": "sha256:898c60cb390d1085bc97bdd6a1ae968757421df394b071848b52b1c09c89d6a5",
+      "startedAt": "2026-10-24T13:05:23.61650068Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "c42bb8a2d8b9e3fd651596e3024369a82dd8443e909fb82adc319c10704d0bea",
+      "name": "/xiaowork-blog-mailpit-1",
+      "imageId": "sha256:0790692be935ea4420d085694f7985b1f692ca6a8771ab0e0bd8ba75ac180498",
+      "startedAt": "2026-10-24T13:05:24.055142692Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "89342d464b60289682251b8ff2fc52a571f04caa6dfa411f1f22de0ea4b8604c",
+      "name": "/xiaowork-erp-014a-20261016-backend-1",
+      "imageId": "sha256:972f59107dc947443e48129367536fe80ae6ff1fdb4e6599843b089f609c200d",
+      "startedAt": "2026-10-24T13:05:23.87935599Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "8c91df28444f6cec1076becc97c4f3a8494ff6673dcaac23b94669b230c05945",
+      "name": "/xiaowork-erp-014a-20261016-edge-1",
+      "imageId": "sha256:242dedafdf8fbb10eec2859de8d21bb1ab62736a50ef448d5ab07e9f03dcfbde",
+      "startedAt": "2026-10-24T13:05:23.916648122Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "fe768ea8ee0f736df65b28edf6ad57a9e90846d8fbd8692031914e018bc9ebc5",
+      "name": "/xiaowork-erp-014a-20261016-mysql-1",
+      "imageId": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "startedAt": "2026-10-24T13:05:23.947949401Z",
+      "state": "running",
+      "unchanged": true
+    },
+    {
+      "id": "74e769de10ea5ad1bfbe24bc11a83f2fefd91f4c0130081d820d86529edf532e",
+      "name": "/xiaowork-erp-014a-20261016-frontend-1",
+      "imageId": "sha256:a0f5ab3390006415b5dadef063807ccfddea451bfecd68767dfe4e1ca5502144",
+      "startedAt": "2026-10-24T13:05:23.859702505Z",
+      "state": "running",
+      "unchanged": true
+    }
+  ],
+  "limitations": [
+    "Other services are compared by existing ID, image, start time and running state; their HTTP functionality is not tested.",
+    "Browser persistence is referenced only from its actual report; inspection alone does not prove data recovery."
+  ],
+  "workerImage": {
+    "id": "sha256:d2cd1b6ff657a93944c555314dbec2e17b0c475931918bcbfb74f1b2dc2a80d3",
+    "sourceSHA": "16adc47b1f20a65f8ec0218ac4e9cbebac7ba1d2"
+  },
+  "browserPersistence": {
+    "evidence": "P6D-browser.json",
+    "browserResult": "PASS",
+    "verified": true,
+    "result": "PASS",
+    "draftRevision": "ws-44",
+    "activeReleaseId": "rel_84c4dd3b464732e6c5e8fa3ce38d8daa"
+  },
+  "result": "PASS"
+}

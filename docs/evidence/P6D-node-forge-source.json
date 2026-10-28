@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-28T15:44:07.4613736+08:00",
+  "registryVersion": "1.4.1",
+  "gitHead": "8a917370ec51731e817c2d547b7329a58f8210af",
+  "integrity": "sha512-w5/MfWaeMrpR/5ba6fZyAUTLSuE6aYz7H/3cYrqwZEmf5eQS3IaaLgJt4MBv7HglGFWmV22K8h4U18RJQmw/ow==",
+  "tagType": "tag",
+  "tagObject": "390a7a4b3acc7c5f341e0da306a138478702be7d",
+  "tagCommit": "8a917370ec51731e817c2d547b7329a58f8210af",
+  "advisoryId": "GHSA-86w9-cpqp-85rv",
+  "advisoryUpdated": "2026-10-01T21:09:10Z",
+  "vulnerabilities": [
+    {
+      "package": {
+        "ecosystem": "npm",
+        "name": "node-forge"
+      },
+      "vulnerable_version_range": "<= 1.4.0",
+      "first_patched_version": null,
+      "vulnerable_functions": []
+    }
+  ],
+  "verification": {
+    "registryGitHeadMatchesOfficialTag": true,
+    "registryIntegrityMatchesLock": true,
+    "officialChangelogVersion": "1.4.1 - 2026-10.27",
+    "advisoryLimit": "Official advisory still has no first_patched_version; current vulnerable range is <=1.4.0. Audit absence is not a complete security certification."
+  }
+}
