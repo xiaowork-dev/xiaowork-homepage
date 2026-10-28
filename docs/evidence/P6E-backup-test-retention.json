@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-28T10:24:14.629Z",
+  "scope": [
+    "xiaowork-homepage-v11-p6e-release-final",
+    "xiaowork-homepage-v11-p6e-recovery-final",
+    "xiaowork-homepage-v11-p6e-portability",
+    "xiaowork-homepage-v11-p6e-portability-retry"
+  ],
+  "projects": [
+    {
+      "project": "xiaowork-homepage-v11-p6e-release-final",
+      "before": [
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-gateway-1",
+          "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-publication-static-1",
+          "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-worker-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-frontend-1",
+          "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-api-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-api-init-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "exited",
+          "health": null
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-release-final-publication-init-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "exited",
+          "health": null
+        }
+      ],
+      "volumes": [
+        "xiaowork-homepage-v11-p6e-release-final_admin-db",
+        "xiaowork-homepage-v11-p6e-release-final_admin-uploads",
+        "xiaowork-homepage-v11-p6e-release-final_admin-publications",
+        "xiaowork-homepage-v11-p6e-release-final_admin-secrets",
+        "xiaowork-homepage-v11-p6e-release-final_admin-authority",
+        "xiaowork-homepage-v11-p6e-release-final_admin-tls"
+      ],
+      "command": "node scripts/v11-release.mjs stop --project xiaowork-homepage-v11-p6e-release-final",
+      "result": "Only the selected V1.1 project stopped; all volumes and images retained.",
+      "containersRemoved": true,
+      "allDataVolumesRetained": true,
+      "imagesRetained": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-recovery-final",
+      "before": [
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-gateway-1",
+          "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-publication-static-1",
+          "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-worker-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-frontend-1",
+          "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-api-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-api-init-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "exited",
+          "health": null
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-recovery-final-publication-init-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "exited",
+          "health": null
+        }
+      ],
+      "volumes": [
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-db",
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-uploads",
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-publications",
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-secrets",
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-authority",
+        "xiaowork-homepage-v11-p6e-recovery-final_admin-tls"
+      ],
+      "command": "node scripts/v11-release.mjs stop --project xiaowork-homepage-v11-p6e-recovery-final",
+      "result": "Only the selected V1.1 project stopped; all volumes and images retained.",
+      "containersRemoved": true,
+      "allDataVolumesRetained": true,
+      "imagesRetained": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-portability",
+      "before": [
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-gateway-1",
+          "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-publication-static-1",
+          "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-frontend-1",
+          "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-api-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-api-init-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "exited",
+          "health": null
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-publication-init-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "exited",
+          "health": null
+        }
+      ],
+      "volumes": [
+        "xiaowork-homepage-v11-p6e-portability_admin-db",
+        "xiaowork-homepage-v11-p6e-portability_admin-uploads",
+        "xiaowork-homepage-v11-p6e-portability_admin-publications",
+        "xiaowork-homepage-v11-p6e-portability_admin-secrets",
+        "xiaowork-homepage-v11-p6e-portability_admin-authority",
+        "xiaowork-homepage-v11-p6e-portability_admin-tls"
+      ],
+      "command": "node scripts/v11-release.mjs stop --project xiaowork-homepage-v11-p6e-portability",
+      "result": "Only the selected V1.1 project stopped; all volumes and images retained.",
+      "containersRemoved": true,
+      "allDataVolumesRetained": true,
+      "imagesRetained": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-portability-retry",
+      "before": [
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-gateway-1",
+          "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-publication-static-1",
+          "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-frontend-1",
+          "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-api-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "running",
+          "health": "healthy"
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-api-init-1",
+          "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "status": "exited",
+          "health": null
+        },
+        {
+          "name": "/xiaowork-homepage-v11-p6e-portability-retry-publication-init-1",
+          "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "status": "exited",
+          "health": null
+        }
+      ],
+      "volumes": [
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-db",
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-uploads",
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-publications",
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-secrets",
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-authority",
+        "xiaowork-homepage-v11-p6e-portability-retry_admin-tls"
+      ],
+      "command": "node scripts/v11-release.mjs stop --project xiaowork-homepage-v11-p6e-portability-retry",
+      "result": "Only the selected V1.1 project stopped; all volumes and images retained.",
+      "containersRemoved": true,
+      "allDataVolumesRetained": true,
+      "imagesRetained": true
+    }
+  ],
+  "result": "PASS",
+  "postGuardAndRegression": {
+    "date": "2026-10-28T10:41:35.651Z",
+    "project": "xiaowork-homepage-v11-p6e-recovery-final",
+    "before": [
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-gateway-1",
+        "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+        "status": "running",
+        "health": "healthy"
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-publication-static-1",
+        "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+        "status": "running",
+        "health": "healthy"
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-worker-1",
+        "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+        "status": "running",
+        "health": "healthy"
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-frontend-1",
+        "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+        "status": "running",
+        "health": "healthy"
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-api-1",
+        "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+        "status": "running",
+        "health": "healthy"
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-api-init-1",
+        "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+        "status": "exited",
+        "health": null
+      },
+      {
+        "name": "/xiaowork-homepage-v11-p6e-recovery-final-publication-init-1",
+        "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+        "status": "exited",
+        "health": null
+      }
+    ],
+    "volumes": [
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-db",
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-uploads",
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-publications",
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-secrets",
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-authority",
+      "xiaowork-homepage-v11-p6e-recovery-final_admin-tls"
+    ],
+    "containersRemoved": true,
+    "allDataVolumesRetained": true,
+    "result": "PASS"
+  }
+}

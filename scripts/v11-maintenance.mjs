@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -25,10 +26,25 @@ export function docker(args, options = {}) {
   }).trim()
 }
 export function localEngine() {
-  const endpoint = docker(['context', 'inspect', '--format', '{{.Endpoints.docker.Host}}'])
+  const allowed = ['npipe:////./pipe/dockerDesktopLinuxEngine', 'unix:///var/run/docker.sock']
   assert.ok(
-    endpoint === 'npipe:////./pipe/dockerDesktopLinuxEngine' ||
-      endpoint === 'unix:///var/run/docker.sock',
+    !process.env.DOCKER_HOST || allowed.includes(process.env.DOCKER_HOST),
+    'Only explicitly local DOCKER_HOST endpoints are supported; no Docker command was executed',
+  )
+  const context = process.env.DOCKER_CONTEXT
+  assert.ok(
+    !context || /^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,127}$/.test(context),
+    'Docker context selector is invalid',
+  )
+  const endpoint = docker([
+    'context',
+    'inspect',
+    '--format',
+    '{{.Endpoints.docker.Host}}',
+    ...(context ? [context] : []),
+  ])
+  assert.ok(
+    allowed.includes(endpoint),
     'Only the explicitly local Linux Docker engine is supported; SSH/TCP contexts are refused',
   )
 }
@@ -104,6 +120,34 @@ export function backupProject(project, image, destination) {
   } else {
     fs.chmodSync(path.dirname(absolute), 0o700)
   }
+  const recorded = JSON.parse(
+    fs.readFileSync(path.join(repository, '.v11-deploy', project, 'current.json'), 'utf8'),
+  )
+  assert.equal(recorded.project, project)
+  assert.equal(recorded.spec.images.maintenance, image)
+  const runtime = {
+    format: 1,
+    project,
+    source: recorded.spec.source,
+    schema: recorded.spec.schema,
+    images: recorded.spec.images,
+  }
+  assert.match(runtime.source, /^[a-f0-9]{40}$/)
+  const imageRoles = ['api', 'worker', 'gateway', 'frontend', 'static', 'maintenance']
+  assert.deepEqual(Object.keys(runtime.images).sort(), [...imageRoles].sort())
+  for (const role of imageRoles) assert.match(runtime.images[role], /^sha256:[a-f0-9]{64}$/)
+  for (const container of ownedContainers(project)) {
+    const role =
+      { 'api-init': 'api', 'publication-init': 'worker', 'publication-static': 'static' }[
+        container.service
+      ] ?? container.service
+    if (!imageRoles.includes(role)) continue
+    assert.equal(
+      docker(['inspect', '--format', '{{.Image}}', container.id]),
+      runtime.images[role],
+      'Actual project image differs from recorded release descriptor',
+    )
+  }
   assert.equal(
     inspectProject(project, image).unfinished,
     0,
@@ -114,20 +158,86 @@ export function backupProject(project, image, destination) {
     '--mount',
     `type=bind,src=${path.dirname(absolute)},dst=/backup`,
   ]
-  const manifest = tool(image, 'backup', mount, ['-target', `/backup/${path.basename(absolute)}`])
+  fs.mkdirSync(absolute, { mode: 0o700 })
+  const manifest = tool(image, 'backup', mount, [
+    '-target',
+    `/backup/${path.basename(absolute)}/content`,
+  ])
+  const contentManifestSHA256 = createHash('sha256')
+    .update(fs.readFileSync(path.join(absolute, 'content', 'manifest.json')))
+    .digest('hex')
+  fs.writeFileSync(
+    path.join(absolute, 'bundle.json'),
+    JSON.stringify(
+      {
+        format: 1,
+        runtime,
+        runtimeSHA256: createHash('sha256').update(JSON.stringify(runtime)).digest('hex'),
+        contentManifestSHA256,
+      },
+      null,
+      2,
+    ) + '\n',
+    { mode: 0o600, flag: 'wx' },
+  )
   const verified = verifyBackup(image, absolute)
   assert.deepEqual(verified.state, manifest.state)
   return manifest
 }
 export function verifyBackup(image, source) {
   const absolute = path.resolve(source)
-  assert.ok(fs.statSync(absolute).isDirectory())
-  return tool(
+  assert.ok(fs.lstatSync(absolute).isDirectory() && !fs.lstatSync(absolute).isSymbolicLink())
+  assert.deepEqual(fs.readdirSync(absolute).sort(), ['bundle.json', 'content'])
+  for (const member of ['bundle.json', 'content'])
+    assert.ok(!fs.lstatSync(path.join(absolute, member)).isSymbolicLink())
+  const bundle = JSON.parse(fs.readFileSync(path.join(absolute, 'bundle.json'), 'utf8'))
+  assert.deepEqual(
+    Object.keys(bundle).sort(),
+    ['contentManifestSHA256', 'format', 'runtime', 'runtimeSHA256'].sort(),
+  )
+  assert.equal(bundle.format, 1)
+  assert.equal(bundle.runtime.format, 1)
+  assert.equal(
+    createHash('sha256').update(JSON.stringify(bundle.runtime)).digest('hex'),
+    bundle.runtimeSHA256,
+    'Runtime descriptor SHA mismatch',
+  )
+  assert.deepEqual(
+    Object.keys(bundle.runtime).sort(),
+    ['format', 'images', 'project', 'schema', 'source'].sort(),
+  )
+  projectName(bundle.runtime.project)
+  assert.match(bundle.runtime.source, /^[a-f0-9]{40}$/)
+  assert.deepEqual(Object.keys(bundle.runtime.images).sort(), [
+    'api',
+    'frontend',
+    'gateway',
+    'maintenance',
+    'static',
+    'worker',
+  ])
+  for (const identity of Object.values(bundle.runtime.images))
+    assert.match(identity, /^sha256:[0-9a-f]{64}$/)
+  assert.equal(
+    image,
+    bundle.runtime.images.maintenance,
+    'Use the maintenance image recorded in the independent backup bundle',
+  )
+  assert.equal(
+    createHash('sha256')
+      .update(fs.readFileSync(path.join(absolute, 'content', 'manifest.json')))
+      .digest('hex'),
+    bundle.contentManifestSHA256,
+    'Content manifest SHA does not match independent runtime bundle',
+  )
+  const manifest = tool(
     image,
     'verify',
-    ['--mount', `type=bind,src=${absolute},dst=/backup/set`],
+    ['--mount', `type=bind,src=${path.join(absolute, 'content')},dst=/backup/set,readonly`],
     ['-source', '/backup/set'],
   )
+  assert.equal(manifest.state.schema, bundle.runtime.schema)
+  return { ...manifest, runtime: bundle.runtime }
 }
 export function restoreProject(project, image, source) {
   projectName(project)
@@ -156,7 +266,7 @@ export function restoreProject(project, image, source) {
     [
       ...volumeMounts(project, '/target', true),
       '--mount',
-      `type=bind,src=${path.resolve(source)},dst=/backup/set`,
+      `type=bind,src=${path.resolve(source, 'content')},dst=/backup/set,readonly`,
     ],
     ['-source', '/backup/set', '-target', '/target'],
   )

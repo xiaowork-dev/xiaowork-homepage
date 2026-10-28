@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-28T10:51:18.497Z",
+  "scope": "Final successor source; formatting and image tests recorded separately",
+  "checks": [
+    {
+      "name": "root-eslint",
+      "started": "2026-10-28T10:50:55.093Z",
+      "finished": "2026-10-28T10:51:02.466Z",
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings 0",
+      "cwd": ".",
+      "exitCode": 0,
+      "evidence": "P6E-final-root-eslint.txt",
+      "result": "PASS"
+    },
+    {
+      "name": "root-typescript",
+      "started": "2026-10-28T10:51:02.467Z",
+      "finished": "2026-10-28T10:51:11.516Z",
+      "command": "node node_modules/nuxt/bin/nuxt.mjs typecheck",
+      "cwd": ".",
+      "exitCode": 0,
+      "evidence": "P6E-final-root-typescript.txt",
+      "result": "PASS"
+    },
+    {
+      "name": "root-tests",
+      "started": "2026-10-28T10:51:11.516Z",
+      "finished": "2026-10-28T10:51:11.928Z",
+      "command": "node --test scripts/catalog.test.mjs scripts/publication.test.mjs scripts/v11-maintenance.test.mjs",
+      "cwd": ".",
+      "exitCode": 0,
+      "evidence": "P6E-final-root-tests.txt",
+      "result": "PASS"
+    },
+    {
+      "name": "admin-eslint",
+      "started": "2026-10-28T10:51:11.928Z",
+      "finished": "2026-10-28T10:51:14.012Z",
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings 0",
+      "cwd": "admin",
+      "exitCode": 0,
+      "evidence": "P6E-final-admin-eslint.txt",
+      "result": "PASS"
+    },
+    {
+      "name": "admin-typescript",
+      "started": "2026-10-28T10:51:14.012Z",
+      "finished": "2026-10-28T10:51:17.922Z",
+      "command": "node node_modules/vue-tsc/bin/vue-tsc.js --noEmit",
+      "cwd": "admin",
+      "exitCode": 0,
+      "evidence": "P6E-final-admin-typescript.txt",
+      "result": "PASS"
+    },
+    {
+      "name": "admin-tests",
+      "started": "2026-10-28T10:51:17.922Z",
+      "finished": "2026-10-28T10:51:18.497Z",
+      "command": "node --test test/admin.test.mjs test/api.test.mjs test/content.test.mjs test/draft-form.test.mjs test/publishing.test.mjs",
+      "cwd": "admin",
+      "exitCode": 0,
+      "evidence": "P6E-final-admin-tests.txt",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS"
+}

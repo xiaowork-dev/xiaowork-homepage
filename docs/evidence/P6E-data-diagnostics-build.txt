@@ -1,0 +1,43 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from p6e-fault-worker.Dockerfile
+#1 transferring dockerfile: 1.15kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6b-test
+#2 DONE 0.1s
+
+#3 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#3 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 37.26kB 0.0s done
+#4 DONE 0.1s
+
+#5 [test-build 2/4] WORKDIR /src
+#5 CACHED
+
+#6 [test-build 3/4] COPY backend/ ./
+#6 DONE 0.2s
+
+#7 [test-build 4/4] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-worker ./cmd/p6e-fault-worker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-api ./cmd/homepage-api  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-data ./cmd/p6e-fault-data
+#7 DONE 14.8s
+
+#3 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#3 CACHED
+
+#8 [data-test 2/2] COPY --from=test-build /p6e-fault-data /p6e-fault-data
+#8 DONE 0.3s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.2s done
+#9 exporting manifest sha256:3b2d1c200127c5f2c89a6f26ef14f95a2fe74c2deeeaa14764eb26d29f9dea9b 0.0s done
+#9 exporting config sha256:3fbb0de316e43082361f010ee038987212db0d73e194fc19ff9dcb544b405756 0.0s done
+#9 exporting attestation manifest sha256:f98b5171c24f9df722dfd3e2a1b9308b8cf11036ce8010745efe70f55bef470b 0.0s done
+#9 exporting manifest list sha256:392eaa06b6254b4c23da1ed173890b3024eed8f829b0849aa06e298ca2d1f604 0.0s done
+#9 naming to docker.io/library/xiaowork-homepage-fault-data:p6e-diagnostics-aa23376 done
+#9 unpacking to docker.io/library/xiaowork-homepage-fault-data:p6e-diagnostics-aa23376
+#9 unpacking to docker.io/library/xiaowork-homepage-fault-data:p6e-diagnostics-aa23376 0.3s done
+#9 DONE 1.7s

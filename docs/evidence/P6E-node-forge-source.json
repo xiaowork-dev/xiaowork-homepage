@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-28T09:11:15.266Z",
+  "registry": {
+    "version": "1.4.1",
+    "gitHead": "8a917370ec51731e817c2d547b7329a58f8210af",
+    "dist.integrity": "sha512-w5/MfWaeMrpR/5ba6fZyAUTLSuE6aYz7H/3cYrqwZEmf5eQS3IaaLgJt4MBv7HglGFWmV22K8h4U18RJQmw/ow==",
+    "dist.tarball": "https://registry.npmjs.org/node-forge/-/node-forge-1.4.1.tgz"
+  },
+  "lock": {
+    "version": "1.4.1",
+    "resolved": "https://registry.npmjs.org/node-forge/-/node-forge-1.4.1.tgz",
+    "integrity": "sha512-w5/MfWaeMrpR/5ba6fZyAUTLSuE6aYz7H/3cYrqwZEmf5eQS3IaaLgJt4MBv7HglGFWmV22K8h4U18RJQmw/ow==",
+    "license": "(BSD-3-Clause OR GPL-2.0)",
+    "engines": {
+      "node": ">= 6.13.0"
+    }
+  },
+  "installed": "1.4.1",
+  "deepmergeLatest": "4.3.1",
+  "integrityMatches": true,
+  "officialTag": {
+    "type": "tag",
+    "tagObject": "390a7a4b3acc7c5f341e0da306a138478702be7d",
+    "commit": "8a917370ec51731e817c2d547b7329a58f8210af"
+  },
+  "advisory": {
+    "id": "GHSA-86w9-cpqp-85rv",
+    "updatedAt": "2026-10-01T21:09:10Z",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "node-forge"
+        },
+        "vulnerable_version_range": "<= 1.4.0",
+        "first_patched_version": null,
+        "vulnerable_functions": []
+      }
+    ]
+  },
+  "registryGitHeadMatchesOfficialTag": true
+}

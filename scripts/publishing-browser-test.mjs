@@ -5,7 +5,10 @@ import { createHash, randomBytes } from 'node:crypto'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import path from 'node:path'
-import {
+const p6e = process.argv[2] === '--p6e'
+assert.ok(process.argv.length === 2 || (process.argv.length === 3 && p6e))
+const evidenceName = (name) => (p6e ? name.replace(/^P6D/, 'P6E-publishing') : name)
+const {
   expireSession,
   initializeTestAdministrator,
   origin,
@@ -14,7 +17,7 @@ import {
   recreateEnvironment,
   startBrowserContainer,
   stopBrowserContainer,
-} from './publishing-browser-environment.mjs'
+} = await import(p6e ? './p6e-browser-environment.mjs' : './publishing-browser-environment.mjs')
 
 const requireAdmin = createRequire(path.resolve('admin/package.json'))
 const { chromium } = requireAdmin('playwright-core')
@@ -77,7 +80,11 @@ async function screenshot(name, p = page) {
     false,
   )
   await p.evaluate(() => window.scrollTo(0, 0))
-  await p.screenshot({ path: path.join(evidence, name), fullPage: true, animations: 'disabled' })
+  await p.screenshot({
+    path: path.join(evidence, evidenceName(name)),
+    fullPage: true,
+    animations: 'disabled',
+  })
 }
 async function secret(locator, value) {
   try {
@@ -766,7 +773,10 @@ try {
   if (browser) await browser.close()
   stopBrowserContainer()
   report.certificateTrustRemoved = true
-  await writeFile(path.join(evidence, 'P6D-browser.json'), JSON.stringify(report, null, 2) + '\n')
+  await writeFile(
+    path.join(evidence, evidenceName('P6D-browser.json')),
+    JSON.stringify(report, null, 2) + '\n',
+  )
   console.log(
     'Evidence: docs/evidence/P6D-browser.json; no passwords, CSRF, cookies or private request bodies recorded.',
   )

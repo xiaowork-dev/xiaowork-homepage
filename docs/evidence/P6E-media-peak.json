@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-28T10:07:06.236Z",
+  "project": "xiaowork-homepage-v11-p6e-e2e",
+  "origin": "https://localhost:3447",
+  "fixture": "Locally generated low-entropy 5000 x 5000 PNG; not a project screenshot",
+  "limitations": "Docker one-second sampled memory includes cache; not a proof of absolute peak or all 25M-pixel inputs",
+  "tlsVerificationDisabled": false,
+  "samples": [
+    {
+      "at": "2026-10-28T10:07:19.594660203Z",
+      "memoryBytes": 79360000,
+      "cpuNanoseconds": 6075148000
+    },
+    {
+      "at": "2026-10-28T10:07:20.612918456Z",
+      "memoryBytes": 80322560,
+      "cpuNanoseconds": 6122247000
+    },
+    {
+      "at": "2026-10-28T10:07:21.617092308Z",
+      "memoryBytes": 79421440,
+      "cpuNanoseconds": 6122247000
+    },
+    {
+      "at": "2026-10-28T10:07:22.619951197Z",
+      "memoryBytes": 182181888,
+      "cpuNanoseconds": 6628378000
+    },
+    {
+      "at": "2026-10-28T10:07:23.622601202Z",
+      "memoryBytes": 181309440,
+      "cpuNanoseconds": 6628378000
+    },
+    {
+      "at": "2026-10-28T10:07:24.625572089Z",
+      "memoryBytes": 181039104,
+      "cpuNanoseconds": 6629448000
+    }
+  ],
+  "memoryLimit": 805306368,
+  "upload": {
+    "status": 201,
+    "width": 5000,
+    "height": 5000,
+    "originalBytes": 488801,
+    "outputBytes": 541784,
+    "unreferencedSoftDeleteStatus": 200
+  },
+  "elapsedMs": 726,
+  "maximumObservedMemoryBytes": 182181888,
+  "oomKilled": false,
+  "result": "PASS"
+}

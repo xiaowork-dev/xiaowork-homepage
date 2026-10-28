@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-28T11:04:59.656Z",
+  "project": "xiaowork-homepage-v11-p6e-fault",
+  "command": "docker compose --profile publisher -p xiaowork-homepage-v11-p6e-fault --project-directory <repository> -f .cache/p6e-fault/compose.base.yaml -f .cache/p6e-fault/compose.override.yaml down",
+  "removedContainers": [
+    {
+      "id": "ceb6e053e94a",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "504dae9ba94e",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "d0113e747911",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "2884d4845ebe",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "e4f2135c03c0",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "b0698393ffd9",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    },
+    {
+      "id": "e150638b524c",
+      "project": "xiaowork-homepage-v11-p6e-fault"
+    }
+  ],
+  "remainingProjectContainers": [],
+  "volumesPreserved": [
+    "xiaowork-homepage-v11-p6e-fault_admin-authority",
+    "xiaowork-homepage-v11-p6e-fault_admin-db",
+    "xiaowork-homepage-v11-p6e-fault_admin-publications",
+    "xiaowork-homepage-v11-p6e-fault_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6e-fault_admin-secrets",
+    "xiaowork-homepage-v11-p6e-fault_admin-tls",
+    "xiaowork-homepage-v11-p6e-fault_admin-uploads"
+  ],
+  "volumesDeleted": 0,
+  "globalCleanup": false,
+  "otherRunningContainersStillRunning": 12,
+  "otherContainerIdsBefore": [
+    "9bcc2f50535f",
+    "9bf5e702960c",
+    "08aa0e7dd253",
+    "ac84fad9e78b",
+    "a52769dc3702",
+    "70d1b6559dbf",
+    "2e2827478db6",
+    "c42bb8a2d8b9",
+    "89342d464b60",
+    "8c91df28444f",
+    "fe768ea8ee0f",
+    "74e769de10ea"
+  ],
+  "currentNextPreserved": 1,
+  "noTaskOrCurrentPointerRewritten": true
+}

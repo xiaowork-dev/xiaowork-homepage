@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-28T09:37:04.699Z",
+  "module": "golang.org/x/vuln",
+  "version": "v1.9.0",
+  "moduleZipHash": "h1:12VaqnI9kJfqwRoPptxoqsUhQtdfrSbdksT7X/KY/sc=",
+  "source": "Previously verified local Go module cache; built with GOPROXY=off and GOTOOLCHAIN=local",
+  "binaryVersionCaveat": "Building from a cached module directory reports v0.0.0; the exact source module and checksum are recorded rather than forging the tool version.",
+  "platform": "windows/amd64"
+}

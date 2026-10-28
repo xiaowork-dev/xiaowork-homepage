@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-28T11:18:47.603Z",
+  "scope": "All Git tracked and nonignored paths with an inferred parser, respecting .gitignore and .prettierignore; no traversal of private backup directories",
+  "checked": 244,
+  "mode": "check",
+  "unformatted": [],
+  "result": "PASS",
+  "note": "Machine-produced P6E evidence is excluded to preserve original report bytes/hashes. Original design files remain excluded."
+}

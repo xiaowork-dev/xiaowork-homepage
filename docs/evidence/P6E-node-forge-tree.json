@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0-p5a",
+  "name": "xiaowork-homepage",
+  "dependencies": {
+    "nuxt": {
+      "version": "4.6.2",
+      "resolved": "https://registry.npmjs.org/nuxt/-/nuxt-4.6.2.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@nuxt/nitro-server": {
+          "version": "4.6.2",
+          "resolved": "https://registry.npmjs.org/@nuxt/nitro-server/-/nitro-server-4.6.2.tgz",
+          "overridden": false,
+          "dependencies": {
+            "nitropack": {
+              "version": "2.13.5",
+              "resolved": "https://registry.npmjs.org/nitropack/-/nitropack-2.13.5.tgz",
+              "overridden": false,
+              "dependencies": {
+                "listhen": {
+                  "version": "1.10.1",
+                  "resolved": "https://registry.npmjs.org/listhen/-/listhen-1.10.1.tgz",
+                  "overridden": false,
+                  "dependencies": {
+                    "node-forge": {
+                      "version": "1.4.1",
+                      "resolved": "https://registry.npmjs.org/node-forge/-/node-forge-1.4.1.tgz",
+                      "overridden": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

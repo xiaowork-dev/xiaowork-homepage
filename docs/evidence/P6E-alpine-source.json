@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28T09:16:53.945Z",
+  "sources": [
+    {
+      "package": "musl",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/musl/APKBUILD",
+      "status": 200,
+      "versions": ["pkgver=1.2.6", "pkgrel=3"],
+      "secfixes": "# secfixes:\n#   1.2.6-r3:\n#     - CVE-2026-107891\n#   1.2.6-r2:\n#     - CVE-2026-40200"
+    },
+    {
+      "package": "brotli",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/brotli/APKBUILD",
+      "status": 200,
+      "versions": ["pkgver=1.2.1", "pkgrel=0"],
+      "secfixes": "# secfixes:\n#   1.2.1-r0:\n#     - CVE-2026-111497\n#   1.0.9-r0:\n#     - CVE-2020-8927"
+    },
+    {
+      "package": "curl",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/curl/APKBUILD",
+      "status": 200,
+      "versions": ["pkgver=8.23.0", "pkgrel=0"],
+      "secfixes": "# secfixes:\n#   8.23.0-r0:\n#     - CVE-2026-86409\n#     - CVE-2026-86410\n#     - CVE-2026-86411\n#     - CVE-2026-86412\n#     - CVE-2026-86413\n#     - CVE-2026-86414\n#     - CVE-2026-86415\n#     - CVE-2026-87861\n#     - CVE-2026-87862\n#     - CVE-2026-87863\n#     - CVE-2026-87864\n#     - CVE-2026-87865\n#     - CVE-2026-87866\n#     - CVE-2026-92386\n#     - CVE-2026-92387\n#     - CVE-2026-92388\n#     - CVE-2026-92389\n#     - CVE-2026-92390\n#     - CVE-2026-92391\n#     - CVE-2026-92392\n#     - CVE-2026-94265\n#     - CVE-2026-94266\n#     - CVE-2026-107928\n#     - CVE-2026-107929\n#   8.22.0-r0:"
+    },
+    {
+      "package": "libxml2",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/libxml2/APKBUILD",
+      "status": 200,
+      "versions": ["pkgver=2.13.9", "pkgrel=2"],
+      "secfixes": "# secfixes:\n#   2.13.9-r2:\n#     - CVE-2026-6732\n#   2.13.9-r0:\n#     - CVE-2025-49794"
+    }
+  ]
+}

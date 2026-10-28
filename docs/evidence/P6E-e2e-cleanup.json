@@ -1,0 +1,315 @@
+{
+  "date": "2026-10-28T10:26:39.473Z",
+  "project": "xiaowork-homepage-v11-p6e-e2e",
+  "scope": "Only dedicated local P6E browser stack; no volume/image/global cleanup",
+  "sourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "preexistingBeforeCleanup": [
+    {
+      "id": "9bcc2f50535f3f97033f2e3e718d1032e92042ee591999b096bf6812cbd79144",
+      "name": "/tender_ellis",
+      "image": "sha256:fe248165fba2dd891dc2e1c89fc8c7773bc6bbd0b218f02b06d9903ee57d921c",
+      "started": "2026-10-28T09:30:14.614216335Z",
+      "running": true,
+      "health": null,
+      "project": "xiaowork-homepage-v11-p6d-dev"
+    },
+    {
+      "id": "9bf5e702960cc4eaaad2c505fa95465e37b07199db40e1df6dd0d06294fbb403",
+      "name": "/xiaowork-homepage-v11-dev-gateway-1",
+      "image": "sha256:659114d8cbe29751eaa9d7036e1bde490fca1efbc2e0664e219458fc1bc9ce11",
+      "started": "2026-10-27T06:51:55.044641557Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "name": "/xiaowork-homepage-v11-dev-api-1",
+      "image": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "started": "2026-10-26T12:11:23.556151356Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "name": "/xiaowork-homepage-v11-dev-frontend-1",
+      "image": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "started": "2026-10-26T11:01:39.857796054Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "a52769dc37025009dd8e3a500e7079b07ffb240c27dfb9c45b817bfc13d5f393",
+      "name": "/xiaowork-blog-web-1",
+      "image": "sha256:af3b8c1bdaa14a7b087fbf6f70cd3b01e720061560583c62af8f99c485beb7a1",
+      "started": "2026-10-24T13:05:24.021151685Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "70d1b6559dbf939f2687be0d19e45d3dfd3eac4a254ddb557d9d7c497e5fa548",
+      "name": "/xiaowork-blog-api-1",
+      "image": "sha256:6a3fa616440f711c9040e178fffcc7c712af46a12c232e2593eea7d9454ed652",
+      "started": "2026-10-24T13:05:48.57103492Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "2e2827478db64c9950f9a4e79e873a303e637c338035e9b3d0abaa8d0ba005ab",
+      "name": "/xiaowork-blog-db-1",
+      "image": "sha256:898c60cb390d1085bc97bdd6a1ae968757421df394b071848b52b1c09c89d6a5",
+      "started": "2026-10-24T13:05:23.61650068Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "c42bb8a2d8b9e3fd651596e3024369a82dd8443e909fb82adc319c10704d0bea",
+      "name": "/xiaowork-blog-mailpit-1",
+      "image": "sha256:0790692be935ea4420d085694f7985b1f692ca6a8771ab0e0bd8ba75ac180498",
+      "started": "2026-10-24T13:05:24.055142692Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "89342d464b60289682251b8ff2fc52a571f04caa6dfa411f1f22de0ea4b8604c",
+      "name": "/xiaowork-erp-014a-20261016-backend-1",
+      "image": "sha256:972f59107dc947443e48129367536fe80ae6ff1fdb4e6599843b089f609c200d",
+      "started": "2026-10-24T13:05:23.87935599Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "8c91df28444f6cec1076becc97c4f3a8494ff6673dcaac23b94669b230c05945",
+      "name": "/xiaowork-erp-014a-20261016-edge-1",
+      "image": "sha256:242dedafdf8fbb10eec2859de8d21bb1ab62736a50ef448d5ab07e9f03dcfbde",
+      "started": "2026-10-24T13:05:23.916648122Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "fe768ea8ee0f736df65b28edf6ad57a9e90846d8fbd8692031914e018bc9ebc5",
+      "name": "/xiaowork-erp-014a-20261016-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "started": "2026-10-24T13:05:23.947949401Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "74e769de10ea5ad1bfbe24bc11a83f2fefd91f4c0130081d820d86529edf532e",
+      "name": "/xiaowork-erp-014a-20261016-frontend-1",
+      "image": "sha256:a0f5ab3390006415b5dadef063807ccfddea451bfecd68767dfe4e1ca5502144",
+      "started": "2026-10-24T13:05:23.859702505Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    }
+  ],
+  "testContainersBefore": [
+    {
+      "id": "edec3ef9050247d4a452c0d21e73189e65e7aade6dc67579d2a56506abce43ee",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-api-1",
+      "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "started": "2026-10-28T10:00:35.428957481Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "22adfc7c7c09c5d746ed4e96fc1eb155963c2db66b82fd3e0108e059646b96e6",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-api-init-1",
+      "image": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "started": "2026-10-28T10:07:08.893200826Z",
+      "running": false,
+      "health": null,
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "7cb24dad4844efd6c5869dff18c2723267a41ddcac8397b51ae1ad0dd56c013b",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-frontend-1",
+      "image": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+      "started": "2026-10-28T09:54:30.26662381Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "25270faeb475e8c2f5e9ca6ff3fd98eedebf8ec3f90a254a568bd7ba2370caf5",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-gateway-1",
+      "image": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+      "started": "2026-10-28T10:00:40.759042226Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "f6af1a40c1e06b0e8c49f51c1606d4a25eb25d934181aded1ba56037304da1ac",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-publication-init-1",
+      "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "started": "2026-10-28T10:07:08.198482967Z",
+      "running": false,
+      "health": null,
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "003f13d737df2a3dd393d19b960b672187d05dc581821222d62a56a0f308b0f7",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-publication-static-1",
+      "image": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+      "started": "2026-10-28T10:00:34.464371327Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    },
+    {
+      "id": "949b070871167f6cfc609ebd7d130a32d0a228d41320933e702ac145d4d9cf0a",
+      "name": "/xiaowork-homepage-v11-p6e-e2e-worker-1",
+      "image": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "started": "2026-10-28T10:00:41.157277811Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-p6e-e2e"
+    }
+  ],
+  "volumesBefore": [
+    "xiaowork-homepage-v11-p6e-e2e_admin-authority",
+    "xiaowork-homepage-v11-p6e-e2e_admin-db",
+    "xiaowork-homepage-v11-p6e-e2e_admin-publications",
+    "xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6e-e2e_admin-secrets",
+    "xiaowork-homepage-v11-p6e-e2e_admin-tls",
+    "xiaowork-homepage-v11-p6e-e2e_admin-uploads"
+  ],
+  "volumesAfter": [
+    "xiaowork-homepage-v11-p6e-e2e_admin-authority",
+    "xiaowork-homepage-v11-p6e-e2e_admin-db",
+    "xiaowork-homepage-v11-p6e-e2e_admin-publications",
+    "xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6e-e2e_admin-secrets",
+    "xiaowork-homepage-v11-p6e-e2e_admin-tls",
+    "xiaowork-homepage-v11-p6e-e2e_admin-uploads"
+  ],
+  "preexistingAfterCleanup": [
+    {
+      "id": "9bcc2f50535f3f97033f2e3e718d1032e92042ee591999b096bf6812cbd79144",
+      "name": "/tender_ellis",
+      "image": "sha256:fe248165fba2dd891dc2e1c89fc8c7773bc6bbd0b218f02b06d9903ee57d921c",
+      "started": "2026-10-28T09:30:14.614216335Z",
+      "running": true,
+      "health": null,
+      "project": "xiaowork-homepage-v11-p6d-dev"
+    },
+    {
+      "id": "9bf5e702960cc4eaaad2c505fa95465e37b07199db40e1df6dd0d06294fbb403",
+      "name": "/xiaowork-homepage-v11-dev-gateway-1",
+      "image": "sha256:659114d8cbe29751eaa9d7036e1bde490fca1efbc2e0664e219458fc1bc9ce11",
+      "started": "2026-10-27T06:51:55.044641557Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "name": "/xiaowork-homepage-v11-dev-api-1",
+      "image": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "started": "2026-10-26T12:11:23.556151356Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "name": "/xiaowork-homepage-v11-dev-frontend-1",
+      "image": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "started": "2026-10-26T11:01:39.857796054Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "a52769dc37025009dd8e3a500e7079b07ffb240c27dfb9c45b817bfc13d5f393",
+      "name": "/xiaowork-blog-web-1",
+      "image": "sha256:af3b8c1bdaa14a7b087fbf6f70cd3b01e720061560583c62af8f99c485beb7a1",
+      "started": "2026-10-24T13:05:24.021151685Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "70d1b6559dbf939f2687be0d19e45d3dfd3eac4a254ddb557d9d7c497e5fa548",
+      "name": "/xiaowork-blog-api-1",
+      "image": "sha256:6a3fa616440f711c9040e178fffcc7c712af46a12c232e2593eea7d9454ed652",
+      "started": "2026-10-24T13:05:48.57103492Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "2e2827478db64c9950f9a4e79e873a303e637c338035e9b3d0abaa8d0ba005ab",
+      "name": "/xiaowork-blog-db-1",
+      "image": "sha256:898c60cb390d1085bc97bdd6a1ae968757421df394b071848b52b1c09c89d6a5",
+      "started": "2026-10-24T13:05:23.61650068Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "c42bb8a2d8b9e3fd651596e3024369a82dd8443e909fb82adc319c10704d0bea",
+      "name": "/xiaowork-blog-mailpit-1",
+      "image": "sha256:0790692be935ea4420d085694f7985b1f692ca6a8771ab0e0bd8ba75ac180498",
+      "started": "2026-10-24T13:05:24.055142692Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "89342d464b60289682251b8ff2fc52a571f04caa6dfa411f1f22de0ea4b8604c",
+      "name": "/xiaowork-erp-014a-20261016-backend-1",
+      "image": "sha256:972f59107dc947443e48129367536fe80ae6ff1fdb4e6599843b089f609c200d",
+      "started": "2026-10-24T13:05:23.87935599Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "8c91df28444f6cec1076becc97c4f3a8494ff6673dcaac23b94669b230c05945",
+      "name": "/xiaowork-erp-014a-20261016-edge-1",
+      "image": "sha256:242dedafdf8fbb10eec2859de8d21bb1ab62736a50ef448d5ab07e9f03dcfbde",
+      "started": "2026-10-24T13:05:23.916648122Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "fe768ea8ee0f736df65b28edf6ad57a9e90846d8fbd8692031914e018bc9ebc5",
+      "name": "/xiaowork-erp-014a-20261016-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "started": "2026-10-24T13:05:23.947949401Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "74e769de10ea5ad1bfbe24bc11a83f2fefd91f4c0130081d820d86529edf532e",
+      "name": "/xiaowork-erp-014a-20261016-frontend-1",
+      "image": "sha256:a0f5ab3390006415b5dadef063807ccfddea451bfecd68767dfe4e1ca5502144",
+      "started": "2026-10-24T13:05:23.859702505Z",
+      "running": true,
+      "health": "healthy",
+      "project": "xiaowork-erp-014a-20261016"
+    }
+  ],
+  "portsClosed": [
+    3214,
+    3447,
+    9325
+  ],
+  "result": "PASS"
+}

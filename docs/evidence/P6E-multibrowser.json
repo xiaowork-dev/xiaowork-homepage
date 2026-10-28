@@ -1,0 +1,390 @@
+{
+  "date": "2026-10-28T10:16:02.770Z",
+  "scope": "Local P6-E Docker gateway only; public routes and unauthenticated admin checks",
+  "tlsVerificationDisabled": false,
+  "hostTrustStoreModified": false,
+  "browsers": [
+    {
+      "name": "firefox",
+      "cases": [
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/about",
+          "result": "PASS"
+        }
+      ],
+      "errors": [],
+      "tls": "PASS",
+      "adminUnauthorized": 401,
+      "result": "PASS_PUBLIC_ROUTES"
+    },
+    {
+      "name": "webkit",
+      "cases": [
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 768,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 768,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "route": "/about",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/projects",
+          "result": "PASS"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "route": "/about",
+          "result": "PASS"
+        }
+      ],
+      "errors": [],
+      "tls": "NOT_PASSED",
+      "tlsError": "page.goto: Unacceptable TLS certificate",
+      "result": "PASS_PUBLIC_ROUTES"
+    }
+  ],
+  "limitations": [
+    "Firefox and WebKit do not repeat the credentialed Chromium management workflow.",
+    "These Linux browser engines are not physical iOS Safari or Android hardware."
+  ]
+}

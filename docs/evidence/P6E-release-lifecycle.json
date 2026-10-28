@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-28T10:37:27.404Z",
+  "project": "xiaowork-homepage-v11-p6e-recovery-final",
+  "scope": "Only dedicated independently restored local P6E project",
+  "sourceChange": false,
+  "schemaChange": false,
+  "cases": [
+    {
+      "name": "real same-schema image update retained old image and all restored content",
+      "detail": {
+        "candidateGateway": "sha256:5a8e483c8812896f3630b2ca85411c214bf2400cf4a08e64abdd4cf44bff0800"
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "real code-image rollback preserved SQLite, private uploads and active content",
+      "result": "PASS"
+    },
+    {
+      "name": "actual candidate startup failure restored previous service and HTTP without restoring or deleting database",
+      "result": "PASS"
+    },
+    {
+      "name": "unsupported cross-schema candidate refused before write-service replacement",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent lifecycle operation refused and existing lock preserved",
+      "result": "PASS"
+    }
+  ],
+  "public": [
+    {
+      "stage": "beforeUpdate",
+      "files": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "4970e5f18db33882c3931595bb6632b015f33da9aae502daa8482bc860d4738b"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "7d0d2c6fa9df4cc9cb5e26bef8847ed84ac233c3b30a4c2aded763cbf6b952ed"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "0802bcfaf23405dbaf1f73b915271bddc84a1117eba2d9b6419800f3233fd433"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "84789835178b778e8f04bfaa9f52b965ea86dc4c0d2bff612b5b42f2fd6402a8"
+        }
+      ]
+    },
+    {
+      "stage": "afterUpdateRollbackFailureRefusal",
+      "files": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "4970e5f18db33882c3931595bb6632b015f33da9aae502daa8482bc860d4738b"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "7d0d2c6fa9df4cc9cb5e26bef8847ed84ac233c3b30a4c2aded763cbf6b952ed"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "0802bcfaf23405dbaf1f73b915271bddc84a1117eba2d9b6419800f3233fd433"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "84789835178b778e8f04bfaa9f52b965ea86dc4c0d2bff612b5b42f2fd6402a8"
+        }
+      ]
+    }
+  ],
+  "sourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "baselineImages": {
+    "api": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+    "worker": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+    "gateway": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+    "frontend": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+    "static": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+    "maintenance": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa"
+  },
+  "result": "PASS"
+}

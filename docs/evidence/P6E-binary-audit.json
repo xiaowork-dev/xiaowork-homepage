@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28T09:54:28.706Z",
+  "expectedSource": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "scannerSource": "golang.org/x/vuln@v1.9.0; see P6E-govuln-tool-source.json",
+  "scope": "Exact Linux binaries from stopped local image-only containers; no mounts or credentials",
+  "binaries": [
+    {
+      "role": "api",
+      "imageId": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "sourcePath": "/homepage-api",
+      "file": "P6E-govuln-api-binary.txt",
+      "scannerExit": 3
+    },
+    {
+      "role": "worker",
+      "imageId": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "sourcePath": "/homepage-worker",
+      "file": "P6E-govuln-worker-binary.txt",
+      "scannerExit": 0
+    },
+    {
+      "role": "maintenance",
+      "imageId": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa",
+      "sourcePath": "/homepage-maintenance",
+      "file": "P6E-govuln-maintenance-binary.txt",
+      "scannerExit": 3
+    }
+  ],
+  "limitations": [
+    "Binary mode supplements source analysis; it is not a penetration test."
+  ],
+  "result": "SCANNED"
+}

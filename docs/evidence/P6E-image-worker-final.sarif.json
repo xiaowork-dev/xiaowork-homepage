@@ -1,0 +1,148 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-107891",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107891"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107891?s=alpine&n=musl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C1.2.6-r6",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                             |\n|Package         pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  |\n|Affected range  <1.2.6-r6                                                    |\n|Fixed version   1.2.6-r6                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<1.2.6-r6",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "1.2.6-r6",
+                "purls": [
+                  "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+                ],
+                "security-severity": "3.1",
+                "tags": [
+                  "UNSPECIFIED"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-93753",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-93753: Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-93753?s=github&n=deepmerge&t=npm&vr=%3E%3D4.2.0%2C%3C%3D4.3.1",
+              "help": {
+                "text": "deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n",
+                "markdown": "> deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n\n|                                                                                                                               |\n|Package                                                                                               pkg:npm/deepmerge@4.3.1  |\n|Affected range                                                                                        >=4.2.0,<=4.3.1          |\n|Fixed version                                                                                         not fixed                |\n|[[CVSS Score 2.7] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U]]                           |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.2.0,<=4.3.1",
+                "cvssV3": 2.7,
+                "cvssV3_severity": "LOW",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U",
+                "fixed_version": "not fixed",
+                "purls": [
+                  "pkg:npm/deepmerge@4.3.1"
+                ],
+                "security-severity": "2.7",
+                "tags": [
+                  "LOW"
+                ]
+              }
+            }
+          ],
+          "version": "1.26.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-107891",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability   :CVE-2026-107891                                              \nSeverity        :UNSPECIFIED                                                  \nPackage         :pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  \nAffected range  :<1.2.6-r6                                                    \nFixed version   :1.2.6-r6                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/ld-musl-x86_64.so.1"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/sbin/ldconfig"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getconf"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getent"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/iconv"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/ldd"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-93753",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-93753                                                       \nSeverity         :LOW                                                                  \nPackage          :pkg:npm/deepmerge@4.3.1                                              \nAffected range   :>=4.2.0,<=4.3.1                                                      \nFixed version    :not fixed                                                            \nCVSS Score       :2.7                                                                  \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U  \nEPSS Score       :0.005140                                                             \nEPSS Percentile  :0.435980                                                             \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/deepmerge/package.json"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

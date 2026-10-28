@@ -40,11 +40,29 @@ while (args.length) {
   options[key.slice(2)] = args.shift()
 }
 const json = (file) => JSON.parse(fs.readFileSync(file, 'utf8'))
+function syncDirectory(directory) {
+  // Windows does not expose fsync of directory handles through Node. The
+  // existing operation.lock is still retained before any unsafe transition.
+  if (process.platform === 'win32') return
+  const descriptor = fs.openSync(directory, 'r')
+  try {
+    fs.fsyncSync(descriptor)
+  } finally {
+    fs.closeSync(descriptor)
+  }
+}
 const save = (file, value) => {
   fs.mkdirSync(path.dirname(file), { recursive: true, mode: 0o700 })
   const temporary = `${file}.new`
-  fs.writeFileSync(temporary, `${JSON.stringify(value, null, 2)}\n`, { mode: 0o600, flag: 'wx' })
+  const descriptor = fs.openSync(temporary, 'wx', 0o600)
+  try {
+    fs.writeFileSync(descriptor, `${JSON.stringify(value, null, 2)}\n`)
+    fs.fsyncSync(descriptor)
+  } finally {
+    fs.closeSync(descriptor)
+  }
   fs.renameSync(temporary, file)
+  syncDirectory(path.dirname(file))
 }
 function validateSpec(spec) {
   assert.deepEqual(Object.keys(spec).sort(), ['format', 'images', 'schema', 'source'].sort())
@@ -175,7 +193,6 @@ function configuration(project, spec, state, topology, httpPort, httpsPort, subn
     spec,
     files: [path.join(root, 'compose.admin-publish.yaml'), override, ports],
     env: {
-      ...process.env,
       V11_SOURCE_REVISION: spec.source,
       V11_BUILDER_ID: spec.images.worker,
       V11_LOCAL_PUBLISH: publish ? '1' : '0',
@@ -189,7 +206,8 @@ const composeArgs = (config) => [
   ...config.files.flatMap((file) => ['-f', file]),
   ...(config.publish ? ['--profile', 'publisher'] : []),
 ]
-const compose = (config, args) => docker([...composeArgs(config), ...args], { env: config.env })
+const compose = (config, args) =>
+  docker([...composeArgs(config), ...args], { env: { ...process.env, ...config.env } })
 function start(config, first) {
   compose(config, ['config', '--quiet'])
   compose(config, ['up', '-d', '--no-build', 'publication-init', 'api-init'])
@@ -400,6 +418,24 @@ try {
           current.subnet,
           current.publish,
         )
+        // Retain the already-created lock BEFORE attempting the durable intent.
+        // ENOSPC, a failed stop, a metadata error, or process death must not make
+        // an uncertain candidate eligible for another lifecycle operation.
+        lock = undefined
+        const recoveryFile = path.join(state, 'recovery-required.json')
+        save(recoveryFile, {
+          at: new Date().toISOString(),
+          phase: 'candidate-start-pending',
+          reason: 'Candidate transition is not yet reconciled; subsequent operations are blocked',
+          backup: destination,
+          previous: current.spec,
+          candidate: replacement,
+        })
+        const releaseGuard = () => {
+          fs.unlinkSync(recoveryFile)
+          syncDirectory(state)
+          lock = requestedLock
+        }
         try {
           const containers = start(next, false)
           const http = publicProbe(next)
@@ -412,6 +448,7 @@ try {
             http,
             backup: destination,
           })
+          releaseGuard()
           console.log(
             JSON.stringify({
               result: 'updated and verified',
@@ -423,8 +460,8 @@ try {
         } catch {
           // Do not automatically restore the old DB: the candidate may have
           // performed incompatible writes. Inspect using the old checker first.
-          stopWriters(next)
           try {
+            stopWriters(next)
             const observed = inspectProject(project, current.spec.images.maintenance)
             assert.equal(observed.schema, current.spec.schema)
             const old = configuration(
@@ -439,6 +476,10 @@ try {
             )
             start(old, false)
             publicProbe(old)
+            // Saving the candidate metadata may have partially succeeded.
+            // A recovered old service must also have the old current record.
+            save(currentFile, prior)
+            releaseGuard()
             throw Object.assign(
               new Error('Candidate failed; previous service restored and HTTP verified'),
               { safelyRestored: true },
@@ -448,16 +489,22 @@ try {
             // Preserve the already-created atomic lock before attempting a
             // recovery record: ENOSPC must not accidentally unlock unsafe state.
             lock = undefined
-            save(path.join(state, 'recovery-required.json'), {
-              at: new Date().toISOString(),
-              reason:
-                'Candidate failed and previous service could not be safely verified; writers stopped',
-              backup: destination,
-              previous: current.spec,
-              candidate: replacement,
-            })
+            try {
+              save(recoveryFile, {
+                at: new Date().toISOString(),
+                phase: 'manual-recovery-required',
+                reason:
+                  'Candidate failed; stopping writers or verifying the previous service did not complete',
+                backup: destination,
+                previous: current.spec,
+                candidate: replacement,
+              })
+            } catch {
+              // The prior durable intent or, at minimum, operation.lock remains.
+              // A full disk must never turn a failed recovery into an unlock.
+            }
             throw new Error(
-              'Manual recovery required; writers remain stopped and preserved recovery record blocks further updates',
+              'Manual recovery required; writer state is unconfirmed and the preserved operation lock blocks further updates',
               { cause: recovery },
             )
           }

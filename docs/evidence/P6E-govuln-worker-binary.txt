@@ -1,0 +1,13 @@
+Scanning your binary for known vulnerabilities...
+
+Fetching vulnerabilities from the database...
+
+Checking the binary against the vulnerabilities...
+
+The package pattern matched the following root package:
+  github.com/xiaowork-dev/xiaowork-homepage/backend
+Govulncheck scanned the following 2 modules and the go1.27.3 standard library:
+  github.com/xiaowork-dev/xiaowork-homepage/backend@(devel)
+  golang.org/x/sys@v0.49.0
+
+No vulnerabilities found.

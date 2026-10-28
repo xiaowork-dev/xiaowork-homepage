@@ -1,0 +1,860 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-107891",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107891"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107891?s=alpine&n=musl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C1.2.6-r6",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                             |\n|Package         pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  |\n|Affected range  <1.2.6-r6                                                    |\n|Fixed version   1.2.6-r6                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<1.2.6-r6",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "1.2.6-r6",
+                "purls": ["pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-93753",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-93753: Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-93753?s=github&n=deepmerge&t=npm&vr=%3E%3D4.2.0%2C%3C%3D4.3.1",
+              "help": {
+                "text": "deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n",
+                "markdown": "> deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n\n|                                                                                                                               |\n|Package                                                                                               pkg:npm/deepmerge@4.3.1  |\n|Affected range                                                                                        >=4.2.0,<=4.3.1          |\n|Fixed version                                                                                         not fixed                |\n|[[CVSS Score 2.7] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U]]                           |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.2.0,<=4.3.1",
+                "cvssV3": 2.7,
+                "cvssV3_severity": "LOW",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:npm/deepmerge@4.3.1"],
+                "security-severity": "2.7",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-18540",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-18540: Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-18540?s=github&n=undici&t=npm&vr=%3C6.28.1",
+              "help": {
+                "text": "### Impact\n\nUndici's `interceptors.retry()` can resume a request after a partial response and append the resumed bytes to an already partially delivered body, while the application still receives the original response's status and headers. When that response carried a `Content-Length`, the application can receive a longer body. Applications that forward Undici's status, headers, and body downstream without recalculating framing, for example proxy or gateway applications, may emit a response whose body exceeds the forwarded `Content-Length`, and the excess bytes can be read as the start of a subsequent HTTP response (downstream response splitting or desynchronization).\n\nFor example, a `404 Not Found` with `Content-Length: 2` that sends one byte then closes can be resumed with an open-ended `Range` request, and the resumed `206 Partial Content` bytes are appended, so the application receives more than two body bytes while still seeing `Content-Length: 2`. The bug requires `interceptors.retry()` enabled, an attacker-controlled or faulty upstream, and a downstream forwarder that does not recalculate `Content-Length`.\n\n### Patches\n\nPatched in undici v6.28.1, v7.29.1, and v8.10.2. Upgrade to one of these or later.\n\n### Workarounds\n\n- Disable `interceptors.retry()` for untrusted upstreams, or set `maxRetries: 0`.\n- Remove or recalculate `Content-Length` before forwarding a response body assembled by Undici.\n",
+                "markdown": "> ### Impact\n\nUndici's `interceptors.retry()` can resume a request after a partial response and append the resumed bytes to an already partially delivered body, while the application still receives the original response's status and headers. When that response carried a `Content-Length`, the application can receive a longer body. Applications that forward Undici's status, headers, and body downstream without recalculating framing, for example proxy or gateway applications, may emit a response whose body exceeds the forwarded `Content-Length`, and the excess bytes can be read as the start of a subsequent HTTP response (downstream response splitting or desynchronization).\n\nFor example, a `404 Not Found` with `Content-Length: 2` that sends one byte then closes can be resumed with an open-ended `Range` request, and the resumed `206 Partial Content` bytes are appended, so the application receives more than two body bytes while still seeing `Content-Length: 2`. The bug requires `interceptors.retry()` enabled, an attacker-controlled or faulty upstream, and a downstream forwarder that does not recalculate `Content-Length`.\n\n### Patches\n\nPatched in undici v6.28.1, v7.29.1, and v8.10.2. Upgrade to one of these or later.\n\n### Workarounds\n\n- Disable `interceptors.retry()` for untrusted upstreams, or set `maxRetries: 0`.\n- Remove or recalculate `Content-Length` before forwarding a response body assembled by Undici.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 <6.28.1                |\n|Fixed version                                                                  6.28.1                 |\n|[[CVSS Score 3.7] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N]]                         |\n"
+              },
+              "properties": {
+                "affected_version": "<6.28.1",
+                "cvssV3": 3.7,
+                "cvssV3_severity": "LOW",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+                "fixed_version": "6.28.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "3.7",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-102277",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-102277: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-102277?s=github&n=brace-expansion&t=npm&vr=%3E%3D4.0.0%2C%3C5.0.12",
+              "help": {
+                "text": "### Summary\n\nExpanding `{a},b}`-shaped input takes time quadratic in the number of literal `}` characters, blocking the event loop.\n\nBash preserves a quirk where a brace group followed by a comma set still expands (`{a},b}`). The parser implements this by rewriting the string and restarting the scan. Each pass absorbs exactly one `}` and re-scans from the beginning, so `n` trailing braces cost `n` full passes.\n\n### Reproduction\n\n```js\nconst build = n => '{a}' + '}'.repeat(n) + ',z}'\n\nfor (const n of [8000, 16000, 32000, 64000, 128000]) {\n  const t = Date.now()\n  expand(build(n))\n  console.log(n, Date.now() - t + 'ms')\n}\n```\n\n| n | input | time | results |\n|---|---|---|---|\n| 8,000 | 8 KB | 110 ms | 2 |\n| 16,000 | 16 KB | 446 ms | 2 |\n| 32,000 | 32 KB | 1.7 s | 2 |\n| 64,000 | 64 KB | 6.9 s | 2 |\n| 128,000 | 128 KB | **27.7 s** | 2 |\n\n`ms/n^2` is flat at ~1.7 and each doubling of `n` costs exactly 4.0x - quadratic. 128 KB of input blocks the event loop for nearly half a minute to produce two results.\n\n### Mechanism\n\nInstrumenting the rewrite branch confirms it runs exactly `n + 1` times, once per literal `}`, each re-scanning the whole string.\n\nThere is a second multiplier. The rewrite replaces the group's closing `}` with the internal `escClose` sentinel, which is `'\\0CLOSE' + Math.random() + '\\0'` - about 25 characters. The working string therefore *grows* by ~25 characters on every pass:\n\n| n | input length | final string length |\n|---|---|---|\n| 1,000 | 1,006 | 26,006 |\n| 8,000 | 8,006 | 208,006 |\n\nSo the input is inflated roughly 26x, and that factor multiplies both the quadratic constant and peak memory. This makes it partly a memory-pressure issue as well as a CPU one.\n\n### Why `max` and `maxLength` do not help\n\nThe cost is in parsing, before the result set exists. The payload yields 2 results regardless of size, so neither bound is ever reached.\n\n### Impact\n\nAn application passing an untrusted pattern to `expand()`, directly or through `minimatch` / `glob`, can have its event loop blocked for tens of seconds by a payload well under minimatch's 65,536-character cap. For a single-threaded Node server that is a full stall, not just a slow request.\n\nDegraded availability rather than a crash - the process recovers once the expansion completes.\n\n### Affected versions\n\nVerified affected on 1.1.18, 2.1.4, 3.0.6 and 5.0.9, all within a few percent of each other (~460-490 ms at n=16,000).\n\n### Patch\n\nThe rewrite loop gets an iteration bound. Past the cap the remaining string is treated as non-expanding and returned literally, consistent with the existing `max` / `maxLength` caps, which truncate rather than throw.\n\nNote this bounds the number of passes, not the cost of each: worst-case work remains proportional to `cap x input length`. The cap is set low enough that the residual is bounded in practice, and far above what any realistic `{a},b}` input needs.\n\n### Severity note\n\nScored 5.3 Medium (`A:L`) for consistency with GHSA-3jxr-9vmj-r5cp, the other algorithmic-complexity advisory on this package (CWE-407), which uses the same vector. The stack-exhaustion advisories on this package score `A:H` because they crash the process outright; this one stalls it.\n",
+                "markdown": "> ### Summary\n\nExpanding `{a},b}`-shaped input takes time quadratic in the number of literal `}` characters, blocking the event loop.\n\nBash preserves a quirk where a brace group followed by a comma set still expands (`{a},b}`). The parser implements this by rewriting the string and restarting the scan. Each pass absorbs exactly one `}` and re-scans from the beginning, so `n` trailing braces cost `n` full passes.\n\n### Reproduction\n\n```js\nconst build = n => '{a}' + '}'.repeat(n) + ',z}'\n\nfor (const n of [8000, 16000, 32000, 64000, 128000]) {\n  const t = Date.now()\n  expand(build(n))\n  console.log(n, Date.now() - t + 'ms')\n}\n```\n\n| n | input | time | results |\n|---|---|---|---|\n| 8,000 | 8 KB | 110 ms | 2 |\n| 16,000 | 16 KB | 446 ms | 2 |\n| 32,000 | 32 KB | 1.7 s | 2 |\n| 64,000 | 64 KB | 6.9 s | 2 |\n| 128,000 | 128 KB | **27.7 s** | 2 |\n\n`ms/n^2` is flat at ~1.7 and each doubling of `n` costs exactly 4.0x - quadratic. 128 KB of input blocks the event loop for nearly half a minute to produce two results.\n\n### Mechanism\n\nInstrumenting the rewrite branch confirms it runs exactly `n + 1` times, once per literal `}`, each re-scanning the whole string.\n\nThere is a second multiplier. The rewrite replaces the group's closing `}` with the internal `escClose` sentinel, which is `'\\0CLOSE' + Math.random() + '\\0'` - about 25 characters. The working string therefore *grows* by ~25 characters on every pass:\n\n| n | input length | final string length |\n|---|---|---|\n| 1,000 | 1,006 | 26,006 |\n| 8,000 | 8,006 | 208,006 |\n\nSo the input is inflated roughly 26x, and that factor multiplies both the quadratic constant and peak memory. This makes it partly a memory-pressure issue as well as a CPU one.\n\n### Why `max` and `maxLength` do not help\n\nThe cost is in parsing, before the result set exists. The payload yields 2 results regardless of size, so neither bound is ever reached.\n\n### Impact\n\nAn application passing an untrusted pattern to `expand()`, directly or through `minimatch` / `glob`, can have its event loop blocked for tens of seconds by a payload well under minimatch's 65,536-character cap. For a single-threaded Node server that is a full stall, not just a slow request.\n\nDegraded availability rather than a crash - the process recovers once the expansion completes.\n\n### Affected versions\n\nVerified affected on 1.1.18, 2.1.4, 3.0.6 and 5.0.9, all within a few percent of each other (~460-490 ms at n=16,000).\n\n### Patch\n\nThe rewrite loop gets an iteration bound. Past the cap the remaining string is treated as non-expanding and returned literally, consistent with the existing `max` / `maxLength` caps, which truncate rather than throw.\n\nNote this bounds the number of passes, not the cost of each: worst-case work remains proportional to `cap x input length`. The cap is set low enough that the residual is bounded in practice, and far above what any realistic `{a},b}` input needs.\n\n### Severity note\n\nScored 5.3 Medium (`A:L`) for consistency with GHSA-3jxr-9vmj-r5cp, the other algorithmic-complexity advisory on this package (CWE-407), which uses the same vector. The stack-exhaustion advisories on this package score `A:H` because they crash the process outright; this one stalls it.\n\n|                                                                                                              |\n|Package                                                                        pkg:npm/brace-expansion@5.0.9  |\n|Affected range                                                                 >=4.0.0,<5.0.12                |\n|Fixed version                                                                  5.0.12                         |\n|[[CVSS Score 5.3] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L]]                                 |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.0.0,<5.0.12",
+                "cvssV3": 5.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+                "fixed_version": "5.0.12",
+                "purls": ["pkg:npm/brace-expansion@5.0.9"],
+                "security-severity": "5.3",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-104844",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-104844: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-104844?s=github&n=postcss-selector-parser&t=npm&vr=%3E%3D7.0.0%2C%3C7.1.6",
+              "help": {
+                "text": "### Impact\n\n`.` and `#` are not word delimiters in the tokenizer, so a flat selector such as\n`.a.a.a...` reaches `splitWord()` as a single word token carrying n class or id\nindexes. Three passes scanned those index arrays linearly for every index,\nmaking the parse O(n^2) in the number of indexes rather than in input length:\n`uniqs()`, the `indices.forEach` loop, and the Sass-interpolation filter.\nParsing a 400 KB flat selector took ~34 s on a modern laptop, fully occupying a\nsingle thread. A benign selector of identical byte size parses in tens of\nmilliseconds, so the cost is driven by the index count, not the input size.\nThe nesting depth of such a selector is 0, so the `maxNestingDepth` guard added\nin 7.1.3 offers no protection.\n\nReachability is deployment dependent. Only consumers that parse untrusted,\nattacker-supplied selectors synchronously in a request path are exposed, for\nexample CSS sanitizers, CSS-in-JS services and online playgrounds. Ordinary\nbuild-time use on trusted sources is not affected.\n\n### Patches\n\nFixed in 7.1.6. The three passes now use Set membership tests, making parsing\nlinear in the number of indexes. There is no behaviour change: parsing is\nbyte-identical on a differential corpus of 8413 selectors.\n\n### Workarounds\n\nCap the size of selectors accepted from untrusted sources before parsing.\n",
+                "markdown": "> ### Impact\n\n`.` and `#` are not word delimiters in the tokenizer, so a flat selector such as\n`.a.a.a...` reaches `splitWord()` as a single word token carrying n class or id\nindexes. Three passes scanned those index arrays linearly for every index,\nmaking the parse O(n^2) in the number of indexes rather than in input length:\n`uniqs()`, the `indices.forEach` loop, and the Sass-interpolation filter.\nParsing a 400 KB flat selector took ~34 s on a modern laptop, fully occupying a\nsingle thread. A benign selector of identical byte size parses in tens of\nmilliseconds, so the cost is driven by the index count, not the input size.\nThe nesting depth of such a selector is 0, so the `maxNestingDepth` guard added\nin 7.1.3 offers no protection.\n\nReachability is deployment dependent. Only consumers that parse untrusted,\nattacker-supplied selectors synchronously in a request path are exposed, for\nexample CSS sanitizers, CSS-in-JS services and online playgrounds. Ordinary\nbuild-time use on trusted sources is not affected.\n\n### Patches\n\nFixed in 7.1.6. The three passes now use Set membership tests, making parsing\nlinear in the number of indexes. There is no behaviour change: parsing is\nbyte-identical on a differential corpus of 8413 selectors.\n\n### Workarounds\n\nCap the size of selectors accepted from untrusted sources before parsing.\n\n|                                                                                                                      |\n|Package                                                                        pkg:npm/postcss-selector-parser@7.1.4  |\n|Affected range                                                                 >=7.0.0,<7.1.6                         |\n|Fixed version                                                                  7.1.6                                  |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H]]                                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=7.0.0,<7.1.6",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "7.1.6",
+                "purls": ["pkg:npm/postcss-selector-parser@7.1.4"],
+                "security-severity": "5.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-109924",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-109924: Allocation of Resources Without Limits or Throttling"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-109924?s=github&n=undici&t=npm&vr=%3E%3D6.5.0%2C%3C6.29.1",
+              "help": {
+                "text": "### Impact\n\nundici's `EventSource` client can be driven to exhaust process memory by a malicious or compromised Server-Sent Events peer. By sending millions of tiny completed `data:` fields with no blank event separator, or a single unfinished line split across many chunks, the parser retains a growing amount of per-field and per-chunk state. The byte-based `maxEventSize` and `maxResponseSize` limits do not bound that retained state, and `maxResponseSize` is enforced on the compressed body before decompression, so a small compressed response can expand into enough retained memory to terminate the process. The application only needs to maintain an `EventSource` connection to an untrusted peer, which controls only the response. Availability is the only impact.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`, which bound the retained EventSource parser state (the number of `data` fields and buffered chunks, the unfinished-line length, and per-field byte totals) independently of the byte limits.\n\n### Workarounds\n\nNone.\n",
+                "markdown": "> ### Impact\n\nundici's `EventSource` client can be driven to exhaust process memory by a malicious or compromised Server-Sent Events peer. By sending millions of tiny completed `data:` fields with no blank event separator, or a single unfinished line split across many chunks, the parser retains a growing amount of per-field and per-chunk state. The byte-based `maxEventSize` and `maxResponseSize` limits do not bound that retained state, and `maxResponseSize` is enforced on the compressed body before decompression, so a small compressed response can expand into enough retained memory to terminate the process. The application only needs to maintain an `EventSource` connection to an untrusted peer, which controls only the response. Availability is the only impact.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`, which bound the retained EventSource parser state (the number of `data` fields and buffered chunks, the unfinished-line length, and per-field byte totals) independently of the byte limits.\n\n### Workarounds\n\nNone.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=6.5.0,<6.29.1        |\n|Fixed version                                                                  6.29.1                 |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=6.5.0,<6.29.1",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.29.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "5.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-109932",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-109932: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-109932?s=github&n=undici&t=npm&vr=%3E%3D5.15.0%2C%3C6.29.1",
+              "help": {
+                "text": "### Impact\n\nundici's WebSocket client (including Node.js's bundled `globalThis.WebSocket`) can be driven to exhaust process memory by a malicious or compromised WebSocket server. For every PING frame received, the receiver automatically writes a PONG response to the socket and ignores the `false` return value from `socket.write()`, which is a backpressure signal, so a server that streams small PING frames while never reading the client's PONGs makes the outbound write queue and heap grow without bound until the Node.js process runs out of memory and terminates. The attack is remote and unauthenticated, needs only a normal WebSocket connection, and is asymmetric: small inbound PINGs produce a much larger retained outbound queue. Availability is the only impact. undici 5.x, 6.x, 7.x, and 8.x are affected; the WebSocket client was introduced in 5.15.0.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`, which pause WebSocket frame parsing when the automatic PONG response hits socket backpressure and resume on drain, bounding the outbound queue.\n\n### Workarounds\n\nNone.\n",
+                "markdown": "> ### Impact\n\nundici's WebSocket client (including Node.js's bundled `globalThis.WebSocket`) can be driven to exhaust process memory by a malicious or compromised WebSocket server. For every PING frame received, the receiver automatically writes a PONG response to the socket and ignores the `false` return value from `socket.write()`, which is a backpressure signal, so a server that streams small PING frames while never reading the client's PONGs makes the outbound write queue and heap grow without bound until the Node.js process runs out of memory and terminates. The attack is remote and unauthenticated, needs only a normal WebSocket connection, and is asymmetric: small inbound PINGs produce a much larger retained outbound queue. Availability is the only impact. undici 5.x, 6.x, 7.x, and 8.x are affected; the WebSocket client was introduced in 5.15.0.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`, which pause WebSocket frame parsing when the automatic PONG response hits socket backpressure and resume on drain, bounding the outbound queue.\n\n### Workarounds\n\nNone.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=5.15.0,<6.29.1       |\n|Fixed version                                                                  6.29.1                 |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=5.15.0,<6.29.1",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.29.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "5.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-85024",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-85024: Uncaught Exception"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-85024?s=github&n=undici&t=npm&vr=%3E%3D6.25.0%2C%3C6.28.1",
+              "help": {
+                "text": "## Impact\n\nundici's WebSocket client (including Node.js's bundled `globalThis.WebSocket`) crashes the entire Node.js process when a remote WebSocket peer sends a permessage-deflate compressed message that crosses the decompressed-payload size limit and then contains a malformed DEFLATE block. In `lib/web/websocket/permessage-deflate.js`, the size-limit cleanup calls `removeAllListeners()` on the internal zlib `InflateRaw`, removing its `error` listener, but leaves the stream running. The inflater then emits a `Z_DATA_ERROR` with no listener attached, which Node.js treats as a fatal unhandled `error` event and terminates the process. Application `error`/`close` handlers on the public WebSocket cannot observe or prevent this, because the failing object is the internal `InflateRaw`.\n\nA malicious or compromised WebSocket server can crash a client with a single connection, unauthenticated and without any application mistake. The attack is asymmetric (about 130 KB on the wire expands past the limit) and can be repeated on reconnect (crash loop).\n\nAffected applications are those using the undici WebSocket client (`new WebSocket(...)`) or Node.js's bundled `globalThis.WebSocket` that can be induced to connect to an attacker-controlled or compromised WebSocket endpoint.\n\n## Patches\n\nUpgrade to undici v6.28.1, v7.29.1 or v8.10.2.\n\n## Workarounds\n\nNo workaround is available.\n",
+                "markdown": "> ## Impact\n\nundici's WebSocket client (including Node.js's bundled `globalThis.WebSocket`) crashes the entire Node.js process when a remote WebSocket peer sends a permessage-deflate compressed message that crosses the decompressed-payload size limit and then contains a malformed DEFLATE block. In `lib/web/websocket/permessage-deflate.js`, the size-limit cleanup calls `removeAllListeners()` on the internal zlib `InflateRaw`, removing its `error` listener, but leaves the stream running. The inflater then emits a `Z_DATA_ERROR` with no listener attached, which Node.js treats as a fatal unhandled `error` event and terminates the process. Application `error`/`close` handlers on the public WebSocket cannot observe or prevent this, because the failing object is the internal `InflateRaw`.\n\nA malicious or compromised WebSocket server can crash a client with a single connection, unauthenticated and without any application mistake. The attack is asymmetric (about 130 KB on the wire expands past the limit) and can be repeated on reconnect (crash loop).\n\nAffected applications are those using the undici WebSocket client (`new WebSocket(...)`) or Node.js's bundled `globalThis.WebSocket` that can be induced to connect to an attacker-controlled or compromised WebSocket endpoint.\n\n## Patches\n\nUpgrade to undici v6.28.1, v7.29.1 or v8.10.2.\n\n## Workarounds\n\nNo workaround is available.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=6.25.0,<6.28.1       |\n|Fixed version                                                                  6.28.1                 |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=6.25.0,<6.28.1",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.28.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "5.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-101911",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-101911: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-101911?s=github&n=ip-address&t=npm&vr=%3C%3D10.7.0",
+              "help": {
+                "text": "### Summary\n\n`new Address6()` and `Address6.isValid()` place no bound on the length of the string they parse. When the string contains a character that cannot appear in an IPv6 address, the parser builds a diagnostic that wraps every such character in a 34-byte `<span class=\"parse-error\">`, so the work and the memory scale with the input rather than with an address. A 1 MiB string of `!` costs about 110 MB and 70 ms of synchronous work, 8 MiB costs about 800 MB and half a second, 16 MiB throws a `RangeError` in place of the documented `AddressError`, and 32 MiB aborts the Node process. `isValid()` builds the diagnostic and discards it, so a caller that only asks whether a string is valid pays the full price.\n\nAn application that validates an attacker-supplied string with these methods can be stalled or crashed by a single oversized request. This is a crash on input that should have been rejected cleanly, which SECURITY.md lists as in scope.\n\n### Details\n\n`parse()` in `src/ipv6.ts` checks for characters outside `[0-9a-f:/%]` and, on finding any, throws an `AddressError` whose `parseMessage` is the whole input with each offending character wrapped:\n\n```ts\nconst badCharacters = address.match(constants6.RE_BAD_CHARACTERS);\n\nif (badCharacters) {\n  throw new AddressError(\n    `Bad character${badCharacters.length > 1 ? 's' : ''} detected in address: ${badCharacters.join('')}`,\n    address.replace(constants6.RE_BAD_CHARACTERS, '<span class=\"parse-error\">$1</span>'),\n  );\n}\n```\n\n`RE_BAD_CHARACTERS` is `/([^0-9a-f:/%])/gi`. For an input made entirely of punctuation the `match` allocates one string per character, the `join` copies them all into the message, and the `replace` produces a string 34 times the input. Nothing before this point looks at the length: the constructor strips a CIDR suffix and a zone identifier and hands the rest to `parse()`. The `RE_BAD_ADDRESS` branch below it builds its diagnostic the same way at about a third of the ratio, for input in the hex-and-colon alphabet such as `fffff:` repeated.\n\n`parse()` is reached only through the constructor, so every entry point that constructs an `Address6` from a string it has not already bounded is affected: `new Address6()`, `isValid()`, both arguments of `fromAddressAndMask()` and `fromAddressAndWildcardMask()`, `fromWildcard()`, and the prefix argument of `fromAddress4Nat64()` and `toAddress4Nat64()`. `fromURL()` admits only hex, colons, and dots in a host, so it reaches the `RE_BAD_ADDRESS` branch and not the other. `fromArpa()` caps its input at 32 nibbles before constructing anything, and `fromBigInt()`, `fromByteArray()`, and `fromAddress4()` build the string themselves, so those are unaffected.\n\nThe `replace` is where size becomes fatal. V8 caps a string at 2^29 - 24 characters, so past 16 MiB of input the `replace` throws `RangeError: Invalid string length` rather than the `AddressError` callers catch; `isValid()` swallows it, but a constructor call guarded by `instanceof AddressError` does not. Past 32 MiB the replacement builder's internal array exceeds its maximum size and V8 aborts the process with `Fatal JavaScript invalid size error`, which no `try`/`catch` intercepts.\n\n### Affected versions\n\n`<= 10.7.0`. The diagnostic has had this shape since the parser was written, so every release is affected.\n\n### Impact\n\n`Address6.isValid()` on N bytes of `!`, measured on node 24.19.0:\n\n| Input | Wall time | Transient heap | Outcome |\n|---|---|---|---|\n| 16 KiB | 1 ms | 1 MB | `false` |\n| 1 MiB | 73 ms | 112 MB | `false` |\n| 8 MiB | 464 ms | 784 MB | `false` |\n| 16 MiB | | | `RangeError: Invalid string length` from the constructor; `isValid()` returns `false` |\n| 32 MiB | | | the process aborts |\n\nThe parse is synchronous, so the event loop is blocked for the whole of the wall time and nothing else on that process is served. The heap is transient and is reclaimed after the call returns, so memory does not accumulate across requests; the abort at 32 MiB is a single request. `Address4` has no diagnostic of this shape and parses the same 8 MiB in a few milliseconds.\n\n### Reachability\n\nReaching the sizes above requires that the application hand the parser a string it has not already bounded. A host taken from a URL or an HTTP header is bounded by the server's header limit (Node's default is 16 KB), and at that size the cost is a millisecond. The megabyte sizes need a request body the application accepts at that scale and passes through unchecked. Common body parsers default to between 100 KB and 1 MB, which caps the effect at a stall of under 100 ms per request, and the abort needs 32 MiB in a single field, which no default admits. The severity is scored for the stall, not the abort: an application that accepts 32 MiB bodies into an address parser is the exception, and the reader running one should treat this as a crash.\n\n### Proof of concept\n\n`npm i ip-address@10.7.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\nfor (const mib of [1, 8]) {\n  const input = '!'.repeat(mib * 1024 * 1024);\n  const before = process.memoryUsage().heapUsed;\n  const start = process.hrtime.bigint();\n\n  Address6.isValid(input);\n\n  const ms = Number(process.hrtime.bigint() - start) / 1e6;\n  const mb = (process.memoryUsage().heapUsed - before) / 1048576;\n\n  console.log(`${mib} MiB: ${ms.toFixed(0)} ms, ${mb.toFixed(0)} MB`);\n}\n\ntry {\n  new Address6('!'.repeat(16 * 1024 * 1024));\n} catch (e) {\n  console.log(`16 MiB: ${e.name}: ${e.message}`);\n}\n\nnew Address6('!'.repeat(32 * 1024 * 1024));\n```\n\nOn affected versions (node 24.19.0):\n\n```\n1 MiB: 73 ms, 112 MB\n8 MiB: 464 ms, 784 MB\n16 MiB: RangeError: Invalid string length\n\n\n#\n# Fatal error in , line 0\n# Fatal JavaScript invalid size error 142606336\n#\n```\n\nThe last line is V8 terminating the process; the script does not reach its end.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, the constructor rejects an address longer than the family allows before `parse()` runs: 45 characters for IPv6 once the CIDR suffix and zone identifier are stripped (six four-digit groups, six colons, and a dotted quad, the same line CPython's `ipaddress` module draws), and 15 characters for IPv4. The rejection is an `AddressError` with no `parseMessage`, so `isValid()` returns `false` for the cost of a length comparison and the 32 MiB input above is rejected in the same time as a 46-character one. A zone identifier is not counted, since it never reaches the diagnostic.\n\nThis rejects nothing a previous release accepted: every string longer than the limit already failed to parse.\n\nIf you cannot upgrade immediately, reject a candidate longer than an address with a zone identifier can be before you parse it:\n\n```js\nif (host.length > 64) throw new Error('not an IP address');\n```\n",
+                "markdown": "> ### Summary\n\n`new Address6()` and `Address6.isValid()` place no bound on the length of the string they parse. When the string contains a character that cannot appear in an IPv6 address, the parser builds a diagnostic that wraps every such character in a 34-byte `<span class=\"parse-error\">`, so the work and the memory scale with the input rather than with an address. A 1 MiB string of `!` costs about 110 MB and 70 ms of synchronous work, 8 MiB costs about 800 MB and half a second, 16 MiB throws a `RangeError` in place of the documented `AddressError`, and 32 MiB aborts the Node process. `isValid()` builds the diagnostic and discards it, so a caller that only asks whether a string is valid pays the full price.\n\nAn application that validates an attacker-supplied string with these methods can be stalled or crashed by a single oversized request. This is a crash on input that should have been rejected cleanly, which SECURITY.md lists as in scope.\n\n### Details\n\n`parse()` in `src/ipv6.ts` checks for characters outside `[0-9a-f:/%]` and, on finding any, throws an `AddressError` whose `parseMessage` is the whole input with each offending character wrapped:\n\n```ts\nconst badCharacters = address.match(constants6.RE_BAD_CHARACTERS);\n\nif (badCharacters) {\n  throw new AddressError(\n    `Bad character${badCharacters.length > 1 ? 's' : ''} detected in address: ${badCharacters.join('')}`,\n    address.replace(constants6.RE_BAD_CHARACTERS, '<span class=\"parse-error\">$1</span>'),\n  );\n}\n```\n\n`RE_BAD_CHARACTERS` is `/([^0-9a-f:/%])/gi`. For an input made entirely of punctuation the `match` allocates one string per character, the `join` copies them all into the message, and the `replace` produces a string 34 times the input. Nothing before this point looks at the length: the constructor strips a CIDR suffix and a zone identifier and hands the rest to `parse()`. The `RE_BAD_ADDRESS` branch below it builds its diagnostic the same way at about a third of the ratio, for input in the hex-and-colon alphabet such as `fffff:` repeated.\n\n`parse()` is reached only through the constructor, so every entry point that constructs an `Address6` from a string it has not already bounded is affected: `new Address6()`, `isValid()`, both arguments of `fromAddressAndMask()` and `fromAddressAndWildcardMask()`, `fromWildcard()`, and the prefix argument of `fromAddress4Nat64()` and `toAddress4Nat64()`. `fromURL()` admits only hex, colons, and dots in a host, so it reaches the `RE_BAD_ADDRESS` branch and not the other. `fromArpa()` caps its input at 32 nibbles before constructing anything, and `fromBigInt()`, `fromByteArray()`, and `fromAddress4()` build the string themselves, so those are unaffected.\n\nThe `replace` is where size becomes fatal. V8 caps a string at 2^29 - 24 characters, so past 16 MiB of input the `replace` throws `RangeError: Invalid string length` rather than the `AddressError` callers catch; `isValid()` swallows it, but a constructor call guarded by `instanceof AddressError` does not. Past 32 MiB the replacement builder's internal array exceeds its maximum size and V8 aborts the process with `Fatal JavaScript invalid size error`, which no `try`/`catch` intercepts.\n\n### Affected versions\n\n`<= 10.7.0`. The diagnostic has had this shape since the parser was written, so every release is affected.\n\n### Impact\n\n`Address6.isValid()` on N bytes of `!`, measured on node 24.19.0:\n\n| Input | Wall time | Transient heap | Outcome |\n|---|---|---|---|\n| 16 KiB | 1 ms | 1 MB | `false` |\n| 1 MiB | 73 ms | 112 MB | `false` |\n| 8 MiB | 464 ms | 784 MB | `false` |\n| 16 MiB | | | `RangeError: Invalid string length` from the constructor; `isValid()` returns `false` |\n| 32 MiB | | | the process aborts |\n\nThe parse is synchronous, so the event loop is blocked for the whole of the wall time and nothing else on that process is served. The heap is transient and is reclaimed after the call returns, so memory does not accumulate across requests; the abort at 32 MiB is a single request. `Address4` has no diagnostic of this shape and parses the same 8 MiB in a few milliseconds.\n\n### Reachability\n\nReaching the sizes above requires that the application hand the parser a string it has not already bounded. A host taken from a URL or an HTTP header is bounded by the server's header limit (Node's default is 16 KB), and at that size the cost is a millisecond. The megabyte sizes need a request body the application accepts at that scale and passes through unchecked. Common body parsers default to between 100 KB and 1 MB, which caps the effect at a stall of under 100 ms per request, and the abort needs 32 MiB in a single field, which no default admits. The severity is scored for the stall, not the abort: an application that accepts 32 MiB bodies into an address parser is the exception, and the reader running one should treat this as a crash.\n\n### Proof of concept\n\n`npm i ip-address@10.7.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\nfor (const mib of [1, 8]) {\n  const input = '!'.repeat(mib * 1024 * 1024);\n  const before = process.memoryUsage().heapUsed;\n  const start = process.hrtime.bigint();\n\n  Address6.isValid(input);\n\n  const ms = Number(process.hrtime.bigint() - start) / 1e6;\n  const mb = (process.memoryUsage().heapUsed - before) / 1048576;\n\n  console.log(`${mib} MiB: ${ms.toFixed(0)} ms, ${mb.toFixed(0)} MB`);\n}\n\ntry {\n  new Address6('!'.repeat(16 * 1024 * 1024));\n} catch (e) {\n  console.log(`16 MiB: ${e.name}: ${e.message}`);\n}\n\nnew Address6('!'.repeat(32 * 1024 * 1024));\n```\n\nOn affected versions (node 24.19.0):\n\n```\n1 MiB: 73 ms, 112 MB\n8 MiB: 464 ms, 784 MB\n16 MiB: RangeError: Invalid string length\n\n\n#\n# Fatal error in , line 0\n# Fatal JavaScript invalid size error 142606336\n#\n```\n\nThe last line is V8 terminating the process; the script does not reach its end.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, the constructor rejects an address longer than the family allows before `parse()` runs: 45 characters for IPv6 once the CIDR suffix and zone identifier are stripped (six four-digit groups, six colons, and a dotted quad, the same line CPython's `ipaddress` module draws), and 15 characters for IPv4. The rejection is an `AddressError` with no `parseMessage`, so `isValid()` returns `false` for the cost of a length comparison and the 32 MiB input above is rejected in the same time as a 46-character one. A zone identifier is not counted, since it never reaches the diagnostic.\n\nThis rejects nothing a previous release accepted: every string longer than the limit already failed to parse.\n\nIf you cannot upgrade immediately, reject a candidate longer than an address with a zone identifier can be before you parse it:\n\n```js\nif (host.length > 64) throw new Error('not an IP address');\n```\n\n|                                                                                                                             |\n|Package                                                                                           pkg:npm/ip-address@10.5.0  |\n|Affected range                                                                                    <=10.7.0                   |\n|Fixed version                                                                                     10.7.1                     |\n|[[CVSS Score 6.3] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N]]                             |\n"
+              },
+              "properties": {
+                "affected_version": "<=10.7.0",
+                "cvssV3": 6.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "fixed_version": "10.7.1",
+                "purls": ["pkg:npm/ip-address@10.5.0"],
+                "security-severity": "6.3",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-101912",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-101912: Incorrect Comparison"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-101912?s=github&n=ip-address&t=npm&vr=%3C%3D10.7.0",
+              "help": {
+                "text": "### Summary\n\n`isInSubnet()` and `isHostInSubnet()` accept an address of either family and compare masked binary strings without checking that both operands are the same family. `Address4` pads to 32 bits and `Address6` to 128, so whenever the leading bits agree the strings are equal: `new Address6('a00::1').isInSubnet(new Address4('10.0.0.0/8'))` is `true`, and `new Address4('32.0.0.1').isInSubnet(new Address6('2000::/3'))` is `true`. No IPv4 address is inside an IPv6 network, so both answers are untrue.\n\nAn application that parses untrusted input as whichever family accepts it and then tests the result against a fixed-family allowlist can admit an address outside the list.\n\n### Details\n\nBoth methods are in `src/common.ts`:\n\n```ts\nexport function isInSubnet(this: Address4 | Address6, address: Address4 | Address6) {\n  if (this.subnetMask < address.subnetMask) {\n    return false;\n  }\n\n  return isHostInSubnet.call(this, address);\n}\n\nexport function isHostInSubnet(this: Address4 | Address6, address: Address4 | Address6) {\n  return this.mask(address.subnetMask) === address.mask();\n}\n```\n\n`mask(n)` returns the first `n` bits of the address as a string of `0` and `1`, taken from a representation padded to the family's width. `new Address6('a00::1').mask(8)` is `'00001010'`, and so is `new Address4('10.0.0.0/8').mask()`, so string equality reports containment. The signature admits either family on either side, so TypeScript raises nothing, and the `v4` property on `Address6` marks IPv4 notation (`::ffff:10.0.0.1`) rather than family, so it does not discriminate either.\n\nWhich cross-family pairs coincide depends on the network's prefix length. `mask(n)` on an `Address4` returns at most 32 bits, so an IPv6 network longer than `/32` never matches an IPv4 address, and an IPv6 network of `/32` or shorter matches exactly the IPv4 addresses whose leading bits equal its prefix. An IPv4 network is at most 32 bits and matches every IPv6 address whose leading bits equal its prefix.\n\n### Affected versions\n\n`<= 10.7.0`. The comparison has had this shape since the methods were written, so every release is affected.\n\n### Impact\n\n| Expression | Result | Reason |\n|---|---|---|\n| `new Address6('a00::1').isInSubnet(new Address4('10.0.0.0/8'))` | `true` | both mask to `00001010` |\n| `new Address4('10.0.0.1').isInSubnet(new Address6('a00::/8'))` | `true` | the same bits, reversed |\n| `new Address4('32.0.0.1').isInSubnet(new Address6('2000::/3'))` | `true` | both begin `001` |\n| `new Address4('32.1.13.184').isInSubnet(new Address6('2001:db8::/32'))` | `true` | the `/32` spells an IPv4 address |\n| `new Address6('cb00:7100::1').isInSubnet(new Address4('203.0.113.0/24'))` | `true` | the `/24` spells an IPv6 prefix |\n| `new Address4('10.0.0.1').isInSubnet(new Address6('::ffff:10.0.0.0/104'))` | `false` | `/104` is longer than 32 bits |\n| `new Address4('8.8.8.8').isInSubnet(new Address4('10.0.0.0/8'))` | `false` | same-family control |\n\nIn the allowlist direction the check admits an address outside the list; in the denylist direction it blocks an address outside the list. What the coincidence can admit is narrow. An IPv6 allowlist of `/32` or shorter admits the IPv4 addresses its prefix spells: `2001:db8::/32` admits exactly `32.1.13.184`, and `2000::/3` admits `32.0.0.0/3`. Those are public IPv4 addresses; the private, loopback, and link-local ranges begin with bit patterns no allocated IPv6 prefix shares. An IPv4 allowlist admits the IPv6 addresses its prefix spells, and those all sit in blocks IANA has not allocated. So a request admitted through this defect reaches an address outside the intended list, not an internal host, and the severity reflects that.\n\n### Proof of concept\n\n`npm i ip-address@10.7.0`, then:\n\n```js\nconst { Address4, Address6 } = require('ip-address');\n\n// An allowlist of the application's own IPv6 range, tested against whichever\n// family the input parses as.\nconst allowed = new Address6('2001:db8::/32');\n\nfunction parse(host) {\n  return Address4.isValid(host) ? new Address4(host) : new Address6(host);\n}\n\nfor (const h of ['2001:db8::1', '2001:db9::1', '32.1.13.184', '32.1.13.185']) {\n  console.log(parse(h).isInSubnet(allowed) ? 'ALLOW' : 'BLOCK', h);\n}\n```\n\nOn affected versions:\n\n```\nALLOW 2001:db8::1\nBLOCK 2001:db9::1\nALLOW 32.1.13.184\nBLOCK 32.1.13.185\n```\n\nThe IPv6 rows are right. The IPv4 address whose 32 bits equal the allowlist's prefix is admitted; the one next to it is not.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isHostInSubnet()` returns `false` when the two addresses are of different families, and `isInSubnet()` inherits the answer. The methods keep accepting either family so existing call sites compile. A caller that means to compare across families converts first, with `Address6.fromAddress4()`, `to4()`, or `toAddress4Nat64()`: `new Address6('::ffff:10.0.0.1').to4().isInSubnet(new Address4('10.0.0.0/8'))` is `true`, as before.\n\nIf you cannot upgrade immediately, compare the classes before you compare the addresses:\n\n```js\nconst contained = host.constructor === network.constructor && host.isInSubnet(network);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n",
+                "markdown": "> ### Summary\n\n`isInSubnet()` and `isHostInSubnet()` accept an address of either family and compare masked binary strings without checking that both operands are the same family. `Address4` pads to 32 bits and `Address6` to 128, so whenever the leading bits agree the strings are equal: `new Address6('a00::1').isInSubnet(new Address4('10.0.0.0/8'))` is `true`, and `new Address4('32.0.0.1').isInSubnet(new Address6('2000::/3'))` is `true`. No IPv4 address is inside an IPv6 network, so both answers are untrue.\n\nAn application that parses untrusted input as whichever family accepts it and then tests the result against a fixed-family allowlist can admit an address outside the list.\n\n### Details\n\nBoth methods are in `src/common.ts`:\n\n```ts\nexport function isInSubnet(this: Address4 | Address6, address: Address4 | Address6) {\n  if (this.subnetMask < address.subnetMask) {\n    return false;\n  }\n\n  return isHostInSubnet.call(this, address);\n}\n\nexport function isHostInSubnet(this: Address4 | Address6, address: Address4 | Address6) {\n  return this.mask(address.subnetMask) === address.mask();\n}\n```\n\n`mask(n)` returns the first `n` bits of the address as a string of `0` and `1`, taken from a representation padded to the family's width. `new Address6('a00::1').mask(8)` is `'00001010'`, and so is `new Address4('10.0.0.0/8').mask()`, so string equality reports containment. The signature admits either family on either side, so TypeScript raises nothing, and the `v4` property on `Address6` marks IPv4 notation (`::ffff:10.0.0.1`) rather than family, so it does not discriminate either.\n\nWhich cross-family pairs coincide depends on the network's prefix length. `mask(n)` on an `Address4` returns at most 32 bits, so an IPv6 network longer than `/32` never matches an IPv4 address, and an IPv6 network of `/32` or shorter matches exactly the IPv4 addresses whose leading bits equal its prefix. An IPv4 network is at most 32 bits and matches every IPv6 address whose leading bits equal its prefix.\n\n### Affected versions\n\n`<= 10.7.0`. The comparison has had this shape since the methods were written, so every release is affected.\n\n### Impact\n\n| Expression | Result | Reason |\n|---|---|---|\n| `new Address6('a00::1').isInSubnet(new Address4('10.0.0.0/8'))` | `true` | both mask to `00001010` |\n| `new Address4('10.0.0.1').isInSubnet(new Address6('a00::/8'))` | `true` | the same bits, reversed |\n| `new Address4('32.0.0.1').isInSubnet(new Address6('2000::/3'))` | `true` | both begin `001` |\n| `new Address4('32.1.13.184').isInSubnet(new Address6('2001:db8::/32'))` | `true` | the `/32` spells an IPv4 address |\n| `new Address6('cb00:7100::1').isInSubnet(new Address4('203.0.113.0/24'))` | `true` | the `/24` spells an IPv6 prefix |\n| `new Address4('10.0.0.1').isInSubnet(new Address6('::ffff:10.0.0.0/104'))` | `false` | `/104` is longer than 32 bits |\n| `new Address4('8.8.8.8').isInSubnet(new Address4('10.0.0.0/8'))` | `false` | same-family control |\n\nIn the allowlist direction the check admits an address outside the list; in the denylist direction it blocks an address outside the list. What the coincidence can admit is narrow. An IPv6 allowlist of `/32` or shorter admits the IPv4 addresses its prefix spells: `2001:db8::/32` admits exactly `32.1.13.184`, and `2000::/3` admits `32.0.0.0/3`. Those are public IPv4 addresses; the private, loopback, and link-local ranges begin with bit patterns no allocated IPv6 prefix shares. An IPv4 allowlist admits the IPv6 addresses its prefix spells, and those all sit in blocks IANA has not allocated. So a request admitted through this defect reaches an address outside the intended list, not an internal host, and the severity reflects that.\n\n### Proof of concept\n\n`npm i ip-address@10.7.0`, then:\n\n```js\nconst { Address4, Address6 } = require('ip-address');\n\n// An allowlist of the application's own IPv6 range, tested against whichever\n// family the input parses as.\nconst allowed = new Address6('2001:db8::/32');\n\nfunction parse(host) {\n  return Address4.isValid(host) ? new Address4(host) : new Address6(host);\n}\n\nfor (const h of ['2001:db8::1', '2001:db9::1', '32.1.13.184', '32.1.13.185']) {\n  console.log(parse(h).isInSubnet(allowed) ? 'ALLOW' : 'BLOCK', h);\n}\n```\n\nOn affected versions:\n\n```\nALLOW 2001:db8::1\nBLOCK 2001:db9::1\nALLOW 32.1.13.184\nBLOCK 32.1.13.185\n```\n\nThe IPv6 rows are right. The IPv4 address whose 32 bits equal the allowlist's prefix is admitted; the one next to it is not.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isHostInSubnet()` returns `false` when the two addresses are of different families, and `isInSubnet()` inherits the answer. The methods keep accepting either family so existing call sites compile. A caller that means to compare across families converts first, with `Address6.fromAddress4()`, `to4()`, or `toAddress4Nat64()`: `new Address6('::ffff:10.0.0.1').to4().isInSubnet(new Address4('10.0.0.0/8'))` is `true`, as before.\n\nIf you cannot upgrade immediately, compare the classes before you compare the addresses:\n\n```js\nconst contained = host.constructor === network.constructor && host.isInSubnet(network);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n\n|                                                                                                                             |\n|Package                                                                                           pkg:npm/ip-address@10.5.0  |\n|Affected range                                                                                    <=10.7.0                   |\n|Fixed version                                                                                     10.7.1                     |\n|[[CVSS Score 6.3] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N]]                             |\n"
+              },
+              "properties": {
+                "affected_version": "<=10.7.0",
+                "cvssV3": 6.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+                "fixed_version": "10.7.1",
+                "purls": ["pkg:npm/ip-address@10.5.0"],
+                "security-severity": "6.3",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-101913",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-101913: Incorrect Comparison"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-101913?s=github&n=ip-address&t=npm&vr=%3C%3D10.5.0",
+              "help": {
+                "text": "### Summary\n\n`Address6.isLinkLocal()` recognizes `fe80::/64` rather than `fe80::/10`. Link-local unicast is the whole `/10` under RFC 4291 §2.4 and the IANA IPv6 Special-Purpose Address Registry, so the method returns `false` for every link-local address outside the one `/64` that stateless address autoconfiguration happens to use. `new Address6('fe81::1').isLinkLocal()` is `false`.\n\nThe library contradicts itself on the same object: for `fe81::1`, `getType()` returns `'Link-local unicast'`, `getScope()` returns `'Link local'`, and `isHostInSubnet(new Address6('fe80::/10'))` returns `true`, while `isLinkLocal()` returns `false`.\n\nAn application that builds a network trust-boundary decision on these checks (for example a filter intended to block Server-Side Request Forgery, or SSRF) will classify a link-local target as unremarkable and allow the request. SSRF is an attack in which a user-supplied address coaxes the server into making a request to an internal destination the user could not otherwise reach.\n\n### Details\n\n`isLinkLocal()` in `src/ipv6.ts` compares the first 64 bits of the address against a literal string:\n\n```ts\n// Zeroes are required, i.e. we can't check isHostInSubnet with 'fe80::/10'\nif (\n  this.getBitsBase2(0, 64) ===\n  '1111111010000000000000000000000000000000000000000000000000000000'\n) {\n  return true;\n}\n```\n\nThe comparison requires the first 64 bits to be exactly `fe80:0000:0000:0000`, so it accepts 2⁶⁴ of the 2¹¹⁸ addresses in `fe80::/10`. The comment states a premise the library disproves: `getType()` classifies the same range with `isHostInSubnet` against the `'fe80::/10': 'Link-local unicast'` entry in `src/v6/constants.ts`, and `Address4.isLinkLocal()` is a plain `isHostInSubnet` test against `169.254.0.0/16`. RFC 4291 §2.5.6 constrains the format of an autoconfigured link-local address; it does not define the range, and reading it as the definition is the likeliest origin of the `/64` comparison.\n\nThe IPv4-mapped and NAT64 well-known paths of `isLinkLocal()` are unaffected: `::ffff:169.254.169.254` and `64:ff9b::a9fe:a9fe` are classified by their embedded IPv4 address and report `true`.\n\n### Affected versions\n\n`<= 10.5.0`. The comparison has had this shape since `Address6.isLinkLocal()` was introduced, so every release exposing the method is affected.\n\n### Impact\n\nEvery well-formed address in `fe80::/10` outside `fe80::/64` is parsed successfully, `isValid()` is `true`, and the classifier reports something untrue about it. No other classifier catches these addresses: `isPrivate()` covers ULA (`fc00::/7`), not link-local.\n\n| Address | `isLinkLocal()` | `getType()` | `getScope()` |\n|---|---|---|---|\n| `fe80::1` | `true` | Link-local unicast | Link local |\n| `fe81::1` | `false` | Link-local unicast | Link local |\n| `fe8f::1` | `false` | Link-local unicast | Link local |\n| `febf::1` | `false` | Link-local unicast | Link local |\n| `fe80:0:0:1::1` | `false` | Link-local unicast | Link local |\n| `fe80::1:0:0:0:1` | `false` | Link-local unicast | Link local |\n\nPython's `ipaddress` module, the `IN6_IS_ADDR_LINKLOCAL` macro in `netinet6/in6.h`, and Linux's `ipv6_addr_type()` all apply a ten-bit prefix test and classify every row above as link-local.\n\nA request admitted through a guard built on `isLinkLocal()` reaches a link-local host on the server's own segment: a neighboring machine or the on-link router. An IPv6 link-local destination generally needs a zone index and a neighbor on the same link, so the reach is the server's own segment rather than the internet or a universal metadata endpoint, and the severity reflects that.\n\n### Proof of concept\n\n`npm i ip-address@10.5.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\n// A guard of the shape the library documents.\nfunction isBlocked(host) {\n  const a = new Address6(host);\n  return a.isLoopback() || a.isLinkLocal() || a.isPrivate() || a.isMulticast() || a.isUnspecified();\n}\n\nfor (const h of ['fe80::1', 'fe81::1', 'febf::1', 'fe80:0:0:1::1']) {\n  const a = new Address6(h);\n  console.log(isBlocked(h) ? 'BLOCK' : 'ALLOW', h, '-> getType()', a.getType());\n}\n```\n\nOn affected versions:\n\n```\nBLOCK fe80::1 -> getType() Link-local unicast\nALLOW fe81::1 -> getType() Link-local unicast\nALLOW febf::1 -> getType() Link-local unicast\nALLOW fe80:0:0:1::1 -> getType() Link-local unicast\n```\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isLinkLocal()` tests the address against `fe80::/10` with the same `isHostInSubnet` predicate `getType()` and `Address4.isLinkLocal()` use. The same release adds `2001::/32` to the type table so `getType()` reports `'Teredo'` for the addresses `isTeredo()` returns `true` for; that is a consistency correction with no security effect.\n\nIf you cannot upgrade immediately, test the range directly:\n\n```js\nconst LINK_LOCAL = new Address6('fe80::/10');\nconst linkLocal = new Address6(host).isHostInSubnet(LINK_LOCAL);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n",
+                "markdown": "> ### Summary\n\n`Address6.isLinkLocal()` recognizes `fe80::/64` rather than `fe80::/10`. Link-local unicast is the whole `/10` under RFC 4291 §2.4 and the IANA IPv6 Special-Purpose Address Registry, so the method returns `false` for every link-local address outside the one `/64` that stateless address autoconfiguration happens to use. `new Address6('fe81::1').isLinkLocal()` is `false`.\n\nThe library contradicts itself on the same object: for `fe81::1`, `getType()` returns `'Link-local unicast'`, `getScope()` returns `'Link local'`, and `isHostInSubnet(new Address6('fe80::/10'))` returns `true`, while `isLinkLocal()` returns `false`.\n\nAn application that builds a network trust-boundary decision on these checks (for example a filter intended to block Server-Side Request Forgery, or SSRF) will classify a link-local target as unremarkable and allow the request. SSRF is an attack in which a user-supplied address coaxes the server into making a request to an internal destination the user could not otherwise reach.\n\n### Details\n\n`isLinkLocal()` in `src/ipv6.ts` compares the first 64 bits of the address against a literal string:\n\n```ts\n// Zeroes are required, i.e. we can't check isHostInSubnet with 'fe80::/10'\nif (\n  this.getBitsBase2(0, 64) ===\n  '1111111010000000000000000000000000000000000000000000000000000000'\n) {\n  return true;\n}\n```\n\nThe comparison requires the first 64 bits to be exactly `fe80:0000:0000:0000`, so it accepts 2⁶⁴ of the 2¹¹⁸ addresses in `fe80::/10`. The comment states a premise the library disproves: `getType()` classifies the same range with `isHostInSubnet` against the `'fe80::/10': 'Link-local unicast'` entry in `src/v6/constants.ts`, and `Address4.isLinkLocal()` is a plain `isHostInSubnet` test against `169.254.0.0/16`. RFC 4291 §2.5.6 constrains the format of an autoconfigured link-local address; it does not define the range, and reading it as the definition is the likeliest origin of the `/64` comparison.\n\nThe IPv4-mapped and NAT64 well-known paths of `isLinkLocal()` are unaffected: `::ffff:169.254.169.254` and `64:ff9b::a9fe:a9fe` are classified by their embedded IPv4 address and report `true`.\n\n### Affected versions\n\n`<= 10.5.0`. The comparison has had this shape since `Address6.isLinkLocal()` was introduced, so every release exposing the method is affected.\n\n### Impact\n\nEvery well-formed address in `fe80::/10` outside `fe80::/64` is parsed successfully, `isValid()` is `true`, and the classifier reports something untrue about it. No other classifier catches these addresses: `isPrivate()` covers ULA (`fc00::/7`), not link-local.\n\n| Address | `isLinkLocal()` | `getType()` | `getScope()` |\n|---|---|---|---|\n| `fe80::1` | `true` | Link-local unicast | Link local |\n| `fe81::1` | `false` | Link-local unicast | Link local |\n| `fe8f::1` | `false` | Link-local unicast | Link local |\n| `febf::1` | `false` | Link-local unicast | Link local |\n| `fe80:0:0:1::1` | `false` | Link-local unicast | Link local |\n| `fe80::1:0:0:0:1` | `false` | Link-local unicast | Link local |\n\nPython's `ipaddress` module, the `IN6_IS_ADDR_LINKLOCAL` macro in `netinet6/in6.h`, and Linux's `ipv6_addr_type()` all apply a ten-bit prefix test and classify every row above as link-local.\n\nA request admitted through a guard built on `isLinkLocal()` reaches a link-local host on the server's own segment: a neighboring machine or the on-link router. An IPv6 link-local destination generally needs a zone index and a neighbor on the same link, so the reach is the server's own segment rather than the internet or a universal metadata endpoint, and the severity reflects that.\n\n### Proof of concept\n\n`npm i ip-address@10.5.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\n// A guard of the shape the library documents.\nfunction isBlocked(host) {\n  const a = new Address6(host);\n  return a.isLoopback() || a.isLinkLocal() || a.isPrivate() || a.isMulticast() || a.isUnspecified();\n}\n\nfor (const h of ['fe80::1', 'fe81::1', 'febf::1', 'fe80:0:0:1::1']) {\n  const a = new Address6(h);\n  console.log(isBlocked(h) ? 'BLOCK' : 'ALLOW', h, '-> getType()', a.getType());\n}\n```\n\nOn affected versions:\n\n```\nBLOCK fe80::1 -> getType() Link-local unicast\nALLOW fe81::1 -> getType() Link-local unicast\nALLOW febf::1 -> getType() Link-local unicast\nALLOW fe80:0:0:1::1 -> getType() Link-local unicast\n```\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isLinkLocal()` tests the address against `fe80::/10` with the same `isHostInSubnet` predicate `getType()` and `Address4.isLinkLocal()` use. The same release adds `2001::/32` to the type table so `getType()` reports `'Teredo'` for the addresses `isTeredo()` returns `true` for; that is a consistency correction with no security effect.\n\nIf you cannot upgrade immediately, test the range directly:\n\n```js\nconst LINK_LOCAL = new Address6('fe80::/10');\nconst linkLocal = new Address6(host).isHostInSubnet(LINK_LOCAL);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n\n|                                                                                                                             |\n|Package                                                                                           pkg:npm/ip-address@10.5.0  |\n|Affected range                                                                                    <=10.5.0                   |\n|Fixed version                                                                                     10.5.1                     |\n|[[CVSS Score 6.3] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N]]                             |\n"
+              },
+              "properties": {
+                "affected_version": "<=10.5.0",
+                "cvssV3": 6.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N",
+                "fixed_version": "10.5.1",
+                "purls": ["pkg:npm/ip-address@10.5.0"],
+                "security-severity": "6.3",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-111997",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-111997: Inefficient Regular Expression Complexity"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-111997?s=github&n=ip-address&t=npm&vr=%3C%3D10.7.3",
+              "help": {
+                "text": "### Summary\n\n`new Address6()` and `Address6.isValid()` strip a zone identifier with the pattern `/%.*$/` before they apply the 45-character length limit. When the string holds many `%` characters followed by a line terminator, the pattern is retried from every `%` and each attempt scans to the line terminator before failing, so rejecting the string takes time proportional to the square of its length. 10,000 `%` characters and a newline take 41 ms, 40,000 take 632 ms and 100,000 take 3.9 s of synchronous work. The same strings without the newline are rejected in under a millisecond.\n\nAn application that validates an attacker-supplied string with these methods can be stalled by a single long request. The input is rejected with the correct `AddressError`; the cost of reaching that rejection is the defect.\n\n### Details\n\nThe constructor in `src/ipv6.ts` removes the CIDR suffix, then the zone, then checks the length of what is left:\n\n```ts\nconst zone = constants6.RE_ZONE_STRING.exec(address);\n\nif (zone) {\n  this.zone = zone[0];\n\n  address = address.replace(constants6.RE_ZONE_STRING, '');\n}\n\nconst longest = this.groups * 5 + 5;\n\nif (address.length > longest) {\n  throw new AddressError(`IPv6 addresses are at most ${longest} characters.`);\n}\n```\n\n`RE_ZONE_STRING` is `/%.*$/`. It has no anchor at its start, `.` does not match a line terminator (`\\n`, `\\r`, U+2028 or U+2029), and without the `m` flag `$` matches only at the end of the input. For `%` repeated N times and then `\\n`, the engine starts a match at the first `%`, `.*` consumes the remaining `%` characters up to the newline, `$` fails there, and backtracking through every shorter `.*` fails too. The engine then starts again at the second `%`, and so on: N starts, each proportional to N. The length limit that follows rejects the string in constant time, after the scan has already run.\n\nThe line terminator need not be last. Any string in which many `%` characters precede a line terminator behaves the same way.\n\nEvery entry point that passes a caller's string to the `Address6` constructor is affected: `new Address6()`, `isValid()`, both arguments of `fromAddressAndMask()` and `fromAddressAndWildcardMask()`, and the prefix argument of `fromAddress4Nat64()` and `toAddress4Nat64()`. `fromWildcard()` rejects a `%` before it constructs anything, `fromURL()` admits only hex digits, colons and dots in a host, and `fromArpa()` checks the nibble grammar first, so those three are unaffected. `Address4` has no zone and is unaffected.\n\n### Affected versions\n\n`<= 10.7.3`. The zone pattern has been in the constructor since 1.0.0; 5.9.4, 9.0.5 and 10.7.0 show the same timings as 10.7.3.\n\n### Impact\n\n`Address6.isValid()` on N `%` characters and a newline, measured on ip-address 10.7.3 and node 24.21.0:\n\n| Input | Wall time | Same length of `!` |\n|---|---|---|\n| 5,461 characters | 13 ms | 0.1 ms |\n| 16 KiB | 108 ms | 0.1 ms |\n| 100 KB | 3.9 s | 0.1 ms |\n| 256 KiB | 27 s | 0.2 ms |\n\nThe parse is synchronous, so the event loop is blocked for the whole of the wall time and nothing else on that process is served. No memory is retained and the process resumes when the call returns.\n\n### Reachability\n\nThe input needs a line terminator after the `%` characters, which decides where it can arrive. An HTTP header value cannot carry a carriage return or a line feed, so a host or address taken from a header does not reach this. A URL can carry both characters percent-encoded at three bytes each, and Node's default 16 KB limit on the request line and headers admits about 5,461 of them: 13 ms. A request body is where the larger sizes come from. Common body parsers default to between 100 KB and 1 MB, and at 100 KB one field passed to the parser unchecked blocks the process for 3.9 s.\n\n### Proof of concept\n\n`npm i ip-address@10.7.3`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\nfunction time(input) {\n  const start = process.hrtime.bigint();\n\n  Address6.isValid(input);\n\n  return `${(Number(process.hrtime.bigint() - start) / 1e6).toFixed(1)} ms`;\n}\n\nfor (const n of [10000, 20000, 40000, 100000]) {\n  console.log(`${n}: ${time(`${'%'.repeat(n)}\\n`)}, without the newline ${time('%'.repeat(n))}`);\n}\n```\n\nOn affected versions (node 24.21.0):\n\n```\n10000: 41.0 ms, without the newline 0.0 ms\n20000: 161.1 ms, without the newline 0.0 ms\n40000: 632.4 ms, without the newline 0.1 ms\n100000: 3899.8 ms, without the newline 0.1 ms\n```\n\nEach doubling of the input multiplies the time by four.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, the constructor finds the zone by the index of the first `%` and accepts the remainder as a zone only when it holds no line terminator, which reads the input once. 1 MiB of the input above is rejected in about a millisecond. Every address that parsed before parses to the same result, and a string with a line terminator after a `%` is rejected as it was.\n\n`RE_ZONE_STRING` stays exported from `v6/constants` for code that imports it directly and is marked `@deprecated`; the library itself does not call it.\n\nIf you cannot upgrade immediately, reject a candidate longer than an address with a zone identifier can be before you parse it:\n\n```js\nif (host.length > 64) throw new Error('not an IP address');\n```\n",
+                "markdown": "> ### Summary\n\n`new Address6()` and `Address6.isValid()` strip a zone identifier with the pattern `/%.*$/` before they apply the 45-character length limit. When the string holds many `%` characters followed by a line terminator, the pattern is retried from every `%` and each attempt scans to the line terminator before failing, so rejecting the string takes time proportional to the square of its length. 10,000 `%` characters and a newline take 41 ms, 40,000 take 632 ms and 100,000 take 3.9 s of synchronous work. The same strings without the newline are rejected in under a millisecond.\n\nAn application that validates an attacker-supplied string with these methods can be stalled by a single long request. The input is rejected with the correct `AddressError`; the cost of reaching that rejection is the defect.\n\n### Details\n\nThe constructor in `src/ipv6.ts` removes the CIDR suffix, then the zone, then checks the length of what is left:\n\n```ts\nconst zone = constants6.RE_ZONE_STRING.exec(address);\n\nif (zone) {\n  this.zone = zone[0];\n\n  address = address.replace(constants6.RE_ZONE_STRING, '');\n}\n\nconst longest = this.groups * 5 + 5;\n\nif (address.length > longest) {\n  throw new AddressError(`IPv6 addresses are at most ${longest} characters.`);\n}\n```\n\n`RE_ZONE_STRING` is `/%.*$/`. It has no anchor at its start, `.` does not match a line terminator (`\\n`, `\\r`, U+2028 or U+2029), and without the `m` flag `$` matches only at the end of the input. For `%` repeated N times and then `\\n`, the engine starts a match at the first `%`, `.*` consumes the remaining `%` characters up to the newline, `$` fails there, and backtracking through every shorter `.*` fails too. The engine then starts again at the second `%`, and so on: N starts, each proportional to N. The length limit that follows rejects the string in constant time, after the scan has already run.\n\nThe line terminator need not be last. Any string in which many `%` characters precede a line terminator behaves the same way.\n\nEvery entry point that passes a caller's string to the `Address6` constructor is affected: `new Address6()`, `isValid()`, both arguments of `fromAddressAndMask()` and `fromAddressAndWildcardMask()`, and the prefix argument of `fromAddress4Nat64()` and `toAddress4Nat64()`. `fromWildcard()` rejects a `%` before it constructs anything, `fromURL()` admits only hex digits, colons and dots in a host, and `fromArpa()` checks the nibble grammar first, so those three are unaffected. `Address4` has no zone and is unaffected.\n\n### Affected versions\n\n`<= 10.7.3`. The zone pattern has been in the constructor since 1.0.0; 5.9.4, 9.0.5 and 10.7.0 show the same timings as 10.7.3.\n\n### Impact\n\n`Address6.isValid()` on N `%` characters and a newline, measured on ip-address 10.7.3 and node 24.21.0:\n\n| Input | Wall time | Same length of `!` |\n|---|---|---|\n| 5,461 characters | 13 ms | 0.1 ms |\n| 16 KiB | 108 ms | 0.1 ms |\n| 100 KB | 3.9 s | 0.1 ms |\n| 256 KiB | 27 s | 0.2 ms |\n\nThe parse is synchronous, so the event loop is blocked for the whole of the wall time and nothing else on that process is served. No memory is retained and the process resumes when the call returns.\n\n### Reachability\n\nThe input needs a line terminator after the `%` characters, which decides where it can arrive. An HTTP header value cannot carry a carriage return or a line feed, so a host or address taken from a header does not reach this. A URL can carry both characters percent-encoded at three bytes each, and Node's default 16 KB limit on the request line and headers admits about 5,461 of them: 13 ms. A request body is where the larger sizes come from. Common body parsers default to between 100 KB and 1 MB, and at 100 KB one field passed to the parser unchecked blocks the process for 3.9 s.\n\n### Proof of concept\n\n`npm i ip-address@10.7.3`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\nfunction time(input) {\n  const start = process.hrtime.bigint();\n\n  Address6.isValid(input);\n\n  return `${(Number(process.hrtime.bigint() - start) / 1e6).toFixed(1)} ms`;\n}\n\nfor (const n of [10000, 20000, 40000, 100000]) {\n  console.log(`${n}: ${time(`${'%'.repeat(n)}\\n`)}, without the newline ${time('%'.repeat(n))}`);\n}\n```\n\nOn affected versions (node 24.21.0):\n\n```\n10000: 41.0 ms, without the newline 0.0 ms\n20000: 161.1 ms, without the newline 0.0 ms\n40000: 632.4 ms, without the newline 0.1 ms\n100000: 3899.8 ms, without the newline 0.1 ms\n```\n\nEach doubling of the input multiplies the time by four.\n\n### Remediation\n\nUpgrade to the patched release. In the fix, the constructor finds the zone by the index of the first `%` and accepts the remainder as a zone only when it holds no line terminator, which reads the input once. 1 MiB of the input above is rejected in about a millisecond. Every address that parsed before parses to the same result, and a string with a line terminator after a `%` is rejected as it was.\n\n`RE_ZONE_STRING` stays exported from `v6/constants` for code that imports it directly and is marked `@deprecated`; the library itself does not call it.\n\nIf you cannot upgrade immediately, reject a candidate longer than an address with a zone identifier can be before you parse it:\n\n```js\nif (host.length > 64) throw new Error('not an IP address');\n```\n\n|                                                                                                                             |\n|Package                                                                                           pkg:npm/ip-address@10.5.0  |\n|Affected range                                                                                    <=10.7.3                   |\n|Fixed version                                                                                     10.7.4                     |\n|[[CVSS Score 6.3] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N]]                             |\n"
+              },
+              "properties": {
+                "affected_version": "<=10.7.3",
+                "cvssV3": 6.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "fixed_version": "10.7.4",
+                "purls": ["pkg:npm/ip-address@10.5.0"],
+                "security-severity": "6.3",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-101910",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-101910: Server-Side Request Forgery (SSRF)"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-101910?s=github&n=ip-address&t=npm&vr=%3E%3D10.2.0%2C%3C%3D10.5.0",
+              "help": {
+                "text": "### Summary\n\nNo classifier on `Address6` recognizes the NAT64 local-use range `64:ff9b:1::/48` (RFC 8215). `isPrivate()`, `isLoopback()`, `isLinkLocal()` and their siblings all return `false` for every address in it, so an internal IPv4 destination written through a local-use NAT64 prefix (`64:ff9b:1:7f00:0:100::` for `127.0.0.1`, `64:ff9b:1:a9fe:a9:fe00::` for `169.254.169.254`) reads as an ordinary global address. `getType()` names the range `'NAT64 (local-use)'`, so the library knows what the address is and classifies it as nothing.\n\nAn application that builds a network trust-boundary decision on these checks (for example a filter intended to block Server-Side Request Forgery, or SSRF) will classify an internal target as external and allow the request. SSRF is an attack in which a user-supplied address coaxes the server into making a request to an internal destination the user could not otherwise reach, such as a loopback service or a cloud metadata endpoint.\n\n### Details\n\nThe fix for GHSA-22jq-vg5j-6vgg (10.2.1) classifies IPv4-mapped (`::ffff:0:0/96`) and NAT64 well-known (`64:ff9b::/96`) addresses by their embedded IPv4 address: `embeddedIPv4()` in `src/ipv6.ts` decodes the trailing 32 bits and every special-use classifier delegates to the resulting `Address4`. Those are the only two ranges `embeddedIPv4()` handles.\n\nThe local-use range differs in kind from the well-known prefix, which is why extending the decoder does not fix it. RFC 8215 reserves `64:ff9b:1::/48` so an operator can carve their own NAT64 prefix out of it, of any length RFC 6052 allows (`/48`, `/56`, `/64`, or `/96`). Where the IPv4 address sits depends on that choice: `127.0.0.1` is `64:ff9b:1:7f00:0:100::` under a `/48` prefix and `64:ff9b:1::7f00:1` under a `/96` prefix, and each of those decodes to a different address under the other prefix length. There is no single embedded IPv4 address for the library to classify by.\n\nWhat is well-defined is the range as a whole. The IANA IPv6 Special-Purpose Address Registry lists `64:ff9b:1::/48` as not globally reachable, and Python's `ipaddress` module reports `is_private` as `True` and `is_global` as `False` for every address in it. `isPrivate()` covered ULA (`fc00::/7`) plus the decoded mapped and well-known cases, and nothing in the local-use range.\n\n### Affected versions\n\n`>= 10.2.0, <= 10.5.0`. The `is*` classification API was extended to `Address6` in 10.2.0; releases before it do not expose the method and are not affected through this vector.\n\n### Impact\n\nEvery address in `64:ff9b:1::/48` parses successfully, `isValid()` is `true`, and no classifier catches it. Which internal target is reached depends on the NAT64 prefix deployed on the server's network; the well-known prefix column is the patched control from GHSA-22jq-vg5j-6vgg.\n\n| Internal target | Well-known form | Classified | Local-use form (`/48` prefix) | Classified |\n|---|---|---|---|---|\n| `127.0.0.1` | `64:ff9b::7f00:1` | loopback | `64:ff9b:1:7f00:0:100::` | nothing |\n| `10.0.0.1` | `64:ff9b::a00:1` | private | `64:ff9b:1:a00:0:100::` | nothing |\n| `169.254.169.254` | `64:ff9b::a9fe:a9fe` | link-local | `64:ff9b:1:a9fe:a9:fe00::` | nothing |\n| `192.168.1.1` | `64:ff9b::c0a8:101` | private | `64:ff9b:1:c0a8:1:100::` | nothing |\n\n### Reachability\n\nReaching an internal host through one of these addresses requires that the server's network run a NAT64 translator on a prefix inside `64:ff9b:1::/48` and that the attacker guess or know the prefix length. That is the same precondition the well-known prefix carries (a translator on `64:ff9b::/96`), with the additional constraint that the prefix is operator-chosen rather than fixed. The severity reflects that precondition.\n\n### Proof of concept\n\n`npm i ip-address@10.5.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\n// A guard of the shape the library documents.\nfunction isBlocked(host) {\n  const a = new Address6(host);\n  return a.isLoopback() || a.isLinkLocal() || a.isPrivate() || a.isMulticast() || a.isUnspecified();\n}\n\nfor (const h of ['64:ff9b::7f00:1', '64:ff9b:1:7f00:0:100::', '64:ff9b:1::7f00:1']) {\n  console.log(isBlocked(h) ? 'BLOCK' : 'ALLOW', h, '-> getType()', new Address6(h).getType());\n}\n```\n\nOn affected versions:\n\n```\nBLOCK 64:ff9b::7f00:1 -> getType() NAT64 (well-known)\nALLOW 64:ff9b:1:7f00:0:100:: -> getType() NAT64 (local-use)\nALLOW 64:ff9b:1::7f00:1 -> getType() NAT64 (local-use)\n```\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isPrivate()` returns `true` for every address in `64:ff9b:1::/48`, alongside ULA and the decoded mapped and well-known cases. The range is reported private as a whole rather than by a decoded IPv4 address, for the reason given above; `toAddress4Nat64(prefix)` remains the way to decode an address under a known deployment prefix. `isLoopback()` and `isLinkLocal()` are unchanged for this range, since without the prefix length the library cannot know which IPv4 address is embedded.\n\nIf you cannot upgrade immediately, test the range directly:\n\n```js\nconst NAT64_LOCAL_USE = new Address6('64:ff9b:1::/48');\nconst localUse = new Address6(host).isHostInSubnet(NAT64_LOCAL_USE);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n",
+                "markdown": "> ### Summary\n\nNo classifier on `Address6` recognizes the NAT64 local-use range `64:ff9b:1::/48` (RFC 8215). `isPrivate()`, `isLoopback()`, `isLinkLocal()` and their siblings all return `false` for every address in it, so an internal IPv4 destination written through a local-use NAT64 prefix (`64:ff9b:1:7f00:0:100::` for `127.0.0.1`, `64:ff9b:1:a9fe:a9:fe00::` for `169.254.169.254`) reads as an ordinary global address. `getType()` names the range `'NAT64 (local-use)'`, so the library knows what the address is and classifies it as nothing.\n\nAn application that builds a network trust-boundary decision on these checks (for example a filter intended to block Server-Side Request Forgery, or SSRF) will classify an internal target as external and allow the request. SSRF is an attack in which a user-supplied address coaxes the server into making a request to an internal destination the user could not otherwise reach, such as a loopback service or a cloud metadata endpoint.\n\n### Details\n\nThe fix for GHSA-22jq-vg5j-6vgg (10.2.1) classifies IPv4-mapped (`::ffff:0:0/96`) and NAT64 well-known (`64:ff9b::/96`) addresses by their embedded IPv4 address: `embeddedIPv4()` in `src/ipv6.ts` decodes the trailing 32 bits and every special-use classifier delegates to the resulting `Address4`. Those are the only two ranges `embeddedIPv4()` handles.\n\nThe local-use range differs in kind from the well-known prefix, which is why extending the decoder does not fix it. RFC 8215 reserves `64:ff9b:1::/48` so an operator can carve their own NAT64 prefix out of it, of any length RFC 6052 allows (`/48`, `/56`, `/64`, or `/96`). Where the IPv4 address sits depends on that choice: `127.0.0.1` is `64:ff9b:1:7f00:0:100::` under a `/48` prefix and `64:ff9b:1::7f00:1` under a `/96` prefix, and each of those decodes to a different address under the other prefix length. There is no single embedded IPv4 address for the library to classify by.\n\nWhat is well-defined is the range as a whole. The IANA IPv6 Special-Purpose Address Registry lists `64:ff9b:1::/48` as not globally reachable, and Python's `ipaddress` module reports `is_private` as `True` and `is_global` as `False` for every address in it. `isPrivate()` covered ULA (`fc00::/7`) plus the decoded mapped and well-known cases, and nothing in the local-use range.\n\n### Affected versions\n\n`>= 10.2.0, <= 10.5.0`. The `is*` classification API was extended to `Address6` in 10.2.0; releases before it do not expose the method and are not affected through this vector.\n\n### Impact\n\nEvery address in `64:ff9b:1::/48` parses successfully, `isValid()` is `true`, and no classifier catches it. Which internal target is reached depends on the NAT64 prefix deployed on the server's network; the well-known prefix column is the patched control from GHSA-22jq-vg5j-6vgg.\n\n| Internal target | Well-known form | Classified | Local-use form (`/48` prefix) | Classified |\n|---|---|---|---|---|\n| `127.0.0.1` | `64:ff9b::7f00:1` | loopback | `64:ff9b:1:7f00:0:100::` | nothing |\n| `10.0.0.1` | `64:ff9b::a00:1` | private | `64:ff9b:1:a00:0:100::` | nothing |\n| `169.254.169.254` | `64:ff9b::a9fe:a9fe` | link-local | `64:ff9b:1:a9fe:a9:fe00::` | nothing |\n| `192.168.1.1` | `64:ff9b::c0a8:101` | private | `64:ff9b:1:c0a8:1:100::` | nothing |\n\n### Reachability\n\nReaching an internal host through one of these addresses requires that the server's network run a NAT64 translator on a prefix inside `64:ff9b:1::/48` and that the attacker guess or know the prefix length. That is the same precondition the well-known prefix carries (a translator on `64:ff9b::/96`), with the additional constraint that the prefix is operator-chosen rather than fixed. The severity reflects that precondition.\n\n### Proof of concept\n\n`npm i ip-address@10.5.0`, then:\n\n```js\nconst { Address6 } = require('ip-address');\n\n// A guard of the shape the library documents.\nfunction isBlocked(host) {\n  const a = new Address6(host);\n  return a.isLoopback() || a.isLinkLocal() || a.isPrivate() || a.isMulticast() || a.isUnspecified();\n}\n\nfor (const h of ['64:ff9b::7f00:1', '64:ff9b:1:7f00:0:100::', '64:ff9b:1::7f00:1']) {\n  console.log(isBlocked(h) ? 'BLOCK' : 'ALLOW', h, '-> getType()', new Address6(h).getType());\n}\n```\n\nOn affected versions:\n\n```\nBLOCK 64:ff9b::7f00:1 -> getType() NAT64 (well-known)\nALLOW 64:ff9b:1:7f00:0:100:: -> getType() NAT64 (local-use)\nALLOW 64:ff9b:1::7f00:1 -> getType() NAT64 (local-use)\n```\n\n### Remediation\n\nUpgrade to the patched release. In the fix, `isPrivate()` returns `true` for every address in `64:ff9b:1::/48`, alongside ULA and the decoded mapped and well-known cases. The range is reported private as a whole rather than by a decoded IPv4 address, for the reason given above; `toAddress4Nat64(prefix)` remains the way to decode an address under a known deployment prefix. `isLoopback()` and `isLinkLocal()` are unchanged for this range, since without the prefix length the library cannot know which IPv4 address is embedded.\n\nIf you cannot upgrade immediately, test the range directly:\n\n```js\nconst NAT64_LOCAL_USE = new Address6('64:ff9b:1::/48');\nconst localUse = new Address6(host).isHostInSubnet(NAT64_LOCAL_USE);\n```\n\n### A note on SSRF defense\n\nThese methods are address classifiers, not a complete SSRF defense. Regardless of this fix, a robust SSRF guard must resolve the hostname and validate the *resolved* IP against the socket it connects to, and account for DNS rebinding and redirects. Treat these checks as one layer, not the only one.\n\n|                                                                                                                             |\n|Package                                                                                           pkg:npm/ip-address@10.5.0  |\n|Affected range                                                                                    >=10.2.0,<=10.5.0          |\n|Fixed version                                                                                     10.5.1                     |\n|[[CVSS Score 6.9] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N]]                             |\n"
+              },
+              "properties": {
+                "affected_version": ">=10.2.0,<=10.5.0",
+                "cvssV3": 6.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N",
+                "fixed_version": "10.5.1",
+                "purls": ["pkg:npm/ip-address@10.5.0"],
+                "security-severity": "6.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-109383",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-109383: Improper Certificate Validation"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-109383?s=github&n=undici&t=npm&vr=%3E%3D4.0.0%2C%3C6.29.1",
+              "help": {
+                "text": "### Impact\n\nundici's `Agent` passes its constructor options through a JSON-based deep clone (`JSON.parse(JSON.stringify(...))`) before forwarding them to each per-origin `Pool`. JSON cannot represent functions, so a caller-supplied `tls` option containing a `checkServerIdentity` callback is silently dropped before it reaches the TLS layer. As a result, a TLS peer whose certificate a custom `checkServerIdentity` was written to reject, but which passes Node's default hostname and chain checks, is silently accepted when the request is made through `Agent`. Because `Agent` is the default dispatcher behind `request`, `fetch`, and `setGlobalDispatcher`, this is the path most applications use. `EnvHttpProxyAgent` is also affected on its direct and `NO_PROXY` routes, which delegate to an internal `Agent`.\n\nOnly applications that pass a function-valued `tls` option (such as a custom `checkServerIdentity` for certificate or public-key pinning) are affected. Passing the same options through `connect` is not affected. This is the `Agent` counterpart of the `BalancedPool` certificate validation bypass fixed in CVE-2026-84961.\n\n### Patches\n\nUpgrade to undici `6.29.1`, `7.30.1`, or `8.12.2`. `Agent` now preserves the `tls` option outside the JSON clone, so custom TLS verification callbacks are forwarded to each origin unchanged.\n\n### Workarounds\n\nPass the TLS options through `connect` instead of `tls`. For proxied `EnvHttpProxyAgent` destinations, use `requestTls` / `proxyTls`.\n",
+                "markdown": "> ### Impact\n\nundici's `Agent` passes its constructor options through a JSON-based deep clone (`JSON.parse(JSON.stringify(...))`) before forwarding them to each per-origin `Pool`. JSON cannot represent functions, so a caller-supplied `tls` option containing a `checkServerIdentity` callback is silently dropped before it reaches the TLS layer. As a result, a TLS peer whose certificate a custom `checkServerIdentity` was written to reject, but which passes Node's default hostname and chain checks, is silently accepted when the request is made through `Agent`. Because `Agent` is the default dispatcher behind `request`, `fetch`, and `setGlobalDispatcher`, this is the path most applications use. `EnvHttpProxyAgent` is also affected on its direct and `NO_PROXY` routes, which delegate to an internal `Agent`.\n\nOnly applications that pass a function-valued `tls` option (such as a custom `checkServerIdentity` for certificate or public-key pinning) are affected. Passing the same options through `connect` is not affected. This is the `Agent` counterpart of the `BalancedPool` certificate validation bypass fixed in CVE-2026-84961.\n\n### Patches\n\nUpgrade to undici `6.29.1`, `7.30.1`, or `8.12.2`. `Agent` now preserves the `tls` option outside the JSON clone, so custom TLS verification callbacks are forwarded to each origin unchanged.\n\n### Workarounds\n\nPass the TLS options through `connect` instead of `tls`. For proxied `EnvHttpProxyAgent` destinations, use `requestTls` / `proxyTls`.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=4.0.0,<6.29.1        |\n|Fixed version                                                                  6.29.1                 |\n|[[CVSS Score 7.4] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.0.0,<6.29.1",
+                "cvssV3": 7.4,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "fixed_version": "6.29.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "7.4",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-102276",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-102276: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-102276?s=github&n=brace-expansion&t=npm&vr=%3E%3D4.0.0%2C%3C5.0.10",
+              "help": {
+                "text": "### Summary\n\n`parseCommaParts()` can exhaust the native stack and crash the process. There are two distinct ways to trigger it, both reachable from a single untrusted pattern string.\n\nThis is the parsing-side counterpart to CVE-2026-14257 / GHSA-mh99-v99m-4gvg. That fix made `expand_()` iterative and documented a constant-stack-depth guarantee, but `parseCommaParts()` was left recursive, so the guarantee only held for one of the two parsing paths.\n\n### Vector 1 - unbounded recursion on `post`\n\n`parseCommaParts()` recursed on the remainder of the string once per brace group:\n\n```js\nconst postParts = parseCommaParts(post)   // unbounded\n```\n\nA brace group containing many comma-separated groups drives one recursion level per group:\n\n```js\nexpand('{' + '{a},'.repeat(7000) + 'b}')\n// RangeError: Maximum call stack size exceeded\n```\n\nAbout 7,300 repetitions - roughly 29 KB of input - is enough on Node 24; roughly 6,300 (25 KB) on Node 18. The threshold is identical on every affected release line.\n\n### Vector 2 - `push.apply` with an unbounded array\n\nEven with the recursion removed, `parseCommaParts()` spread whole arrays into an argument list:\n\n```js\np.push.apply(p, postParts)\nparts.push.apply(parts, p)\n```\n\n`Function.prototype.apply` places one argument per element on the stack, so a single large array overflows it. This needs **no recursion depth at all** - the following reaches a recursion depth of exactly 1:\n\n```js\nexpand('{{x},' + 'a,'.repeat(125000) + 'b}')\n// RangeError: Maximum call stack size exceeded\n```\n\nThreshold is about 124,300 repetitions (~249 KB). This vector was not part of the original report; it was found while verifying the fix. A patch that only de-recurses but keeps `push.apply` leaves a working denial of service behind.\n\n### Why `max` and `maxLength` do not help\n\nBoth crashes happen during **parsing**, before any expansion. The payloads produce one result per group, so output size grows linearly with input and is never the limiter. `expand(payload, { max: 1, maxLength: 1 })` still overflows.\n\n### Impact\n\nAny application that passes an untrusted string to `expand()` - directly, or through `minimatch` / `glob` where it is a user-supplied glob pattern - can be crashed. In Node, a `RangeError` that the application does not catch terminates the process, so a server that globs user input is exposed to remote unauthenticated denial of service.\n\n`minimatch`'s own `MAX_PATTERN_LENGTH` cap (65,536) does not help against vector 1: the overflow threshold sits well below it. Confirmed on minimatch 10.2.6 - a 64,003-byte pattern passes the length check and overflows both `minimatch.braceExpand()` and `new minimatch.Minimatch()`.\n\nThis is an availability-only issue. No code execution and no data exposure.\n\n### Not a regression\n\n5.0.8 and 5.0.9 overflow at the same repetition count, so the gap predates the recent advisories; those fixes simply did not reach it. Verified affected on 1.1.18, 2.1.4, 3.0.6, 5.0.8 and 5.0.9, all at an identical threshold.\n\n### Patch\n\n`parseCommaParts()` is rewritten as a loop that carries the partial part across chunks, and every array append uses an element-by-element loop rather than `push.apply`. The redundant `if (!str) return ['']` guard is dropped - the loop returns `['']` for the empty string on its own.\n\nEquivalence of the old and new implementations was checked by differential testing: exhaustive over every string of `{`, `}`, `,`, `a` up to length 7 plus 300,000 random inputs - 322,000 cases, zero mismatches.\n\n### Severity note\n\nScored 7.5 High under CVSS 3.1 for consistency with the other availability advisories on this package (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895), which use the same vector. The reporter self-assessed 6.9 Medium under CVSS 4.0 (`CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N`).\n\n### Credit\n\nReported by baeseungwon1010, with a working proof of concept and a proposed patch. Vector 2 was identified during maintainer verification.\n",
+                "markdown": "> ### Summary\n\n`parseCommaParts()` can exhaust the native stack and crash the process. There are two distinct ways to trigger it, both reachable from a single untrusted pattern string.\n\nThis is the parsing-side counterpart to CVE-2026-14257 / GHSA-mh99-v99m-4gvg. That fix made `expand_()` iterative and documented a constant-stack-depth guarantee, but `parseCommaParts()` was left recursive, so the guarantee only held for one of the two parsing paths.\n\n### Vector 1 - unbounded recursion on `post`\n\n`parseCommaParts()` recursed on the remainder of the string once per brace group:\n\n```js\nconst postParts = parseCommaParts(post)   // unbounded\n```\n\nA brace group containing many comma-separated groups drives one recursion level per group:\n\n```js\nexpand('{' + '{a},'.repeat(7000) + 'b}')\n// RangeError: Maximum call stack size exceeded\n```\n\nAbout 7,300 repetitions - roughly 29 KB of input - is enough on Node 24; roughly 6,300 (25 KB) on Node 18. The threshold is identical on every affected release line.\n\n### Vector 2 - `push.apply` with an unbounded array\n\nEven with the recursion removed, `parseCommaParts()` spread whole arrays into an argument list:\n\n```js\np.push.apply(p, postParts)\nparts.push.apply(parts, p)\n```\n\n`Function.prototype.apply` places one argument per element on the stack, so a single large array overflows it. This needs **no recursion depth at all** - the following reaches a recursion depth of exactly 1:\n\n```js\nexpand('{{x},' + 'a,'.repeat(125000) + 'b}')\n// RangeError: Maximum call stack size exceeded\n```\n\nThreshold is about 124,300 repetitions (~249 KB). This vector was not part of the original report; it was found while verifying the fix. A patch that only de-recurses but keeps `push.apply` leaves a working denial of service behind.\n\n### Why `max` and `maxLength` do not help\n\nBoth crashes happen during **parsing**, before any expansion. The payloads produce one result per group, so output size grows linearly with input and is never the limiter. `expand(payload, { max: 1, maxLength: 1 })` still overflows.\n\n### Impact\n\nAny application that passes an untrusted string to `expand()` - directly, or through `minimatch` / `glob` where it is a user-supplied glob pattern - can be crashed. In Node, a `RangeError` that the application does not catch terminates the process, so a server that globs user input is exposed to remote unauthenticated denial of service.\n\n`minimatch`'s own `MAX_PATTERN_LENGTH` cap (65,536) does not help against vector 1: the overflow threshold sits well below it. Confirmed on minimatch 10.2.6 - a 64,003-byte pattern passes the length check and overflows both `minimatch.braceExpand()` and `new minimatch.Minimatch()`.\n\nThis is an availability-only issue. No code execution and no data exposure.\n\n### Not a regression\n\n5.0.8 and 5.0.9 overflow at the same repetition count, so the gap predates the recent advisories; those fixes simply did not reach it. Verified affected on 1.1.18, 2.1.4, 3.0.6, 5.0.8 and 5.0.9, all at an identical threshold.\n\n### Patch\n\n`parseCommaParts()` is rewritten as a loop that carries the partial part across chunks, and every array append uses an element-by-element loop rather than `push.apply`. The redundant `if (!str) return ['']` guard is dropped - the loop returns `['']` for the empty string on its own.\n\nEquivalence of the old and new implementations was checked by differential testing: exhaustive over every string of `{`, `}`, `,`, `a` up to length 7 plus 300,000 random inputs - 322,000 cases, zero mismatches.\n\n### Severity note\n\nScored 7.5 High under CVSS 3.1 for consistency with the other availability advisories on this package (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895), which use the same vector. The reporter self-assessed 6.9 Medium under CVSS 4.0 (`CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N`).\n\n### Credit\n\nReported by baeseungwon1010, with a working proof of concept and a proposed patch. Vector 2 was identified during maintainer verification.\n\n|                                                                                                              |\n|Package                                                                        pkg:npm/brace-expansion@5.0.9  |\n|Affected range                                                                 >=4.0.0,<5.0.10                |\n|Fixed version                                                                  5.0.10                         |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                                 |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.0.0,<5.0.10",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "5.0.10",
+                "purls": ["pkg:npm/brace-expansion@5.0.9"],
+                "security-severity": "7.5",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-102278",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-102278: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-102278?s=github&n=brace-expansion&t=npm&vr=%3E%3D4.0.0%2C%3C5.0.11",
+              "help": {
+                "text": "### Summary\n\n`expand_()` recurses once per level of brace *nesting*. Deeply nested input exhausts the native stack and crashes the process.\n\nThis is distinct from CVE-2026-14257 / GHSA-mh99-v99m-4gvg, which made the *tail* iterative (recursion on `m.post`, driven by how many groups are chained). Nesting depth drives a different recursion that the tail fix never touched, so the documented constant-stack-depth guarantee only ever covered chained input, not nested input.\n\nIt is also distinct from GHSA-6j4f-fj2g-mc7p, which fixed recursion in `parseCommaParts()`. Both payloads below still crash with that fix applied.\n\n### Two recursion sites\n\n**Comma members.** Each alternative of a brace set is expanded by a recursive call, so nesting a set inside every alternative recurses once per level:\n\n```js\nexpand('{a,'.repeat(4000) + 'z' + '}'.repeat(4000))\n// RangeError: Maximum call stack size exceeded\n```\n\nCrashes at depth 3,907 - about **15.6 KB** of input.\n\n**Single set.** A brace set whose body parses to a single part is expanded by a recursive call before being re-wrapped (`x{{a,b}}y` -> `x{a}y x{b}y`), which recurses once per nesting level:\n\n```js\nexpand('{'.repeat(3200) + 'a,b' + '}'.repeat(3200))\n// RangeError: Maximum call stack size exceeded\n```\n\nCrashes at depth 3,125 - about **6.25 KB** of input. This is the cheapest stack-exhaustion payload known against this package: roughly a quarter the input of GHSA-6j4f-fj2g-mc7p (29 KB), and about a tenth of minimatch's `MAX_PATTERN_LENGTH` (65,536).\n\n### Why `max` and `maxLength` do not help\n\nBoth crashes happen while recursing into sub-expansions, before the result set grows. The payloads produce almost no output - the single-set case yields 2 results - so neither bound is ever the limiter. `expand(payload, { max: 1, maxLength: 1 })` still overflows.\n\n### Impact\n\nAny application passing an untrusted string to `expand()`, directly or through `minimatch` / `glob` as a user-supplied glob pattern, can be crashed. In Node a `RangeError` the application does not catch terminates the process, so a server globbing user input is exposed to remote unauthenticated denial of service.\n\nAvailability only. No code execution, no data exposure.\n\n### Affected versions\n\nVerified affected on 1.1.18, 2.1.4, 3.0.6 and 5.0.9, at near-identical depths on every line (single set: 3,125 on all four; comma members: 3,907-4,102). Not a regression from any recent fix - the gap predates them.\n\n### Patch\n\nA `maxDepth` bound (default `EXPANSION_MAX_DEPTH`) is threaded through `expand_()`. Past the cap a group is treated as non-expanding and returned literally, which is how the parser already handles a group that cannot expand. This matches the existing `max` / `maxLength` caps, which truncate rather than throw, so `expand()` continues never to throw on any input.\n\nThe default sits far above any realistic nesting depth and well below the crash threshold.\n",
+                "markdown": "> ### Summary\n\n`expand_()` recurses once per level of brace *nesting*. Deeply nested input exhausts the native stack and crashes the process.\n\nThis is distinct from CVE-2026-14257 / GHSA-mh99-v99m-4gvg, which made the *tail* iterative (recursion on `m.post`, driven by how many groups are chained). Nesting depth drives a different recursion that the tail fix never touched, so the documented constant-stack-depth guarantee only ever covered chained input, not nested input.\n\nIt is also distinct from GHSA-6j4f-fj2g-mc7p, which fixed recursion in `parseCommaParts()`. Both payloads below still crash with that fix applied.\n\n### Two recursion sites\n\n**Comma members.** Each alternative of a brace set is expanded by a recursive call, so nesting a set inside every alternative recurses once per level:\n\n```js\nexpand('{a,'.repeat(4000) + 'z' + '}'.repeat(4000))\n// RangeError: Maximum call stack size exceeded\n```\n\nCrashes at depth 3,907 - about **15.6 KB** of input.\n\n**Single set.** A brace set whose body parses to a single part is expanded by a recursive call before being re-wrapped (`x{{a,b}}y` -> `x{a}y x{b}y`), which recurses once per nesting level:\n\n```js\nexpand('{'.repeat(3200) + 'a,b' + '}'.repeat(3200))\n// RangeError: Maximum call stack size exceeded\n```\n\nCrashes at depth 3,125 - about **6.25 KB** of input. This is the cheapest stack-exhaustion payload known against this package: roughly a quarter the input of GHSA-6j4f-fj2g-mc7p (29 KB), and about a tenth of minimatch's `MAX_PATTERN_LENGTH` (65,536).\n\n### Why `max` and `maxLength` do not help\n\nBoth crashes happen while recursing into sub-expansions, before the result set grows. The payloads produce almost no output - the single-set case yields 2 results - so neither bound is ever the limiter. `expand(payload, { max: 1, maxLength: 1 })` still overflows.\n\n### Impact\n\nAny application passing an untrusted string to `expand()`, directly or through `minimatch` / `glob` as a user-supplied glob pattern, can be crashed. In Node a `RangeError` the application does not catch terminates the process, so a server globbing user input is exposed to remote unauthenticated denial of service.\n\nAvailability only. No code execution, no data exposure.\n\n### Affected versions\n\nVerified affected on 1.1.18, 2.1.4, 3.0.6 and 5.0.9, at near-identical depths on every line (single set: 3,125 on all four; comma members: 3,907-4,102). Not a regression from any recent fix - the gap predates them.\n\n### Patch\n\nA `maxDepth` bound (default `EXPANSION_MAX_DEPTH`) is threaded through `expand_()`. Past the cap a group is treated as non-expanding and returned literally, which is how the parser already handles a group that cannot expand. This matches the existing `max` / `maxLength` caps, which truncate rather than throw, so `expand()` continues never to throw on any input.\n\nThe default sits far above any realistic nesting depth and well below the crash threshold.\n\n|                                                                                                              |\n|Package                                                                        pkg:npm/brace-expansion@5.0.9  |\n|Affected range                                                                 >=4.0.0,<5.0.11                |\n|Fixed version                                                                  5.0.11                         |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                                 |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.0.0,<5.0.11",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "5.0.11",
+                "purls": ["pkg:npm/brace-expansion@5.0.9"],
+                "security-severity": "7.5",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-109869",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-109869: Uncaught Exception"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-109869?s=github&n=undici&t=npm&vr=%3E%3D6.23.0%2C%3C6.29.1",
+              "help": {
+                "text": "### Impact\n\nundici's `fetch()` crashes the Node.js process when a malicious server returns a response with more than five content codings and closes the connection before sending the body. undici rejects such responses (a content-encoding limit), but it created the internal response stream before that check and returned without attaching an error listener or aborting the request. The early close then surfaces a content-length mismatch on that orphaned internal stream, which Node.js treats as an unhandled `error` and terminates the process. A remote, unauthenticated server can trigger this with a single response, even when the application correctly catches the `fetch()` rejection. undici 6.x, 7.x, and 8.x are affected.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`. undici now validates the content-encoding chain before creating the internal body stream and aborts the response when the limit is exceeded, so no error can surface on an orphaned stream.\n\n### Workarounds\n\nNone.\n",
+                "markdown": "> ### Impact\n\nundici's `fetch()` crashes the Node.js process when a malicious server returns a response with more than five content codings and closes the connection before sending the body. undici rejects such responses (a content-encoding limit), but it created the internal response stream before that check and returned without attaching an error listener or aborting the request. The early close then surfaces a content-length mismatch on that orphaned internal stream, which Node.js treats as an unhandled `error` and terminates the process. A remote, unauthenticated server can trigger this with a single response, even when the application correctly catches the `fetch()` rejection. undici 6.x, 7.x, and 8.x are affected.\n\n### Patches\n\nUpgrade to `6.29.1`, `7.30.1`, or `8.12.2`. undici now validates the content-encoding chain before creating the internal body stream and aborts the response when the limit is exceeded, so no error can surface on an orphaned stream.\n\n### Workarounds\n\nNone.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=6.23.0,<6.29.1       |\n|Fixed version                                                                  6.29.1                 |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=6.23.0,<6.29.1",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.29.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "7.5",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-19534",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-19534: Uncaught Exception"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-19534?s=github&n=undici&t=npm&vr=%3E%3D6.7.0%2C%3C6.28.1",
+              "help": {
+                "text": "### Impact\n\nThe undici WebSocket client throws an uncaught `TypeError` during the opening handshake when a server's `101` response includes a `Sec-WebSocket-Protocol` header that the client never requested. The throw occurs in a `queueMicrotask` callback with no surrounding `try`/`catch`, so it propagates as an uncaught exception and terminates the Node.js process. This is a remote, unauthenticated denial of service against any application that opens a WebSocket to an attacker controlled or compromised server, or over a plaintext `ws://` connection subject to a machine-in-the-middle. It affects the default `new WebSocket(url)` usage, where no subprotocol is requested. Per RFC 6455 section 4.1, an unrequested subprotocol must fail the connection, not crash it.\n\nAll releases starting at undici 6.7.0 are affected.\n\n### Patches\n\nUpgrade to undici 6.28.1, 7.29.1, or 8.10.2.\n\n### Workarounds\n\nNo workaround is available. The fix must be applied through an upgrade.\n",
+                "markdown": "> ### Impact\n\nThe undici WebSocket client throws an uncaught `TypeError` during the opening handshake when a server's `101` response includes a `Sec-WebSocket-Protocol` header that the client never requested. The throw occurs in a `queueMicrotask` callback with no surrounding `try`/`catch`, so it propagates as an uncaught exception and terminates the Node.js process. This is a remote, unauthenticated denial of service against any application that opens a WebSocket to an attacker controlled or compromised server, or over a plaintext `ws://` connection subject to a machine-in-the-middle. It affects the default `new WebSocket(url)` usage, where no subprotocol is requested. Per RFC 6455 section 4.1, an unrequested subprotocol must fail the connection, not crash it.\n\nAll releases starting at undici 6.7.0 are affected.\n\n### Patches\n\nUpgrade to undici 6.28.1, 7.29.1, or 8.10.2.\n\n### Workarounds\n\nNo workaround is available. The fix must be applied through an upgrade.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=6.7.0,<6.28.1        |\n|Fixed version                                                                  6.28.1                 |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=6.7.0,<6.28.1",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.28.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "7.5",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-87018",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87018: Uncaught Exception"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87018?s=github&n=undici&t=npm&vr=%3E%3D4.2.1%2C%3C6.29.1",
+              "help": {
+                "text": "## Impact\n\nundici crashes the client process when a TLS 1.2 server renegotiates after the connection is established and presents a different, CA-trusted certificate whose hostname does not match the requested host. Node.js re-runs hostname verification on the renegotiated handshake and destroys the socket with `ERR_TLS_CERT_ALTNAME_INVALID`. undici's established socket error handler asserted that this error code could never occur, so the peer-controlled error became an uncaught `AssertionError` that terminates the Node.js process. Both the HTTP/1.1 and HTTP/2 paths are affected.\n\nA malicious or compromised HTTPS endpoint reached through undici or the global `fetch()` can crash the client with a single server-initiated renegotiation, taking down all in-flight requests and background work in the process. Only TLS 1.2 is affected, because TLS 1.3 does not support renegotiation. Exploitation does not require a CA compromise: the attacker controls the endpoint and can present two ordinary valid certificates, the first matching the requested URL and the second intentionally not matching it.\n\n## Patches\n\nUpgrade to undici 6.29.1, 7.30.1, or 8.12.2.\n\n## Workarounds\n\nRestrict outbound connections to TLS 1.3, for example by setting `connect: { minVersion: 'TLSv1.3', maxVersion: 'TLSv1.3' }` on the client or agent, so that renegotiation cannot occur, when the target endpoints support TLS 1.3.\n",
+                "markdown": "> ## Impact\n\nundici crashes the client process when a TLS 1.2 server renegotiates after the connection is established and presents a different, CA-trusted certificate whose hostname does not match the requested host. Node.js re-runs hostname verification on the renegotiated handshake and destroys the socket with `ERR_TLS_CERT_ALTNAME_INVALID`. undici's established socket error handler asserted that this error code could never occur, so the peer-controlled error became an uncaught `AssertionError` that terminates the Node.js process. Both the HTTP/1.1 and HTTP/2 paths are affected.\n\nA malicious or compromised HTTPS endpoint reached through undici or the global `fetch()` can crash the client with a single server-initiated renegotiation, taking down all in-flight requests and background work in the process. Only TLS 1.2 is affected, because TLS 1.3 does not support renegotiation. Exploitation does not require a CA compromise: the attacker controls the endpoint and can present two ordinary valid certificates, the first matching the requested URL and the second intentionally not matching it.\n\n## Patches\n\nUpgrade to undici 6.29.1, 7.30.1, or 8.12.2.\n\n## Workarounds\n\nRestrict outbound connections to TLS 1.3, for example by setting `connect: { minVersion: 'TLSv1.3', maxVersion: 'TLSv1.3' }` on the client or agent, so that renegotiation cannot occur, when the target endpoints support TLS 1.3.\n\n|                                                                                                      |\n|Package                                                                        pkg:npm/undici@6.28.0  |\n|Affected range                                                                 >=4.2.1,<6.29.1        |\n|Fixed version                                                                  6.29.1                 |\n|[[CVSS Score 7.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H]]                         |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.2.1,<6.29.1",
+                "cvssV3": 7.5,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "fixed_version": "6.29.1",
+                "purls": ["pkg:npm/undici@6.28.0"],
+                "security-severity": "7.5",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-93748",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-93748: Use of Cache Containing Sensitive Information"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-93748?s=github&n=http-cache-semantics&t=npm&vr=%3C%3D4.2.0",
+              "help": {
+                "text": "http-cache-semantics through 4.2.0 fails to properly validate security-zeroed cache entries when processing client max-stale directives, allowing unauthenticated attackers to retrieve cached responses belonging to other users. Attackers can request the same URL with a large max-stale value to obtain another user's Set-Cookie session credentials from shared-cache entries that were deliberately zeroed for security reasons.\n",
+                "markdown": "> http-cache-semantics through 4.2.0 fails to properly validate security-zeroed cache entries when processing client max-stale directives, allowing unauthenticated attackers to retrieve cached responses belonging to other users. Attackers can request the same URL with a large max-stale value to obtain another user's Set-Cookie session credentials from shared-cache entries that were deliberately zeroed for security reasons.\n\n|                                                                                                                                      |\n|Package                                                                                           pkg:npm/http-cache-semantics@4.2.0  |\n|Affected range                                                                                    <=4.2.0                             |\n|Fixed version                                                                                     not fixed                           |\n|[[CVSS Score 8.7] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N]]                                      |\n"
+              },
+              "properties": {
+                "affected_version": "<=4.2.0",
+                "cvssV3": 8.7,
+                "cvssV3_severity": "HIGH",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:npm/http-cache-semantics@4.2.0"],
+                "security-severity": "8.7",
+                "tags": ["HIGH"]
+              }
+            }
+          ],
+          "version": "1.26.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-107891",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability   :CVE-2026-107891                                              \nSeverity        :UNSPECIFIED                                                  \nPackage         :pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  \nAffected range  :<1.2.6-r6                                                    \nFixed version   :1.2.6-r6                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/ld-musl-x86_64.so.1"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/sbin/ldconfig"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getconf"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getent"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/iconv"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/ldd"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-93753",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-93753                                                       \nSeverity         :LOW                                                                  \nPackage          :pkg:npm/deepmerge@4.3.1                                              \nAffected range   :>=4.2.0,<=4.3.1                                                      \nFixed version    :not fixed                                                            \nCVSS Score       :2.7                                                                  \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U  \nEPSS Score       :0.005140                                                             \nEPSS Percentile  :0.435980                                                             \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/deepmerge/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-18540",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-18540                                \nSeverity         :LOW                                           \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :<6.28.1                                       \nFixed version    :6.28.1                                        \nCVSS Score       :3.7                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N  \nEPSS Score       :0.003090                                      \nEPSS Percentile  :0.236050                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102277",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-102277                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/brace-expansion@5.0.9                 \nAffected range   :>=4.0.0,<5.0.12                               \nFixed version    :5.0.12                                        \nCVSS Score       :5.3                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L  \nEPSS Score       :0.004200                                      \nEPSS Percentile  :0.360860                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-104844",
+          "ruleIndex": 4,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-104844                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/postcss-selector-parser@7.1.4         \nAffected range   :>=7.0.0,<7.1.6                                \nFixed version    :7.1.6                                         \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003890                                      \nEPSS Percentile  :0.328000                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/postcss-selector-parser/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109924",
+          "ruleIndex": 5,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-109924                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=6.5.0,<6.29.1                               \nFixed version    :6.29.1                                        \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003210                                      \nEPSS Percentile  :0.249410                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109932",
+          "ruleIndex": 6,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-109932                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=5.15.0,<6.29.1                              \nFixed version    :6.29.1                                        \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003210                                      \nEPSS Percentile  :0.249400                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-85024",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-85024                                \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=6.25.0,<6.28.1                              \nFixed version    :6.28.1                                        \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.004120                                      \nEPSS Percentile  :0.352910                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101911",
+          "ruleIndex": 8,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-101911                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/ip-address@10.5.0                                        \nAffected range   :<=10.7.0                                                         \nFixed version    :10.7.1                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.003830                                                         \nEPSS Percentile  :0.321660                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/ip-address/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101912",
+          "ruleIndex": 9,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-101912                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/ip-address@10.5.0                                        \nAffected range   :<=10.7.0                                                         \nFixed version    :10.7.1                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N  \nEPSS Score       :0.003700                                                         \nEPSS Percentile  :0.308020                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/ip-address/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101913",
+          "ruleIndex": 10,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-101913                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/ip-address@10.5.0                                        \nAffected range   :<=10.5.0                                                         \nFixed version    :10.5.1                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N  \nEPSS Score       :0.003860                                                         \nEPSS Percentile  :0.324810                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/ip-address/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-111997",
+          "ruleIndex": 11,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-111997                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/ip-address@10.5.0                                        \nAffected range   :<=10.7.3                                                         \nFixed version    :10.7.4                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.003150                                                         \nEPSS Percentile  :0.242210                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/ip-address/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101910",
+          "ruleIndex": 12,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-101910                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/ip-address@10.5.0                                        \nAffected range   :>=10.2.0,<=10.5.0                                                \nFixed version    :10.5.1                                                           \nCVSS Score       :6.9                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N  \nEPSS Score       :0.003860                                                         \nEPSS Percentile  :0.324810                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/ip-address/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109383",
+          "ruleIndex": 13,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-109383                               \nSeverity         :HIGH                                          \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=4.0.0,<6.29.1                               \nFixed version    :6.29.1                                        \nCVSS Score       :7.4                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N  \nEPSS Score       :0.001840                                      \nEPSS Percentile  :0.079320                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102276",
+          "ruleIndex": 14,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-102276                               \nSeverity         :HIGH                                          \nPackage          :pkg:npm/brace-expansion@5.0.9                 \nAffected range   :>=4.0.0,<5.0.10                               \nFixed version    :5.0.10                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.004550                                      \nEPSS Percentile  :0.393300                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102278",
+          "ruleIndex": 15,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-102278                               \nSeverity         :HIGH                                          \nPackage          :pkg:npm/brace-expansion@5.0.9                 \nAffected range   :>=4.0.0,<5.0.11                               \nFixed version    :5.0.11                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.004550                                      \nEPSS Percentile  :0.393290                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109869",
+          "ruleIndex": 16,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-109869                               \nSeverity         :HIGH                                          \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=6.23.0,<6.29.1                              \nFixed version    :6.29.1                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003440                                      \nEPSS Percentile  :0.277380                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-19534",
+          "ruleIndex": 17,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-19534                                \nSeverity         :HIGH                                          \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=6.7.0,<6.28.1                               \nFixed version    :6.28.1                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.003940                                      \nEPSS Percentile  :0.334110                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87018",
+          "ruleIndex": 18,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87018                                \nSeverity         :HIGH                                          \nPackage          :pkg:npm/undici@6.28.0                         \nAffected range   :>=4.2.1,<6.29.1                               \nFixed version    :6.29.1                                        \nCVSS Score       :7.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  \nEPSS Score       :0.001870                                      \nEPSS Percentile  :0.082440                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/undici/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-93748",
+          "ruleIndex": 19,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-93748                                                   \nSeverity         :HIGH                                                             \nPackage          :pkg:npm/http-cache-semantics@4.2.0                               \nAffected range   :<=4.2.0                                                          \nFixed version    :not fixed                                                        \nCVSS Score       :8.7                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N  \nEPSS Score       :0.005690                                                         \nEPSS Percentile  :0.469470                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/local/lib/node_modules/npm/node_modules/http-cache-semantics/package.json"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

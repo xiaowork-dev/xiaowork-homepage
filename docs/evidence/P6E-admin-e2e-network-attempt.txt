@@ -1,0 +1,110 @@
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_control Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_control Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Created 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Created 
+ Network xiaowork-homepage-v11-p6e-e2e_control Error Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+ network:control failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Error error during connect: Post "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.56/networks/create": failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Error error during connect: Post "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.56/networks/create": failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+FAIL environment preparation: Command failed: docker compose --profile publisher -p xiaowork-homepage-v11-p6e-e2e -f compose.admin-publish.yaml -f D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\p6e-browser\compose.override.yaml up -d --no-build --wait --wait-timeout 120
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_control Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_control Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Creating 
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publications Created 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Creating 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-publisher-socket Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Created 
+ Volume xiaowork-homepage-v11-p6e-e2e_admin-tls Created 
+ Network xiaowork-homepage-v11-p6e-e2e_control Error Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+ network:control failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space 
+ Network xiaowork-homepage-v11-p6e-e2e_edge Error error during connect: Post "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.56/networks/create": failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+ Network xiaowork-homepage-v11-p6e-e2e_isolated Error error during connect: Post "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.56/networks/create": failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+failed to create network xiaowork-homepage-v11-p6e-e2e_control: Error response from daemon: invalid pool request: Pool overlaps with other one on this address space
+
+error: no such object: xiaowork-homepage-v11-p6e-e2e-browser
+node:internal/errors:986
+  const err = new Error(message);
+              ^
+
+Error: Command failed: docker inspect --format {{index .Config.Labels "xiaowork.test-project"}} xiaowork-homepage-v11-p6e-e2e-browser
+error: no such object: xiaowork-homepage-v11-p6e-e2e-browser
+
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at checkExecSyncError (node:child_process:943:11)
+    at execFileSync (node:child_process:979:15)
+    at cli (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-browser-environment.mjs:13:26)
+    at stopBrowserContainer (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-browser-environment.mjs:109:19)
+    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/admin-browser-test.mjs:880:3 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '\n',
+    'error: no such object: xiaowork-homepage-v11-p6e-e2e-browser\n'
+  ],
+  pid: 53444,
+  stdout: '\n',
+  stderr: 'error: no such object: xiaowork-homepage-v11-p6e-e2e-browser\n'
+}
+
+Node.js v24.22.1

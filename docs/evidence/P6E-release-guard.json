@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-28T10:36:12.097Z",
+  "project": "xiaowork-homepage-v11-p6e-recovery-final",
+  "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "scope": "Real local Compose candidate failure plus host CLI-only boundary wrappers; not Docker daemon outage or physical disk exhaustion",
+  "cases": [
+    {
+      "name": "failed candidate stop and failed recovery-record update retain initial durable intent and operation lock",
+      "result": "PASS"
+    },
+    {
+      "name": "subsequent update refused without removing another operation lock",
+      "result": "PASS"
+    },
+    {
+      "name": "explicit test-operator recovery restored reviewed baseline, compatible database and identical public HTML before releasing guard",
+      "result": "PASS"
+    }
+  ],
+  "events": [
+    "initial recovery intent write allowed before candidate starts",
+    "host-wrapper rejected second exact-project writer stop; no daemon outage simulated",
+    "host-wrapper returned ENOSPC when updating recovery record; initial intent retained"
+  ],
+  "duringFaultPublic": {
+    "accessible": false,
+    "failure": "TypeError"
+  },
+  "preservedIntent": {
+    "at": "2026-10-28T10:36:55.075Z",
+    "phase": "candidate-start-pending",
+    "reason": "Candidate transition is not yet reconciled; subsequent operations are blocked",
+    "backup": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\v11-backups\\xiaowork-homepage-v11-p6e-recovery-final-1793183792401",
+    "previous": {
+      "format": 1,
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "schema": 3,
+      "images": {
+        "api": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+        "worker": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+        "gateway": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+        "frontend": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+        "static": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+        "maintenance": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa"
+      }
+    },
+    "candidate": {
+      "format": 1,
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "schema": 3,
+      "images": {
+        "api": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+        "worker": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+        "gateway": "sha256:52b697a2879584e556369fb30b6c753e3ab9d9a4cde3b47c0e5d95e26bce49ef",
+        "frontend": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+        "static": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+        "maintenance": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa"
+      }
+    }
+  },
+  "database": {
+    "schema": 3,
+    "workspaceRevision": 5,
+    "administrators": 1,
+    "projects": 3,
+    "uploads": 1,
+    "snapshots": 3,
+    "jobs": 4,
+    "releases": 3,
+    "unfinished": 0,
+    "activeRelease": "rel_da795e493c5c6546c20ca190428ed9fc",
+    "sources": [
+      "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+    ],
+    "builders": [
+      "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627"
+    ]
+  },
+  "result": "PASS"
+}

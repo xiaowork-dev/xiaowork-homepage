@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-28T10:48:48.454Z",
+  "project": "xiaowork-homepage-v11-p6e-readonly",
+  "scope": "Existing isolated backup read-only verification and new empty restore volumes only; no service start or lifecycle rerun",
+  "cases": [
+    {
+      "name": "maintenance verification completed through read-only bind source",
+      "result": "PASS"
+    },
+    {
+      "name": "new independent empty volumes restored and coherent SQLite/uploads/publication state verified",
+      "result": "PASS"
+    },
+    {
+      "name": "entire source bundle, manifest, regular-file bytes and verified link inventory unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "exact-project compose down without -v; all six independent restored data volumes retained",
+      "result": "PASS"
+    }
+  ],
+  "beforeSHA256": "bab169dc4442a9a52453e566a41ef259fd98375839c782c3344e6cc4ecabe069",
+  "fileCount": 121,
+  "state": {
+    "schema": 3,
+    "workspaceRevision": 5,
+    "administrators": 1,
+    "projects": 3,
+    "uploads": 1,
+    "snapshots": 3,
+    "jobs": 4,
+    "releases": 3,
+    "unfinished": 0,
+    "activeRelease": "rel_da795e493c5c6546c20ca190428ed9fc",
+    "sources": ["be5c96857c5a7098a9b8f80931ced47d0efcab89"],
+    "builders": ["sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627"]
+  },
+  "afterSHA256": "bab169dc4442a9a52453e566a41ef259fd98375839c782c3344e6cc4ecabe069",
+  "volumes": [
+    "xiaowork-homepage-v11-p6e-readonly_admin-db",
+    "xiaowork-homepage-v11-p6e-readonly_admin-uploads",
+    "xiaowork-homepage-v11-p6e-readonly_admin-publications",
+    "xiaowork-homepage-v11-p6e-readonly_admin-secrets",
+    "xiaowork-homepage-v11-p6e-readonly_admin-authority",
+    "xiaowork-homepage-v11-p6e-readonly_admin-tls"
+  ],
+  "result": "PASS"
+}

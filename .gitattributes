@@ -7,5 +7,7 @@
 *.json text eol=lf
 *.yaml text eol=lf
 *.png binary
+# Generated CLI evidence keeps original trailing spaces and blank lines.
+docs/evidence/P6E-*.txt whitespace=-blank-at-eol,-blank-at-eof
 XiaoWork_Homepage_V1_Design_Spec.md -text
 XiaoWork_Homepage_P0_Delivery.md -text

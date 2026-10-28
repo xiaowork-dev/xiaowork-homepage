@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28T09:26:11.054Z",
+  "url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+  "status": 200,
+  "has24221": true,
+  "has20261021": true,
+  "headings": ["Wednesday, October 21, 2026 Security Releases", "Security releases available"],
+  "cves": [
+    "CVE-2026-105482",
+    "CVE-2026-105483",
+    "CVE-2026-106069",
+    "CVE-2026-111497",
+    "CVE-2026-105481",
+    "CVE-2026-106072",
+    "CVE-2026-106074",
+    "CVE-2026-106070",
+    "CVE-2026-106071",
+    "CVE-2026-106073"
+  ]
+}

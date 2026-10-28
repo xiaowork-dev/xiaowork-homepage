@@ -1,0 +1,1431 @@
+{
+  "date": "2026-10-28T10:30:57.611Z",
+  "project": "xiaowork-homepage-v11-p6e-fault",
+  "case": "building-exit",
+  "scope": "Dedicated local volumes only; test-tagged binaries; no production connection",
+  "tlsVerificationDisabled": false,
+  "events": [
+    {
+      "time": "2026-10-28T10:31:16.623Z",
+      "point": "before",
+      "status": {
+        "activeReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 980251279360,
+              "totalBytes": 1081101176832,
+              "usedBytes": 660496,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 980251279360,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 980251279360,
+              "totalBytes": 1081101176832,
+              "usedBytes": 5645021,
+              "files": 469,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T10:30:44Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": null,
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "releaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_cf00561879d9826514e8cfc27a096572",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_96544893f957a646b05d007e5466c1d4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "id": "job_f7b7c335ce675179c2b50172a6930fee",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_2055eb21281ab36653c835671218836c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_b201fa0575e5c7376e81d9df342d9201",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_3ae1bb9834d4ecfc38fb312fb3e68a09",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_b07f2cb961ee6b03e1dbd221abc37733",
+          "revision": "ws-1",
+          "status": "failed"
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_6d9bebe2578ac672f617ee4860261384",
+        "releases": [
+          {
+            "id": "rel_1503fc78d32bec11d59be94a6d760d59",
+            "manifestSha256": "abe11870add89b1524f39077d0abb627f59c07e267d9ff1f0dbc69ff75931ce3",
+            "homepageSha256": "a08bfa34d64451ac8a15b5f4526a7331d7629afb5bd002da8136d3f8093eaf9a"
+          },
+          {
+            "id": "rel_423b194deb1a0af13e9ea5c390a68f82",
+            "manifestSha256": "6fdf29ddf4a50397a40093412b7f55d05005aba0ecb5f0854e803b5adabca9d1",
+            "homepageSha256": "10b51877f4821265ed2646ee320cdba29966c4e6ad0ec9c34b223f0d3ce7cfd4"
+          },
+          {
+            "id": "rel_53fb509702c56871c364e12e1f9a2d71",
+            "manifestSha256": "91d6d846cad276a6e05ff457fd218cc5eb0df464a9b66799171a137778f89e77",
+            "homepageSha256": "29afe66b8d4f37e52dd3a24d2dfe40a793e289e65fc5967d9421d4aa89f17a86"
+          },
+          {
+            "id": "rel_686c581fbce14a00f4c306194e35a552",
+            "manifestSha256": "f063c2a254a2514e459a05d0f590b5d2e1da30aae614287e2182616666005da2",
+            "homepageSha256": "c14d649f3a66f95f48304b3bea1ffce57b18073682fe43c4348f1c6261dcb102"
+          },
+          {
+            "id": "rel_6d9bebe2578ac672f617ee4860261384",
+            "manifestSha256": "943d24598bb984a02e1fc6db47146f9438e611aac57c2c23cecb58a973de4678",
+            "homepageSha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+          },
+          {
+            "id": "rel_7c77b62534e5796fa9771e86a8980a18",
+            "manifestSha256": "b097712554acad381ded7c83f541226751b52ff0d57e8f3a31f96a32a71a406a",
+            "homepageSha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+          },
+          {
+            "id": "rel_96367994b78619f4a163a0f967e3a111",
+            "manifestSha256": "44a0e1c6f9f740aa60d63d97117dd9a9a7d8677b5c2208776e4e81311d06067c",
+            "homepageSha256": "e183863f992c38c4d9e521d8029283dd541770a4f9d0ea8b7632acae44494088"
+          },
+          {
+            "id": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+            "manifestSha256": "00dd9a76a3f5a98cb2dbae1dc3373ec33e1978ea74f6fe9eeae9976a04330932",
+            "homepageSha256": "4d9e394ef7fd1a3e91f665ffe383d981eb22778e6f2edc9a9d32b2f6199ddab9"
+          },
+          {
+            "id": "rel_aa3ef836f453121727694db0d679ec20",
+            "manifestSha256": "c45b4d526d7cf1d2aa85b3c1e45640ea1f9ff938d0893d4bdc27031730db0dce",
+            "homepageSha256": "29697dc684d8552a6c80a940edb9f3b5b26d80632083922856ed7bd46330ada7"
+          },
+          {
+            "id": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+            "manifestSha256": "86c8dd69df1e6168c95fb1051e4f960366b91968e9f7c47bfec443ec8ba8f886",
+            "homepageSha256": "b4f3e3474598ab3f75646da158839ce12bebd68629c120c6341823eec02c73e2"
+          },
+          {
+            "id": "rel_befef81b7862894d03f28edfc1935094",
+            "manifestSha256": "ccfb93a8e35c693595eec108e79b734cad0c4e1b9db48c978e55996feb7c09c4",
+            "homepageSha256": "1fb97850fb114f16f2d45edd62ae33c448de2ecbcaf04b1d238bad040b61ee3b"
+          },
+          {
+            "id": "rel_c423c41997ba5a4bb68c27c78e05829e",
+            "manifestSha256": "b4480dfaeab405c42fccdd153c5bb5d98cc18b501555f9de575263b9dcd7ed69",
+            "homepageSha256": "c46b5b4dd2585d5e383a71874ebe5ecc7ccfa691d67741ecb3f9fa74175ec39d"
+          },
+          {
+            "id": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+            "manifestSha256": "d4d5ecfc6db9a29dd7325fee8825506cd2200be83976f26ed873734eca850c4e",
+            "homepageSha256": "880740f4f658f68daf99c42aadf5519f9a30a97aa604f73c02cfd1b72e2cc826"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_2055eb21281ab36653c835671218836c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_96544893f957a646b05d007e5466c1d4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_b201fa0575e5c7376e81d9df342d9201",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_cf00561879d9826514e8cfc27a096572",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "07fc7c4955ccbc5369e8c5d76c3a01b7ec298007c6c2cee93765afb943115a5d"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "f5e4088cb7cba4109c3450aae6d7dce36aefc6f0cc47a4716462094c368a8094"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "70cbd8cdd79f94576872b3f1f9449985acd6ad5137cbefac734601fbc6c5b59a"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T10:31:17.003Z",
+      "point": "submission",
+      "httpStatus": 202,
+      "jobId": "job_2bfa3cfc7f0bb6b94676a82f50b3800b"
+    },
+    {
+      "time": "2026-10-28T10:31:19.340Z",
+      "point": "real-nuxt-process-observed",
+      "jobId": "job_2bfa3cfc7f0bb6b94676a82f50b3800b"
+    },
+    {
+      "time": "2026-10-28T10:31:22.512Z",
+      "point": "worker-killed-during-build",
+      "status": {
+        "activeReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+        "activeVerified": true,
+        "blockingJob": {
+          "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+          "kind": "publish",
+          "status": "running",
+          "phase": "building",
+          "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+          "workspaceRevision": "ws-1",
+          "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+          "targetReleaseId": null,
+          "createdAt": "2026-10-28T10:31:16Z",
+          "startedAt": "2026-10-28T10:31:18Z",
+          "completedAt": null,
+          "error": null,
+          "activeVerified": false
+        },
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 980251099136,
+              "totalBytes": 1081101176832,
+              "usedBytes": 660496,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 980251099136,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 980251099136,
+              "totalBytes": 1081101176832,
+              "usedBytes": 5645021,
+              "files": 469,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T10:30:44Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+        "kind": "publish",
+        "status": "running",
+        "phase": "building",
+        "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:31:16Z",
+        "startedAt": "2026-10-28T10:31:18Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "releaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_cf00561879d9826514e8cfc27a096572",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_96544893f957a646b05d007e5466c1d4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "id": "job_f7b7c335ce675179c2b50172a6930fee",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_2055eb21281ab36653c835671218836c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_b201fa0575e5c7376e81d9df342d9201",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_3ae1bb9834d4ecfc38fb312fb3e68a09",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_b07f2cb961ee6b03e1dbd221abc37733",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+          "kind": "publish",
+          "phase": "building",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+          "revision": "ws-1",
+          "status": "running"
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_6d9bebe2578ac672f617ee4860261384",
+        "releases": [
+          {
+            "id": "rel_1503fc78d32bec11d59be94a6d760d59",
+            "manifestSha256": "abe11870add89b1524f39077d0abb627f59c07e267d9ff1f0dbc69ff75931ce3",
+            "homepageSha256": "a08bfa34d64451ac8a15b5f4526a7331d7629afb5bd002da8136d3f8093eaf9a"
+          },
+          {
+            "id": "rel_423b194deb1a0af13e9ea5c390a68f82",
+            "manifestSha256": "6fdf29ddf4a50397a40093412b7f55d05005aba0ecb5f0854e803b5adabca9d1",
+            "homepageSha256": "10b51877f4821265ed2646ee320cdba29966c4e6ad0ec9c34b223f0d3ce7cfd4"
+          },
+          {
+            "id": "rel_53fb509702c56871c364e12e1f9a2d71",
+            "manifestSha256": "91d6d846cad276a6e05ff457fd218cc5eb0df464a9b66799171a137778f89e77",
+            "homepageSha256": "29afe66b8d4f37e52dd3a24d2dfe40a793e289e65fc5967d9421d4aa89f17a86"
+          },
+          {
+            "id": "rel_686c581fbce14a00f4c306194e35a552",
+            "manifestSha256": "f063c2a254a2514e459a05d0f590b5d2e1da30aae614287e2182616666005da2",
+            "homepageSha256": "c14d649f3a66f95f48304b3bea1ffce57b18073682fe43c4348f1c6261dcb102"
+          },
+          {
+            "id": "rel_6d9bebe2578ac672f617ee4860261384",
+            "manifestSha256": "943d24598bb984a02e1fc6db47146f9438e611aac57c2c23cecb58a973de4678",
+            "homepageSha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+          },
+          {
+            "id": "rel_7c77b62534e5796fa9771e86a8980a18",
+            "manifestSha256": "b097712554acad381ded7c83f541226751b52ff0d57e8f3a31f96a32a71a406a",
+            "homepageSha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+          },
+          {
+            "id": "rel_96367994b78619f4a163a0f967e3a111",
+            "manifestSha256": "44a0e1c6f9f740aa60d63d97117dd9a9a7d8677b5c2208776e4e81311d06067c",
+            "homepageSha256": "e183863f992c38c4d9e521d8029283dd541770a4f9d0ea8b7632acae44494088"
+          },
+          {
+            "id": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+            "manifestSha256": "00dd9a76a3f5a98cb2dbae1dc3373ec33e1978ea74f6fe9eeae9976a04330932",
+            "homepageSha256": "4d9e394ef7fd1a3e91f665ffe383d981eb22778e6f2edc9a9d32b2f6199ddab9"
+          },
+          {
+            "id": "rel_aa3ef836f453121727694db0d679ec20",
+            "manifestSha256": "c45b4d526d7cf1d2aa85b3c1e45640ea1f9ff938d0893d4bdc27031730db0dce",
+            "homepageSha256": "29697dc684d8552a6c80a940edb9f3b5b26d80632083922856ed7bd46330ada7"
+          },
+          {
+            "id": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+            "manifestSha256": "86c8dd69df1e6168c95fb1051e4f960366b91968e9f7c47bfec443ec8ba8f886",
+            "homepageSha256": "b4f3e3474598ab3f75646da158839ce12bebd68629c120c6341823eec02c73e2"
+          },
+          {
+            "id": "rel_befef81b7862894d03f28edfc1935094",
+            "manifestSha256": "ccfb93a8e35c693595eec108e79b734cad0c4e1b9db48c978e55996feb7c09c4",
+            "homepageSha256": "1fb97850fb114f16f2d45edd62ae33c448de2ecbcaf04b1d238bad040b61ee3b"
+          },
+          {
+            "id": "rel_c423c41997ba5a4bb68c27c78e05829e",
+            "manifestSha256": "b4480dfaeab405c42fccdd153c5bb5d98cc18b501555f9de575263b9dcd7ed69",
+            "homepageSha256": "c46b5b4dd2585d5e383a71874ebe5ecc7ccfa691d67741ecb3f9fa74175ec39d"
+          },
+          {
+            "id": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+            "manifestSha256": "d4d5ecfc6db9a29dd7325fee8825506cd2200be83976f26ed873734eca850c4e",
+            "homepageSha256": "880740f4f658f68daf99c42aadf5519f9a30a97aa604f73c02cfd1b72e2cc826"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_2055eb21281ab36653c835671218836c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_96544893f957a646b05d007e5466c1d4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_b201fa0575e5c7376e81d9df342d9201",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_cf00561879d9826514e8cfc27a096572",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "07fc7c4955ccbc5369e8c5d76c3a01b7ec298007c6c2cee93765afb943115a5d"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "f5e4088cb7cba4109c3450aae6d7dce36aefc6f0cc47a4716462094c368a8094"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "70cbd8cdd79f94576872b3f1f9449985acd6ad5137cbefac734601fbc6c5b59a"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T10:31:25.096Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+        "kind": "publish",
+        "status": "running",
+        "phase": "building",
+        "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:31:16Z",
+        "startedAt": "2026-10-28T10:31:18Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T10:33:19.132Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:31:16Z",
+        "startedAt": "2026-10-28T10:31:18Z",
+        "completedAt": "2026-10-28T10:33:18Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T10:33:21.110Z",
+      "point": "recovered",
+      "status": {
+        "activeReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 980250996736,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1187856,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 980250996736,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 980250996736,
+              "totalBytes": 1081101176832,
+              "usedBytes": 5645021,
+              "files": 469,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T10:33:19Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:31:16Z",
+        "startedAt": "2026-10-28T10:31:18Z",
+        "completedAt": "2026-10-28T10:33:18Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "releaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "id": "job_cf00561879d9826514e8cfc27a096572",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_96544893f957a646b05d007e5466c1d4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "id": "job_f7b7c335ce675179c2b50172a6930fee",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_2055eb21281ab36653c835671218836c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "id": "job_b201fa0575e5c7376e81d9df342d9201",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_3ae1bb9834d4ecfc38fb312fb3e68a09",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_b07f2cb961ee6b03e1dbd221abc37733",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+          "revision": "ws-1",
+          "status": "failed"
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_6d9bebe2578ac672f617ee4860261384",
+        "releases": [
+          {
+            "id": "rel_1503fc78d32bec11d59be94a6d760d59",
+            "manifestSha256": "abe11870add89b1524f39077d0abb627f59c07e267d9ff1f0dbc69ff75931ce3",
+            "homepageSha256": "a08bfa34d64451ac8a15b5f4526a7331d7629afb5bd002da8136d3f8093eaf9a"
+          },
+          {
+            "id": "rel_423b194deb1a0af13e9ea5c390a68f82",
+            "manifestSha256": "6fdf29ddf4a50397a40093412b7f55d05005aba0ecb5f0854e803b5adabca9d1",
+            "homepageSha256": "10b51877f4821265ed2646ee320cdba29966c4e6ad0ec9c34b223f0d3ce7cfd4"
+          },
+          {
+            "id": "rel_53fb509702c56871c364e12e1f9a2d71",
+            "manifestSha256": "91d6d846cad276a6e05ff457fd218cc5eb0df464a9b66799171a137778f89e77",
+            "homepageSha256": "29afe66b8d4f37e52dd3a24d2dfe40a793e289e65fc5967d9421d4aa89f17a86"
+          },
+          {
+            "id": "rel_686c581fbce14a00f4c306194e35a552",
+            "manifestSha256": "f063c2a254a2514e459a05d0f590b5d2e1da30aae614287e2182616666005da2",
+            "homepageSha256": "c14d649f3a66f95f48304b3bea1ffce57b18073682fe43c4348f1c6261dcb102"
+          },
+          {
+            "id": "rel_6d9bebe2578ac672f617ee4860261384",
+            "manifestSha256": "943d24598bb984a02e1fc6db47146f9438e611aac57c2c23cecb58a973de4678",
+            "homepageSha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+          },
+          {
+            "id": "rel_7c77b62534e5796fa9771e86a8980a18",
+            "manifestSha256": "b097712554acad381ded7c83f541226751b52ff0d57e8f3a31f96a32a71a406a",
+            "homepageSha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+          },
+          {
+            "id": "rel_96367994b78619f4a163a0f967e3a111",
+            "manifestSha256": "44a0e1c6f9f740aa60d63d97117dd9a9a7d8677b5c2208776e4e81311d06067c",
+            "homepageSha256": "e183863f992c38c4d9e521d8029283dd541770a4f9d0ea8b7632acae44494088"
+          },
+          {
+            "id": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+            "manifestSha256": "00dd9a76a3f5a98cb2dbae1dc3373ec33e1978ea74f6fe9eeae9976a04330932",
+            "homepageSha256": "4d9e394ef7fd1a3e91f665ffe383d981eb22778e6f2edc9a9d32b2f6199ddab9"
+          },
+          {
+            "id": "rel_aa3ef836f453121727694db0d679ec20",
+            "manifestSha256": "c45b4d526d7cf1d2aa85b3c1e45640ea1f9ff938d0893d4bdc27031730db0dce",
+            "homepageSha256": "29697dc684d8552a6c80a940edb9f3b5b26d80632083922856ed7bd46330ada7"
+          },
+          {
+            "id": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+            "manifestSha256": "86c8dd69df1e6168c95fb1051e4f960366b91968e9f7c47bfec443ec8ba8f886",
+            "homepageSha256": "b4f3e3474598ab3f75646da158839ce12bebd68629c120c6341823eec02c73e2"
+          },
+          {
+            "id": "rel_befef81b7862894d03f28edfc1935094",
+            "manifestSha256": "ccfb93a8e35c693595eec108e79b734cad0c4e1b9db48c978e55996feb7c09c4",
+            "homepageSha256": "1fb97850fb114f16f2d45edd62ae33c448de2ecbcaf04b1d238bad040b61ee3b"
+          },
+          {
+            "id": "rel_c423c41997ba5a4bb68c27c78e05829e",
+            "manifestSha256": "b4480dfaeab405c42fccdd153c5bb5d98cc18b501555f9de575263b9dcd7ed69",
+            "homepageSha256": "c46b5b4dd2585d5e383a71874ebe5ecc7ccfa691d67741ecb3f9fa74175ec39d"
+          },
+          {
+            "id": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+            "manifestSha256": "d4d5ecfc6db9a29dd7325fee8825506cd2200be83976f26ed873734eca850c4e",
+            "homepageSha256": "880740f4f658f68daf99c42aadf5519f9a30a97aa604f73c02cfd1b72e2cc826"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_2055eb21281ab36653c835671218836c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_96544893f957a646b05d007e5466c1d4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_b201fa0575e5c7376e81d9df342d9201",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_cf00561879d9826514e8cfc27a096572",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "07fc7c4955ccbc5369e8c5d76c3a01b7ec298007c6c2cee93765afb943115a5d"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "f5e4088cb7cba4109c3450aae6d7dce36aefc6f0cc47a4716462094c368a8094"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "70cbd8cdd79f94576872b3f1f9449985acd6ad5137cbefac734601fbc6c5b59a"
+        }
+      ]
+    }
+  ],
+  "result": "PASS",
+  "sourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "testWorkerImage": "sha256:4ca64d23b06b3ea56b1dd0708d06dfb5c571a38f281a4a8ec757ad7777eb66b3",
+  "originalActive": "rel_6d9bebe2578ac672f617ee4860261384",
+  "originalHttp": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "07fc7c4955ccbc5369e8c5d76c3a01b7ec298007c6c2cee93765afb943115a5d"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "f5e4088cb7cba4109c3450aae6d7dce36aefc6f0cc47a4716462094c368a8094"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "70cbd8cdd79f94576872b3f1f9449985acd6ad5137cbefac734601fbc6c5b59a"
+    }
+  ],
+  "jobId": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+  "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+}

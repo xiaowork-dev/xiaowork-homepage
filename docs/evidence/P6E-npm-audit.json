@@ -1,0 +1,108 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@nuxt/nitro-server": {
+      "name": "@nuxt/nitro-server",
+      "severity": "low",
+      "isDirect": false,
+      "via": ["nitropack", "nuxt"],
+      "effects": ["nuxt"],
+      "range": "",
+      "nodes": ["node_modules/@nuxt/nitro-server"],
+      "fixAvailable": false
+    },
+    "@nuxt/vite-builder": {
+      "name": "@nuxt/vite-builder",
+      "severity": "low",
+      "isDirect": false,
+      "via": ["nuxt"],
+      "effects": ["nuxt"],
+      "range": "",
+      "nodes": ["node_modules/@nuxt/vite-builder"],
+      "fixAvailable": false
+    },
+    "@nuxt/vite-server": {
+      "name": "@nuxt/vite-server",
+      "severity": "low",
+      "isDirect": false,
+      "via": ["nuxt"],
+      "effects": ["nuxt"],
+      "range": "",
+      "nodes": ["node_modules/@nuxt/vite-server"],
+      "fixAvailable": false
+    },
+    "@rollup/plugin-node-resolve": {
+      "name": "@rollup/plugin-node-resolve",
+      "severity": "low",
+      "isDirect": false,
+      "via": ["deepmerge"],
+      "effects": ["nitropack"],
+      "range": "",
+      "nodes": ["node_modules/@rollup/plugin-node-resolve"],
+      "fixAvailable": false
+    },
+    "deepmerge": {
+      "name": "deepmerge",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1243505,
+          "name": "deepmerge",
+          "dependency": "deepmerge",
+          "title": "deepmerge mergeObject() allows prototype poisoning of returned objects",
+          "url": "https://github.com/advisories/GHSA-gcqx-w48m-w2h4",
+          "severity": "low",
+          "cwe": ["CWE-1321"],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=4.2.0 <=4.3.1"
+        }
+      ],
+      "effects": ["@rollup/plugin-node-resolve"],
+      "range": "",
+      "nodes": ["node_modules/deepmerge"],
+      "fixAvailable": false
+    },
+    "nitropack": {
+      "name": "nitropack",
+      "severity": "low",
+      "isDirect": false,
+      "via": ["@rollup/plugin-node-resolve"],
+      "effects": ["@nuxt/nitro-server"],
+      "range": "",
+      "nodes": ["node_modules/nitropack"],
+      "fixAvailable": false
+    },
+    "nuxt": {
+      "name": "nuxt",
+      "severity": "low",
+      "isDirect": true,
+      "via": ["@nuxt/nitro-server", "@nuxt/vite-builder", "@nuxt/vite-server"],
+      "effects": ["@nuxt/nitro-server", "@nuxt/vite-builder", "@nuxt/vite-server"],
+      "range": "",
+      "nodes": ["node_modules/nuxt"],
+      "fixAvailable": false
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 7,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 7
+    },
+    "dependencies": {
+      "prod": 640,
+      "dev": 164,
+      "optional": 131,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 894
+    }
+  }
+}

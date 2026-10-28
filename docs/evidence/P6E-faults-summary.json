@@ -1,0 +1,1269 @@
+{
+  "date": "2026-10-28T10:46:55.620Z",
+  "project": "xiaowork-homepage-v11-p6e-fault",
+  "sourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "scope": "Dedicated local Docker Desktop fault project only; no production access",
+  "forcedFaults": 12,
+  "safetyBehaviorPassed": 12,
+  "baseline": "PASS",
+  "cases": [
+    {
+      "name": "compile-error",
+      "result": "PASS",
+      "jobId": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+      "terminalJob": {
+        "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_f7c3b3fe1227a5f96378ee9e03554d6f",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T09:55:25Z",
+        "startedAt": "2026-10-28T09:55:27Z",
+        "completedAt": "2026-10-28T09:55:43Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "name": "timeout",
+      "result": "PASS",
+      "jobId": "job_645bbccfce9e1cb36e90ac4493621a5d",
+      "terminalJob": {
+        "id": "job_645bbccfce9e1cb36e90ac4493621a5d",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_7dd936cb3e89052619f07a736060555d",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_b701cb7ec254254f797a50dc2d36e095",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:33:46Z",
+        "startedAt": "2026-10-28T10:33:47Z",
+        "completedAt": "2026-10-28T10:43:47Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "timeoutElapsed": 600000
+    },
+    {
+      "name": "building-exit",
+      "result": "PASS",
+      "jobId": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+      "terminalJob": {
+        "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_b7ffc7d42993e87989a6d713b1b0e7d3",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:31:16Z",
+        "startedAt": "2026-10-28T10:31:18Z",
+        "completedAt": "2026-10-28T10:33:18Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "name": "before-switch",
+      "result": "PASS",
+      "jobId": "job_6da0f489e96a4e6fc592abeb01030a0b",
+      "terminalJob": {
+        "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_fc5b6c4f8b22cd1a9846e10353f56afc",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T09:56:23Z",
+        "startedAt": "2026-10-28T09:56:24Z",
+        "completedAt": "2026-10-28T09:58:56Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "name": "after-switch",
+      "result": "PASS",
+      "jobId": "job_7112b34b17e5be854fbb9b8f982d7caf",
+      "terminalJob": {
+        "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_3e0ca8efc7bf1438a9246358acd9b175",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:03:43Z",
+        "startedAt": "2026-10-28T10:03:44Z",
+        "completedAt": "2026-10-28T10:05:56Z",
+        "error": null,
+        "activeVerified": true
+      }
+    },
+    {
+      "name": "sqlite-commit-exit",
+      "result": "PASS",
+      "jobId": "job_cf00561879d9826514e8cfc27a096572",
+      "terminalJob": {
+        "id": "job_cf00561879d9826514e8cfc27a096572",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_7f1fcaefe609adaeb49e4fc300af71e7",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:06:28Z",
+        "startedAt": "2026-10-28T10:06:30Z",
+        "completedAt": "2026-10-28T10:08:43Z",
+        "error": null,
+        "activeVerified": true
+      }
+    },
+    {
+      "name": "api-restart",
+      "result": "PASS",
+      "jobId": "job_96544893f957a646b05d007e5466c1d4",
+      "terminalJob": {
+        "id": "job_96544893f957a646b05d007e5466c1d4",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_836396c2698050a3b3ae3759c5db0993",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:10:11Z",
+        "startedAt": "2026-10-28T10:10:13Z",
+        "completedAt": "2026-10-28T10:10:28Z",
+        "error": null,
+        "activeVerified": true
+      }
+    },
+    {
+      "name": "static-restart",
+      "result": "PASS",
+      "jobId": "job_9529abce2f4588d7857e6c994ad9bf7c",
+      "terminalJob": {
+        "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_b8ff6bc3f50f4f50697c31d3b8ea6602",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:09:19Z",
+        "startedAt": "2026-10-28T10:09:20Z",
+        "completedAt": "2026-10-28T10:09:41Z",
+        "error": null,
+        "activeVerified": true
+      }
+    },
+    {
+      "name": "corrupt-history",
+      "result": "PASS",
+      "jobId": "job_f7b7c335ce675179c2b50172a6930fee",
+      "terminalJob": {
+        "id": "job_f7b7c335ce675179c2b50172a6930fee",
+        "kind": "rollback",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_b8ff6bc3f50f4f50697c31d3b8ea6602",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+        "targetReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+        "createdAt": "2026-10-28T10:14:53Z",
+        "startedAt": "2026-10-28T10:14:53Z",
+        "completedAt": "2026-10-28T10:14:53Z",
+        "error": {
+          "code": "ROLLBACK_TARGET_INVALID",
+          "message": "恢复目标版本校验失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "name": "recovery-fails",
+      "result": "PASS",
+      "jobId": "job_b201fa0575e5c7376e81d9df342d9201",
+      "terminalJob": {
+        "id": "job_b201fa0575e5c7376e81d9df342d9201",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_f2ebe849e0d1e1b341500f7c6a6bed1d",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:26:01Z",
+        "startedAt": "2026-10-28T10:26:02Z",
+        "completedAt": "2026-10-28T10:30:19Z",
+        "error": {
+          "code": "RECONCILIATION_FAILED",
+          "message": "API 独立核对失败，需要恢复并重新核验。"
+        },
+        "activeVerified": true
+      },
+      "followUp": "Frozen API retained old error despite verified success; successor atomic cleanup patch requires separate evidence"
+    },
+    {
+      "name": "http-unavailable",
+      "result": "PASS",
+      "jobId": "job_8e03b2bcc8a6868f14cdd93353a89184",
+      "terminalJob": {
+        "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_68af4b0cc8b8eaa09738d077cc80cc7b",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:15:57Z",
+        "startedAt": "2026-10-28T10:15:58Z",
+        "completedAt": "2026-10-28T10:18:22Z",
+        "error": {
+          "code": "ACTIVATION_RESTORED",
+          "message": "新版本未通过核验；已恢复上一公开版本。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "name": "enospc",
+      "result": "PASS",
+      "jobId": "job_2235beb43f16fb52d1f95066f0b4451c",
+      "terminalJob": {
+        "id": "job_2235beb43f16fb52d1f95066f0b4451c",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_e45087bb822dd0f1535ab7dd95bca90e",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_f2de04e40a9e7416ad73f2f4075e7d3b",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:44:58Z",
+        "startedAt": "2026-10-28T10:44:59Z",
+        "completedAt": "2026-10-28T10:45:01Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "kernelFailure": {
+        "code": "ENOSPC",
+        "successfulWriteCalls": 768,
+        "writtenBytes": 804552704,
+        "beforeAvailableBytes": 804552704,
+        "afterAvailableBytes": 0
+      }
+    }
+  ],
+  "images": {
+    "xiaowork-homepage-worker:p6d-dev": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+    "xiaowork-homepage-api:p6d-dev": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+    "xiaowork-homepage-worker:p6e-fault": "sha256:4ca64d23b06b3ea56b1dd0708d06dfb5c571a38f281a4a8ec757ad7777eb66b3",
+    "xiaowork-homepage-api:p6e-fault": "sha256:86e2a166ec1bca68bd21cd7b5a47cbefb20e5e494e8062db00f6a29ab6c073fe",
+    "xiaowork-homepage-fault-data:p6e-test": "sha256:c09163fe3bc887cb18f0a42cbcb4dceb3f3d3b332a5cf54bdc6a5fbe8d47123b"
+  },
+  "sqlite": [
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_d0fab03b2a9bd95cda25857833898db4",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+      "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+      "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "BUILD_FAILED",
+      "id": "job_aeaafdba588bd97708e545e92a558840",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+      "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_5e941355de362236a187b6ca804c38c9",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+      "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "BUILD_FAILED",
+      "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+      "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "",
+      "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_686c581fbce14a00f4c306194e35a552",
+      "releaseId": "rel_686c581fbce14a00f4c306194e35a552",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "",
+      "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_96367994b78619f4a163a0f967e3a111",
+      "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "",
+      "id": "job_cf00561879d9826514e8cfc27a096572",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+      "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+      "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "",
+      "id": "job_96544893f957a646b05d007e5466c1d4",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+      "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "ROLLBACK_TARGET_INVALID",
+      "id": "job_f7b7c335ce675179c2b50172a6930fee",
+      "kind": "rollback",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "ACTIVATION_RESTORED",
+      "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 3,
+      "errorCode": "RECONCILIATION_FAILED",
+      "id": "job_2055eb21281ab36653c835671218836c",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+      "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "errorCode": "RECONCILIATION_FAILED",
+      "id": "job_b201fa0575e5c7376e81d9df342d9201",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+      "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+      "revision": "ws-1",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "BUILD_FAILED",
+      "id": "job_3ae1bb9834d4ecfc38fb312fb3e68a09",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_b07f2cb961ee6b03e1dbd221abc37733",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 2,
+      "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+      "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "BUILD_FAILED",
+      "id": "job_645bbccfce9e1cb36e90ac4493621a5d",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_b701cb7ec254254f797a50dc2d36e095",
+      "revision": "ws-1",
+      "status": "failed"
+    },
+    {
+      "attempts": 1,
+      "errorCode": "BUILD_FAILED",
+      "id": "job_2235beb43f16fb52d1f95066f0b4451c",
+      "kind": "publish",
+      "phase": "",
+      "reconciledReleaseId": "",
+      "releaseId": "rel_f2de04e40a9e7416ad73f2f4075e7d3b",
+      "revision": "ws-1",
+      "status": "failed"
+    }
+  ],
+  "filesystem": {
+    "rootMode": "700",
+    "current": "releases/rel_6d9bebe2578ac672f617ee4860261384",
+    "staging": [],
+    "orphanCurrentNextCount": 1,
+    "releases": [
+      {
+        "id": "rel_1503fc78d32bec11d59be94a6d760d59",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_423b194deb1a0af13e9ea5c390a68f82",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_53fb509702c56871c364e12e1f9a2d71",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_686c581fbce14a00f4c306194e35a552",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_6d9bebe2578ac672f617ee4860261384",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_7c77b62534e5796fa9771e86a8980a18",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_96367994b78619f4a163a0f967e3a111",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_aa3ef836f453121727694db0d679ec20",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_befef81b7862894d03f28edfc1935094",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_c423c41997ba5a4bb68c27c78e05829e",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      },
+      {
+        "id": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+        "homepageExists": true,
+        "heldOriginalExists": false
+      }
+    ]
+  },
+  "http": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "07fc7c4955ccbc5369e8c5d76c3a01b7ec298007c6c2cee93765afb943115a5d"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "f5e4088cb7cba4109c3450aae6d7dce36aefc6f0cc47a4716462094c368a8094"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "70cbd8cdd79f94576872b3f1f9449985acd6ad5137cbefac734601fbc6c5b59a"
+    }
+  ],
+  "limitations": [
+    "Boundary HTTP requests are not continuous uptime probes; intentional static restart downtime not measured",
+    "Recovery-required faults need explicit operator repair/restart; no claim of universal automatic recovery",
+    "No hardware power-loss, damaged storage device, or all-host-partition ENOSPC test",
+    "Historical evidence and orphan test current.next pointer retained; no global cleanup"
+  ],
+  "cleanup": {
+    "date": "2026-10-28T11:04:59.656Z",
+    "project": "xiaowork-homepage-v11-p6e-fault",
+    "command": "docker compose --profile publisher -p xiaowork-homepage-v11-p6e-fault --project-directory <repository> -f .cache/p6e-fault/compose.base.yaml -f .cache/p6e-fault/compose.override.yaml down",
+    "removedContainers": [
+      {
+        "id": "ceb6e053e94a",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "504dae9ba94e",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "d0113e747911",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "2884d4845ebe",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "e4f2135c03c0",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "b0698393ffd9",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      },
+      {
+        "id": "e150638b524c",
+        "project": "xiaowork-homepage-v11-p6e-fault"
+      }
+    ],
+    "remainingProjectContainers": [],
+    "volumesPreserved": [
+      "xiaowork-homepage-v11-p6e-fault_admin-authority",
+      "xiaowork-homepage-v11-p6e-fault_admin-db",
+      "xiaowork-homepage-v11-p6e-fault_admin-publications",
+      "xiaowork-homepage-v11-p6e-fault_admin-publisher-socket",
+      "xiaowork-homepage-v11-p6e-fault_admin-secrets",
+      "xiaowork-homepage-v11-p6e-fault_admin-tls",
+      "xiaowork-homepage-v11-p6e-fault_admin-uploads"
+    ],
+    "volumesDeleted": 0,
+    "globalCleanup": false,
+    "otherRunningContainersStillRunning": 12,
+    "otherContainerIdsBefore": [
+      "9bcc2f50535f",
+      "9bf5e702960c",
+      "08aa0e7dd253",
+      "ac84fad9e78b",
+      "a52769dc3702",
+      "70d1b6559dbf",
+      "2e2827478db6",
+      "c42bb8a2d8b9",
+      "89342d464b60",
+      "8c91df28444f",
+      "fe768ea8ee0f",
+      "74e769de10ea"
+    ],
+    "currentNextPreserved": 1,
+    "noTaskOrCurrentPointerRewritten": true
+  },
+  "postfixRegression": {
+    "api": {
+      "tag": "xiaowork-homepage-api:p6e-diagnostics-aa23376",
+      "id": "sha256:e2d4e7a59e795b8528365b75d1ea9cf37e8d8676f3ff60691f2eb93f103869b3",
+      "sourceRevision": "aa23376bb508dad215e644c808dd2e9461d7170a"
+    },
+    "builderSourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+    "testWorkerImage": "sha256:4ca64d23b06b3ea56b1dd0708d06dfb5c571a38f281a4a8ec757ad7777eb66b3",
+    "result": "PASS",
+    "jobId": "job_a19902912e72eb7f52c38ba0b6fae7ba",
+    "successDiagnosticCleared": true,
+    "failureAuditEventsRetained": 2,
+    "finalState": {
+      "time": "2026-10-28T10:58:21.102Z",
+      "point": "same-activation-verified-after-explicit-operator-repair",
+      "status": {
+        "activeReleaseId": "rel_f6fd036f6abcaa951ddebc5be27c9673",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 979592716288,
+              "totalBytes": 1081101176832,
+              "usedBytes": 528384,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 979592716288,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 979592716288,
+              "totalBytes": 1081101176832,
+              "usedBytes": 6079259,
+              "files": 505,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T10:57:25Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_a19902912e72eb7f52c38ba0b6fae7ba",
+        "kind": "publish",
+        "status": "succeeded",
+        "phase": null,
+        "snapshotId": "snap_469d1cdf9afeafecc4021d29f2d4f574",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_f6fd036f6abcaa951ddebc5be27c9673",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T10:53:57Z",
+        "startedAt": "2026-10-28T10:53:58Z",
+        "completedAt": "2026-10-28T10:58:17Z",
+        "error": null,
+        "activeVerified": true
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c423c41997ba5a4bb68c27c78e05829e",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "releaseId": "rel_686c581fbce14a00f4c306194e35a552",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "releaseId": "rel_96367994b78619f4a163a0f967e3a111",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_cf00561879d9826514e8cfc27a096572",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "releaseId": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_96544893f957a646b05d007e5466c1d4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "releaseId": "rel_1503fc78d32bec11d59be94a6d760d59",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_f7b7c335ce675179c2b50172a6930fee",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_423b194deb1a0af13e9ea5c390a68f82",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_2055eb21281ab36653c835671218836c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 3,
+          "errorCode": "RECONCILIATION_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_b201fa0575e5c7376e81d9df342d9201",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "releaseId": "rel_6d9bebe2578ac672f617ee4860261384",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_3ae1bb9834d4ecfc38fb312fb3e68a09",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_b07f2cb961ee6b03e1dbd221abc37733",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_2bfa3cfc7f0bb6b94676a82f50b3800b",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_ce3a48a16ad6820ba5231a6830944580",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_645bbccfce9e1cb36e90ac4493621a5d",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_b701cb7ec254254f797a50dc2d36e095",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_2235beb43f16fb52d1f95066f0b4451c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_f2de04e40a9e7416ad73f2f4075e7d3b",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 3,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 2,
+          "id": "job_a19902912e72eb7f52c38ba0b6fae7ba",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_f6fd036f6abcaa951ddebc5be27c9673",
+          "releaseId": "rel_f6fd036f6abcaa951ddebc5be27c9673",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_f6fd036f6abcaa951ddebc5be27c9673",
+        "releases": [
+          {
+            "id": "rel_1503fc78d32bec11d59be94a6d760d59",
+            "manifestSha256": "abe11870add89b1524f39077d0abb627f59c07e267d9ff1f0dbc69ff75931ce3",
+            "homepageSha256": "a08bfa34d64451ac8a15b5f4526a7331d7629afb5bd002da8136d3f8093eaf9a"
+          },
+          {
+            "id": "rel_423b194deb1a0af13e9ea5c390a68f82",
+            "manifestSha256": "6fdf29ddf4a50397a40093412b7f55d05005aba0ecb5f0854e803b5adabca9d1",
+            "homepageSha256": "10b51877f4821265ed2646ee320cdba29966c4e6ad0ec9c34b223f0d3ce7cfd4"
+          },
+          {
+            "id": "rel_53fb509702c56871c364e12e1f9a2d71",
+            "manifestSha256": "91d6d846cad276a6e05ff457fd218cc5eb0df464a9b66799171a137778f89e77",
+            "homepageSha256": "29afe66b8d4f37e52dd3a24d2dfe40a793e289e65fc5967d9421d4aa89f17a86"
+          },
+          {
+            "id": "rel_686c581fbce14a00f4c306194e35a552",
+            "manifestSha256": "f063c2a254a2514e459a05d0f590b5d2e1da30aae614287e2182616666005da2",
+            "homepageSha256": "c14d649f3a66f95f48304b3bea1ffce57b18073682fe43c4348f1c6261dcb102"
+          },
+          {
+            "id": "rel_6d9bebe2578ac672f617ee4860261384",
+            "manifestSha256": "943d24598bb984a02e1fc6db47146f9438e611aac57c2c23cecb58a973de4678",
+            "homepageSha256": "2608610355ccb922323cb4741e3b4a42a3f67bcb2e8a1b5d6d53c541247be6dd"
+          },
+          {
+            "id": "rel_7c77b62534e5796fa9771e86a8980a18",
+            "manifestSha256": "b097712554acad381ded7c83f541226751b52ff0d57e8f3a31f96a32a71a406a",
+            "homepageSha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+          },
+          {
+            "id": "rel_96367994b78619f4a163a0f967e3a111",
+            "manifestSha256": "44a0e1c6f9f740aa60d63d97117dd9a9a7d8677b5c2208776e4e81311d06067c",
+            "homepageSha256": "e183863f992c38c4d9e521d8029283dd541770a4f9d0ea8b7632acae44494088"
+          },
+          {
+            "id": "rel_989a67a7bf1ec8fd9318845277a4bcfd",
+            "manifestSha256": "00dd9a76a3f5a98cb2dbae1dc3373ec33e1978ea74f6fe9eeae9976a04330932",
+            "homepageSha256": "4d9e394ef7fd1a3e91f665ffe383d981eb22778e6f2edc9a9d32b2f6199ddab9"
+          },
+          {
+            "id": "rel_aa3ef836f453121727694db0d679ec20",
+            "manifestSha256": "c45b4d526d7cf1d2aa85b3c1e45640ea1f9ff938d0893d4bdc27031730db0dce",
+            "homepageSha256": "29697dc684d8552a6c80a940edb9f3b5b26d80632083922856ed7bd46330ada7"
+          },
+          {
+            "id": "rel_bde3bbae3842cd43f2e3107aab8390e7",
+            "manifestSha256": "86c8dd69df1e6168c95fb1051e4f960366b91968e9f7c47bfec443ec8ba8f886",
+            "homepageSha256": "b4f3e3474598ab3f75646da158839ce12bebd68629c120c6341823eec02c73e2"
+          },
+          {
+            "id": "rel_befef81b7862894d03f28edfc1935094",
+            "manifestSha256": "ccfb93a8e35c693595eec108e79b734cad0c4e1b9db48c978e55996feb7c09c4",
+            "homepageSha256": "1fb97850fb114f16f2d45edd62ae33c448de2ecbcaf04b1d238bad040b61ee3b"
+          },
+          {
+            "id": "rel_c423c41997ba5a4bb68c27c78e05829e",
+            "manifestSha256": "b4480dfaeab405c42fccdd153c5bb5d98cc18b501555f9de575263b9dcd7ed69",
+            "homepageSha256": "c46b5b4dd2585d5e383a71874ebe5ecc7ccfa691d67741ecb3f9fa74175ec39d"
+          },
+          {
+            "id": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+            "manifestSha256": "d4d5ecfc6db9a29dd7325fee8825506cd2200be83976f26ed873734eca850c4e",
+            "homepageSha256": "880740f4f658f68daf99c42aadf5519f9a30a97aa604f73c02cfd1b72e2cc826"
+          },
+          {
+            "id": "rel_f6fd036f6abcaa951ddebc5be27c9673",
+            "manifestSha256": "89dacbce976d2829447d6618311b9e4fcba084e5238c540e3753292e1b47a5e1",
+            "homepageSha256": "d60b4eb2b2b34d90a40317ae998d07e0a5f25ef386eb2245290c5829a84e59d4"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_2055eb21281ab36653c835671218836c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_6da0f489e96a4e6fc592abeb01030a0b",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_7112b34b17e5be854fbb9b8f982d7caf",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_71143a801796d97ae17c4ffdfd8cfc26",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8e03b2bcc8a6868f14cdd93353a89184",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9529abce2f4588d7857e6c994ad9bf7c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_96544893f957a646b05d007e5466c1d4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a19902912e72eb7f52c38ba0b6fae7ba",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_b201fa0575e5c7376e81d9df342d9201",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_cf00561879d9826514e8cfc27a096572",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "d60b4eb2b2b34d90a40317ae998d07e0a5f25ef386eb2245290c5829a84e59d4"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "a1d5041434b97e027ade0fb2ba1b6d432611aae4018e72ea3e741be9949d6155"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "0f506ebaaa13211d7a0a01900e6b032f016a93f809736ab87022d72196bf2f82"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "61d426dd3d482832b77cf22dd17d09b0f9e61f058a4d453021d128d95e5a19a9"
+        }
+      ]
+    }
+  }
+}

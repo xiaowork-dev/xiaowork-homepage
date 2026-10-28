@@ -5,7 +5,10 @@ import { createRequire } from 'node:module'
 import { createHash, randomBytes } from 'node:crypto'
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import {
+const p6e = process.argv[2] === '--p6e'
+assert.ok(process.argv.length === 2 || (process.argv.length === 3 && p6e))
+const evidenceName = (name) => (p6e ? name.replace(/^P6C/, 'P6E-admin') : name)
+const {
   expireSession,
   initializeTestAdministrator,
   origin,
@@ -14,7 +17,7 @@ import {
   recreateEnvironment,
   startBrowserContainer,
   stopBrowserContainer,
-} from './admin-browser-environment.mjs'
+} = await import(p6e ? './p6e-browser-environment.mjs' : './admin-browser-environment.mjs')
 
 const requireAdmin = createRequire(path.resolve('admin/package.json'))
 const { chromium } = requireAdmin('playwright-core')
@@ -49,7 +52,7 @@ function record(name, detail = '') {
 }
 async function persist() {
   await writeFile(
-    path.join(evidenceDir, 'P6C-browser.json'),
+    path.join(evidenceDir, evidenceName('P6C-browser.json')),
     JSON.stringify(report, null, 2) + '\n',
   )
 }
@@ -118,7 +121,11 @@ async function navigate(p, name) {
 }
 async function screenshot(name, p = page) {
   await p.evaluate(() => window.scrollTo(0, 0))
-  await p.screenshot({ path: path.join(evidenceDir, name), fullPage: true, animations: 'disabled' })
+  await p.screenshot({
+    path: path.join(evidenceDir, evidenceName(name)),
+    fullPage: true,
+    animations: 'disabled',
+  })
 }
 async function actualWorkspace(p = page) {
   return await p.evaluate(async () => {
@@ -198,12 +205,18 @@ try {
   )
   record('真实登录、Secure Cookie 与存储约束')
   await screenshot('P6C-dashboard-dark.png')
-  for (const name of [/预览.*P6-D/, /发布.*P6-D/, /历史恢复.*P6-D/]) {
-    assert.equal(await page.getByRole('button', { name }).isDisabled(), true)
+  if (p6e) {
+    await page.getByRole('link', { name: '查看发布、预览与历史', exact: true }).waitFor()
+  } else {
+    for (const name of [/预览.*P6-D/, /发布.*P6-D/, /历史恢复.*P6-D/])
+      assert.equal(await page.getByRole('button', { name }).isDisabled(), true)
   }
   await page.reload()
   await page.getByRole('heading', { name: '工作区概览', exact: true }).waitFor()
-  record('Session 刷新恢复与发布功能禁用', '发布服务尚未接入，没有已发布假统计')
+  record(
+    'Session 刷新恢复与真实发布状态',
+    p6e ? '本地独立发布入口可访问，不伪造公开统计' : '发布服务未启用，没有已发布假统计',
+  )
 
   currentStep = 'category CRUD'
   await navigate(page, '项目分类')
@@ -453,6 +466,57 @@ try {
   record('归档、恢复与分类引用保护', '恢复后不自动公开')
 
   currentStep = 'media upload and binding'
+  if (p6e) {
+    currentStep = 'derived image budget over real HTTPS'
+    report.derivedImageBudget = await page.evaluate(async () => {
+      // A locally generated noise fixture, never a project screenshot.
+      const canvas = document.createElement('canvas')
+      canvas.width = canvas.height = 4096
+      const ctx = canvas.getContext('2d')
+      const pixels = ctx.createImageData(4096, 4096)
+      let seed = 7654321
+      for (let i = 0; i < pixels.data.length; i += 4) {
+        seed ^= seed << 13
+        seed ^= seed >>> 17
+        seed ^= seed << 5
+        pixels.data[i] = seed & 255
+        pixels.data[i + 1] = (seed >>> 8) & 255
+        pixels.data[i + 2] = (seed >>> 16) & 255
+        pixels.data[i + 3] = 255
+      }
+      ctx.putImageData(pixels, 0, 0)
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/webp', 0.35))
+      if (!blob || blob.type !== 'image/webp' || blob.size > 10 * 1024 * 1024)
+        throw new Error('Synthetic WebP fixture does not meet input budget')
+      const before = (await (await fetch('/api/admin/v1/workspace')).json()).data.revision
+      const session = (await (await fetch('/api/admin/v1/auth/session')).json()).data
+      const form = new FormData()
+      form.append('file', blob, 'local-synthetic-derived-budget.webp')
+      const result = await fetch('/api/admin/v1/media', {
+        method: 'POST',
+        headers: { 'X-CSRF-Token': session.csrfToken, 'If-Match': '"' + before + '"' },
+        body: form,
+      })
+      const payload = await result.json()
+      const after = (await (await fetch('/api/admin/v1/workspace')).json()).data.revision
+      return {
+        width: 4096,
+        height: 4096,
+        originalBytes: blob.size,
+        status: result.status,
+        code: payload.error?.code,
+        before,
+        after,
+      }
+    })
+    assert.equal(report.derivedImageBudget.status, 413)
+    assert.equal(report.derivedImageBudget.before, report.derivedImageBudget.after)
+    record(
+      '派生图片16MiB限制',
+      '真实4096×4096 WebP原图小于10MiB，重编码超限返回413且草稿revision不变',
+    )
+    currentStep = 'media upload and binding'
+  }
   await navigate(page, '图片资源')
   // Selection and all bytes go through the real file input and Go sanitizer.
   await page
@@ -618,6 +682,7 @@ try {
   const sessionCookie = (await context.cookies()).find(
     (item) => item.name === '__Host-xiaowork-admin',
   )
+  await new Promise((resolve) => setTimeout(resolve, 2200))
   expireSession(createHash('sha256').update(sessionCookie.value).digest('hex'))
   await page.getByRole('button', { name: '重新载入', exact: true }).click()
   const expired = page.getByRole('dialog', { name: '登录已失效，保留当前表单' })
@@ -785,7 +850,12 @@ try {
 } catch (error) {
   if (page && !page.isClosed()) {
     try {
-      await page.screenshot({ path: path.resolve('.cache/p6c-browser/failure.png'), timeout: 5000 })
+      await page.screenshot({
+        path: path.resolve(
+          p6e ? '.cache/p6e-browser/admin-failure.png' : '.cache/p6c-browser/failure.png',
+        ),
+        timeout: 5000,
+      })
     } catch {
       /* Browser may have disconnected. */
     }
@@ -811,6 +881,8 @@ try {
   report.certificateTrustRemoved = true
   await persist()
   console.log(
-    'Evidence: docs/evidence/P6C-browser.json; credentials omitted; isolated browser CA store removed.',
+    'Evidence: docs/evidence/' +
+      evidenceName('P6C-browser.json') +
+      '; credentials omitted; isolated browser CA store removed.',
   )
 }

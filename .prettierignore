@@ -3,8 +3,11 @@ node_modules
 .output
 dist
 .deploy
+.v11-deploy
 .cache
 coverage
+# Preserve machine-produced P6-E evidence bytes and their recorded hashes.
+docs/evidence/P6E-*
 package-lock.json
 XiaoWork_Homepage_V1_Design_Spec.md
 XiaoWork_Homepage_P0_Delivery.md

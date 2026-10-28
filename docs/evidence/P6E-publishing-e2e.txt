@@ -1,0 +1,93 @@
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Healthy 
+PASS 真实 HTTPS 登录与独立本地发布门槛 — 浏览器验证 CA 和主机名；未忽略证书错误
+PASS 真实 UI 私有预览与匿名拒绝 — HTML、JS、CSS、图片均需登录；预览 noindex，不改变公开版本
+PASS 真实 UI 全站发布 A — 任务、活动指针、HTTP 页面与三类版本化资源真实核验
+PASS A 标签跨 B 发布保持版本一致 — 内部导航正文/SEO 保持 A；A JS/CSS/图片 no-store 请求200且哈希未变；正常预取保留，刷新切换 B
+PASS 真实 UI 恢复 A 与草稿 B 保留 — 三页公开内容、SEO、资源恢复 A；SQLite 草稿 revision/资料/项目保持 B
+PASS 公开静态三页五宽度双主题 — 30组无页面级横向溢出，滚动触发全部图片并完成decode；保存首页深/浅/手机实际截图
+PASS 发布页五宽度双主题与移动导航 — 320/390/768/1024/1440px 无页面级横向溢出；真实菜单路由工作
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Running 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Started 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-e2e-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-e2e-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-gateway-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-e2e-worker-1 Healthy 
+PASS 保卷重建与会话/历史/静态产物持久 — API、worker、静态服务、gateway重建；草稿B/currentA与历史/私有预览仍实际可用
+PASS 退出与会话到期后全部预览资源拒绝 — 真实服务逐项 401；此项是 Session 到期，预览 TTL 另由 API 集成测试覆盖
+PASS 前台与管理运行时无 hydration/CSP 错误 — 实际控制台、pageerror 与新版本资源请求记录
+Evidence: docs/evidence/P6D-browser.json; no passwords, CSRF, cookies or private request bodies recorded.

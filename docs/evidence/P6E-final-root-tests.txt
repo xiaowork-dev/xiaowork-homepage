@@ -1,0 +1,17 @@
+✔ combined filters match terms across name, summary and stack without mutating source (1.9897ms)
+✔ sorts respect recommendation, featured priority and natural names (12.2671ms)
+✔ query input rejects unknown and repeated parameters; search is bounded (0.4093ms)
+✔ SEO origin accepts empty and loopback but rejects unsafe public origins (0.6958ms)
+✔ public snapshot accepts sealed public content and binds builtin assets to immutable release URLs (3.5618ms)
+✔ private, hidden and unreferenced fields are rejected before client serialization (1.6144ms)
+✔ media manifests allow only derived hash paths and reject private metadata or traversal (0.9009ms)
+✔ preview assets remain under exact authenticated base and IDs cannot inject routes (0.3084ms)
+✔ remote DOCKER_HOST is refused before any Docker command (3.0591ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.3729

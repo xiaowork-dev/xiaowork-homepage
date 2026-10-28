@@ -1,0 +1,4 @@
+Checking formatting...
+All matched files use Prettier code style!
+[error] Unable to expand directory: ".".
+[error] EPERM: operation not permitted, scandir 'D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\v11-backups'

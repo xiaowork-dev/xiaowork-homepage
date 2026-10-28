@@ -1,0 +1,474 @@
+{
+  "date": "2026-10-28T09:54:52.121Z",
+  "project": "xiaowork-homepage-v11-p6e-fault",
+  "case": "compile-error",
+  "scope": "Dedicated local volumes only; test-tagged binaries; no production connection",
+  "tlsVerificationDisabled": false,
+  "events": [
+    {
+      "time": "2026-10-28T09:55:22.737Z",
+      "point": "before",
+      "status": {
+        "activeReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 980268576768,
+              "totalBytes": 1081101176832,
+              "usedBytes": 846592,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 980268576768,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 980268576768,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1736880,
+              "files": 145,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T09:55:19Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": null,
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded"
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_7c77b62534e5796fa9771e86a8980a18",
+        "releases": [
+          "rel_53fb509702c56871c364e12e1f9a2d71",
+          "rel_7c77b62534e5796fa9771e86a8980a18",
+          "rel_befef81b7862894d03f28edfc1935094",
+          "rel_e2fff7b775c59eeaa93e3b400724b4bb"
+        ],
+        "staging": [],
+        "currentNextCount": 0,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "a6a9a081da2395a7ef5df6ddfa135bd09e044de53053a7c1a4bca7dd763d8110"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "91abcf57ceb0f860a1d0bae5d6fa8c7b89308b72600c8eb452ed0f38442e4892"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "8fea516fb113802bc2ef9988ea49b6218894007a7b9033a669a6d6d7610018b2"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T09:55:25.991Z",
+      "point": "submission",
+      "httpStatus": 202,
+      "jobId": "job_186a9e54f274b2f2fe1cfa0b10bdcfec"
+    },
+    {
+      "time": "2026-10-28T09:55:27.494Z",
+      "point": "real-nuxt-process-observed",
+      "jobId": "job_186a9e54f274b2f2fe1cfa0b10bdcfec"
+    },
+    {
+      "time": "2026-10-28T09:55:27.515Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+        "kind": "publish",
+        "status": "running",
+        "phase": "building",
+        "snapshotId": "snap_f7c3b3fe1227a5f96378ee9e03554d6f",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T09:55:25Z",
+        "startedAt": "2026-10-28T09:55:27Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T09:55:44.028Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_f7c3b3fe1227a5f96378ee9e03554d6f",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T09:55:25Z",
+        "startedAt": "2026-10-28T09:55:27Z",
+        "completedAt": "2026-10-28T09:55:43Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T09:55:47.024Z",
+      "point": "failed-with-old-site",
+      "status": {
+        "activeReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 980267106304,
+              "totalBytes": 1081101176832,
+              "usedBytes": 846592,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 980267106304,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 980267106304,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1736880,
+              "files": 145,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T09:55:19Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_f7c3b3fe1227a5f96378ee9e03554d6f",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T09:55:25Z",
+        "startedAt": "2026-10-28T09:55:27Z",
+        "completedAt": "2026-10-28T09:55:43Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_d0fab03b2a9bd95cda25857833898db4",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "releaseId": "rel_e2fff7b775c59eeaa93e3b400724b4bb",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "releaseId": "rel_befef81b7862894d03f28edfc1935094",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_aeaafdba588bd97708e545e92a558840",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_edf471eb0cfe4ac40de89cd2f2e626ec",
+          "revision": "ws-1",
+          "status": "failed"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "releaseId": "rel_53fb509702c56871c364e12e1f9a2d71",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "id": "job_5e941355de362236a187b6ca804c38c9",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "releaseId": "rel_7c77b62534e5796fa9771e86a8980a18",
+          "revision": "ws-1",
+          "status": "succeeded"
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "id": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c7284e5e69072208947079871f17fd99",
+          "revision": "ws-1",
+          "status": "failed"
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_7c77b62534e5796fa9771e86a8980a18",
+        "releases": [
+          "rel_53fb509702c56871c364e12e1f9a2d71",
+          "rel_7c77b62534e5796fa9771e86a8980a18",
+          "rel_befef81b7862894d03f28edfc1935094",
+          "rel_e2fff7b775c59eeaa93e3b400724b4bb"
+        ],
+        "staging": [],
+        "currentNextCount": 0,
+        "activations": [
+          {
+            "id": "job_0a2d928fb8e881e3365ba74c78a0e371",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_5e941355de362236a187b6ca804c38c9",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a831bc82d9cc869d81cd2774dc5c6700",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_d0fab03b2a9bd95cda25857833898db4",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "a6a9a081da2395a7ef5df6ddfa135bd09e044de53053a7c1a4bca7dd763d8110"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "91abcf57ceb0f860a1d0bae5d6fa8c7b89308b72600c8eb452ed0f38442e4892"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "8fea516fb113802bc2ef9988ea49b6218894007a7b9033a669a6d6d7610018b2"
+        }
+      ]
+    }
+  ],
+  "result": "PASS",
+  "sourceRevision": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "testWorkerImage": "sha256:4ca64d23b06b3ea56b1dd0708d06dfb5c571a38f281a4a8ec757ad7777eb66b3",
+  "originalActive": "rel_7c77b62534e5796fa9771e86a8980a18",
+  "originalHttp": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "7ed60446cc072ab68d7c20f51344016a0ea20ef5ba5c30265af93e48429827d1"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "a6a9a081da2395a7ef5df6ddfa135bd09e044de53053a7c1a4bca7dd763d8110"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "91abcf57ceb0f860a1d0bae5d6fa8c7b89308b72600c8eb452ed0f38442e4892"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "8fea516fb113802bc2ef9988ea49b6218894007a7b9033a669a6d6d7610018b2"
+    }
+  ],
+  "jobId": "job_186a9e54f274b2f2fe1cfa0b10bdcfec",
+  "elapsedMilliseconds": 18537,
+  "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+}

@@ -1,0 +1,12 @@
+{
+  "result": "INCOMPLETE",
+  "project": "xiaowork-homepage-v11-p6e-portability",
+  "passedObserved": [
+    "new isolated service reconstructed solely from backup runtime metadata, no original deployment state",
+    "independently reconstructed public HTML, SEO, robots, sitemap and active version matched backup baseline"
+  ],
+  "processExitCode": -1073740791,
+  "failureLocation": "Node fs.cpSync recursive Windows copy of Linux relative-symlink-containing backup; no final report/finally executed",
+  "manualRecovery": "Both temporarily withheld deployment current.json records were verified absent and moved back to their original paths. No data volume was overwritten or deleted.",
+  "retest": "New independent project xiaowork-homepage-v11-p6e-portability-retry used restricted network-none container cp -a; final result stored separately in P6E-backup-portability.json."
+}

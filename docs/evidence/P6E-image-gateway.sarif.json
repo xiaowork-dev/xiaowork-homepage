@@ -1,0 +1,2070 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-107891",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107891"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107891?s=alpine&n=musl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C1.2.6-r6",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                             |\n|Package         pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  |\n|Affected range  <1.2.6-r6                                                    |\n|Fixed version   1.2.6-r6                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<1.2.6-r6",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "1.2.6-r6",
+                "purls": ["pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-107928",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107928"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107928?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-107929",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107929"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107929?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86409",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86409"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86409?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86410",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86410"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86410?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86411",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86411"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86411?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86412",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86412"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86412?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86413",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86413"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86413?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86414",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86414"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86414?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-86415",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86415"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86415?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87861",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87861"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87861?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87862",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87862"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87862?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87863",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87863"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87863?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87864",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87864"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87864?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87865",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87865"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87865?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-87866",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-87866"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-87866?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92386",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92386"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92386?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92387",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92387"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92387?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92388",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92388"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92388?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92389",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92389"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92389?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92390",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92390"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92390?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-92391",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92391"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92391?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-94265",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-94265"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-94265?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-94266",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-94266"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-94266?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.1",
+                "tags": ["UNSPECIFIED"]
+              }
+            },
+            {
+              "id": "CVE-2026-11979",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-11979"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-11979?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "LOW",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "1.8",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2025-8732",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2025-8732"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2025-8732?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "LOW",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "1.9",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-86137",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86137"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86137?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "LOW",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "2.9",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-86141",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86141"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86141?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "LOW",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "2.9",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-0989",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-0989"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-0989?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "LOW",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "3.7",
+                "tags": ["LOW"]
+              }
+            },
+            {
+              "id": "CVE-2026-86144",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86144"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86144?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "MEDIUM",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "5.6",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-86138",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86138"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86138?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "MEDIUM",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "6.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-86139",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86139"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86139?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "MEDIUM",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "6.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-86142",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86142"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86142?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "MEDIUM",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "6.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-86143",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86143"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86143?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "MEDIUM",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "6.9",
+                "tags": ["MEDIUM"]
+              }
+            },
+            {
+              "id": "CVE-2026-86140",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-86140"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-86140?s=alpine&n=libxml2&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C%3D2.13.9-r2",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                                 |\n|Package         pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  |\n|Affected range  <=2.13.9-r2                                                      |\n|Fixed version   not fixed                                                        |\n"
+              },
+              "properties": {
+                "affected_version": "<=2.13.9-r2",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "not fixed",
+                "purls": ["pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24"],
+                "security-severity": "8.0",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-92392",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-92392"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-92392?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C8.23.0-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                              |\n|Package         pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  |\n|Affected range  <8.23.0-r0                                                    |\n|Fixed version   8.23.0-r0                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<8.23.0-r0",
+                "cvssV3_severity": "HIGH",
+                "fixed_version": "8.23.0-r0",
+                "purls": ["pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24"],
+                "security-severity": "8.1",
+                "tags": ["HIGH"]
+              }
+            },
+            {
+              "id": "CVE-2026-111497",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-111497"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-111497?s=alpine&n=brotli&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C1.2.1-r0",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                               |\n|Package         pkg:apk/alpine/brotli@1.2.0-r1?os_name=alpine&os_version=3.24  |\n|Affected range  <1.2.1-r0                                                      |\n|Fixed version   1.2.1-r0                                                       |\n"
+              },
+              "properties": {
+                "affected_version": "<1.2.1-r0",
+                "cvssV3_severity": "CRITICAL",
+                "fixed_version": "1.2.1-r0",
+                "purls": ["pkg:apk/alpine/brotli@1.2.0-r1?os_name=alpine&os_version=3.24"],
+                "security-severity": "9.2",
+                "tags": ["CRITICAL"]
+              }
+            }
+          ],
+          "version": "1.26.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-107891",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability   :CVE-2026-107891                                              \nSeverity        :UNSPECIFIED                                                  \nPackage         :pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  \nAffected range  :<1.2.6-r6                                                    \nFixed version   :1.2.6-r6                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/ld-musl-x86_64.so.1"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/sbin/ldconfig"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getconf"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getent"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/iconv"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/ldd"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-107928",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-107928                                               \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002930                                                      \nEPSS Percentile  :0.216980                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-107929",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-107929                                               \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002390                                                      \nEPSS Percentile  :0.149570                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86409",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86409                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003130                                                      \nEPSS Percentile  :0.240360                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86410",
+          "ruleIndex": 4,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86410                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002520                                                      \nEPSS Percentile  :0.165770                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86411",
+          "ruleIndex": 5,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86411                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.001530                                                      \nEPSS Percentile  :0.043690                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86412",
+          "ruleIndex": 6,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86412                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002660                                                      \nEPSS Percentile  :0.184140                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86413",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86413                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003190                                                      \nEPSS Percentile  :0.247050                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86414",
+          "ruleIndex": 8,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86414                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002660                                                      \nEPSS Percentile  :0.184140                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86415",
+          "ruleIndex": 9,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86415                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002160                                                      \nEPSS Percentile  :0.119290                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87861",
+          "ruleIndex": 10,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87861                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002660                                                      \nEPSS Percentile  :0.184140                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87862",
+          "ruleIndex": 11,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87862                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003140                                                      \nEPSS Percentile  :0.241630                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87863",
+          "ruleIndex": 12,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87863                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002660                                                      \nEPSS Percentile  :0.184150                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87864",
+          "ruleIndex": 13,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87864                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002210                                                      \nEPSS Percentile  :0.125750                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87865",
+          "ruleIndex": 14,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87865                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002440                                                      \nEPSS Percentile  :0.154740                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87866",
+          "ruleIndex": 15,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-87866                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002080                                                      \nEPSS Percentile  :0.108170                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92386",
+          "ruleIndex": 16,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92386                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002570                                                      \nEPSS Percentile  :0.172790                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92387",
+          "ruleIndex": 17,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92387                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003410                                                      \nEPSS Percentile  :0.274370                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92388",
+          "ruleIndex": 18,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92388                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002570                                                      \nEPSS Percentile  :0.172800                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92389",
+          "ruleIndex": 19,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92389                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002570                                                      \nEPSS Percentile  :0.172790                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92390",
+          "ruleIndex": 20,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92390                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002570                                                      \nEPSS Percentile  :0.172790                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92391",
+          "ruleIndex": 21,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92391                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003580                                                      \nEPSS Percentile  :0.294120                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-94265",
+          "ruleIndex": 22,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-94265                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.003380                                                      \nEPSS Percentile  :0.271210                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-94266",
+          "ruleIndex": 23,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-94266                                                \nSeverity         :UNSPECIFIED                                                   \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.002370                                                      \nEPSS Percentile  :0.146600                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-11979",
+          "ruleIndex": 24,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-11979                                                   \nSeverity         :LOW                                                              \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001480                                                         \nEPSS Percentile  :0.039910                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-8732",
+          "ruleIndex": 25,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2025-8732                                                    \nSeverity         :LOW                                                              \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.002160                                                         \nEPSS Percentile  :0.119700                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86137",
+          "ruleIndex": 26,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86137                                                   \nSeverity         :LOW                                                              \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001950                                                         \nEPSS Percentile  :0.091130                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86141",
+          "ruleIndex": 27,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86141                                                   \nSeverity         :LOW                                                              \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001650                                                         \nEPSS Percentile  :0.057050                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-0989",
+          "ruleIndex": 28,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-0989                                                    \nSeverity         :LOW                                                              \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.005300                                                         \nEPSS Percentile  :0.446280                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86144",
+          "ruleIndex": 29,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86144                                                   \nSeverity         :MEDIUM                                                           \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001860                                                         \nEPSS Percentile  :0.081730                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86138",
+          "ruleIndex": 30,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86138                                                   \nSeverity         :MEDIUM                                                           \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001320                                                         \nEPSS Percentile  :0.027490                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86139",
+          "ruleIndex": 31,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86139                                                   \nSeverity         :MEDIUM                                                           \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001660                                                         \nEPSS Percentile  :0.058030                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86142",
+          "ruleIndex": 32,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86142                                                   \nSeverity         :MEDIUM                                                           \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001570                                                         \nEPSS Percentile  :0.047610                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86143",
+          "ruleIndex": 33,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86143                                                   \nSeverity         :MEDIUM                                                           \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001940                                                         \nEPSS Percentile  :0.089590                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-86140",
+          "ruleIndex": 34,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-86140                                                   \nSeverity         :HIGH                                                             \nPackage          :pkg:apk/alpine/libxml2@2.13.9-r2?os_name=alpine&os_version=3.24  \nAffected range   :<=2.13.9-r2                                                      \nFixed version    :not fixed                                                        \nEPSS Score       :0.001570                                                         \nEPSS Percentile  :0.048370                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libxml2.so.2.13.9"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-92392",
+          "ruleIndex": 35,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-92392                                                \nSeverity         :HIGH                                                          \nPackage          :pkg:apk/alpine/curl@8.22.0-r0?os_name=alpine&os_version=3.24  \nAffected range   :<8.23.0-r0                                                    \nFixed version    :8.23.0-r0                                                     \nEPSS Score       :0.012840                                                      \nEPSS Percentile  :0.699650                                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/curl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/wcurl"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libcurl.so.4.8.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-111497",
+          "ruleIndex": 36,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-111497                                                \nSeverity         :CRITICAL                                                       \nPackage          :pkg:apk/alpine/brotli@1.2.0-r1?os_name=alpine&os_version=3.24  \nAffected range   :<1.2.1-r0                                                      \nFixed version    :1.2.1-r0                                                       \nEPSS Score       :0.554830                                                       \nEPSS Percentile  :0.990300                                                       \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libbrotlicommon.so.1.2.0"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libbrotlidec.so.1.2.0"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/lib/libbrotlienc.so.1.2.0"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

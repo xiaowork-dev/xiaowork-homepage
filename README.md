@@ -1,11 +1,13 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-D 本地预览、发布 A/B、旧标签版本一致性、恢复 A 并保留草稿 B，以及保卷重建已经真实浏览器验证。完整故障验收仍部分完成，正式发布保持关闭，仅能显式开启独立 localhost HTTPS 测试。保留 V1.0 视觉与静态架构，未连接或修改生产。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-E 已验证本地预览/发布/内容恢复、全新空卷一致性备份恢复、媒体容量和镜像硬化，并补充真实容器故障验收。完整生产门槛仍未通过，正式发布保持关闭，仅能显式开启独立 localhost HTTPS 测试。保留 V1.0 视觉与静态架构，未连接或修改生产。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
 - [P6-D 交付与验收边界](docs/deliveries/P6D-delivery.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)、[故障矩阵](docs/P6D-FAULT-TESTS.md)
 - [架构](docs/architecture/V1.1-ARCHITECTURE.md)、[数据库](docs/architecture/V1.1-DATABASE.md)、[API 安全设计](docs/architecture/V1.1-API-SECURITY.md)、[发布设计](docs/architecture/V1.1-PUBLISHING.md)
 - [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
+- [P6-E 交付与剩余门槛](docs/deliveries/P6E-delivery.md)、[真实故障矩阵](docs/P6E-FAULT-TESTS.md)、[备份恢复](docs/V1.1-BACKUP-RESTORE.md)
+- [V1.1 正式拓扑方案](docs/V1.1-PRODUCTION-PLAN.md)、[独立更新与代码回退](docs/V1.1-RELEASE-OPERATIONS.md)、[安全验收清单](docs/V1.1-SECURITY-ACCEPTANCE.md)、[生产发布清单](docs/V1.1-PRODUCTION-CHECKLIST.md)
 
 ## V1.1 隔离开发环境
 
@@ -20,6 +22,16 @@ docker compose -f compose.admin-dev.yaml exec -T api /homepage-api import-v1
 只有 gateway 绑定本机回环端口。API、SQLite、上传、session secret 和本地 TLS 使用独立隔离网络/持久卷，不复用生产数据。启动前检查端口和 control 网段冲突；先导出公开开发 CA，客户端显式信任后执行 HTTPS 验收，不能关闭证书校验。完整步骤、模块网络问题和保留卷重建见 [开发说明](docs/V1.1-DEVELOPMENT.md)。停止使用 `docker compose -f compose.admin-dev.yaml down`，不要添加 `-v`。不要使用 V1.0 的发布脚本部署本分支。
 
 独立后台源码在 `admin/`，不引入大型 UI 框架。使用 `npm --prefix admin ci` 安装；`npm run admin:check`、`npm run admin:test`、`npm run admin:build` 执行规范、类型、测试与构建，`npm --prefix admin run format:check` 检查格式。真实 HTTPS 浏览器测试使用 `npm run admin:e2e`，需先准备专用测试镜像，详见 [开发说明](docs/V1.1-DEVELOPMENT.md)。所有验收账号和数据仅存在独立本地测试卷，不能用于生产。
+
+## V1.1 运维与验收边界
+
+V1.1 使用六个受审镜像、schema3 和独立 `.v11-deploy/` 状态；新脚本为 `scripts/v11-deploy.sh`、`v11-update.sh`、`v11-rollback.sh`，不会使用 V1.0 的 `.env/.deploy`。运行前需要已验收完整 Git SHA、六个实际镜像 ID、空闲回环端口/私网及备份位置。命令和参数见上方运维说明。正式 OpenResty 拓扑只提供回环网关，不公开 API/Worker；生产发布开关仍被服务端禁止。
+
+备份通过停止本站写入者、SQLite `VACUUM INTO`、schema/引用/逐文件哈希校验形成独立 bundle。实际在全新卷中恢复后重新登录，草稿、图片、历史、公开三页和 SEO 保留；旧 Session 失效。备份含密码哈希和会话材料，禁止进入 Git 或公开目录，应另行加密离线保管。内容恢复、代码镜像回退与数据库灾难恢复是不同操作。
+
+上传限制为原图10 MiB、multipart11 MiB、8192单边/2500万像素、重编码派生图16 MiB；单快照媒体总量256 MiB。发布页显示图片/数据库/发布目录容量；余量少于512 MiB或2%、无法核实余量时拒绝新任务，少于1 GiB或10%警告。没有自动物理GC或总磁盘配额，历史成功资源继续保留。
+
+本轮十二项真实故障安全行为通过，恢复成功保留旧诊断的问题另有源码修复、真实Nuxt故障复跑及单API候选审计。生命周期实测为**同源码、同schema的镜像替换和代码镜像回退**；不同功能源码版本升级、跨schema迁移及后继完整六角色镜像验收未完成。崩溃留下额外 `current.next.*` 链接时，维护备份保守拒绝，仍需人工核对修复。完整证据与限制以P6-E交付为准，当前不能正式上线。
 
 ## V1.0 当前状态
 
@@ -134,12 +146,14 @@ bash rollback.sh v1.0.0-p5a
 
 历史生产基线：2026-10-26 的 P5 审计报告 7 个 high 依赖条目，根因是 Nuxt → Nitro → listhen → node-forge 1.4.0 的 `GHSA-86w9-cpqp-85rv`；当时未发现兼容修复，未强制升级或降级 Nuxt。证据保留于 `docs/evidence/P5-production-npm-audit.json`、`P5-production-advisory.json` 和 `P5-production-registry.json`。生产旧镜像没有在 P6-D 更新，本轮没有连接服务器重查；用户尚未接受的生产安全风险与公网发布门槛仍有效。
 
-当前 V1.1 本地分支：P6-D 已兼容更新 node-forge 至 1.4.1，官方 npm gitHead、版本 tag 和 lock integrity 已核对。2026-10-28 最终根审计为 **7 low / 0 high / 0 critical**，来自 deepmerge 4.3.1 构建链；官方最新仍为 4.3.1，未采用不兼容 Nuxt 降级。admin 审计为 0。node-forge 旧公告仍未登记 first_patched_version，影响范围为 <=1.4.0，不能将当前审计结果等同完整安全认证。详见 [最终审计](docs/evidence/P6D-npm-audit.json) 与 [来源核对](docs/evidence/P6D-node-forge-source.json)。
+当前 V1.1 本地分支：保留 P6-D 的 node-forge 1.4.1 兼容修复，官方 npm gitHead、版本 tag 和 lock integrity 已重新核对。2026-10-28 P6-E 根审计为 **7 low / 0 high / 0 critical**，来自 deepmerge 4.3.1 构建链；admin 为0。未采用强制不兼容升级。node-forge 旧公告仍未登记 first_patched_version，影响范围为 <=1.4.0，不能将当前审计结果等同完整安全认证。[npm审计](docs/evidence/P6E-npm-audit.json)、[来源](docs/evidence/P6E-node-forge-source.json)。
 
-Go 扫描结果为 symbol 0 / package 0 / module 1：未导入的 openpgp 存在 `GO-2026-5932` 模块级告警，尚无修复版本，不能标记为已解决。[Go 扫描](docs/evidence/P6D-govulncheck.txt)。Nuxt 依赖链用于开发与静态构建，访客 Nginx 镜像不运行 Node；固定依赖、离线 Worker 和权限限制只能缩小攻击面，不能消除漏洞，也不解除生产发布门槛。
+Go 源码扫描为 symbol0/imported0/module1：未导入的 openpgp 存在 `GO-2026-5932` 模块级告警，尚无修复版本。去符号二进制扫描精度不足，保留其保守告警，不伪装为零风险。冻结be5c六角色基线及后继单API候选扫描均无high/critical/medium；Worker仍有deepmerge low，musl的工具告警与Alpine官方修复状态存在差异，API/维护镜像有openpgp未定级模块告警。[完整安全结论](docs/V1.1-SECURITY-ACCEPTANCE.md)。固定依赖、离线Worker和权限限制缩小攻击面，不能替代正式环境安全验收。
 
 ## 性能复测
 
 使用独立静态容器，在本机 Chrome 上运行 `npm exec --yes --package=lighthouse@13.5.0 -- lighthouse <本地URL> --chrome-flags="--headless=new --disable-extensions" --output=json --output-path=<报告路径>`。默认手机、模拟网络/CPU；桌面增加 `--preset=desktop`。每组建议三次，避免与构建同时运行。不要对开发热更新服务评分。P4 原始报告与中位数比较在 `docs/evidence/P4-*`，可运行 `node scripts/performance-summary.mjs` 重新汇总现存报告和生成资源体积。
 
 Lighthouse 的 TBT 不能替代真实用户 INP。域名和真实访问数据尚缺时，INP/CrUX 为上线后待测。系统字体没有远程字体请求；主题恢复脚本保留同步加载以避免错误主题闪烁。静态容器提供 gzip、哈希资源一年缓存、图片一天缓存和页面重新验证，部署与缓存失效规则见部署指南。
+
+P6-E 对实际发布静态页使用 Lighthouse13.6.0复测：首页手机三次performance92/98/95，中位95，LCP中位1.12秒、CLS0、TBT中位195毫秒；项目页91、关于页93，首页桌面100。六次accessibility/best-practices/SEO均100。数据来自本机模拟限速和合成验收内容，没有可比的P6-D基线，也未测真实用户INP。[原始报告与限制](docs/evidence/P6E-performance-summary.json)。

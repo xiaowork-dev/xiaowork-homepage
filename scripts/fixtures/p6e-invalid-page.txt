@@ -1,0 +1,2 @@
+<!-- Fixed test-only invalid Vue source: this is never copied by a production Dockerfile. -->
+<template><div>{{ p6e_test_deliberate_compile_error( }}</div></template>

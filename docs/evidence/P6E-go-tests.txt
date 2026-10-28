@@ -1,0 +1,763 @@
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+=== RUN   TestPasswordEncodingAndValidation
+--- PASS: TestPasswordEncodingAndValidation (0.86s)
+=== RUN   TestOfflineInitializationDoesNotOverwriteAndResetRevokes
+--- PASS: TestOfflineInitializationDoesNotOverwriteAndResetRevokes (0.94s)
+=== RUN   TestSecretExclusiveCreationAndPermissions
+--- PASS: TestSecretExclusiveCreationAndPermissions (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	1.813s
+=== RUN   TestV1ImportPreservesContentAndNeverOverwritesEdits
+--- PASS: TestV1ImportPreservesContentAndNeverOverwritesEdits (0.03s)
+=== RUN   TestImportRejectsTamperingAndNonemptyWorkspaceAtomically
+--- PASS: TestImportRejectsTamperingAndNonemptyWorkspaceAtomically (0.02s)
+=== RUN   TestProjectLifecycleCategoryReferencesAndAtomicOrdering
+--- PASS: TestProjectLifecycleCategoryReferencesAndAtomicOrdering (0.02s)
+=== RUN   TestProfileSettingsShareIntroductionAndPreserveOtherFields
+--- PASS: TestProfileSettingsShareIntroductionAndPreserveOtherFields (0.02s)
+=== RUN   TestContentValidationRejectsActiveHTMLAndUnsafeURLs
+--- PASS: TestContentValidationRejectsActiveHTMLAndUnsafeURLs (0.02s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.106s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+=== RUN   TestLocalTLSIsStableAndRefusesPartialState
+--- PASS: TestLocalTLSIsStableAndRefusesPartialState (0.01s)
+=== RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions
+=== RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.key
+=== RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.key
+=== RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.crt
+=== RUN   TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.crt
+--- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions (0.01s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.key (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.key (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/ca/ca.crt (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXFilePermissions/server/tls.crt (0.00s)
+=== RUN   TestLocalTLSRejectsBroadPOSIXDirectoryPermissions
+=== RUN   TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/ca
+=== RUN   TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/server
+--- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/ca (0.00s)
+    --- PASS: TestLocalTLSRejectsBroadPOSIXDirectoryPermissions/server (0.00s)
+=== RUN   TestLocalTLSRejectsInitiallyBroadPOSIXDirectories
+=== RUN   TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/ca
+=== RUN   TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/server
+--- PASS: TestLocalTLSRejectsInitiallyBroadPOSIXDirectories (0.00s)
+    --- PASS: TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/ca (0.00s)
+    --- PASS: TestLocalTLSRejectsInitiallyBroadPOSIXDirectories/server (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.026s
+=== RUN   TestAuthenticationHTTPSLifecycleAndCSRF
+    auth_test.go:156: HTTP GET /workspace expected=401 actual=401
+    auth_test.go:157: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:157: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:170: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:171: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:175: HTTP POST /auth/logout expected=403 actual=403
+    auth_test.go:176: HTTP POST /auth/logout expected=403 actual=403
+    auth_test.go:189: HTTP POST /auth/logout foreign Origin expected=403 actual=403
+    auth_test.go:190: HTTP POST /auth/logout expected=204 actual=204
+    auth_test.go:191: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestAuthenticationHTTPSLifecycleAndCSRF (0.58s)
+=== RUN   TestLoginFailureRateLimitNonceReplayAndRecovery
+    auth_test.go:201: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:204: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:205: HTTP POST /auth/login expected=403 actual=403
+    auth_test.go:207: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:207: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:207: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:207: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:207: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:207: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:207: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:207: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:209: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:209: HTTP POST /auth/login expected=429 actual=429
+    auth_test.go:211: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:211: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:213: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:213: HTTP POST /auth/login expected=401 actual=401
+--- PASS: TestLoginFailureRateLimitNonceReplayAndRecovery (1.36s)
+=== RUN   TestPasswordChangeRevokesAllSessionsAndSessionExpiry
+    auth_test.go:220: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:220: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:221: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:221: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:222: HTTP POST /auth/reauth expected=200 actual=200
+    auth_test.go:224: HTTP POST /auth/password expected=204 actual=204
+    auth_test.go:225: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:226: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:227: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:227: HTTP POST /auth/login expected=401 actual=401
+    auth_test.go:228: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:228: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:230: HTTP GET /auth/session expected=200 actual=200
+    auth_test.go:232: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:233: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:233: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:235: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestPasswordChangeRevokesAllSessionsAndSessionExpiry (1.45s)
+=== RUN   TestLoginChallengeCapsAndExpiry
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:243: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:246: HTTP GET /auth/login-challenge expected=429 actual=429
+    auth_test.go:248: HTTP POST /auth/login expected=403 actual=403
+    auth_test.go:249: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:249: HTTP POST /auth/login expected=200 actual=200
+--- PASS: TestLoginChallengeCapsAndExpiry (0.33s)
+=== RUN   TestProxyHeadersCannotSpoofHTTPSOrSource
+--- PASS: TestProxyHeadersCannotSpoofHTTPSOrSource (0.00s)
+=== RUN   TestAuthenticationCapacityLimits
+--- PASS: TestAuthenticationCapacityLimits (2.00s)
+=== RUN   TestRejectedRequestsDoNotRefreshIdleSession
+    auth_test.go:303: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:303: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:305: HTTP GET /unknown-authenticated-route expected=404 actual=404
+    auth_test.go:306: HTTP POST /auth/password expected=400 actual=400
+    auth_test.go:308: HTTP GET /auth/session expected=401 actual=401
+--- PASS: TestRejectedRequestsDoNotRefreshIdleSession (0.35s)
+=== RUN   TestLoginNonceConsumedAtomically
+    auth_test.go:314: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:338: HTTP POST /auth/login simultaneous same nonce expected=200+403 actual=403+200
+--- PASS: TestLoginNonceConsumedAtomically (0.53s)
+=== RUN   TestAuthenticationRejectsUnknownAndCaseAliasedJSON
+    auth_test.go:344: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:344: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:350: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:350: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:350: HTTP POST /auth/reauth expected=400 actual=400
+    auth_test.go:352: HTTP POST /auth/logout expected=400 actual=400
+    auth_test.go:353: HTTP GET /auth/session?ignoredField=true expected=400 actual=400
+--- PASS: TestAuthenticationRejectsUnknownAndCaseAliasedJSON (0.46s)
+=== RUN   TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity
+    auth_test.go:360: HTTP GET /auth/login-challenge expected=200 actual=200
+    auth_test.go:360: HTTP POST /auth/login expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:366: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:369: HTTP GET /workspace expected=200 actual=200
+    auth_test.go:378: HTTP GET /auth/session expected=401 actual=401
+    auth_test.go:379: HTTPS absolute-expiry isolation: last successful interaction one second before unchanged 12h deadline; exact deadline rejected with 401
+--- PASS: TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity (0.40s)
+=== RUN   TestHTTPMethodContractAndOversizeMutationRollback
+    common_test.go:9: HTTP GET /auth/login-challenge expected=200 actual=200
+    common_test.go:9: HTTP POST /auth/login expected=200 actual=200
+    common_test.go:10: HTTP PATCH /projects expected=405 actual=405
+    common_test.go:17: HTTP POST /projects expected=422 actual=422
+    common_test.go:18: HTTP GET /workspace expected=200 actual=200
+--- PASS: TestHTTPMethodContractAndOversizeMutationRollback (0.35s)
+=== RUN   TestHTTPIdempotencyExpiresAfterRetention
+    common_test.go:29: HTTP GET /auth/login-challenge expected=200 actual=200
+    common_test.go:29: HTTP POST /auth/login expected=200 actual=200
+    common_test.go:32: HTTP POST /projects expected=201 actual=201
+    common_test.go:33: HTTP POST /projects expected=201 actual=201
+    common_test.go:38: HTTP GET /auth/login-challenge expected=200 actual=200
+    common_test.go:38: HTTP POST /auth/login expected=200 actual=200
+    common_test.go:40: HTTP POST /projects expected=201 actual=201
+--- PASS: TestHTTPIdempotencyExpiresAfterRetention (0.70s)
+=== RUN   TestContentHTTPRevisionIdempotencyAndHistory
+    content_test.go:108: HTTP GET /auth/login-challenge expected=200 actual=200
+    content_test.go:108: HTTP POST /auth/login expected=200 actual=200
+    content_test.go:109: HTTP GET /workspace expected=200 actual=200
+    content_test.go:120: HTTP POST /projects expected=428 actual=428
+    content_test.go:121: HTTP POST /projects expected=400 actual=400
+    content_test.go:122: HTTP POST /projects expected=201 actual=201
+    content_test.go:129: HTTP POST /projects expected=201 actual=201
+    content_test.go:134: HTTP POST /projects expected=409 actual=409
+    content_test.go:137: HTTP PUT /projects/prj_d6d9fb5f31f326ebae2aa6f790c8371d expected=409 actual=409
+    content_test.go:138: HTTP PUT /projects/prj_d6d9fb5f31f326ebae2aa6f790c8371d expected=200 actual=200
+    content_test.go:150: HTTP GET /projects?unknown=1 expected=400 actual=400
+    content_test.go:151: HTTP GET /projects?limit=2&limit=3 expected=400 actual=400
+    content_test.go:152: HTTP GET /projects?limit=2 expected=200 actual=200
+    content_test.go:154: HTTP GET /projects?limit=2&cursor=eyJyZXZpc2lvbiI6Mywib2Zmc2V0IjoyLCJraW5kIjoicHJvamVjdHMiLCJhcmNoaXZlZCI6ImZhbHNlIn0 expected=200 actual=200
+--- PASS: TestContentHTTPRevisionIdempotencyAndHistory (0.61s)
+=== RUN   TestContentHTTPAtomicConcurrentSavesAndValidation
+    content_test.go:161: HTTP GET /auth/login-challenge expected=200 actual=200
+    content_test.go:161: HTTP POST /auth/login expected=200 actual=200
+    content_test.go:190: Concurrent content saves expected=200+409 actual=200+409
+    content_test.go:194: HTTP PUT /projects/xiaowork-blog expected=422 actual=422
+    content_test.go:194: HTTP PUT /projects/xiaowork-blog expected=422 actual=422
+    content_test.go:194: HTTP PUT /projects/xiaowork-blog expected=422 actual=422
+    content_test.go:194: HTTP PUT /projects/xiaowork-blog expected=422 actual=422
+    content_test.go:198: HTTP PUT /projects/xiaowork-blog expected=400 actual=400
+    content_test.go:201: HTTP PUT /projects/xiaowork-blog expected=400 actual=400
+    content_test.go:202: HTTP PUT /projects/xiaowork-blog expected=403 actual=403
+    content_test.go:203: HTTP PUT /projects/order expected=422 actual=422
+    content_test.go:204: HTTP PUT /projects/order expected=200 actual=200
+--- PASS: TestContentHTTPAtomicConcurrentSavesAndValidation (0.46s)
+=== RUN   TestContentHTTPCategoriesLifecycleProfileAndSettings
+    content_test.go:208: HTTP GET /auth/login-challenge expected=200 actual=200
+    content_test.go:208: HTTP POST /auth/login expected=200 actual=200
+    content_test.go:211: HTTP POST /categories expected=201 actual=201
+    content_test.go:211: HTTP PUT /categories/cat_8929559c1de52122e500b0fef13a7977 expected=200 actual=200
+    content_test.go:211: HTTP PUT /categories/cat_8929559c1de52122e500b0fef13a7977 expected=400 actual=400
+    content_test.go:211: HTTP DELETE /categories/cat-website expected=409 actual=409
+    content_test.go:211: HTTP DELETE /categories/cat_8929559c1de52122e500b0fef13a7977 expected=200 actual=200
+    content_test.go:211: HTTP POST /projects/xiaowork-blog/archive expected=200 actual=200
+    content_test.go:225: HTTP GET /projects?archived=true expected=200 actual=200
+    content_test.go:211: HTTP POST /projects/xiaowork-blog/restore expected=200 actual=200
+    content_test.go:211: HTTP PUT /profile expected=200 actual=200
+    content_test.go:236: HTTP GET /settings expected=200 actual=200
+    content_test.go:211: HTTP PUT /settings expected=200 actual=200
+    content_test.go:245: HTTP GET /profile expected=200 actual=200
+    content_test.go:211: HTTP PUT /settings expected=400 actual=400
+    content_test.go:253: HTTP GET /dashboard expected=200 actual=200
+--- PASS: TestContentHTTPCategoriesLifecycleProfileAndSettings (0.38s)
+=== RUN   TestMediaHTTPSLifecycleAndRejectedUploads
+    media_http_test.go:109: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:109: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:112: HTTPS POST /media expected=401 actual=401
+    media_http_test.go:113: HTTPS POST /media expected=403 actual=403
+    media_http_test.go:114: HTTPS POST /media expected=428 actual=428
+    media_http_test.go:115: HTTPS POST /media?unknown=1 expected=400 actual=400
+    media_http_test.go:129: HTTPS POST /media expected=415 actual=415
+    media_http_test.go:129: HTTPS POST /media expected=415 actual=415
+    media_http_test.go:129: HTTPS POST /media expected=415 actual=415
+    media_http_test.go:129: HTTPS POST /media expected=400 actual=400
+    media_http_test.go:129: HTTPS POST /media expected=413 actual=413
+    media_http_test.go:131: HTTPS POST /media expected=413 actual=413
+    media_http_test.go:132: HTTPS POST /media expected=201 actual=201
+    media_http_test.go:141: HTTPS GET /media?%zz=1 expected=400 actual=400
+    media_http_test.go:141: HTTPS GET /media?unknown=1 expected=400 actual=400
+    media_http_test.go:141: HTTPS GET /media?limit=1&limit=2 expected=400 actual=400
+    media_http_test.go:141: HTTPS GET /media/med_36e6493581cb55ec76c42ea2cfd0deaa?unknown=1 expected=400 actual=400
+    media_http_test.go:141: HTTPS GET /media/med_36e6493581cb55ec76c42ea2cfd0deaa/content?%zz=1 expected=400 actual=400
+    media_http_test.go:143: HTTPS PATCH /media/med_36e6493581cb55ec76c42ea2cfd0deaa?unknown=1 expected=400 actual=400
+    media_http_test.go:144: HTTPS DELETE /media/med_36e6493581cb55ec76c42ea2cfd0deaa?unknown=1 expected=400 actual=400
+    media_http_test.go:145: HTTPS GET /media/med_36e6493581cb55ec76c42ea2cfd0deaa/content expected=401 actual=401
+    media_http_test.go:146: HTTPS GET /media/med_36e6493581cb55ec76c42ea2cfd0deaa/content expected=200 actual=200
+    media_http_test.go:150: HTTPS PATCH /media/med_36e6493581cb55ec76c42ea2cfd0deaa expected=400 actual=400
+    media_http_test.go:151: HTTPS PATCH /media/med_36e6493581cb55ec76c42ea2cfd0deaa expected=400 actual=400
+    media_http_test.go:152: HTTPS PATCH /media/med_36e6493581cb55ec76c42ea2cfd0deaa expected=200 actual=200
+    media_http_test.go:161: HTTPS GET /media?limit=1 expected=200 actual=200
+    media_http_test.go:162: HTTPS GET /media?cursor=invalid! expected=400 actual=400
+    media_http_test.go:163: HTTPS GET /media?limit=1000 expected=400 actual=400
+    media_http_test.go:164: HTTPS POST /media expected=409 actual=409
+    media_http_test.go:165: HTTPS DELETE /media/med_36e6493581cb55ec76c42ea2cfd0deaa expected=200 actual=200
+    media_http_test.go:170: HTTPS GET /media/med_36e6493581cb55ec76c42ea2cfd0deaa/content expected=404 actual=404
+    media_http_test.go:171: HTTPS PATCH /media/med_36e6493581cb55ec76c42ea2cfd0deaa expected=404 actual=404
+    media_http_test.go:172: HTTPS POST /media expected=409 actual=409
+--- PASS: TestMediaHTTPSLifecycleAndRejectedUploads (0.47s)
+=== RUN   TestMediaHTTPSReferenceProtectionAndCorruptContent
+    media_http_test.go:183: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:183: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:185: HTTPS POST /media expected=201 actual=201
+    media_http_test.go:196: HTTPS DELETE /media/med_28545b39d13172dffde683d973ef188e expected=409 actual=409
+    media_http_test.go:200: HTTPS DELETE /media/med_28545b39d13172dffde683d973ef188e expected=409 actual=409
+    media_http_test.go:205: HTTPS DELETE /media/med_28545b39d13172dffde683d973ef188e expected=409 actual=409
+    media_http_test.go:206: HTTPS GET /media/med_28545b39d13172dffde683d973ef188e expected=200 actual=200
+2026/10/28 09:45:35 request error id=req_f32d9bd56b71730c31b35fd3da6b3ce7 code=INTERNAL_ERROR
+    media_http_test.go:219: HTTPS GET /media/med_28545b39d13172dffde683d973ef188e/content expected=500 actual=500
+2026/10/28 09:45:35 request error id=req_df46c643530b427531f680fb1a5b7c52 code=INTERNAL_ERROR
+    media_http_test.go:220: HTTPS PATCH /media/med_28545b39d13172dffde683d973ef188e expected=500 actual=500
+2026/10/28 09:45:35 request error id=req_b61fbcb85b0af778808a2f365f8f74c8 code=INTERNAL_ERROR
+    media_http_test.go:221: HTTPS POST /media expected=500 actual=500
+2026/10/28 09:45:35 request error id=req_b0c15183b3b9efc78d07b6f5e775eeb6 code=INTERNAL_ERROR
+    media_http_test.go:225: HTTPS GET /media/med_28545b39d13172dffde683d973ef188e/content expected=500 actual=500
+--- PASS: TestMediaHTTPSReferenceProtectionAndCorruptContent (0.30s)
+=== RUN   TestMediaHTTPSConcurrentDecoderCapacityRecovers
+=== RUN   TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false
+    media_http_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:239: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:273: HTTPS POST /media expected=429 actual=429
+    media_http_test.go:317: HTTPS POST /media expected=201 actual=201
+=== RUN   TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true
+    media_http_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:239: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:273: HTTPS POST /media expected=429 actual=429
+    media_http_test.go:278: HTTPS POST /categories expected=201 actual=201
+    media_http_test.go:317: HTTPS POST /media expected=201 actual=201
+--- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers (0.62s)
+    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false (0.30s)
+    --- PASS: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true (0.32s)
+=== RUN   TestMediaPrivateStorageIsContentAddressedAndNeverOverwrites
+--- PASS: TestMediaPrivateStorageIsContentAddressedAndNeverOverwrites (0.00s)
+=== RUN   TestMediaStorageRefusesTraversalSymlinksAndMissingContent
+--- PASS: TestMediaStorageRefusesTraversalSymlinksAndMissingContent (0.00s)
+=== RUN   TestWorkerFailurePreservesOnlyKnownDiagnosticCodes
+--- PASS: TestWorkerFailurePreservesOnlyKnownDiagnosticCodes (0.00s)
+=== RUN   TestWorkerResultHTTPSFailureDiagnosticSanitization
+=== RUN   TestWorkerResultHTTPSFailureDiagnosticSanitization/known
+    publication_failure_codes_test.go:39: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_failure_codes_test.go:39: HTTP POST /auth/login expected=200 actual=200
+    publication_failure_codes_test.go:40: HTTP POST /preview-jobs expected=202 actual=202
+    publication_failure_codes_test.go:41: private protocol POST /claim expected=200 actual=200
+    publication_failure_codes_test.go:43: private protocol POST /jobs/job_1f27187412d719fa37307c76f80f6d5f/result expected=200 actual=200
+    publication_failure_codes_test.go:56: HTTP GET /jobs/job_1f27187412d719fa37307c76f80f6d5f expected=200 actual=200
+    publication_failure_codes_test.go:64: trusted HTTPS GET /jobs/{id}: expected failed/INVALID_ASSIGNMENT, actual failed/INVALID_ASSIGNMENT; worker text absent
+=== RUN   TestWorkerResultHTTPSFailureDiagnosticSanitization/unknown
+    publication_failure_codes_test.go:39: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_failure_codes_test.go:39: HTTP POST /auth/login expected=200 actual=200
+    publication_failure_codes_test.go:40: HTTP POST /preview-jobs expected=202 actual=202
+    publication_failure_codes_test.go:41: private protocol POST /claim expected=200 actual=200
+    publication_failure_codes_test.go:43: private protocol POST /jobs/job_aaac120469d649c9ad15ce351bc9a268/result expected=200 actual=200
+    publication_failure_codes_test.go:56: HTTP GET /jobs/job_aaac120469d649c9ad15ce351bc9a268 expected=200 actual=200
+    publication_failure_codes_test.go:64: trusted HTTPS GET /jobs/{id}: expected failed/BUILD_FAILED, actual failed/BUILD_FAILED; worker text absent
+--- PASS: TestWorkerResultHTTPSFailureDiagnosticSanitization (0.65s)
+    --- PASS: TestWorkerResultHTTPSFailureDiagnosticSanitization/known (0.30s)
+    --- PASS: TestWorkerResultHTTPSFailureDiagnosticSanitization/unknown (0.34s)
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=false accepted=1 conflict=1; exactly one sealed snapshot/job/assignment/idempotency record
+=== RUN   TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true
+    publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:128: two overlapping verified HTTPS submissions; duplicate=true accepted=2 conflict=0; exactly one sealed snapshot/job/assignment/idempotency record
+--- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (0.77s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (0.42s)
+    --- PASS: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.35s)
+=== RUN   TestPublicationRealSQLiteResultFailureReconcilesExistingActivation
+    publication_fault_integration_test.go:139: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:139: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /auth/reauth expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /publish-jobs expected=202 actual=202
+    publication_fault_integration_test.go:142: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_be4285b73ba829d55547b8f1f1aa0b61/heartbeat expected=200 actual=200
+    publication_fault_integration_test.go:144: private protocol POST /jobs/job_be4285b73ba829d55547b8f1f1aa0b61/prepared expected=200 actual=200
+    publication_fault_integration_test.go:181: private protocol POST /jobs/job_be4285b73ba829d55547b8f1f1aa0b61/result expected=409 actual=409
+    publication_fault_integration_test.go:201: HTTP POST /preview-jobs expected=409 actual=409
+    publication_fault_integration_test.go:202: HTTP GET /publishing-status expected=200 actual=200
+    publication_fault_integration_test.go:213: private protocol POST /claim expected=200 actual=200
+    publication_fault_integration_test.go:217: private protocol POST /jobs/job_be4285b73ba829d55547b8f1f1aa0b61/result expected=409 actual=409
+    publication_fault_integration_test.go:219: private protocol POST /jobs/job_be4285b73ba829d55547b8f1f1aa0b61/result expected=200 actual=200
+    publication_fault_integration_test.go:245: actual SQLite trigger aborted completion after 7 real HTTP proof requests; reconciling blocked new jobs; expired lease reclaimed same job and completed from unchanged artifact/receipt without rebuild
+--- PASS: TestPublicationRealSQLiteResultFailureReconcilesExistingActivation (0.56s)
+=== RUN   TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure
+    publication_test.go:121: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:121: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:123: HTTP POST /publish-jobs expected=401 actual=401
+    publication_test.go:129: HTTP POST /publish-jobs expected=403 actual=403
+    publication_test.go:130: HTTP POST /publish-jobs expected=403 actual=403
+    publication_test.go:131: HTTP POST /auth/reauth expected=200 actual=200
+    publication_test.go:132: HTTP POST /publish-jobs expected=409 actual=409
+    publication_test.go:133: HTTP POST /publish-jobs expected=400 actual=400
+    publication_test.go:137: HTTP POST /publish-jobs expected=409 actual=409
+    publication_test.go:144: HTTP POST /publish-jobs expected=202 actual=202
+    publication_test.go:145: HTTP POST /publish-jobs expected=202 actual=202
+    publication_test.go:149: HTTP POST /publish-jobs expected=409 actual=409
+    publication_test.go:150: HTTP POST /preview-jobs expected=409 actual=409
+2026/10/28 09:45:39 request error id=req_5289fac96c0483da50d8d85738cbfd04 code=WORKER_UNAVAILABLE
+    publication_test.go:152: HTTP POST /preview-jobs expected=503 actual=503
+--- PASS: TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure (0.53s)
+=== RUN   TestPublicationRealFilesystemHTTPProofAndRecovery
+    publication_test.go:214: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:214: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:215: HTTP POST /auth/reauth expected=200 actual=200
+    publication_test.go:215: HTTP POST /publish-jobs expected=202 actual=202
+    publication_test.go:216: private protocol POST /claim expected=200 actual=200
+    publication_test.go:218: private protocol POST /jobs/job_02fcfbaa7e433d39b974b3c209131427/heartbeat expected=200 actual=200
+    publication_test.go:218: private protocol POST /jobs/job_02fcfbaa7e433d39b974b3c209131427/prepared expected=200 actual=200
+    publication_test.go:220: private protocol POST /jobs/job_02fcfbaa7e433d39b974b3c209131427/result expected=200 actual=200
+    publication_test.go:225: private protocol POST /jobs/job_02fcfbaa7e433d39b974b3c209131427/result expected=200 actual=200
+    publication_test.go:235: HTTP POST /publish-jobs expected=202 actual=202
+    publication_test.go:240: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:240: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:241: HTTP POST /publish-jobs expected=409 actual=409
+    publication_test.go:245: HTTP POST /rollback-jobs expected=409 actual=409
+    publication_test.go:246: HTTP POST /publish-jobs expected=422 actual=422
+    publication_test.go:247: HTTP GET /publishing-status expected=200 actual=200
+    publication_test.go:252: HTTP POST /projects/xiaowork-nav/archive expected=200 actual=200
+    publication_test.go:253: HTTP GET /publishing-status expected=200 actual=200
+    publication_test.go:259: HTTP POST /auth/reauth expected=200 actual=200
+    publication_test.go:259: HTTP POST /publish-jobs expected=202 actual=202
+    publication_test.go:260: private protocol POST /claim expected=200 actual=200
+    publication_test.go:262: private protocol POST /jobs/job_059cdfdc249836c761538194593afc00/heartbeat expected=200 actual=200
+    publication_test.go:262: private protocol POST /jobs/job_059cdfdc249836c761538194593afc00/prepared expected=200 actual=200
+    publication_test.go:269: private protocol POST /jobs/job_059cdfdc249836c761538194593afc00/result expected=200 actual=200
+    publication_test.go:278: private protocol POST /jobs/job_059cdfdc249836c761538194593afc00/result expected=200 actual=200
+--- PASS: TestPublicationRealFilesystemHTTPProofAndRecovery (0.87s)
+=== RUN   TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy
+    publication_test.go:288: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:288: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:292: HTTP POST /preview-jobs expected=202 actual=202
+    publication_test.go:293: private protocol POST /claim expected=200 actual=200
+    publication_test.go:298: private protocol POST /jobs/job_330f7d9e4b82f2389db24703d9361e7f/heartbeat expected=200 actual=200
+    publication_test.go:298: private protocol POST /jobs/job_330f7d9e4b82f2389db24703d9361e7f/prepared expected=200 actual=200
+    publication_test.go:303: private protocol POST /jobs/job_330f7d9e4b82f2389db24703d9361e7f/result expected=200 actual=200
+    publication_test.go:322: HTTP GET /previews/pre_5c52ba67f612ad3a4a5be960c8d5c23d/ expected=401 actual=401
+    publication_test.go:322: HTTP GET /previews/pre_5c52ba67f612ad3a4a5be960c8d5c23d/projects/ expected=401 actual=401
+    publication_test.go:322: HTTP GET /previews/pre_5c52ba67f612ad3a4a5be960c8d5c23d/_releases/pre_5c52ba67f612ad3a4a5be960c8d5c23d/assets/image.png expected=401 actual=401
+    publication_test.go:325: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:325: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:327: HTTP GET /previews/pre_5c52ba67f612ad3a4a5be960c8d5c23d/ expected=404 actual=404
+--- PASS: TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy (0.47s)
+=== RUN   TestWorkerLeaseRecoveryAndSnapshotImmutability
+    publication_test.go:331: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:331: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:332: HTTP POST /preview-jobs expected=202 actual=202
+    publication_test.go:333: private protocol POST /claim expected=200 actual=200
+    publication_test.go:337: private protocol POST /jobs/job_979b8934747707713c85dc97eb339ad0/heartbeat expected=409 actual=409
+    publication_test.go:339: private protocol POST /claim expected=200 actual=200
+    publication_test.go:343: private protocol POST /jobs/job_979b8934747707713c85dc97eb339ad0/result expected=409 actual=409
+    publication_test.go:344: private protocol POST /jobs/job_979b8934747707713c85dc97eb339ad0/result expected=200 actual=200
+--- PASS: TestWorkerLeaseRecoveryAndSnapshotImmutability (0.33s)
+=== RUN   TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot
+    publication_test.go:355: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:355: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:367: HTTP POST /preview-jobs expected=422 actual=422
+--- PASS: TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot (0.33s)
+=== RUN   TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry
+    publication_test.go:381: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:381: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:385: HTTP GET /publishing-status expected=200 actual=200
+    publication_test.go:385: HTTP GET /publishing-status expected=200 actual=200
+    publication_test.go:385: HTTP GET /publishing-status expected=200 actual=200
+    publication_test.go:395: HTTP GET /publishing-status expected=401 actual=401
+--- PASS: TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry (0.31s)
+=== RUN   TestProductionPublicationConfigurationFailsClosed
+--- PASS: TestProductionPublicationConfigurationFailsClosed (0.00s)
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/public-seed
+    publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+    publication_transport_linux_test.go:49: HTTP POST /preview-jobs expected=202 actual=202
+    publication_transport_linux_test.go:95: same-UID UDS -> production UnixClient -> strict validator; uploaded=false; frozen bytes and hash unchanged
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/uploaded-media-and-unicode
+    publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+    publication_transport_linux_test.go:34: HTTPS POST /media expected=201 actual=201
+    publication_transport_linux_test.go:37: HTTPS PATCH /media/med_5eeaf5fa393d186c9cb0cb75ec29f684 expected=200 actual=200
+    publication_transport_linux_test.go:40: HTTP PUT /projects/xiaowork-blog expected=200 actual=200
+    publication_transport_linux_test.go:47: HTTP PUT /profile expected=200 actual=200
+    publication_transport_linux_test.go:49: HTTP POST /preview-jobs expected=202 actual=202
+    publication_transport_linux_test.go:95: same-UID UDS -> production UnixClient -> strict validator; uploaded=true; frozen bytes and hash unchanged
+--- PASS: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes (0.62s)
+    --- PASS: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/public-seed (0.30s)
+    --- PASS: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/uploaded-media-and-unicode (0.31s)
+=== RUN   TestManagementRequiresApprovedOriginSecretAndHTTPS
+--- PASS: TestManagementRequiresApprovedOriginSecretAndHTTPS (0.01s)
+=== RUN   TestHealthReadinessAndUnimplementedPublishing
+    server_test.go:61: HTTP GET /projects expected=401 actual=401
+    server_test.go:62: HTTP GET /auth/login-challenge expected=200 actual=200
+    server_test.go:62: HTTP POST /auth/login expected=200 actual=200
+2026/10/28 09:45:42 request error id=req_41b30090f7f512fff7907fcba080cdd4 code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /publish-jobs expected=503 actual=503
+2026/10/28 09:45:42 request error id=req_cdbf2ad167b9ec9a8cde09a3691ecadd code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /preview-jobs expected=503 actual=503
+2026/10/28 09:45:42 request error id=req_30bc9418d657b8569e70e9bbc5a95938 code=WORKER_UNAVAILABLE
+    server_test.go:64: HTTP POST /rollback-jobs expected=503 actual=503
+    server_test.go:69: HTTP GET /not-a-real-interface expected=404 actual=404
+2026/10/28 09:45:42 request error id=req_7012527258a15a139680a8b00d29bd67 code=NOT_READY
+--- PASS: TestHealthReadinessAndUnimplementedPublishing (0.32s)
+=== RUN   TestStorageStatusIsAuthenticatedAndDoesNotExposePaths
+    storage_test.go:11: HTTP GET /auth/login-challenge expected=200 actual=200
+    storage_test.go:11: HTTP POST /auth/login expected=200 actual=200
+    storage_test.go:12: HTTP GET /publishing-status expected=401 actual=401
+    storage_test.go:13: HTTP GET /publishing-status expected=200 actual=200
+--- PASS: TestStorageStatusIsAuthenticatedAndDoesNotExposePaths (0.33s)
+=== RUN   TestUnknownUploadStorageRejectsPublicationWithoutPartialTask
+    storage_test.go:27: HTTP GET /auth/login-challenge expected=200 actual=200
+    storage_test.go:27: HTTP POST /auth/login expected=200 actual=200
+2026/10/28 09:45:42 request error id=req_fcae609c4caab0ecc5ba7110a71276e5 code=STORAGE_CAPACITY
+    storage_test.go:29: HTTP POST /preview-jobs expected=507 actual=507
+--- PASS: TestUnknownUploadStorageRejectsPublicationWithoutPartialTask (0.31s)
+=== RUN   TestWorkerRealUnixSocketIsPrivateAndPublicPathsCannotClaim
+    worker_socket_linux_test.go:18: HTTP GET /auth/login-challenge expected=200 actual=200
+    worker_socket_linux_test.go:18: HTTP POST /auth/login expected=200 actual=200
+--- PASS: TestWorkerRealUnixSocketIsPrivateAndPublicPathsCannotClaim (0.31s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	18.108s
+=== RUN   TestStoppedBackupRestore
+--- PASS: TestStoppedBackupRestore (0.29s)
+=== RUN   TestBackupRejectsUnfinishedAndSymlink
+--- PASS: TestBackupRejectsUnfinishedAndSymlink (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	0.300s
+=== RUN   TestSanitizeReencodesAndStripsMetadata
+--- PASS: TestSanitizeReencodesAndStripsMetadata (0.00s)
+=== RUN   TestSanitizeRealWebPAndRejectsConcealedLargeFrame
+--- PASS: TestSanitizeRealWebPAndRejectsConcealedLargeFrame (0.00s)
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.jpgimage/jpeg
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.pngimage/jpeg
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/../escape.pngimage/png
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/C:\escape.pngimage/png
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/image.svgimage/svg+xml
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/bad.pngimage/png
+=== RUN   TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/huge.pngimage/png
+--- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.jpgimage/jpeg (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/fake.pngimage/jpeg (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/../escape.pngimage/png (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/C:\escape.pngimage/png (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/image.svgimage/svg+xml (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/bad.pngimage/png (0.00s)
+    --- PASS: TestSanitizeRejectsFormatSpoofingAndLimitsBeforeDecode/huge.pngimage/png (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.008s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+=== RUN   TestActivationCrashProcessHelper
+--- PASS: TestActivationCrashProcessHelper (0.00s)
+=== RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary
+=== RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/after-intent
+=== RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/before-current-rename
+=== RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/after-current-rename
+=== RUN   TestActualProcessCrashAtEveryAtomicActivationBoundary/after-receipt
+--- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary (0.03s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-intent (0.01s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/before-current-rename (0.01s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-current-rename (0.01s)
+    --- PASS: TestActualProcessCrashAtEveryAtomicActivationBoundary/after-receipt (0.01s)
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/alter
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/remove
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/extra
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest
+=== RUN   TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink
+--- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption (0.01s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/alter (0.00s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/remove (0.00s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/extra (0.00s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest (0.00s)
+    --- PASS: TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink (0.00s)
+=== RUN   TestGeneratedNamesAndPathContainment
+--- PASS: TestGeneratedNamesAndPathContainment (0.00s)
+=== RUN   TestKernelLockExcludesSeparateStores
+--- PASS: TestKernelLockExcludesSeparateStores (0.00s)
+=== RUN   TestMutationRequiresLockAndImmutableIDs
+--- PASS: TestMutationRequiresLockAndImmutableIDs (0.00s)
+=== RUN   TestSymlinkSourceAndContainmentRejected
+--- PASS: TestSymlinkSourceAndContainmentRejected (0.00s)
+=== RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion
+=== RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-intent
+=== RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/before-current-rename
+=== RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-current-rename
+=== RUN   TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-receipt
+--- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion (0.01s)
+    --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-intent (0.00s)
+    --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/before-current-rename (0.00s)
+    --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-current-rename (0.00s)
+    --- PASS: TestEveryActivationFailureBoundaryKeepsCompleteVersion/after-receipt (0.00s)
+=== RUN   TestAtomicActivationRollbackAndIndependentRecoveryProof
+--- PASS: TestAtomicActivationRollbackAndIndependentRecoveryProof (0.00s)
+=== RUN   TestStalePreviousDoesNotCreateIntentOrSwitch
+--- PASS: TestStalePreviousDoesNotCreateIntentOrSwitch (0.00s)
+=== RUN   TestPreparationFaultsDoNotPublishOrOverwrite
+=== RUN   TestPreparationFaultsDoNotPublishOrOverwrite/after-copy
+=== RUN   TestPreparationFaultsDoNotPublishOrOverwrite/before-file-rename
+=== RUN   TestPreparationFaultsDoNotPublishOrOverwrite/before-release-rename
+=== RUN   TestPreparationFaultsDoNotPublishOrOverwrite/after-release-rename
+--- PASS: TestPreparationFaultsDoNotPublishOrOverwrite (0.00s)
+    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/after-copy (0.00s)
+    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/before-file-rename (0.00s)
+    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/before-release-rename (0.00s)
+    --- PASS: TestPreparationFaultsDoNotPublishOrOverwrite/after-release-rename (0.00s)
+=== RUN   TestRecoveryNeverClobbersUnrelatedCurrent
+--- PASS: TestRecoveryNeverClobbersUnrelatedCurrent (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.070s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+=== RUN   TestProcessTreeHelper
+--- PASS: TestProcessTreeHelper (0.00s)
+=== RUN   TestActualTimeoutKillsWholeBuildProcessGroup
+--- PASS: TestActualTimeoutKillsWholeBuildProcessGroup (1.20s)
+=== RUN   TestStartupStopsVerifiedOrphanAndRejectsUnknownJournal
+--- PASS: TestStartupStopsVerifiedOrphanAndRejectsUnknownJournal (0.00s)
+=== RUN   TestBuildOutputAncestorSymlinkCannotRedirectMarker
+--- PASS: TestBuildOutputAncestorSymlinkCannotRedirectMarker (0.00s)
+=== RUN   TestPublicSeedSnapshotDocumentBuiltinsAccepted
+    public_seed_assignment_test.go:87: checked-in public seed brand icon and default share image accepted through their sealed builtin allowlist
+--- PASS: TestPublicSeedSnapshotDocumentBuiltinsAccepted (0.01s)
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/builtin-not-allowlisted
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/brand/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/brand/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/brand/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/brand/builtin-not-allowlisted
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/builtin-not-allowlisted
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/builtin-not-allowlisted
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/builtin-not-allowlisted
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/builtin
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/media
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/unknown
+=== RUN   TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/builtin-not-allowlisted
+--- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset (0.11s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/builtin (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/media (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/unknown (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/avatar/builtin-not-allowlisted (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/brand/builtin (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/brand/media (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/brand/unknown (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/brand/builtin-not-allowlisted (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/builtin (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/media (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/unknown (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/default-share/builtin-not-allowlisted (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/builtin (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/media (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/unknown (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/home-share/builtin-not-allowlisted (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/builtin (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/media (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/unknown (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/projects-share/builtin-not-allowlisted (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/builtin (0.00s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/media (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/unknown (0.01s)
+    --- PASS: TestPublicSeedDocumentReferencesRequireSealedAsset/about-share/builtin-not-allowlisted (0.00s)
+=== RUN   TestRunnerPublishRequiresActualPreparedAndReconciledResult
+--- PASS: TestRunnerPublishRequiresActualPreparedAndReconciledResult (0.01s)
+=== RUN   TestRunnerBuildAndValidationFailuresNeverActivate
+=== RUN   TestRunnerBuildAndValidationFailuresNeverActivate/build
+=== RUN   TestRunnerBuildAndValidationFailuresNeverActivate/bad-html
+=== RUN   TestRunnerBuildAndValidationFailuresNeverActivate/bad-approval
+--- PASS: TestRunnerBuildAndValidationFailuresNeverActivate (0.01s)
+    --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/build (0.00s)
+    --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/bad-html (0.00s)
+    --- PASS: TestRunnerBuildAndValidationFailuresNeverActivate/bad-approval (0.00s)
+=== RUN   TestRunnerGatewayFailureRestoresFirstPublicationAbsence
+--- PASS: TestRunnerGatewayFailureRestoresFirstPublicationAbsence (0.01s)
+=== RUN   TestRunnerDatabaseFailureLeavesGateClosedThenReconcilesWithoutRebuild
+--- PASS: TestRunnerDatabaseFailureLeavesGateClosedThenReconcilesWithoutRebuild (0.01s)
+=== RUN   TestRunnerCrashBetweenCurrentAndReceiptRecoversWithoutRebuild
+--- PASS: TestRunnerCrashBetweenCurrentAndReceiptRecoversWithoutRebuild (0.01s)
+=== RUN   TestRunnerPreviewNeverChangesCurrentAndHasIndependentProof
+--- PASS: TestRunnerPreviewNeverChangesCurrentAndHasIndependentProof (0.00s)
+=== RUN   TestUnixClientActualSocketStrictFiniteProtocol
+--- PASS: TestUnixClientActualSocketStrictFiniteProtocol (0.01s)
+=== RUN   TestSealedAssignmentStrictProjection
+=== RUN   TestSealedAssignmentStrictProjection/hash
+=== RUN   TestSealedAssignmentStrictProjection/private
+=== RUN   TestSealedAssignmentStrictProjection/hidden
+=== RUN   TestSealedAssignmentStrictProjection/missing-media
+=== RUN   TestSealedAssignmentStrictProjection/identity
+=== RUN   TestSealedAssignmentStrictProjection/source
+=== RUN   TestSealedAssignmentStrictProjection/unconfirmed-media
+--- PASS: TestSealedAssignmentStrictProjection (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/hash (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/private (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/hidden (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/missing-media (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/identity (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/source (0.00s)
+    --- PASS: TestSealedAssignmentStrictProjection/unconfirmed-media (0.00s)
+=== RUN   TestActualOutputValidationAndFailureGates
+=== RUN   TestActualOutputValidationAndFailureGates/wrong-seo
+=== RUN   TestActualOutputValidationAndFailureGates/wrong-marker
+=== RUN   TestActualOutputValidationAndFailureGates/missing-resource
+=== RUN   TestActualOutputValidationAndFailureGates/external-resource
+=== RUN   TestActualOutputValidationAndFailureGates/unversioned-resource
+=== RUN   TestActualOutputValidationAndFailureGates/payload
+=== RUN   TestActualOutputValidationAndFailureGates/private-file
+=== RUN   TestActualOutputValidationAndFailureGates/bad-chunk
+=== RUN   TestActualOutputValidationAndFailureGates/noindex
+=== RUN   TestActualOutputValidationAndFailureGates/missing-project
+--- PASS: TestActualOutputValidationAndFailureGates (0.01s)
+    --- PASS: TestActualOutputValidationAndFailureGates/wrong-seo (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/wrong-marker (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/missing-resource (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/external-resource (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/unversioned-resource (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/payload (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/private-file (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/bad-chunk (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/noindex (0.00s)
+    --- PASS: TestActualOutputValidationAndFailureGates/missing-project (0.00s)
+=== RUN   TestPreviewUsesPrivateResourcePrefix
+--- PASS: TestPreviewUsesPrivateResourcePrefix (0.00s)
+=== RUN   TestMediaCopyVerifiesHashAndNeverHardlinks
+--- PASS: TestMediaCopyVerifiesHashAndNeverHardlinks (0.00s)
+=== RUN   TestURLValidationDoesNotFetchOrAcceptUnknownExternalLinks
+--- PASS: TestURLValidationDoesNotFetchOrAcceptUnknownExternalLinks (0.00s)
+=== RUN   TestMarkerNeverOverwritesBuildControlledFile
+--- PASS: TestMarkerNeverOverwritesBuildControlledFile (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.385s
+=== RUN   TestCapacityBoundariesAndUnknownFailClosed
+--- PASS: TestCapacityBoundariesAndUnknownFailClosed (0.00s)
+=== RUN   TestActualStorageMeasurementDoesNotFollowLinks
+--- PASS: TestActualStorageMeasurementDoesNotFollowLinks (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.006s
+=== RUN   TestVersionTwoPublicationUpgradePreservesExistingWorkspaceAndChecksums
+--- PASS: TestVersionTwoPublicationUpgradePreservesExistingWorkspaceAndChecksums (0.01s)
+=== RUN   TestLoginChallengeLifetimeAndOneWayConsumption
+--- PASS: TestLoginChallengeLifetimeAndOneWayConsumption (0.01s)
+=== RUN   TestIdempotencyEndpointScopeRetentionAndImmutability
+--- PASS: TestIdempotencyEndpointScopeRetentionAndImmutability (0.01s)
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document
+=== RUN   TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot
+--- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind (0.02s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/unreferenced (0.01s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/project (0.01s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/document (0.01s)
+    --- PASS: TestAssetMetadataSoftDeletionProtectsEveryReferenceKind/snapshot (0.01s)
+=== RUN   TestSessionReauthenticationCannotOutliveSession
+--- PASS: TestSessionReauthenticationCannotOutliveSession (0.01s)
+=== RUN   TestMigrationAndPersistence
+    store_test.go:61: actual SQLite core=3.54.1 integrity=ok
+--- PASS: TestMigrationAndPersistence (0.01s)
+=== RUN   TestMissingAndUnknownDatabaseRejected
+--- PASS: TestMissingAndUnknownDatabaseRejected (0.01s)
+=== RUN   TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum
+--- PASS: TestAppendOnlyUpgradePreservesVersionOneDataAndChecksEveryChecksum (0.01s)
+=== RUN   TestMigrationGapRejected
+--- PASS: TestMigrationGapRejected (0.01s)
+=== RUN   TestJobRequiresOwnReconciliation
+--- PASS: TestJobRequiresOwnReconciliation (0.01s)
+=== RUN   TestSnapshotAndAssetConstraints
+--- PASS: TestSnapshotAndAssetConstraints (0.01s)
+=== RUN   TestReviewedSQLiteBaseline
+--- PASS: TestReviewedSQLiteBaseline (0.00s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.106s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]

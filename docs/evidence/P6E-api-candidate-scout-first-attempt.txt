@@ -1,0 +1,7 @@
+2026-10-28T10:53:28Z onward, local Docker Desktop Linux engine.
+Command: docker scout cves --format sarif --output docs/evidence/P6E-image-api-candidate.sarif.json local://sha256:e2d4e7a59e795b8528365b75d1ea9cf37e8d8676f3ff60691f2eb93f103869b3
+Actual exit code: 1. No candidate SARIF was produced. This is a tool/authentication failure, not a vulnerability-scan pass.
+Observed stderr begins:
+Log in with your Docker ID or email address to use docker scout.
+
+No credentials were read, printed or changed. Baseline scan results are not substituted for this candidate.

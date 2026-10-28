@@ -1,0 +1,214 @@
+{
+  "date": "2026-10-28T10:06:39.255Z",
+  "expectedSource": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "scope": "Local final runtime image filesystem; no pushes, no production or service mutation",
+  "scannerVersion": "v1.26.0 (go1.26.3-X:jsonv2 - windows/amd64)",
+  "advisoryDatabase": "Live Docker Scout service as queried at each recorded time; tool does not expose an immutable database revision in SARIF",
+  "images": [
+    {
+      "role": "api",
+      "image": "xiaowork-homepage-api:p6d-dev",
+      "identity": {
+        "id": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+        "created": "2026-10-28T09:50:40.128450143Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:06:41.346Z",
+      "completedAt": "2026-10-28T10:06:46.022Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-api-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "uniqueAdvisories": 1,
+      "advisories": [
+        {
+          "id": "GO-2026-5932",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:golang/golang.org/x/crypto@0.58.0"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "worker",
+      "image": "xiaowork-homepage-worker:p6d-dev",
+      "identity": {
+        "id": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+        "created": "2026-10-28T09:50:29.906995908Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:06:46.350Z",
+      "completedAt": "2026-10-28T10:06:57.269Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-worker-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1,
+        "LOW": 1
+      },
+      "findings": 2,
+      "uniqueAdvisories": 2,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        },
+        {
+          "id": "CVE-2026-93753",
+          "severity": "LOW",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:npm/deepmerge@4.3.1"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "gateway",
+      "image": "xiaowork-homepage-admin-gateway:p6d-dev",
+      "identity": {
+        "id": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+        "created": "2026-10-28T09:49:54.072741041Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:06:57.566Z",
+      "completedAt": "2026-10-28T10:07:01.996Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-gateway-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "uniqueAdvisories": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "frontend",
+      "image": "xiaowork-homepage:p6d-legacy",
+      "identity": {
+        "id": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+        "created": "2026-10-28T09:50:19.522320263Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:07:02.244Z",
+      "completedAt": "2026-10-28T10:07:06.404Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-frontend-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "uniqueAdvisories": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "static",
+      "image": "xiaowork-homepage-publication-static:p6e-dev",
+      "identity": {
+        "id": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+        "created": "2026-10-28T09:47:56.83024213Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:07:06.717Z",
+      "completedAt": "2026-10-28T10:07:11.112Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-static-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "uniqueAdvisories": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "maintenance",
+      "image": "xiaowork-homepage-maintenance:p6e-final",
+      "identity": {
+        "id": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa",
+        "created": "2026-10-28T09:50:28.822573397Z",
+        "os": "linux",
+        "arch": "amd64",
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+      },
+      "startedAt": "2026-10-28T10:07:11.375Z",
+      "completedAt": "2026-10-28T10:07:21.645Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-image-maintenance-final.sarif.json",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "uniqueAdvisories": 1,
+      "advisories": [
+        {
+          "id": "GO-2026-5932",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:golang/golang.org/x/crypto@0.58.0"
+          ]
+        }
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "role": "static",
+      "imageId": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+      "result": "TOOL_TIMEOUT_FIRST_ATTEMPT",
+      "timeoutMs": 300000,
+      "signal": "SIGTERM",
+      "explanation": "First all-role scan completed API/Worker/gateway/frontend then timed out querying static. Final retry completed all six exact images; findings are not suppressed."
+    }
+  ],
+  "limitations": [
+    "No-high/critical is not a claim of zero system risk; permissions and application logic are validated separately.",
+    "UNSPECIFIED findings are preserved without inventing a severity.",
+    "musl CVE-2026-107891 has a version-range conflict with official Alpine 3.24 secdb; both original sources are retained."
+  ],
+  "result": "SCANNED"
+}

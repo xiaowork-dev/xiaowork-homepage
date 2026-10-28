@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-28T10:23:56.751Z",
+  "jobId": "job_2055eb21281ab36653c835671218836c",
+  "scope": "only original fault task; no new submission; preserved old harness failure",
+  "events": [
+    {
+      "point": "second-real-EACCES-kept-original-task-blocked",
+      "time": "2026-10-28T10:23:56.794Z",
+      "sqlite": {
+        "attempts": 2,
+        "errorCode": "RECONCILIATION_FAILED",
+        "id": "job_2055eb21281ab36653c835671218836c",
+        "kind": "publish",
+        "phase": "recovery_required",
+        "reconciledReleaseId": "",
+        "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+        "revision": "ws-1",
+        "status": "reconciling"
+      },
+      "filesystem": {
+        "mode": "500",
+        "current": "releases/rel_aa3ef836f453121727694db0d679ec20",
+        "heldOriginalHtml": []
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200
+        },
+        {
+          "route": "/projects/",
+          "status": 200
+        },
+        {
+          "route": "/about/",
+          "status": 200
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200
+        }
+      ],
+      "workerRunning": "false"
+    },
+    {
+      "point": "operator-restored-only-test-permissions-and-verifier",
+      "time": "2026-10-28T10:24:10.871Z",
+      "sqlite": {
+        "attempts": 2,
+        "errorCode": "RECONCILIATION_FAILED",
+        "id": "job_2055eb21281ab36653c835671218836c",
+        "kind": "publish",
+        "phase": "recovery_required",
+        "reconciledReleaseId": "",
+        "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+        "revision": "ws-1",
+        "status": "reconciling"
+      },
+      "filesystem": {
+        "mode": "700",
+        "current": "releases/rel_aa3ef836f453121727694db0d679ec20",
+        "heldOriginalHtml": []
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200
+        },
+        {
+          "route": "/projects/",
+          "status": 200
+        },
+        {
+          "route": "/about/",
+          "status": 200
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200
+        }
+      ],
+      "workerRunning": "true"
+    },
+    {
+      "point": "original-task-reconciled-without-new-publish",
+      "time": "2026-10-28T10:25:03.584Z",
+      "sqlite": {
+        "attempts": 3,
+        "errorCode": "RECONCILIATION_FAILED",
+        "id": "job_2055eb21281ab36653c835671218836c",
+        "kind": "publish",
+        "phase": "",
+        "reconciledReleaseId": "rel_aa3ef836f453121727694db0d679ec20",
+        "releaseId": "rel_aa3ef836f453121727694db0d679ec20",
+        "revision": "ws-1",
+        "status": "succeeded"
+      },
+      "filesystem": {
+        "mode": "700",
+        "current": "releases/rel_aa3ef836f453121727694db0d679ec20",
+        "heldOriginalHtml": []
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200
+        },
+        {
+          "route": "/projects/",
+          "status": 200
+        },
+        {
+          "route": "/about/",
+          "status": 200
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200
+        }
+      ],
+      "workerRunning": "true"
+    }
+  ],
+  "result": "RECOVERED"
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28T10:31:19.303Z",
+  "project": "xiaowork-homepage-v11-p6e-recovery-final",
+  "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "scope": "Real local Compose candidate failure plus host CLI-only boundary wrappers; not Docker daemon outage or physical disk exhaustion",
+  "cases": [
+    {
+      "name": "failed candidate stop and failed recovery-record update retain initial durable intent and operation lock",
+      "result": "PASS"
+    },
+    {
+      "name": "subsequent update refused without removing another operation lock",
+      "result": "PASS"
+    }
+  ],
+  "events": [
+    "initial recovery intent write allowed before candidate starts",
+    "host-wrapper rejected second exact-project writer stop; no daemon outage simulated",
+    "host-wrapper returned ENOSPC when updating recovery record; initial intent retained"
+  ],
+  "database": {
+    "schema": 3,
+    "workspaceRevision": 5,
+    "administrators": 1,
+    "projects": 3,
+    "uploads": 1,
+    "snapshots": 3,
+    "jobs": 4,
+    "releases": 3,
+    "unfinished": 0,
+    "activeRelease": "rel_da795e493c5c6546c20ca190428ed9fc",
+    "sources": [
+      "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+    ],
+    "builders": [
+      "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627"
+    ]
+  },
+  "result": "FAIL",
+  "error": "fetch failed"
+}

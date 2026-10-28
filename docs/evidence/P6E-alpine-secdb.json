@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-28T09:15:10.040Z",
+  "dbLastModified": "Tue, 27 Oct 2026 07:32:43 GMT",
+  "url": "https://secdb.alpinelinux.org/v3.24/main.json",
+  "packages": [
+    {
+      "package": "brotli",
+      "applicableSecfixes": {
+        "1.2.1-r0": ["CVE-2026-111497"]
+      }
+    },
+    {
+      "package": "curl",
+      "applicableSecfixes": {
+        "8.23.0-r0": [
+          "CVE-2026-86409",
+          "CVE-2026-86410",
+          "CVE-2026-86411",
+          "CVE-2026-86412",
+          "CVE-2026-86413",
+          "CVE-2026-86414",
+          "CVE-2026-86415",
+          "CVE-2026-87861",
+          "CVE-2026-87862",
+          "CVE-2026-87863",
+          "CVE-2026-87864",
+          "CVE-2026-87865",
+          "CVE-2026-87866",
+          "CVE-2026-92386",
+          "CVE-2026-92387",
+          "CVE-2026-92388",
+          "CVE-2026-92389",
+          "CVE-2026-92390",
+          "CVE-2026-92391",
+          "CVE-2026-92392",
+          "CVE-2026-94265",
+          "CVE-2026-94266",
+          "CVE-2026-107928",
+          "CVE-2026-107929"
+        ]
+      }
+    },
+    {
+      "package": "libxml2",
+      "applicableSecfixes": {
+        "2.13.9-r2": ["CVE-2026-6732"]
+      }
+    },
+    {
+      "package": "musl",
+      "applicableSecfixes": {
+        "1.2.6-r3": ["CVE-2026-107891"]
+      }
+    }
+  ]
+}

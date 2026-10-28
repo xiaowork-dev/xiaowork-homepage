@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "scope": "Post-baseline recovery-diagnostics repair; focused real HTTPS, private Unix socket, SQLite and filesystem integration. Artifact fixture is not another real Nuxt failure build.",
+  "baselineCommit": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+  "testedSource": "Uncommitted successor working tree, not the be5c runtime image",
+  "runtimeSource": {
+    "path": "backend/internal/httpapi/publication_worker.go",
+    "sha256": "a00b4f6bed667cfde35deb4a237712962de650a52b788b98723598b5dceee5d6"
+  },
+  "testSource": {
+    "path": "backend/internal/httpapi/publication_recovery_diagnostics_linux_test.go",
+    "sha256": "f6042af3c02570d3e2217866aa83041fa40b1a1ddf725aa1bb0f4ce802ce616d"
+  },
+  "environment": {
+    "platform": "Local Docker Desktop Linux engine",
+    "toolImage": "xiaowork-homepage-api:p6b-test",
+    "sourceMount": "Read-only backend working tree",
+    "network": "none",
+    "rootFilesystem": "read-only",
+    "capabilities": "ALL dropped",
+    "noNewPrivileges": true,
+    "limits": {
+      "cpu": 2,
+      "memory": "3g",
+      "pids": 256
+    },
+    "temporaryFilesystem": "/tmp:rw,exec,size=1536m,mode=1777 for test binaries only",
+    "dependencyDownload": "GOPROXY=off, GOTOOLCHAIN=local; existing tool-image modules only"
+  },
+  "checks": [
+    {
+      "name": "Before repair: same-task recovery must atomically clear current diagnostics",
+      "command": "go test -count=1 -run 'TestPublication(RecoverySuccessAtomicallyClearsOnlyCurrentDiagnostics|TerminalFailureRetainsDiagnosticsAndAudit)$' -v ./internal/httpapi",
+      "exitCode": 1,
+      "result": "Expected RED: recovery-success case failed at the SQLite atomicity trigger (private UDS returned 409); final-failure preservation case passed.",
+      "evidence": "P6E-diagnostics-before-fix.txt",
+      "sha256": "8693cc801ddc0570320d798413b868a06224fb606d5d8b935d40cbc4551ffa0d",
+      "captureSha256": "755e1acc83e6d0b8600db94afa55cf66a1592326c535b14cf22f80a42ff40aae"
+    },
+    {
+      "name": "After repair: recovery success and terminal failure",
+      "command": "go test -count=1 -run 'TestPublication(RecoverySuccessAtomicallyClearsOnlyCurrentDiagnostics|TerminalFailureRetainsDiagnosticsAndAudit)$' -v ./internal/httpapi",
+      "exitCode": 0,
+      "result": "Both tests PASS. Two real HTTP503 proof failures remain reconciling; same-task UDS reclaim plus restored HTTP proof yields SQLite succeeded/error NULL and authenticated HTTPS succeeded/error:null/activeVerified:true. Two failure audit IDs remain and one success audit is appended. Duplicate results are refused; terminal failures retain diagnostics and audit.",
+      "evidence": "P6E-diagnostics-regression.txt",
+      "sha256": "c794a5c65f3c188f47164e1e86c534f2d4a6cca0254bfcfac0ccad405a15b42d",
+      "captureSha256": "110d6873327518669e7aee43b1ee6aaf105fab78e72e8048390a472d318cbbfe"
+    },
+    {
+      "name": "Successor Linux Go full package regression",
+      "command": "go test -count=1 ./...",
+      "exitCode": 0,
+      "evidence": "P6E-go-post-diagnostics.txt",
+      "sha256": "bcdcf1a9f39458c66dd73f0d57c8c8f4bb23a49946e8d39387cc6846e7d3511d",
+      "captureSha256": "923972d60e2fe6f144c65c50f6d92765e53e5890b76e0644a8cbecb001922358"
+    },
+    {
+      "name": "Successor Linux Go vet",
+      "command": "go vet ./...",
+      "exitCode": 0,
+      "result": "No stdout/stderr from go vet; exec session 1585 completed with exit 0 and wrapper reported go vet exit=0.",
+      "evidence": "P6E-go-vet-post-diagnostics.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "captureSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "No new six-role release images built by this focused test; be5c baseline image tags were not moved.",
+    "The successor runtime still requires its own exact-commit Docker acceptance and cross-source deployment/update/rollback verification.",
+    "Earlier noexec test-container preparation failure remains in private cache and is not counted as a product failure reproduction."
+  ],
+  "committedSource": "aa23376bb508dad215e644c808dd2e9461d7170a",
+  "logNormalization": "Windows CRLF capture logs are serialized as LF to match the repository .gitattributes policy; captureSha256 preserves original capture identity where different, sha256 hashes the delivered file. No log messages or test results changed."
+}

@@ -1,0 +1,265 @@
+{
+  "date": "2026-10-28T10:01:49.079Z",
+  "project": "xiaowork-homepage-v11-p6e-e2e",
+  "services": [
+    {
+      "role": "api",
+      "containerId": "edec3ef9050247d4a452c0d21e73189e65e7aade6dc67579d2a56506abce43ee",
+      "imageId": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "user": "10001:10001",
+      "readOnlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-e2e_control",
+      "portBindings": {},
+      "cpuNano": 1000000000,
+      "memoryBytes": 805306368,
+      "pidsLimit": 128,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/data",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/secrets",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/uploads",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/run/publishing",
+          "RW": true
+        }
+      ],
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "role": "worker",
+      "containerId": "949b070871167f6cfc609ebd7d130a32d0a228d41320933e702ac145d4d9cf0a",
+      "imageId": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "user": "10001:10001",
+      "readOnlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "none",
+      "portBindings": {},
+      "cpuNano": 2000000000,
+      "memoryBytes": 3221225472,
+      "pidsLimit": 256,
+      "tmpfs": {
+        "/tmp": "size=64m,mode=1777",
+        "/work": "size=768m,mode=0700,uid=10001,gid=10001"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/uploads",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/run/publishing",
+          "RW": true
+        }
+      ],
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "role": "gateway",
+      "containerId": "25270faeb475e8c2f5e9ca6ff3fd98eedebf8ec3f90a254a568bd7ba2370caf5",
+      "imageId": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+      "user": "10001:10001",
+      "readOnlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-e2e_control",
+      "portBindings": {
+        "3447/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3447"
+          }
+        ],
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3214"
+          }
+        ],
+        "9323/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "9325"
+          }
+        ]
+      },
+      "cpuNano": 0,
+      "memoryBytes": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/tls",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/nginx.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-admin-headers.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-admin-locations.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-locations.conf",
+          "RW": false
+        }
+      ],
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "role": "publication-static",
+      "containerId": "003f13d737df2a3dd393d19b960b672187d05dc581821222d62a56a0f308b0f7",
+      "imageId": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+      "user": "10001:10001",
+      "readOnlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-e2e_control",
+      "portBindings": {},
+      "cpuNano": 0,
+      "memoryBytes": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/nginx.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/security-headers.conf",
+          "RW": false
+        }
+      ],
+      "state": "running",
+      "health": "healthy"
+    }
+  ],
+  "checks": {
+    "socket": {
+      "mode": "600",
+      "uid": 10001,
+      "gid": 10001,
+      "socket": true
+    },
+    "socketDirectory": {
+      "mode": "700",
+      "uid": 10001,
+      "gid": 10001,
+      "socket": false
+    },
+    "absent": [
+      {
+        "path": "/data",
+        "absent": true
+      },
+      {
+        "path": "/secrets",
+        "absent": true
+      },
+      {
+        "path": "/var/run/docker.sock",
+        "absent": true
+      },
+      {
+        "path": "/root/.ssh",
+        "absent": true
+      },
+      {
+        "path": "/home/node/.ssh",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/npm",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/npx",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/corepack",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/lib/node_modules/npm",
+        "absent": true
+      }
+    ],
+    "credentialEnvironmentNames": []
+  },
+  "result": "PASS_LOCAL_ISOLATION",
+  "limitations": [
+    "Runtime inspection applies only to this named isolated test project.",
+    "The worker command protocol and application security are covered by separate tests.",
+    "This is not evidence that a production stack has been deployed or inspected."
+  ]
+}

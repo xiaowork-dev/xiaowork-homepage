@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-28T11:03:12.314Z",
+  "scope": "One successor API candidate only; not a rebuilt six-role release or deployment approval",
+  "expectedSource": "aa23376bb508dad215e644c808dd2e9461d7170a",
+  "tag": "xiaowork-homepage-api:p6e-diagnostics-aa23376",
+  "identity": {
+    "id": "sha256:e2d4e7a59e795b8528365b75d1ea9cf37e8d8676f3ff60691f2eb93f103869b3",
+    "created": "2026-10-28T10:52:03.19022496Z",
+    "os": "linux",
+    "arch": "amd64",
+    "source": "aa23376bb508dad215e644c808dd2e9461d7170a"
+  },
+  "containerMutations": 0,
+  "method": "Scout reads local image ID; docker image save exports layers for exact /homepage-api extraction without creating containers",
+  "baseline": {
+    "tag": "xiaowork-homepage-api:p6d-dev",
+    "idBefore": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+    "idAfter": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552"
+  },
+  "result": "SCANNED_WITH_FINDINGS_PRESERVED",
+  "limitations": [
+    "No-high/critical result is not a claim of zero application or system risk.",
+    "Scout uses its live service; SARIF does not expose a fixed advisory-database revision.",
+    "Stripped Go binary scanning can fall back to module precision. Preserve all findings; baseline source reachability analysis is separate evidence and is not silently relabeled for this source.",
+    "Only the API image is audited here. Other five roles remain on their separately recorded baseline identities."
+  ],
+  "scout": {
+    "result": "SCANNED",
+    "startedAt": "2026-10-28T11:03:12.318Z",
+    "completedAt": "2026-10-28T11:03:21.892Z",
+    "scannerVersion": "1.26.0",
+    "file": "P6E-image-api-candidate.sarif.json",
+    "counts": {
+      "UNSPECIFIED": 1
+    },
+    "findings": 1,
+    "uniqueAdvisories": 1,
+    "advisories": [
+      {
+        "id": "GO-2026-5932",
+        "severity": "UNSPECIFIED",
+        "fixedVersion": "not fixed",
+        "packages": [
+          "pkg:golang/golang.org/x/crypto@0.58.0"
+        ]
+      }
+    ],
+    "sha256": "1854247c794e4e27c8721bc3055369fa27ae769935e15778c2dac736f0c9a596"
+  },
+  "binary": {
+    "sourcePath": "/homepage-api",
+    "extractionLayer": "blobs/sha256/863a67f7aa4b531b39961804adfb28516f0aaa6298665172f7b7e2d980e7a8f3",
+    "sha256": "6de3c3b4d519a0bce23585d856e2cc411dc81c32bc4e3e1df5ccd9d7ca198bc8",
+    "bytes": 13377696,
+    "scannerSource": "golang.org/x/vuln@v1.9.0; see P6E-govuln-tool-source.json",
+    "scannerSha256": "958af5d85e9e61a66b1c5daa92aa4012468e2e2f5e71ce6935b44bf930e85d55",
+    "command": "govulncheck -mode=binary -show=verbose <exact-exported-/homepage-api>",
+    "scannerExit": 3,
+    "file": "P6E-govuln-api-candidate-binary.txt",
+    "reportSha256": "ac13058eac45662073ed3f0f5ef25af9301dd4eed033e03fcc55921744f009ec"
+  },
+  "completedAt": "2026-10-28T11:03:40.241Z",
+  "evidenceNormalization": "UTF-8 LF line endings before hashing; tool output content otherwise preserved",
+  "previousToolAttempt": {
+    "result": "TOOL_FAILED_NOT_A_PASS",
+    "exitCode": 1,
+    "file": "P6E-api-candidate-scout-first-attempt.txt",
+    "sha256": "9a11923ac600a89d5811e227ca7c9cba31877efb2f686634602c4b40868dfbcc"
+  }
+}

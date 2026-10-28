@@ -1,0 +1,8 @@
+**
+!backend
+!backend/**
+backend/.tmp
+backend/**/.cache
+backend/**/*.sqlite*
+backend/**/*.key
+backend/**/*.pem

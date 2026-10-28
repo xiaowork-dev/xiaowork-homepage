@@ -1,0 +1,29 @@
+# github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance
+internal/maintenance/backup.go:23:2: could not import github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn (open : no such file or directory)
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance [build failed]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+fork/exec /tmp/go-build3145257654/b267/authn.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	0.005s
+fork/exec /tmp/go-build3145257654/b278/contentdata.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.005s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+fork/exec /tmp/go-build3145257654/b281/devtls.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.004s
+fork/exec /tmp/go-build3145257654/b284/httpapi.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	0.207s
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance [build failed]
+fork/exec /tmp/go-build3145257654/b288/mediautils.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.206s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+fork/exec /tmp/go-build3145257654/b291/publishfs.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.226s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+fork/exec /tmp/go-build3145257654/b294/publishworker.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	0.206s
+fork/exec /tmp/go-build3145257654/b296/storagehealth.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.206s
+fork/exec /tmp/go-build3145257654/b298/store.test: permission denied
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.206s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]
+FAIL

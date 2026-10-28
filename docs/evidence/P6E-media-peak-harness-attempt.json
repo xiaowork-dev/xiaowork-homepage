@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28T10:05:31.061Z",
+  "project": "xiaowork-homepage-v11-p6e-e2e",
+  "origin": "https://localhost:3447",
+  "fixture": "Locally generated low-entropy 5000 x 5000 PNG; not a project screenshot",
+  "limitations": "Docker one-second sampled memory includes cache; not a proof of absolute peak or all 25M-pixel inputs",
+  "tlsVerificationDisabled": false,
+  "samples": [],
+  "result": "FAIL",
+  "error": "locator.fill: Error: strict mode violation: getByLabel('管理员账户', { exact: true }) resolved to 2 elements:\n    1) <input required=\"\" maxlength=\"80\" name=\"username\" autocomplete=\"username\"/> aka getByRole('textbox', { name: '管理员账户' })\n    2) <input required=\"\" maxlength=\"80\" name=\"username\" autocomplete=\"username\"/> aka getByLabel('登录已失效，保留当前表单').getByLabel('管理员账户')\n\nCall log:\n\u001b[2m  - waiting for getByLabel('管理员账户', { exact: true })\u001b[22m\n"
+}
