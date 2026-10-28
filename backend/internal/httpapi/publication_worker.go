@@ -389,7 +389,10 @@ func (a *App) workerResult(w http.ResponseWriter, r *http.Request) {
 	}
 	switch status {
 	case "succeeded":
-		_, e = tx.ExecContext(r.Context(), `UPDATE publish_jobs SET status='succeeded',phase=NULL,completed_at=?,reconciled_release_id=?,reconciled_at=?,reconciliation_receipt_sha256=? WHERE id=? AND status='reconciling'`, now, j.ReleaseID, now, proof, j.ID)
+		// These fields describe the current unresolved result, not its audit
+		// history. Clear them atomically with verified success after recovery;
+		// prior failure audit events remain immutable in the same transaction.
+		_, e = tx.ExecContext(r.Context(), `UPDATE publish_jobs SET status='succeeded',phase=NULL,error_code=NULL,error_summary=NULL,completed_at=?,reconciled_release_id=?,reconciled_at=?,reconciliation_receipt_sha256=? WHERE id=? AND status='reconciling'`, now, j.ReleaseID, now, proof, j.ID)
 	case "failed":
 		_, e = tx.ExecContext(r.Context(), `UPDATE publish_jobs SET status='failed',phase=NULL,completed_at=?,error_code=?,error_summary=? WHERE id=? AND status='reconciling'`, now, code, summary, j.ID)
 	default:

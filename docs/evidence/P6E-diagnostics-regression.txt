@@ -1,0 +1,19 @@
+=== RUN   TestPublicationRecoverySuccessAtomicallyClearsOnlyCurrentDiagnostics
+    publication_recovery_diagnostics_linux_test.go:49: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:49: HTTP POST /auth/login expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:50: HTTP POST /auth/reauth expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:50: HTTP POST /publish-jobs expected=202 actual=202
+    publication_recovery_diagnostics_linux_test.go:108: HTTP GET /jobs/job_772dfcda07b8c3a483d3e0686e57d382 expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:108: HTTP GET /jobs/job_772dfcda07b8c3a483d3e0686e57d382 expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:150: HTTP GET /jobs/job_772dfcda07b8c3a483d3e0686e57d382 expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:160: two real HTTP503 proof failures -> same-task UDS reclaim -> real HTTP proof success; SQLite success/errorNULL atomic trigger passed; HTTPS succeeded/error:null/activeVerified:true; two failure audits retained plus one success; duplicate result rejected
+--- PASS: TestPublicationRecoverySuccessAtomicallyClearsOnlyCurrentDiagnostics (0.79s)
+=== RUN   TestPublicationTerminalFailureRetainsDiagnosticsAndAudit
+    publication_recovery_diagnostics_linux_test.go:164: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:164: HTTP POST /auth/login expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:165: HTTP POST /preview-jobs expected=202 actual=202
+    publication_recovery_diagnostics_linux_test.go:186: HTTP GET /jobs/job_b4837cf2b42e1b5fd63d66b6f962fe4a expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:191: actual UDS final failure -> DB/API failed+sanitized error retained; duplicate success rejected; original failure audit preserved
+--- PASS: TestPublicationTerminalFailureRetainsDiagnosticsAndAudit (0.38s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	1.194s
