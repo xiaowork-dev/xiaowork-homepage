@@ -20,12 +20,15 @@ func main() {
 }
 func run() error {
 	if len(os.Args) < 2 {
-		return errors.New("usage: homepage-maintenance inspect|backup|verify|restore|compatible [flags]")
+		return errors.New("usage: homepage-maintenance inspect|backup|verify|restore|compatible|inspect-current|repair-current [flags]")
 	}
 	f := flag.NewFlagSet(os.Args[1], flag.ContinueOnError)
 	source := f.String("source", "/source", "fixed mounted data root")
 	target := f.String("target", "/backup/set", "new destination")
 	schema := f.Int("schema", 0, "expected database schema")
+	member := f.String("member", "", "one exact redundant current.next member")
+	plan := f.String("plan-sha256", "", "previously inspected maintenance plan digest")
+	reason := f.String("reason", "", "non-secret operator audit reason")
 	if err := f.Parse(os.Args[2:]); err != nil {
 		return err
 	}
@@ -48,6 +51,10 @@ func run() error {
 	case "compatible":
 		err = maintenance.Compatible(*schema)
 		value = map[string]bool{"compatible": err == nil}
+	case "inspect-current":
+		value, err = maintenance.InspectCurrentRepair(ctx, *source)
+	case "repair-current":
+		value, err = maintenance.RepairCurrent(ctx, *source, *member, *plan, *reason)
 	case "secret-status":
 		var ready bool
 		ready, err = maintenance.SecretStatus(*source)

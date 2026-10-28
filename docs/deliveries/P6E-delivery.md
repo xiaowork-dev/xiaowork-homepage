@@ -6,6 +6,12 @@
 
 ## 1. 运行版本与范围
 
+### 最终闭环实施边界（本轮追加）
+
+本轮保留以下历史证据，新增受审的残留链接离线修复、跨源码停写逻辑摘要和完整HTTP资源探针。先通过源码专项，再以该提交的完整Git archive冻结六角色源码；选用包含aa23376诊断修复及上述运维修复的同一提交，避免混用旧组与后继单API。精确SHA、构建参数、镜像ID及schema由`P6E-final-runtime-manifest.json`实测记录。
+
+此源码冻结点尚不表示最终发行组通过：六角色重建、最终组端到端、故障、跨源码生命周期、残留修复及备份恢复需要取得新的独立证据。完成后在本文件更新结果；未通过项仍为阻塞。生产gate保持关闭。
+
 本轮六个正式运行角色的冻结源码为 **`be5c96857c5a7098a9b8f80931ced47d0efcab89`**，数据库schema3。实际完整镜像ID、源码标签与扫描见 [镜像审计](../evidence/P6E-image-audit.json)，运行权限见 [容器边界](../evidence/P6E-runtime-boundaries.json)。Docker Desktop本地Linux环境与真实Nuxt/Vue/Go/SQLite运行，非生产部署。
 
 后继API诊断修复源码为 **`aa23376bb508dad215e644c808dd2e9461d7170a`**；[修复专项](P6E-reconciliation-diagnostics.md)记录红绿测试与Linux全包回归。最终文档、主机运维工具和测试提交另行正常提交，不把它冒称这些冻结镜像的源码。故障专用镜像继承冻结构建器，另外编译`p6e_fault && linux`固定checkpoint；普通API/Worker/维护镜像无此tag，Docker上下文也排除故障入口。没有公网、环境变量或后台任务可调用的注入接口。

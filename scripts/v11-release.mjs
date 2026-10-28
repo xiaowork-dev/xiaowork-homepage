@@ -233,21 +233,44 @@ function start(config, first) {
 function stopWriters(config) {
   compose(config, ['stop', '--timeout', '40', 'worker', 'api', 'api-init'])
 }
-function publicProbe(config) {
-  const evidence = []
-  // Only loopback is ever requested. Host selects the production-like vhost.
-  for (const route of ['/', '/projects', '/about', '/health.json', '/admin/']) {
-    const data = execFileSync(
-      process.execPath,
-      [
-        '-e',
-        `fetch(${JSON.stringify(`http://127.0.0.1:${config.httpPort}${route}`)},{headers:{Host:'xiaoworks.com'}}).then(async r=>{if(!r.ok)process.exit(2);console.log(JSON.stringify({status:r.status,bytes:(await r.arrayBuffer()).byteLength}))}).catch(()=>process.exit(3))`,
-      ],
-      { encoding: 'utf8', timeout: 10000 },
-    ).trim()
-    evidence.push({ route, ...JSON.parse(data) })
+function publicProbe(config, backupDirectory) {
+  const state = path.join(root, '.v11-deploy', config.project)
+  const plan = {
+    topology: config.topology,
+    httpPort: config.httpPort,
+    httpsPort: config.httpsPort,
   }
-  return evidence
+  if (config.topology === 'simulation') {
+    plan.caFile = path.join(state, 'probe-ca.crt')
+    const init = compose(config, ['ps', '-a', '-q', 'api-init'])
+    assert.match(init, /^[a-f0-9]{12,64}$/)
+    docker(['cp', `${init}:/authority/ca.crt`, plan.caFile])
+  }
+  if (backupDirectory) {
+    const manifest = json(path.join(backupDirectory, 'content', 'manifest.json'))
+    if (manifest.state.activeRelease) {
+      assert.match(manifest.state.activeRelease, /^rel_[a-f0-9]{32}$/)
+      plan.artifact = json(
+        path.join(
+          backupDirectory,
+          'content',
+          'publications',
+          'releases',
+          manifest.state.activeRelease,
+          'manifest.json',
+        ),
+      )
+    }
+  }
+  const file = path.join(state, 'probe-plan.json')
+  fs.writeFileSync(file, JSON.stringify(plan), { mode: 0o600 })
+  return JSON.parse(
+    execFileSync(process.execPath, [path.join(root, 'scripts/v11-release-probe.mjs'), file], {
+      encoding: 'utf8',
+      timeout: 120000,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }),
+  )
 }
 try {
   localEngine()
@@ -395,8 +418,10 @@ try {
       try {
         const db = inspectProject(project, current.spec.images.maintenance)
         assert.equal(db.schema, current.spec.schema)
+        let candidateBaseline
         if (replacement)
           tool(replacement.images.maintenance, 'compatible', [], ['-schema', String(db.schema)])
+        if (replacement) candidateBaseline = inspectProject(project, replacement.images.maintenance)
         const destination = path.resolve(
           options.backup ?? path.join(root, '.cache', 'v11-backups', `${project}-${Date.now()}`),
         )
@@ -438,7 +463,25 @@ try {
         }
         try {
           const containers = start(next, false)
-          const http = publicProbe(next)
+          // A same-schema code transition is permitted only when both old and
+          // new offline checkers accept the retained immutable content and all
+          // recorded logical data remains unchanged. No schema migration or
+          // cross-source content-rollback permission is inferred from this.
+          stopWriters(next)
+          const candidateState = inspectProject(project, next.spec.images.maintenance)
+          assert.deepEqual(
+            candidateState,
+            candidateBaseline,
+            'Candidate changed retained data during startup; automatic service acceptance is refused',
+          )
+          const priorReaderState = inspectProject(project, current.spec.images.maintenance)
+          assert.deepEqual(
+            priorReaderState,
+            backup.state,
+            'Prior checker cannot accept the retained data after candidate startup',
+          )
+          start(next, false)
+          const http = publicProbe(next, destination)
           save(previousFile, prior)
           save(currentFile, {
             ...next,
@@ -464,6 +507,17 @@ try {
             stopWriters(next)
             const observed = inspectProject(project, current.spec.images.maintenance)
             assert.equal(observed.schema, current.spec.schema)
+            assert.deepEqual(
+              observed,
+              backup.state,
+              'Candidate data differs from the pre-update backup; manual recovery is required',
+            )
+            if (candidateBaseline)
+              assert.deepEqual(
+                inspectProject(project, next.spec.images.maintenance),
+                candidateBaseline,
+                'Candidate logical data differs; manual recovery is required',
+              )
             const old = configuration(
               project,
               current.spec,
@@ -475,7 +529,7 @@ try {
               current.publish,
             )
             start(old, false)
-            publicProbe(old)
+            publicProbe(old, destination)
             // Saving the candidate metadata may have partially succeeded.
             // A recovered old service must also have the old current record.
             save(currentFile, prior)

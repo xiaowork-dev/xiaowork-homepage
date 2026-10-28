@@ -44,6 +44,7 @@ type State struct {
 	ActiveRelease     string   `json:"activeRelease"`
 	Sources           []string `json:"sources"`
 	Builders          []string `json:"builders"`
+	ContentSHA256     string   `json:"contentSha256,omitempty"`
 }
 type Manifest struct {
 	Format        int    `json:"format"`
@@ -74,7 +75,14 @@ func openReadOnly(path string) (*sql.DB, error) {
 // then checks every upload and immutable release, including historical previews.
 // The caller must have stopped all database/upload/publication writers.
 func Inspect(ctx context.Context, root string) (State, error) {
+	return inspectWithRepair(ctx, root, "")
+}
+
+func inspectWithRepair(ctx context.Context, root, allowedRepair string) (State, error) {
 	var result State
+	if err := checkRepairJournal(root, allowedRepair); err != nil {
+		return result, err
+	}
 	db, err := openReadOnly(filepath.Join(root, "db", "content.sqlite"))
 	if err != nil {
 		return result, err
@@ -84,6 +92,10 @@ func Inspect(ctx context.Context, root string) (State, error) {
 		return result, err
 	}
 	result.Schema = store.SchemaVersion
+	result.ContentSHA256, err = ContentSHA256(ctx, db)
+	if err != nil {
+		return result, err
+	}
 	var integrity string
 	if err = db.QueryRowContext(ctx, "PRAGMA integrity_check").Scan(&integrity); err != nil || integrity != "ok" {
 		return result, errors.New("SQLite integrity check failed")
