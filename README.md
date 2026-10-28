@@ -1,6 +1,6 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-E 已验证本地预览/发布/内容恢复、全新空卷一致性备份恢复、媒体容量和镜像硬化，并补充真实容器故障验收。完整生产门槛仍未通过，正式发布保持关闭，仅能显式开启独立 localhost HTTPS 测试。保留 V1.0 视觉与静态架构，未连接或修改生产。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-E 本轮候选运行源码为 `817aa533741bdd5de23f322fa5e5171442cb28a9`，六角色统一重建，schema3。正常链、十二真实故障、独立空卷备份恢复和真正跨源码升级回退通过；残留链接专项被只读SQLite问题阻塞，阶段仍部分完成。正式发布保持关闭，仅能显式开启独立 localhost HTTPS 测试。保留 V1.0 视觉与静态架构，未连接或修改生产。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
 - [P6-D 交付与验收边界](docs/deliveries/P6D-delivery.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)、[故障矩阵](docs/P6D-FAULT-TESTS.md)
@@ -8,6 +8,7 @@ V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真�
 - [实际 API 使用说明与 P6-C 接口](docs/V1.1-API-USAGE.md)、[迁移](docs/V1.1-DATA-MIGRATIONS.md)、[图片](docs/V1.1-MEDIA.md)、[安全验收](docs/P6B-SECURITY-TESTS.md)
 - [P6-E 交付与剩余门槛](docs/deliveries/P6E-delivery.md)、[真实故障矩阵](docs/P6E-FAULT-TESTS.md)、[备份恢复](docs/V1.1-BACKUP-RESTORE.md)
 - [V1.1 正式拓扑方案](docs/V1.1-PRODUCTION-PLAN.md)、[独立更新与代码回退](docs/V1.1-RELEASE-OPERATIONS.md)、[安全验收清单](docs/V1.1-SECURITY-ACCEPTANCE.md)、[生产发布清单](docs/V1.1-PRODUCTION-CHECKLIST.md)
+- [最终六角色发行身份](docs/P6E-FINAL-RELEASE.md)、[跨源码验收](docs/P6E-CROSS-SOURCE-ACCEPTANCE.md)、[残留链接修复](docs/V1.1-CURRENT-REPAIR.md)、[异地备份与告警方案](docs/V1.1-BACKUP-OPERATIONS.md)
 
 ## V1.1 隔离开发环境
 
@@ -31,7 +32,7 @@ V1.1 使用六个受审镜像、schema3 和独立 `.v11-deploy/` 状态；新脚
 
 上传限制为原图10 MiB、multipart11 MiB、8192单边/2500万像素、重编码派生图16 MiB；单快照媒体总量256 MiB。发布页显示图片/数据库/发布目录容量；余量少于512 MiB或2%、无法核实余量时拒绝新任务，少于1 GiB或10%警告。没有自动物理GC或总磁盘配额，历史成功资源继续保留。
 
-本轮十二项真实故障安全行为通过，恢复成功保留旧诊断的问题另有源码修复、真实Nuxt故障复跑及单API候选审计。生命周期实测为**同源码、同schema的镜像替换和代码镜像回退**；不同功能源码版本升级、跨schema迁移及后继完整六角色镜像验收未完成。崩溃留下额外 `current.next.*` 链接时，维护备份保守拒绝，仍需人工核对修复。完整证据与限制以P6-E交付为准，当前不能正式上线。
+最终组六角色使用精确镜像ID，真实跨源码 be5c→817→be5c 主矩阵12项及新内容专项4项通过，包括候选启动失败、公开503、后台资源缺失、图片错误字节、schema拒绝、未知状态锁与人工恢复。跨schema自动迁移和降级未实现。`current.next.*` 单对象修复在真实只读SQLite计划阶段失败并安全停止，原库/链接/current保持，修复后备份恢复更新未执行；不得批量删链接绕过检查。[根因证据](docs/evidence/P6E-final-current-readonly-probe.json)。817组尚不能作为全部通过的生产版本。异地目标、密钥/告警责任、RPO/RTO和残余风险仍需确认；正式origin发布授权策略尚未实现，不能通过localhost测试gate绕过上线门槛。
 
 ## V1.0 当前状态
 
@@ -148,7 +149,7 @@ bash rollback.sh v1.0.0-p5a
 
 当前 V1.1 本地分支：保留 P6-D 的 node-forge 1.4.1 兼容修复，官方 npm gitHead、版本 tag 和 lock integrity 已重新核对。2026-10-28 P6-E 根审计为 **7 low / 0 high / 0 critical**，来自 deepmerge 4.3.1 构建链；admin 为0。未采用强制不兼容升级。node-forge 旧公告仍未登记 first_patched_version，影响范围为 <=1.4.0，不能将当前审计结果等同完整安全认证。[npm审计](docs/evidence/P6E-npm-audit.json)、[来源](docs/evidence/P6E-node-forge-source.json)。
 
-Go 源码扫描为 symbol0/imported0/module1：未导入的 openpgp 存在 `GO-2026-5932` 模块级告警，尚无修复版本。去符号二进制扫描精度不足，保留其保守告警，不伪装为零风险。冻结be5c六角色基线及后继单API候选扫描均无high/critical/medium；Worker仍有deepmerge low，musl的工具告警与Alpine官方修复状态存在差异，API/维护镜像有openpgp未定级模块告警。[完整安全结论](docs/V1.1-SECURITY-ACCEPTANCE.md)。固定依赖、离线Worker和权限限制缩小攻击面，不能替代正式环境安全验收。
+最终六角色Scout均0high/critical/medium，仍保留Worker deepmerge low、四个Alpine角色musl未定级和API/维护镜像openpgp未定级。musl实际3.24.3/r3，官方分支的同一安全补丁证实r3/r6为分支修复号差异，原报告不抑制。去符号Go二进制扫描退出3/0/3；精确冻结Linux源码扫描exit0，无openpgp导入，但`GO-2026-5932`模块告警仍无修复。根7low/admin0、node-forge1.4.1与精确官方integrity一致。复核日期2026-10-28，[最终风险处置](docs/evidence/P6E-final-risk-disposition.json)、[安全验收](docs/V1.1-SECURITY-ACCEPTANCE.md)。固定依赖、离线Worker和权限限制缩小攻击面，不能替代正式环境验收或用户风险确认。
 
 ## 性能复测
 
@@ -156,4 +157,4 @@ Go 源码扫描为 symbol0/imported0/module1：未导入的 openpgp 存在 `GO-2
 
 Lighthouse 的 TBT 不能替代真实用户 INP。域名和真实访问数据尚缺时，INP/CrUX 为上线后待测。系统字体没有远程字体请求；主题恢复脚本保留同步加载以避免错误主题闪烁。静态容器提供 gzip、哈希资源一年缓存、图片一天缓存和页面重新验证，部署与缓存失效规则见部署指南。
 
-P6-E 对实际发布静态页使用 Lighthouse13.6.0复测：首页手机三次performance92/98/95，中位95，LCP中位1.12秒、CLS0、TBT中位195毫秒；项目页91、关于页93，首页桌面100。六次accessibility/best-practices/SEO均100。数据来自本机模拟限速和合成验收内容，没有可比的P6-D基线，也未测真实用户INP。[原始报告与限制](docs/evidence/P6E-performance-summary.json)。
+P6-E 最终组六次Lighthouse13.6.0复测：首页手机performance87/99/93，中位93，LCP中位1111.716ms、CLS0、TBT中位321.22435ms；项目92、关于99、首页桌面100。六次accessibility/best-practices/SEO均100，CPU校准与资源链警告保留。数据来自本机模拟限速和合成验收内容，没有可比前后基线，也未测真实用户INP。[最终报告](docs/evidence/P6E-final-performance-summary.json)。最终组Firefox/WebKit完整管理、Safari、真实手机与完整渗透未验收，历史结果不扩大为最终组通过。

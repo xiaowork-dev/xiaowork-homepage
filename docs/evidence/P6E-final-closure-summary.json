@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-28T14:21:22.077Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "result": "PARTIAL_BLOCKED_CURRENT_REPAIR",
+  "imageIds": {
+    "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+    "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+    "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+    "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+    "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+    "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+  },
+  "evidence": [
+    {
+      "file": "P6E-final-admin-browser.json",
+      "result": "PASS",
+      "cases": 24,
+      "sha256": "e7250eeb81ee2d9d8ad136df041a1b0bb1e2d33707c46152518da2255c7efc9c"
+    },
+    {
+      "file": "P6E-final-publishing-browser.json",
+      "result": "PASS",
+      "cases": 10,
+      "sha256": "67b33c3a9a5b1607c56fec8551f1b7158978c10736980f2f365d23557a34fbb4"
+    },
+    {
+      "file": "P6E-final-public-interactions.json",
+      "result": "PASS",
+      "cases": 5,
+      "sha256": "505ed3f81418f53a85d3d6e4af80163076d4f1f3b062ed6240b4c1a550bab92a"
+    },
+    {
+      "file": "P6E-final-backup-recovery.json",
+      "result": "PASS",
+      "cases": 9,
+      "sha256": "e5ffb04a7cee73d83d65b64b0f2662e93d246f9d39536b58ba9de30d0526d4c1"
+    },
+    {
+      "file": "P6E-cross-source-final.json",
+      "result": "PASS",
+      "cases": 12,
+      "sha256": "b514357eae968b3eb609e18e9d5f3925675e81c1566c07a93485a688e8341c3a"
+    },
+    {
+      "file": "P6E-cross-source-new-content.json",
+      "result": "PASS",
+      "cases": 4,
+      "sha256": "4cab0933d79bf39bab3c62563214a4627fe7eb1dfc91d122a0587b461d00720e"
+    },
+    {
+      "file": "P6E-cross-source-retention.json",
+      "result": "PASS",
+      "sha256": "343d0288c1d218b8fc450ea98aaab6f119639e94b68dd85ae8d9f9a3bec969e8"
+    }
+  ],
+  "blockingAcceptance": {
+    "file": "P6E-final-current-repair.json",
+    "result": "FAIL",
+    "diagnosis": "P6E-final-current-readonly-probe.json",
+    "remaining": "Read-only plan, audited link repair, then post-repair backup/restore/update not passed on final images."
+  },
+  "go": {
+    "passedTestEvents": 200,
+    "failedEvents": 0,
+    "skippedTestEvents": 0
+  },
+  "frozenRuntimePathsUnchanged": [
+    "backend",
+    "admin",
+    "app",
+    "shared",
+    "server",
+    "public",
+    "deploy",
+    "Dockerfile",
+    "compose.admin-publish.yaml",
+    "nuxt.config.ts",
+    "package.json",
+    "package-lock.json",
+    "scripts/v11-release.mjs",
+    "scripts/v11-release-probe.mjs",
+    "scripts/v11-current-repair.mjs",
+    "scripts/v11-maintenance.mjs"
+  ],
+  "productionTouched": false,
+  "productionPublishingEnabled": false,
+  "limitations": [
+    "This summary does not replace raw requests, failure checkpoints, manual intervention or scanner findings.",
+    "No production gate, deployment authorization, offsite backup or external notification service is established.",
+    "Final-group Firefox/WebKit admin, Safari, physical mobile, penetration and host power-loss tests are not claimed."
+  ]
+}

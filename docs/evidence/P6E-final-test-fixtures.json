@@ -1,0 +1,26 @@
+{
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "results": [
+    {
+      "target": "api-test",
+      "tag": "xiaowork-homepage-api:p6e-closure-fault",
+      "id": "sha256:38e62ee30bd0750baa84b35ef3a3ee30bcdd31bcb2dd44cd1fb95d04b3b09a5e",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "finalRuntime": false
+    },
+    {
+      "target": "worker-test",
+      "tag": "xiaowork-homepage-worker:p6e-closure-fault",
+      "id": "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "finalRuntime": false
+    },
+    {
+      "target": "data-test",
+      "tag": "xiaowork-homepage-fault-data:p6e-closure-test",
+      "id": "sha256:df5eb4f09d73990e9993c56d88c20ab567221b6d74411e67843145ebf4de25e9",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "finalRuntime": false
+    }
+  ]
+}

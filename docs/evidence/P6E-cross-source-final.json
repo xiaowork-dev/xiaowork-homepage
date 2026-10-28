@@ -1,0 +1,381 @@
+{
+  "date": "2026-10-28T13:09:32.236Z",
+  "project": "xiaowork-homepage-v11-p6e-cross-source",
+  "scope": "Independent restored local test volumes only; no production access",
+  "schemaMigration": false,
+  "tlsVerificationDisabled": false,
+  "credentialsRecorded": false,
+  "cases": [
+    {
+      "name": "old reviewed source started from independent new restored volumes; trusted HTTPS administrator and uploaded image work",
+      "result": "PASS"
+    },
+    {
+      "name": "real six-role different-source same-schema upgrade retained complete draft, private image and immutable public HTML/SEO",
+      "result": "PASS"
+    },
+    {
+      "name": "real code rollback restored all previous image identities; database and content did not time-travel",
+      "result": "PASS"
+    },
+    {
+      "name": "startup-fails: real derivative candidate refused and old service plus database/HTTP/images reverified",
+      "result": "PASS",
+      "detail": {
+        "fixture": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\startup-fails\\release.json"
+      }
+    },
+    {
+      "name": "public-fails: real derivative candidate refused and old service plus database/HTTP/images reverified",
+      "result": "PASS",
+      "detail": {
+        "fixture": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\public-fails\\release.json"
+      }
+    },
+    {
+      "name": "admin-assets-fail: real derivative candidate refused and old service plus database/HTTP/images reverified",
+      "result": "PASS",
+      "detail": {
+        "fixture": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\admin-assets-fail\\release.json"
+      }
+    },
+    {
+      "name": "image-bytes-fail: real derivative candidate refused and old service plus database/HTTP/images reverified",
+      "result": "PASS",
+      "detail": {
+        "fixture": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\image-bytes-fail\\release.json"
+      }
+    },
+    {
+      "name": "schema4 update and rollback both refused before candidate replacement; no database migration or downgrade",
+      "result": "PASS"
+    },
+    {
+      "name": "preexisting operation lock refused subsequent update and remained intact",
+      "result": "PASS"
+    },
+    {
+      "name": "unconfirmed candidate writer state preserves manual-recovery record and blocks repeated update",
+      "result": "PASS"
+    },
+    {
+      "name": "explicit operator recovered old services only after old/new database inspection and complete HTTP/private-image recheck",
+      "result": "PASS"
+    },
+    {
+      "name": "a subsequent genuine cross-source update succeeds only after reviewed recovery removes its own guard",
+      "result": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\final-release.json"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "rollback",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\startup-fails\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\public-fails\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\admin-assets-fail\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\image-bytes-fail\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\schema4.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "rollback",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\final-release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "--import",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\stop-failure.mjs",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\startup-fails\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "--import",
+        "file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/.cache/p6e-cross-source/stop-failure.mjs",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\startup-fails\\release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\final-release.json"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "update",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source",
+        "--manifest",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-cross-source\\final-release.json"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/v11-release.mjs",
+        "stop",
+        "--project",
+        "xiaowork-homepage-v11-p6e-cross-source"
+      ],
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "startup-fails",
+      "role": "gateway",
+      "id": "sha256:95d703afbc6b06c93a15f84c084b7becc6348a624c39ff84774945d815388077",
+      "base": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "testOnly": true
+    },
+    {
+      "name": "public-fails",
+      "role": "static",
+      "id": "sha256:299f239cc08c8d54d880a52ee407639bd77eaae42e647369bd58fb2085dcc771",
+      "base": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "testOnly": true
+    },
+    {
+      "name": "admin-assets-fail",
+      "role": "gateway",
+      "id": "sha256:b74bf23218b0615cbdb5e9ad5f6edb7cfb6b7b354a56d5956cf5acc00866f7a9",
+      "base": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "testOnly": true
+    },
+    {
+      "name": "image-bytes-fail",
+      "role": "static",
+      "id": "sha256:615730a580c4efc94502208650a1cbb9d41f93512a220e7ff19174f124a7bd18",
+      "base": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "testOnly": true
+    }
+  ],
+  "resumedAfterHarnessFailure": "P6E-cross-source-harness-import-before.json",
+  "previous": {
+    "format": 1,
+    "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+    "schema": 3,
+    "images": {
+      "api": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "worker": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "gateway": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+      "frontend": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+      "static": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+      "maintenance": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa"
+    }
+  },
+  "final": {
+    "format": 1,
+    "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+    "schema": 3,
+    "images": {
+      "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+      "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+    }
+  },
+  "sourceDiff": "backend/cmd/homepage-maintenance/main.go           |   9 +-\n backend/cmd/p6e-fault-data/main.go                 |  55 +++\n backend/cmd/p6e-fault-worker/main.go               |  83 ++++\n backend/internal/httpapi/p6e_fault_linux.go        |  28 ++\n .../publication_recovery_diagnostics_linux_test.go | 192 ++++++++\n backend/internal/httpapi/publication_worker.go     |   5 +-\n backend/internal/maintenance/backup.go             |  12 +\n backend/internal/maintenance/content_digest.go     |  56 +++\n .../internal/maintenance/content_digest_test.go    |  37 ++\n backend/internal/maintenance/current_repair.go     | 500 +++++++++++++++++++++\n .../maintenance/current_repair_linux_test.go       | 213 +++++++++\n .../maintenance/current_repair_sync_linux.go       |  14 +\n .../maintenance/current_repair_sync_other.go       |  12 +\n scripts/v11-release.mjs                            | 159 +++++--\n 14 files changed, 1344 insertions(+), 31 deletions(-)",
+  "restored": {
+    "schema": 3,
+    "workspaceRevision": 5,
+    "administrators": 1,
+    "projects": 3,
+    "uploads": 1,
+    "snapshots": 3,
+    "jobs": 4,
+    "releases": 3,
+    "unfinished": 0,
+    "activeRelease": "rel_da795e493c5c6546c20ca190428ed9fc",
+    "sources": [
+      "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+    ],
+    "builders": [
+      "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627"
+    ]
+  },
+  "preparedBaselineResume": true,
+  "uncertain": {
+    "guard": {
+      "at": "2026-10-28T13:11:06.130Z",
+      "phase": "manual-recovery-required",
+      "reason": "Candidate failed; stopping writers or verifying the previous service did not complete",
+      "backup": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\v11-backups\\xiaowork-homepage-v11-p6e-cross-source-1793193031579",
+      "previous": {
+        "format": 1,
+        "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+        "schema": 3,
+        "images": {
+          "api": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+          "worker": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+          "gateway": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+          "frontend": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+          "static": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+          "maintenance": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa"
+        }
+      },
+      "candidate": {
+        "format": 1,
+        "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+        "schema": 3,
+        "images": {
+          "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+          "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+          "gateway": "sha256:95d703afbc6b06c93a15f84c084b7becc6348a624c39ff84774945d815388077",
+          "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+          "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+          "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+        }
+      }
+    },
+    "method": "Test-only host preload rejects exact second writer-stop after a real broken candidate; not a complete Docker daemon outage or physical DB corruption",
+    "publicDuringFailure": "Unavailable while broken gateway is retained; no zero-downtime claim"
+  },
+  "result": "PASS",
+  "limitations": [
+    "Schema3 only; no automatic cross-schema migration or downgrade.",
+    "Historical content rollback stays restricted to the source and Worker identity that built that content. Code rollback does not grant cross-source content rollback.",
+    "Host failure preload tests explicit writer-state uncertainty, not a physical SQLite corruption or total Docker daemon failure.",
+    "Candidate replacement may briefly interrupt public and management HTTP."
+  ],
+  "retention": {
+    "stopped": true,
+    "volumesRetained": true,
+    "imagesRetained": true
+  }
+}

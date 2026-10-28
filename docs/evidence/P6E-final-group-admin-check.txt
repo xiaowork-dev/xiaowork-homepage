@@ -1,0 +1,68 @@
+
+> xiaowork-homepage-admin@1.1.0-p6c check
+> npm run lint && npm run typecheck && npm test
+
+
+> xiaowork-homepage-admin@1.1.0-p6c lint
+> eslint . --max-warnings 0
+
+
+> xiaowork-homepage-admin@1.1.0-p6c typecheck
+> vue-tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.19.1 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+
+> xiaowork-homepage-admin@1.1.0-p6c test
+> node --test test/*.test.mjs
+
+✔ initial missing session is login state rather than a false expiry warning (41.1819ms)
+✔ login always requests a fresh challenge and keeps credentials only in memory (3.1805ms)
+✔ 401 clears authentication but preserves the loaded draft and form baseline (2.2105ms)
+✔ confirmed logout clears cached private state; a network-failed logout does not claim success (1.6201ms)
+✔ a delayed workspace response cannot repopulate cached data after logout (0.8472ms)
+✔ an older workspace read completing last cannot replace a newer read in the same session (1.3398ms)
+✔ revision conflicts leave the shared draft untouched and are surfaced to caller (1.718ms)
+✔ API and media destinations reject alternate origins, traversal and ambiguous paths (1.7636ms)
+✔ reads use only same-origin cookies, no-store and no redirects (34.5587ms)
+✔ writes carry explicit revision, CSRF and stable caller-owned idempotency key (4.6777ms)
+✔ 409 preserves conflict metadata and never silently retries (0.9259ms)
+✔ 401 invalidates in-memory CSRF once and later writes cannot proceed anonymously (0.8276ms)
+✔ stale 401 from an old request cannot revoke a newly accepted login (0.5207ms)
+✔ wrong current password preserves the session while an expired session still invalidates it (1.2174ms)
+✔ 422, 428 and 503 preserve server Chinese messages without reporting a successful write (1.3929ms)
+✔ network failures, timeouts and malformed responses have safe Chinese errors (7.137ms)
+✔ empty 204 responses do not attempt to parse JSON (0.5383ms)
+✔ upload preflight refuses unsupported types, dangerous names and oversize bytes (0.4218ms)
+✔ XHR upload sends only one file and reports 100 only after validated response (2.2639ms)
+✔ upload without a workspace revision returns 428 before creating a transport (0.4076ms)
+✔ XHR upload rejects an off-origin content URL even with status 201 (0.5622ms)
+✔ 项目编辑DTO保留占位真实性并剔除只读字段 (1.6781ms)
+✔ 排序移动保留完整集合且不就地修改原始基准 (0.3351ms)
+✔ 图片客户端拒绝超大、空文件、未支持格式及伪造声明 (6.4951ms)
+✔ 图片尺寸边界先于上传且解码资源始终释放 (2.1669ms)
+✔ nested form edits become dirty and unrelated workspace refresh never destroys inputs (10.7848ms)
+✔ 409 preserves input and baseline; remote comparison needs explicit approval before reapply (7.1507ms)
+✔ 401 and re-login retain a dirty form and explicitly surface changed remote revision (15.3039ms)
+✔ pending document saves and reloads exclude duplicate or overlapping operations (1.6566ms)
+✔ publication actions default closed and require the explicit isolated backend capability (1.5891ms)
+✔ a complete server review must match the exact reviewed workspace before publishing (0.3882ms)
+✔ preview URLs accept only the exact authenticated same-origin directory (0.28ms)
+✔ confirmation remains bound to the reviewed active release, including the initial null (0.2354ms)
+✔ queued and reconciled results cannot be presented as active publication success (0.3319ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 420.446
+npm notice
+npm notice New major version of npm available! 11.19.1 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

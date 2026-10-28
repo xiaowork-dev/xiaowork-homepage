@@ -1,0 +1,46 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from static.Dockerfile
+#1 transferring dockerfile: 910B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/nginx:1.30.6-alpine
+#2 DONE 0.4s
+
+#3 [internal] load build context
+#3 transferring context: 210B 0.0s done
+#3 DONE 0.2s
+
+#4 [1/5] FROM docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951
+#4 resolve docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951
+#4 resolve docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951 0.2s done
+#4 DONE 0.2s
+
+#5 [2/5] COPY --chmod=644 deploy/harden-nginx.sh /tmp/harden-nginx.sh
+#5 CACHED
+
+#6 [3/5] RUN sh /tmp/harden-nginx.sh && rm /tmp/harden-nginx.sh
+#6 CACHED
+
+#7 [4/5] COPY --chmod=644 deploy/admin-publish/static.conf /etc/nginx/nginx.conf
+#7 DONE 0.3s
+
+#8 [5/5] COPY --chmod=644 deploy/security-headers.conf /etc/nginx/security-headers.conf
+#8 DONE 0.5s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.1s done
+#9 exporting manifest sha256:08a09707a4ece2a7c217768df2442a633c82e9394b5e67e384dfa9bd1892fb20
+#9 exporting manifest sha256:08a09707a4ece2a7c217768df2442a633c82e9394b5e67e384dfa9bd1892fb20 0.2s done
+#9 exporting config sha256:ada8c93fed455502b04e8b6a77beb4897f38459c97caff169eb36123416f58db
+#9 exporting config sha256:ada8c93fed455502b04e8b6a77beb4897f38459c97caff169eb36123416f58db 0.1s done
+#9 exporting attestation manifest sha256:fe4aa4516a046aea57938460a5cf9e947a5f59f6d4dfe8bfc535c972c97d7f2d
+#9 exporting attestation manifest sha256:fe4aa4516a046aea57938460a5cf9e947a5f59f6d4dfe8bfc535c972c97d7f2d 0.2s done
+#9 exporting manifest list sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60
+#9 exporting manifest list sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60 0.2s done
+#9 naming to docker.io/library/xiaowork-homepage-publication-static:p6e-closure-817aa533741b
+#9 naming to docker.io/library/xiaowork-homepage-publication-static:p6e-closure-817aa533741b 0.0s done
+#9 unpacking to docker.io/library/xiaowork-homepage-publication-static:p6e-closure-817aa533741b
+#9 unpacking to docker.io/library/xiaowork-homepage-publication-static:p6e-closure-817aa533741b 0.2s done
+#9 DONE 2.4s

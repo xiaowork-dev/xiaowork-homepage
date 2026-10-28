@@ -7,12 +7,24 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const mode = process.argv[2]
-assert.ok(['admin', 'publishing', 'fault'].includes(mode))
+assert.ok(['admin', 'publishing', 'fault', 'performance', 'security-http'].includes(mode))
 const manifest = JSON.parse(await readFile('docs/evidence/P6E-final-runtime-manifest.json', 'utf8'))
 assert.match(manifest.source, /^[a-f0-9]{40}$/)
 assert.equal(Object.keys(manifest.images).length, 6)
 const cache = path.resolve('.cache/p6e-final-harness')
 await mkdir(cache, { recursive: true })
+if (['performance', 'security-http'].includes(mode)) {
+  let controller = await readFile(`scripts/p6e-${mode}.mjs`, 'utf8')
+  controller = controller
+    .replaceAll('127.0.0.1:3214', '127.0.0.1:3224')
+    .replaceAll('3447', '3457')
+    .replaceAll('.cache/p6e-browser/', '.cache/p6e-closure-browser/')
+    .replaceAll('P6E-', 'P6E-final-')
+  const generated = path.join(cache, mode + '.mjs')
+  await writeFile(generated, controller)
+  execFileSync(process.execPath, [generated], { stdio: 'inherit', timeout: 600000 })
+  process.exit(0)
+}
 const fault = mode === 'fault'
 const originalHelper = fault ? 'p6e-fault-environment.mjs' : 'p6e-browser-environment.mjs'
 let helper = await readFile('scripts/' + originalHelper, 'utf8')
@@ -85,6 +97,12 @@ test = test
   .replaceAll('P6E-admin', 'P6E-final-admin')
   .replaceAll('P6E-faults-', 'P6E-final-faults-')
 if (fault) {
+  // The final API includes the diagnostic cleanup fix: require the stronger
+  // real SQLite/audit assertions that historical baseline runs did not enable.
+  test = test.replace(
+    'if (postfixApi) {\n      assert.equal(job.error',
+    "if (postfixApi || name === 'recovery-fails') {\n      assert.equal(job.error",
+  )
   test = test
     .replaceAll('http://127.0.0.1:3213', 'http://127.0.0.1:3223')
     .replaceAll(

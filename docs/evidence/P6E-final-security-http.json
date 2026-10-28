@@ -1,0 +1,251 @@
+{
+  "date": "2026-10-28T13:06:43.621Z",
+  "origin": "https://localhost:3457",
+  "scope": "Local read-only anonymous routes; explicit CA validation, no TLS bypass",
+  "cases": [
+    {
+      "route": "/admin/",
+      "expected": 200,
+      "actual": 200,
+      "bytes": 639,
+      "sha256": "65b278e1252fdf30d879ae73eb7125a1a7676561c339ccf5e3afdad38857e26d",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/admin/login",
+      "expected": 200,
+      "actual": 200,
+      "bytes": 639,
+      "sha256": "65b278e1252fdf30d879ae73eb7125a1a7676561c339ccf5e3afdad38857e26d",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/admin/projects",
+      "expected": 200,
+      "actual": 200,
+      "bytes": 639,
+      "sha256": "65b278e1252fdf30d879ae73eb7125a1a7676561c339ccf5e3afdad38857e26d",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/admin/publishing",
+      "expected": 200,
+      "actual": 200,
+      "bytes": 639,
+      "sha256": "65b278e1252fdf30d879ae73eb7125a1a7676561c339ccf5e3afdad38857e26d",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/workspace",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "7fa746caff8aa33a4f0e68078a8d62cf3e89cd7b725061956466d6dfe855f8d6",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/dashboard",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "7d5a67169b911d7397076bdabab33ab77e664fe1b9196ac7102a3abd8cc4f75b",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/projects",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "f12d4af0d8d6568e6655c2e7fa87d702d96138152e7a493b547be02d2271926c",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/categories",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "407444c79bd319a698e30bcb4b7e11c0bf6c06e776299ad662de46f217e9440e",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/media",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "e986c784fe7ae9efacfa6495c85e158a2ccd261718212441cf5c916e9a4a591d",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/publishing-status",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "d2339e85b38c277252f477dbb7a4b5bb0027982550ec8e84b9e261b8f0d6058f",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/jobs",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "1d4d54dd0f59ec760f1ed14341a3bdf0a477137b8706714c4566324006b6b2bc",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/api/admin/v1/releases",
+      "expected": 401,
+      "actual": 401,
+      "bytes": 129,
+      "sha256": "d44d4cd7b4dd861428c011255906d1a6d1e0afc4275aadec5e01b039daec4a4e",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/.env",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/.git/config",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/data/content.sqlite",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/uploads/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/publications/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/preview/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/staging/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/activations/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/releases/",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/_releases/rel_6b84d53d64307efb705755980cbd3eff/manifest.json",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/_releases/rel_6b84d53d64307efb705755980cbd3eff/snapshot.json",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/_releases/rel_6b84d53d64307efb705755980cbd3eff/_nuxt/%2e%2e/%2e%2e/manifest.json",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "result": "PASS"
+    },
+    {
+      "route": "/admin/assets/not-present.js",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    },
+    {
+      "route": "/admin/not-a-page",
+      "expected": 404,
+      "actual": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow, noarchive",
+      "result": "PASS"
+    }
+  ],
+  "current": {
+    "schemaVersion": 1,
+    "releaseId": "rel_6b84d53d64307efb705755980cbd3eff",
+    "snapshotId": "snap_4fe90ad7af4b7c46467763eb5334a829",
+    "snapshotSha256": "74d6f899c4a6b334f564c26b8e9390d31a5e573a1b966f3c551de1879a8d2505",
+    "workspaceRevision": "ws-26"
+  },
+  "result": "PASS"
+}

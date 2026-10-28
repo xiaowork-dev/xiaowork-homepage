@@ -1,0 +1,82 @@
+docs/evidence/P6E-final-fixtures-first-attempt.json:1: trailing whitespace.
++{
+docs/evidence/P6E-final-fixtures-first-attempt.json:2: trailing whitespace.
++  "reason": "Dockerfile FROM interpreted plain sha256 image ID as docker.io/library/sha256 repository; auth.docker.io connection failed",
+docs/evidence/P6E-final-fixtures-first-attempt.json:3: trailing whitespace.
++  "correction": "Test-only FROM now uses unique final tag after asserting the tag matches recorded exact image ID",
+docs/evidence/P6E-final-fixtures-first-attempt.json:4: trailing whitespace.
++  "finalRuntimeGroupBuilt": true,
+docs/evidence/P6E-final-fixtures-first-attempt.json:5: trailing whitespace.
++  "result": "TEST_FIXTURE_BUILD_FAILED",
+docs/evidence/P6E-final-fixtures-first-attempt.json:6: trailing whitespace.
++  "runtimeSource": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+docs/evidence/P6E-final-fixtures-first-attempt.json:7: trailing whitespace.
++}
+docs/evidence/P6E-final-group-quality-exits.json:1: trailing whitespace.
++{
+docs/evidence/P6E-final-group-quality-exits.json:2: trailing whitespace.
++  "lint": 0,
+docs/evidence/P6E-final-group-quality-exits.json:3: trailing whitespace.
++  "node": 0,
+docs/evidence/P6E-final-group-quality-exits.json:4: trailing whitespace.
++  "nuxtTypes": 0,
+docs/evidence/P6E-final-group-quality-exits.json:5: trailing whitespace.
++  "admin": 0
+docs/evidence/P6E-final-group-quality-exits.json:6: trailing whitespace.
++}
+docs/evidence/P6E-final-musl-security-patch.txt:59: space before tab in indent.
++ 		    /* XXX - e.g. [ab] has only one position but two
+docs/evidence/P6E-final-musl-security-patch.txt:60: space before tab in indent.
++ 		       nodes, so we are creating holes in the state space
+docs/evidence/P6E-final-musl-security-patch.txt:61: space before tab in indent.
++ 		       here.  Not fatal, just wastes memory. */
+docs/evidence/P6E-final-musl-security-patch.txt:64: space before tab in indent.
++ 		    pos += *pos_add;
+docs/evidence/P6E-final-musl-security-patch.txt:65: space before tab in indent.
++ 		    num_copied++;
+docs/evidence/P6E-final-musl-security-patch.txt:66: space before tab in indent.
++ 		  }
+docs/evidence/P6E-final-musl-security-patch.txt:68: space before tab in indent.
++ 	  break;
+docs/evidence/P6E-final-musl-security-patch.txt:69: space before tab in indent.
++ 	}
+docs/evidence/P6E-final-musl-security-patch.txt:77: space before tab in indent.
++ 		tre_literal_t *lit= node->obj;
+docs/evidence/P6E-final-musl-security-patch.txt:78: space before tab in indent.
++ 		if (!IS_SPECIAL(lit) || IS_BACKREF(lit))
+docs/evidence/P6E-final-musl-security-patch.txt:79: space before tab in indent.
++ 		  {
+docs/evidence/P6E-final-musl-security-patch.txt:82: space before tab in indent.
++ 		    lit->position += pos_add;
+docs/evidence/P6E-final-musl-security-patch.txt:83: space before tab in indent.
++ 		    if (lit->position > max_pos)
+docs/evidence/P6E-final-musl-security-patch.txt:84: space before tab in indent.
++ 		      max_pos = lit->position;
+docs/evidence/P6E-final-musl-security-patch.txt:86: space before tab in indent.
++ 	      }
+docs/evidence/P6E-final-musl-security-patch.txt:88: space before tab in indent.
++ 	    iter_depth--;
+docs/evidence/P6E-final-musl-security-patch.txt:91: space before tab in indent.
++ 	    pos_add_total += pos_add - pos_add_last;
+docs/evidence/P6E-final-musl-security-patch.txt:92: space before tab in indent.
++ 	    if (iter_depth == 0)
+docs/evidence/P6E-final-musl-security-patch.txt:93: space before tab in indent.
++ 	      pos_add = pos_add_total;
+docs/evidence/P6E-final-musl-security-patch.txt:95: space before tab in indent.
++ 	}
+docs/evidence/P6E-final-musl-security-patch.txt:125: space before tab in indent.
++ 	   for example "a*" or "ab*".	Figure out a simple way to detect
+docs/evidence/P6E-final-musl-security-patch.txt:126: space before tab in indent.
++ 	   this possibility. */
+docs/evidence/P6E-final-public-interactions-first-attempt.json:1: trailing whitespace.
++{
+docs/evidence/P6E-final-public-interactions-first-attempt.json:2: trailing whitespace.
++  "date": "2026-10-28T21:12:27.2009124+08:00",
+docs/evidence/P6E-final-public-interactions-first-attempt.json:3: trailing whitespace.
++  "result": "HARNESS_FAILED_BEFORE_BROWSER",
+docs/evidence/P6E-final-public-interactions-first-attempt.json:4: trailing whitespace.
++  "correction": "Read exact source and worker identity from final manifest before helper compose ps",
+docs/evidence/P6E-final-public-interactions-first-attempt.json:5: trailing whitespace.
++  "reason": "Compose ps interpolation required V11_SOURCE_REVISION in standalone read-only browser controller; no runtime change or product assertion executed"
+docs/evidence/P6E-final-public-interactions-first-attempt.json:6: trailing whitespace.
++}

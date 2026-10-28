@@ -1,0 +1,26 @@
+{
+  "name": "node-forge",
+  "version": "1.4.1",
+  "gitHead": "8a917370ec51731e817c2d547b7329a58f8210af",
+  "dist": {
+    "shasum": "696367cbe60d1bf92cd2d926eaef18897e885cba",
+    "tarball": "https://registry.npmjs.org/node-forge/-/node-forge-1.4.1.tgz",
+    "fileCount": 59,
+    "integrity": "sha512-w5/MfWaeMrpR/5ba6fZyAUTLSuE6aYz7H/3cYrqwZEmf5eQS3IaaLgJt4MBv7HglGFWmV22K8h4U18RJQmw/ow==",
+    "signatures": [
+      {
+        "sig": "MEUCIQCEjH4/aVSC5SpcgtdYxTuM0NR/OAg8vHmpt8DLUDytFQIgVKswJQ19LTdUn5O2AWRrVuXX+I8MODFhHP+7htaoN+M=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEUCIB3VtKPmQoFyjuJ/ttaSTH2YG4qeFOO1pZ6fYUFWOB4BAiEAxjiyuLhdiDQqPwz+g9Q3MGrIAy+IqxEWcJmzJAV1IAY=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 1665553
+  },
+  "repository": {
+    "url": "git+https://github.com/digitalbazaar/forge.git",
+    "type": "git"
+  }
+}

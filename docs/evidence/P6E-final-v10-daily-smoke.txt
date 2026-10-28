@@ -1,0 +1,9 @@
+Local V1.0 regression: http://127.0.0.1:3210 canonical origin from existing HTML: https://xiaoworks.com
+PASS page and SEO /
+PASS page and SEO /projects
+PASS page and SEO /projects/
+PASS page and SEO /about
+PASS page and SEO /about/
+PASS robots and configured sitemap
+PASS 22 local assets
+PASS health endpoint and 404 status

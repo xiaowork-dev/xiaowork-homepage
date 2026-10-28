@@ -1,0 +1,286 @@
+{
+  "date": "2026-10-28T13:03:36.325Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-e2e",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "schema": 3,
+  "services": [
+    {
+      "role": "api",
+      "service": "api",
+      "id": "a5c73faedffae4bd7cd1db23d2de458a276295aed3efc698096d3cb7282754af",
+      "imageId": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "user": "10001:10001",
+      "readonlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-closure-e2e_control",
+      "portBindings": {},
+      "cpuNano": 1000000000,
+      "memoryBytes": 805306368,
+      "pidsLimit": 128,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/data",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/secrets",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/uploads",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/run/publishing",
+          "RW": true
+        }
+      ],
+      "health": "healthy"
+    },
+    {
+      "role": "worker",
+      "service": "worker",
+      "id": "38923d6bef5b9f36390bc7e4fbc6995d266bd051767eef0f778bd6ef494ad9ae",
+      "imageId": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "user": "10001:10001",
+      "readonlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "none",
+      "portBindings": {},
+      "cpuNano": 2000000000,
+      "memoryBytes": 3221225472,
+      "pidsLimit": 256,
+      "tmpfs": {
+        "/tmp": "size=64m,mode=1777",
+        "/work": "size=768m,mode=0700,uid=10001,gid=10001"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Destination": "/uploads",
+          "RW": false
+        },
+        {
+          "Type": "volume",
+          "Destination": "/run/publishing",
+          "RW": true
+        }
+      ],
+      "health": "healthy"
+    },
+    {
+      "role": "gateway",
+      "service": "gateway",
+      "id": "5bc3689f3fe9b88a0268255006e0271eba95986ce6a2c52ea661690d89b2abe0",
+      "imageId": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "user": "10001:10001",
+      "readonlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-closure-e2e_control",
+      "portBindings": {
+        "3457/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3457"
+          }
+        ],
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3224"
+          }
+        ],
+        "9323/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "9335"
+          }
+        ]
+      },
+      "cpuNano": 0,
+      "memoryBytes": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/tls",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/nginx.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-admin-headers.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-admin-locations.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/xiaowork-locations.conf",
+          "RW": false
+        }
+      ],
+      "health": "healthy"
+    },
+    {
+      "role": "frontend",
+      "service": "frontend",
+      "id": "b45c6491f09d6cd337731e36a3cd299e0ccdbde74723ec87450da316bbfbea71",
+      "imageId": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+      "user": "nginx",
+      "readonlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-closure-e2e_isolated",
+      "portBindings": {},
+      "cpuNano": 0,
+      "memoryBytes": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=64m,mode=1777"
+      },
+      "mounts": [],
+      "health": "healthy"
+    },
+    {
+      "role": "static",
+      "service": "publication-static",
+      "id": "f7db01d027810f1926bcb16a5a86a8ddaa9d07db5bda0e785ebbfe73db12190a",
+      "imageId": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "user": "10001:10001",
+      "readonlyRootfs": true,
+      "capabilityDrop": [
+        "ALL"
+      ],
+      "securityOptions": [
+        "no-new-privileges:true"
+      ],
+      "networkMode": "xiaowork-homepage-v11-p6e-closure-e2e_control",
+      "portBindings": {},
+      "cpuNano": 0,
+      "memoryBytes": 0,
+      "pidsLimit": null,
+      "tmpfs": {
+        "/tmp": "size=32m,mode=1777"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Destination": "/publications",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/nginx.conf",
+          "RW": false
+        },
+        {
+          "Type": "bind",
+          "Destination": "/etc/nginx/security-headers.conf",
+          "RW": false
+        }
+      ],
+      "health": "healthy"
+    }
+  ],
+  "workerChecks": {
+    "socket": {
+      "mode": "600",
+      "uid": 10001,
+      "gid": 10001,
+      "socket": true
+    },
+    "directory": {
+      "mode": "700",
+      "uid": 10001,
+      "gid": 10001,
+      "socket": false
+    },
+    "absent": [
+      {
+        "path": "/data",
+        "absent": true
+      },
+      {
+        "path": "/secrets",
+        "absent": true
+      },
+      {
+        "path": "/var/run/docker.sock",
+        "absent": true
+      },
+      {
+        "path": "/root/.ssh",
+        "absent": true
+      },
+      {
+        "path": "/home/node/.ssh",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/npm",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/npx",
+        "absent": true
+      },
+      {
+        "path": "/usr/local/bin/corepack",
+        "absent": true
+      }
+    ],
+    "credentialEnvironmentNames": []
+  },
+  "result": "PASS_FINAL_LOCAL_ISOLATION",
+  "limitations": [
+    "Applies to this named final isolated project only; production topology remains unconnected and uninspected.",
+    "The offline maintenance role is verified by image identity and separate backup/restore execution, not a long-running service."
+  ]
+}

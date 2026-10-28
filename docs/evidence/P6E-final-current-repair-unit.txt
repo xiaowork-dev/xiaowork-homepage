@@ -1,0 +1,29 @@
+=== RUN   TestStoppedBackupRestore
+--- PASS: TestStoppedBackupRestore (0.35s)
+=== RUN   TestBackupRejectsUnfinishedAndSymlink
+--- PASS: TestBackupRejectsUnfinishedAndSymlink (0.00s)
+=== RUN   TestContentDigestDetectsSameRevisionDraftChange
+--- PASS: TestContentDigestDetectsSameRevisionDraftChange (0.01s)
+=== RUN   TestCurrentRepairFullHashAuditThenBackupRestore
+--- PASS: TestCurrentRepairFullHashAuditThenBackupRestore (0.40s)
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/unknown-token
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/escape
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/regular
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/artifact
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/unfinished
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/receipt
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/pending-audit
+=== RUN   TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/locked
+--- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks (1.50s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/unknown-token (0.29s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/escape (0.19s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/regular (0.20s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/artifact (0.17s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/unfinished (0.17s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/receipt (0.17s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/pending-audit (0.16s)
+    --- PASS: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/locked (0.16s)
+PASS
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	2.285s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]

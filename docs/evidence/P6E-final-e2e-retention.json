@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-28T13:39:51.329Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "project": "xiaowork-homepage-v11-p6e-closure-e2e",
+  "command": "exact generated Compose down without -v; no global Docker cleanup",
+  "before": [
+    {
+      "id": "5bc3689f3fe9b88a0268255006e0271eba95986ce6a2c52ea661690d89b2abe0",
+      "image": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "running": true,
+      "service": "gateway"
+    },
+    {
+      "id": "38923d6bef5b9f36390bc7e4fbc6995d266bd051767eef0f778bd6ef494ad9ae",
+      "image": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "running": true,
+      "service": "worker"
+    },
+    {
+      "id": "a5c73faedffae4bd7cd1db23d2de458a276295aed3efc698096d3cb7282754af",
+      "image": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "running": true,
+      "service": "api"
+    },
+    {
+      "id": "f7db01d027810f1926bcb16a5a86a8ddaa9d07db5bda0e785ebbfe73db12190a",
+      "image": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "running": true,
+      "service": "publication-static"
+    },
+    {
+      "id": "7ee4694fc01056ba4e3226fb4d1296281459a5d6b55f289839eb1bb21188de6c",
+      "image": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "running": false,
+      "service": "api-init"
+    },
+    {
+      "id": "b45c6491f09d6cd337731e36a3cd299e0ccdbde74723ec87450da316bbfbea71",
+      "image": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+      "running": true,
+      "service": "frontend"
+    },
+    {
+      "id": "b479a42aaeef3b321923a3af390a39fd9d893e4937e0e26a2e44948de55dce6c",
+      "image": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "running": false,
+      "service": "publication-init"
+    }
+  ],
+  "active": {
+    "schemaVersion": 1,
+    "releaseId": "rel_6b84d53d64307efb705755980cbd3eff",
+    "snapshotId": "snap_4fe90ad7af4b7c46467763eb5334a829",
+    "snapshotSha256": "74d6f899c4a6b334f564c26b8e9390d31a5e573a1b966f3c551de1879a8d2505",
+    "workspaceRevision": "ws-26"
+  },
+  "afterContainerCount": 0,
+  "volumes": [
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-authority",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-db",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-publications",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-secrets",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-tls",
+    "xiaowork-homepage-v11-p6e-closure-e2e_admin-uploads"
+  ],
+  "imagesRetained": true,
+  "result": "PASS"
+}

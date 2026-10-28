@@ -1,0 +1,21 @@
+✔ combined filters match terms across name, summary and stack without mutating source (2.1368ms)
+✔ sorts respect recommendation, featured priority and natural names (12.1595ms)
+✔ query input rejects unknown and repeated parameters; search is bounded (0.6281ms)
+✔ SEO origin accepts empty and loopback but rejects unsafe public origins (0.8354ms)
+✔ public snapshot accepts sealed public content and binds builtin assets to immutable release URLs (2.6948ms)
+✔ private, hidden and unreferenced fields are rejected before client serialization (2.5306ms)
+✔ media manifests allow only derived hash paths and reject private metadata or traversal (0.982ms)
+✔ preview assets remain under exact authenticated base and IDs cannot inject routes (0.3332ms)
+✔ remote DOCKER_HOST is refused before any Docker command (2.3613ms)
+✔ lifecycle probe verifies real admin assets, API denial and retained artifact bytes (66.9754ms)
+✔ lifecycle probe refuses corrupted published image despite HTTP 200 (18.2525ms)
+✔ lifecycle probe refuses management fallback HTML or success for anonymous session (12.5636ms)
+✔ lifecycle probe checks SHA256 even when corrupted image byte size is unchanged (14.7844ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 405.2721

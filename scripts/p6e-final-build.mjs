@@ -14,7 +14,7 @@ assert.equal(
   'npipe:////./pipe/dockerDesktopLinuxEngine',
 )
 assert.equal(execFileSync('git', ['rev-parse', source], { encoding: 'utf8' }).trim(), source)
-const root = path.resolve('.cache/p6e-final-source-' + source)
+const root = path.resolve('.cache/p6e-final-source-' + source + '-' + Date.now())
 assert.equal(
   existsSync(root),
   false,
@@ -36,6 +36,7 @@ const report = {
     VCS_REF: source,
     NUXT_PUBLIC_SITE_URL: 'https://xiaoworks.com',
     BUILDER_ID: 'xiaowork-nuxt-p6d-v1',
+    GOPROXY: 'https://goproxy.cn',
   },
   images: {},
   builds: [],
@@ -75,6 +76,8 @@ for (const [role, [file, repository]] of Object.entries(roles)) {
     'NUXT_PUBLIC_SITE_URL=https://xiaoworks.com',
     '--build-arg',
     'BUILDER_ID=xiaowork-nuxt-p6d-v1',
+    '--build-arg',
+    'GOPROXY=https://goproxy.cn',
     '-t',
     tag,
     '-f',
@@ -150,9 +153,9 @@ for (const [target, tag] of [
   cli(
     'build',
     '--build-arg',
-    `P6E_API_BASE=${report.images.api.id}`,
+    `P6E_API_BASE=${report.images.api.tag}`,
     '--build-arg',
-    `P6E_WORKER_BASE=${report.images.worker.id}`,
+    `P6E_WORKER_BASE=${report.images.worker.tag}`,
     '--target',
     target,
     '-t',

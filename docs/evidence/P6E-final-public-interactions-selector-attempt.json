@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-28T13:12:27.889Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "project": "xiaowork-homepage-v11-p6e-closure-e2e",
+  "cases": [
+    {
+      "name": "Search and direct-query reload retain exact filtered content",
+      "result": "PASS"
+    },
+    {
+      "name": "Empty state reset restores all cards and keyboard focus",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "failedResources": [],
+  "result": "FAIL",
+  "failure": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('排序', { exact: true })\u001b[22m\n"
+}

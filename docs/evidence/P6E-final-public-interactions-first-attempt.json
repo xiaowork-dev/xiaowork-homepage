@@ -1,0 +1,6 @@
+{
+  "date": "2026-10-28T21:12:27.2009124+08:00",
+  "result": "HARNESS_FAILED_BEFORE_BROWSER",
+  "correction": "Read exact source and worker identity from final manifest before helper compose ps",
+  "reason": "Compose ps interpolation required V11_SOURCE_REVISION in standalone read-only browser controller; no runtime change or product assertion executed"
+}

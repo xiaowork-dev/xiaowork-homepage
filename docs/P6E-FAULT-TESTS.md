@@ -1,5 +1,33 @@
 # P6-E 真实故障集成验收
 
+## 2026-10-28 最终统一发行组重新验收
+
+**本节是最新结论。** 最终源码为 `817aa533741bdd5de23f322fa5e5171442cb28a9`，六角色精确身份见 [最终发行清单](P6E-FINAL-RELEASE.md)。使用全新隔离项目 `xiaowork-homepage-v11-p6e-closure-fault`、HTTP3223/可信HTTPS3456、专属卷/网段，不操作下面保留的旧be5c故障现场。
+
+十二项真实故障及正常基线 **13/13通过**。新证据逐一记录源码817、实际注入镜像ID、任务/current/SQLite/文件目录/HTTP与人工干预，见 `P6E-final-faults-<case>.json`；[汇总](evidence/P6E-final-faults-summary.json)仅索引原始报告，不用旧镜像结果充数。报告中的旧控制器 `variant: frozen-baseline` 是沿用的测试场景标签，实际身份由 `sourceRevision`、精确image ID及独立测试镜像清单判断。
+
+| 故障                 | 最终组证据                                                              | 实际边界                                                                                   |
+| -------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 正常基线             | [baseline](evidence/P6E-final-faults-baseline.json)                     | 真实Nuxt内容发布                                                                           |
+| Nuxt编译失败         | [compile-error](evidence/P6E-final-faults-compile-error.json)           | 固定非法Vue测试源码，旧站保持                                                              |
+| Nuxt构建超时         | [timeout](evidence/P6E-final-faults-timeout.json)                       | 实际任务600000ms，控制器602802ms                                                           |
+| 构建中Worker退出     | [building-exit](evidence/P6E-final-faults-building-exit.json)           | 真实进程SIGKILL、等待真实租约后核对                                                        |
+| 切换前Worker退出     | [before-switch](evidence/P6E-final-faults-before-switch.json)           | 保留旧current与冗余候选链接，原任务终结                                                    |
+| 切换后Worker退出     | [after-switch](evidence/P6E-final-faults-after-switch.json)             | intent/receipt/current与HTTP重新核对                                                       |
+| 数据库成功事务内中断 | [sqlite-commit-exit](evidence/P6E-final-faults-sqlite-commit-exit.json) | SQLite UPDATE事务期间实际杀死API，不手改任务                                               |
+| 任务中API重启        | [api-restart](evidence/P6E-final-faults-api-restart.json)               | 真实Nuxt运行中重启API                                                                      |
+| 切换时静态服务重启   | [static-restart](evidence/P6E-final-faults-static-restart.json)         | 服务重启后资源/版本完整，未证明零停机                                                      |
+| 历史文件损坏         | [corrupt-history](evidence/P6E-final-faults-corrupt-history.json)       | 暂移真实历史HTML，恢复被拒绝，再归还原字节                                                 |
+| HTTP核验不可用       | [http-unavailable](evidence/P6E-final-faults-http-unavailable.json)     | 结果未确认时保持阻断，恢复服务后核验同一任务                                               |
+| 恢复再次失败         | [recovery-fails](evidence/P6E-final-faults-recovery-fails.json)         | 两次真实EACCES，409阻断；人工修复后同任务成功、API错误为空、SQL两诊断NULL，2条失败审计保留 |
+| 构建临时空间满       | [enospc](evidence/P6E-final-faults-enospc.json)                         | 仅专属/work tmpfs写入804536320B，可用804552704→0，内核ENOSPC，旧站保持                     |
+
+实际命令：`node scripts/p6e-final-acceptance.mjs fault <case>`。固定case顺序记录于原始命令日志，最后执行before-switch后不再发布，交由受审单对象链接修复流程接管。故障注入仅在派生的测试镜像/本地控制器中，正式六角色镜像不含可公开触发的故障开关。恢复失败专项启用最终API的强化SQL NULL和审计计数断言，未借旧aa23376单API专项代替。
+
+`current.next.*`真实现场后续专项在只读SQLite计划阶段失败，未删除链接，修复后备份、空卷恢复和更新未执行，见 [修复流程](V1.1-CURRENT-REPAIR.md)和[根因复现](evidence/P6E-final-current-readonly-probe.json)。因此十二故障PASS不等于P6-E全部完成。所有重启、恢复权限/HTTP服务等均属于明确操作者干预；PASS表示安全行为符合预期，不表示所有故障自动恢复或始终可用。
+
+## 历史be5c基线与aa23376诊断专项（保留原事实）
+
 本记录仅针对本机 Docker Desktop 的 `xiaowork-homepage-v11-p6e-fault` 专用项目。使用独立 SQLite、上传、发布、证书及 socket 卷，HTTP 为回环 3213、可信 HTTPS 为 localhost:3446，内部网为 `192.168.248.0/28`。未连接生产服务器，未修改 V1.0、OpenResty、Cloudflare 或其他项目。
 
 受审运行源码为 `be5c96857c5a7098a9b8f80931ced47d0efcab89`。测试镜像继承该源码构建的固定 Nuxt 源码和离线依赖；测试报告记录 `docker image inspect .Id` 的实际测试镜像 ID。测试 overlay 另有只在 `p6e_fault && linux` build tag 下编译的 checkpoint，不能将它作为生产镜像部署。普通 API、Worker、maintenance Dockerfile 不启用该 tag，生产构建上下文也排除这些故障辅助源码。

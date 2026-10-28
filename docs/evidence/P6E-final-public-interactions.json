@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-28T13:14:33.795Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "project": "xiaowork-homepage-v11-p6e-closure-e2e",
+  "cases": [
+    {
+      "name": "Search and direct-query reload retain exact filtered content",
+      "result": "PASS"
+    },
+    {
+      "name": "Empty state reset restores all cards and keyboard focus",
+      "result": "PASS"
+    },
+    {
+      "name": "Real category, sort and browser-back query state",
+      "result": "PASS"
+    },
+    {
+      "name": "320px mobile menu routes, Escape focus and theme persistence",
+      "result": "PASS"
+    },
+    {
+      "name": "No inert links, unsafe external targets, hydration errors or failed assets",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "failedResources": [],
+  "result": "PASS"
+}

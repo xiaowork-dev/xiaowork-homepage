@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28",
+  "scope": "Final six-role security harness attempts; no product-code mutation",
+  "attempts": [
+    {
+      "result": "HARNESS_QUERY_ASSUMPTION_FAILED_NOT_A_SECURITY_PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "completedImageScan": "api",
+      "evidence": "P6E-final-security-audit-first.json",
+      "failure": "The installed apk3 implementation returned package description for apk info -v musl; the harness expected a package-version line and stopped before the Worker CVE scan.",
+      "correction": "Read the installed musl P:/V: records from /lib/apk/db/installed instead, retaining the same required Alpine 3.24 / musl 1.2.6-r3 / no-edge criteria.",
+      "reuse": "Only the completed API Scout result for the exact unchanged image ID and matching SARIF SHA is retained; the other five images are actually scanned."
+    }
+  ]
+}

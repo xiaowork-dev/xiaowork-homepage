@@ -1,0 +1,109 @@
+ Network xiaowork-homepage-v11-p6e-closure-fault_control Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-secrets Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_edge Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_isolated Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_edge Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-tls Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-tls Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-uploads Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_control Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-secrets Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publications Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publications Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_isolated Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-db Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publisher-socket Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-uploads Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-authority Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-authority Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-secrets Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publications Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publications Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Creating 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-tls Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-tls Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-uploads Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-db Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-authority Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publisher-socket Created 
+ Volume xiaowork-homepage-v11-p6e-closure-fault_admin-publisher-socket Created 
+ Network xiaowork-homepage-v11-p6e-closure-fault_edge Created 
+ Network xiaowork-homepage-v11-p6e-closure-fault_edge Created 
+ Network xiaowork-homepage-v11-p6e-closure-fault_isolated Created 
+ Network xiaowork-homepage-v11-p6e-closure-fault_isolated Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Creating 
+ Network xiaowork-homepage-v11-p6e-closure-fault_control Created 
+ Network xiaowork-homepage-v11-p6e-closure-fault_control Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Creating 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Creating 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Creating 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Creating 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Creating 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Created 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Healthy 
+submission
+task-state
+task-state
+task-state
+before
+submission
+task-state
+task-state
+task-state
+task-state
+after
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Stopped 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 

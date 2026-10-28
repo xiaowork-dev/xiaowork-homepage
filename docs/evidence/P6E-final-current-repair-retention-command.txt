@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-28T13:47:22.943Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-fault",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "result": "BLOCKED_ORIGINAL_RETAINED",
+  "blocker": "Frozen maintenance cannot inspect a clean WAL-mode SQLite database through its strict read-only volume mounts. Original SQLite error was reproduced on private copies; no checkpoint or runtime fix was applied.",
+  "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+  "candidates": [
+    {
+      "path": "publications/current.next.5bd62643db372ff2bafc2ebbc6af2a4daa62140d2e25b23c4d1c5dde787be5fa",
+      "link": "releases/rel_59b5616ce26fa12d14159c9f11874a43"
+    }
+  ],
+  "fileCount": 334,
+  "allFileSHA256Before": "87753a8aa13a13fc8b8dee41a229706f519946db1d6c8e9c198475b6aa4b0a87",
+  "allFileSHA256After": "87753a8aa13a13fc8b8dee41a229706f519946db1d6c8e9c198475b6aa4b0a87",
+  "allFileAndLinkEntriesUnchanged": true,
+  "originalDBSHA256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9",
+  "publicBeforeShutdown": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+    }
+  ],
+  "writersStoppedBeforeInspection": true,
+  "exactProjectStopped": true,
+  "allSixVolumesRetained": true,
+  "imagesRetained": true,
+  "followingSteps": {
+    "singleObjectRepair": "NOT_RUN",
+    "repairAudit": "NOT_CREATED",
+    "postRepairBackup": "NOT_RUN",
+    "freshVolumeRestore": "NOT_RUN",
+    "postRepairLifecycleUpdate": "NOT_RUN"
+  },
+  "fullInventory": "Private local test-controller cache; no database values or backup copied into evidence",
+  "scope": "Only exact new closure-fault project. No historical test volumes, unrelated containers or production connections."
+}

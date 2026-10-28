@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-28T13:01:00.712Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "schema": 3,
+  "scope": "Engineering disposition only; no user production-risk acceptance or production authorization inferred",
+  "dependencyInputAlignment": [
+    {
+      "file": "package-lock.json",
+      "sha256": "df24a98e84f4709ed60135a23ff572080193140d9b8ba8101f087a90d73dec48",
+      "matchesFinalSource": true
+    },
+    {
+      "file": "admin/package-lock.json",
+      "sha256": "db453ecb25368589a11cce222edd3dfc3ad175d1c3e5229d8dfcfae32ee6e5b1",
+      "matchesFinalSource": true
+    },
+    {
+      "file": "backend/go.mod",
+      "sha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+      "matchesFinalSource": true
+    },
+    {
+      "file": "backend/go.sum",
+      "sha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+      "matchesFinalSource": true
+    }
+  ],
+  "rootNpm": {
+    "exit": 1,
+    "file": "P6E-final-root-npm-audit.json",
+    "vulnerabilities": {
+      "info": 0,
+      "low": 7,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 7
+    }
+  },
+  "adminNpm": {
+    "exit": 0,
+    "file": "P6E-final-admin-npm-audit.json",
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "nodeForge": {
+    "version": "1.4.1",
+    "lockMatchesOfficialRegistryIntegrity": true,
+    "gitHead": "8a917370ec51731e817c2d547b7329a58f8210af",
+    "latestObserved": "1.4.2",
+    "latestChangelog": "P6E-final-node-forge-1.4.2-changelog.txt",
+    "latestScope": "1.4.2 restores pem.decode Buffer compatibility; the final source intentionally retains the audited 1.4.1 security fix. Review a separate compatible update with its own tests.",
+    "status": "P6D_COMPATIBLE_FIX_PRESERVED"
+  },
+  "risks": [
+    {
+      "id": "SEC-01",
+      "advisory": "CVE-2026-107891",
+      "affected": [
+        {
+          "role": "worker",
+          "imageId": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        },
+        {
+          "role": "gateway",
+          "imageId": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        },
+        {
+          "role": "frontend",
+          "imageId": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        },
+        {
+          "role": "static",
+          "imageId": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        }
+      ],
+      "version": "Alpine 3.24.3 musl 1.2.6-r3",
+      "observedScoutFix": "1.2.6-r6",
+      "officialBranchFix": "3.24=1.2.6-r3; edge/master=1.2.6-r6",
+      "officialSameSecurityPatchSha512": "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e",
+      "officialPatchBothBranchesMatch": true,
+      "disposition": "DISTRIBUTION_BACKPORT_CONFIRMED_SCOUT_FINDING_PRESERVED",
+      "productionBlockerFromThisFindingAlone": false,
+      "scopeLimit": "Only the recorded Alpine3.24 exact images; no assertion about other musl issues or future branches",
+      "mitigation": "No mixed repositories or unknown binary patching; final images checked via installed APK database; unchanged nonroot/readonly isolation",
+      "review": "Every image/base/Alpine branch change and before each release; escalate if distribution package or patch evidence changes"
+    },
+    {
+      "id": "SEC-02",
+      "advisory": "GHSA-gcqx-w48m-w2h4",
+      "affected": [
+        {
+          "role": "worker",
+          "imageId": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        }
+      ],
+      "dependency": "deepmerge@4.3.1",
+      "rootBuildChainAuditEntries": 7,
+      "independentAdvisories": 1,
+      "severity": "low",
+      "officialPatchedVersion": null,
+      "disposition": "UNFIXED_LOW_BUILD_DEPENDENCY_LIMITED_ATTACK_SURFACE",
+      "productionBlockerFromThisFindingAlone": false,
+      "scopeLimit": "No claim of fix; formal release risk acknowledgement still required",
+      "mitigation": "Fixed reviewed Nuxt code/lock, validated content-only inputs, no arbitrary config/scripts, offline nonroot Worker without credentials/DB/DockerSocket and with resource limits",
+      "review": "Every release and immediately when a compatible upstream patch or builder-input change is available"
+    },
+    {
+      "id": "SEC-03",
+      "advisory": "GO-2026-5932",
+      "affected": [
+        {
+          "role": "api",
+          "imageId": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        },
+        {
+          "role": "maintenance",
+          "imageId": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab",
+          "source": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        }
+      ],
+      "dependency": "golang.org/x/crypto@v0.58.0",
+      "vulnerablePackage": "golang.org/x/crypto/openpgp and subpackages",
+      "officialPatchedVersion": null,
+      "disposition": "REQUIRED_MODULE_PRESENT_VULNERABLE_PACKAGE_NOT_IMPORTED_IN_FINAL_LINUX_ENTRYPOINTS",
+      "productionBlockerFromThisFindingAlone": false,
+      "sourceExit": 0,
+      "importedCrypto": [
+        "golang.org/x/crypto/blake2b",
+        "golang.org/x/crypto/argon2"
+      ],
+      "importedOpenpgp": [],
+      "binaryScannerExits": [
+        {
+          "role": "api",
+          "scannerExit": 3
+        },
+        {
+          "role": "worker",
+          "scannerExit": 0
+        },
+        {
+          "role": "maintenance",
+          "scannerExit": 3
+        }
+      ],
+      "mitigation": "Keep Argon2id/blake2b; do not add deprecated openpgp; preserve stripped-binary module-level findings, use exact Linux source reachability and actual imports",
+      "review": "Every module/entrypoint/build-tag/toolchain change; block newly introduced vulnerable OpenPGP use"
+    }
+  ],
+  "rawEvidence": [
+    "P6E-final-security-audit.json",
+    "P6E-final-dependency-recheck.json",
+    "P6E-final-musl-source.json",
+    "P6E-final-alpine-3.24-secdb.json",
+    "P6E-final-deepmerge-advisory.json",
+    "P6E-final-go-openpgp-advisory.json",
+    "P6E-final-node-forge-pinned-registry.json",
+    "P6E-final-forge-source.json"
+  ],
+  "operationalPending": [
+    "Offsite destination/account or offline medium",
+    "Encryption/signing key custodian and offline recovery drill",
+    "RPO/RTO and retention acceptance",
+    "Capacity/backup alert channel and named primary/backup operator",
+    "Independent production authorization and final content scope"
+  ],
+  "result": "REVIEWED_WITH_RESIDUAL_FINDINGS_NOT_ZERO_RISK"
+}

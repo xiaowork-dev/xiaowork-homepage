@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-28T13:08:12.496Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "schema": 3,
+  "result": "LOCAL_PLAN_RENDER_VERIFIED_ONLY",
+  "commands": [
+    [
+      "docker",
+      "compose",
+      "--project-directory",
+      "<frozen-source-export>",
+      "-p",
+      "xiaowork-homepage-v11-closure-plan",
+      "-f",
+      "<frozen-source-export>\\compose.admin-publish.yaml",
+      "-f",
+      "<local-plan-cache>\\openresty-plan.yaml",
+      "-f",
+      "<local-plan-cache>\\loopback-plan.yaml",
+      "--profile",
+      "publisher",
+      "config",
+      "--format",
+      "json"
+    ]
+  ],
+  "checks": [
+    {
+      "name": "Only localhost illustrative gateway port; production port not allocated",
+      "result": "PASS"
+    },
+    {
+      "name": "Official origin fixed and publish gate closed",
+      "result": "PASS"
+    },
+    {
+      "name": "Worker disabled by default and networkless",
+      "result": "PASS"
+    },
+    {
+      "name": "Worker never sees DB/secrets/socket of Docker engine",
+      "result": "PASS"
+    },
+    {
+      "name": "All configured runtime images are final exact IDs",
+      "result": "PASS"
+    },
+    {
+      "name": "Container boundaries retained",
+      "result": "PASS"
+    }
+  ],
+  "configurationFiles": [
+    {
+      "file": "deploy/v11/gateway-openresty.conf",
+      "sha256": "1617360c7d0e9508812c923bb4261650ab0e990c533e2aa181d39c910251228f"
+    },
+    {
+      "file": "deploy/v11/locations-openresty.conf",
+      "sha256": "07a30da9ca5787b9d35ae19357ab7355d1bf5bc6455c614c2488ab48855d98c0"
+    }
+  ],
+  "limitations": [
+    "No production connection or configuration change",
+    "13210 is an illustrative loopback port, not a confirmed production allocation",
+    "Real OpenResty, Cloudflare, DNS, certificates and Host/SNI origin protection require separate authorization and actual production preflight",
+    "Production publishing remains hard-disabled; enabling it requires a reviewed change and separate authorization"
+  ]
+}

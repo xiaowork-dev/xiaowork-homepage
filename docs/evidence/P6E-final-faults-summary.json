@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-28T14:21:21.794Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "result": "PASS",
+  "faults": [
+    {
+      "case": "baseline",
+      "file": "P6E-final-faults-baseline.json",
+      "sha256": "82e2fc58635f5183c7770fdce7738fc04d9cadf2e002b3849cc4df826a0c8892",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "originalActive": "rel_b7024902adde82b7c3ba21ef306c6715",
+      "checkpoints": [
+        "submission",
+        "task-state",
+        "task-state",
+        "task-state",
+        "before",
+        "submission",
+        "task-state",
+        "task-state",
+        "task-state",
+        "task-state",
+        "after"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "compile-error",
+      "file": "P6E-final-faults-compile-error.json",
+      "sha256": "3446bea41292d8f46a910b7f9208716eb578996b118617c6363d798080f2c565",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+      "originalActive": "rel_02ec05e6a72a560e5286038879990261",
+      "checkpoints": [
+        "before",
+        "submission",
+        "real-nuxt-process-observed",
+        "task-state",
+        "task-state",
+        "failed-with-old-site"
+      ],
+      "elapsedMilliseconds": 179766,
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "timeout",
+      "file": "P6E-final-faults-timeout.json",
+      "sha256": "a9a6b6097a77e63f092e5d43490ad0be8eb7e502c7725ba325a3bf42a85cacd1",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_44cb82eb653fcd4cc2ecf104e1022d99",
+      "originalActive": "rel_02ec05e6a72a560e5286038879990261",
+      "checkpoints": [
+        "before",
+        "submission",
+        "real-nuxt-process-observed",
+        "task-state",
+        "task-state",
+        "failed-with-old-site"
+      ],
+      "taskElapsedMilliseconds": 600000,
+      "elapsedMilliseconds": 602802,
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "building-exit",
+      "file": "P6E-final-faults-building-exit.json",
+      "sha256": "400dc28e056817cb0f9dee811c422c2d55cb79c43144437fa7996e11208bbef3",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_7f44d6eb9e00134e16fd03be2a760b21",
+      "originalActive": "rel_02ec05e6a72a560e5286038879990261",
+      "checkpoints": [
+        "before",
+        "test-controller-paused-before-task-for-independent-performance-measurement",
+        "submission",
+        "real-nuxt-process-observed",
+        "worker-killed-during-build",
+        "task-state",
+        "task-state",
+        "recovered"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "after-switch",
+      "file": "P6E-final-faults-after-switch.json",
+      "sha256": "3c42eff87e31447d5b06ae814c844ba4d8ccd4b1471404bb1b5fcd1182b82142",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+      "originalActive": "rel_02ec05e6a72a560e5286038879990261",
+      "checkpoints": [
+        "before",
+        "submission",
+        "after-current-rename",
+        "at-activation-boundary",
+        "task-state",
+        "task-state",
+        "recovered-after-boundary"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "sqlite-commit-exit",
+      "file": "P6E-final-faults-sqlite-commit-exit.json",
+      "sha256": "14e51dee6af938f57d84059e553331dee97ec11ce26ac5e2d924b59faaa65f32",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_a696c1530076245668c6dd662a7a49f2",
+      "originalActive": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+      "checkpoints": [
+        "before",
+        "submission",
+        "before-result-http",
+        "at-activation-boundary",
+        "sqlite-success-transaction",
+        "sqlite-success-update-stopped-inside-transaction",
+        "task-state",
+        "task-state",
+        "recovered-after-boundary"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "api-restart",
+      "file": "P6E-final-faults-api-restart.json",
+      "sha256": "6caf4ae438f3ee1dc8bbab87b1fcce244ffdaea25c2e0b32d0cfd9577c6cba11",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_e1ea769e6a6b31723568717f017173e3",
+      "originalActive": "rel_c11b646f39b93642968e720e4631775b",
+      "checkpoints": [
+        "before",
+        "submission",
+        "real-nuxt-process-observed",
+        "api-restarted-during-real-build",
+        "recovered"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "static-restart",
+      "file": "P6E-final-faults-static-restart.json",
+      "sha256": "2bb846d5cf513f5c20c609124683507f42a833178ddb473d79af25d8f3843b8a",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_050be1b5ffb13a34181c8f5870b4557d",
+      "originalActive": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+      "checkpoints": [
+        "before",
+        "submission",
+        "after-current-rename",
+        "at-activation-boundary",
+        "static-restarted-at-current-rename",
+        "task-state",
+        "recovered-after-boundary"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "corrupt-history",
+      "file": "P6E-final-faults-corrupt-history.json",
+      "sha256": "2cabd7b4a6ab01a2d3c200c746c5945dad3539807e838db487822366da11209e",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_7383f58ec7262cda715bebfa7e833700",
+      "originalActive": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+      "checkpoints": [
+        "before",
+        "historical-real-html-removed",
+        "task-state",
+        "task-state",
+        "damaged-history-rejected",
+        "historical-original-html-restored"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "http-unavailable",
+      "file": "P6E-final-faults-http-unavailable.json",
+      "sha256": "6462e5344341f7f29e7c20fe74aeef5ac8b486f7adb146fe8f7c1673deb6aa6b",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_8212db4f73afd20e08912e4b16450fba",
+      "originalActive": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+      "checkpoints": [
+        "before",
+        "submission",
+        "verification-unavailable-recovery-blocked",
+        "task-state",
+        "task-state",
+        "verifier-restored-same-task-confirmed-failed"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "recovery-fails",
+      "file": "P6E-final-faults-recovery-fails.json",
+      "sha256": "6ea904c3979bcfd348c832862ae688e1bdd9618a48946ab46799f81b1b9c0feb",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_163d40b91498afb8e72936df1da03ab7",
+      "originalActive": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+      "checkpoints": [
+        "before",
+        "submission",
+        "before-result-http",
+        "new-release-active-before-verification",
+        "real-filesystem-write-denied",
+        "rollback-write-failed-recovery-required",
+        "second-rollback-write-also-failed",
+        "task-state",
+        "task-state",
+        "same-activation-verified-after-explicit-operator-repair"
+      ],
+      "successDiagnosticCleared": true,
+      "failureAuditEventsRetained": 2,
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "enospc",
+      "file": "P6E-final-faults-enospc.json",
+      "sha256": "27a56878bb53ebb7d61249e49882ed363341b19c8c5c0691eeed960359d3e0c8",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_a52e9607bef8115a3f0330915d3b8bf3",
+      "originalActive": "rel_8b8819f3bd32692d246cacd8d4178817",
+      "checkpoints": [
+        "before",
+        "submission",
+        "real-nuxt-process-observed",
+        "task-state",
+        "task-state",
+        "actual-enospc-with-old-site"
+      ],
+      "kernelFailure": {
+        "code": "ENOSPC",
+        "successfulWriteCalls": 768,
+        "writtenBytes": 804536320,
+        "beforeAvailableBytes": 804552704,
+        "afterAvailableBytes": 0
+      },
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    },
+    {
+      "case": "before-switch",
+      "file": "P6E-final-faults-before-switch.json",
+      "sha256": "8f078fa4cb0551cc222608f6d2674837a851d8ffc0d2b12d256df73a0ced1476",
+      "result": "PASS",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "jobId": "job_a9ae0b23bc30355d8e470027be85b1b8",
+      "originalActive": "rel_8b8819f3bd32692d246cacd8d4178817",
+      "checkpoints": [
+        "before",
+        "submission",
+        "before-current-rename",
+        "at-activation-boundary",
+        "task-state",
+        "task-state",
+        "recovered-after-boundary"
+      ],
+      "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+    }
+  ]
+}

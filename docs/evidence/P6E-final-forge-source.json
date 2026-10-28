@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28T12:59:22.122Z",
+  "sources": [
+    {
+      "name": "node-forge-pinned-registry",
+      "url": "https://registry.npmjs.org/node-forge/1.4.1",
+      "checkedAt": "2026-10-28T12:59:22.124Z",
+      "status": 200,
+      "file": "P6E-final-node-forge-pinned-registry.json",
+      "sha256": "0934ffb7db0b1c2cc4da928b4a3a9d46324fdd5703c6bf917e4d1166e52ae5b0",
+      "result": "FETCHED"
+    },
+    {
+      "name": "node-forge-1.4.2-release",
+      "url": "https://api.github.com/repos/digitalbazaar/forge/releases/tags/v1.4.2",
+      "checkedAt": "2026-10-28T12:59:24.162Z",
+      "status": 404,
+      "result": "SOURCE_UNAVAILABLE_NOT_VERIFIED",
+      "error": "AssertionError"
+    },
+    {
+      "name": "node-forge-1.4.2-changelog",
+      "url": "https://api.github.com/repos/digitalbazaar/forge/contents/CHANGELOG.md?ref=v1.4.2",
+      "checkedAt": "2026-10-28T12:59:24.814Z",
+      "status": 200,
+      "file": "P6E-final-node-forge-1.4.2-changelog.txt",
+      "sha256": "264bc1b4adbcad4fa434d9e3dc3f75308af12295512df6301cf450e77d269d8f",
+      "result": "FETCHED"
+    },
+    {
+      "name": "node-forge-advisory",
+      "url": "https://api.github.com/advisories/GHSA-86w9-cpqp-85rv",
+      "checkedAt": "2026-10-28T12:59:25.483Z",
+      "status": 200,
+      "file": "P6E-final-node-forge-advisory.json",
+      "sha256": "947293152442e62cc83f01b9e23456e54fd9b85c9ba378fd37ce3882f6b26c31",
+      "result": "FETCHED"
+    }
+  ],
+  "result": "PARTIAL"
+}

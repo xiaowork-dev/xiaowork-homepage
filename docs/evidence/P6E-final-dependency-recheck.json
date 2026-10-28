@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-28T12:29:47.013Z",
+  "scope": "Read-only local locks and official upstream advisories; not a production inspection",
+  "workingSource": "7b17165111faeaa14b93b5b1f0f0e492868e27c8",
+  "dependencies": {
+    "package-lock.json": "df24a98e84f4709ed60135a23ff572080193140d9b8ba8101f087a90d73dec48",
+    "admin/package-lock.json": "db453ecb25368589a11cce222edd3dfc3ad175d1c3e5229d8dfcfae32ee6e5b1",
+    "backend/go.mod": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+    "backend/go.sum": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239"
+  },
+  "audits": {
+    "root": {
+      "exit": 1,
+      "file": "P6E-final-root-npm-audit.json",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 7,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 7
+      }
+    },
+    "admin": {
+      "exit": 0,
+      "file": "P6E-final-admin-npm-audit.json",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    }
+  },
+  "sources": [
+    {
+      "name": "alpine-3.24-musl",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/musl/APKBUILD",
+      "checkedAt": "2026-10-28T12:29:54.232Z",
+      "result": "SOURCE_UNAVAILABLE_NOT_VERIFIED",
+      "error": "TypeError"
+    },
+    {
+      "name": "alpine-edge-musl",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/master/main/musl/APKBUILD",
+      "checkedAt": "2026-10-28T12:29:54.358Z",
+      "result": "SOURCE_UNAVAILABLE_NOT_VERIFIED",
+      "error": "TypeError"
+    },
+    {
+      "name": "alpine-3.24-secdb",
+      "url": "https://secdb.alpinelinux.org/v3.24/main.json",
+      "checkedAt": "2026-10-28T12:29:54.362Z",
+      "status": 200,
+      "lastModified": "Tue, 27 Oct 2026 07:32:43 GMT",
+      "responseSha256": "30fe355d68d0fe1555df2487eaac58500d65c7aeefcf4d1805910dd99b180849",
+      "file": "P6E-final-alpine-3.24-secdb.json",
+      "evidenceSha256": "79e87e051a469adc18195039f9860ae0785d49835f0e06c8958e32507948b2f4"
+    },
+    {
+      "name": "alpine-musl-tracker",
+      "url": "https://security.alpinelinux.org/vuln/CVE-2026-107891",
+      "checkedAt": "2026-10-28T12:30:03.524Z",
+      "status": 406,
+      "lastModified": null,
+      "responseSha256": "7b24e3e99f0042a3e38fa869b79baa2feb127488529fbc96027bb92e4fb8953c",
+      "result": "SOURCE_UNAVAILABLE_NOT_VERIFIED",
+      "error": "AssertionError"
+    },
+    {
+      "name": "deepmerge-advisory",
+      "url": "https://api.github.com/advisories/GHSA-gcqx-w48m-w2h4",
+      "checkedAt": "2026-10-28T12:30:05.720Z",
+      "status": 200,
+      "lastModified": "Tue, 27 Oct 2026 21:34:58 GMT",
+      "responseSha256": "8f1e44072526794fb8b1cb3556576422f06af948ef7715affd795438df507a03",
+      "file": "P6E-final-deepmerge-advisory.json",
+      "evidenceSha256": "af6a2c3f743b65b196d084ed0d9d949fbe8e9ae3002953e556451deeb25d9836"
+    },
+    {
+      "name": "go-openpgp-advisory",
+      "url": "https://vuln.go.dev/ID/GO-2026-5932.json",
+      "checkedAt": "2026-10-28T12:30:06.479Z",
+      "status": 200,
+      "lastModified": "Wed, 28 Oct 2026 10:13:28 GMT",
+      "responseSha256": "f277b0400996200a7d5034c676661cd8cf18adeab1fdc5d0dc369e456ddf1fad",
+      "file": "P6E-final-go-openpgp-advisory.json",
+      "evidenceSha256": "878450de86ea3a6c497bd88f47e6a1bed7bff11e75ce83405d5c7f8754182223"
+    },
+    {
+      "name": "deepmerge-registry",
+      "url": "https://registry.npmjs.org/deepmerge/latest",
+      "checkedAt": "2026-10-28T12:30:07.352Z",
+      "status": 200,
+      "lastModified": null,
+      "responseSha256": "e59831a9bf2293e70f9c296253e7fad50116bc5bbea8078bcb2e3a1486014da0",
+      "file": "P6E-final-deepmerge-registry.json",
+      "evidenceSha256": "868d72774efa7554f387937fb73771850881f4674ddb9b9aa560b61191f44cb7"
+    },
+    {
+      "name": "node-forge-registry",
+      "url": "https://registry.npmjs.org/node-forge/latest",
+      "checkedAt": "2026-10-28T12:30:08.638Z",
+      "status": 200,
+      "lastModified": null,
+      "responseSha256": "f703a182e144e7638742bc31e0ff69c6365d624d590ea4723bb640fb22094099",
+      "file": "P6E-final-node-forge-registry.json",
+      "evidenceSha256": "ce14b5755c0e6a364975f6b053f4eeed92bbef2b4339c67f15cf3b7a142e3899"
+    }
+  ],
+  "limitations": [
+    "Official registry/advisory data is time-dependent; preserved responses and hashes identify this observation.",
+    "A clean advisory result does not prove absence of unknown, application-logic or operational vulnerabilities.",
+    "Final image scans and source-target reachability are separate checks, not inferred from these lockfiles."
+  ],
+  "result": "INCOMPLETE"
+}

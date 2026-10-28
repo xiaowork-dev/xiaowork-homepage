@@ -1,0 +1,47 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from p6e-fault-worker.Dockerfile
+#1 transferring dockerfile: 1.23kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6b-test
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/xiaowork-homepage-worker:p6e-closure-817aa533741b
+#3 DONE 0.1s
+
+#4 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#4 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 6.59kB 0.0s done
+#5 DONE 0.0s
+
+#6 [test-build 2/4] WORKDIR /src
+#6 CACHED
+
+#7 [test-build 3/4] COPY backend/ ./
+#7 CACHED
+
+#8 [test-build 4/4] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-worker ./cmd/p6e-fault-worker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-api ./cmd/homepage-api  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-data ./cmd/p6e-fault-data
+#8 CACHED
+
+#9 [worker-test 1/2] FROM docker.io/library/xiaowork-homepage-worker:p6e-closure-817aa533741b@sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c
+#9 resolve docker.io/library/xiaowork-homepage-worker:p6e-closure-817aa533741b@sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c 0.0s done
+#9 DONE 0.1s
+
+#10 [worker-test 2/2] COPY --from=test-build /p6e-fault-worker /p6e-fault-worker
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.6s done
+#11 exporting manifest sha256:cc9c0cb72af1b3447d37cd12b359c504da7ca521676482de7bdf1389758903db 0.0s done
+#11 exporting config sha256:4ccb07df6a480ec80499269acc83a749209641e9f112a76c8e2124f665f33487 0.0s done
+#11 exporting attestation manifest sha256:7a603cb67664efaedfd19fb868e5a2dfef50fe619e0355e1c289573a47c09577 0.0s done
+#11 exporting manifest list sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96 0.0s done
+#11 naming to docker.io/library/xiaowork-homepage-worker:p6e-closure-fault
+#11 naming to docker.io/library/xiaowork-homepage-worker:p6e-closure-fault done
+#11 unpacking to docker.io/library/xiaowork-homepage-worker:p6e-closure-fault 0.1s done
+#11 DONE 0.8s

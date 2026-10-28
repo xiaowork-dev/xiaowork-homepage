@@ -1,0 +1,1326 @@
+{
+  "date": "2026-10-28T13:27:16.405Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-fault",
+  "case": "before-switch",
+  "scope": "Dedicated local volumes only; test-tagged binaries; no production connection",
+  "tlsVerificationDisabled": false,
+  "events": [
+    {
+      "time": "2026-10-28T13:27:37.406Z",
+      "point": "before",
+      "status": {
+        "activeReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 978727596032,
+              "totalBytes": 1081101176832,
+              "usedBytes": 623584,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 978727596032,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 978727596032,
+              "totalBytes": 1081101176832,
+              "usedBytes": 3474372,
+              "files": 290,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T13:26:59Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": null,
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "releaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_021af068f50d1878e73db4373dce9124",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "releaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_44cb82eb653fcd4cc2ecf104e1022d99",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_bb9c4246dce3d6fe1a1b998ac9a8ffb2",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7f44d6eb9e00134e16fd03be2a760b21",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c174b5d1b9e3efd4062354c210b3ff7c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "releaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_a696c1530076245668c6dd662a7a49f2",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "releaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_e1ea769e6a6b31723568717f017173e3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "releaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7383f58ec7262cda715bebfa7e833700",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_8212db4f73afd20e08912e4b16450fba",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_efe29f6df359008d36c4181e7371781c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 3,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 2,
+          "id": "job_163d40b91498afb8e72936df1da03ab7",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "releaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_a52e9607bef8115a3f0330915d3b8bf3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_e07787f58514ac34a8d9138feabfc538",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_8b8819f3bd32692d246cacd8d4178817",
+        "releases": [
+          {
+            "id": "rel_02ec05e6a72a560e5286038879990261",
+            "manifestSha256": "9e834dbc0754a9b37b0d2f177ea7efecf352d3180d509b0374adda9bb6b1c13f",
+            "homepageSha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+          },
+          {
+            "id": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+            "manifestSha256": "f24bf21a3f528d144bad91cfa49994c9de9da9332aafc8a2beb80592cf8764c1",
+            "homepageSha256": "84240b69dc60b05363f53c85b67562e2373f3e9418e04c1b5b1cd891d676e455"
+          },
+          {
+            "id": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+            "manifestSha256": "fa731f6c505dad82ed83097d03c01a33eaf01e8c9419cd3ffb9abdcca358c5fc",
+            "homepageSha256": "b86c31f942fb16a3f42687afa513439061913b1184dfe327ab3cc3d85dc0677d"
+          },
+          {
+            "id": "rel_8b8819f3bd32692d246cacd8d4178817",
+            "manifestSha256": "6ce65f847538e63145a28dde27988d258a60aa3c5cea5d401aa3b9a74dba1f9e",
+            "homepageSha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+          },
+          {
+            "id": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+            "manifestSha256": "2b6a826bfb7285d579328f5fec4822538ac4cd97a11a4e97ad17016a7e01a71a",
+            "homepageSha256": "5d7419c77012591da53c231491f02fda3f3a15d161986fbbcb0c2f52ac54cd1c"
+          },
+          {
+            "id": "rel_b7024902adde82b7c3ba21ef306c6715",
+            "manifestSha256": "c72b6d952f1083fe4e46b1ed9d6e08a85a4fdd57ed798359e655d331668a065e",
+            "homepageSha256": "2242770c21403469460c94c17859ab0de8f0ea0b17f5bf4f2db2e23ed9d6c8d0"
+          },
+          {
+            "id": "rel_c11b646f39b93642968e720e4631775b",
+            "manifestSha256": "a74571b96002c6fb5aa5679bea17dd1c6b7975dfbf332ecf62c10412c53ca7dd",
+            "homepageSha256": "db2b4e71e981cbfb77bbbbff7c5662c6e0162959c08c829a7163579a10b605e3"
+          },
+          {
+            "id": "rel_efe29f6df359008d36c4181e7371781c",
+            "manifestSha256": "8f9f97f809c6bb212252cd67c2756da0184adf2167341e748277fd76e437caa0",
+            "homepageSha256": "02812df60a6945c97927a5f0f67490e0e2c555f1d788b411c1d6eb1d713be73d"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 0,
+        "activations": [
+          {
+            "id": "job_021af068f50d1878e73db4373dce9124",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_163d40b91498afb8e72936df1da03ab7",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8212db4f73afd20e08912e4b16450fba",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a696c1530076245668c6dd662a7a49f2",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_e1ea769e6a6b31723568717f017173e3",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T13:27:39.877Z",
+      "point": "submission",
+      "httpStatus": 202,
+      "jobId": "job_a9ae0b23bc30355d8e470027be85b1b8"
+    },
+    {
+      "time": "2026-10-28T13:27:53.128Z",
+      "point": "before-current-rename",
+      "service": "worker"
+    },
+    {
+      "time": "2026-10-28T13:27:55.217Z",
+      "point": "at-activation-boundary",
+      "status": {
+        "activeReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "activeVerified": true,
+        "blockingJob": {
+          "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+          "kind": "publish",
+          "status": "reconciling",
+          "phase": "activating",
+          "snapshotId": "snap_f24d43533eda2d5352af6556f5337680",
+          "workspaceRevision": "ws-1",
+          "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+          "targetReleaseId": null,
+          "createdAt": "2026-10-28T13:27:39Z",
+          "startedAt": "2026-10-28T13:27:41Z",
+          "completedAt": null,
+          "error": null,
+          "activeVerified": false
+        },
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 978726768640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 623584,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 978726768640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 978726768640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 3474372,
+              "files": 290,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T13:26:59Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+        "kind": "publish",
+        "status": "reconciling",
+        "phase": "activating",
+        "snapshotId": "snap_f24d43533eda2d5352af6556f5337680",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T13:27:39Z",
+        "startedAt": "2026-10-28T13:27:41Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "releaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_021af068f50d1878e73db4373dce9124",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "releaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_44cb82eb653fcd4cc2ecf104e1022d99",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_bb9c4246dce3d6fe1a1b998ac9a8ffb2",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7f44d6eb9e00134e16fd03be2a760b21",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c174b5d1b9e3efd4062354c210b3ff7c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "releaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_a696c1530076245668c6dd662a7a49f2",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "releaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_e1ea769e6a6b31723568717f017173e3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "releaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7383f58ec7262cda715bebfa7e833700",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_8212db4f73afd20e08912e4b16450fba",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_efe29f6df359008d36c4181e7371781c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 3,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 2,
+          "id": "job_163d40b91498afb8e72936df1da03ab7",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "releaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_a52e9607bef8115a3f0330915d3b8bf3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_e07787f58514ac34a8d9138feabfc538",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+          "kind": "publish",
+          "phase": "activating",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+          "revision": "ws-1",
+          "status": "reconciling",
+          "successAuditEvents": 0
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_8b8819f3bd32692d246cacd8d4178817",
+        "releases": [
+          {
+            "id": "rel_02ec05e6a72a560e5286038879990261",
+            "manifestSha256": "9e834dbc0754a9b37b0d2f177ea7efecf352d3180d509b0374adda9bb6b1c13f",
+            "homepageSha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+          },
+          {
+            "id": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+            "manifestSha256": "f24bf21a3f528d144bad91cfa49994c9de9da9332aafc8a2beb80592cf8764c1",
+            "homepageSha256": "84240b69dc60b05363f53c85b67562e2373f3e9418e04c1b5b1cd891d676e455"
+          },
+          {
+            "id": "rel_59b5616ce26fa12d14159c9f11874a43",
+            "manifestSha256": "63a5da9cf584b72146f6858dc85b3ec9bf27a4370a4916b4b7dadd7422475833",
+            "homepageSha256": "71778529f955e5b4104f96a7dfa45ba99acf6c8b368a89ba665dc82ee342c977"
+          },
+          {
+            "id": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+            "manifestSha256": "fa731f6c505dad82ed83097d03c01a33eaf01e8c9419cd3ffb9abdcca358c5fc",
+            "homepageSha256": "b86c31f942fb16a3f42687afa513439061913b1184dfe327ab3cc3d85dc0677d"
+          },
+          {
+            "id": "rel_8b8819f3bd32692d246cacd8d4178817",
+            "manifestSha256": "6ce65f847538e63145a28dde27988d258a60aa3c5cea5d401aa3b9a74dba1f9e",
+            "homepageSha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+          },
+          {
+            "id": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+            "manifestSha256": "2b6a826bfb7285d579328f5fec4822538ac4cd97a11a4e97ad17016a7e01a71a",
+            "homepageSha256": "5d7419c77012591da53c231491f02fda3f3a15d161986fbbcb0c2f52ac54cd1c"
+          },
+          {
+            "id": "rel_b7024902adde82b7c3ba21ef306c6715",
+            "manifestSha256": "c72b6d952f1083fe4e46b1ed9d6e08a85a4fdd57ed798359e655d331668a065e",
+            "homepageSha256": "2242770c21403469460c94c17859ab0de8f0ea0b17f5bf4f2db2e23ed9d6c8d0"
+          },
+          {
+            "id": "rel_c11b646f39b93642968e720e4631775b",
+            "manifestSha256": "a74571b96002c6fb5aa5679bea17dd1c6b7975dfbf332ecf62c10412c53ca7dd",
+            "homepageSha256": "db2b4e71e981cbfb77bbbbff7c5662c6e0162959c08c829a7163579a10b605e3"
+          },
+          {
+            "id": "rel_efe29f6df359008d36c4181e7371781c",
+            "manifestSha256": "8f9f97f809c6bb212252cd67c2756da0184adf2167341e748277fd76e437caa0",
+            "homepageSha256": "02812df60a6945c97927a5f0f67490e0e2c555f1d788b411c1d6eb1d713be73d"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_021af068f50d1878e73db4373dce9124",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_163d40b91498afb8e72936df1da03ab7",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8212db4f73afd20e08912e4b16450fba",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a696c1530076245668c6dd662a7a49f2",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_e1ea769e6a6b31723568717f017173e3",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T13:27:57.703Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+        "kind": "publish",
+        "status": "reconciling",
+        "phase": "activating",
+        "snapshotId": "snap_f24d43533eda2d5352af6556f5337680",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T13:27:39Z",
+        "startedAt": "2026-10-28T13:27:41Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T13:29:53.671Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_f24d43533eda2d5352af6556f5337680",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T13:27:39Z",
+        "startedAt": "2026-10-28T13:27:41Z",
+        "completedAt": "2026-10-28T13:29:53Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T13:29:55.922Z",
+      "point": "recovered-after-boundary",
+      "status": {
+        "activeReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 978726686720,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1171544,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 978726686720,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 978726686720,
+              "totalBytes": 1081101176832,
+              "usedBytes": 3908069,
+              "files": 325,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T13:29:53Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_f24d43533eda2d5352af6556f5337680",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T13:27:39Z",
+        "startedAt": "2026-10-28T13:27:41Z",
+        "completedAt": "2026-10-28T13:29:53Z",
+        "error": {
+          "code": "INTERRUPTED_BEFORE_ACTIVATION",
+          "message": "发布任务在切换前中断，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "releaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_021af068f50d1878e73db4373dce9124",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "releaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_44cb82eb653fcd4cc2ecf104e1022d99",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_bb9c4246dce3d6fe1a1b998ac9a8ffb2",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7f44d6eb9e00134e16fd03be2a760b21",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_c174b5d1b9e3efd4062354c210b3ff7c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "releaseId": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 2,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_a696c1530076245668c6dd662a7a49f2",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "releaseId": "rel_c11b646f39b93642968e720e4631775b",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_e1ea769e6a6b31723568717f017173e3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "releaseId": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "ROLLBACK_TARGET_INVALID",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_7383f58ec7262cda715bebfa7e833700",
+          "kind": "rollback",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "ACTIVATION_RESTORED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 2,
+          "id": "job_8212db4f73afd20e08912e4b16450fba",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_efe29f6df359008d36c4181e7371781c",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 3,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 2,
+          "id": "job_163d40b91498afb8e72936df1da03ab7",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "releaseId": "rel_8b8819f3bd32692d246cacd8d4178817",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_a52e9607bef8115a3f0330915d3b8bf3",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_e07787f58514ac34a8d9138feabfc538",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        },
+        {
+          "attempts": 2,
+          "errorCode": "INTERRUPTED_BEFORE_ACTIVATION",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_59b5616ce26fa12d14159c9f11874a43",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_8b8819f3bd32692d246cacd8d4178817",
+        "releases": [
+          {
+            "id": "rel_02ec05e6a72a560e5286038879990261",
+            "manifestSha256": "9e834dbc0754a9b37b0d2f177ea7efecf352d3180d509b0374adda9bb6b1c13f",
+            "homepageSha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+          },
+          {
+            "id": "rel_18b59c2b12ce5dc46dccd78050f8c47c",
+            "manifestSha256": "f24bf21a3f528d144bad91cfa49994c9de9da9332aafc8a2beb80592cf8764c1",
+            "homepageSha256": "84240b69dc60b05363f53c85b67562e2373f3e9418e04c1b5b1cd891d676e455"
+          },
+          {
+            "id": "rel_59b5616ce26fa12d14159c9f11874a43",
+            "manifestSha256": "63a5da9cf584b72146f6858dc85b3ec9bf27a4370a4916b4b7dadd7422475833",
+            "homepageSha256": "71778529f955e5b4104f96a7dfa45ba99acf6c8b368a89ba665dc82ee342c977"
+          },
+          {
+            "id": "rel_5e42d0cd331e94de60a044b3f31b07d5",
+            "manifestSha256": "fa731f6c505dad82ed83097d03c01a33eaf01e8c9419cd3ffb9abdcca358c5fc",
+            "homepageSha256": "b86c31f942fb16a3f42687afa513439061913b1184dfe327ab3cc3d85dc0677d"
+          },
+          {
+            "id": "rel_8b8819f3bd32692d246cacd8d4178817",
+            "manifestSha256": "6ce65f847538e63145a28dde27988d258a60aa3c5cea5d401aa3b9a74dba1f9e",
+            "homepageSha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+          },
+          {
+            "id": "rel_9d0f45154c8c2bf9fb6bc9bd7cbd6afa",
+            "manifestSha256": "2b6a826bfb7285d579328f5fec4822538ac4cd97a11a4e97ad17016a7e01a71a",
+            "homepageSha256": "5d7419c77012591da53c231491f02fda3f3a15d161986fbbcb0c2f52ac54cd1c"
+          },
+          {
+            "id": "rel_b7024902adde82b7c3ba21ef306c6715",
+            "manifestSha256": "c72b6d952f1083fe4e46b1ed9d6e08a85a4fdd57ed798359e655d331668a065e",
+            "homepageSha256": "2242770c21403469460c94c17859ab0de8f0ea0b17f5bf4f2db2e23ed9d6c8d0"
+          },
+          {
+            "id": "rel_c11b646f39b93642968e720e4631775b",
+            "manifestSha256": "a74571b96002c6fb5aa5679bea17dd1c6b7975dfbf332ecf62c10412c53ca7dd",
+            "homepageSha256": "db2b4e71e981cbfb77bbbbff7c5662c6e0162959c08c829a7163579a10b605e3"
+          },
+          {
+            "id": "rel_efe29f6df359008d36c4181e7371781c",
+            "manifestSha256": "8f9f97f809c6bb212252cd67c2756da0184adf2167341e748277fd76e437caa0",
+            "homepageSha256": "02812df60a6945c97927a5f0f67490e0e2c555f1d788b411c1d6eb1d713be73d"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 1,
+        "activations": [
+          {
+            "id": "job_021af068f50d1878e73db4373dce9124",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_050be1b5ffb13a34181c8f5870b4557d",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_163d40b91498afb8e72936df1da03ab7",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_8212db4f73afd20e08912e4b16450fba",
+            "intent": true,
+            "receipt": true,
+            "recovery": true
+          },
+          {
+            "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a696c1530076245668c6dd662a7a49f2",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_a9ae0b23bc30355d8e470027be85b1b8",
+            "intent": true,
+            "receipt": false,
+            "recovery": false
+          },
+          {
+            "id": "job_e1ea769e6a6b31723568717f017173e3",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_fdf9d1eec3fa6ec36a335f0d693cbf03",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+        }
+      ]
+    }
+  ],
+  "result": "PASS",
+  "variant": "frozen-baseline",
+  "sourceRevision": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "testWorkerImage": "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96",
+  "testApiImage": {
+    "tag": "xiaowork-homepage-api:p6e-closure-fault",
+    "id": "sha256:38e62ee30bd0750baa84b35ef3a3ee30bcdd31bcb2dd44cd1fb95d04b3b09a5e",
+    "sourceRevision": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+  },
+  "originalActive": "rel_8b8819f3bd32692d246cacd8d4178817",
+  "originalHttp": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+    }
+  ],
+  "jobId": "job_a9ae0b23bc30355d8e470027be85b1b8",
+  "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+}

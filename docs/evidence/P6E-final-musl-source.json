@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-28T12:32:37.187Z",
+  "sources": [
+    {
+      "ref": "3.24-stable",
+      "url": "https://api.github.com/repos/alpinelinux/aports/contents/main/musl/APKBUILD?ref=3.24-stable",
+      "checkedAt": "2026-10-28T12:32:37.188Z",
+      "status": 200,
+      "blobSha": "b729315a72d9060cc69ba9bddec53c0691c05158",
+      "sha256": "22c5adb3f3b68ab84e5ff7d20df68447063d1ecb5c7b39afd5a04a1dfd444a35",
+      "versions": [
+        "pkgver=1.2.6",
+        "pkgrel=3"
+      ],
+      "file": "P6E-final-musl-3.24-stable-APKBUILD.txt",
+      "result": "FETCHED"
+    },
+    {
+      "ref": "master",
+      "url": "https://api.github.com/repos/alpinelinux/aports/contents/main/musl/APKBUILD?ref=master",
+      "checkedAt": "2026-10-28T12:32:39.256Z",
+      "status": 200,
+      "blobSha": "c4f95eee6aef6f47f2f0c77e3444510fb749a9aa",
+      "sha256": "fb5ab4f3d497cf9060244ef5dc0d825896c60ea4f54f7a8ba3638850ccc33ca6",
+      "versions": [
+        "pkgver=1.2.6",
+        "pkgrel=6"
+      ],
+      "file": "P6E-final-musl-master-APKBUILD.txt",
+      "result": "FETCHED"
+    }
+  ],
+  "result": "COLLECTED",
+  "patch": {
+    "name": "CVE-2026-107891.patch",
+    "url": "https://api.github.com/repos/alpinelinux/aports/contents/main/musl/CVE-2026-107891.patch?ref=3.24-stable",
+    "checkedAt": "2026-10-28T12:32:39.695Z",
+    "status": 200,
+    "blobSha": "2abae19db458c2b3e9b45281a6f4867347c7c26f",
+    "sha512": "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e",
+    "bothBranchChecksumsMatch": true,
+    "file": "P6E-final-musl-security-patch.txt",
+    "result": "PATCH_MATCH_CONFIRMED"
+  }
+}

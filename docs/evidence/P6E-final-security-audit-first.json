@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28T12:47:38.687Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "schema": 3,
+  "manifestSha256": "a4e369a036a7e5dd71c98307ab9b96a3c6e6033a8a969699b4e16ec88a4990dd",
+  "scope": "Pinned local final six-role images, immutable source and Linux target; no production access",
+  "scannerVersion": "v1.26.0 (go1.26.3-X:jsonv2 - windows/amd64)",
+  "advisoryDatabase": "Live Scout service at recorded times; SARIF exposes no immutable database revision",
+  "images": [
+    {
+      "role": "api",
+      "imageId": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001",
+      "startedAt": "2026-10-28T12:47:40.248Z",
+      "completedAt": "2026-10-28T12:47:48.827Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-final-image-api.sarif.json",
+      "sha256": "1854247c794e4e27c8721bc3055369fa27ae769935e15778c2dac736f0c9a596",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "GO-2026-5932",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:golang/golang.org/x/crypto@0.58.0"
+          ]
+        }
+      ]
+    }
+  ],
+  "binaries": [],
+  "sourceChecks": {},
+  "attempts": [],
+  "limitations": [
+    "Preserved low/unspecified findings are not silently suppressed.",
+    "Scanner zero-high results do not certify application logic, operations or unknown vulnerabilities."
+  ],
+  "result": "IN_PROGRESS"
+}

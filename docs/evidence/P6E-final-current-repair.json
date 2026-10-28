@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-28T13:31:27.762Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-fault",
+  "recovered": "xiaowork-homepage-v11-p6e-closure-repair",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "finalImages": {
+    "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+    "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+    "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+    "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+    "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+    "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+  },
+  "cases": [
+    {
+      "name": "trusted HTTPS account and persistent synthetic private upload prepared; current public version unchanged",
+      "result": "PASS"
+    }
+  ],
+  "result": "FAIL",
+  "syntheticImage": {
+    "id": "med_f5dbdb91e1afc742e9da5217b51b0656",
+    "sha256": "f889324cf1cd6d904ac45783e5dd8244af388011edc2964065bfc0e310d4edfa",
+    "bytes": 125,
+    "note": "Locally generated test fixture; never a real project screenshot"
+  },
+  "publicBefore": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "345ac093205e81bf73a4496da1ee4b2cd4a24f01f8fe29bf34229f424a17e61d"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "cd41a55a0af960ca0088485dac2ddf16ac1b93bb0323a0dc4f94d3da1f1e9a93"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "2e2e802051937ee9d355d7d9188f0a30da85530fd2f0d8b3d527daebc3a9b302"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "b7345dd21c8848b1085777f9a42d7318e781b0a2a87eb4ed007e47363a4ea8b7"
+    }
+  ],
+  "faultRuntimeImages": {
+    "api": "sha256:38e62ee30bd0750baa84b35ef3a3ee30bcdd31bcb2dd44cd1fb95d04b3b09a5e",
+    "worker": "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96",
+    "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+    "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+    "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+    "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+  },
+  "error": "Controlled final repair test stopped; inspect private local command log without publishing credentials"
+}

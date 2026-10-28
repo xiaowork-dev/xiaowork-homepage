@@ -1,0 +1,76 @@
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Running 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Running 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Running 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Running 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-gateway-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Healthy 
+before
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 
+submission
+checkpoint-observed
+new-release-active-before-verification
+real-filesystem-write-denied
+rollback-write-failed-recovery-required
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 
+second-rollback-write-also-failed
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Started 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 
+task-state
+task-state
+same-activation-verified-after-explicit-operator-repair
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Stopped 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-closure-fault-worker-1 Started 

@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-28T13:20:42.489Z",
+  "project": "xiaowork-homepage-v11-p6e-cross-source",
+  "command": "node scripts/v11-cross-source-retention.mjs",
+  "result": "PASS",
+  "volumes": [
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-db",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-uploads",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-publications",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-secrets",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-authority",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-tls",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    },
+    {
+      "name": "xiaowork-homepage-v11-p6e-cross-source_admin-publisher-socket",
+      "project": "xiaowork-homepage-v11-p6e-cross-source",
+      "retained": true
+    }
+  ],
+  "images": [
+    {
+      "version": "previous",
+      "role": "api",
+      "id": "sha256:0bb100d5974f94d2e177dbacbcde2cb1382ef26510f688a85d3e81efbf557552",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "previous",
+      "role": "worker",
+      "id": "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "previous",
+      "role": "gateway",
+      "id": "sha256:6bc05f2756b0e816c28b1596243fd01ab8805cdf7bf67b210826fe781f903cef",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "previous",
+      "role": "frontend",
+      "id": "sha256:6de375a93ca78156abd949714d409933c7e0515050efad14504ea6f72c7d1029",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "previous",
+      "role": "static",
+      "id": "sha256:64e04de5519a221afed3a8d304e22fdf3603df5a5aa94e80bf020f048cdfff0e",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "previous",
+      "role": "maintenance",
+      "id": "sha256:2f49df9cc493dc6b66bd30f7d4e9c25db89b8383c5132c0c6e841a46dc64c9aa",
+      "source": "be5c96857c5a7098a9b8f80931ced47d0efcab89",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "api",
+      "id": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "worker",
+      "id": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "gateway",
+      "id": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "frontend",
+      "id": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "static",
+      "id": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    },
+    {
+      "version": "final",
+      "role": "maintenance",
+      "id": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "retained": true
+    }
+  ],
+  "state": {
+    "schema": 3,
+    "workspaceRevision": 6,
+    "administrators": 1,
+    "projects": 3,
+    "uploads": 1,
+    "snapshots": 4,
+    "jobs": 6,
+    "releases": 4,
+    "unfinished": 0,
+    "activeRelease": "rel_cd697f5e03d06678a8f3823d64eef90a",
+    "sources": [
+      "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "be5c96857c5a7098a9b8f80931ced47d0efcab89"
+    ],
+    "builders": [
+      "sha256:795b232b2971f423733e36681979e7171042db74dd55aced84355be2c5dec627",
+      "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c"
+    ],
+    "contentSha256": "5846da0fbfe244e1b049a2db46801da4efac30387c30bdaa30bf9fbd9481f8a1"
+  },
+  "ports": [
+    {
+      "port": 3226,
+      "closed": true
+    },
+    {
+      "port": 3459,
+      "closed": true
+    }
+  ],
+  "noGlobalCleanup": true
+}

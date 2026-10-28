@@ -1,0 +1,451 @@
+{
+  "date": "2026-10-28T13:50:21.980Z",
+  "scope": "Read-only local containers outside xiaowork-homepage-v11-p6e-closure-*; no environments or secrets recorded",
+  "containers": [
+    {
+      "id": "9bcc2f50535f3f97033f2e3e718d1032e92042ee591999b096bf6812cbd79144",
+      "name": "/tender_ellis",
+      "image": "sha256:fe248165fba2dd891dc2e1c89fc8c7773bc6bbd0b218f02b06d9903ee57d921c",
+      "running": true,
+      "startedAt": "2026-10-28T09:30:14.614216335Z",
+      "project": "xiaowork-homepage-v11-p6d-dev"
+    },
+    {
+      "id": "9bf5e702960cc4eaaad2c505fa95465e37b07199db40e1df6dd0d06294fbb403",
+      "name": "/xiaowork-homepage-v11-dev-gateway-1",
+      "image": "sha256:659114d8cbe29751eaa9d7036e1bde490fca1efbc2e0664e219458fc1bc9ce11",
+      "running": true,
+      "startedAt": "2026-10-27T06:51:55.044641557Z",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "name": "/xiaowork-homepage-v11-dev-api-1",
+      "image": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "running": true,
+      "startedAt": "2026-10-26T12:11:23.556151356Z",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "452e2a1162ac89d3d2f84cc9582de1ae3e90a6c5a67085f8eaaa936c68b0e1d1",
+      "name": "/xiaowork-homepage-v11-dev-api-init-1",
+      "image": "sha256:a0b36942bc8c11d53841d4f1da652155badd93b07bf1faa79606ab9aab23fc80",
+      "running": false,
+      "startedAt": "2026-10-27T05:47:26.313702591Z",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "name": "/xiaowork-homepage-v11-dev-frontend-1",
+      "image": "sha256:5358ddae50609b30c44f89bc39f7307420422ac67ea031801f7ee724a4e69fd8",
+      "running": true,
+      "startedAt": "2026-10-26T11:01:39.857796054Z",
+      "project": "xiaowork-homepage-v11-dev"
+    },
+    {
+      "id": "a52769dc37025009dd8e3a500e7079b07ffb240c27dfb9c45b817bfc13d5f393",
+      "name": "/xiaowork-blog-web-1",
+      "image": "sha256:af3b8c1bdaa14a7b087fbf6f70cd3b01e720061560583c62af8f99c485beb7a1",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:24.021151685Z",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "70d1b6559dbf939f2687be0d19e45d3dfd3eac4a254ddb557d9d7c497e5fa548",
+      "name": "/xiaowork-blog-api-1",
+      "image": "sha256:6a3fa616440f711c9040e178fffcc7c712af46a12c232e2593eea7d9454ed652",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:48.57103492Z",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "2adc7ec4b3305da8420099e37b197aeb1834a96971febe86586685f69d30f318",
+      "name": "/xiaowork-blog-migrate-1",
+      "image": "sha256:114fdb25bb89d8a7d0c43322e3e4e470be11c535aec32cc70a28b873cd2bf232",
+      "running": false,
+      "startedAt": "2026-10-24T10:32:56.742611568Z",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "2e2827478db64c9950f9a4e79e873a303e637c338035e9b3d0abaa8d0ba005ab",
+      "name": "/xiaowork-blog-db-1",
+      "image": "sha256:898c60cb390d1085bc97bdd6a1ae968757421df394b071848b52b1c09c89d6a5",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:23.61650068Z",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "c42bb8a2d8b9e3fd651596e3024369a82dd8443e909fb82adc319c10704d0bea",
+      "name": "/xiaowork-blog-mailpit-1",
+      "image": "sha256:0790692be935ea4420d085694f7985b1f692ca6a8771ab0e0bd8ba75ac180498",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:24.055142692Z",
+      "project": "xiaowork-blog"
+    },
+    {
+      "id": "6611c5cfebca694247bc096da578df0ead39030915931c66b90a6ddd7e7b59ce",
+      "name": "/erp-admin-p2-it-50985e27162f",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-23T07:32:04.533938112Z",
+      "project": ""
+    },
+    {
+      "id": "f86fd8518b67a3467b4861c5541ecb3a654fc9521a6c899890987f2b056627fb",
+      "name": "/erp-admin-p2-it-3bb330b67d09",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-23T07:30:17.772734553Z",
+      "project": ""
+    },
+    {
+      "id": "1e22b2a76079ed60d544b8574545b233ead34606e2de0e4f8096ebf11b85dccd",
+      "name": "/erp-admin-helper-b2a4669c91d2-app-before",
+      "image": "sha256:000fd431958bc81a24abe1e8e5f0f0fd3ae365a594bd50aadb20696805f9408c",
+      "running": false,
+      "startedAt": "2026-10-23T05:59:39.181203856Z",
+      "project": ""
+    },
+    {
+      "id": "f3558f069d964420e71c3bba686de57e46c3de30910ea8d88fb97d1c03614ca5",
+      "name": "/erp-admin-helper-b2a4669c91d2-mysql",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-23T05:58:28.480443409Z",
+      "project": ""
+    },
+    {
+      "id": "a493ee7809e9fd355ddc397bfc1d563d1fc42b7b900bf68390b4d54391a8188e",
+      "name": "/erp014b-ci-mysql-9c55fdf43bda",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-23T05:51:30.046589394Z",
+      "project": ""
+    },
+    {
+      "id": "4b8c902bebdbb212da5b3645c2f61dfdb61b35c2071d0189df3649426a3c7a49",
+      "name": "/erp014c-repeat-b838f83a0e-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:44:14.795182733Z",
+      "project": "erp014c-repeat-b838f83a0e"
+    },
+    {
+      "id": "67a52a9c70d5feb007180eb7dccd0c11a5eacf2581ff77e3af60b0b17e7ab494",
+      "name": "/erp014b-ci-mysql-1a0e6b7c4fa6",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:32:10.155855788Z",
+      "project": ""
+    },
+    {
+      "id": "c226714578a1c94bd81434107a329c16178dd0131caf01bc844593c4b7b7a7f9",
+      "name": "/erp014c-source-b838f83a0e-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:31:33.900965659Z",
+      "project": "erp014c-source-b838f83a0e"
+    },
+    {
+      "id": "c395ab276f9fc7c223dfe66c22a395423a7fc06f96cca20875bec15e89ced56a",
+      "name": "/erp014c-interrupted-b838f83a0e-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:30:33.059544176Z",
+      "project": "erp014c-interrupted-b838f83a0e"
+    },
+    {
+      "id": "4b0d2ea2ebb13d6e555349849be97bdc8cb3e07178553740a86a27661515969e",
+      "name": "/erp014c-source-b838f83a0e-edge-1",
+      "image": "sha256:9937268c090161d86a9fc4d28283b2cc4d9714eb5f2b99c02da71c230da69045",
+      "running": false,
+      "startedAt": "2026-10-17T10:29:22.015647667Z",
+      "project": "erp014c-source-b838f83a0e"
+    },
+    {
+      "id": "31b90ad00408098ead3a10d561bcd762eb3fcd61952ab43a71486eadd6c0d831",
+      "name": "/erp014c-source-b838f83a0e-backend-1",
+      "image": "sha256:0bfe3350d2f3c1fff38ab47df4d90c39c1c5994a4d3da5e7d99dc10b778fe104",
+      "running": false,
+      "startedAt": "2026-10-17T10:31:46.15075889Z",
+      "project": "erp014c-source-b838f83a0e"
+    },
+    {
+      "id": "8edf3b2f273e450d5420d3b13917b03927429e4fe8aa567fcf9829deaffca4e0",
+      "name": "/erp014c-source-b838f83a0e-frontend-1",
+      "image": "sha256:a0a348f6796cf7bf53a23bac195910921e959a0d1abe0f1d76320562832d1d1c",
+      "running": false,
+      "startedAt": "2026-10-17T10:29:02.895432654Z",
+      "project": "erp014c-source-b838f83a0e"
+    },
+    {
+      "id": "2e6ce73f9c655b3d973b01ed4dfadd1fcb57856412a5c1b6d35e2e17bac3700a",
+      "name": "/erp014c-restore-b838f83a0e-1-edge-1",
+      "image": "sha256:9937268c090161d86a9fc4d28283b2cc4d9714eb5f2b99c02da71c230da69045",
+      "running": false,
+      "startedAt": "2026-10-17T10:21:55.822217597Z",
+      "project": "erp014c-restore-b838f83a0e-1"
+    },
+    {
+      "id": "80876296fa7473dd0edebbab03a6387a5f2b5bb56598eb196b8d4572e5d46f20",
+      "name": "/erp014c-restore-b838f83a0e-1-backend-1",
+      "image": "sha256:0bfe3350d2f3c1fff38ab47df4d90c39c1c5994a4d3da5e7d99dc10b778fe104",
+      "running": false,
+      "startedAt": "2026-10-17T10:21:35.920632308Z",
+      "project": "erp014c-restore-b838f83a0e-1"
+    },
+    {
+      "id": "ca58e4270b7a01669be343eecfa7399a7bfc63d274db34b11a174bec111b92b1",
+      "name": "/erp014c-restore-b838f83a0e-1-frontend-1",
+      "image": "sha256:a0a348f6796cf7bf53a23bac195910921e959a0d1abe0f1d76320562832d1d1c",
+      "running": false,
+      "startedAt": "2026-10-17T10:21:35.41267113Z",
+      "project": "erp014c-restore-b838f83a0e-1"
+    },
+    {
+      "id": "eb40c5a2e955ca72594f12f634729dc8b2c13577f2ff458932b4091440055940",
+      "name": "/erp014c-restore-b838f83a0e-1-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:38:34.416408792Z",
+      "project": "erp014c-restore-b838f83a0e-1"
+    },
+    {
+      "id": "3c55918af84758129f9d6615a56734def80641e662c9c788a8b258e9fc3827fc",
+      "name": "/erp014c-restore-b838f83a0e-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:16:14.639773885Z",
+      "project": "erp014c-restore-b838f83a0e"
+    },
+    {
+      "id": "f7586bd2d40b0e424a9fcdd796b47e13ec1765753504a561074baa64d8c0000a",
+      "name": "/erp014b-ci-mysql-d85180fcb21e",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-17T10:06:59.313221732Z",
+      "project": ""
+    },
+    {
+      "id": "13a44cb96b1da77f60009b069487f3d58383504258a6d4cc3989d6bfd377f06b",
+      "name": "/erp014b-ci-mysql-ecb3238eb872",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-16T14:31:28.036065614Z",
+      "project": ""
+    },
+    {
+      "id": "fc22b111c90fc2149fada50a18c369c81aadbcbb2141e56106aa061ca575d001",
+      "name": "/erp014b-ci-mysql-de24d13e1400",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": false,
+      "startedAt": "2026-10-16T14:15:46.971984734Z",
+      "project": ""
+    },
+    {
+      "id": "89342d464b60289682251b8ff2fc52a571f04caa6dfa411f1f22de0ea4b8604c",
+      "name": "/xiaowork-erp-014a-20261016-backend-1",
+      "image": "sha256:972f59107dc947443e48129367536fe80ae6ff1fdb4e6599843b089f609c200d",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:23.87935599Z",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "8c91df28444f6cec1076becc97c4f3a8494ff6673dcaac23b94669b230c05945",
+      "name": "/xiaowork-erp-014a-20261016-edge-1",
+      "image": "sha256:242dedafdf8fbb10eec2859de8d21bb1ab62736a50ef448d5ab07e9f03dcfbde",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:23.916648122Z",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "fe768ea8ee0f736df65b28edf6ad57a9e90846d8fbd8692031914e018bc9ebc5",
+      "name": "/xiaowork-erp-014a-20261016-mysql-1",
+      "image": "sha256:4af1f8815716546f5b12410f7621f37f93db8dd11a184706ef59111930b8c2ff",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:23.947949401Z",
+      "project": "xiaowork-erp-014a-20261016"
+    },
+    {
+      "id": "74e769de10ea5ad1bfbe24bc11a83f2fefd91f4c0130081d820d86529edf532e",
+      "name": "/xiaowork-erp-014a-20261016-frontend-1",
+      "image": "sha256:a0f5ab3390006415b5dadef063807ccfddea451bfecd68767dfe4e1ca5502144",
+      "running": true,
+      "startedAt": "2026-10-24T13:05:23.859702505Z",
+      "project": "xiaowork-erp-014a-20261016"
+    }
+  ],
+  "checks": [
+    {
+      "id": "9bcc2f50535f3f97033f2e3e718d1032e92042ee591999b096bf6812cbd79144",
+      "name": "/tender_ellis",
+      "unchanged": true
+    },
+    {
+      "id": "9bf5e702960cc4eaaad2c505fa95465e37b07199db40e1df6dd0d06294fbb403",
+      "name": "/xiaowork-homepage-v11-dev-gateway-1",
+      "unchanged": true
+    },
+    {
+      "id": "08aa0e7dd25353a008996993ba6a2e6a0b2e3ecbe3bde3fe981c4bb95bca1cf8",
+      "name": "/xiaowork-homepage-v11-dev-api-1",
+      "unchanged": true
+    },
+    {
+      "id": "452e2a1162ac89d3d2f84cc9582de1ae3e90a6c5a67085f8eaaa936c68b0e1d1",
+      "name": "/xiaowork-homepage-v11-dev-api-init-1",
+      "unchanged": true
+    },
+    {
+      "id": "ac84fad9e78b07ea19b9d16052bd924cd593d618447667b86343debaa6588b4b",
+      "name": "/xiaowork-homepage-v11-dev-frontend-1",
+      "unchanged": true
+    },
+    {
+      "id": "a52769dc37025009dd8e3a500e7079b07ffb240c27dfb9c45b817bfc13d5f393",
+      "name": "/xiaowork-blog-web-1",
+      "unchanged": true
+    },
+    {
+      "id": "70d1b6559dbf939f2687be0d19e45d3dfd3eac4a254ddb557d9d7c497e5fa548",
+      "name": "/xiaowork-blog-api-1",
+      "unchanged": true
+    },
+    {
+      "id": "2adc7ec4b3305da8420099e37b197aeb1834a96971febe86586685f69d30f318",
+      "name": "/xiaowork-blog-migrate-1",
+      "unchanged": true
+    },
+    {
+      "id": "2e2827478db64c9950f9a4e79e873a303e637c338035e9b3d0abaa8d0ba005ab",
+      "name": "/xiaowork-blog-db-1",
+      "unchanged": true
+    },
+    {
+      "id": "c42bb8a2d8b9e3fd651596e3024369a82dd8443e909fb82adc319c10704d0bea",
+      "name": "/xiaowork-blog-mailpit-1",
+      "unchanged": true
+    },
+    {
+      "id": "6611c5cfebca694247bc096da578df0ead39030915931c66b90a6ddd7e7b59ce",
+      "name": "/erp-admin-p2-it-50985e27162f",
+      "unchanged": true
+    },
+    {
+      "id": "f86fd8518b67a3467b4861c5541ecb3a654fc9521a6c899890987f2b056627fb",
+      "name": "/erp-admin-p2-it-3bb330b67d09",
+      "unchanged": true
+    },
+    {
+      "id": "1e22b2a76079ed60d544b8574545b233ead34606e2de0e4f8096ebf11b85dccd",
+      "name": "/erp-admin-helper-b2a4669c91d2-app-before",
+      "unchanged": true
+    },
+    {
+      "id": "f3558f069d964420e71c3bba686de57e46c3de30910ea8d88fb97d1c03614ca5",
+      "name": "/erp-admin-helper-b2a4669c91d2-mysql",
+      "unchanged": true
+    },
+    {
+      "id": "a493ee7809e9fd355ddc397bfc1d563d1fc42b7b900bf68390b4d54391a8188e",
+      "name": "/erp014b-ci-mysql-9c55fdf43bda",
+      "unchanged": true
+    },
+    {
+      "id": "4b8c902bebdbb212da5b3645c2f61dfdb61b35c2071d0189df3649426a3c7a49",
+      "name": "/erp014c-repeat-b838f83a0e-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "67a52a9c70d5feb007180eb7dccd0c11a5eacf2581ff77e3af60b0b17e7ab494",
+      "name": "/erp014b-ci-mysql-1a0e6b7c4fa6",
+      "unchanged": true
+    },
+    {
+      "id": "c226714578a1c94bd81434107a329c16178dd0131caf01bc844593c4b7b7a7f9",
+      "name": "/erp014c-source-b838f83a0e-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "c395ab276f9fc7c223dfe66c22a395423a7fc06f96cca20875bec15e89ced56a",
+      "name": "/erp014c-interrupted-b838f83a0e-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "4b0d2ea2ebb13d6e555349849be97bdc8cb3e07178553740a86a27661515969e",
+      "name": "/erp014c-source-b838f83a0e-edge-1",
+      "unchanged": true
+    },
+    {
+      "id": "31b90ad00408098ead3a10d561bcd762eb3fcd61952ab43a71486eadd6c0d831",
+      "name": "/erp014c-source-b838f83a0e-backend-1",
+      "unchanged": true
+    },
+    {
+      "id": "8edf3b2f273e450d5420d3b13917b03927429e4fe8aa567fcf9829deaffca4e0",
+      "name": "/erp014c-source-b838f83a0e-frontend-1",
+      "unchanged": true
+    },
+    {
+      "id": "2e6ce73f9c655b3d973b01ed4dfadd1fcb57856412a5c1b6d35e2e17bac3700a",
+      "name": "/erp014c-restore-b838f83a0e-1-edge-1",
+      "unchanged": true
+    },
+    {
+      "id": "80876296fa7473dd0edebbab03a6387a5f2b5bb56598eb196b8d4572e5d46f20",
+      "name": "/erp014c-restore-b838f83a0e-1-backend-1",
+      "unchanged": true
+    },
+    {
+      "id": "ca58e4270b7a01669be343eecfa7399a7bfc63d274db34b11a174bec111b92b1",
+      "name": "/erp014c-restore-b838f83a0e-1-frontend-1",
+      "unchanged": true
+    },
+    {
+      "id": "eb40c5a2e955ca72594f12f634729dc8b2c13577f2ff458932b4091440055940",
+      "name": "/erp014c-restore-b838f83a0e-1-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "3c55918af84758129f9d6615a56734def80641e662c9c788a8b258e9fc3827fc",
+      "name": "/erp014c-restore-b838f83a0e-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "f7586bd2d40b0e424a9fcdd796b47e13ec1765753504a561074baa64d8c0000a",
+      "name": "/erp014b-ci-mysql-d85180fcb21e",
+      "unchanged": true
+    },
+    {
+      "id": "13a44cb96b1da77f60009b069487f3d58383504258a6d4cc3989d6bfd377f06b",
+      "name": "/erp014b-ci-mysql-ecb3238eb872",
+      "unchanged": true
+    },
+    {
+      "id": "fc22b111c90fc2149fada50a18c369c81aadbcbb2141e56106aa061ca575d001",
+      "name": "/erp014b-ci-mysql-de24d13e1400",
+      "unchanged": true
+    },
+    {
+      "id": "89342d464b60289682251b8ff2fc52a571f04caa6dfa411f1f22de0ea4b8604c",
+      "name": "/xiaowork-erp-014a-20261016-backend-1",
+      "unchanged": true
+    },
+    {
+      "id": "8c91df28444f6cec1076becc97c4f3a8494ff6673dcaac23b94669b230c05945",
+      "name": "/xiaowork-erp-014a-20261016-edge-1",
+      "unchanged": true
+    },
+    {
+      "id": "fe768ea8ee0f736df65b28edf6ad57a9e90846d8fbd8692031914e018bc9ebc5",
+      "name": "/xiaowork-erp-014a-20261016-mysql-1",
+      "unchanged": true
+    },
+    {
+      "id": "74e769de10ea5ad1bfbe24bc11a83f2fefd91f4c0130081d820d86529edf532e",
+      "name": "/xiaowork-erp-014a-20261016-frontend-1",
+      "unchanged": true
+    }
+  ],
+  "result": "PASS_EXISTING_CONTAINERS_UNCHANGED"
+}

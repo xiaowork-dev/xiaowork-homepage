@@ -1,0 +1,7 @@
+{
+  "reason": "Dockerfile FROM interpreted plain sha256 image ID as docker.io/library/sha256 repository; auth.docker.io connection failed",
+  "correction": "Test-only FROM now uses unique final tag after asserting the tag matches recorded exact image ID",
+  "finalRuntimeGroupBuilt": true,
+  "result": "TEST_FIXTURE_BUILD_FAILED",
+  "runtimeSource": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+}

@@ -1,0 +1,256 @@
+{
+  "date": "2026-10-28T13:05:55.056Z",
+  "origin": "http://127.0.0.1:3224",
+  "version": {
+    "schemaVersion": 1,
+    "releaseId": "rel_6b84d53d64307efb705755980cbd3eff",
+    "snapshotId": "snap_4fe90ad7af4b7c46467763eb5334a829",
+    "snapshotSha256": "74d6f899c4a6b334f564c26b8e9390d31a5e573a1b966f3c551de1879a8d2505",
+    "workspaceRevision": "ws-26"
+  },
+  "scope": "Local gateway HTTP on trustworthy loopback; no production or admin credentials",
+  "tool": {
+    "name": "Lighthouse",
+    "version": "13.6.0"
+  },
+  "runs": [
+    {
+      "file": "P6E-final-lighthouse-home-mobile-1.json",
+      "fetchTime": "2026-10-28T13:06:03.636Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ],
+      "scores": {
+        "performance": 87,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1111.716,
+        "largest-contentful-paint": 1111.716,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 494.6419999999998,
+        "speed-index": 1918.612183793059
+      },
+      "transferBytes": 160932,
+      "jsBytes": 104623,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimize main-thread work"
+        },
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P6E-final-lighthouse-home-mobile-2.json",
+      "fetchTime": "2026-10-28T13:06:19.513Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [],
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 989.6711,
+        "largest-contentful-paint": 989.6711,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 20.000000000000114,
+        "speed-index": 2953.0450009674455
+      },
+      "transferBytes": 160932,
+      "jsBytes": 104623,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "file": "P6E-final-lighthouse-home-mobile-3.json",
+      "fetchTime": "2026-10-28T13:06:39.622Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ],
+      "scores": {
+        "performance": 93,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1166.5513,
+        "largest-contentful-paint": 1166.5513,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 321.22434999999973,
+        "speed-index": 2088.8833518199017
+      },
+      "transferBytes": 160947,
+      "jsBytes": 104638,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimize main-thread work"
+        },
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P6E-final-lighthouse-projects-mobile.json",
+      "fetchTime": "2026-10-28T13:07:06.838Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [],
+      "scores": {
+        "performance": 92,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1014.2875,
+        "largest-contentful-paint": 2269.8625,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 302.9999999999999,
+        "speed-index": 2666.181545813372
+      },
+      "transferBytes": 160833,
+      "jsBytes": 104623,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P6E-final-lighthouse-about-mobile.json",
+      "fetchTime": "2026-10-28T13:07:24.132Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [],
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1047.9564500000001,
+        "largest-contentful-paint": 1047.9564500000001,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 116.5,
+        "speed-index": 2774.285055164224
+      },
+      "transferBytes": 126712,
+      "jsBytes": 107582,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        }
+      ]
+    },
+    {
+      "file": "P6E-final-lighthouse-home-desktop.json",
+      "fetchTime": "2026-10-28T13:07:40.306Z",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "runWarnings": [],
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 249.79629999999997,
+        "largest-contentful-paint": 249.79629999999997,
+        "cumulative-layout-shift": 0,
+        "total-blocking-time": 1.5000000000000284,
+        "speed-index": 662.5444214546518
+      },
+      "transferBytes": 163891,
+      "jsBytes": 107582,
+      "cssBytes": 7518,
+      "failedAudits": [
+        {
+          "id": "bf-cache",
+          "title": "Page prevented back/forward cache restoration"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Navigation lab measurements; TBT is not INP. No real-user INP or CrUX claim.",
+    "Local Docker Desktop and simulated throttling are not a production network benchmark.",
+    "No comparable P6-D Lighthouse baseline exists; older P5 reports use different tools/content.",
+    "A zero Lighthouse error count does not replace credentialed management browser tests.",
+    "The fixture is an isolated published test snapshot with a synthetic cover, not verified production project content."
+  ],
+  "homeMobileMedian": {
+    "score": 93,
+    "metrics": {
+      "first-contentful-paint": 1111.716,
+      "largest-contentful-paint": 1111.716,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 321.22434999999973,
+      "speed-index": 2088.8833518199017
+    }
+  },
+  "result": "MEASURED"
+}

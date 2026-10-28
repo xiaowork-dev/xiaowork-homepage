@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28T14:14:01.182Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-e2e",
+  "command": "node scripts/p6e-final-e2e-retention.mjs",
+  "exitCode": 1,
+  "result": "HARNESS_FAILURE_PRESERVED",
+  "failurePoint": "Compose interpolation before down; no volumes or services were changed by the rejected command",
+  "error": "required variable V11_SOURCE_REVISION is missing a value: Set the reviewed complete source SHA",
+  "correction": "Test controller loads the exact source from final runtime manifest before retry. Later successful down without -v has separate evidence.",
+  "record": "Summary of actual observed terminal failure; not a fabricated raw process log"
+}

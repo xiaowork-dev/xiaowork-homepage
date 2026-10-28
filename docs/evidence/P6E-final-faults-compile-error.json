@@ -1,0 +1,422 @@
+{
+  "date": "2026-10-28T12:52:44.439Z",
+  "project": "xiaowork-homepage-v11-p6e-closure-fault",
+  "case": "compile-error",
+  "scope": "Dedicated local volumes only; test-tagged binaries; no production connection",
+  "tlsVerificationDisabled": false,
+  "events": [
+    {
+      "time": "2026-10-28T12:53:41.253Z",
+      "point": "before",
+      "status": {
+        "activeReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 978742403072,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1188696,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 978742403072,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 978742403072,
+              "totalBytes": 1081101176832,
+              "usedBytes": 868404,
+              "files": 73,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T12:53:28Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": null,
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "releaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_021af068f50d1878e73db4373dce9124",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "releaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_02ec05e6a72a560e5286038879990261",
+        "releases": [
+          {
+            "id": "rel_02ec05e6a72a560e5286038879990261",
+            "manifestSha256": "9e834dbc0754a9b37b0d2f177ea7efecf352d3180d509b0374adda9bb6b1c13f",
+            "homepageSha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+          },
+          {
+            "id": "rel_b7024902adde82b7c3ba21ef306c6715",
+            "manifestSha256": "c72b6d952f1083fe4e46b1ed9d6e08a85a4fdd57ed798359e655d331668a065e",
+            "homepageSha256": "2242770c21403469460c94c17859ab0de8f0ea0b17f5bf4f2db2e23ed9d6c8d0"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 0,
+        "activations": [
+          {
+            "id": "job_021af068f50d1878e73db4373dce9124",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "fee45404cfa499cd0e7c3b4290a85344ebbf2e150833868bff70f4f4a025b587"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "b9d9db8d158ffa05438ea2a4a4a63e637b0611875b098641923181046dd3079e"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "6e5c3a06d61808303cb85e01854a7025653cf073df2a7d94166a7b5f3e7e9b28"
+        }
+      ]
+    },
+    {
+      "time": "2026-10-28T12:53:52.837Z",
+      "point": "submission",
+      "httpStatus": 202,
+      "jobId": "job_c1fc4a4d97e17560ceaabb74dae45a6a"
+    },
+    {
+      "time": "2026-10-28T12:53:54.387Z",
+      "point": "real-nuxt-process-observed",
+      "jobId": "job_c1fc4a4d97e17560ceaabb74dae45a6a"
+    },
+    {
+      "time": "2026-10-28T12:53:54.427Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+        "kind": "publish",
+        "status": "running",
+        "phase": "building",
+        "snapshotId": "snap_dc31196cde3053e79b23cdca8593669e",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T12:53:52Z",
+        "startedAt": "2026-10-28T12:53:53Z",
+        "completedAt": null,
+        "error": null,
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T12:56:50.192Z",
+      "point": "task-state",
+      "job": {
+        "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_dc31196cde3053e79b23cdca8593669e",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T12:53:52Z",
+        "startedAt": "2026-10-28T12:53:53Z",
+        "completedAt": "2026-10-28T12:56:49Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      }
+    },
+    {
+      "time": "2026-10-28T12:57:06.306Z",
+      "point": "failed-with-old-site",
+      "status": {
+        "activeReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+        "activeVerified": true,
+        "blockingJob": null,
+        "enabled": true,
+        "localOnly": true,
+        "reason": "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。",
+        "review": {
+          "revision": "ws-1",
+          "available": true,
+          "added": [],
+          "modified": [],
+          "hidden": [],
+          "archived": [],
+          "profileChanged": false,
+          "settingsChanged": false,
+          "categoriesChanged": false,
+          "mediaChanged": false
+        },
+        "storage": {
+          "state": "ok",
+          "areas": [
+            {
+              "name": "database",
+              "state": "ok",
+              "freeBytes": 978742128640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 1423536,
+              "files": 3,
+              "usageComplete": true
+            },
+            {
+              "name": "uploads",
+              "state": "ok",
+              "freeBytes": 978742128640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 0,
+              "files": 0,
+              "usageComplete": true
+            },
+            {
+              "name": "publications",
+              "state": "ok",
+              "freeBytes": 978742128640,
+              "totalBytes": 1081101176832,
+              "usedBytes": 868404,
+              "files": 73,
+              "usageComplete": true
+            }
+          ],
+          "minimumFreeBytes": 536870912,
+          "warningFreeBytes": 1073741824,
+          "usageSampledAt": "2026-10-28T12:56:50Z",
+          "historicalResourcesRetained": true
+        },
+        "workerAvailable": true
+      },
+      "job": {
+        "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+        "kind": "publish",
+        "status": "failed",
+        "phase": null,
+        "snapshotId": "snap_dc31196cde3053e79b23cdca8593669e",
+        "workspaceRevision": "ws-1",
+        "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+        "targetReleaseId": null,
+        "createdAt": "2026-10-28T12:53:52Z",
+        "startedAt": "2026-10-28T12:53:53Z",
+        "completedAt": "2026-10-28T12:56:49Z",
+        "error": {
+          "code": "BUILD_FAILED",
+          "message": "构建或验证失败，公开版本未改变。"
+        },
+        "activeVerified": false
+      },
+      "sqlite": [
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "releaseId": "rel_b7024902adde82b7c3ba21ef306c6715",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "",
+          "errorCodeIsNull": true,
+          "errorSummaryIsNull": true,
+          "failureAuditEvents": 0,
+          "id": "job_021af068f50d1878e73db4373dce9124",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "releaseId": "rel_02ec05e6a72a560e5286038879990261",
+          "revision": "ws-1",
+          "status": "succeeded",
+          "successAuditEvents": 1
+        },
+        {
+          "attempts": 1,
+          "errorCode": "BUILD_FAILED",
+          "errorCodeIsNull": false,
+          "errorSummaryIsNull": false,
+          "failureAuditEvents": 0,
+          "id": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+          "kind": "publish",
+          "phase": "",
+          "reconciledReleaseId": "",
+          "releaseId": "rel_6cae587b4e0cde8cbb113598d2a71035",
+          "revision": "ws-1",
+          "status": "failed",
+          "successAuditEvents": 0
+        }
+      ],
+      "filesystem": {
+        "current": "releases/rel_02ec05e6a72a560e5286038879990261",
+        "releases": [
+          {
+            "id": "rel_02ec05e6a72a560e5286038879990261",
+            "manifestSha256": "9e834dbc0754a9b37b0d2f177ea7efecf352d3180d509b0374adda9bb6b1c13f",
+            "homepageSha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+          },
+          {
+            "id": "rel_b7024902adde82b7c3ba21ef306c6715",
+            "manifestSha256": "c72b6d952f1083fe4e46b1ed9d6e08a85a4fdd57ed798359e655d331668a065e",
+            "homepageSha256": "2242770c21403469460c94c17859ab0de8f0ea0b17f5bf4f2db2e23ed9d6c8d0"
+          }
+        ],
+        "staging": [],
+        "currentNextCount": 0,
+        "activations": [
+          {
+            "id": "job_021af068f50d1878e73db4373dce9124",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          },
+          {
+            "id": "job_9ac7b31ad4767865c29160ace5c12e1c",
+            "intent": true,
+            "receipt": true,
+            "recovery": false
+          }
+        ]
+      },
+      "http": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "fee45404cfa499cd0e7c3b4290a85344ebbf2e150833868bff70f4f4a025b587"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "b9d9db8d158ffa05438ea2a4a4a63e637b0611875b098641923181046dd3079e"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "6e5c3a06d61808303cb85e01854a7025653cf073df2a7d94166a7b5f3e7e9b28"
+        }
+      ]
+    }
+  ],
+  "result": "PASS",
+  "variant": "frozen-baseline",
+  "sourceRevision": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "testWorkerImage": "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96",
+  "testApiImage": {
+    "tag": "xiaowork-homepage-api:p6e-closure-fault",
+    "id": "sha256:38e62ee30bd0750baa84b35ef3a3ee30bcdd31bcb2dd44cd1fb95d04b3b09a5e",
+    "sourceRevision": "817aa533741bdd5de23f322fa5e5171442cb28a9"
+  },
+  "originalActive": "rel_02ec05e6a72a560e5286038879990261",
+  "originalHttp": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "ff4aec7e491ae71d91fa427edf79ede56aca94169843313c18e431e4bfc8c305"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "fee45404cfa499cd0e7c3b4290a85344ebbf2e150833868bff70f4f4a025b587"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "b9d9db8d158ffa05438ea2a4a4a63e637b0611875b098641923181046dd3079e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "6e5c3a06d61808303cb85e01854a7025653cf073df2a7d94166a7b5f3e7e9b28"
+    }
+  ],
+  "jobId": "job_c1fc4a4d97e17560ceaabb74dae45a6a",
+  "elapsedMilliseconds": 179766,
+  "manualIntervention": "Harness operator restarted only named test services and removed test injection; no task, snapshot, current pointer, lease clock or successful release was rewritten to claim recovery. Production gate remains closed."
+}

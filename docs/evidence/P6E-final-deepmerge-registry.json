@@ -1,0 +1,23 @@
+{
+  "name": "deepmerge",
+  "version": "4.3.1",
+  "gitHead": "5b87756a5671635679001cbac72aa42f23472c81",
+  "dist": {
+    "shasum": "44b5f2147cd3b00d4b56137685966f26fd25dd4a",
+    "tarball": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz",
+    "fileCount": 11,
+    "integrity": "sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==",
+    "signatures": [
+      {
+        "sig": "MEUCIQDN993WZ4bZkA9ji9rC0yXDb/eFJLDqMXftQaUQp3hA9AIgOqjV7vLLdNtIfYCLlcugHmhK6t3rgYR+AbGZf0GzGPI=",
+        "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA"
+      }
+    ],
+    "unpackedSize": 31157,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkE58wACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmqwgA//SUBIsWdXabo9mcwaFaK0sg1UJMFXp+Z1PLA0FB98BZ7Kw+23\r\nXByEFVHf5SH2X7EG8VHMMCa4mdsqWUNP6Qz7UGa1oQebTXnTN20VhkBaAdUT\r\n2Hr61AwJHMNGaK098Vx4rn8OBLh1SDN9Q/FKIRU1M3PDo8p8dfsCs98WhLmj\r\nUtQzfb8AXRUmYf6A6vJaIwmShw3pJVU8a7JLFcl9Rgx7L5L6h/xjz2oNEb42\r\nwBYz+K1R/PvbhF2Ejkjmj5R0NSr8wSMmizK29uGXvtJYvon2kIqNPyPfaCaV\r\nVBCiHvtJdV4xCRUduPkXlHPMrgC0Xp1G+AoJn/Banx1OZFtLDjZa/ZBX86Am\r\nwPRAqr5ZiCaWzgC3Q8o1/qRsSrpdAO7OWRfzGVBqf10H4HdCvcnZzeyeSXQw\r\nCEnNT+zEsoe08upOGW5CCijrr8hq1Pj7LEtfyZr7nGmkWl1+bG2f6XB3VbdK\r\nRzWM5rcNRKJcDaCNMRXrzyKZ7eutn9Mzj70fRfUR1s5oqz5ruGAMHD8D8kx7\r\nsR/9P1u1a8E00oiQGMKHMIyaSVEvEtGGgLoJ8MXIJ+qArhasiWIzMY3eFcAf\r\n6z4MRfo0Nf6/m6WM+mMdwsitug9dVzhPa4+FFWWNNuhO0aVkXr9X2+A4Fjeb\r\nOUwt3H4PdpOegx1dVu7/IEYNFFEN0HmuZ1w=\r\n=A4WO\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "repository": {
+    "url": "git://github.com/TehShrike/deepmerge.git",
+    "type": "git"
+  }
+}

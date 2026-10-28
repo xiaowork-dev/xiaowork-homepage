@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-28",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "result": "HARNESS_VERSION_COMPARISON_CORRECTED",
+  "firstAttempt": "The risk synthesis harness incorrectly compared pinned node-forge 1.4.1 lock integrity against the moving latest registry response, which is 1.4.2. It asserted and emitted no passing risk-disposition report.",
+  "correction": "Fetch official registry /node-forge/1.4.1 and compare the exact version and integrity. Preserve the distinct 1.4.2 latest metadata and official CHANGELOG. The pinned 1.4.1 metadata matches the lock; no application dependency or final image was changed.",
+  "evidence": [
+    "P6E-final-node-forge-registry.json",
+    "P6E-final-node-forge-pinned-registry.json",
+    "P6E-final-node-forge-1.4.2-changelog.txt",
+    "P6E-final-forge-source.json"
+  ]
+}

@@ -1,0 +1,25 @@
+
+> xiaowork-homepage@1.0.0-p5a test
+> node --test scripts/*.test.mjs
+
+✔ combined filters match terms across name, summary and stack without mutating source (2.9126ms)
+✔ sorts respect recommendation, featured priority and natural names (9.4673ms)
+✔ query input rejects unknown and repeated parameters; search is bounded (0.3287ms)
+✔ SEO origin accepts empty and loopback but rejects unsafe public origins (0.4075ms)
+✔ public snapshot accepts sealed public content and binds builtin assets to immutable release URLs (2.4074ms)
+✔ private, hidden and unreferenced fields are rejected before client serialization (3.6131ms)
+✔ media manifests allow only derived hash paths and reject private metadata or traversal (1.2835ms)
+✔ preview assets remain under exact authenticated base and IDs cannot inject routes (0.3464ms)
+✔ remote DOCKER_HOST is refused before any Docker command (3.197ms)
+✔ lifecycle probe verifies real admin assets, API denial and retained artifact bytes (61.1604ms)
+✔ lifecycle probe refuses corrupted published image despite HTTP 200 (16.5209ms)
+✔ lifecycle probe refuses management fallback HTML or success for anonymous session (12.5469ms)
+✔ lifecycle probe checks SHA256 even when corrupted image byte size is unchanged (13.3068ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 384.4103

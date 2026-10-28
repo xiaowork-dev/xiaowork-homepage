@@ -1,0 +1,591 @@
+{
+  "date": "2026-10-28T13:03:03.918Z",
+  "scope": "Dedicated local Docker projects and newly created recovery volumes only",
+  "project": "xiaowork-homepage-v11-closure-final-backup",
+  "recovery": "xiaowork-homepage-v11-closure-final-restored",
+  "tlsVerificationDisabled": false,
+  "credentialsRecorded": false,
+  "cases": [
+    {
+      "name": "new isolated deployment and trusted HTTPS administrator login",
+      "result": "PASS"
+    },
+    {
+      "name": "real immutable publication A with uploaded referenced bitmap",
+      "detail": {
+        "releaseId": "rel_a17b1b1b1dcc9892afe4418f91aa0b69"
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "real immutable publication B and history",
+      "detail": {
+        "releaseId": "rel_66454ccb980dc1c897717a1a053cbe9b"
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "real content rollback A plus private preview; draft B preserved",
+      "detail": {
+        "active": "rel_a17b1b1b1dcc9892afe4418f91aa0b69",
+        "preview": "pre_f706d95169c677eff80802f143e7e0d8"
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "stopped-writer VACUUM INTO backup verified; original service and Session resumed",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered independent runtime metadata rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "independent restore used only backup runtime descriptor while original deployment state was unavailable",
+      "result": "PASS"
+    },
+    {
+      "name": "new empty-volume restore, old Session rejected, same password re-login, identical draft/media/public/SEO/history/private preview",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat restore refused instead of overwriting existing recovery data",
+      "result": "PASS"
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/media",
+      "expected": 201,
+      "actual": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/admin/v1/media/med_121819a4a267dd8d7a0444713c5d1095",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/xiaowork-blog",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/reauth",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/publish-jobs",
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_a49764d7195a483502d5973ce39bdccb",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/admin/v1/projects/xiaowork-blog",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/reauth",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/publish-jobs",
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_7f9231877e1303cdfc4437237766a7a7",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/reauth",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/rollback-jobs",
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_5ab65b098fed45e00679ab47e12a6aa4",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_5ab65b098fed45e00679ab47e12a6aa4",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/preview-jobs",
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/jobs/job_6dab5ea8399b2935aa566b7851d24f2b",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_121819a4a267dd8d7a0444713c5d1095/content",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/session",
+      "expected": 401,
+      "actual": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/auth/login-challenge",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/v1/auth/login",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/workspace",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/media/med_121819a4a267dd8d7a0444713c5d1095/content",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/releases",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/publishing-status",
+      "expected": 200,
+      "actual": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/v1/previews/pre_f706d95169c677eff80802f143e7e0d8/",
+      "expected": 200,
+      "actual": 200
+    }
+  ],
+  "public": [
+    {
+      "stage": "beforeBackup",
+      "files": [
+        {
+          "route": "/",
+          "status": 200,
+          "sha256": "b326303bc675179fdf9e52208ed8a1381664c20aaff59146b6c8cfaa9f1d7886"
+        },
+        {
+          "route": "/projects/",
+          "status": 200,
+          "sha256": "1259c56c23375d26a30d2e33af3a5f11f0c7493e87f0f2d7de88229adf34e790"
+        },
+        {
+          "route": "/about/",
+          "status": 200,
+          "sha256": "b0a93a2f35752acc4e59291112d8ce8f123eadb21232a12b0e69f7e00aea29e1"
+        },
+        {
+          "route": "/__xiaowork-release.json",
+          "status": 200,
+          "sha256": "e2372fb1828d8754c75c902631b15db5f2c73e937a00fce45ee8fcafecbd14d2",
+          "releaseId": "rel_a17b1b1b1dcc9892afe4418f91aa0b69"
+        },
+        {
+          "route": "/sitemap.xml",
+          "status": 200,
+          "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+        },
+        {
+          "route": "/robots.txt",
+          "status": 200,
+          "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+        }
+      ]
+    }
+  ],
+  "sourceRevision": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "images": {
+    "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+    "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+    "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+    "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+    "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+    "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+  },
+  "schema": 3,
+  "finalManifest": "docs/evidence/P6E-final-runtime-manifest.json",
+  "runtimeIdentity": {
+    "api": {
+      "image": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001"
+    },
+    "worker": {
+      "image": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001"
+    },
+    "gateway": {
+      "image": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001"
+    },
+    "frontend": {
+      "image": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "nginx"
+    },
+    "static": {
+      "image": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001"
+    },
+    "maintenance": {
+      "image": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "user": "10001:10001"
+    }
+  },
+  "baseline": {
+    "draftRevision": "ws-5",
+    "projects": 3,
+    "mediaSha256": "02c45d110aa0069bed8792f7c21fb6bd9c4ad5408a9c60d556edd0e98389ab9b",
+    "activeReleaseId": "rel_a17b1b1b1dcc9892afe4418f91aa0b69",
+    "draftSummary": "Isolated P6E recovery fixture B; project facts remain unconfirmed."
+  },
+  "backup": {
+    "method": "stopped-writers + SQLite VACUUM INTO",
+    "state": {
+      "schema": 3,
+      "workspaceRevision": 5,
+      "administrators": 1,
+      "projects": 3,
+      "uploads": 1,
+      "snapshots": 3,
+      "jobs": 4,
+      "releases": 3,
+      "unfinished": 0,
+      "activeRelease": "rel_a17b1b1b1dcc9892afe4418f91aa0b69",
+      "sources": [
+        "817aa533741bdd5de23f322fa5e5171442cb28a9"
+      ],
+      "builders": [
+        "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c"
+      ],
+      "contentSha256": "efdf0c8ee1fec94ad3f2543f9fb598322bb2ec1bfcea1b1b7c3b78354c4555fc"
+    },
+    "fileCount": 121,
+    "runtime": {
+      "format": 1,
+      "project": "xiaowork-homepage-v11-closure-final-backup",
+      "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+      "schema": 3,
+      "images": {
+        "api": "sha256:c2e26df316318302033b9242f4dbdf77e28f36d63a21a6c85f1f1a821998608f",
+        "worker": "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c",
+        "gateway": "sha256:5823b6d04c8dfd3dd55c8496be374935c6ceff8f648725d7f6fd746f6aa651d9",
+        "frontend": "sha256:7d05e7e749c8ff96ec3b6e92d2143ba5a01f0e0b05f1dbcf506129621245dba3",
+        "static": "sha256:457665bb4f876c8720cbca2e4a3267238c0c16cce286362c1e1ae053b99bae60",
+        "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab"
+      }
+    },
+    "manifestSha256": "6ca0b2cf3ec11430659545e763e71813f3dbd3361c8ca58be21e839561e803ae"
+  },
+  "recovered": {
+    "state": {
+      "schema": 3,
+      "workspaceRevision": 5,
+      "administrators": 1,
+      "projects": 3,
+      "uploads": 1,
+      "snapshots": 3,
+      "jobs": 4,
+      "releases": 3,
+      "unfinished": 0,
+      "activeRelease": "rel_a17b1b1b1dcc9892afe4418f91aa0b69",
+      "sources": [
+        "817aa533741bdd5de23f322fa5e5171442cb28a9"
+      ],
+      "builders": [
+        "sha256:bcfd13bfaff393e74d6670d34914b46c5943d3d0e57e0b89a4b65a0d41e52f2c"
+      ],
+      "contentSha256": "efdf0c8ee1fec94ad3f2543f9fb598322bb2ec1bfcea1b1b7c3b78354c4555fc"
+    },
+    "historyCount": 3,
+    "activeReleaseId": "rel_a17b1b1b1dcc9892afe4418f91aa0b69"
+  },
+  "result": "PASS",
+  "finishedAt": "2026-10-28T13:06:32.970Z",
+  "stoppedProjects": [
+    {
+      "project": "xiaowork-homepage-v11-closure-final-restored",
+      "result": "stopped; all volumes and images retained"
+    },
+    {
+      "project": "xiaowork-homepage-v11-closure-final-backup",
+      "result": "stopped; all volumes and images retained"
+    }
+  ]
+}

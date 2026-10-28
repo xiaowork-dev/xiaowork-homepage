@@ -26,7 +26,13 @@ async function fixture(t, mode) {
         JSON.stringify({ releaseId: 'rel_' + 'a'.repeat(32), snapshotSha256: 'b'.repeat(64) }),
       )
     } else if (req.url === '/_content/image.png')
-      res.end(mode === 'bad-image' ? 'corrupted' : asset)
+      res.end(
+        mode === 'bad-image'
+          ? 'corrupted'
+          : mode === 'same-size-image'
+            ? Buffer.alloc(asset.length, 0x61)
+            : asset,
+      )
     else res.end('local-test-response')
   })
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
@@ -61,5 +67,11 @@ test('lifecycle probe refuses management fallback HTML or success for anonymous 
   await assert.rejects(
     verifyLocalRelease(await fixture(t, 'api-spa')),
     /Unexpected release HTTP status/,
+  )
+})
+test('lifecycle probe checks SHA256 even when corrupted image byte size is unchanged', async (t) => {
+  await assert.rejects(
+    verifyLocalRelease(await fixture(t, 'same-size-image')),
+    /Published hash changed/,
   )
 })

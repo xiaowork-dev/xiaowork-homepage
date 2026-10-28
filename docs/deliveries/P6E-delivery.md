@@ -1,145 +1,109 @@
-# P6-E 交付：可靠性、安全、备份恢复与上线准备
+# P6-E 交付：最终发行组、可靠性与上线准备
 
-日期：2026-10-28，Asia/Shanghai。分支：`feat/v1.1-admin-p6a`。
+更新：2026-10-28，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
-**状态：部分完成，可交付已经验证的隔离工程成果；暂不具备 V1.1 正式上线条件。** 未合并main，未连接生产服务器，未修改1Panel、OpenResty、Cloudflare、V1.0容器、数据库或`.env/.deploy`。Worker默认关闭、正式发布gate关闭，正式域名不能开启仅localhost允许的测试gate。
+**状态：部分完成。最终组正常链、十二故障、跨源码与完整备份恢复通过；真实残留链接修复被只读 SQLite 问题阻塞，不具备正式上线条件。** 本轮没有连接德国服务器、合并 main，或修改 Cloudflare、DNS、TLS、1Panel OpenResty、V1.0 容器、数据卷及 `.env/.deploy`。本文件更新既有阶段交付，不重新创建一套阶段记录。
 
-## 1. 运行版本与范围
+## 1. 最终发行身份
 
-### 最终闭环实施边界（本轮追加）
+最终运行源码选为 **`817aa533741bdd5de23f322fa5e5171442cb28a9`**，SQLite schema **3**，内容 manifest **1**。选择理由：该提交同时包含 aa23376 的成功对账诊断修复、受审的单对象 `current.next.*` 离线修复、停写状态业务摘要和逐资源 HTTP 校验。六角色来自同一个 Git archive，归档 SHA256 `62368afa2f44279596524a51d29bf59ff850ee20ba9977b2ae16b0cfbf55d7bf`，没有混用 be5c 冻结组与 aa23376 单 API。
 
-本轮保留以下历史证据，新增受审的残留链接离线修复、跨源码停写逻辑摘要和完整HTTP资源探针。先通过源码专项，再以该提交的完整Git archive冻结六角色源码；选用包含aa23376诊断修复及上述运维修复的同一提交，避免混用旧组与后继单API。精确SHA、构建参数、镜像ID及schema由`P6E-final-runtime-manifest.json`实测记录。
+六个完整镜像 ID、构建参数、平台、基础镜像、构建命令与首次失败见 [发行组清单](../P6E-FINAL-RELEASE.md) 和 [机器 manifest](../evidence/P6E-final-runtime-manifest.json)。`VCS_REF` 为完整源码 SHA，前台构建 origin 为 `https://xiaoworks.com`，实际任务 builder identity 为 Worker 的精确镜像 ID。后续提交只补充测试控制器、证据和文档，不将后续文档提交冒称运行镜像源码。
 
-此源码冻结点尚不表示最终发行组通过：六角色重建、最终组端到端、故障、跨源码生命周期、残留修复及备份恢复需要取得新的独立证据。完成后在本文件更新结果；未通过项仍为阻塞。生产gate保持关闭。
+正式运行镜像没有故障注入入口。测试覆盖层单独编译固定 `p6e_fault && linux` checkpoint，身份见 [测试镜像清单](../evidence/P6E-final-test-fixtures.json)，不列入正式六角色描述符。
 
-本轮六个正式运行角色的冻结源码为 **`be5c96857c5a7098a9b8f80931ced47d0efcab89`**，数据库schema3。实际完整镜像ID、源码标签与扫描见 [镜像审计](../evidence/P6E-image-audit.json)，运行权限见 [容器边界](../evidence/P6E-runtime-boundaries.json)。Docker Desktop本地Linux环境与真实Nuxt/Vue/Go/SQLite运行，非生产部署。
+## 2. 本轮完成与修改范围
 
-后继API诊断修复源码为 **`aa23376bb508dad215e644c808dd2e9461d7170a`**；[修复专项](P6E-reconciliation-diagnostics.md)记录红绿测试与Linux全包回归。最终文档、主机运维工具和测试提交另行正常提交，不把它冒称这些冻结镜像的源码。故障专用镜像继承冻结构建器，另外编译`p6e_fault && linux`固定checkpoint；普通API/Worker/维护镜像无此tag，Docker上下文也排除故障入口。没有公网、环境变量或后台任务可调用的注入接口。
+- 实现只读检查、单对象修复和持久化双阶段审计，Linux专项通过；实际只读卷验收失败，尚不能作为可上线修复能力。契约要求终态任务、intent、receipt、历史引用及全部文件 SHA 完整一致，未知状态继续阻断。
+- 更新生命周期先后停写，用新旧维护器检查 schema、完整数据和17张业务/schema/历史表的逻辑摘要。候选写状态不确定时保留恢复意图与操作锁，不恢复旧时点数据库覆盖新写入。
+- HTTP 探针验证三页、SEO、后台真实 JS/CSS、可信 HTTPS API 和安全 Cookie；对当前 manifest 的全部公开资源逐项核对大小与 SHA256，不能仅以图片200判断成功。
+- 重新构建并扫描统一的六角色组，重新执行管理、预览、发布、历史恢复、持久化、浏览器、性能与关键故障测试。
+- 补充异地加密副本、离线签名与密钥保管、容量/备份告警、保留政策和 RPO/RTO 的可执行运维方案；没有虚构已购外部服务或已完成异地演练。
 
-## 2. 完成能力与修复
+运行改动集中在 `backend/internal/maintenance/{current_repair,content_digest}*.go`、`scripts/v11-current-repair.mjs`、`scripts/v11-release.mjs`、`scripts/v11-release-probe.mjs`；后继改动为 `scripts/p6e-final-*.mjs`、跨源码测试器、文档与证据。未重新设计 V1.0 前台。完整改动以 Git diff 和 [本轮文件索引](../evidence/P6E-final-changed-files.json) 为准。
 
-- 统一媒体容量：原图10 MiB、multipart11 MiB、重编码派生/发布/预览/HTTP单文件16 MiB、单快照公开媒体256 MiB、8192单边和2500万像素。超限重编码在登记成功前拒绝，解决原32/16 MiB契约不一致。
-- 新增存储余量保护与发布页容量面板：数据库/图片/发布目录按OS实际余量检查；小于512 MiB或2%、无法核实则拒绝新任务/上传，小于1 GiB或10%警告。受限用量采样最多10万条/共2秒/60秒缓存，路径不返回客户端。构建临时空间至少256 MiB，保留Worker/API资源限制。
-- 独立离线维护器：停本站写入者、SQLite `VACUUM INTO`、schema/checksum/完整性/外键/引用/快照/媒体及全部历史产物校验，带逐文件SHA和六镜像身份的独立bundle。恢复只到新空卷，保留密码哈希、撤销Session/challenge。
-- 新增V1.1独立部署/更新/代码回退脚本及`.v11-deploy`状态，保留V1.0脚本/镜像/卷。精确完整GitSHA和六镜像ID，schema不兼容拒绝，不降级数据库。内容恢复、代码回退、灾难恢复明确区分。
-- 镜像硬化：从Nginx移除未加载模块与curl/libxml2/brotli，从运行Worker移除npm/npx/Yarn/corepack；固定Nuxt源码/lock依赖仍可离线完整构建。没有联网强制升级、不降低TLS/CSRF或Cookie安全属性。
-- 增加真实故障、完整浏览器、备份可移植性、生命周期、安全扫描与性能工具，保留失败尝试和夹具修正记录，不把它们混计最终PASS。
+## 3. 最终组实际检查
 
-不新增业务功能，不改变V1.0视觉，不自动清理历史或故障现场。没有总磁盘配额、跨进程预留或自动物理GC；其他进程仍可能耗尽宿主空间。
+| 检查                                           | 实际结果与证据                                                                                                                                                                                                                                  |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 六角色构建与启动                               | 全部从817源码构建；维护器是受限一次性工具，其余五角色真实健康运行。[构建身份](../evidence/P6E-final-runtime-manifest.json)                                                                                                                      |
+| Linux Go 全包、vet                             | 从精确导出源码实际执行，退出0。[原始日志](../evidence/P6E-final-group-go-tests.txt)                                                                                                                                                             |
+| 根 ESLint、Nuxt 类型、后台类型/单测、Node 测试 | 退出0，后台34项、Node13项。[退出码](../evidence/P6E-final-group-quality-exits.json)；最终格式与后继控制器检查另留记录                                                                                                                           |
+| 管理后台 Chromium                              | 24功能组通过，真实登录/错误密码/限速/CSRF/改密/会话撤销、项目/分类/图片/资料/设置/409冲突/网络错误/刷新持久化。[管理证据](../evidence/P6E-final-admin-browser.json)                                                                             |
+| 发布 Chromium                                  | 10组通过：私有预览及子资源认证、A→B真实Nuxt发布、旧A标签导航资源保持、刷新B、恢复A保留草稿B、保卷重建、退出/过期预览401，无记录到的hydration/CSP/pageerror。[发布证据](../evidence/P6E-final-publishing-browser.json)                           |
+| 公开交互                                       | 5组通过：搜索/query刷新、空结果恢复与焦点、分类、升降序和浏览器返回、320px导航与主题保持，真实资源无失败。[公开交互](../evidence/P6E-final-public-interactions.json)                                                                            |
+| 响应式与主题                                   | 管理/发布浏览器覆盖320、390、768、1024、1440px及深浅主题，详细计数见各JSON，未推断真实移动设备结果                                                                                                                                              |
+| HTTP 暴露面                                    | 26项通过，管理鉴权与no-store/noindex、私有/数据库/路径访问拒绝。[HTTP证据](../evidence/P6E-final-security-http.json)                                                                                                                            |
+| 容器边界                                       | 精确ID、非root、只读根、drop ALL、no-new-privileges与健康；API/Worker有CPU/内存/PID限额，三个Nginx角色未配置这些限额；仅网关回环端口；Worker无网络、DB、秘密、DockerSocket，UDS0700/0600。[实查](../evidence/P6E-final-runtime-boundaries.json) |
+| 生产方案                                       | 仅本地渲染断言，固定正式origin、gate0、Worker默认关闭、示例回环端口；未启动生产或连接服务器。[预检](../evidence/P6E-final-production-preflight.json)                                                                                            |
 
-后继最终源码ESLint、TypeScript均通过，根9项/后台34项单元测试通过。Prettier全目录遍历首次被受保护且已忽略的备份目录ACL拒绝，未放宽权限；改为Git跟踪及非忽略文件清单逐文件检查，继续尊重`.prettierignore`。机器证据保留原始序列化和哈希，不做样式重写。实际文件数及结果见[最终格式检查](../evidence/P6E-final-format.json)，首次失败日志独立保留。诊断专项的Windows日志按仓库LF策略序列化，索引同时保存原捕获及交付字节哈希，不改日志内容。
+初次 Go 依赖代理证书域名不匹配，保留日志，改用已使用过的受信代理并保持 TLS/go.sum；测试覆盖层 FROM 引用、浏览器测试选择器与环境变量等夹具失败单独留档，不计产品通过。未放宽认证或关闭 TLS 来通过测试。
 
-## 3. 检查与正常链结果
+既有本机V1.0日常栈3210也重新运行HTTP冒烟：5路径页面/SEO、robots/sitemap、22本地资源、健康与404通过；这是只读本机回归，未重启其容器或访问生产。[本轮原始日志](../evidence/P6E-final-v10-daily-smoke.txt)。
 
-| 检查              | 实际结果                                                                                                  | 证据与边界                                                                                                                                                                       |
-| ----------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux Go全包      | 冻结基线99顶层PASS、0FAIL、0SKIP，342条HTTP记录；后继修复10个测试包通过、7个无测试包、0FAIL，vet退出0     | [基线日志](../evidence/P6E-go-tests.txt)、[后继回归](../evidence/P6E-go-post-diagnostics.txt)。后继全包未加-v，不推断测试条数。首轮测试tmpfs误设noexec单独留档；仅测试环境改exec |
-| Vue/Nuxt检查      | 根与后台ESLint/TypeScript及单元测试实际结果见最终源码报告                                                 | [最终源码检查](../evidence/P6E-final-source-checks.json)，不以单元测试代替下面的真实服务验收                                                                                     |
-| 前台构建/静态生成 | 生产build和generate退出0                                                                                  | [build](../evidence/P6E-frontend-build.txt)、[generate](../evidence/P6E-frontend-generate.txt)                                                                                   |
-| 管理构建          | 实际Docker Vite构建通过，JS213.42 kB/gzip71.94，CSS22.02 kB/gzip5.57                                      | [Docker构建](../evidence/P6E-docker-build.txt)                                                                                                                                   |
-| Docker构建        | API、Worker、gateway、legacy frontend、publication-static、maintenance均实际构建和启动                    | 首次Go代理TLS证书不匹配，未关闭验证；换受信代理并保留go.sum后成功，初次日志保留                                                                                                  |
-| V1.0日常隔离回归  | 5路径、独立SEO、robots/sitemap、22资源、health和404通过                                                   | [3210实测](../evidence/P6E-v10-daily-smoke.txt)。未改已有日常容器                                                                                                                |
-| 容器边界          | 非root/只读根/drop ALL/no-new-privileges/日志及资源限制；API无宿主端口，Worker无网络/DB/凭据/DockerSocket | [实际inspect](../evidence/P6E-runtime-boundaries.json)                                                                                                                           |
+最终后继控制器ESLint与13项Node测试退出0，Git文件清单的Prettier检查通过，见`P6E-final-closure-eslint.txt`、`P6E-final-closure-node-tests.txt`、[格式记录](../evidence/P6E-final-closure-format.json)。首次格式检查发现一个测试控制器未格式化，原失败保存为`P6E-final-closure-format-first.json`，仅格式化该控制器后重查。机器证据不经格式化，Git对`P6E-final-*`关闭文本换行转换，以保留SHA账本对应的原字节。
 
-## 4. 真实故障验收
+首次索引whitespace检查将机器JSON的原始CRLF和上游musl补丁原有空格/Tab当作样式问题，原输出保留`P6E-final-index-whitespace-first.txt`。仅这些机器证据路径设置保留CR和原补丁缩进，源码/文档规则不放宽，不改动上游补丁或日志来伪造哈希一致。
 
-详细十二项矩阵、每个故障点、current、SQLite、目录、HTTP、自动/人工恢复过程见 [P6E-FAULT-TESTS.md](../P6E-FAULT-TESTS.md) 和`P6E-faults-*.json`。
+## 4. 真实故障与残留链接
 
-十二项强制故障的安全行为均完成真实运行，另有一项正常基线。故障测试实际调用真实Nuxt；编译错误使用专用非法Vue源，超时实际等待固定构建器600000毫秒。Worker/API进程中断由控制器在固定checkpoint实际SIGKILL，并等待真实120秒租约，不改时钟或手动认领任务。ENOSPC在专属768MiB `/work` tmpfs实际写入804552704字节，余量从同值变为0并收到内核ENOSPC，没有填满宿主或业务数据卷。
+最终组故障矩阵见 [P6E-FAULT-TESTS.md](../P6E-FAULT-TESTS.md)，只引用 `P6E-final-faults-*.json` 作为817组证据。测试注入镜像派生于最终组，正常发布/备份/跨源码使用未经注入的正式镜像。历史 be5c 与 aa23376 专项保留，不能代替本轮。
 
-已通过的切换前/后退出、SQLite成功UPDATE事务内中断、API重启、静态服务重启、历史目标损坏及HTTP验证服务不可用，均有独立canonical证据。失败或结果不明时不提前提示成功；验证服务不可用时原版本恢复，但状态维持`reconciling/recovery_required`，阻止新任务，恢复验证服务并核对同一任务才终结。
+最终故障矩阵 **13/13通过**（正常基线加十二故障），[新组汇总](../evidence/P6E-final-faults-summary.json)。真实超时任务600000ms、控制器602802ms；隔离tmpfs实际ENOSPC，余量804552704→0，写入804536320B。两次真实EACCES恢复失败阻断新任务，人工修复后同任务成功，API错误为空、SQL两诊断NULL、两条失败审计保留。没有把 RUNNING、人工核对或失败任务写为发布成功。
 
-恢复再次失败的真实场景经过两次EACCES后保持人工核对并409阻断新任务；修复专用卷权限和验证服务后原任务第三次核对成功，页面保持完整。原基线API存在成功后保留旧错误摘要的缺陷，已用后继源码在同一成功事务内清空当前诊断，保留失败审计。专项真实HTTPS/UDS/SQLite两例及全包回归通过；不改写原故障证据中的缺陷。
+受审修复方法见 [current.next 离线流程](../V1.1-CURRENT-REPAIR.md)。真实 Nuxt 崩溃现场的计划阶段 **失败并安全停止**：[实际请求](../evidence/P6E-final-current-repair.json)、[根因复现](../evidence/P6E-final-current-readonly-probe.json)。正确原卷中有438272B有效SQLite主文件、无WAL/SHM，头部为WAL模式；同一modernc依赖在全只读副本的 `mode=ro` SELECT报 `unable to open database file (14)`，维护器将其映射成schema未初始化。仅在独立副本上使用immutable或可写目录能读出3条迁移；原库从未RW挂载、checkpoint或修复，SHA/元数据不变。
 
-后继API已按完整aa23376源码单独构建，实际镜像`sha256:e2d4e7a59e795b8528365b75d1ea9cf37e8d8676f3ff60691f2eb93f103869b3`。配合冻结be5c构建器完整复跑同一真实Nuxt恢复故障：两次EACCES、真实租约、人工修复后，原任务第三次核验成功，API `error:null`、SQLite两诊断字段NULL、失败审计至少2条保留且成功审计1条。[后继真实专项](../evidence/P6E-faults-recovery-fails-postfix.json)。这不是后继六角色全组装，也不代替跨源码升级验收。
+因此**未删除任何候选链接，未通过修复后备份/恢复/更新链**，不能用普通备份9组或Linux专项替代。后继需要设计安全的停写SQLite只读视图（必须正确考虑WAL，不能盲目immutable忽略已提交WAL）及准确错误诊断，增加真实RO挂载集成测试，重新冻结并验收完整发行组。保留现场和生产关闭，不用未知源码维护镜像混入817组。禁止批量删除、跳过 SHA 或删除未知操作锁。
 
-**恢复边界：**控制器重启Worker、恢复测试卷权限/HTTP服务属于操作者干预，不能说全部故障自动恢复。构建前切换中断留下的`current.next.*`额外链接仍保留在故障专用卷；公开版本不变，但维护器只允许`current`链接，因此计划备份/更新保守拒绝，需要人工审查修复。P6-E没有自动化这项修复。
+## 5. 最终组完整备份恢复
 
-`*-harness-*.json`记录最初暂停方式、选择器、API契约或Compose依赖启动等夹具问题，不能混计应用通过，也未删除失败记录。全机断电、底层存储失效、所有分区同时满不在实测承诺内。
+[最终组备份恢复](../evidence/P6E-final-backup-recovery.json) **9组、62次HTTP请求通过**：独立TTY账户、可信HTTPS→真实A/B发布→恢复A保留草稿B→私有预览→停写→SQLite `VACUUM INTO`→121文件一致备份→全新空卷恢复启动。原宿主 current.json 暂不可用时仅用独立bundle启动，之后原描述符归还。
 
-## 5. 完整备份恢复
+恢复后 schema3、revision5、3项目、1图片、3快照、4任务、3历史版本及当前A保持；旧Session401，原密码可重新登录，私图SHA、六公开HTML/SEO路径保持。篡改runtime描述符及覆盖非空恢复均拒绝。总流程209.052秒含测试构建、发布等，不能当生产RTO。源/恢复专用项目已精确停止且保留卷和镜像。
 
-实际链路：TTY初始化独立管理员→可信HTTPS登录→上传并确认64×40合成PNG→真实Nuxt发布A/B→恢复公开A保留草稿B→私有预览→停止写入者→`VACUUM INTO`和完整121文件集合备份→全新独立卷恢复→启动并重新登录。
+这是本机一致性恢复，**不是已实施的异地灾备**。备份含账户必要敏感数据，不能提交Git；使用配套维护镜像及完整bundle，不直接复制运行中的SQLite主文件。见 [备份恢复](../V1.1-BACKUP-RESTORE.md)、[备份运维方案](../V1.1-BACKUP-OPERATIONS.md)。
 
-恢复前后schema3、revision5、管理员1、项目3、上传1、快照3、任务4、发布记录3、未完成0、activeA一致。旧Cookie401；原密码可重新登录；草稿B、图片SHA、三页HTML/SEO、robots/sitemap、历史和私有预览均保持。[实际完整证据](../evidence/P6E-backup-recovery.json)。
+## 6. 跨源码更新、回退与锁恢复
 
-另将原栈/首恢复栈的宿主部署描述符移开，仅凭独立bundle在第三组新空卷重建，6公开路径SHA完全相同。实际损坏HTML、修改runtime描述符、重复恢复到已有卷均拒绝；原描述符已归还。[可移植恢复](../evidence/P6E-backup-portability.json)。首轮Windows原生递归复制Linux链接的测试器崩溃未计通过，最终改用受限容器复制后在新卷重测。
+[跨源码报告](../P6E-CROSS-SOURCE-ACCEPTANCE.md) 主矩阵 **12项通过**，补充新内容专项 **4项通过**。旧组为 `be5c96857c5a7098a9b8f80931ced47d0efcab89`，新组为817完整六角色，真实业务源码不同。
 
-最终审查另将校验与恢复的备份源bind收紧为只读。已有121文件备份重新校验→另一组全新六卷恢复→Inspect核对→再次校验通过，备份源整体SHA前后相同。该短回归未启动服务，不替代上面的真实启动恢复验收。[只读源回归](../evidence/P6E-backup-readonly.json)。
+覆盖旧→新、代码回退、候选启动失败、公开503、后台JS404、图片200错误字节、schema4更新/回退拒绝、已有锁拒绝、候选停写不确定时保守锁定、人工核验恢复旧服务及再次升级。严格新内容场景由新Worker实际发布，旧代码继续服务该自包含版本并核验HTTP；直接跨源码内容恢复终态 `ROLLBACK_TARGET_INVALID`，当前和草稿不变，再升级成功。
 
-备份含密码哈希、会话秘密和私有资料，未提交备份本体、数据库、图片卷或TLS私钥。SHA不等于签名，需受信保管及异地加密副本；本轮未实现远端备份或托管密钥，不能把本机备份等同异地灾备。流程见 [备份恢复](../V1.1-BACKUP-RESTORE.md)。
+代码回退只换镜像且接受当前数据；内容恢复只换兼容静态版本；灾难恢复从一致备份还原新空卷并撤销旧Session。跨Schema自动迁移/降级未实现，必须先拒绝。停写不确定时公开坏候选曾不可用，操作者恢复后才恢复访问；不声称自动零停机。旧备份必须保留配套旧maintenance，不能用新字段要求改写旧备份骗过校验。
 
-## 6. 部署、更新与回退
+## 7. 性能与未覆盖范围
 
-独立模拟拓扑实测：同源码be5c/schema3的重新封装网关镜像→真实容器替换→旧镜像代码回退→缺失nginx可执行文件的坏候选真实启动失败→恢复旧服务并验证HTTP→schema4候选提前拒绝→独占操作锁拒绝。DB/图片/active保留，4公开路径SHA不变。[生命周期证据](../evidence/P6E-release-lifecycle.json)。
+最终组六次 Lighthouse 实测见 [性能汇总](../evidence/P6E-final-performance-summary.json)：首页手机87/99/93，中位 **93**；LCP中位 **1111.716ms**、CLS **0**、TBT中位 **321.22435ms**。项目手机92、关于手机99、首页桌面100；六次 Accessibility/Best Practices/SEO均100。保留CPU校准、主线程、资源链和图片审计建议。
 
-首轮故障候选只改ENTRYPOINT，但Compose固定entrypoint覆盖它，未产生预期故障；此测试器FAIL独立保存，不声称失败恢复机制因此已验收。修正为真实不可执行候选后重新通过。
+这些是本机Docker/模拟节流/合成测试内容的导航实验室数据；无可比前后基线，没有真实用户INP/CrUX，TBT不等同INP。最终组未重新执行Firefox/WebKit完整管理，历史公开补测不能扩大为817通过；Safari、真实手机、读屏、完整渗透、主机断电/物理磁盘故障均未验收。历史WebKit可信HTTPS失败仍如实保留。
 
-这证明**同源码/同schema镜像生命周期**，没有证明不同功能源码版本升级，也没有执行跨schema迁移。schema不同一律拒绝，不能自动破坏性降级。最终审查发现并修复“停止候选失败”分支的锁保留缺陷：候选启动前持久化转换意图，停止失败及恢复记录ENOSPC仍保留原意图和operation.lock。真实坏候选配合测试专用宿主CLI wrapper复验通过，后续更新被阻断，操作者完成停写/旧库/原描述符/HTTP核对才释放锁。[专项证据](../evidence/P6E-release-guard.json)。这不是实际全机Docker daemon故障或物理盘满，不扩大为所有故障自动恢复；该故障期间入口不可用，不承诺升级失败零停机。
+## 8. 依赖风险与运维决策
 
-正式方案见 [OpenResty拓扑与V1.0切换](../V1.1-PRODUCTION-PLAN.md)、[更新与代码回退](../V1.1-RELEASE-OPERATIONS.md)。只规划本站Host、回环网关、`/admin/`及`/api/admin/v1`；未接触正式入口，不安装NPM。正式TLS/Cloudflare缓存、源站保护和真实V1.0→V1.1切换必须另获授权后核验。
+[最终审计](../evidence/P6E-final-security-audit.json)、[风险处置](../evidence/P6E-final-risk-disposition.json)、[安全验收](../V1.1-SECURITY-ACCEPTANCE.md)记录全部精确镜像和官方来源，复核日期2026-10-28。
 
-## 7. 浏览器、图片和性能
+- 六镜像Scout均0 critical/high/medium，仍保留Worker deepmerge low、四个Alpine角色musl未定级、API/maintenance Go模块未定级；没有抑制原告警。
+- musl实际Alpine3.24.3、1.2.6-r3且无edge混仓；官方3.24与edge的同一安全补丁SHA512证实r3/r6为分支修复号差异，记录来源而不改写扫描器结果。
+- deepmerge4.3.1仍无官方兼容修复；根npm7low/admin0。只使用受控输入、固定离线构建、Worker无网络/凭据/数据库且有资源限制，仍需确认残余构建链风险。
+- 保留node-forge1.4.1兼容修复，与精确官方版本integrity一致；latest1.4.2为Buffer兼容补丁，未冒称尚未应用的安全修复。
+- 精确去符号二进制govuln退出3/0/3，保留模块精度告警；91个backend文件与冻结树逐SHA核对后Linux source扫描exit0、无openpgp导入，仅Argon2id/blake2b。GO-2026-5932模块告警尚无修复，不称模块风险清零。
+- 当前公开34文件460122B秘密扫描0已知模式发现、前后SHA一致；[最终仓库快照扫描](../evidence/P6E-final-repository-secret-scan.json)原始exit1、7条generic-api-key均逐行确认为同一本地公开镜像tag误报，保留原始告警和核对，不禁用规则、不标为工具零告警。模式扫描不能证明未知秘密不存在；私有忽略目录、扫描器自身结果及命令日志不进入其输入。
 
-- Chromium151专用CA信任、TLS验证开启。管理24功能组通过：登录/错误密码/429、Session恢复/失效/退出/改密、CSRF、项目/分类CRUD与排序/归档、409保留输入、上传更换及引用保护、资料/设置保存、网络失败、保卷重建。[管理报告](../evidence/P6E-admin-browser.json)。
-- 真实发布10功能组通过：认证预览及全部子资源→A发布→保存B不改A→B发布→旧A标签内部路由及SEO仍A，A的JS/CSS/图片真实请求200且SHA不变→刷新B→恢复A且草稿B保留→四服务保卷重建→退出/Session到期预览HTML/JS/CSS/图片401。没有hydration/CSP/pageerror记录。[发布报告](../evidence/P6E-publishing-browser.json)。
-- 320/390/768/1024/1440px×深浅主题：管理7页70组，公开3页30组、发布页10组，无页面级横向溢出；实际滚动并decode图片。键盘排序、焦点及移动菜单经真实操作。未测试真实移动硬件、读屏或完整渗透。
-- Firefox/WebKit公开页共60组通过；Firefox可信HTTPS登录页与浏览器匿名401通过。WebKit私有测试CA不受信，HTTPS为**NOT_PASSED**，未关闭TLS验证；不等同Safari/iOS完整后台测试。[附加浏览器](../evidence/P6E-multibrowser.json)。
-- 真实4096²高熵WebP原图<10 MiB，但重编码PNG>16 MiB：413且revision不变。5000²PNG实际上传201，派生541784字节，未引用软删除200，无OOM；1秒采样最大182181888字节/API限768 MiB、耗时726ms。不是所有25M像素输入的绝对峰值或压力结论。[图片样本](../evidence/P6E-media-peak.json)。
+异地age加密副本+独立离线签名、密钥轮换/保管、校验恢复演练、保留与容量告警方案已准备。建议RPO24h/RTO4h尚未获用户接受，未计作达到目标；外部目标/账户/介质、密钥保管人、值守与告警接收渠道均待确认，未安装外部调度或发送通知。实际本地监控是后台容量警告与CLI检查，不是已接入外部告警系统。
 
-| Lighthouse13.6.0 / Chrome156 |    Performance |        LCP | CLS |       TBT |
-| ---------------------------- | -------------: | ---------: | --: | --------: |
-| 首页mobile三次中位           | 95（92/98/95） | 1123.47 ms |   0 | 195.31 ms |
-| 项目页mobile                 |             91 | 2265.50 ms |   0 | 313.00 ms |
-| 关于页mobile                 |             93 | 1036.18 ms |   0 | 259.46 ms |
-| 首页desktop                  |            100 |  251.08 ms |   0 |      0 ms |
+## 9. 生产门槛与下一步
 
-六次Accessibility/Best Practices/SEO均100。首页约161.3 kB传输、JS104.6 kB/CSS7.5 kB。原始报告、CPU校准warning及局限保留于 [汇总](../evidence/P6E-performance-summary.json)。本机Docker/模拟限速/合成测试内容，没有可比P6-D基线，**TBT不是INP**，未测真实用户INP/CrUX；不为评分放松安全或改变视觉。
+当前首要工程阻塞是上述SQLite只读修复流程。817是本轮实际构建与检验的候选发行身份，**不是全部门槛通过的可生产发布版本**；本轮交付可验证的安全部分，不申请上线。
 
-截图：`P6E-admin-login.png`、`P6E-admin-project-list.png`、`P6E-admin-media-upload.png`、`P6E-admin-mobile.png`、`P6E-publishing-private-preview.png`、`P6E-publishing-release-history.png`、`P6E-publishing-public-home-{dark,light,mobile}.png`。合成测试图不是Blog/Nav/ERP真实截图。
+[现场留场](../evidence/P6E-final-current-repair-retention.json)确认334文件/链接条目前后相同、current/候选未变、六个HTTP/SEO路径停止前200且SHA一致，仅停止新故障项目并保留六卷；[正常E2E收尾](../evidence/P6E-final-e2e-retention.json)保留七卷与六镜像；[其他容器核对](../evidence/P6E-final-other-containers-after.json)确认34个原有容器ID/镜像/运行状态/启动时间均未改变。没有全局Docker清理。
 
-## 8. 安全审计与剩余风险
+工程测试完成不等于具备直接上线条件。当前正式origin开启本地gate仍被拒绝；需要独立审查并实现生产发布授权策略，不能用localhost测试开关绕过。生产只做方案渲染，未验证真实OpenResty/Cloudflare/TLS、源站防绕过、服务器资源、端口及其他站点。
 
-| 项目       | 实测结果与结论                                                                                                       |
-| ---------- | -------------------------------------------------------------------------------------------------------------------- |
-| npm        | 根7low/0moderate/high/critical，admin0；deepmerge构建链尚未修复，不强制降级Nuxt                                      |
-| node-forge | 安装/lock均1.4.1，官方gitHead/tag/integrity再次核对，保留P6-D修复；旧公告无first_patched_version，不扩大为系统零风险 |
-| Go源码     | Windows全包及Linux三个正式入口：symbol0/imported0/module1，未导入openpgp的GO-2026-5932无修复；真实依赖表无openpgp    |
-| Go二进制   | API/maintenance去符号扫描exit3，退化为go.mod精度的保守告警；Worker exit0。保留原报告及扫描器源码依据，不改成零告警   |
-| 六角色镜像 | 全部0critical/high/medium；Worker1low deepmerge；API/maintenance未定级openpgp模块；四个Alpine角色未定级musl          |
-| 来源冲突   | musl1.2.6-r3：Scout修复点r6，官方Alpine3.24 secdb/aports列r3已修；保留双方事实，正式发布前需复查并作处置决定         |
-| HTTP安全   | 可信HTTPS匿名探针26项通过：管理no-store/noindex、8项API401、DB/env/git/manifest/snapshot及穿越404；无CORS放宽        |
-| 产物秘密   | 最终活动release约317325字节，gitleaks8.28.0、无网络/非root/只读卷扫描exit0无已知模式发现；不等同未知秘密不存在       |
+还需用户确认：首版资料/明确占位范围与ERP截图脱敏、构建链/模块残余风险处置、异地加密目标及密钥保管、告警接收人与责任人、RPO/RTO/保留策略和维护窗口。Blog/Nav/ERP真实截图、技术栈、状态、URL及更多个人资料仍待补充；隔离合成图不会作为真实项目内容发布。
 
-后继aa23376单API镜像另作精确ID扫描：Scout重试成功，0critical/high/medium、1条未定级openpgp模块告警；去符号二进制govulncheck仍exit3，保留模块精度原报。首次Scout认证服务失败也保留，不能用基线报告代替此候选。[候选镜像审计](../evidence/P6E-api-candidate-audit.json)。其余五角色仍为上述冻结身份。
+全部工程门槛终结后才提出独立上线申请；本轮不执行申请后的生产操作。核对清单见 [正式发布检查](../V1.1-PRODUCTION-CHECKLIST.md)，拓扑见 [生产方案](../V1.1-PRODUCTION-PLAN.md)。
 
-仓库秘密扫描额外覆盖Git跟踪及非忽略的源码、文档和证据快照，在本机无网络/非root/只读源容器执行，扫描前后核对全部输入哈希。实际结果、文件数与输入清单摘要见[仓库扫描](../evidence/P6E-repository-secret-scan.json)；忽略的私有备份、数据库、上传和依赖不进入快照。模式扫描不能证明未知秘密不存在。
+## 10. Git 与历史证据
 
-首轮扫描器实际exit1，7条generic-api-key均将本地候选镜像的tag误作密钥；[首轮告警](../evidence/P6E-repository-secret-scan-first.json)保留。逐条从实际源行重建脱敏Match，确认只匹配该固定公开镜像标识；最终报告保留scanExit、所有告警和逐条处置，不做整规则/文件豁免，也不改称工具零告警。未出现无法解释的密钥匹配时，脚本结果为`REVIEWED_IMAGE_TAG_FALSE_POSITIVES`。
+本轮起始远端功能分支为 `7b17165111faeaa14b93b5b1f0f0e492868e27c8`。main基线 `14f9b1fba6504b1367aad6165a0b72c37e495927`。最终运行源码817的六镜像已独立冻结；本次文档/测试提交SHA、推送和远端main复核以最终Git结果及回复为准，不在文件中循环记录自身尚未生成的SHA。
 
-完整来源、精确镜像及每项证据见 [安全验收](../V1.1-SECURITY-ACCEPTANCE.md)。运行Worker无数据库/Session/SSH/GitHubToken/DockerSocket，UDS0700/0600，无网络端口，固定Node/Nuxt命令，不接受用户命令。鉴权/上传/路径/秘密扫描和依赖工具覆盖不同范围，不能用零高危代替完整安全评审。
-
-生产旧镜像没有升级，其既有安全接受和公网入口门槛保持独立。本轮测试通过不代表用户已接受所有剩余风险。
-
-## 9. 修改文件与资料
-
-- `backend/internal/contentlimits/`、`storagehealth/`、`httpapi/storage.go`及媒体/快照/Worker/HTTP核验：统一限制和容量保护。
-- `backend/internal/maintenance/`、`cmd/homepage-maintenance/`、维护Dockerfile：一致性备份与空卷恢复。
-- 六角色Dockerfile/ignore、`compose.admin-publish.yaml`、`deploy/v11/`：硬化、资源/源码身份、独立OpenResty模拟。
-- `scripts/v11-{maintenance,release,recovery-test,backup-portability-test,release-test}.mjs`及三个shell入口：V1.1独立生命周期。
-- `backend/cmd/p6e-fault-*/`、`httpapi/p6e_fault_linux.go`、`scripts/fixtures/p6e-*`、`p6e-fault-*.mjs`：仅隔离测试的真实故障工具。
-- `scripts/admin-browser-test.mjs`、`publishing-browser-test.mjs`及`p6e-*`：浏览器、安全、镜像、容量、性能、精确项目清理与审计证据。
-- README、进度、API/图片/后台/发布/数据库设计、五份V1.1运维安全说明和本交付；未改原始P0设计资料。
-
-完整路径列表见[本阶段修改文件索引](../evidence/P6E-changed-files.json)，比较基点为P6-D末次提交`29b3b5f53ac0d5e2ab5c44927c76cf35b065a780`，包括已提交工程基线、后继修复与本次文档/证据。私有缓存、卷和备份不纳入Git。
-
-## 10. 未完成门槛与下一步
-
-1. 后继补丁的完整六角色最终镜像组装与端到端验收仍未完成；不能把冻结be5c的六镜像、十二故障、浏览器及备份证据扩大到任何后继发行镜像。十二故障安全行为通过不等于所有人工恢复边界已消除。
-2. 真正不同功能源码版本的升级与回退兼容验收；现有同源码镜像替换不能代替。跨schema迁移没有实现，必须另行设计和验收。
-3. 崩溃残留`current.next.*`的可审计人工处理/修复流程尚未自动化，备份在该现场仍保守拒绝。不能跳过完整性检查来强行更新。
-4. 确认musl来源冲突和其他依赖残余风险处置，安排异地加密备份、实际RPO/RTO、容量报警接收人与历史保留政策。
-5. Blog/Nav/ERP真实截图、URL、技术栈和状态，公开联系方式及更多个人资料仍待用户补充；允许首版明确占位的历史授权不等于将隔离合成图作为真实资料发布。ERP必须确认无敏感业务信息。
-6. 完成上述工程门槛之后，再申请独立生产授权和只读预检；正式OpenResty/Cloudflare/TLS/源站保护、真实入口切换和其他网站回归均未在本阶段执行。
-
-因此当前不申请V1.1正式上线。本轮中途多次GitHub HTTPS连接被reset；恢复连接后，冻结工程基线be5c及诊断修复 **`aa23376bb508dad215e644c808dd2e9461d7170a`** 已正常推送，并通过`git ls-remote`核验功能分支指向aa23376、main仍为`14f9b1fba6504b1367aad6165a0b72c37e495927`。最终文档/工具提交SHA和推送结果以本轮Git实测及最终回复为准，不将本文件写入自身尚未生成的SHA。
+历史 be5c 十二故障、aa23376 单API修复、旧格式检查、旧性能和旧同源码生命周期证据继续保留在Git及原文件中；它们只解释演进，不用来替代最终组六角色的新证据。[诊断专项](P6E-reconciliation-diagnostics.md)、[P6-E工程基线](P6E-safety-foundation.md)、[历史故障矩阵](../P6E-FAULT-TESTS.md)。

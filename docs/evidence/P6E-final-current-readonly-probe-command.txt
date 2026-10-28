@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-28T13:42:03.699Z",
+  "source": "817aa533741bdd5de23f322fa5e5171442cb28a9",
+  "project": "xiaowork-homepage-v11-p6e-closure-fault",
+  "maintenance": "sha256:4b07bde81bc577362ffab2176dd780a20fb5a2c5c3edc4d5a35dce1a68703dab",
+  "diagnosticImage": "sha256:ae66a4907185cd7917c917f9514abc31251f47e36ae0bbcee9cd6b08d9a31017",
+  "sourceMount": "readonly",
+  "originalWritersStopped": true,
+  "originalHasWALOrSHM": false,
+  "originalBytes": 438272,
+  "originalSHA256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9",
+  "originalMetadataUnchanged": true,
+  "originalDBWriteMountUsed": false,
+  "readOnlyCopy": {
+    "immutable": {
+      "schemaRows": 3
+    },
+    "ro": {
+      "error": "unable to open database file (14)"
+    }
+  },
+  "writableCopy": {
+    "immutable": {
+      "schemaRows": 3
+    },
+    "ro": {
+      "schemaRows": 3
+    }
+  },
+  "explanation": "The exact offline SQLite module cannot query a clean WAL-mode DB on a fully read-only directory without WAL/SHM. Immutable offline-copy query and ordinary read-only connection on a writable COPY succeed. The frozen maintenance CLI masks the raw SELECT error as schema uninitialized. No original DB checkpoint, pointer mutation or runtime fix was performed.",
+  "result": "REPRODUCED_BLOCKER"
+}

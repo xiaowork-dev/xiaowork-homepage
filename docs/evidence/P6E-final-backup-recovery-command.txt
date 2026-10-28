@@ -1,0 +1,9 @@
+PASS new isolated deployment and trusted HTTPS administrator login
+PASS real immutable publication A with uploaded referenced bitmap
+PASS real immutable publication B and history
+PASS real content rollback A plus private preview; draft B preserved
+PASS stopped-writer VACUUM INTO backup verified; original service and Session resumed
+PASS tampered independent runtime metadata rejected
+PASS independent restore used only backup runtime descriptor while original deployment state was unavailable
+PASS new empty-volume restore, old Session rejected, same password re-login, identical draft/media/public/SEO/history/private preview
+PASS repeat restore refused instead of overwriting existing recovery data
