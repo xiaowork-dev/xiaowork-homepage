@@ -324,7 +324,10 @@ async function verifyPublic(p, content, releaseId, route) {
   )
   const images = await p.locator('main img').evaluateAll((items) =>
     items.map((item) => ({
-      src: item.currentSrc,
+      // Lazy images may not have selected currentSrc yet. This checks their
+      // declared versioned URL; the responsive loop later scrolls and decodes
+      // every image before claiming that loading completed.
+      src: item.currentSrc || item.src,
       loaded: item.complete && item.naturalWidth > 0,
     })),
   )

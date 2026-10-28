@@ -33,7 +33,6 @@ type authFixture struct {
 func newAuthFixture(t *testing.T) *authFixture {
 	t.Helper()
 	f := &authFixture{}
-	f.clock.Store(time.Now().UTC().Unix())
 	var err error
 	f.db, err = store.Open(filepath.Join(t.TempDir(), "auth.sqlite"), true)
 	if err != nil {
@@ -46,6 +45,10 @@ func newAuthFixture(t *testing.T) *authFixture {
 	if err = authn.InitAdministrator(context.Background(), f.db, "xiaowork", []byte(authTestPassword)); err != nil {
 		t.Fatal(err)
 	}
+	// CLI initialization uses real time after Argon2 finishes. Freeze the API
+	// clock afterwards so it cannot predate administrators.created_at when
+	// initialization crosses a second boundary under CPU load.
+	f.clock.Store(time.Now().UTC().Unix())
 	f.server = httptest.NewUnstartedServer(http.NotFoundHandler())
 	origin := "https://" + f.server.Listener.Addr().String()
 	// TempDir's leaf can inherit a permissive umask on Unix. Model the private

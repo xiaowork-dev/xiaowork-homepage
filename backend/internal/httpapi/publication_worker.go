@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/subtle"
 	"database/sql"
+	"encoding/json"
 	"errors"
 	"net"
 	"net/http"
@@ -113,7 +114,15 @@ func (a *App) workerClaim(w http.ResponseWriter, r *http.Request) {
 		writeError(w, r, e)
 		return
 	}
-	writeData(w, r, 200, publishmodel.ClaimResponse{Job: &assignment})
+	// Snapshot is already canonical, sealed JSON. The public API encoder's
+	// HTML escaping would rewrite RawMessage bytes (for example '&') without
+	// changing their JSON meaning, invalidating the immutable snapshot hash.
+	// Preserve those bytes only on the private same-UID worker transport.
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	encoder := json.NewEncoder(w)
+	encoder.SetEscapeHTML(false)
+	_ = encoder.Encode(map[string]any{"data": publishmodel.ClaimResponse{Job: &assignment}, "requestId": requestID(r)})
 }
 func (a *App) workerLeased(ctx context.Context, q interface {
 	QueryRowContext(context.Context, string, ...any) *sql.Row

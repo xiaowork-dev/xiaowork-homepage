@@ -1,0 +1,17 @@
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/public-seed
+    publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+    publication_transport_linux_test.go:49: HTTP POST /preview-jobs expected=202 actual=202
+    publication_transport_linux_test.go:83: actual private HTTP claim rejected: snapshot hash mismatch; sealed bytes equal=false, advertised hash matches sealed=true, received hash matches sealed=false
+=== RUN   TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/uploaded-media-and-unicode
+    publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+    publication_transport_linux_test.go:34: HTTPS POST /media expected=201 actual=201
+    publication_transport_linux_test.go:37: PATCH /media/med_b0aecd448bb6461d5f45c77c2fc7a85c expected=200 actual=422 body={"error":{"code":"VALIDATION_FAILED","fields":[],"message":"素材文本长度或格式无效。"},"requestId":"req_f92240eb48e6c09429b3bdeee08027c1"}
+--- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes (2.18s)
+    --- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/public-seed (1.83s)
+    --- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/uploaded-media-and-unicode (0.34s)
+FAIL
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	2.197s
+FAIL
