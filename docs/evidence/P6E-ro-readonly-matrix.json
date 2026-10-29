@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-29T05:10:03.865Z",
+  "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+  "maintenance": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd",
+  "fixtureOnly": true,
+  "sourceProject": "xiaowork-homepage-v11-p6e-closure-fault",
+  "prefix": "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6",
+  "cases": [],
+  "result": "FAIL",
+  "originalBeforeSHA256": "aebaddd492d7a5222e9623f578c1cb1d4fd0df5c43d720cc1f653b8a7420892e",
+  "fixtureImage": "sha256:62b391293da5b578f13051f994d612af7fe51bade7e8c108f796fd815ea5e42f",
+  "error": "Read-only matrix stopped; inspect private local command log",
+  "action": "Stop automated repair attempts; retain all fixture volumes, original scene and operation locks"
+}

@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "reviewedAt": "2026-10-29T05:25:11.025Z",
+  "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+  "project": "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable",
+  "result": "STRICT_METADATA_FAIL_AUTOMATIC_REPAIR_STOPPED",
+  "reviewMethod": "Read existing private JSON inventories only; no Docker commands, source-volume access, metadata repair, apply or lock changes during this review",
+  "cache": {
+    "relative": ".cache/xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4",
+    "absolute": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4"
+  },
+  "inputs": [
+    {
+      "path": ".cache\\xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4\\stable-before.json",
+      "bytes": 210966,
+      "rawFileSHA256": "84f96ec7413a5016ff75f6a54682275247112612ef9abb36b6d00c34419172e6",
+      "parsedJSONSHA256": "a8149ee60b03347c64c6e775d6b42621e843fa41b4ce5087f8f22cbc5dcdb8e5"
+    },
+    {
+      "path": ".cache\\xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4\\stable-after.json",
+      "bytes": 210966,
+      "rawFileSHA256": "4c1c8b4f45d553d14ff7298b6b1a7dc6f0942a40afb5927b97228bab557c3612",
+      "parsedJSONSHA256": "3c72f33b43d1b6efab1314b51c449216b9eec8f07f23df14465d5494c4ba94c8"
+    }
+  ],
+  "entries": {
+    "before": 481,
+    "after": 481,
+    "unchanged": 475,
+    "changed": 6,
+    "pathsAndOrderUnchanged": true
+  },
+  "regularFiles": {
+    "count": 332,
+    "allContentSHA256Unchanged": true,
+    "allMetadataAndSHA256Unchanged": true
+  },
+  "changes": [
+    {
+      "path": "authority",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251045963176787",
+      "afterAtimeNs": "1793251050819318151"
+    },
+    {
+      "path": "db",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251045963666544",
+      "afterAtimeNs": "1793251050819318151"
+    },
+    {
+      "path": "publications",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251046077807380",
+      "afterAtimeNs": "1793251050819318151"
+    },
+    {
+      "path": "secrets",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251046094809601",
+      "afterAtimeNs": "1793251050819318151"
+    },
+    {
+      "path": "tls",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251046095495178",
+      "afterAtimeNs": "1793251050819318151"
+    },
+    {
+      "path": "uploads",
+      "fields": [
+        "atimeNs"
+      ],
+      "beforeAtimeNs": "1793251046097150970",
+      "afterAtimeNs": "1793251050819318151"
+    }
+  ],
+  "onlyChangedFieldsAreSixVolumeRootAtimes": true,
+  "databaseMembers": [
+    {
+      "path": "db/content.sqlite",
+      "bytes": "438272",
+      "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9",
+      "allMetadataAndSHA256Unchanged": true
+    }
+  ],
+  "databaseWALOrSHMPresent": false,
+  "currentAndCandidate": [
+    {
+      "path": "publications/current",
+      "target": "releases/rel_8b8819f3bd32692d246cacd8d4178817",
+      "allMetadataAndTargetUnchanged": true
+    },
+    {
+      "path": "publications/current.next.5bd62643db372ff2bafc2ebbc6af2a4daa62140d2e25b23c4d1c5dde787be5fa",
+      "target": "releases/rel_59b5616ce26fa12d14159c9f11874a43",
+      "allMetadataAndTargetUnchanged": true
+    }
+  ],
+  "repair": {
+    "applyExecuted": false,
+    "basis": "Matrix controller invokes inspect only; r2 stopped at before/after metadata assertion before downstream lifecycle controller",
+    "repairAuditEntriesBefore": 0,
+    "repairAuditEntriesAfter": 0,
+    "backupRestoreUpdateRollback": "NOT_RUN"
+  },
+  "stableOperationLock": {
+    "path": ".v11-deploy/xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable/operation.lock",
+    "existsAtReview": false,
+    "explanation": "Successful maintenance inspect released its temporary host lock before the outer metadata assertion failed. No automatic replacement lock was created by that controller; do not claim failure retained it."
+  },
+  "limitations": [
+    "No proof that all original volume metadata remained unchanged across container mounting; six root atimes changed.",
+    "No validated cause for root-atime changes from these inventories alone.",
+    "SQLite read success is not successful repair or completed true-readonly acceptance.",
+    "Valid WAL and failure-state real-volume cases after stable were NOT_RUN."
+  ],
+  "sources": [
+    "docs/evidence/P6E-ro-readonly-matrix-r2.json",
+    "scripts/p6e-ro-readonly-matrix.mjs",
+    "scripts/v11-current-repair.mjs"
+  ]
+}

@@ -1,0 +1,1 @@
+Read-only matrix stopped; inspect private local command log

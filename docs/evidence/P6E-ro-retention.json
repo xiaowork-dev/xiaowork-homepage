@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-29T05:29:26.442Z",
+  "result": "RETAINED_NO_EXISTING_CONTAINER_CHANGES",
+  "scope": "Local Docker metadata only; no volume mounts, database reads, repairs or lifecycle operations",
+  "endpoint": "npipe:////./pipe/dockerDesktopLinuxEngine",
+  "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+  "baselineCount": 33,
+  "currentCount": 33,
+  "fields": [
+    "id",
+    "image",
+    "name",
+    "startedAt",
+    "status"
+  ],
+  "changes": [],
+  "images": [
+    {
+      "role": "api",
+      "id": "sha256:f3cb395f3b3eda17592f9196a429e01a6d5c88980c0ada38c2cde38c36fe20d3",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:f3cb395f3b3eda17592f9196a429e01a6d5c88980c0ada38c2cde38c36fe20d3"
+    },
+    {
+      "role": "worker",
+      "id": "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99"
+    },
+    {
+      "role": "gateway",
+      "id": "sha256:db2e07d487bae4c205d57beea5d3bb14274dc3d4155fcb5a821388eb55b0fd2c",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:db2e07d487bae4c205d57beea5d3bb14274dc3d4155fcb5a821388eb55b0fd2c"
+    },
+    {
+      "role": "frontend",
+      "id": "sha256:c9e0cf28f2f1aa4ecf6af17769fde44c0902247b57a2327a86fa8c3fedd6f9a5",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:c9e0cf28f2f1aa4ecf6af17769fde44c0902247b57a2327a86fa8c3fedd6f9a5"
+    },
+    {
+      "role": "static",
+      "id": "sha256:0f3add37b4bd0387f621ced61d01c81cbfdf3a0bfdf30e4901c33947d4bbe0d4",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:0f3add37b4bd0387f621ced61d01c81cbfdf3a0bfdf30e4901c33947d4bbe0d4"
+    },
+    {
+      "role": "maintenance",
+      "id": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "expectedId": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd"
+    }
+  ],
+  "allSixImageIdentitiesUnchanged": true,
+  "retainedVolumes": [
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-authority",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-db",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-publications",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-publisher-socket",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-secrets",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-tls",
+    "xiaowork-homepage-v11-p6e-closure-fault_admin-uploads",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-authority",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-db",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-publications",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-secrets",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-tls",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable_admin-uploads",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-authority",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-db",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-publications",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-secrets",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-tls",
+    "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt33xh6-stable_admin-uploads",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-authority",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-db",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-publications",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-secrets",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-tls",
+    "xiaowork-homepage-v11-p6e-ro-copy2-mvt3awcj_admin-uploads",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-authority",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-db",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-publications",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-secrets",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-tls",
+    "xiaowork-homepage-v11-p6e-ro-copy-mvt39q82_admin-uploads"
+  ],
+  "strictReadonlyResult": "FAIL_RETAINED",
+  "repairApplied": false,
+  "postRepairBackupRestoreUpdateRollback": "NOT_RUN",
+  "originalVolumeByteMetadataReverification": "NOT_RUN: no new original volume mounts after strict metadata failure; existing cached evidence retained"
+}

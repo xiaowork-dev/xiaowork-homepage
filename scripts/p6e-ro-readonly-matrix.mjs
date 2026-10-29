@@ -24,7 +24,9 @@ if (process.platform === 'win32')
     [cache, '/inheritance:r', '/grant:r', `${os.userInfo().username}:(OI)(CI)F`],
     { stdio: 'ignore' },
   )
-const output = 'docs/evidence/P6E-ro-readonly-matrix.json'
+// The first attempt failed BEFORE maintenance, in root-only fixture copying.
+// Its evidence and partial volumes remain intact; this is a new attempt.
+const output = 'docs/evidence/P6E-ro-readonly-matrix-r2.json'
 assert.equal(
   fs.existsSync(output),
   false,
@@ -115,6 +117,8 @@ function copyFresh(project) {
     'CHOWN',
     '--cap-add',
     'DAC_OVERRIDE',
+    '--cap-add',
+    'FOWNER',
     ...mounts(sourceProject, '/source'),
     ...mounts(project, '/target', false),
     '--entrypoint',
@@ -349,6 +353,11 @@ try {
   report.retention =
     'All dedicated fixture volumes and all failure operation locks retained; original historical source was only mounted readonly. No repair attempted by this matrix.'
 } catch (error) {
+  fs.writeFileSync(
+    path.join(cache, 'failure-private.txt'),
+    String(error.stack ?? error) + '\n' + String(error.stderr ?? ''),
+    { mode: 0o600, flag: 'wx' },
+  )
   report.result = 'FAIL'
   report.error =
     error.code === 'ERR_ASSERTION'

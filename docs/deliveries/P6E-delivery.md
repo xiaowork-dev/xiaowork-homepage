@@ -2,15 +2,54 @@
 
 更新：2026-10-29，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
-## 2026-10-29 只读阻塞收尾（验收进行中）
+## 2026-10-29 只读阻塞收尾：部分实现，真实卷验收失败
 
 已定位 `modernc.org/sqlite v1.61.0` 的 WAL 模式只读目录辅助文件问题，以及把底层查询错误误报为 Schema 未初始化的错误处理。后继运行代码改为原文件集合只读取证、有界私有副本读取 WAL；原库不交给 SQLite。具体安全前提、错误分类和局限见 [只读修复说明](../V1.1-CURRENT-REPAIR.md)。同时加强所有本机容器 RW 挂载检查和失败留锁。
 
-新增 `p6e-ro-*` 专属控制器与独立证据路径，原 817 失败现场及证据保留。源码冻结和新统一六角色真实卷验收完成前，本阶段继续标记部分完成，下面 2026-10-28 的结果为历史基线，不自动成为新发行组的通过结论。本轮不重复无关常规浏览器矩阵，不操作生产环境。
+运行改动已冻结为 **`9887f6d456c5cdde79ec0689480684f905b7db2a`**。六个正式运行角色从同一 Git archive 全部重新构建，Schema3、manifest1；完整镜像 ID、构建参数、归档校验和及基础镜像见 [新候选机器清单](../evidence/P6E-ro-runtime-manifest.json)。选择该 SHA 是因为它同时包含只读数据库视图、错误分类、维护器资源限制和停写/失败留锁检查，不混用 817 组和后继单个镜像。实际 builder identity 应为新 Worker 镜像 `sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99`；本轮尚未用它执行新发布任务。冻结后的提交只含测试控制器、证据和文档，不能冒称运行镜像源码更新。
+
+**结论：SQLite14 读取故障在 stable 真实只读卷中已功能性修复，但完整只读元数据门槛仍 FAIL，P6-E 未完成。已经停止自动修复；没有执行 apply、删除候选、恢复元数据或继续备份/恢复/更新/回退，不申请上线。** 以下历史 817 结果不能计为新 9887 组通过。本轮不重复无关常规浏览器矩阵，不操作生产环境。
+
+### 根因与实现边界
+
+原 `store.checkHistory` 将读取 `schema_migrations` 的所有错误统一改写为“Schema 未初始化”，掩盖了 `CANTOPEN(14)`。实际 stable 数据库有 schema3，WAL 模式主库停写后无 WAL/SHM；普通 `mode=ro` 仍可能需要目录辅助状态，原目录不可写时读取失败。现按不存在、权限、SQLite I/O、损坏、未知状态、Schema 缺失/不兼容区分，不能据错误文案删除或重建数据库。
+
+原主库不再交给 SQLite：Linux 使用 `O_RDONLY|O_NOFOLLOW|O_NOATIME` 读取主库/WAL/SHM/journal，记录文件身份、元数据和 SHA256；只允许闭合文件集合，停写且独占锁是前提。逐帧校验 WAL 并要求已提交尾部，在有界私有副本中让 SQLite 重建 WAL 索引；不使用 `immutable=1` 忽略未知 WAL，不对原库 RW/checkpoint/VACUUM。数据库集合上限128MiB，维护器 tmpfs192MiB/noexec、内存512MiB/PID64；不以放宽安全条件通过测试。完整方案与一致性局限见 [只读修复说明](../V1.1-CURRENT-REPAIR.md)。
+
+### 新候选实际执行结果
+
+| 项目                          | 结果与原始证据                                                                                                                                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Linux Go 全包、go vet         | 最终预冻结检查退出0；[全包](../evidence/P6E-ro-go-test-r2.txt)、[vet](../evidence/P6E-ro-go-vet-r2.txt)、[失败及重试记录](../evidence/P6E-ro-prefreeze-checks.json)                                                                                     |
+| Node 安全边界                 | 8项通过，含失败留锁、外部 RW 写入者拒绝、远程 Docker 拒绝及 HTTP 探针；[原始输出](../evidence/P6E-ro-node-guards.txt)                                                                                                                                   |
+| 六角色构建                    | 全部成功，来自同一9887归档，构建命令 `node scripts/p6e-ro-build.mjs 9887f6d456c5cdde79ec0689480684f905b7db2a` 退出0；[清单](../evidence/P6E-ro-runtime-manifest.json)                                                                                   |
+| 首次真实卷准备                | **夹具失败**，缺 FOWNER 导致证书文件复制 EPERM，尚未调用维护器；[原失败](../evidence/P6E-ro-readonly-matrix.json)。仅测试 root 复制夹具加 FOWNER，新项目对照成功，不改变正式维护器权限；[诊断](../evidence/P6E-ro-readonly-preparation-diagnostic.json) |
+| r2 stable 真实 RO 检查        | 两次 `inspect-current` 均退出0，Schema3/revision2、终态任务及业务状态可读，计划 SHA `73f7ddcbb7eac44325806490cc419c0faf220860ce0647a4ccc30e7be40c3c39` 相同；[原始结果](../evidence/P6E-ro-readonly-matrix-r2.json)                                     |
+| r2 完整元数据条件             | **FAIL**。481条中475条完全相同，332个普通文件 SHA 全相同；主库 SHA及全部元数据相同，无WAL/SHM。六卷根目录仅 atimeNs 变化；[独立缓存复核](../evidence/P6E-ro-readonly-metadata-review.json)                                                              |
+| 其余真实卷矩阵                | **NOT_RUN**：有效/未提交/异常 WAL、不可读、损坏、不兼容等未继续。Go测试不代替真实卷验收                                                                                                                                                                 |
+| 单对象修复及后续链            | **NOT_RUN**：apply、修复审计、备份、独立空卷恢复、更新、回退全部未执行；不以旧817成功代替                                                                                                                                                               |
+| 新组发布/预览/关键故障/浏览器 | **NOT_RUN**：被只读验收失败阻断，不借旧组通过结论扩大范围                                                                                                                                                                                               |
+| 新组六镜像安全扫描            | 已执行；0critical/high/medium，仍有Worker deepmerge low、musl/Go模块未定级。二进制 govuln 退出3/0/3保留；Linux正式入口源码扫描退出0，96个backend源文件与冻结树一致；[审计](../evidence/P6E-ro-security-audit.json)                                      |
+
+主库前后 SHA256 均为 `74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9`。文件内容不变不能替代严格元数据条件；变化发生于挂载/检查整体过程，Docker volume populate 等机制尚未独立证明，不能定论为 SQLite 写入，也不重设 atime 覆盖失败。
+
+锁范围存在待修复缺口：stable 维护器返回成功，wrapper 已正常释放它创建的临时锁，随后外层 metadata 断言失败而未创建新锁。**不能宣称本次整体失败后 operation.lock 自动保留。** 原有锁不被人工删除。后续需在完整挂载前后校验范围内持有独占锁，未知状态停止，再经审查执行全新矩阵；本轮按用户失败即停要求不继续自动尝试。
+
+### 修改、留场与后续
+
+运行代码：`backend/internal/maintenance/readonly*.go`、`current_repair.go`、`backup.go`、`backend/internal/store/store*.go`、`scripts/v11-current-repair.mjs`、`scripts/v11-maintenance.mjs`。新增隔离 `p6e-ro-*` 控制器和专属证据；冻结后仅调整测试复制权限和读取 r2 结果的前置条件。维护器与全部正式镜像不含新增故障入口，没有操作生产库。
+
+原817失败证据与六卷、两轮新夹具卷、私有 before/after、链接和任务现场均保留，没有全局 Docker 清理。r2 严格 FAIL 不覆写成 PASS，机器记录的 stable `RUNNING` 是在后续断言失败前写入的中间标记，整体结果和命令退出码才是本轮结论。尚无本轮原故障卷全部元数据前后完整证明，不把旧留场清单误称本轮重验。
+
+收尾只读调用本机 `docker context inspect`、逐个 `docker inspect`、`docker image inspect` 与 `docker volume ls`，不重新挂载故障卷。[留场核对](../evidence/P6E-ro-retention.json) 确认启动本轮测试前记录的33个既有容器，其ID、镜像、名称、启动时间及状态全部未变；六候选镜像身份仍一致，31个本轮/源现场卷保留。该核对不冒称重新验证原卷全部元数据。
+
+收尾文档及冻结后两项测试控制器执行 Prettier、ESLint、`node --check` 和 `git diff --check`，实际命令/退出码见 [检查回执](../evidence/P6E-ro-closure-checks.json)。待提交文件另用本机无网络 Gitleaks 做秘密模式扫描，不扫描私有数据库/备份缓存；原始非零告警及公开镜像标识的逐条复核分别保留于 [扫描](../evidence/P6E-ro-repository-secret-scan.json) 和 [复核](../evidence/P6E-ro-repository-secret-review.json)，不能写成工具零告警。
+
+剩余工程工作是解释并解决卷根 atime 和锁覆盖范围，重新冻结有运行改动的六角色候选，完整通过只读矩阵→单对象修复→备份→空卷恢复→更新/回退及关键故障。异地备份、风险处置、生产授权策略和未覆盖浏览器范围仍按原清单保留；当前不具备正式上线条件。
 
 测试环境首次 Linux Go 测试因测试容器 `/tmp` 默认为 noexec，所有测试二进制无法启动（exit 1）；仅测试容器改为 exec 后重跑，正式维护器的 noexec 不放宽。该失败属于测试环境配置，未执行真实卷修复。
 
-**状态：部分完成。最终组正常链、十二故障、跨源码与完整备份恢复通过；真实残留链接修复被只读 SQLite 问题阻塞，不具备正式上线条件。** 本轮没有连接德国服务器、合并 main，或修改 Cloudflare、DNS、TLS、1Panel OpenResty、V1.0 容器、数据卷及 `.env/.deploy`。本文件更新既有阶段交付，不重新创建一套阶段记录。
+**以下第1～10节为2026-10-28的817组历史验收，保留原始结果；不作为9887新候选通过证据。** 本轮没有连接德国服务器、合并 main，或修改 Cloudflare、DNS、TLS、1Panel OpenResty、V1.0 容器、数据卷及 `.env/.deploy`。本文件更新既有阶段交付，不重新创建一套阶段记录。
 
 ## 1. 最终发行身份
 

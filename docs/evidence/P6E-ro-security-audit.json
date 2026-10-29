@@ -1,0 +1,244 @@
+{
+  "date": "2026-10-29T05:11:06.733Z",
+  "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+  "schema": 3,
+  "manifestSha256": "eb223ede1eb99beb4106bafea823c498ba977277aba7ad46908f41cf3d2e5c9c",
+  "scope": "Pinned local final six-role images, immutable source and Linux target; no production access",
+  "scannerVersion": "v1.26.0 (go1.26.3-X:jsonv2 - windows/amd64)",
+  "advisoryDatabase": "Live Scout service at recorded times; SARIF exposes no immutable database revision",
+  "images": [
+    {
+      "role": "api",
+      "imageId": "sha256:f3cb395f3b3eda17592f9196a429e01a6d5c88980c0ada38c2cde38c36fe20d3",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "10001:10001",
+      "startedAt": "2026-10-29T05:11:07.595Z",
+      "completedAt": "2026-10-29T05:11:19.268Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-api.sarif.json",
+      "sha256": "1854247c794e4e27c8721bc3055369fa27ae769935e15778c2dac736f0c9a596",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "GO-2026-5932",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:golang/golang.org/x/crypto@0.58.0"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "worker",
+      "imageId": "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "10001:10001",
+      "osPackages": "10001\n3.24.3\nP:musl\nV:1.2.6-r3\nA:x86_64\nS:415466\nI:670312\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/community",
+      "startedAt": "2026-10-29T05:11:20.132Z",
+      "completedAt": "2026-10-29T05:12:29.057Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-worker.sarif.json",
+      "sha256": "f1a2a22daa7e2359a52ff3fe1ade49d8ddc64b8739c0a0ecbc9f5dfd3e8489a5",
+      "counts": {
+        "UNSPECIFIED": 1,
+        "LOW": 1
+      },
+      "findings": 2,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        },
+        {
+          "id": "CVE-2026-93753",
+          "severity": "LOW",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:npm/deepmerge@4.3.1"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "gateway",
+      "imageId": "sha256:db2e07d487bae4c205d57beea5d3bb14274dc3d4155fcb5a821388eb55b0fd2c",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "10001:10001",
+      "osPackages": "10001\n3.24.3\nP:musl\nV:1.2.6-r3\nA:x86_64\nS:415466\nI:670312\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/community",
+      "startedAt": "2026-10-29T05:12:30.452Z",
+      "completedAt": "2026-10-29T05:12:48.869Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-gateway.sarif.json",
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "frontend",
+      "imageId": "sha256:c9e0cf28f2f1aa4ecf6af17769fde44c0902247b57a2327a86fa8c3fedd6f9a5",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "nginx",
+      "osPackages": "101\n3.24.3\nP:musl\nV:1.2.6-r3\nA:x86_64\nS:415466\nI:670312\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/community",
+      "startedAt": "2026-10-29T05:12:50.349Z",
+      "completedAt": "2026-10-29T05:13:07.461Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-frontend.sarif.json",
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "static",
+      "imageId": "sha256:0f3add37b4bd0387f621ced61d01c81cbfdf3a0bfdf30e4901c33947d4bbe0d4",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "10001:10001",
+      "osPackages": "10001\n3.24.3\nP:musl\nV:1.2.6-r3\nA:x86_64\nS:415466\nI:670312\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/community",
+      "startedAt": "2026-10-29T05:13:08.447Z",
+      "completedAt": "2026-10-29T05:13:27.795Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-static.sarif.json",
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "CVE-2026-107891",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "1.2.6-r6",
+          "packages": [
+            "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "maintenance",
+      "imageId": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd",
+      "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+      "user": "10001:10001",
+      "startedAt": "2026-10-29T05:13:28.066Z",
+      "completedAt": "2026-10-29T05:13:40.158Z",
+      "scannerVersion": "1.26.0",
+      "file": "P6E-ro-image-maintenance.sarif.json",
+      "sha256": "8626b30534e40c7d21077aea99278c4e9df0abbae47354501e6b966970937188",
+      "counts": {
+        "UNSPECIFIED": 1
+      },
+      "findings": 1,
+      "advisories": [
+        {
+          "id": "GO-2026-5932",
+          "severity": "UNSPECIFIED",
+          "fixedVersion": "not fixed",
+          "packages": [
+            "pkg:golang/golang.org/x/crypto@0.58.0"
+          ]
+        }
+      ]
+    }
+  ],
+  "binaries": [
+    {
+      "role": "api",
+      "imageId": "sha256:f3cb395f3b3eda17592f9196a429e01a6d5c88980c0ada38c2cde38c36fe20d3",
+      "executable": "/homepage-api",
+      "bytes": 13377696,
+      "binarySha256": "8f130c57f486318ebd3afca60e3248a831a1dba812c8c23440c211c7ff439998",
+      "buildInfo": "<exact-api-binary>: go1.27.3\n\tpath\tgithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api\n\tmod\tgithub.com/xiaowork-dev/xiaowork-homepage/backend\t(devel)\t\n\tdep\tgithub.com/dustin/go-humanize\tv1.1.0\th1:dbKTrvD0klcbBV/h4AWJdMuZogJACoMlvWIWZ5b2xWg=\n\tdep\tgithub.com/google/uuid\tv1.6.0\th1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=\n\tdep\tgithub.com/remyoudompheng/bigfft\tv0.0.0-20230129092748-24d4a6f8daec\th1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=\n\tdep\tgolang.org/x/crypto\tv0.58.0\th1:COkYLr4k7nDI4r6QtMML2AfzeIswWHAJthLS6K/M/54=\n\tdep\tgolang.org/x/image\tv0.47.0\th1:za/8gVz++PPZqmZJBNSISICN5Rrj5zixP/8K++fgmqo=\n\tdep\tgolang.org/x/sys\tv0.49.0\th1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=\n\tdep\tgolang.org/x/term\tv0.47.0\th1:cpyOwQkr2Nzxe2p6KnrTG7Ei2wtzjsuSjhpXXepZ/BM=\n\tdep\tmodernc.org/libc\tv1.79.0\th1:9Dvvv++bAMSkSuBzuOFAatbTV5OIoq6Y6FohmD3e7q8=\n\tdep\tmodernc.org/mathutil\tv1.7.1\th1:GCZVGXdaN8gTqB1Mf/usp1Y/hSqgI2vAGGP4jZMCxOU=\n\tdep\tmodernc.org/memory\tv1.12.1\th1:nFMiWrpStgZczNl6XI9GnIk/rWhYIyHGUaR04pGbp9g=\n\tdep\tmodernc.org/sqlite\tv1.61.0\th1:sQi63oLQ9uquAUA4CzOisH35Q3pEszkPBuHM0tFL8CY=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n",
+      "scannerExit": 3,
+      "file": "P6E-ro-govuln-api-binary.txt",
+      "reportSha256": "ac13058eac45662073ed3f0f5ef25af9301dd4eed033e03fcc55921744f009ec"
+    },
+    {
+      "role": "worker",
+      "imageId": "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+      "executable": "/homepage-worker",
+      "bytes": 7635104,
+      "binarySha256": "d62b11687b47bfba28bc72562bdedda363c69ef9383d7631d83e6217a89c5b5a",
+      "buildInfo": "<exact-worker-binary>: go1.27.3\n\tpath\tgithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker\n\tmod\tgithub.com/xiaowork-dev/xiaowork-homepage/backend\t(devel)\t\n\tdep\tgolang.org/x/sys\tv0.49.0\th1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n",
+      "scannerExit": 0,
+      "file": "P6E-ro-govuln-worker-binary.txt",
+      "reportSha256": "9e37416947a0d461a234770a382ac8424c20669b4c07e67429280c8fc6e52d66"
+    },
+    {
+      "role": "maintenance",
+      "imageId": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd",
+      "executable": "/homepage-maintenance",
+      "bytes": 8118432,
+      "binarySha256": "815c796bf192771803777a3beb1087fed0748da2d7febfcd2c09296463e99233",
+      "buildInfo": "<exact-maintenance-binary>: go1.27.3\n\tpath\tgithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance\n\tmod\tgithub.com/xiaowork-dev/xiaowork-homepage/backend\t(devel)\t\n\tdep\tgithub.com/dustin/go-humanize\tv1.1.0\th1:dbKTrvD0klcbBV/h4AWJdMuZogJACoMlvWIWZ5b2xWg=\n\tdep\tgithub.com/google/uuid\tv1.6.0\th1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=\n\tdep\tgithub.com/remyoudompheng/bigfft\tv0.0.0-20230129092748-24d4a6f8daec\th1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=\n\tdep\tgolang.org/x/crypto\tv0.58.0\th1:COkYLr4k7nDI4r6QtMML2AfzeIswWHAJthLS6K/M/54=\n\tdep\tgolang.org/x/sys\tv0.49.0\th1:XbzkgYJHdqh/8m2Uu0W/dQv8nktxx4BFHp1M0gROTXA=\n\tdep\tmodernc.org/libc\tv1.79.0\th1:9Dvvv++bAMSkSuBzuOFAatbTV5OIoq6Y6FohmD3e7q8=\n\tdep\tmodernc.org/mathutil\tv1.7.1\th1:GCZVGXdaN8gTqB1Mf/usp1Y/hSqgI2vAGGP4jZMCxOU=\n\tdep\tmodernc.org/memory\tv1.12.1\th1:nFMiWrpStgZczNl6XI9GnIk/rWhYIyHGUaR04pGbp9g=\n\tdep\tmodernc.org/sqlite\tv1.61.0\th1:sQi63oLQ9uquAUA4CzOisH35Q3pEszkPBuHM0tFL8CY=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n",
+      "scannerExit": 3,
+      "file": "P6E-ro-govuln-maintenance-binary.txt",
+      "reportSha256": "b71234691e8ea91ac842252c77dbfdbf7b33d6e1c47ab31d7345f1ab38c45f0f"
+    }
+  ],
+  "sourceChecks": {
+    "frozenBackendFilesVerified": 96,
+    "roots": [
+      "./cmd/homepage-api",
+      "./cmd/homepage-maintenance",
+      "./cmd/homepage-worker"
+    ],
+    "target": {
+      "GOOS": "linux",
+      "GOARCH": "amd64",
+      "CGO_ENABLED": "0",
+      "GOPROXY": "off",
+      "GOTOOLCHAIN": "local"
+    },
+    "scannerExit": 0,
+    "file": "P6E-ro-govuln-linux-source.txt",
+    "sha256": "3a9aea38ed93669b2140b311a2d895c84ce346f478a1ddc0496fe386cd9cafa6",
+    "importedCrypto": [
+      "golang.org/x/crypto/blake2b",
+      "golang.org/x/crypto/argon2"
+    ],
+    "importedOpenpgp": []
+  },
+  "attempts": [],
+  "limitations": [
+    "Preserved low/unspecified findings are not silently suppressed.",
+    "Scanner zero-high results do not certify application logic, operations or unknown vulnerabilities."
+  ],
+  "result": "SCANNED_WITH_FINDINGS_PRESERVED",
+  "govulnScanner": {
+    "module": "golang.org/x/vuln@v1.9.0",
+    "sha256": "958af5d85e9e61a66b1c5daa92aa4012468e2e2f5e71ce6935b44bf930e85d55",
+    "sourceEvidence": "P6E-govuln-tool-source.json"
+  },
+  "completedAt": "2026-10-29T05:14:22.177Z"
+}

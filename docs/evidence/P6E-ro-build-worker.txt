@@ -1,0 +1,89 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from worker.Dockerfile
+#1 transferring dockerfile: 2.25kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.3-alpine
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24.22.1-alpine
+#3 DONE 0.1s
+
+#4 [builder-source 1/9] FROM docker.io/library/node:24.22.1-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53
+#4 resolve docker.io/library/node:24.22.1-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53 0.0s done
+#4 DONE 0.0s
+
+#5 [worker-build 1/6] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c
+#5 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 643.65kB 0.1s done
+#6 DONE 0.1s
+
+#7 [worker-build 2/6] WORKDIR /src
+#7 CACHED
+
+#8 [worker-build 3/6] COPY backend/go.mod backend/go.sum ./
+#8 CACHED
+
+#9 [worker-build 4/6] RUN GOPROXY=https://goproxy.cn go mod download
+#9 CACHED
+
+#10 [worker-build 5/6] COPY backend/ ./
+#10 CACHED
+
+#11 [worker-build 6/6] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -trimpath -ldflags="-s -w" -o /homepage-worker ./cmd/homepage-worker
+#11 DONE 11.8s
+
+#12 [runtime 2/6] RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/corepack /opt/yarn-*     && rm -f /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack       /usr/local/bin/yarn /usr/local/bin/yarnpkg     && test -x /usr/local/bin/node     && ! command -v npm
+#12 CACHED
+
+#13 [builder-source 3/9] COPY package.json package-lock.json ./
+#13 CACHED
+
+#14 [runtime 3/6] COPY --from=builder-source /builder /builder
+#14 CACHED
+
+#15 [builder-source 4/9] RUN npm ci --ignore-scripts --no-audit --no-fund
+#15 CACHED
+
+#16 [builder-source 5/9] COPY app/ ./app/
+#16 CACHED
+
+#17 [builder-source 6/9] COPY shared/ ./shared/
+#17 CACHED
+
+#18 [builder-source 9/9] COPY nuxt.config.ts tsconfig.json ./
+#18 CACHED
+
+#19 [builder-source 2/9] WORKDIR /builder
+#19 CACHED
+
+#20 [builder-source 7/9] COPY server/ ./server/
+#20 CACHED
+
+#21 [builder-source 8/9] COPY public/ ./public/
+#21 CACHED
+
+#22 [runtime 4/6] COPY --from=worker-build /homepage-worker /homepage-worker
+#22 CACHED
+
+#23 [runtime 5/6] RUN mkdir -p /publications /uploads /run/publishing /work     && chown -R 10001:10001 /publications /uploads /run/publishing /work     && chmod 700 /publications /uploads /run/publishing /work
+#23 DONE 0.2s
+
+#24 [runtime 6/6] WORKDIR /work
+#24 DONE 0.1s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 0.2s done
+#25 exporting manifest sha256:e87783ad6a4765821439712abbcf9423930e34b3985dff0f6f7ba15d800eeec4 0.0s done
+#25 exporting config sha256:3536059445c893cf24e540d9ac6eefc3d9471b6f7661397f35d7fef0b038956e 0.0s done
+#25 exporting attestation manifest sha256:e1a38e2b7200a513d64f93333b861bac821e83b6006867b30b4bfc4439b12970 0.0s done
+#25 exporting manifest list sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99 0.0s done
+#25 naming to docker.io/library/xiaowork-homepage-worker:p6e-ro-9887f6d456c5
+#25 naming to docker.io/library/xiaowork-homepage-worker:p6e-ro-9887f6d456c5 done
+#25 unpacking to docker.io/library/xiaowork-homepage-worker:p6e-ro-9887f6d456c5 0.1s done
+#25 DONE 0.4s

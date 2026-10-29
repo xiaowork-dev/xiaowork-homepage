@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-29T05:17:10.992Z",
+  "source": "9887f6d456c5cdde79ec0689480684f905b7db2a",
+  "maintenance": "sha256:22851711b322ff6a7642651f1b8aee3dd627ad1068f1e55ec922b05bf303c3bd",
+  "fixtureOnly": true,
+  "sourceProject": "xiaowork-homepage-v11-p6e-closure-fault",
+  "prefix": "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4",
+  "cases": [
+    {
+      "case": "stable",
+      "project": "xiaowork-homepage-v11-p6e-ro-9887f6d-mvt3d2u4-stable",
+      "expected": "PASS_READ_ONLY_INSPECTION",
+      "beforeSHA256": "a8149ee60b03347c64c6e775d6b42621e843fa41b4ce5087f8f22cbc5dcdb8e5",
+      "mount": "all-six-volumes-readonly",
+      "result": "RUNNING",
+      "exitCode": 0,
+      "state": {
+        "schema": 3,
+        "workspaceRevision": 2,
+        "administrators": 1,
+        "projects": 3,
+        "uploads": 1,
+        "snapshots": 13,
+        "jobs": 14,
+        "releases": 9,
+        "unfinished": 0,
+        "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "sources": [
+          "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        ],
+        "builders": [
+          "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96"
+        ],
+        "contentSha256": "ff0af1f4f08c442a9568db0a49b97e07889c23f3ebf4b0f3ca1df90c25ec0b78"
+      },
+      "planSHA256": "73f7ddcbb7eac44325806490cc419c0faf220860ce0647a4ccc30e7be40c3c39",
+      "repeatedInspectionIdentical": true
+    }
+  ],
+  "result": "FAIL",
+  "originalBeforeSHA256": "aebaddd492d7a5222e9623f578c1cb1d4fd0df5c43d720cc1f653b8a7420892e",
+  "fixtureImage": "sha256:52c69fbdfc99134f70f7fe5d8011fd407e380b4397986710a58702064ca940a8",
+  "error": "Source main/WAL/SHM/all-file metadata or SHA changed\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251045963176787',\n      bytes: '4096',\n      ctimeNs: '1793251045963176787',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277346',\n...\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251045963666544',\n      bytes: '4096',\n      ctimeNs: '1793251045963666544',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277234',\n...\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251046077807380',\n      bytes: '4096',\n      ctimeNs: '1793251046077807380',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277336',\n...\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251046094809601',\n      bytes: '4096',\n      ctimeNs: '1793251046094809601',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277339',\n...\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251046095495178',\n      bytes: '4096',\n      ctimeNs: '1793251046095495178',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277348',\n...\n    {\n+     atimeNs: '1793251050819318151',\n-     atimeNs: '1793251046097150970',\n      bytes: '4096',\n      ctimeNs: '1793251046097150970',\n      dev: '2096',\n      gid: 10001,\n      ino: '1277321',\n",
+  "action": "Stop automated repair attempts; retain all fixture volumes, original scene and operation locks"
+}

@@ -171,7 +171,7 @@ async function publicProof(base) {
 try {
   fs.mkdirSync(cache, { recursive: true, mode: 0o700 })
   const readonlyMatrix = JSON.parse(
-    fs.readFileSync('docs/evidence/P6E-ro-readonly-matrix.json', 'utf8'),
+    fs.readFileSync('docs/evidence/P6E-ro-readonly-matrix-r2.json', 'utf8'),
   )
   assert.equal(
     readonlyMatrix.result,
