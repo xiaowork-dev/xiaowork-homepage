@@ -47,13 +47,31 @@ export function currentRepair(command, project, image, member, plan, reason) {
     const existing = new Set(docker(['volume', 'ls', '--format', '{{.Name}}']).split(/\s+/))
     for (const name of Object.values(names))
       assert.ok(existing.has(name), 'Refuse implicit creation of missing data volumes')
+    // Compose labels alone do not prove quiescence: another local container
+    // may have been given one of these volumes. Never stop it implicitly.
+    const running = docker(['ps', '-q']).split(/\s+/).filter(Boolean)
+    for (const id of running) {
+      const mounts = JSON.parse(docker(['inspect', '--format', '{{json .Mounts}}', id]))
+      assert.ok(
+        !mounts.some((m) => Object.values(names).includes(m.Name) && m.RW),
+        'A running container has writable access to this project data; stop and investigate it first',
+      )
+    }
     const mounts = Object.entries(names).flatMap(([role, name]) => [
       '--mount',
       `type=volume,src=${name},dst=/source/${role}${command === 'apply' && role === 'publications' ? '' : ',readonly'}`,
     ])
     const args =
       command === 'inspect' ? [] : ['-member', member, '-plan-sha256', plan, '-reason', reason]
-    safeToUnlock = command === 'inspect'
+    // A failed read may mean an incoherent source, not merely an absent schema.
+    // Retain the shared guard until an operator has reviewed the original set.
+    safeToUnlock = false
+    fs.writeFileSync(
+      path.join(lock, 'inspection.json'),
+      JSON.stringify({ format: 1, project, image, command, startedAt: new Date().toISOString() }) +
+        '\n',
+      { flag: 'wx', mode: 0o600 },
+    )
     const result = tool(
       image,
       command === 'inspect' ? 'inspect-current' : 'repair-current',
@@ -64,7 +82,11 @@ export function currentRepair(command, project, image, member, plan, reason) {
     return result
   } finally {
     // An indeterminate mutation retains the shared host guard for operator audit.
-    if (safeToUnlock) fs.rmdirSync(lock)
+    if (safeToUnlock) {
+      const receipt = path.join(lock, 'inspection.json')
+      if (fs.existsSync(receipt)) fs.unlinkSync(receipt)
+      fs.rmdirSync(lock)
+    }
   }
 }
 

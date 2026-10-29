@@ -11,5 +11,6 @@
 docs/evidence/P6E-*.txt whitespace=-blank-at-eol,-blank-at-eof
 # Final-group machine evidence must retain the bytes used by its SHA256 ledger.
 docs/evidence/P6E-final-* -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab
+docs/evidence/P6E-ro-* -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab
 XiaoWork_Homepage_V1_Design_Spec.md -text
 XiaoWork_Homepage_P0_Delivery.md -text

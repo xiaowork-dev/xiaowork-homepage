@@ -10,6 +10,17 @@ import (
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/migrations"
 )
 
+func TestSchemaReadFailureIsNotReportedAsMissingSchema(t *testing.T) {
+	db, _ := initialized(t)
+	if err := db.Close(); err != nil {
+		t.Fatal(err)
+	}
+	err := Check(context.Background(), db)
+	if err == nil || !strings.Contains(err.Error(), "database schema inspection failed") || strings.Contains(err.Error(), "schema is not initialized") {
+		t.Fatalf("database read failure was misclassified: %v", err)
+	}
+}
+
 func initialized(t *testing.T) (*sql.DB, string) {
 	t.Helper()
 	path := filepath.Join(t.TempDir(), "content.sqlite")

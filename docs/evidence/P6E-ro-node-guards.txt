@@ -1,0 +1,16 @@
+✔ offline guard: read-failure (10.2492ms)
+✔ offline guard: foreign-writer (3.3126ms)
+✔ offline guard: success (4.6444ms)
+✔ remote DOCKER_HOST is refused before any Docker command (3.2796ms)
+✔ lifecycle probe verifies real admin assets, API denial and retained artifact bytes (77.3715ms)
+✔ lifecycle probe refuses corrupted published image despite HTTP 200 (19.3861ms)
+✔ lifecycle probe refuses management fallback HTML or success for anonymous session (12.9923ms)
+✔ lifecycle probe checks SHA256 even when corrupted image byte size is unchanged (18.3675ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 434.1319

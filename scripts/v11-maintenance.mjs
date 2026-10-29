@@ -69,8 +69,12 @@ function toolArgs(image) {
     'ALL',
     '--security-opt',
     'no-new-privileges:true',
+    '--memory',
+    '512m',
+    '--pids-limit',
+    '64',
     '--tmpfs',
-    '/tmp:rw,size=32m,mode=1777',
+    '/tmp:rw,size=192m,mode=1777,nosuid,nodev,noexec',
   ]
 }
 export function tool(image, command, mounts, extra = []) {

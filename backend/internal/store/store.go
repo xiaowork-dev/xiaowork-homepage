@@ -109,9 +109,28 @@ type historyQuerier interface {
 
 // Every previously applied checksum is checked, not only the latest migration.
 func checkHistory(ctx context.Context, db historyQuerier) (int, error) {
+	// A failed database read is not evidence of an absent schema. In particular,
+	// CANTOPEN on a read-only WAL directory and CORRUPT must remain distinguishable
+	// from a database which was actually inspected and has no migration table.
+	tables, err := db.QueryContext(ctx, "SELECT name FROM sqlite_schema WHERE type='table' AND name='schema_migrations'")
+	if err != nil {
+		return 0, fmt.Errorf("database schema inspection failed: %w", err)
+	}
+	present := tables.Next()
+	readErr := tables.Err()
+	closeErr := tables.Close()
+	if readErr != nil {
+		return 0, fmt.Errorf("database schema inspection failed: %w", readErr)
+	}
+	if closeErr != nil {
+		return 0, fmt.Errorf("database schema inspection failed: %w", closeErr)
+	}
+	if !present {
+		return 0, errors.New("database schema is not initialized")
+	}
 	rows, err := db.QueryContext(ctx, "SELECT version, checksum FROM schema_migrations ORDER BY version")
 	if err != nil {
-		return 0, errors.New("database schema is not initialized")
+		return 0, fmt.Errorf("database migration history read failed: %w", err)
 	}
 	defer rows.Close()
 	version := 0

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-29T05:05:52.628Z",
+  "scope": "Pre-freeze Linux test environment; no source data volumes mounted",
+  "attempts": [
+    {
+      "id": "tmp-noexec",
+      "command": "docker run --network none --read-only --cap-drop ALL --tmpfs /tmp:rw,size=768m --mount <backend-source>:ro <go-build-test-image> go test ./...",
+      "exitCode": 1,
+      "result": "TEST_HARNESS_ERROR",
+      "reason": "Docker tmpfs default noexec prevented test binaries from starting; original tool output retained in conversation, no raw log file captured"
+    },
+    {
+      "id": "tmp-exec-768m",
+      "command": "docker run --network none --read-only --cap-drop ALL --tmpfs /tmp:rw,exec,size=768m --mount <backend-source>:ro <go-build-test-image> go test ./...",
+      "exitCode": 1,
+      "result": "MIXED_TEST_CONFIGURATION_AND_PRODUCT_GUARD_FAILURE",
+      "raw": "P6E-ro-go-test.txt",
+      "reason": "Capacity protection rejected uploads/jobs because remaining test tmpfs <512MiB; current-repair unit fixture exposed directory atime self-change. Runtime inventory fixed with no-atime DB-directory reading; no safety check disabled."
+    },
+    {
+      "id": "tmp-exec-4g-r2",
+      "command": "docker run --network none --read-only --cap-drop ALL --tmpfs /tmp:rw,exec,size=4g --mount <backend-source>:ro <go-build-test-image> go test ./...",
+      "exitCode": 0,
+      "result": "PASS",
+      "raw": "P6E-ro-go-test-r2.txt"
+    },
+    {
+      "id": "vet-r2",
+      "command": "docker run <same Linux isolated test settings> <go-build-test-image> go vet ./...",
+      "exitCode": 0,
+      "result": "PASS",
+      "raw": "P6E-ro-go-vet-r2.txt"
+    }
+  ],
+  "note": "Only the test container permits exec on its private tmpfs. Formal maintenance container retains noexec and source readonly mounts."
+}

@@ -1,0 +1,17 @@
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	2.232s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.149s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.031s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	17.515s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	2.946s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.017s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.188s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.471s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.011s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.230s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]

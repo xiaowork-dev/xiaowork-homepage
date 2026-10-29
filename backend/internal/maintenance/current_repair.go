@@ -67,12 +67,16 @@ func InspectCurrentRepair(ctx context.Context, root string) (CurrentRepairPlan, 
 	return inspectCurrentRepair(ctx, root, "")
 }
 
-func inspectCurrentRepair(ctx context.Context, root, allowedRepair string) (CurrentRepairPlan, error) {
-	var p CurrentRepairPlan
+func inspectCurrentRepair(ctx context.Context, root, allowedRepair string) (p CurrentRepairPlan, resultErr error) {
 	if err := repairRoots(root); err != nil {
 		return p, err
 	}
-	state, err := inspectWithRepair(ctx, root, allowedRepair)
+	db, err := openReadOnly(filepath.Join(root, "db", "content.sqlite"))
+	if err != nil {
+		return p, err
+	}
+	defer closeReadOnly(db, &resultErr)
+	state, err := inspectDatabase(ctx, root, allowedRepair, db.DB)
 	if err != nil {
 		return p, err
 	}
@@ -83,11 +87,6 @@ func inspectCurrentRepair(ctx context.Context, root, allowedRepair string) (Curr
 		return p, err
 	}
 	defer pub.Close()
-	db, err := openReadOnly(filepath.Join(root, "db", "content.sqlite"))
-	if err != nil {
-		return p, err
-	}
-	defer db.Close()
 	entries, err := os.ReadDir(pubdir)
 	if err != nil {
 		return p, err
@@ -207,9 +206,6 @@ func inspectCurrentRepair(ctx context.Context, root, allowedRepair string) (Curr
 		}
 		p.Candidates = append(p.Candidates, candidate)
 	}
-	if err = db.Close(); err != nil {
-		return p, err
-	}
 	p.Files, err = repairInventory(root, p.Candidates)
 	if err != nil {
 		return p, err
@@ -254,6 +250,14 @@ func repairInventory(root string, candidates []CurrentCandidate) ([]File, error)
 			return nil
 		}
 		if e.IsDir() {
+			if name == "db" {
+				databaseFiles, err := databaseInventory(root)
+				if err != nil {
+					return err
+				}
+				files = append(files, databaseFiles...)
+				return filepath.SkipDir
+			}
 			return nil
 		}
 		if !publishfs.SafePath(name) {
@@ -348,6 +352,22 @@ func RepairCurrent(ctx context.Context, root, member, expectedHash, reason strin
 	record = CurrentRepairRecord{Format: 1, ID: id, CreatedAt: now.Format(time.RFC3339Nano), Reason: reason, Plan: p, Selected: selected, Outcome: "prepared"}
 	if err = writeRepairRecord(audit, id+".intent.json", record); err != nil {
 		return record, err
+	}
+	// The audit append does not grant permission to act on a stale proposal.
+	// Re-read the stopped source through a new verified private SQLite view and
+	// rehash every related file immediately before the only allowed mutation.
+	beforeMutation, err := inspectCurrentRepair(ctx, root, id)
+	if err != nil {
+		return record, err
+	}
+	var checkedFiles []File
+	for _, f := range beforeMutation.Files {
+		if f.Path != "publications/maintenance-repairs/"+id+".intent.json" {
+			checkedFiles = append(checkedFiles, f)
+		}
+	}
+	if !reflect.DeepEqual(p.State, beforeMutation.State) || !reflect.DeepEqual(p.Candidates, beforeMutation.Candidates) || !reflect.DeepEqual(p.Files, checkedFiles) {
+		return record, errors.New("pre-repair data/current hashes changed; manual intervention required")
 	}
 	// A changed link or directory at the last checkpoint is never followed.
 	info, err := r.Lstat(member)

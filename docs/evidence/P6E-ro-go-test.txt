@@ -1,0 +1,145 @@
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	2.765s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.221s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.038s
+2026/10/29 04:57:26 request error id=req_1caf4d66363e8686f964749a8a63071e code=STORAGE_CAPACITY
+--- FAIL: TestMediaHTTPSLifecycleAndRejectedUploads (0.28s)
+    media_http_test.go:109: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:109: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:112: HTTPS POST /media expected=401 actual=401
+    media_http_test.go:113: HTTPS POST /media expected=403 actual=403
+    media_http_test.go:114: HTTPS POST /media expected=428 actual=428
+    media_http_test.go:115: HTTPS POST /media?unknown=1 expected=400 actual=400
+    media_http_test.go:129: POST /media expected=415 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"图片存储余量不足或无法核实，请先检查本站容量。"},"requestId":"req_1caf4d66363e8686f964749a8a63071e"}
+2026/10/29 04:57:26 request error id=req_8ae951da0443b088e424323348e262c0 code=STORAGE_CAPACITY
+--- FAIL: TestMediaHTTPSReferenceProtectionAndCorruptContent (0.27s)
+    media_http_test.go:183: HTTP GET /auth/login-challenge expected=200 actual=200
+    media_http_test.go:183: HTTP POST /auth/login expected=200 actual=200
+    media_http_test.go:185: POST /media expected=201 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"图片存储余量不足或无法核实，请先检查本站容量。"},"requestId":"req_8ae951da0443b088e424323348e262c0"}
+2026/10/29 04:57:27 request error id=req_fb80af481d62401664f68aee3a9a63f9 code=STORAGE_CAPACITY
+2026/10/29 04:57:30 request error id=req_7e9c75037640808b0e512aa5f18b205d code=STORAGE_CAPACITY
+--- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers (7.60s)
+    --- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false (3.78s)
+        media_http_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
+        media_http_test.go:239: HTTP POST /auth/login expected=200 actual=200
+        media_http_test.go:270: first upload did not acquire the decoder gate
+    --- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true (3.82s)
+        media_http_test.go:239: HTTP GET /auth/login-challenge expected=200 actual=200
+        media_http_test.go:239: HTTP POST /auth/login expected=200 actual=200
+        media_http_test.go:270: first upload did not acquire the decoder gate
+2026/10/29 04:57:34 request error id=req_2781c91df3b9304f199d5e9083732277 code=STORAGE_CAPACITY
+2026/10/29 04:57:34 request error id=req_e6d01c1fe53c97c26522d68898c4d4c1 code=STORAGE_CAPACITY
+--- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization (0.57s)
+    --- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization/known (0.29s)
+        publication_failure_codes_test.go:39: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_failure_codes_test.go:39: HTTP POST /auth/login expected=200 actual=200
+        publication_failure_codes_test.go:40: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_2781c91df3b9304f199d5e9083732277"}
+    --- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization/unknown (0.28s)
+        publication_failure_codes_test.go:39: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_failure_codes_test.go:39: HTTP POST /auth/login expected=200 actual=200
+        publication_failure_codes_test.go:40: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_e6d01c1fe53c97c26522d68898c4d4c1"}
+2026/10/29 04:57:35 request error id=req_6d529a0932f52bdc122833c7d797770f code=STORAGE_CAPACITY
+2026/10/29 04:57:35 request error id=req_3410914417ec7766d76fb96910e3d5a4 code=STORAGE_CAPACITY
+2026/10/29 04:57:35 request error id=req_360daa05affbce8aa869c2e50e0011cb code=STORAGE_CAPACITY
+2026/10/29 04:57:35 request error id=req_a654e0b9d9ca6945578b6d0eec5cb7ff code=STORAGE_CAPACITY
+--- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (0.60s)
+    --- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (0.30s)
+        publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+        publication_fault_integration_test.go:113: unexpected concurrent submission status 507
+    --- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.30s)
+        publication_fault_integration_test.go:24: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_fault_integration_test.go:24: HTTP POST /auth/login expected=200 actual=200
+        publication_fault_integration_test.go:113: unexpected concurrent submission status 507
+2026/10/29 04:57:35 request error id=req_d1e5d1769a0b5b24bf45b6020dc98cd7 code=STORAGE_CAPACITY
+--- FAIL: TestPublicationRealSQLiteResultFailureReconcilesExistingActivation (0.42s)
+    publication_fault_integration_test.go:139: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_fault_integration_test.go:139: HTTP POST /auth/login expected=200 actual=200
+    publication_fault_integration_test.go:141: HTTP POST /auth/reauth expected=200 actual=200
+    publication_fault_integration_test.go:141: POST /publish-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_d1e5d1769a0b5b24bf45b6020dc98cd7"}
+2026/10/29 04:57:36 request error id=req_74a7214c987e4d3d7da6e8cb8842b526 code=STORAGE_CAPACITY
+--- FAIL: TestPublicationRecoverySuccessAtomicallyClearsOnlyCurrentDiagnostics (0.43s)
+    publication_recovery_diagnostics_linux_test.go:49: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:49: HTTP POST /auth/login expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:50: HTTP POST /auth/reauth expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:50: POST /publish-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_74a7214c987e4d3d7da6e8cb8842b526"}
+2026/10/29 04:57:36 request error id=req_554518bc04bc4b6b8c2e82bf26e51d70 code=STORAGE_CAPACITY
+--- FAIL: TestPublicationTerminalFailureRetainsDiagnosticsAndAudit (0.28s)
+    publication_recovery_diagnostics_linux_test.go:164: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:164: HTTP POST /auth/login expected=200 actual=200
+    publication_recovery_diagnostics_linux_test.go:165: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_554518bc04bc4b6b8c2e82bf26e51d70"}
+2026/10/29 04:57:37 request error id=req_68323074d3640811f58f5656e29ea149 code=STORAGE_CAPACITY
+--- FAIL: TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure (0.42s)
+    publication_test.go:121: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:121: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:123: HTTP POST /publish-jobs expected=401 actual=401
+    publication_test.go:129: HTTP POST /publish-jobs expected=403 actual=403
+    publication_test.go:130: HTTP POST /publish-jobs expected=403 actual=403
+    publication_test.go:131: HTTP POST /auth/reauth expected=200 actual=200
+    publication_test.go:132: HTTP POST /publish-jobs expected=409 actual=409
+    publication_test.go:133: HTTP POST /publish-jobs expected=400 actual=400
+    publication_test.go:137: POST /publish-jobs expected=409 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_68323074d3640811f58f5656e29ea149"}
+2026/10/29 04:57:37 request error id=req_d890db92589aa3aba3ab804888cd8e1d code=STORAGE_CAPACITY
+--- FAIL: TestPublicationRealFilesystemHTTPProofAndRecovery (0.51s)
+    publication_test.go:214: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:214: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:215: HTTP POST /auth/reauth expected=200 actual=200
+    publication_test.go:215: POST /publish-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_d890db92589aa3aba3ab804888cd8e1d"}
+2026/10/29 04:57:37 request error id=req_389b000e9b5c99de2d7da55eee76fd9e code=STORAGE_CAPACITY
+--- FAIL: TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy (0.33s)
+    publication_test.go:288: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:288: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:292: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_389b000e9b5c99de2d7da55eee76fd9e"}
+2026/10/29 04:57:38 request error id=req_5f94e26d0de847bb529a090b66a96197 code=STORAGE_CAPACITY
+--- FAIL: TestWorkerLeaseRecoveryAndSnapshotImmutability (0.30s)
+    publication_test.go:331: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:331: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:332: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_5f94e26d0de847bb529a090b66a96197"}
+2026/10/29 04:57:38 request error id=req_4525d8a75d4cab5501cf76067bf6735c code=STORAGE_CAPACITY
+--- FAIL: TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot (0.30s)
+    publication_test.go:355: HTTP GET /auth/login-challenge expected=200 actual=200
+    publication_test.go:355: HTTP POST /auth/login expected=200 actual=200
+    publication_test.go:367: POST /preview-jobs expected=422 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_4525d8a75d4cab5501cf76067bf6735c"}
+2026/10/29 04:57:39 request error id=req_f4f840380b548c8c7833e32e320ebc28 code=STORAGE_CAPACITY
+2026/10/29 04:57:39 request error id=req_84010abcc773268bc4a41c55c12a5213 code=STORAGE_CAPACITY
+--- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes (0.59s)
+    --- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/public-seed (0.30s)
+        publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+        publication_transport_linux_test.go:49: POST /preview-jobs expected=202 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"存储余量不足或无法核实，已停止接收新任务；请先备份并检查本站容量。"},"requestId":"req_f4f840380b548c8c7833e32e320ebc28"}
+    --- FAIL: TestWorkerClaimUnixTransportPreservesSealedSnapshotBytes/uploaded-media-and-unicode (0.29s)
+        publication_transport_linux_test.go:28: HTTP GET /auth/login-challenge expected=200 actual=200
+        publication_transport_linux_test.go:28: HTTP POST /auth/login expected=200 actual=200
+        publication_transport_linux_test.go:34: POST /media expected=201 actual=507 body={"error":{"code":"STORAGE_CAPACITY","fields":[],"message":"图片存储余量不足或无法核实，请先检查本站容量。"},"requestId":"req_84010abcc773268bc4a41c55c12a5213"}
+2026/10/29 04:57:39 request error id=req_20c238de6a0658473daf60817cb7a431 code=WORKER_UNAVAILABLE
+2026/10/29 04:57:39 request error id=req_ecf722574db72efc00dcb58cbb888055 code=WORKER_UNAVAILABLE
+2026/10/29 04:57:39 request error id=req_f99b3725dc736633d545e0a92798ca67 code=WORKER_UNAVAILABLE
+2026/10/29 04:57:39 request error id=req_3e592dfd1e592d23c9e4e4cf827f74f7 code=NOT_READY
+--- FAIL: TestStorageStatusIsAuthenticatedAndDoesNotExposePaths (0.28s)
+    storage_test.go:11: HTTP GET /auth/login-challenge expected=200 actual=200
+    storage_test.go:11: HTTP POST /auth/login expected=200 actual=200
+    storage_test.go:12: HTTP GET /publishing-status expected=401 actual=401
+    storage_test.go:13: HTTP GET /publishing-status expected=200 actual=200
+    storage_test.go:16: unexpected storage status: map[string]interface {}{"areas":[]interface {}{map[string]interface {}{"files":3, "freeBytes":4.08461312e+08, "name":"database", "state":"critical", "totalBytes":8.05306368e+08, "usageComplete":true, "usedBytes":560136}, map[string]interface {}{"files":0, "freeBytes":4.08461312e+08, "name":"uploads", "state":"critical", "totalBytes":8.05306368e+08, "usageComplete":true, "usedBytes":0}, map[string]interface {}{"files":0, "freeBytes":4.08461312e+08, "name":"publications", "state":"critical", "totalBytes":8.05306368e+08, "usageComplete":true, "usedBytes":0}}, "historicalResourcesRetained":true, "minimumFreeBytes":5.36870912e+08, "state":"critical", "usageSampledAt":"2026-10-29T04:57:40Z", "warningFreeBytes":1.073741824e+09}
+2026/10/29 04:57:40 request error id=req_871837c31f2c9ed0e17154757f78f8f6 code=STORAGE_CAPACITY
+FAIL
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	24.139s
+--- FAIL: TestCurrentRepairFullHashAuditThenBackupRestore (0.49s)
+    current_repair_linux_test.go:115: offline database final verification failed: offline database source-changed: database directory changed during offline inspection
+--- FAIL: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks (2.25s)
+    --- FAIL: TestCurrentRepairRejectsAmbiguityCorruptionAndLiveTasks/locked (0.21s)
+        current_repair_linux_test.go:191: offline database final verification failed: offline database source-changed: database directory changed during offline inspection
+FAIL
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	3.523s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.016s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	0.245s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.691s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.015s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	0.335s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]
+FAIL

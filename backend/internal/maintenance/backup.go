@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"net/url"
 	"os"
 	"path/filepath"
 	"sort"
@@ -22,7 +21,6 @@ import (
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store"
-	_ "modernc.org/sqlite"
 )
 
 type File struct {
@@ -55,22 +53,6 @@ type Manifest struct {
 	Files         []File `json:"files"`
 }
 
-func openReadOnly(path string) (*sql.DB, error) {
-	info, err := os.Lstat(path)
-	if err != nil || !info.Mode().IsRegular() {
-		return nil, errors.New("database is not a regular file")
-	}
-	u := url.URL{Scheme: "file", Path: filepath.ToSlash(path)}
-	q := url.Values{"mode": {"ro"}, "_pragma": {"foreign_keys(1)", "busy_timeout(5000)"}}
-	u.RawQuery = q.Encode()
-	db, err := sql.Open("sqlite", u.String())
-	if err != nil {
-		return nil, err
-	}
-	db.SetMaxOpenConns(1)
-	return db, nil
-}
-
 // Inspect performs SQLite integrity/FK and application schema/history checks,
 // then checks every upload and immutable release, including historical previews.
 // The caller must have stopped all database/upload/publication writers.
@@ -78,27 +60,35 @@ func Inspect(ctx context.Context, root string) (State, error) {
 	return inspectWithRepair(ctx, root, "")
 }
 
-func inspectWithRepair(ctx context.Context, root, allowedRepair string) (State, error) {
-	var result State
-	if err := checkRepairJournal(root, allowedRepair); err != nil {
-		return result, err
-	}
+func inspectWithRepair(ctx context.Context, root, allowedRepair string) (result State, resultErr error) {
 	db, err := openReadOnly(filepath.Join(root, "db", "content.sqlite"))
 	if err != nil {
 		return result, err
 	}
-	defer db.Close()
-	if err = store.Check(ctx, db); err != nil {
+	defer closeReadOnly(db, &resultErr)
+	return inspectDatabase(ctx, root, allowedRepair, db.DB)
+}
+
+func inspectDatabase(ctx context.Context, root, allowedRepair string, db *sql.DB) (State, error) {
+	var result State
+	if err := checkRepairJournal(root, allowedRepair); err != nil {
 		return result, err
 	}
+	if err := store.Check(ctx, db); err != nil {
+		return result, databaseQueryError(err)
+	}
 	result.Schema = store.SchemaVersion
+	var err error
 	result.ContentSHA256, err = ContentSHA256(ctx, db)
 	if err != nil {
 		return result, err
 	}
 	var integrity string
-	if err = db.QueryRowContext(ctx, "PRAGMA integrity_check").Scan(&integrity); err != nil || integrity != "ok" {
-		return result, errors.New("SQLite integrity check failed")
+	if err = db.QueryRowContext(ctx, "PRAGMA integrity_check").Scan(&integrity); err != nil {
+		return result, databaseQueryError(err)
+	}
+	if integrity != "ok" {
+		return result, databaseError("corrupt", "SQLite integrity check failed")
 	}
 	fk, err := db.QueryContext(ctx, "PRAGMA foreign_key_check")
 	if err != nil {
@@ -284,6 +274,14 @@ func inventory(root string) ([]File, error) {
 			return nil
 		}
 		if entry.IsDir() {
+			if name == "db" {
+				databaseFiles, err := databaseInventory(root)
+				if err != nil {
+					return err
+				}
+				files = append(files, databaseFiles...)
+				return filepath.SkipDir
+			}
 			return nil
 		}
 		if !publishfs.SafePath(name) {
