@@ -4,10 +4,28 @@ import { randomUUID, createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { AsyncLocalStorage } from 'node:async_hooks'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.v11-deploy')
 // In-process capability for an operator lifecycle that just acquired its own
 // atomic directory. A fresh process can never inherit this ownership.
 const ownedLifecycleLocks = new Map()
+const chains = new AsyncLocalStorage()
+// A capability exists only in this process and only inside its async scope.
+// No environment variable, CLI token, PID or marker is sufficient to inherit it.
+export function chainOwner(project) {
+  const chain = chains.getStore()
+  if (!chain) return undefined
+  assert.ok(!chain.failed, 'The protected chain has failed; no further stages are allowed')
+  const owner = chain.owners.get(project)
+  assert.ok(owner, 'Project is outside the declared protected chain')
+  assert.equal(ownedLifecycleLocks.get(project), owner)
+  const marker = JSON.parse(
+    fs.readFileSync(path.join(operationState(project), 'recovery-required.json'), 'utf8'),
+  )
+  assert.equal(marker.owner, owner, 'The persistent chain guard changed')
+  assert.equal(marker.project, project)
+  return owner
+}
 export function claimLifecycleLock(project, owner) {
   assert.match(owner ?? '', /^[0-9a-f-]{36}$/)
   const state = operationState(project)
@@ -23,6 +41,7 @@ export function operationState(project) {
   return path.join(root, project)
 }
 export function assertNoRecovery(project, lifecycleOwner) {
+  lifecycleOwner ??= chainOwner(project)
   const state = operationState(project)
   const lock = path.join(state, 'operation.lock')
   if (fs.existsSync(lock))
@@ -39,6 +58,78 @@ export function assertNoRecovery(project, lifecycleOwner) {
       marker.owner === lifecycleOwner,
     'Persistent recovery-required marker blocks new maintenance, repair and update tasks',
   )
+}
+// Cover async HTTP acceptance and multiple operator commands without releasing
+// any member's protection between stages. Failure/death deliberately leaves all
+// project guards. Recovery is an explicit operator procedure, never a retry.
+export async function protectedChain(projects, kind, action) {
+  assert.ok(!chains.getStore(), 'Nested protected chains are forbidden')
+  assert.ok(Array.isArray(projects) && projects.length > 0)
+  assert.equal(new Set(projects).size, projects.length)
+  const chain = { owners: new Map(), failed: false }
+  const guards = []
+  for (const project of projects) {
+    const state = operationState(project)
+    fs.mkdirSync(state, { recursive: true, mode: 0o700 })
+    assertNoRecovery(project)
+    const lock = path.join(state, 'operation.lock')
+    fs.mkdirSync(lock, { mode: 0o700 })
+    syncDirectory(state)
+    const owner = randomUUID()
+    claimLifecycleLock(project, owner)
+    chain.owners.set(project, owner)
+    const marker = path.join(state, 'recovery-required.json')
+    durableRecord(marker, {
+      format: 1,
+      id: owner,
+      owner,
+      project,
+      kind,
+      pid: process.pid,
+      startedAt: new Date().toISOString(),
+      phase: 'running-or-unreconciled',
+      members: projects,
+    })
+    const history = path.join(state, 'operations')
+    fs.mkdirSync(history, { recursive: true, mode: 0o700 })
+    guards.push({ project, state, lock, marker, history, owner })
+  }
+  try {
+    const result = await chains.run(chain, () => action())
+    assert.ok(!chain.failed, 'A failed nested stage prevents chain acceptance')
+    // Validate every ownership record before releasing any member.
+    for (const g of guards) {
+      assert.equal(ownedLifecycleLocks.get(g.project), g.owner)
+      assert.equal(JSON.parse(fs.readFileSync(g.marker, 'utf8')).owner, g.owner)
+      assert.deepEqual(fs.readdirSync(g.lock), [])
+      durableRecord(path.join(g.history, g.owner + '.chain-completed.json'), {
+        at: new Date().toISOString(),
+        result: 'all-chain-acceptance-conditions-passed',
+      })
+    }
+    for (const g of guards) {
+      fs.unlinkSync(g.marker)
+      syncDirectory(g.state)
+      fs.rmdirSync(g.lock)
+      syncDirectory(g.state)
+      ownedLifecycleLocks.delete(g.project)
+    }
+    return result
+  } catch (error) {
+    chain.failed = true
+    for (const g of guards) {
+      try {
+        durableRecord(path.join(g.history, g.owner + '.chain-failed.json'), {
+          at: new Date().toISOString(),
+          error: String(error.message).slice(0, 2000),
+          recovery: 'manual-review-required',
+        })
+      } catch {
+        /* Keep the original durable guard even on ENOSPC. */
+      }
+    }
+    throw error
+  }
 }
 function syncDirectory(dir) {
   if (process.platform === 'win32') return
@@ -62,6 +153,32 @@ export function durableRecord(file, value) {
 export const evidenceHash = (value) =>
   createHash('sha256').update(JSON.stringify(value)).digest('hex')
 export function guardedOperation(project, kind, action) {
+  const owner = chainOwner(project)
+  if (owner) {
+    assertNoRecovery(project, owner)
+    const id = randomUUID()
+    const history = path.join(operationState(project), 'operations')
+    const context = {
+      id,
+      record: (phase, value) =>
+        durableRecord(path.join(history, id + '.' + phase + '.json'), {
+          id,
+          phase,
+          chainOwner: owner,
+          at: new Date().toISOString(),
+          ...value,
+        }),
+    }
+    try {
+      const result = action(context)
+      assert.ok(!(result instanceof Promise), 'Offline guard requires synchronous operations')
+      context.record('completed', { result: 'nested-stage-accepted-outer-guard-retained' })
+      return result
+    } catch (error) {
+      chains.getStore().failed = true
+      throw error
+    }
+  }
   const state = operationState(project)
   fs.mkdirSync(state, { recursive: true, mode: 0o700 })
   assertNoRecovery(project)

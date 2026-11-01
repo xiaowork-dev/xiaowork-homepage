@@ -1,0 +1,24 @@
+✔ async full-chain guard survives nested successful repair and rejects external processes (142.9739ms)
+✔ later assertion failure retains all project guards including completed stages (19.6233ms)
+✔ caught nested failure poisons the chain and cannot release or continue (7.6313ms)
+✔ controller process exit retains durable guards without cleanup handlers (108.1042ms)
+✔ 完整离线保护：read-failure (25.5563ms)
+✔ 完整离线保护：foreign-writer (9.4225ms)
+✔ 完整离线保护：success (18.3696ms)
+✔ 完整离线保护：outer-assertion (13.5381ms)
+✔ 完整离线保护：metadata-delta (16.4882ms)
+✔ 进程异常退出后持久标记阻断新的进程 (204.7947ms)
+✔ 持久互斥目录已建立但标记尚未写入时仍阻止新任务 (2.4394ms)
+✔ remote DOCKER_HOST is refused before any Docker command (1.6676ms)
+✔ lifecycle probe verifies real admin assets, API denial and retained artifact bytes (72.3285ms)
+✔ lifecycle probe refuses corrupted published image despite HTTP 200 (18.3882ms)
+✔ lifecycle probe refuses management fallback HTML or success for anonymous session (13.6203ms)
+✔ lifecycle probe checks SHA256 even when corrupted image byte size is unchanged (14.5927ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 472.3436

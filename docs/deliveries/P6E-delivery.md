@@ -2,6 +2,14 @@
 
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
+## 2026-11-01 完整链身份与持续保护收尾：正在验收
+
+本轮从 `f956d7f80147a65d90d1c68252eb0b41f1a4d8fc` 继续。旧失败来自故障派生 API 与正式 api-init 的真实镜像 ID 不同，备份校验正确拒绝；旧描述符、故障卷和人工 containment 原样保留。不伪改描述符，不跳过备份身份检查。
+
+受信运维脚本新增同进程异步整链能力：预先保护全部声明的独立项目，内层检查/修复及生命周期命令复用进程内能力，最后全部验收通过才解除。外部进程、环境变量或 CLI 参数无法继承能力；子阶段失败后持久标记保留。生命周期入口增加可导入函数供受信本地控制器调用，不加入公网 API。正式发布 gate 仍关闭。因受信运维代码变化，接下来冻结新源码并构建六角色，不冒称 bb05 镜像已更新。
+
+冻结前 Node 16项与 ESLint 已通过，见 `P6E-chain3-prefreeze-*.txt`。首次受限环境运行的4项本机 HTTP 探针因 `connect EACCES 127.0.0.1` 未通过；在允许本机回环的相同测试配置下16项通过，未关闭 TLS 或安全校验。整链、镜像、恢复与正式运行验收仍待执行，当前不具备上线条件。
+
 ## 2026-11-01 atime 与完整操作保护专项：两项专项通过，后续链阻塞
 
 已使用全新空卷隔离默认 Docker create、volume-nocopy、start、RO/RW readdir、目录/文件 O_NOATIME 和 stat。首次 atime 变化发生在默认 Docker create，维护器尚未启动；唯一切换 volume-nocopy 后同阶段无变化。RW readdir 更新根 atime，RO readdir、nocopy start、O_NOATIME 与 stat 不变。实际文件系统为 ext4、relatime。原始诊断和夹具 UID/Schema 参数失败均保留于 `P6E-atime-diagnosis*.json`，不作为正式只读矩阵失败或通过的替代。
