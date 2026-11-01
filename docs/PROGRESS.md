@@ -8,7 +8,13 @@ API、Worker 和受信宿主已接入独立 RO/RW 控制卷及真实跨进程共
 
 **运行源码已变，旧 4f18 六角色不含本修复。新正式组六角色尚未冻结/构建，不以测试派生镜像或旧组充数。** 原生 Linux 完整修复、备份恢复、跨源码升级回退和新组 E2E 仍未执行，安装环境等待授权。npm 根 37 moderate/2 low、后台 9 moderate；旧 Worker 10 MEDIUM 等未解决，不作安全全通过结论。
 
+本轮源码 **`c7edb2f7d23cdecaf493370d8d62446907c67e67` 已推送并核验**；main 仍为 `14f9b1fba6504b1367aad6165a0b72c37e495927`。[机器记录](evidence/P6E-barrier-runtime-status.json)证明 68 个后端运行文件与最终复核证据逐字节一致，8 个运维/Compose 文件与源码提交一致。新六角色及正式 builder identity 仍为未构建/未验收；后继文档提交不改变上述运行源码身份。
+
 见[本轮交付](deliveries/P6E-delivery.md)、[协议/运维](V1.1-RELEASE-OPERATIONS.md)、[实际专项](P6E-MAINTENANCE-TESTS.md)、[Linux 环境方案](V1.1-LINUX-ACCEPTANCE-ENV.md)。本轮不生产部署、不合并 main、不开 gate、不动旧故障卷/锁。以下 chain4 及更早内容为历史基线。
+
+下一步只在获得独立 Ubuntu WSL2/原生 Engine 安装授权后准备环境，并证明实际 Daemon 身份；确认通过后再从统一完整源码构建新六角色，在全新项目执行完整修复与备份恢复链。当前不具备正式上线条件。
+
+## 历史 chain4 基线（以下为当时结论）
 
 本轮chain4只完成环境、六镜像身份、安全扫描及旧保护复核：[最新交付](deliveries/P6E-delivery.md)、[环境/并发代码审查](evidence/P6E-chain4-environment.json)、[收尾](evidence/P6E-chain4-closure.json)。本机只有Docker Desktop WSL2，没有原生Linux验收环境；未证明bind路径身份等价，严格Source检查保留，不再尝试路径转换。新完整链未启动，原chain3失败容器/卷/锁保持。宿主marker未被API/Worker实时读取，活跃发布与维护竞争仍为未修复的工程门槛，不能用停API后的502替代。
 

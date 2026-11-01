@@ -34,7 +34,11 @@
 
 ### Git 与边界
 
-继续在 `feat/v1.1-admin-p6a` 正常提交推送，不合并 main。运行代码冻结 SHA、后继交付 HEAD、推送和 main 实查由本轮末的源码状态机器证据及最终回复记录，避免在同一提交内循环写入自身 SHA。正式发布 gate 和 Worker 默认关闭；不连接德国生产，不改 OpenResty/Cloudflare/DNS/TLS/V1.0，不删除旧故障现场或执行全局清理。
+本轮源码提交 **`c7edb2f7d23cdecaf493370d8d62446907c67e67`** 已正常推送到 `feat/v1.1-admin-p6a` 并由 `git ls-remote` 核对；main 仍为 `14f9b1fba6504b1367aad6165a0b72c37e495927`。选择该源码是因为包含共同屏障及 errno、控制目录权限的实际修正。[源码状态机器记录](../evidence/P6E-barrier-runtime-status.json)逐一核对 Git blob、工作区与最终复核证据：68 个后端运行文件 SHA256 完全相同，另有 8 个 Compose/运维文件与提交内容一致。
+
+该记录明确将六个正式角色全部标为 `NOT_BUILT_NOT_ATTESTED`，镜像 ID 和正式 builder identity 均为空；r8/r9 仅记录为专项测试镜像，旧 4f18 保留为历史候选。**源码提交通过专项验证，不等于正式六角色发行组完成验收。** 本段及机器记录属于后继文档补充，不改变运行代码；后继交付 HEAD 和推送结果由最终回复报告，避免在同一提交内循环写入自身 SHA。
+
+不合并 main。正式发布 gate 和 Worker 默认关闭；不连接德国生产，不改 OpenResty/Cloudflare/DNS/TLS/V1.0，不删除旧故障现场或执行全局清理。
 
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 

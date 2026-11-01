@@ -4,13 +4,15 @@
 
 本轮 API、Worker、maintenance、Compose 和宿主运维有运行变更。**下面的 4f18 是保留的历史候选，既不包含新屏障，也不能作为本轮最终发行组。** 当前只有明确标注测试用途的专项镜像，其 ID/逐文件 SHA 见 [r8](evidence/P6E-barrier-r8.json)、[r9](evidence/P6E-barrier-r9.json)。测试 source/builder 值及派生 Node 依赖基座不充当正式 builder identity。
 
-新正式组六角色：**NOT_BUILT / NOT_ATTESTED**；源码冻结、同一归档、六 ID/基础镜像/构建参数/Schema3、真实 Worker ID 和任务兼容检查须在独立原生 Linux 环境获授权并通过身份预检后统一执行。本轮没有混用 4f18 与后继单个 API，也没有改写旧 manifest。源码状态清单由后继 Git 交付记录，不能把源码提交当成已经构建的镜像。
+本轮已推送的源码是 **`c7edb2f7d23cdecaf493370d8d62446907c67e67`**，包含共同维护屏障与已验证的 errno、控制目录权限修正。[源码状态清单](evidence/P6E-barrier-runtime-status.json)记录 Git tree、68 个后端文件及 8 个运维/Compose 文件 SHA256、专项镜像完整 ID 和远端核对结果。Schema 仍为 3，manifest 为 1；main 仍为 `14f9b1fba6504b1367aad6165a0b72c37e495927`。
+
+新正式组六角色：**NOT_BUILT / NOT_ATTESTED**。api、worker、gateway、legacy frontend、publication-static、maintenance 的新正式镜像 ID 均为空，正式 Worker builder identity 尚未生成。统一归档、六 ID/基础镜像/构建参数、真实 Worker ID 和任务兼容检查须在独立原生 Linux 环境获授权并通过身份预检后执行。本轮没有混用 4f18 与后继单个 API，也没有改写旧 manifest；不能把源码提交或专项测试镜像当成已经验收的发行组。
 
 专项通过范围与原始失败详见[测试](P6E-MAINTENANCE-TESTS.md)。完整修复/备份/恢复链及新正式组浏览器/A→B→A 仍未执行，禁止申请正式上线。以下是旧候选原始记录。
 
 chain4（2026-11-01）未改正式运行源码/依赖/构建参数，**没有新发行SHA或重建镜像**。以下4f18六ID已逐一实际核对，源码标签/linux/amd64匹配；builder仍为本组Worker完整ID。见[环境](evidence/P6E-chain4-environment.json)、[新扫描](evidence/P6E-chain4-security-audit.json)。bind身份未证明、无原生Linux验收环境；API/Worker维护屏障未实现。完整链仍受阻，**当前只是构建候选，不是已验收上线发行组**。新取证控制器/文档提交不改变运行身份。
 
-## 当前候选：4f18（构建完成，整链受阻，非已验收发行）
+## 历史候选：4f18（构建完成，整链受阻，非已验收发行）
 
 更新：2026-11-01。完整源码 **`4f18eaeaecb86baaca01f148f388e7e86eec68bf`**；Schema3/manifest1/linux/amd64，同一Git归档SHA256 `4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`。选择该源码是因为包含受信运维的异步整链持久保护及同进程生命周期入口；此后仅测试控制器、证据和文档变动。没有混用bb05与新单API。
 

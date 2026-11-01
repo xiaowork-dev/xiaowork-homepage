@@ -1,0 +1,1292 @@
+{
+  "at": "2026-11-01T14:41:20.751Z",
+  "scope": "源码身份与已有证据核对；本次未重跑业务测试、未构建正式镜像、未准备或安装系统环境",
+  "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+  "sourceTree": "3be5d4c4128ea98b2ae201dbc3ca9d1d19cedf25",
+  "sourceSelectionReason": "包含共同维护屏障、errno 错误链修复和已独立验证的 maintenance 控制目录 0700 修正；其 68 个后端运行文件与最终复核证据逐字节匹配",
+  "sourceStatus": "SOURCE_RECORDED_NOT_RELEASE_ATTESTED",
+  "schemaVersion": 3,
+  "manifestVersion": 1,
+  "runtimeFiles": {
+    "backend/cmd/homepage-api/main.go": {
+      "expectedSha256": "a0693dd6de6927276e5f382df51da6a305b033cd349974e6a2c258d7910f7d8d",
+      "sourceSha256": "a0693dd6de6927276e5f382df51da6a305b033cd349974e6a2c258d7910f7d8d",
+      "workingSha256": "a0693dd6de6927276e5f382df51da6a305b033cd349974e6a2c258d7910f7d8d",
+      "result": "MATCH"
+    },
+    "backend/cmd/homepage-control/main.go": {
+      "expectedSha256": "adb650e8b4482014906d48bb7c2f88aacc6c91894eb279480f5ebd5f418ce179",
+      "sourceSha256": "adb650e8b4482014906d48bb7c2f88aacc6c91894eb279480f5ebd5f418ce179",
+      "workingSha256": "adb650e8b4482014906d48bb7c2f88aacc6c91894eb279480f5ebd5f418ce179",
+      "result": "MATCH"
+    },
+    "backend/cmd/homepage-maintenance/main.go": {
+      "expectedSha256": "98ed0a96845e501483d4ea2c87e0e4fa918ff0dc2174d902ae7e70c3920cea90",
+      "sourceSha256": "98ed0a96845e501483d4ea2c87e0e4fa918ff0dc2174d902ae7e70c3920cea90",
+      "workingSha256": "98ed0a96845e501483d4ea2c87e0e4fa918ff0dc2174d902ae7e70c3920cea90",
+      "result": "MATCH"
+    },
+    "backend/cmd/homepage-worker/main.go": {
+      "expectedSha256": "e7ee760c02f2b98e26e7cb72b444555632b9cdf13eafdfb030fce9720d287aea",
+      "sourceSha256": "e7ee760c02f2b98e26e7cb72b444555632b9cdf13eafdfb030fce9720d287aea",
+      "workingSha256": "e7ee760c02f2b98e26e7cb72b444555632b9cdf13eafdfb030fce9720d287aea",
+      "result": "MATCH"
+    },
+    "backend/cmd/p6e-fault-data/main.go": {
+      "expectedSha256": "aa8dda8dddf8c2bba6876d09c805ae8916c2353e8ea5503676b80d84ed0f0816",
+      "sourceSha256": "aa8dda8dddf8c2bba6876d09c805ae8916c2353e8ea5503676b80d84ed0f0816",
+      "workingSha256": "aa8dda8dddf8c2bba6876d09c805ae8916c2353e8ea5503676b80d84ed0f0816",
+      "result": "MATCH"
+    },
+    "backend/cmd/p6e-fault-worker/main.go": {
+      "expectedSha256": "655845ce1196de8a96aedc71ed3bb64211b8458aa8af6df4ffd40cad3e18cb3d",
+      "sourceSha256": "655845ce1196de8a96aedc71ed3bb64211b8458aa8af6df4ffd40cad3e18cb3d",
+      "workingSha256": "655845ce1196de8a96aedc71ed3bb64211b8458aa8af6df4ffd40cad3e18cb3d",
+      "result": "MATCH"
+    },
+    "backend/Dockerfile": {
+      "expectedSha256": "69319a698a9e1140e19e3c4f218da012c4aa0e2ba78e783f4d9a16e0f2cb6066",
+      "sourceSha256": "69319a698a9e1140e19e3c4f218da012c4aa0e2ba78e783f4d9a16e0f2cb6066",
+      "workingSha256": "69319a698a9e1140e19e3c4f218da012c4aa0e2ba78e783f4d9a16e0f2cb6066",
+      "result": "MATCH"
+    },
+    "backend/Dockerfile.dockerignore": {
+      "expectedSha256": "fd699256dcbfdc37aebf20d39331273718462b0047aa953a730a90390be765b6",
+      "sourceSha256": "fd699256dcbfdc37aebf20d39331273718462b0047aa953a730a90390be765b6",
+      "workingSha256": "fd699256dcbfdc37aebf20d39331273718462b0047aa953a730a90390be765b6",
+      "result": "MATCH"
+    },
+    "backend/go.mod": {
+      "expectedSha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+      "sourceSha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+      "workingSha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+      "result": "MATCH"
+    },
+    "backend/go.sum": {
+      "expectedSha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+      "sourceSha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+      "workingSha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+      "result": "MATCH"
+    },
+    "backend/internal/authn/authn.go": {
+      "expectedSha256": "da02c0f07857da61cfe5d24f9780ded951065741db56347eb5ff68945d40e719",
+      "sourceSha256": "da02c0f07857da61cfe5d24f9780ded951065741db56347eb5ff68945d40e719",
+      "workingSha256": "da02c0f07857da61cfe5d24f9780ded951065741db56347eb5ff68945d40e719",
+      "result": "MATCH"
+    },
+    "backend/internal/contentdata/import.go": {
+      "expectedSha256": "583ebd5f6220b6ffba7bc6624f935df0f78a2aa398ade187d4552e75501d371e",
+      "sourceSha256": "583ebd5f6220b6ffba7bc6624f935df0f78a2aa398ade187d4552e75501d371e",
+      "workingSha256": "583ebd5f6220b6ffba7bc6624f935df0f78a2aa398ade187d4552e75501d371e",
+      "result": "MATCH"
+    },
+    "backend/internal/contentdata/repository.go": {
+      "expectedSha256": "26fe1c4cc47ee445c4b2211370ecf75a173d5d37d26e073fd7b230e5d69b95fe",
+      "sourceSha256": "26fe1c4cc47ee445c4b2211370ecf75a173d5d37d26e073fd7b230e5d69b95fe",
+      "workingSha256": "26fe1c4cc47ee445c4b2211370ecf75a173d5d37d26e073fd7b230e5d69b95fe",
+      "result": "MATCH"
+    },
+    "backend/internal/contentdata/types.go": {
+      "expectedSha256": "0c6cbea971bd93e3b1b340c928cb0a757f3e4c991de93b026a05ebb88a339e28",
+      "sourceSha256": "0c6cbea971bd93e3b1b340c928cb0a757f3e4c991de93b026a05ebb88a339e28",
+      "workingSha256": "0c6cbea971bd93e3b1b340c928cb0a757f3e4c991de93b026a05ebb88a339e28",
+      "result": "MATCH"
+    },
+    "backend/internal/contentlimits/limits.go": {
+      "expectedSha256": "dc9a669b1de90e8fe7efdfe4d6236414afa149dc62166aee097df2fc3914c0d2",
+      "sourceSha256": "dc9a669b1de90e8fe7efdfe4d6236414afa149dc62166aee097df2fc3914c0d2",
+      "workingSha256": "dc9a669b1de90e8fe7efdfe4d6236414afa149dc62166aee097df2fc3914c0d2",
+      "result": "MATCH"
+    },
+    "backend/internal/devtls/devtls.go": {
+      "expectedSha256": "454ddc9fab00c752f7464c4004c64750d49c2a1a50e205ac4c140fe8b5813024",
+      "sourceSha256": "454ddc9fab00c752f7464c4004c64750d49c2a1a50e205ac4c140fe8b5813024",
+      "workingSha256": "454ddc9fab00c752f7464c4004c64750d49c2a1a50e205ac4c140fe8b5813024",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/auth.go": {
+      "expectedSha256": "20348de2c1379f1665c0920deae31ee72ce2189f6616d33db90ff65dd1c4c8f2",
+      "sourceSha256": "20348de2c1379f1665c0920deae31ee72ce2189f6616d33db90ff65dd1c4c8f2",
+      "workingSha256": "20348de2c1379f1665c0920deae31ee72ce2189f6616d33db90ff65dd1c4c8f2",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/common.go": {
+      "expectedSha256": "793b70189acc52a2eedf6725a502b4033e9056bb3b02761136323b664e5f94d5",
+      "sourceSha256": "793b70189acc52a2eedf6725a502b4033e9056bb3b02761136323b664e5f94d5",
+      "workingSha256": "793b70189acc52a2eedf6725a502b4033e9056bb3b02761136323b664e5f94d5",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/content.go": {
+      "expectedSha256": "8d162687f3c27e4a0f15c394701c2d6d3e43161413478e707203e6e724b791e3",
+      "sourceSha256": "8d162687f3c27e4a0f15c394701c2d6d3e43161413478e707203e6e724b791e3",
+      "workingSha256": "8d162687f3c27e4a0f15c394701c2d6d3e43161413478e707203e6e724b791e3",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/media.go": {
+      "expectedSha256": "07e71741c27ead76a70da369ae53bd49465c876ee32b9b3f2d8c660219a1e424",
+      "sourceSha256": "07e71741c27ead76a70da369ae53bd49465c876ee32b9b3f2d8c660219a1e424",
+      "workingSha256": "07e71741c27ead76a70da369ae53bd49465c876ee32b9b3f2d8c660219a1e424",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/p6e_fault_linux.go": {
+      "expectedSha256": "f68c36e0aadd17d48520fb856d79bb8b7f0f964204f74b320aeae6446882d97d",
+      "sourceSha256": "f68c36e0aadd17d48520fb856d79bb8b7f0f964204f74b320aeae6446882d97d",
+      "workingSha256": "f68c36e0aadd17d48520fb856d79bb8b7f0f964204f74b320aeae6446882d97d",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/publication.go": {
+      "expectedSha256": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829",
+      "sourceSha256": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829",
+      "workingSha256": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/publication_review.go": {
+      "expectedSha256": "f12cf96c5a0466eb3f86d0eaf279c76b7cf7e46652f58a92055817e47932d567",
+      "sourceSha256": "f12cf96c5a0466eb3f86d0eaf279c76b7cf7e46652f58a92055817e47932d567",
+      "workingSha256": "f12cf96c5a0466eb3f86d0eaf279c76b7cf7e46652f58a92055817e47932d567",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/publication_verify.go": {
+      "expectedSha256": "b9658af69b7097749b9c85d35c60ebd5d1a7d5e7db456531a60c6246e1b39fa6",
+      "sourceSha256": "b9658af69b7097749b9c85d35c60ebd5d1a7d5e7db456531a60c6246e1b39fa6",
+      "workingSha256": "b9658af69b7097749b9c85d35c60ebd5d1a7d5e7db456531a60c6246e1b39fa6",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/publication_worker.go": {
+      "expectedSha256": "8a08caf270c7bfa02ebd4dfdf1b7854ce4a75f82f89e27c2ed0c7b43ba123145",
+      "sourceSha256": "8a08caf270c7bfa02ebd4dfdf1b7854ce4a75f82f89e27c2ed0c7b43ba123145",
+      "workingSha256": "8a08caf270c7bfa02ebd4dfdf1b7854ce4a75f82f89e27c2ed0c7b43ba123145",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/server.go": {
+      "expectedSha256": "1edc5dcad0794db688a48424a0eddc70c43df4d44b1ebfba367231a67c69e997",
+      "sourceSha256": "1edc5dcad0794db688a48424a0eddc70c43df4d44b1ebfba367231a67c69e997",
+      "workingSha256": "1edc5dcad0794db688a48424a0eddc70c43df4d44b1ebfba367231a67c69e997",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/storage.go": {
+      "expectedSha256": "87c6d0de3fbd60702d550e75365f388fad3bf243e930779de82ce6dd76b36daa",
+      "sourceSha256": "87c6d0de3fbd60702d550e75365f388fad3bf243e930779de82ce6dd76b36daa",
+      "workingSha256": "87c6d0de3fbd60702d550e75365f388fad3bf243e930779de82ce6dd76b36daa",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/worker_socket_linux.go": {
+      "expectedSha256": "2efce945a61312dde8168fb2b32f983e27ed6f7b26bcc5e4a2911696501bbc88",
+      "sourceSha256": "2efce945a61312dde8168fb2b32f983e27ed6f7b26bcc5e4a2911696501bbc88",
+      "workingSha256": "2efce945a61312dde8168fb2b32f983e27ed6f7b26bcc5e4a2911696501bbc88",
+      "result": "MATCH"
+    },
+    "backend/internal/httpapi/worker_socket_other.go": {
+      "expectedSha256": "d69884df9b0ab3eaa3ba72cf27305c74d11285885d77d4916af776c9a73265f3",
+      "sourceSha256": "d69884df9b0ab3eaa3ba72cf27305c74d11285885d77d4916af776c9a73265f3",
+      "workingSha256": "d69884df9b0ab3eaa3ba72cf27305c74d11285885d77d4916af776c9a73265f3",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/backup.go": {
+      "expectedSha256": "b559cdd3620092bac6218aa942e90196afba2172a74576c2c248da05ad42bdf0",
+      "sourceSha256": "b559cdd3620092bac6218aa942e90196afba2172a74576c2c248da05ad42bdf0",
+      "workingSha256": "b559cdd3620092bac6218aa942e90196afba2172a74576c2c248da05ad42bdf0",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/content_digest.go": {
+      "expectedSha256": "6aade705735acedc216a0e718f8b2c7e07d54872e9e3e68a1ac091ef6ece3f5d",
+      "sourceSha256": "6aade705735acedc216a0e718f8b2c7e07d54872e9e3e68a1ac091ef6ece3f5d",
+      "workingSha256": "6aade705735acedc216a0e718f8b2c7e07d54872e9e3e68a1ac091ef6ece3f5d",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/current_repair.go": {
+      "expectedSha256": "75d78c01f60cd31e3c65f28fb0df477efcbc07f4ab39f4c8092c44b9a9a8d7f0",
+      "sourceSha256": "75d78c01f60cd31e3c65f28fb0df477efcbc07f4ab39f4c8092c44b9a9a8d7f0",
+      "workingSha256": "75d78c01f60cd31e3c65f28fb0df477efcbc07f4ab39f4c8092c44b9a9a8d7f0",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/current_repair_sync_linux.go": {
+      "expectedSha256": "d48598bc43a0df2f20f513389919791238364078ddb01ab250959ce82098bc9c",
+      "sourceSha256": "d48598bc43a0df2f20f513389919791238364078ddb01ab250959ce82098bc9c",
+      "workingSha256": "d48598bc43a0df2f20f513389919791238364078ddb01ab250959ce82098bc9c",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/current_repair_sync_other.go": {
+      "expectedSha256": "a52a1d051a6464e4e19c18e8f32ee022482aff6a1cc457d8c84781b8d549411e",
+      "sourceSha256": "a52a1d051a6464e4e19c18e8f32ee022482aff6a1cc457d8c84781b8d549411e",
+      "workingSha256": "a52a1d051a6464e4e19c18e8f32ee022482aff6a1cc457d8c84781b8d549411e",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/metadata.go": {
+      "expectedSha256": "9755869ce08700208c12f8790807206ed09be10ca56fedc3e78ff2d290a623fa",
+      "sourceSha256": "9755869ce08700208c12f8790807206ed09be10ca56fedc3e78ff2d290a623fa",
+      "workingSha256": "9755869ce08700208c12f8790807206ed09be10ca56fedc3e78ff2d290a623fa",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/readonly.go": {
+      "expectedSha256": "79b35d680e8b7b30378dbaa3e201f74f3c8a2fbdbb4976a74eca2272693f105d",
+      "sourceSha256": "79b35d680e8b7b30378dbaa3e201f74f3c8a2fbdbb4976a74eca2272693f105d",
+      "workingSha256": "79b35d680e8b7b30378dbaa3e201f74f3c8a2fbdbb4976a74eca2272693f105d",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/readonly_linux.go": {
+      "expectedSha256": "278dd8883797d18a873f7997cf24b5c4bee45b78fd74dcfe306945fe3188d340",
+      "sourceSha256": "278dd8883797d18a873f7997cf24b5c4bee45b78fd74dcfe306945fe3188d340",
+      "workingSha256": "278dd8883797d18a873f7997cf24b5c4bee45b78fd74dcfe306945fe3188d340",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenance/readonly_other.go": {
+      "expectedSha256": "78077dfc01535c92854625b0553778c94a87cb5533a39c8dde8f9f2232612339",
+      "sourceSha256": "78077dfc01535c92854625b0553778c94a87cb5533a39c8dde8f9f2232612339",
+      "workingSha256": "78077dfc01535c92854625b0553778c94a87cb5533a39c8dde8f9f2232612339",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenancegate/gate.go": {
+      "expectedSha256": "740fcc3dd997a93b2a572058b4e20168739b446255b98f9951a17bd02afdbc9a",
+      "sourceSha256": "740fcc3dd997a93b2a572058b4e20168739b446255b98f9951a17bd02afdbc9a",
+      "workingSha256": "740fcc3dd997a93b2a572058b4e20168739b446255b98f9951a17bd02afdbc9a",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenancegate/gate_linux.go": {
+      "expectedSha256": "6d2ef1f58ca50b50cdecc00539929408830ada65bd74df2720703b64b054d9cd",
+      "sourceSha256": "6d2ef1f58ca50b50cdecc00539929408830ada65bd74df2720703b64b054d9cd",
+      "workingSha256": "6d2ef1f58ca50b50cdecc00539929408830ada65bd74df2720703b64b054d9cd",
+      "result": "MATCH"
+    },
+    "backend/internal/maintenancegate/gate_other.go": {
+      "expectedSha256": "0c15c953fae2dd9c0a83f992c11d711bcd45e4615fc0ca36cb85a378be12abf7",
+      "sourceSha256": "0c15c953fae2dd9c0a83f992c11d711bcd45e4615fc0ca36cb85a378be12abf7",
+      "workingSha256": "0c15c953fae2dd9c0a83f992c11d711bcd45e4615fc0ca36cb85a378be12abf7",
+      "result": "MATCH"
+    },
+    "backend/internal/mediautils/image.go": {
+      "expectedSha256": "deb5ecfc03ee473df283d12de73d5365b9284dbfd6ac5df7e9fef32adbc1b091",
+      "sourceSha256": "deb5ecfc03ee473df283d12de73d5365b9284dbfd6ac5df7e9fef32adbc1b091",
+      "workingSha256": "deb5ecfc03ee473df283d12de73d5365b9284dbfd6ac5df7e9fef32adbc1b091",
+      "result": "MATCH"
+    },
+    "backend/internal/publishdata/snapshot.go": {
+      "expectedSha256": "0eb1ec91a137bddf4f02bebb1d67bfb9c83806f13460cfff48c695927a72642a",
+      "sourceSha256": "0eb1ec91a137bddf4f02bebb1d67bfb9c83806f13460cfff48c695927a72642a",
+      "workingSha256": "0eb1ec91a137bddf4f02bebb1d67bfb9c83806f13460cfff48c695927a72642a",
+      "result": "MATCH"
+    },
+    "backend/internal/publishfs/platform_linux.go": {
+      "expectedSha256": "47017b10083befa2bc9ee63f80dbdb4bb82e2c0eace220bb4afc203a5bf2abed",
+      "sourceSha256": "47017b10083befa2bc9ee63f80dbdb4bb82e2c0eace220bb4afc203a5bf2abed",
+      "workingSha256": "47017b10083befa2bc9ee63f80dbdb4bb82e2c0eace220bb4afc203a5bf2abed",
+      "result": "MATCH"
+    },
+    "backend/internal/publishfs/platform_other.go": {
+      "expectedSha256": "9a06a18967b95c1bed6ec6fca35462a6fdf1aebab6e5e1c411d30df9c55c8e9f",
+      "sourceSha256": "9a06a18967b95c1bed6ec6fca35462a6fdf1aebab6e5e1c411d30df9c55c8e9f",
+      "workingSha256": "9a06a18967b95c1bed6ec6fca35462a6fdf1aebab6e5e1c411d30df9c55c8e9f",
+      "result": "MATCH"
+    },
+    "backend/internal/publishfs/platform_windows.go": {
+      "expectedSha256": "3740dd763a5d2dd92e748ea82945926703f69bf6f174baa67b3812e894c2da4e",
+      "sourceSha256": "3740dd763a5d2dd92e748ea82945926703f69bf6f174baa67b3812e894c2da4e",
+      "workingSha256": "3740dd763a5d2dd92e748ea82945926703f69bf6f174baa67b3812e894c2da4e",
+      "result": "MATCH"
+    },
+    "backend/internal/publishfs/store.go": {
+      "expectedSha256": "600437e8c3621b8834ea44a9dbeeff49d2c7f59f0da8929ca13c0b5d53e5a4be",
+      "sourceSha256": "600437e8c3621b8834ea44a9dbeeff49d2c7f59f0da8929ca13c0b5d53e5a4be",
+      "workingSha256": "600437e8c3621b8834ea44a9dbeeff49d2c7f59f0da8929ca13c0b5d53e5a4be",
+      "result": "MATCH"
+    },
+    "backend/internal/publishmodel/model.go": {
+      "expectedSha256": "39f169bb21050953435214efc4c93c1396c8608ac9890577d9718e66e9666e9e",
+      "sourceSha256": "39f169bb21050953435214efc4c93c1396c8608ac9890577d9718e66e9666e9e",
+      "workingSha256": "39f169bb21050953435214efc4c93c1396c8608ac9890577d9718e66e9666e9e",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/builder.go": {
+      "expectedSha256": "8b744482099a5044ebbe0c7eb1d59981fc830dec243b5b86932d2169c608a486",
+      "sourceSha256": "8b744482099a5044ebbe0c7eb1d59981fc830dec243b5b86932d2169c608a486",
+      "workingSha256": "8b744482099a5044ebbe0c7eb1d59981fc830dec243b5b86932d2169c608a486",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/client.go": {
+      "expectedSha256": "5321dee2b1dc797beb6c4d2c7f1ce91ca1fdaad70563b9cdfdd848e3b5beadfd",
+      "sourceSha256": "5321dee2b1dc797beb6c4d2c7f1ce91ca1fdaad70563b9cdfdd848e3b5beadfd",
+      "workingSha256": "5321dee2b1dc797beb6c4d2c7f1ce91ca1fdaad70563b9cdfdd848e3b5beadfd",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/process_linux.go": {
+      "expectedSha256": "256d5b1deda1601d4ce42c1e0061f4b8e133029469c0170d817ecae19f41b762",
+      "sourceSha256": "256d5b1deda1601d4ce42c1e0061f4b8e133029469c0170d817ecae19f41b762",
+      "workingSha256": "256d5b1deda1601d4ce42c1e0061f4b8e133029469c0170d817ecae19f41b762",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/process_other.go": {
+      "expectedSha256": "71c531d021c31e220132ac080315f522c101ab2e775b65bd9796998790fc4d2a",
+      "sourceSha256": "71c531d021c31e220132ac080315f522c101ab2e775b65bd9796998790fc4d2a",
+      "workingSha256": "71c531d021c31e220132ac080315f522c101ab2e775b65bd9796998790fc4d2a",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/runner.go": {
+      "expectedSha256": "9243829593f8ccec5237f15e48171ab69d3c8963932287e370b158437468b815",
+      "sourceSha256": "9243829593f8ccec5237f15e48171ab69d3c8963932287e370b158437468b815",
+      "workingSha256": "9243829593f8ccec5237f15e48171ab69d3c8963932287e370b158437468b815",
+      "result": "MATCH"
+    },
+    "backend/internal/publishworker/validate.go": {
+      "expectedSha256": "68fe374387f00137554566c8ce2c5cc07378ed1eee94e6c0cda6bab9e11e581d",
+      "sourceSha256": "68fe374387f00137554566c8ce2c5cc07378ed1eee94e6c0cda6bab9e11e581d",
+      "workingSha256": "68fe374387f00137554566c8ce2c5cc07378ed1eee94e6c0cda6bab9e11e581d",
+      "result": "MATCH"
+    },
+    "backend/internal/storagehealth/disk_linux.go": {
+      "expectedSha256": "c6c494c306fe033b13b9ea9aa86f00767c7cda40c0b42acce7a523271b9da4f9",
+      "sourceSha256": "c6c494c306fe033b13b9ea9aa86f00767c7cda40c0b42acce7a523271b9da4f9",
+      "workingSha256": "c6c494c306fe033b13b9ea9aa86f00767c7cda40c0b42acce7a523271b9da4f9",
+      "result": "MATCH"
+    },
+    "backend/internal/storagehealth/disk_other.go": {
+      "expectedSha256": "4b472a2f46b1d02c5a57a66291a4ce1ffc850d8b36190a9828f9b89bb39b966a",
+      "sourceSha256": "4b472a2f46b1d02c5a57a66291a4ce1ffc850d8b36190a9828f9b89bb39b966a",
+      "workingSha256": "4b472a2f46b1d02c5a57a66291a4ce1ffc850d8b36190a9828f9b89bb39b966a",
+      "result": "MATCH"
+    },
+    "backend/internal/storagehealth/disk_windows.go": {
+      "expectedSha256": "bbb5fe36b464bdff5c311e0b8d70c38701ad2ea3e8c26b1c330a35220bbe67b5",
+      "sourceSha256": "bbb5fe36b464bdff5c311e0b8d70c38701ad2ea3e8c26b1c330a35220bbe67b5",
+      "workingSha256": "bbb5fe36b464bdff5c311e0b8d70c38701ad2ea3e8c26b1c330a35220bbe67b5",
+      "result": "MATCH"
+    },
+    "backend/internal/storagehealth/storage.go": {
+      "expectedSha256": "e599fdfc9e90ea4e424243c8306d3d6aa956c16a46c41ecbc0a2f1386a93dcd4",
+      "sourceSha256": "e599fdfc9e90ea4e424243c8306d3d6aa956c16a46c41ecbc0a2f1386a93dcd4",
+      "workingSha256": "e599fdfc9e90ea4e424243c8306d3d6aa956c16a46c41ecbc0a2f1386a93dcd4",
+      "result": "MATCH"
+    },
+    "backend/internal/store/store.go": {
+      "expectedSha256": "f584f6d9b5ec21c692a3eab0f156a896d50fc59d0223c66a3b8e42a3d3550414",
+      "sourceSha256": "f584f6d9b5ec21c692a3eab0f156a896d50fc59d0223c66a3b8e42a3d3550414",
+      "workingSha256": "f584f6d9b5ec21c692a3eab0f156a896d50fc59d0223c66a3b8e42a3d3550414",
+      "result": "MATCH"
+    },
+    "backend/maintenance.Dockerfile": {
+      "expectedSha256": "9586efef67dffcc2234394043fe9e480a2791ca38ac2f53995097de499511864",
+      "sourceSha256": "9586efef67dffcc2234394043fe9e480a2791ca38ac2f53995097de499511864",
+      "workingSha256": "9586efef67dffcc2234394043fe9e480a2791ca38ac2f53995097de499511864",
+      "result": "MATCH"
+    },
+    "backend/maintenance.Dockerfile.dockerignore": {
+      "expectedSha256": "a2d95ca5d2c4f96a11c95111ca6e191e22eb2b84b9d7943f6fa3724371dc3c4c",
+      "sourceSha256": "a2d95ca5d2c4f96a11c95111ca6e191e22eb2b84b9d7943f6fa3724371dc3c4c",
+      "workingSha256": "a2d95ca5d2c4f96a11c95111ca6e191e22eb2b84b9d7943f6fa3724371dc3c4c",
+      "result": "MATCH"
+    },
+    "backend/migrations/001_initial.sql": {
+      "expectedSha256": "b8d130f9b634ce14415cda2ecb20e7111ac145af29ac9a359bd538d3d3f5db2f",
+      "sourceSha256": "b8d130f9b634ce14415cda2ecb20e7111ac145af29ac9a359bd538d3d3f5db2f",
+      "workingSha256": "b8d130f9b634ce14415cda2ecb20e7111ac145af29ac9a359bd538d3d3f5db2f",
+      "result": "MATCH"
+    },
+    "backend/migrations/002_content_history.sql": {
+      "expectedSha256": "9a5a03b2828252a5853cb91aed25a0dd816abd7e314b38aebd0cde541bfad984",
+      "sourceSha256": "9a5a03b2828252a5853cb91aed25a0dd816abd7e314b38aebd0cde541bfad984",
+      "workingSha256": "9a5a03b2828252a5853cb91aed25a0dd816abd7e314b38aebd0cde541bfad984",
+      "result": "MATCH"
+    },
+    "backend/migrations/003_publication_details.sql": {
+      "expectedSha256": "7761e5310bd7b6738f63b26c0f107f9b5be0dc9c902f42857d5bea00a06054d1",
+      "sourceSha256": "7761e5310bd7b6738f63b26c0f107f9b5be0dc9c902f42857d5bea00a06054d1",
+      "workingSha256": "7761e5310bd7b6738f63b26c0f107f9b5be0dc9c902f42857d5bea00a06054d1",
+      "result": "MATCH"
+    },
+    "backend/migrations/embed.go": {
+      "expectedSha256": "3c12a656dd211e162b84e18afe601ea5dd0ece7d73b170668d08680be4d22ef7",
+      "sourceSha256": "3c12a656dd211e162b84e18afe601ea5dd0ece7d73b170668d08680be4d22ef7",
+      "workingSha256": "3c12a656dd211e162b84e18afe601ea5dd0ece7d73b170668d08680be4d22ef7",
+      "result": "MATCH"
+    },
+    "backend/seed/v1.json": {
+      "expectedSha256": "530d7ddb64ab380c086d483f6084aa16cd52eeb077908054a09d40a9f24f8740",
+      "sourceSha256": "530d7ddb64ab380c086d483f6084aa16cd52eeb077908054a09d40a9f24f8740",
+      "workingSha256": "530d7ddb64ab380c086d483f6084aa16cd52eeb077908054a09d40a9f24f8740",
+      "result": "MATCH"
+    },
+    "backend/worker.Dockerfile": {
+      "expectedSha256": "188a01a85a98fbd6fdb31c5580f34d79ca429bd0f22eb0aa8aa72b7024f18be8",
+      "sourceSha256": "188a01a85a98fbd6fdb31c5580f34d79ca429bd0f22eb0aa8aa72b7024f18be8",
+      "workingSha256": "188a01a85a98fbd6fdb31c5580f34d79ca429bd0f22eb0aa8aa72b7024f18be8",
+      "result": "MATCH"
+    },
+    "backend/worker.Dockerfile.dockerignore": {
+      "expectedSha256": "215310270e1900eae5ea952b26cf7084dd99f111fc509156cddba22367a11cab",
+      "sourceSha256": "215310270e1900eae5ea952b26cf7084dd99f111fc509156cddba22367a11cab",
+      "workingSha256": "215310270e1900eae5ea952b26cf7084dd99f111fc509156cddba22367a11cab",
+      "result": "MATCH"
+    }
+  },
+  "operationFiles": {
+    "compose.admin-dev.yaml": {
+      "sourceSha256": "f283d344134b26e939ea7e00cdf26a7a1a9449f81e72d33b0cce260a5bd8c76c",
+      "workingSha256": "f283d344134b26e939ea7e00cdf26a7a1a9449f81e72d33b0cce260a5bd8c76c",
+      "result": "MATCH"
+    },
+    "compose.admin-publish.yaml": {
+      "sourceSha256": "a28d2be3c139e112b0dd69be64c1465144bdec207c8179659bd48faad0b421de",
+      "workingSha256": "a28d2be3c139e112b0dd69be64c1465144bdec207c8179659bd48faad0b421de",
+      "result": "MATCH"
+    },
+    "scripts/v11-barrier.mjs": {
+      "sourceSha256": "a3a858940f9e06a51234c9b4d702b30f25eec9398ec0af05ed9906cd8402dcf6",
+      "workingSha256": "a3a858940f9e06a51234c9b4d702b30f25eec9398ec0af05ed9906cd8402dcf6",
+      "result": "MATCH"
+    },
+    "scripts/v11-operation.mjs": {
+      "sourceSha256": "f9222a4244efabb075a069414b2407c15bfef2d8ce8bd9f5241db69fb5734b98",
+      "workingSha256": "f9222a4244efabb075a069414b2407c15bfef2d8ce8bd9f5241db69fb5734b98",
+      "result": "MATCH"
+    },
+    "scripts/v11-current-repair.mjs": {
+      "sourceSha256": "d6943f47bc4e5c4cd42fadad600e3c03baaf2d6d27b20fee034d2101e56ced18",
+      "workingSha256": "d6943f47bc4e5c4cd42fadad600e3c03baaf2d6d27b20fee034d2101e56ced18",
+      "result": "MATCH"
+    },
+    "scripts/v11-maintenance.mjs": {
+      "sourceSha256": "a0a85cae4a3434f7940dfe3ad370df4619421d9140fcd8f19f6802c2d051dbb2",
+      "workingSha256": "a0a85cae4a3434f7940dfe3ad370df4619421d9140fcd8f19f6802c2d051dbb2",
+      "result": "MATCH"
+    },
+    "scripts/v11-release.mjs": {
+      "sourceSha256": "9f43fe223d68f7dd0bff143240df1a23577c1a73111d305f64ba3816816d2a57",
+      "workingSha256": "9f43fe223d68f7dd0bff143240df1a23577c1a73111d305f64ba3816816d2a57",
+      "result": "MATCH"
+    },
+    "scripts/v11-release-probe.mjs": {
+      "sourceSha256": "9248c8757d7001692e8093b2c4d0fa9929cbd529b1ff9e69bcc863f9929b1e0c",
+      "workingSha256": "9248c8757d7001692e8093b2c4d0fa9929cbd529b1ff9e69bcc863f9929b1e0c",
+      "result": "MATCH"
+    }
+  },
+  "evidence": {
+    "P6E-barrier-final-check-r2.json": "37db2d061fc6d9982898ea107ab9e587f62f6dfe680bf739e7ede03a92331df1",
+    "P6E-barrier-r8.json": "3a1ede50b9e62dda759c40b64ae2bd840858b132a9b2f538c0826e5d91882a08",
+    "P6E-barrier-r9.json": "4c8fc7e3c6460bf67511ecba4dcfd76eb7411ea118872e165527010058b00422",
+    "P6E-barrier-host-r1.json": "e889adeb812ca34df4d98ef499a93a3b00088a2d683761289ce76b70b434647f",
+    "P6E-barrier-quality.json": "795e95ed6a95ac49f3799831d06629a84d632465112e5422197ac6bf74060013",
+    "P6E-barrier-control-directory.json": "2cd17680bec6bc10ac93485d667eb0b6500b417eff4fd5c53138b571721754d8",
+    "P6E-barrier-environment.json": "249c65f690f654b51e84c7c209f041169d13d328b5b22c7a2ddf421a9903a94f"
+  },
+  "testImages": [
+    {
+      "evidence": "P6E-barrier-r8.json",
+      "imageId": "sha256:ff3862f6adad688fe423b27929694c80b8f1fee0d4343f28d91f852734e21ae3",
+      "labels": {
+        "io.xiaowork.builder": "xiaowork-nuxt-p6d-v1",
+        "io.xiaowork.p6e.test-only": "maintenance-barrier",
+        "org.opencontainers.image.revision": "unfrozen-maintenance-tests",
+        "org.opencontainers.image.source": "https://github.com/xiaowork-dev/xiaowork-homepage"
+      },
+      "scope": "仅维护屏障专项，不属于正式六角色，不提供正式 builder identity"
+    },
+    {
+      "evidence": "P6E-barrier-r9.json",
+      "imageId": "sha256:f55684b8eb4137bdf890a2d0a52ae3fb0a19b9c68dad8a17b98bc67e6956f9a9",
+      "labels": {
+        "io.xiaowork.builder": "xiaowork-nuxt-p6d-v1",
+        "io.xiaowork.p6e.test-only": "maintenance-barrier",
+        "org.opencontainers.image.revision": "unfrozen-maintenance-tests",
+        "org.opencontainers.image.source": "https://github.com/xiaowork-dev/xiaowork-homepage"
+      },
+      "scope": "仅维护屏障专项，不属于正式六角色，不提供正式 builder identity"
+    }
+  ],
+  "formalRoles": [
+    {
+      "role": "api",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    },
+    {
+      "role": "worker",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    },
+    {
+      "role": "gateway",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    },
+    {
+      "role": "legacy-frontend",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    },
+    {
+      "role": "publication-static",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    },
+    {
+      "role": "maintenance",
+      "sourceSha": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "imageId": null,
+      "status": "NOT_BUILT_NOT_ATTESTED",
+      "builderIdentity": null
+    }
+  ],
+  "historicalCandidateSource": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "historicalCandidateScope": "旧候选未包含共同维护屏障；其镜像与本轮专项镜像均不得冒充新正式发行组",
+  "git": {
+    "branch": "feat/v1.1-admin-p6a",
+    "verifiedPushedSource": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+    "remoteRefs": {
+      "refs/heads/feat/v1.1-admin-p6a": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+      "refs/heads/main": "14f9b1fba6504b1367aad6165a0b72c37e495927"
+    },
+    "mainUnchanged": true,
+    "note": "记录的是已成功推送的源码提交；后继文档提交 HEAD 由最终 Git 核验和用户汇报给出，不在同一文件中循环引用自身 SHA"
+  },
+  "remaining": [
+    "原生 Linux Engine 环境安装及身份预检等待用户明确授权",
+    "原生 Linux 完整修复、备份恢复、跨源码更新回退和内容恢复链未执行",
+    "新正式六角色未构建，正式 builder identity 未生成，整组浏览器和 OS/CVE 扫描未执行",
+    "npm 中危及旧镜像安全告警未全部处理，正式发布 gate 继续关闭"
+  ],
+  "productionReady": false,
+  "commands": [
+    {
+      "executable": "git",
+      "args": [
+        "status",
+        "--porcelain"
+      ],
+      "exitCode": 0,
+      "stdout": ""
+    },
+    {
+      "executable": "git",
+      "args": [
+        "branch",
+        "--show-current"
+      ],
+      "exitCode": 0,
+      "stdout": "feat/v1.1-admin-p6a\n"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": "c7edb2f7d23cdecaf493370d8d62446907c67e67\n"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "rev-parse",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:"
+      ],
+      "exitCode": 0,
+      "stdout": "3be5d4c4128ea98b2ae201dbc3ca9d1d19cedf25\n"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "ls-remote",
+        "origin",
+        "refs/heads/feat/v1.1-admin-p6a",
+        "refs/heads/main"
+      ],
+      "exitCode": 0,
+      "stdout": "c7edb2f7d23cdecaf493370d8d62446907c67e67\trefs/heads/feat/v1.1-admin-p6a\n14f9b1fba6504b1367aad6165a0b72c37e495927\trefs/heads/main\n"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/homepage-api/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a0693dd6de6927276e5f382df51da6a305b033cd349974e6a2c258d7910f7d8d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/homepage-control/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "adb650e8b4482014906d48bb7c2f88aacc6c91894eb279480f5ebd5f418ce179"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/homepage-maintenance/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "98ed0a96845e501483d4ea2c87e0e4fa918ff0dc2174d902ae7e70c3920cea90"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/homepage-worker/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "e7ee760c02f2b98e26e7cb72b444555632b9cdf13eafdfb030fce9720d287aea"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/p6e-fault-data/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "aa8dda8dddf8c2bba6876d09c805ae8916c2353e8ea5503676b80d84ed0f0816"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/cmd/p6e-fault-worker/main.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "655845ce1196de8a96aedc71ed3bb64211b8458aa8af6df4ffd40cad3e18cb3d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/Dockerfile"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "69319a698a9e1140e19e3c4f218da012c4aa0e2ba78e783f4d9a16e0f2cb6066"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/Dockerfile.dockerignore"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "fd699256dcbfdc37aebf20d39331273718462b0047aa953a730a90390be765b6"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/go.mod"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/go.sum"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/authn/authn.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "da02c0f07857da61cfe5d24f9780ded951065741db56347eb5ff68945d40e719"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/contentdata/import.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "583ebd5f6220b6ffba7bc6624f935df0f78a2aa398ade187d4552e75501d371e"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/contentdata/repository.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "26fe1c4cc47ee445c4b2211370ecf75a173d5d37d26e073fd7b230e5d69b95fe"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/contentdata/types.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "0c6cbea971bd93e3b1b340c928cb0a757f3e4c991de93b026a05ebb88a339e28"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/contentlimits/limits.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "dc9a669b1de90e8fe7efdfe4d6236414afa149dc62166aee097df2fc3914c0d2"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/devtls/devtls.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "454ddc9fab00c752f7464c4004c64750d49c2a1a50e205ac4c140fe8b5813024"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/auth.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "20348de2c1379f1665c0920deae31ee72ce2189f6616d33db90ff65dd1c4c8f2"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/common.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "793b70189acc52a2eedf6725a502b4033e9056bb3b02761136323b664e5f94d5"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/content.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "8d162687f3c27e4a0f15c394701c2d6d3e43161413478e707203e6e724b791e3"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/media.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "07e71741c27ead76a70da369ae53bd49465c876ee32b9b3f2d8c660219a1e424"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/p6e_fault_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f68c36e0aadd17d48520fb856d79bb8b7f0f964204f74b320aeae6446882d97d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/publication.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/publication_review.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f12cf96c5a0466eb3f86d0eaf279c76b7cf7e46652f58a92055817e47932d567"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/publication_verify.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "b9658af69b7097749b9c85d35c60ebd5d1a7d5e7db456531a60c6246e1b39fa6"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/publication_worker.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "8a08caf270c7bfa02ebd4dfdf1b7854ce4a75f82f89e27c2ed0c7b43ba123145"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/server.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "1edc5dcad0794db688a48424a0eddc70c43df4d44b1ebfba367231a67c69e997"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/storage.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "87c6d0de3fbd60702d550e75365f388fad3bf243e930779de82ce6dd76b36daa"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/worker_socket_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "2efce945a61312dde8168fb2b32f983e27ed6f7b26bcc5e4a2911696501bbc88"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/httpapi/worker_socket_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "d69884df9b0ab3eaa3ba72cf27305c74d11285885d77d4916af776c9a73265f3"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/backup.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "b559cdd3620092bac6218aa942e90196afba2172a74576c2c248da05ad42bdf0"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/content_digest.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "6aade705735acedc216a0e718f8b2c7e07d54872e9e3e68a1ac091ef6ece3f5d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/current_repair.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "75d78c01f60cd31e3c65f28fb0df477efcbc07f4ab39f4c8092c44b9a9a8d7f0"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/current_repair_sync_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "d48598bc43a0df2f20f513389919791238364078ddb01ab250959ce82098bc9c"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/current_repair_sync_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a52a1d051a6464e4e19c18e8f32ee022482aff6a1cc457d8c84781b8d549411e"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/metadata.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9755869ce08700208c12f8790807206ed09be10ca56fedc3e78ff2d290a623fa"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/readonly.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "79b35d680e8b7b30378dbaa3e201f74f3c8a2fbdbb4976a74eca2272693f105d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/readonly_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "278dd8883797d18a873f7997cf24b5c4bee45b78fd74dcfe306945fe3188d340"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenance/readonly_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "78077dfc01535c92854625b0553778c94a87cb5533a39c8dde8f9f2232612339"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenancegate/gate.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "740fcc3dd997a93b2a572058b4e20168739b446255b98f9951a17bd02afdbc9a"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenancegate/gate_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "6d2ef1f58ca50b50cdecc00539929408830ada65bd74df2720703b64b054d9cd"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/maintenancegate/gate_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "0c15c953fae2dd9c0a83f992c11d711bcd45e4615fc0ca36cb85a378be12abf7"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/mediautils/image.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "deb5ecfc03ee473df283d12de73d5365b9284dbfd6ac5df7e9fef32adbc1b091"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishdata/snapshot.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "0eb1ec91a137bddf4f02bebb1d67bfb9c83806f13460cfff48c695927a72642a"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishfs/platform_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "47017b10083befa2bc9ee63f80dbdb4bb82e2c0eace220bb4afc203a5bf2abed"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishfs/platform_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9a06a18967b95c1bed6ec6fca35462a6fdf1aebab6e5e1c411d30df9c55c8e9f"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishfs/platform_windows.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "3740dd763a5d2dd92e748ea82945926703f69bf6f174baa67b3812e894c2da4e"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishfs/store.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "600437e8c3621b8834ea44a9dbeeff49d2c7f59f0da8929ca13c0b5d53e5a4be"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishmodel/model.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "39f169bb21050953435214efc4c93c1396c8608ac9890577d9718e66e9666e9e"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/builder.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "8b744482099a5044ebbe0c7eb1d59981fc830dec243b5b86932d2169c608a486"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/client.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "5321dee2b1dc797beb6c4d2c7f1ce91ca1fdaad70563b9cdfdd848e3b5beadfd"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/process_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "256d5b1deda1601d4ce42c1e0061f4b8e133029469c0170d817ecae19f41b762"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/process_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "71c531d021c31e220132ac080315f522c101ab2e775b65bd9796998790fc4d2a"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/runner.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9243829593f8ccec5237f15e48171ab69d3c8963932287e370b158437468b815"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/publishworker/validate.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "68fe374387f00137554566c8ce2c5cc07378ed1eee94e6c0cda6bab9e11e581d"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/storagehealth/disk_linux.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "c6c494c306fe033b13b9ea9aa86f00767c7cda40c0b42acce7a523271b9da4f9"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/storagehealth/disk_other.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "4b472a2f46b1d02c5a57a66291a4ce1ffc850d8b36190a9828f9b89bb39b966a"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/storagehealth/disk_windows.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "bbb5fe36b464bdff5c311e0b8d70c38701ad2ea3e8c26b1c330a35220bbe67b5"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/storagehealth/storage.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "e599fdfc9e90ea4e424243c8306d3d6aa956c16a46c41ecbc0a2f1386a93dcd4"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/internal/store/store.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f584f6d9b5ec21c692a3eab0f156a896d50fc59d0223c66a3b8e42a3d3550414"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/maintenance.Dockerfile"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9586efef67dffcc2234394043fe9e480a2791ca38ac2f53995097de499511864"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/maintenance.Dockerfile.dockerignore"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a2d95ca5d2c4f96a11c95111ca6e191e22eb2b84b9d7943f6fa3724371dc3c4c"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/migrations/001_initial.sql"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "b8d130f9b634ce14415cda2ecb20e7111ac145af29ac9a359bd538d3d3f5db2f"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/migrations/002_content_history.sql"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9a5a03b2828252a5853cb91aed25a0dd816abd7e314b38aebd0cde541bfad984"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/migrations/003_publication_details.sql"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "7761e5310bd7b6738f63b26c0f107f9b5be0dc9c902f42857d5bea00a06054d1"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/migrations/embed.go"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "3c12a656dd211e162b84e18afe601ea5dd0ece7d73b170668d08680be4d22ef7"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/seed/v1.json"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "530d7ddb64ab380c086d483f6084aa16cd52eeb077908054a09d40a9f24f8740"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/worker.Dockerfile"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "188a01a85a98fbd6fdb31c5580f34d79ca429bd0f22eb0aa8aa72b7024f18be8"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:backend/worker.Dockerfile.dockerignore"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "215310270e1900eae5ea952b26cf7084dd99f111fc509156cddba22367a11cab"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:compose.admin-dev.yaml"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f283d344134b26e939ea7e00cdf26a7a1a9449f81e72d33b0cce260a5bd8c76c"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:compose.admin-publish.yaml"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a28d2be3c139e112b0dd69be64c1465144bdec207c8179659bd48faad0b421de"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-barrier.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a3a858940f9e06a51234c9b4d702b30f25eec9398ec0af05ed9906cd8402dcf6"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-operation.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f9222a4244efabb075a069414b2407c15bfef2d8ce8bd9f5241db69fb5734b98"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-current-repair.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "d6943f47bc4e5c4cd42fadad600e3c03baaf2d6d27b20fee034d2101e56ced18"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-maintenance.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "a0a85cae4a3434f7940dfe3ad370df4619421d9140fcd8f19f6802c2d051dbb2"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-release.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9f43fe223d68f7dd0bff143240df1a23577c1a73111d305f64ba3816816d2a57"
+    },
+    {
+      "executable": "git",
+      "args": [
+        "show",
+        "c7edb2f7d23cdecaf493370d8d62446907c67e67:scripts/v11-release-probe.mjs"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "9248c8757d7001692e8093b2c4d0fa9929cbd529b1ff9e69bcc863f9929b1e0c"
+    }
+  ],
+  "result": "SOURCE_AND_EVIDENCE_MATCH; FULL_RELEASE_ACCEPTANCE_NOT_EXECUTED"
+}
