@@ -1,0 +1,669 @@
+{
+  "date": "2026-11-01T09:52:06.634Z",
+  "prefix": "xiaowork-p6e-atime-mvxni76y",
+  "cases": [
+    {
+      "operation": "noatime-directory",
+      "volume": "xiaowork-p6e-atime-mvxni76y-noatime-directory-volume",
+      "before": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442519",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526726742837794",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526726714835671"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442540",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442546",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442555",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        }
+      },
+      "after": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442519",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526726742837794",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526726714835671"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442540",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442546",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442555",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526727386886646",
+          "mtimeNs": "1793526727386886646",
+          "ctimeNs": "1793526727386886646",
+          "birthtimeNs": "1793526727386886646"
+        }
+      },
+      "changes": [],
+      "mountinfo": "1410 1401 8:48 /data/docker/volumes/xiaowork-p6e-atime-mvxni76y-noatime-directory-volume/_data /probe rw,relatime master:30 - ext4 /dev/sdd rw",
+      "retainedContainer": "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15"
+    },
+    {
+      "operation": "noatime-file-sha",
+      "volume": "xiaowork-p6e-atime-mvxni76y-noatime-file-sha-volume",
+      "before": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442554",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526732347262972",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526732299259300"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442576",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442582",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442591",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        }
+      },
+      "after": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442554",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526732347262972",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526732299259300"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442576",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442582",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442591",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526733067318067",
+          "mtimeNs": "1793526733067318067",
+          "ctimeNs": "1793526733067318067",
+          "birthtimeNs": "1793526733067318067"
+        }
+      },
+      "changes": [],
+      "mountinfo": "1410 1401 8:48 /data/docker/volumes/xiaowork-p6e-atime-mvxni76y-noatime-file-sha-volume/_data /probe rw,relatime master:30 - ext4 /dev/sdd rw",
+      "retainedContainer": "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb"
+    },
+    {
+      "operation": "stat-only",
+      "volume": "xiaowork-p6e-atime-mvxni76y-stat-only-volume",
+      "before": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442590",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526738135705858",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738099703103"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442612",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442618",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442627",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        }
+      },
+      "after": {
+        "/probe": {
+          "dev": "2096",
+          "ino": "1442590",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "3",
+          "size": "4096",
+          "atimeNs": "1793526738135705858",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738099703103"
+        },
+        "/probe/file": {
+          "dev": "2096",
+          "ino": "1442612",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        },
+        "/probe/child": {
+          "dev": "2096",
+          "ino": "1442618",
+          "mode": "16877",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "2",
+          "size": "4096",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        },
+        "/probe/child/file": {
+          "dev": "2096",
+          "ino": "1442627",
+          "mode": "33188",
+          "uid": "0",
+          "gid": "0",
+          "nlink": "1",
+          "size": "11",
+          "atimeNs": "1793526738875762481",
+          "mtimeNs": "1793526738875762481",
+          "ctimeNs": "1793526738875762481",
+          "birthtimeNs": "1793526738875762481"
+        }
+      },
+      "changes": [],
+      "mountinfo": "1410 1401 8:48 /data/docker/volumes/xiaowork-p6e-atime-mvxni76y-stat-only-volume/_data /probe rw,relatime master:30 - ext4 /dev/sdd rw",
+      "retainedContainer": "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e"
+    }
+  ],
+  "commands": [
+    {
+      "args": [
+        "volume",
+        "create",
+        "--label",
+        "io.xiaowork.p6e-atime.test=true",
+        "xiaowork-p6e-atime-mvxni76y-noatime-directory-volume"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "xiaowork-p6e-atime-mvxni76y-noatime-directory",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-noatime-directory-volume,dst=/probe,volume-nocopy",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "setInterval(()=>{},1000)"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15",
+        "node",
+        "--eval",
+        "const f=require('fs');f.writeFileSync('/probe/file','fixed bytes');f.mkdirSync('/probe/child');f.writeFileSync('/probe/child/file','child bytes');"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-noatime-directory-volume,dst=/probe,volume-nocopy,readonly",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "const f=require('fs');const fd=f.openSync('/probe',f.constants.O_RDONLY|f.constants.O_DIRECTORY|f.constants.O_NOATIME);f.closeSync(fd)"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15",
+        "node",
+        "--eval",
+        "console.log(require('fs').readFileSync('/proc/self/mountinfo','utf8').split('\\n').filter(x=>x.includes(' /probe ')).join('\\n'))"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "stop",
+        "fc477e37a98f7355db37ee8fd242d04ca8d5931be6c7daebe30d9f312bbd2b15"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "volume",
+        "create",
+        "--label",
+        "io.xiaowork.p6e-atime.test=true",
+        "xiaowork-p6e-atime-mvxni76y-noatime-file-sha-volume"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "xiaowork-p6e-atime-mvxni76y-noatime-file-sha",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-noatime-file-sha-volume,dst=/probe,volume-nocopy",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "setInterval(()=>{},1000)"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb",
+        "node",
+        "--eval",
+        "const f=require('fs');f.writeFileSync('/probe/file','fixed bytes');f.mkdirSync('/probe/child');f.writeFileSync('/probe/child/file','child bytes');"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-noatime-file-sha-volume,dst=/probe,volume-nocopy,readonly",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "const f=require('fs'),c=require('crypto');const fd=f.openSync('/probe/file',f.constants.O_RDONLY|f.constants.O_NOATIME);console.log(c.createHash('sha256').update(f.readFileSync(fd)).digest('hex'));f.closeSync(fd)"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb",
+        "node",
+        "--eval",
+        "console.log(require('fs').readFileSync('/proc/self/mountinfo','utf8').split('\\n').filter(x=>x.includes(' /probe ')).join('\\n'))"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "stop",
+        "e147be667438dd08690515921f8cc5ba45e001a065530c0f73eedb3d363305bb"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "volume",
+        "create",
+        "--label",
+        "io.xiaowork.p6e-atime.test=true",
+        "xiaowork-p6e-atime-mvxni76y-stat-only-volume"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "xiaowork-p6e-atime-mvxni76y-stat-only",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-stat-only-volume,dst=/probe,volume-nocopy",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "setInterval(()=>{},1000)"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e",
+        "node",
+        "--eval",
+        "const f=require('fs');f.writeFileSync('/probe/file','fixed bytes');f.mkdirSync('/probe/child');f.writeFileSync('/probe/child/file','child bytes');"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--user",
+        "0:0",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxni76y-stat-only-volume,dst=/probe,volume-nocopy,readonly",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e",
+        "node",
+        "--eval",
+        "const fs=require('fs');const out={};for(const p of ['/probe','/probe/file','/probe/child','/probe/child/file']){const s=fs.lstatSync(p,{bigint:true});out[p]=Object.fromEntries(['dev','ino','mode','uid','gid','nlink','size','atimeNs','mtimeNs','ctimeNs','birthtimeNs'].map(k=>[k,String(s[k])]));}console.log(JSON.stringify(out));"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "exec",
+        "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e",
+        "node",
+        "--eval",
+        "console.log(require('fs').readFileSync('/proc/self/mountinfo','utf8').split('\\n').filter(x=>x.includes(' /probe ')).join('\\n'))"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "stop",
+        "c96a9ed814a83b8f511f539f4c75ed4f320f5e06d92294e7808b8796553fc96e"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "result": "DIAGNOSED"
+}

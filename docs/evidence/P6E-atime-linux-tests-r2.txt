@@ -1,0 +1,65 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Test.Dockerfile
+#1 transferring dockerfile: 617B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.3-alpine
+#2 DONE 0.0s
+
+#3 [1/7] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c
+#3 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context:
+#4 transferring context: 623.51kB 0.1s done
+#4 DONE 0.1s
+
+#5 [2/7] WORKDIR /src
+#5 CACHED
+
+#6 [3/7] COPY backend/go.mod backend/go.sum ./
+#6 CACHED
+
+#7 [4/7] RUN GOPROXY=https://goproxy.cn go mod download
+#7 CACHED
+
+#8 [5/7] COPY backend/ ./
+#8 DONE 0.1s
+
+#9 [6/7] RUN --network=none CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go test ./...
+#9 38.39 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+#9 38.39 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]
+#9 38.39 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+#9 40.63 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	2.236s
+#9 40.63 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	0.465s
+#9 40.63 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+#9 40.63 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.303s
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	24.030s
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	5.038s
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.015s
+#9 62.43 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	2.803s
+#9 62.43 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	2.935s
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.021s
+#9 62.43 ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	1.980s
+#9 62.43 ?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]
+#9 DONE 62.6s
+
+#10 [7/7] RUN --network=none CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go vet ./...
+#10 DONE 8.8s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 18.0s done
+#11 exporting manifest sha256:071ad0872108eb796af0bd50a85070623e0ca0fd4fa4230a1ccfa53bbd22a14f 0.0s done
+#11 exporting config sha256:c72813e555db7cb0c559b0eec56124dee6f4acab3e9f058ca60399a2ce12a754 0.0s done
+#11 exporting attestation manifest sha256:9087cc14db9fd22f380d911b0d5466b72d697faec6d5ee44c93b74659f0d6e3e 0.0s done
+#11 exporting manifest list sha256:b39fe76f8df4c5812aaad6d361ba558741a9c12f27dae689ed30a2e8a087aec5
+#11 exporting manifest list sha256:b39fe76f8df4c5812aaad6d361ba558741a9c12f27dae689ed30a2e8a087aec5 0.0s done
+#11 naming to docker.io/library/xiaowork-homepage-test:p6e-atime done
+#11 unpacking to docker.io/library/xiaowork-homepage-test:p6e-atime
+#11 unpacking to docker.io/library/xiaowork-homepage-test:p6e-atime 10.1s done
+#11 DONE 28.3s

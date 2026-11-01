@@ -1,0 +1,103 @@
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance	[no test files]
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn	1.945s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata	7.335s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls	0.344s
+--- FAIL: TestAuthenticationHTTPSLifecycleAndCSRF (0.19s)
+    auth_test.go:156: Get "https://127.0.0.1:49671/api/admin/v1/workspace": dial tcp 127.0.0.1:49671: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestLoginFailureRateLimitNonceReplayAndRecovery (0.19s)
+    auth_test.go:201: Get "https://127.0.0.1:49673/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49673: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPasswordChangeRevokesAllSessionsAndSessionExpiry (0.19s)
+    auth_test.go:220: Get "https://127.0.0.1:49675/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49675: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestLoginChallengeCapsAndExpiry (0.19s)
+    auth_test.go:243: Get "https://127.0.0.1:49677/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49677: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestRejectedRequestsDoNotRefreshIdleSession (0.18s)
+    auth_test.go:303: Get "https://127.0.0.1:65517/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65517: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestLoginNonceConsumedAtomically (0.27s)
+    auth_test.go:314: Get "https://127.0.0.1:65519/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65519: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestAuthenticationRejectsUnknownAndCaseAliasedJSON (0.33s)
+    auth_test.go:344: Get "https://127.0.0.1:65521/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65521: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestAbsoluteSessionExpiryDespiteContinuousHTTPSActivity (0.33s)
+    auth_test.go:360: Get "https://127.0.0.1:65525/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65525: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestHTTPMethodContractAndOversizeMutationRollback (0.30s)
+    common_test.go:9: Get "https://127.0.0.1:65527/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65527: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestHTTPIdempotencyExpiresAfterRetention (0.33s)
+    common_test.go:29: Get "https://127.0.0.1:65529/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65529: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestContentHTTPRevisionIdempotencyAndHistory (0.35s)
+    content_test.go:108: Get "https://127.0.0.1:65531/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65531: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestContentHTTPAtomicConcurrentSavesAndValidation (0.35s)
+    content_test.go:161: Get "https://127.0.0.1:65533/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:65533: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestContentHTTPCategoriesLifecycleProfileAndSettings (0.33s)
+    content_test.go:208: Get "https://127.0.0.1:49152/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49152: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestMediaHTTPSLifecycleAndRejectedUploads (0.31s)
+    media_http_test.go:109: Get "https://127.0.0.1:49154/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49154: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestMediaHTTPSReferenceProtectionAndCorruptContent (0.34s)
+    media_http_test.go:183: Get "https://127.0.0.1:49156/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49156: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers (0.60s)
+    --- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_false (0.30s)
+        media_http_test.go:239: Get "https://127.0.0.1:49158/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49158: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+    --- FAIL: TestMediaHTTPSConcurrentDecoderCapacityRecovers/workspace_changes_true (0.30s)
+        media_http_test.go:239: Get "https://127.0.0.1:49160/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49160: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestMediaPrivateStorageIsContentAddressedAndNeverOverwrites (0.04s)
+    media_storage_test.go:38: linkat tmp/derived_13b36afbd85cc7bd8da3b9bf7eb08f85 derived/7fbe3086e4c6aa8998c0d51c7c89622b00b712b7344393e38e38befe67acb456.png: Access is denied.
+--- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization (0.65s)
+    --- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization/known (0.32s)
+        publication_failure_codes_test.go:39: Get "https://127.0.0.1:49162/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49162: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+    --- FAIL: TestWorkerResultHTTPSFailureDiagnosticSanitization/unknown (0.33s)
+        publication_failure_codes_test.go:39: Get "https://127.0.0.1:49166/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49166: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob (0.70s)
+    --- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-false (0.37s)
+        publication_fault_integration_test.go:24: Get "https://127.0.0.1:49168/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49168: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+    --- FAIL: TestPublicationConcurrentHTTPSRequestsCreateSingleJob/duplicate-key-true (0.33s)
+        publication_fault_integration_test.go:24: Get "https://127.0.0.1:49171/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49171: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPublicationHTTPSGatesRevisionReauthIdempotencyAndAtomicFailure (0.36s)
+    publication_test.go:121: Get "https://127.0.0.1:49174/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49174: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPublicationRealFilesystemHTTPProofAndRecovery (0.32s)
+    publication_test.go:214: Get "https://127.0.0.1:49176/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49176: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPreviewEveryResourceAuthenticationTTLAndSnapshotPrivacy (0.32s)
+    publication_test.go:288: Get "https://127.0.0.1:49178/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49178: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestWorkerLeaseRecoveryAndSnapshotImmutability (0.34s)
+    publication_test.go:331: Get "https://127.0.0.1:49180/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49180: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPublicationRejectsUnconfirmedPublicMediaWithoutPartialSnapshot (0.42s)
+    publication_test.go:355: Get "https://127.0.0.1:49182/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49182: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestPublishingStatusPassivePollingDoesNotExtendSessionIdleExpiry (0.32s)
+    publication_test.go:381: Get "https://127.0.0.1:49187/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49187: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestHealthReadinessAndUnimplementedPublishing (0.34s)
+    server_test.go:53: Get "https://127.0.0.1:49189/healthz": dial tcp 127.0.0.1:49189: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestStorageStatusIsAuthenticatedAndDoesNotExposePaths (0.31s)
+    storage_test.go:11: Get "https://127.0.0.1:49191/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49191: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+--- FAIL: TestUnknownUploadStorageRejectsPublicationWithoutPartialTask (0.33s)
+    storage_test.go:27: Get "https://127.0.0.1:49195/api/admin/v1/auth/login-challenge": dial tcp 127.0.0.1:49195: connectex: An attempt was made to access a socket in a way forbidden by its access permissions.
+FAIL
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi	18.535s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance	8.384s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils	0.161s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata	[no test files]
+--- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption (0.62s)
+    --- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption/alter (0.10s)
+        store_test.go:74: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+    --- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption/remove (0.11s)
+        store_test.go:74: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+    --- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption/extra (0.11s)
+        store_test.go:74: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+    --- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption/manifest (0.18s)
+        store_test.go:74: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+    --- FAIL: TestManifestVerifiesCompleteTreeAndRejectsCorruption/symlink (0.12s)
+        store_test.go:74: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+--- FAIL: TestKernelLockExcludesSeparateStores (0.08s)
+    store_test.go:129: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+--- FAIL: TestMutationRequiresLockAndImmutableIDs (0.08s)
+    store_test.go:136: renameat staging/job_11111111111111111111111111111111/manifest.json.tmp staging/job_11111111111111111111111111111111/manifest.json: Access is denied.
+--- FAIL: TestPreparationFaultsDoNotPublishOrOverwrite (0.33s)
+    --- FAIL: TestPreparationFaultsDoNotPublishOrOverwrite/after-release-rename (0.08s)
+        store_test.go:297: sealed directory incomplete statat releases/rel_11111111111111111111111111111111: The system cannot find the file specified.
+FAIL
+FAIL	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs	1.443s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel	[no test files]
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker	1.523s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth	0.136s
+ok  	github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store	1.257s
+?   	github.com/xiaowork-dev/xiaowork-homepage/backend/migrations	[no test files]
+FAIL

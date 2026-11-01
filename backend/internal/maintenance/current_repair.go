@@ -279,6 +279,12 @@ func repairInventory(root string, candidates []CurrentCandidate) ([]File, error)
 // current or deletes an artifact, history record, task or media file. The host
 // operator must stop every writer; the kernel publication lock is also held.
 func RepairCurrent(ctx context.Context, root, member, expectedHash, reason string) (CurrentRepairRecord, error) {
+	return RepairCurrentAt(ctx, root, filepath.Join(root, "publications"), member, expectedHash, reason)
+}
+
+// RepairCurrentAt reads through the all-read-only source view. The separate
+// publication mount is used exclusively for the kernel lock, audit and unlink.
+func RepairCurrentAt(ctx context.Context, root, pubdir, member, expectedHash, reason string) (CurrentRepairRecord, error) {
 	var record CurrentRepairRecord
 	if runtime.GOOS != "linux" {
 		return record, errors.New("repair mutation requires Linux durable directory fsync")
@@ -289,7 +295,6 @@ func RepairCurrent(ctx context.Context, root, member, expectedHash, reason strin
 	if err := repairRoots(root); err != nil {
 		return record, err
 	}
-	pubdir := filepath.Join(root, "publications")
 	if lock, err := os.Lstat(filepath.Join(pubdir, "publisher.lock")); err != nil || !lock.Mode().IsRegular() {
 		return record, errors.New("existing publisher kernel-lock file is required")
 	}
@@ -336,7 +341,7 @@ func RepairCurrent(ctx context.Context, root, member, expectedHash, reason strin
 		return record, err
 	}
 	defer audit.Close()
-	auditEntries, err := fs.ReadDir(audit.FS(), ".")
+	auditEntries, err := os.ReadDir(filepath.Join(root, "publications", "maintenance-repairs"))
 	if err != nil {
 		return record, err
 	}

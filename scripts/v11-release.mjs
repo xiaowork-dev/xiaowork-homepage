@@ -2,6 +2,7 @@
 // SSH, GitHub credentials, arbitrary Compose file, script, or service is accepted.
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -21,6 +22,7 @@ const imageID = /^sha256:[0-9a-f]{64}$/
 const sourceID = /^[0-9a-f]{40}$/
 const args = process.argv.slice(2)
 const command = args.shift()
+const lifecycleOwner = randomUUID()
 let lock
 process.on('exit', () => {
   if (lock) {
@@ -416,12 +418,17 @@ try {
       stopWriters(current)
       let backup
       try {
-        const db = inspectProject(project, current.spec.images.maintenance)
+        const db = inspectProject(project, current.spec.images.maintenance, lifecycleOwner)
         assert.equal(db.schema, current.spec.schema)
         let candidateBaseline
         if (replacement)
           tool(replacement.images.maintenance, 'compatible', [], ['-schema', String(db.schema)])
-        if (replacement) candidateBaseline = inspectProject(project, replacement.images.maintenance)
+        if (replacement)
+          candidateBaseline = inspectProject(
+            project,
+            replacement.images.maintenance,
+            lifecycleOwner,
+          )
         const destination = path.resolve(
           options.backup ?? path.join(root, '.cache', 'v11-backups', `${project}-${Date.now()}`),
         )
@@ -449,6 +456,7 @@ try {
         lock = undefined
         const recoveryFile = path.join(state, 'recovery-required.json')
         save(recoveryFile, {
+          owner: lifecycleOwner,
           at: new Date().toISOString(),
           phase: 'candidate-start-pending',
           reason: 'Candidate transition is not yet reconciled; subsequent operations are blocked',
@@ -468,13 +476,21 @@ try {
           // recorded logical data remains unchanged. No schema migration or
           // cross-source content-rollback permission is inferred from this.
           stopWriters(next)
-          const candidateState = inspectProject(project, next.spec.images.maintenance)
+          const candidateState = inspectProject(
+            project,
+            next.spec.images.maintenance,
+            lifecycleOwner,
+          )
           assert.deepEqual(
             candidateState,
             candidateBaseline,
             'Candidate changed retained data during startup; automatic service acceptance is refused',
           )
-          const priorReaderState = inspectProject(project, current.spec.images.maintenance)
+          const priorReaderState = inspectProject(
+            project,
+            current.spec.images.maintenance,
+            lifecycleOwner,
+          )
           assert.deepEqual(
             priorReaderState,
             backup.state,
@@ -505,7 +521,11 @@ try {
           // performed incompatible writes. Inspect using the old checker first.
           try {
             stopWriters(next)
-            const observed = inspectProject(project, current.spec.images.maintenance)
+            const observed = inspectProject(
+              project,
+              current.spec.images.maintenance,
+              lifecycleOwner,
+            )
             assert.equal(observed.schema, current.spec.schema)
             assert.deepEqual(
               observed,
@@ -514,7 +534,7 @@ try {
             )
             if (candidateBaseline)
               assert.deepEqual(
-                inspectProject(project, next.spec.images.maintenance),
+                inspectProject(project, next.spec.images.maintenance, lifecycleOwner),
                 candidateBaseline,
                 'Candidate logical data differs; manual recovery is required',
               )
@@ -545,6 +565,7 @@ try {
             lock = undefined
             try {
               save(recoveryFile, {
+                owner: lifecycleOwner,
                 at: new Date().toISOString(),
                 phase: 'manual-recovery-required',
                 reason:

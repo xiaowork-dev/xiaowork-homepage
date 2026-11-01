@@ -1,0 +1,47 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Test.Dockerfile
+#1 transferring dockerfile: 345B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.3-alpine
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 298B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c
+#4 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [2/7] WORKDIR /src
+#6 CACHED
+
+#7 [3/7] COPY backend/go.mod backend/go.sum ./
+#7 ERROR: failed to calculate checksum of ref 41cb0f4u6zmqdxgyikxfzs9cb::vzm8at5xnkm4i5lzvr4imtyza: "/backend/go.sum": not found
+
+#8 [4/7] RUN GOPROXY=https://goproxy.cn go mod download
+#8 CACHED
+
+#9 [5/7] COPY backend/ ./
+#9 ERROR: failed to calculate checksum of ref 41cb0f4u6zmqdxgyikxfzs9cb::vzm8at5xnkm4i5lzvr4imtyza: "/backend": not found
+------
+ > [3/7] COPY backend/go.mod backend/go.sum ./:
+------
+------
+ > [5/7] COPY backend/ ./:
+------
+Test.Dockerfile:3
+--------------------
+   1 |     FROM golang:1.27.3-alpine AS test
+   2 |     WORKDIR /src
+   3 | >>> COPY backend/go.mod backend/go.sum ./
+   4 |     RUN GOPROXY=https://goproxy.cn go mod download
+   5 |     COPY backend/ ./
+--------------------
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 41cb0f4u6zmqdxgyikxfzs9cb::vzm8at5xnkm4i5lzvr4imtyza: "/backend/go.sum": not found

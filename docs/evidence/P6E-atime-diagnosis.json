@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-01T09:48:53.590Z",
+  "prefix": "xiaowork-p6e-atime-mvxne28m",
+  "cases": [],
+  "commands": [
+    {
+      "args": [
+        "volume",
+        "create",
+        "--label",
+        "io.xiaowork.p6e-atime.test=true",
+        "xiaowork-p6e-atime-mvxne28m-default-create-volume"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "xiaowork-p6e-atime-mvxne28m-default-create",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--mount",
+        "type=volume,src=xiaowork-p6e-atime-mvxne28m-default-create-volume,dst=/probe,volume-nocopy",
+        "--entrypoint",
+        "node",
+        "sha256:9a2344bb93940dcc820289106be7c31085ba196d6c32d1305f45cdbe7930fe99",
+        "--eval",
+        "setInterval(()=>{},1000)"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "result": "DIAGNOSTIC_FAILED",
+  "error": "Command failed: docker exec aa711941d254b9be16693767cf82bf248dd61b1048827076870d7b0e2fe6d5ec node --eval const f=require('fs');f.writeFileSync('/probe/file','fixed bytes');f.mkdirSync('/probe/child');f.writeFileSync('/probe/child/file','child bytes');\nnode:fs:2482\n    return binding.writeFileUtf8(\n                   ^\n\nError: EACCES: permission denied, open '/probe/file'\n    at Object.writeFileSync (node:fs:2482:20)\n    at [eval]:1:25\n    at runScriptInThisContext (node:internal/vm:219:10)\n    at node:internal/process/execution:451:12\n    at [eval]-wrapper:6:24\n    at runScriptInContext (node:internal/process/execution:449:60)\n    at evalFunction (node:internal/process/execution:283:30)\n    at evalTypeScript (node:internal/process/execution:295:3)\n    at node:internal/main/eval_string:71:3 {\n  errno: -13,\n  code: 'EACCES',\n  syscall: 'open',\n  path: '/probe/file'\n}\n\nNode.js v24.22.1\n"
+}

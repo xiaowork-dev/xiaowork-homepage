@@ -1,6 +1,14 @@
 # P6-E 交付：最终发行组、可靠性与上线准备
 
-更新：2026-10-29，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
+更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
+
+## 2026-11-01 atime 与完整操作保护专项（候选待验收）
+
+已使用全新空卷隔离默认 Docker create、volume-nocopy、start、RO/RW readdir、目录/文件 O_NOATIME 和 stat。首次 atime 变化发生在默认 Docker create，维护器尚未启动；唯一切换 volume-nocopy 后同阶段无变化。RW readdir 更新根 atime，RO readdir、nocopy start、O_NOATIME 与 stat 不变。实际文件系统为 ext4、relatime。原始诊断和夹具 UID/Schema 参数失败均保留于 `P6E-atime-diagnosis*.json`，不作为正式只读矩阵失败或通过的替代。
+
+后继方案：所有源卷显式 volume-nocopy；独立 Linux 维护命令核对六个挂载均为 kernel RO，以 O_NOATIME 目录描述符遍历及哈希，记录完整 stat_t、文件 SHA 和链接；原库仍只通过有界私有副本读取。修复时只读核对视图与允许审计/unlink 的 publication 写入挂载分离。运行保护从任何源卷检查前开始，覆盖前后 metadata 和最终回调验收；持久 recovery-required 标记与互斥目录分开，不注册进程退出自动解除。任何异常保留现场，备份/更新/再次修复拒绝新任务。明确人工 review 仅可核对原 marker SHA、已退出的所属进程、原 baseline、任务/Schema/全部 SHA 后解除已知的纯检查阻塞；状态变化及未知 mutation 不自动解除。
+
+本节尚待新统一六角色及真实矩阵和完整后续链验证；不能据实现宣称通过。原9887与817失败证据及现场不改变。未连接生产、未合并main、未开启正式发布gate。
 
 ## 2026-10-29 只读阻塞收尾：部分实现，真实卷验收失败
 

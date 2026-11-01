@@ -1,100 +1,145 @@
-// Trusted offline operator CLI. This is never invoked by an HTTP endpoint.
+// Trusted offline operator CLI. Never invoked by an HTTP endpoint.
 import assert from 'node:assert/strict'
-import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { docker, localEngine, projectName, tool, volumeNames } from './v11-maintenance.mjs'
-
-const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-export function currentRepair(command, project, image, member, plan, reason) {
-  localEngine()
+import { guardedOperation, evidenceHash, reviewInspection } from './v11-operation.mjs'
+export function currentRepair(command, project, image, member, plan, reason, acceptance) {
   projectName(project)
   assert.ok(['inspect', 'apply'].includes(command), 'Use inspect or apply')
   assert.match(image ?? '', /^sha256:[0-9a-f]{64}$/)
-  const state = path.join(repository, '.v11-deploy', project)
-  fs.mkdirSync(state, { recursive: true, mode: 0o700 })
-  const lock = path.join(state, 'operation.lock')
-  assert.ok(
-    !fs.existsSync(path.join(state, 'recovery-required.json')),
-    'Resolve code-update recovery before pointer repair',
-  )
-  fs.mkdirSync(lock, { mode: 0o700 })
-  let safeToUnlock = true
-  try {
-    const containers = docker([
-      'ps',
-      '-aq',
-      '--filter',
-      `label=com.docker.compose.project=${project}`,
-    ])
-      .split(/\s+/)
-      .filter(Boolean)
-    for (const id of containers) {
-      const info = JSON.parse(
-        docker([
-          'inspect',
-          '--format',
-          '{"running":{{json .State.Running}},"service":{{json (index .Config.Labels "com.docker.compose.service")}}}',
-          id,
-        ]),
-      )
-      assert.ok(
-        !info.running || !['api', 'worker', 'api-init', 'publication-init'].includes(info.service),
-        'Stop every project API, Worker and init writer; the tool does not stop services for you',
-      )
-    }
+  return guardedOperation(project, 'current-' + command, (context) => {
+    localEngine()
     const names = volumeNames(project)
     const existing = new Set(docker(['volume', 'ls', '--format', '{{.Name}}']).split(/\s+/))
     for (const name of Object.values(names))
       assert.ok(existing.has(name), 'Refuse implicit creation of missing data volumes')
-    // Compose labels alone do not prove quiescence: another local container
-    // may have been given one of these volumes. Never stop it implicitly.
-    const running = docker(['ps', '-q']).split(/\s+/).filter(Boolean)
-    for (const id of running) {
+    for (const id of docker(['ps', '-q']).split(/\s+/).filter(Boolean)) {
       const mounts = JSON.parse(docker(['inspect', '--format', '{{json .Mounts}}', id]))
       assert.ok(
         !mounts.some((m) => Object.values(names).includes(m.Name) && m.RW),
         'A running container has writable access to this project data; stop and investigate it first',
       )
     }
+    const sourceMounts = Object.entries(names).flatMap(([role, name]) => [
+      '--mount',
+      `type=volume,src=${name},dst=/source/${role},readonly,volume-nocopy`,
+    ])
+    const before = tool(image, 'metadata-readonly', sourceMounts)
+    context.record('before', { image, inventory: before, sha256: evidenceHash(before) })
+    const mounts =
+      command === 'inspect'
+        ? sourceMounts
+        : [
+            ...sourceMounts,
+            '--mount',
+            `type=volume,src=${names.publications},dst=/mutation/publications,volume-nocopy`,
+          ]
+    let result, failure
+    try {
+      result = tool(
+        image,
+        command === 'inspect' ? 'inspect-current' : 'repair-current',
+        mounts,
+        command === 'inspect' ? [] : ['-member', member, '-plan-sha256', plan, '-reason', reason],
+      )
+    } catch (error) {
+      failure = error
+    }
+    const after = tool(image, 'metadata-readonly', sourceMounts)
+    context.record('after', { inventory: after, sha256: evidenceHash(after) })
+    if (command === 'inspect')
+      assert.deepEqual(after, before, 'Source metadata or file SHA256 changed')
+    else validateRepairDelta(before, after, member, result)
+    if (failure) throw failure
+    if (acceptance) acceptance(result, { before, after, context })
+    context.record('accepted', {
+      result,
+      beforeSHA256: evidenceHash(before),
+      afterSHA256: evidenceHash(after),
+    })
+    return result
+  })
+}
+export function reviewCurrentInspection(project, image, markerSHA256, reason) {
+  projectName(project)
+  assert.match(image ?? '', /^sha256:[0-9a-f]{64}$/)
+  return reviewInspection(project, markerSHA256, reason, (before) => {
+    assert.equal(before.image, image, 'Use the exact failed inspection image')
+    localEngine()
+    const names = volumeNames(project)
+    for (const id of docker(['ps', '-q']).split(/\s+/).filter(Boolean)) {
+      const mounts = JSON.parse(docker(['inspect', '--format', '{{json .Mounts}}', id]))
+      assert.ok(
+        !mounts.some((m) => Object.values(names).includes(m.Name) && m.RW),
+        'A source writer is still running',
+      )
+    }
+    const existing = new Set(docker(['volume', 'ls', '--format', '{{.Name}}']).split(/\s+/))
+    for (const name of Object.values(names)) assert.ok(existing.has(name), 'Source volume missing')
     const mounts = Object.entries(names).flatMap(([role, name]) => [
       '--mount',
-      `type=volume,src=${name},dst=/source/${role}${command === 'apply' && role === 'publications' ? '' : ',readonly'}`,
+      `type=volume,src=${name},dst=/source/${role},readonly,volume-nocopy`,
     ])
-    const args =
-      command === 'inspect' ? [] : ['-member', member, '-plan-sha256', plan, '-reason', reason]
-    // A failed read may mean an incoherent source, not merely an absent schema.
-    // Retain the shared guard until an operator has reviewed the original set.
-    safeToUnlock = false
-    fs.writeFileSync(
-      path.join(lock, 'inspection.json'),
-      JSON.stringify({ format: 1, project, image, command, startedAt: new Date().toISOString() }) +
-        '\n',
-      { flag: 'wx', mode: 0o600 },
+    const inventory = tool(image, 'metadata-readonly', mounts)
+    assert.deepEqual(inventory, before.inventory, 'Original metadata or bytes changed')
+    const plan = tool(image, 'inspect-current', mounts)
+    assert.deepEqual(
+      tool(image, 'metadata-readonly', mounts),
+      inventory,
+      'Review changed source metadata',
     )
-    const result = tool(
-      image,
-      command === 'inspect' ? 'inspect-current' : 'repair-current',
-      mounts,
-      args,
-    )
-    safeToUnlock = true
-    return result
-  } finally {
-    // An indeterminate mutation retains the shared host guard for operator audit.
-    if (safeToUnlock) {
-      const receipt = path.join(lock, 'inspection.json')
-      if (fs.existsSync(receipt)) fs.unlinkSync(receipt)
-      fs.rmdirSync(lock)
-    }
-  }
+    return { inventory, planSHA256: plan.sha256, state: plan.state }
+  })
 }
-
+function validateRepairDelta(before, after, member, result) {
+  assert.equal(result?.outcome, 'verified-redundant-link-removed', 'Repair result is not verified')
+  const removed = 'publications/' + member
+  const audit = 'publications/maintenance-repairs'
+  assert.match(result.id ?? '', /^repair-[0-9]+$/)
+  const additions = new Set([
+    `${audit}/${result.id}.intent.json`,
+    `${audit}/${result.id}.result.json`,
+  ])
+  const originals = new Map(before.map((f) => [f.path, f]))
+  assert.ok(originals.has(removed), 'Candidate was absent from baseline')
+  assert.ok(!after.some((f) => f.path === removed), 'Candidate still exists')
+  for (const entry of after) {
+    if (additions.has(entry.path)) {
+      assert.ok(!originals.has(entry.path), 'Repair audit overwrite')
+      continue
+    }
+    const old = originals.get(entry.path)
+    if (entry.path === audit && !old) continue
+    assert.ok(old, 'Unplanned new source member')
+    if (entry.path === 'publications' || entry.path === audit) {
+      const selected = (s) =>
+        Object.fromEntries(
+          Object.entries(s).filter(([k]) => !['Size', 'Nlink', 'Mtim', 'Ctim'].includes(k)),
+        )
+      assert.deepEqual(
+        selected(entry.stat),
+        selected(old.stat),
+        'Unexpected publication directory metadata delta',
+      )
+    } else assert.deepEqual(entry, old, 'Unrelated source metadata or SHA changed during repair')
+  }
+  for (const entry of before)
+    if (entry.path !== removed)
+      assert.ok(
+        after.some((x) => x.path === entry.path),
+        'Unplanned removed source member',
+      )
+}
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const [command, project, image, member, plan, reason] = process.argv.slice(2)
+    const [command, ...args] = process.argv.slice(2)
     console.log(
-      JSON.stringify(currentRepair(command, project, image, member, plan, reason), null, 2),
+      JSON.stringify(
+        command === 'review' ? reviewCurrentInspection(...args) : currentRepair(command, ...args),
+        null,
+        2,
+      ),
     )
   } catch (error) {
     console.error('V1.1 current repair refused:', error.message)

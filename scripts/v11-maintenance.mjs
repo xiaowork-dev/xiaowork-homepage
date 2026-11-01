@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { assertNoRecovery } from './v11-operation.mjs'
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const roles = ['db', 'uploads', 'publications', 'secrets', 'authority', 'tls']
@@ -60,8 +61,7 @@ function toolArgs(image) {
   assert.match(image, /^sha256:[a-f0-9]{64}$/)
   docker(['image', 'inspect', '--format', '{{.Id}}', image])
   return [
-    'run',
-    '--rm',
+    'create',
     '--network',
     'none',
     '--read-only',
@@ -78,12 +78,54 @@ function toolArgs(image) {
   ]
 }
 export function tool(image, command, mounts, extra = []) {
-  return JSON.parse(docker([...toolArgs(image), ...mounts, image, command, ...extra]))
+  const id = docker([...toolArgs(image), ...mounts, image, command, ...extra])
+  let accepted = false
+  try {
+    const actual = JSON.parse(docker(['inspect', '--format', '{{json .Mounts}}', id]))
+    const expected = mounts
+      .filter((_, i) => i % 2 === 1)
+      .map((value) =>
+        Object.fromEntries(
+          value.split(',').map((x) => (x.includes('=') ? x.split('=') : [x, true])),
+        ),
+      )
+    assert.equal(actual.length, expected.length, 'Unexpected maintenance mount count')
+    for (const mount of expected) {
+      const found = actual.find((m) => m.Destination === mount.dst)
+      assert.ok(found, 'Required maintenance mount absent')
+      assert.equal(found.Type, mount.type)
+      assert.equal(
+        found.RW,
+        !mount.readonly,
+        'Maintenance mount access differs from requested scope',
+      )
+      assert.equal(
+        mount.type === 'volume' ? found.Name : found.Source,
+        mount.src,
+        'Wrong source mounted',
+      )
+      if (mount.type === 'volume')
+        assert.equal(mount['volume-nocopy'], true, 'Original volume populate must be disabled')
+    }
+    const output = docker(['start', '-a', id])
+    assert.equal(
+      docker(['inspect', '--format', '{{.State.ExitCode}}', id]),
+      '0',
+      'Maintenance exited nonzero',
+    )
+    const result = JSON.parse(output)
+    accepted = true
+    return result
+  } finally {
+    // Keep failed containers for read-only inspection; never force-remove one
+    // that might still be accessing the source after a controller interruption.
+    if (accepted) docker(['rm', id])
+  }
 }
 function volumeMounts(project, root, writable) {
   return Object.entries(volumeNames(project)).flatMap(([role, name]) => [
     '--mount',
-    `type=volume,src=${name},dst=${root}/${role}${writable ? '' : ',readonly'}`,
+    `type=volume,src=${name},dst=${root}/${role},volume-nocopy${writable ? '' : ',readonly'}`,
   ])
 }
 function ownedContainers(project) {
@@ -101,7 +143,8 @@ function ownedContainers(project) {
       ),
     )
 }
-export function inspectProject(project, image) {
+export function inspectProject(project, image, lifecycleOwner) {
+  assertNoRecovery(project, lifecycleOwner)
   assert.ok(
     ownedContainers(project).every(
       (c) => !c.running || !['api', 'worker', 'api-init'].includes(c.service),
@@ -111,6 +154,7 @@ export function inspectProject(project, image) {
   return tool(image, 'inspect', volumeMounts(project, '/source', true))
 }
 export function backupProject(project, image, destination) {
+  assertNoRecovery(project)
   projectName(project)
   const absolute = path.resolve(destination)
   assert.ok(!fs.existsSync(absolute), 'Backup destination must be new')
@@ -244,6 +288,7 @@ export function verifyBackup(image, source) {
   return { ...manifest, runtime: bundle.runtime }
 }
 export function restoreProject(project, image, source) {
+  assertNoRecovery(project)
   projectName(project)
   assert.equal(ownedContainers(project).length, 0, 'Recovery target must have no containers')
   const names = volumeNames(project)

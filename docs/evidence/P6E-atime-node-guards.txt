@@ -1,0 +1,15 @@
+✔ 完整离线保护：read-failure (27.5442ms)
+✔ 完整离线保护：foreign-writer (10.1216ms)
+✔ 完整离线保护：success (18.3361ms)
+✔ 完整离线保护：outer-assertion (15.0175ms)
+✔ 完整离线保护：metadata-delta (16.9503ms)
+✔ 进程异常退出后持久标记阻断新的进程 (260.9527ms)
+✔ remote DOCKER_HOST is refused before any Docker command (2.4064ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 475.8565

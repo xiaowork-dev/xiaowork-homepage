@@ -1,0 +1,19 @@
+✔ 完整离线保护：read-failure (33.4785ms)
+✔ 完整离线保护：foreign-writer (13.2938ms)
+✔ 完整离线保护：success (22.104ms)
+✔ 完整离线保护：outer-assertion (18.3261ms)
+✔ 完整离线保护：metadata-delta (19.2894ms)
+✔ 进程异常退出后持久标记阻断新的进程 (319.4548ms)
+✔ remote DOCKER_HOST is refused before any Docker command (3.649ms)
+✔ lifecycle probe verifies real admin assets, API denial and retained artifact bytes (143.6008ms)
+✔ lifecycle probe refuses corrupted published image despite HTTP 200 (27.5234ms)
+✔ lifecycle probe refuses management fallback HTML or success for anonymous session (22.4383ms)
+✔ lifecycle probe checks SHA256 even when corrupted image byte size is unchanged (21.5001ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 590.7396

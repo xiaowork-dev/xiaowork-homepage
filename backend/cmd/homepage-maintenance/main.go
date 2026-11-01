@@ -40,6 +40,8 @@ func run() error {
 	var value any
 	var err error
 	switch os.Args[1] {
+	case "metadata-readonly":
+		value, err = maintenance.ReadOnlyMetadata(*source)
 	case "inspect":
 		value, err = maintenance.Inspect(ctx, *source)
 	case "backup":
@@ -54,7 +56,7 @@ func run() error {
 	case "inspect-current":
 		value, err = maintenance.InspectCurrentRepair(ctx, *source)
 	case "repair-current":
-		value, err = maintenance.RepairCurrent(ctx, *source, *member, *plan, *reason)
+		value, err = maintenance.RepairCurrentAt(ctx, *source, "/mutation/publications", *member, *plan, *reason)
 	case "secret-status":
 		var ready bool
 		ready, err = maintenance.SecretStatus(*source)

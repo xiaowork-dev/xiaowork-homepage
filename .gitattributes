@@ -14,3 +14,4 @@ docs/evidence/P6E-final-* -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 docs/evidence/P6E-ro-* -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab
 XiaoWork_Homepage_V1_Design_Spec.md -text
 XiaoWork_Homepage_P0_Delivery.md -text
+docs/evidence/P6E-atime-* -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof,-space-before-tab

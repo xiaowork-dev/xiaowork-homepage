@@ -3,11 +3,23 @@
 package maintenance
 
 import (
+	"errors"
 	"os"
 	"syscall"
 
 	"golang.org/x/sys/unix"
 )
+
+func requireReadOnlyMount(path string) error {
+	var stat unix.Statfs_t
+	if err := unix.Statfs(path, &stat); err != nil {
+		return err
+	}
+	if stat.Flags&unix.ST_RDONLY == 0 {
+		return errors.New("metadata inventory requires kernel read-only source mounts")
+	}
+	return nil
+}
 
 func openSourceNoAtime(path string) (*os.File, error) {
 	fd, err := unix.Open(path, unix.O_RDONLY|unix.O_NOFOLLOW|unix.O_NOATIME|unix.O_CLOEXEC, 0)
