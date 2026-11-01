@@ -1,0 +1,40 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from static.Dockerfile
+#1 transferring dockerfile: 910B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:1.30.6-alpine
+#2 DONE 0.0s
+
+#3 [internal] load build context
+#3 transferring context: 210B 0.0s done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951
+#4 resolve docker.io/library/nginx:1.30.6-alpine@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951 0.0s done
+#4 DONE 0.0s
+
+#5 [2/5] COPY --chmod=644 deploy/harden-nginx.sh /tmp/harden-nginx.sh
+#5 CACHED
+
+#6 [3/5] RUN sh /tmp/harden-nginx.sh && rm /tmp/harden-nginx.sh
+#6 CACHED
+
+#7 [4/5] COPY --chmod=644 deploy/admin-publish/static.conf /etc/nginx/nginx.conf
+#7 DONE 0.0s
+
+#8 [5/5] COPY --chmod=644 deploy/security-headers.conf /etc/nginx/security-headers.conf
+#8 DONE 0.1s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 0.2s done
+#9 exporting manifest sha256:0c2a3f615ce1662e2f59dfac9c299abf57327bceb9196c27a7c2566a14893472 0.0s done
+#9 exporting config sha256:90d93f344813ffe23b2aac07146cc1c642fdc3ffeb3d9e7b000189c84f3d41b9 0.0s done
+#9 exporting attestation manifest sha256:5a4e79a36c5025e85fa00fc63aaf6374696f49b94bc3b78143c82c3dcb941ed6 0.0s done
+#9 exporting manifest list sha256:a877deb6b30efdd9c4986e6a6a3a9b0b284aa7d88c18600843b72fb07b3872f9 0.0s done
+#9 naming to docker.io/library/xiaowork-homepage-publication-static:p6e-atime-8eeeb31eaf57
+#9 naming to docker.io/library/xiaowork-homepage-publication-static:p6e-atime-8eeeb31eaf57 done
+#9 unpacking to docker.io/library/xiaowork-homepage-publication-static:p6e-atime-8eeeb31eaf57 0.1s done
+#9 DONE 0.4s

@@ -1,6 +1,6 @@
 // Isolated real-volume/process fault controller. Never loaded by runtime images.
 import assert from 'node:assert/strict'
-import { execFileSync, spawn, spawnSync } from 'node:child_process'
+import { spawn, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -75,6 +75,8 @@ function runChild(project, mode, acceptance = '') {
   const file = path.join(cache, mode + '.mjs')
   const helper = pathToFileURL(path.resolve('scripts/v11-current-repair.mjs')).href
   let hook = ''
+  if (mode === 'marker-window')
+    hook = `const open=fs.openSync;fs.openSync=function(file,...args){if(String(file).endsWith('recovery-required.json'))process.exit(93);return open.call(this,file,...args)}`
   if (['mount', 'maintainer', 'delta'].includes(mode))
     hook = `
 import cp from 'node:child_process';import {syncBuiltinESMExports} from 'node:module';
@@ -106,10 +108,10 @@ cp.execFileSync=function(file,args,options){
   )
   return file
 }
-function blocked(project) {
+function blocked(project, markerExpected = true) {
   const state = path.resolve('.v11-deploy', project)
   assert.ok(fs.existsSync(path.join(state, 'operation.lock')))
-  assert.ok(fs.existsSync(path.join(state, 'recovery-required.json')))
+  assert.equal(fs.existsSync(path.join(state, 'recovery-required.json')), markerExpected)
   const code = `import {currentRepair} from './scripts/v11-current-repair.mjs';import {backupProject,inspectProject} from './scripts/v11-maintenance.mjs';let n=0;for(const f of [()=>currentRepair('inspect','${project}','${manifest.images.maintenance.id}'),()=>backupProject('${project}','${manifest.images.maintenance.id}','unused'),()=>inspectProject('${project}','${manifest.images.maintenance.id}')]){try{f()}catch(e){if(String(e.message).includes('Persistent '))n++}}if(n!==3)process.exit(92);console.log('BLOCKED_THREE_NEW_TASKS')`
   const next = spawnSync(process.execPath, ['--input-type=module', '--eval', code], {
     encoding: 'utf8',
@@ -124,7 +126,7 @@ function blocked(project) {
   assert.match(update.stderr, /EEXIST|recovery-required|Recovery/)
   return {
     operationLockRetained: true,
-    recoveryRequiredRetained: true,
+    recoveryRequiredRetained: markerExpected,
     newProcessMaintenanceRepairBackupBlocked: true,
     lifecycleUpdateExit: update.status,
     lifecycleUpdateError: update.stderr.trim(),
@@ -132,7 +134,15 @@ function blocked(project) {
 }
 try {
   save()
-  for (const mode of ['external-writer', 'mount', 'outer', 'wrapper', 'maintainer', 'delta']) {
+  for (const mode of [
+    'external-writer',
+    'mount',
+    'outer',
+    'wrapper',
+    'maintainer',
+    'delta',
+    'marker-window',
+  ]) {
     const project = prefix + '-' + mode
     fresh(project)
     const before = inventory(project),
@@ -192,6 +202,7 @@ try {
         outer: /TEST_ONLY_OUTER_ASSERTION/,
         maintainer: /Maintenance exited nonzero/,
         delta: /Source metadata or file SHA256 changed/,
+        'marker-window': /^$/,
       }[mode]
       assert.match(child.stderr, expected)
     }
@@ -208,7 +219,7 @@ try {
       assert.ok(after.some((f) => f.path === 'uploads/controlled-metadata-fixture'))
       row.deliberateTestOnlyMutation = true
     } else assert.deepEqual(after, before, 'Unexpected strict source metadata delta; STOP')
-    Object.assign(row, blocked(project))
+    Object.assign(row, blocked(project, mode !== 'marker-window'))
     if (['outer', 'wrapper'].includes(mode)) {
       const marker = path.resolve('.v11-deploy', project, 'recovery-required.json')
       const review = spawnSync(

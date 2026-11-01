@@ -1,0 +1,369 @@
+{
+  "date": "2026-11-01T11:03:47.962Z",
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "schema": 3,
+  "archiveSHA256": "4a767bfc545eca55b592af75441c73cd2a19ec5c28b116e0e08134a0c5ca4227",
+  "images": {
+    "api": {
+      "id": "sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001"
+    },
+    "worker": {
+      "id": "sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001"
+    },
+    "gateway": {
+      "id": "sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001"
+    },
+    "frontend": {
+      "id": "sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "nginx"
+    },
+    "static": {
+      "id": "sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001"
+    },
+    "maintenance": {
+      "id": "sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001"
+    }
+  },
+  "remoteBefore": {
+    "feature": "94d0309668d7190bc6494dc461f2c09f6d2a64f0",
+    "main": "14f9b1fba6504b1367aad6165a0b72c37e495927"
+  },
+  "commands": [
+    {
+      "command": "node scripts/p6e-atime2-build.mjs bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/p6e-atime2-readonly-matrix.mjs docs/evidence/P6E-atime2-runtime-manifest.json",
+      "exitCode": 0,
+      "cases": 14,
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/p6e-atime2-guards.mjs",
+      "exitCode": 0,
+      "cases": 7,
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/p6e-atime2-acceptance.mjs fault baseline",
+      "exitCode": 0,
+      "note": "test-only derived API/Worker"
+    },
+    {
+      "command": "node scripts/p6e-atime2-acceptance.mjs fault before-switch",
+      "exitCode": 0,
+      "note": "test-only derived API/Worker"
+    },
+    {
+      "command": "node scripts/p6e-atime2-chain.mjs",
+      "exitCode": 1,
+      "result": "FAIL",
+      "stoppedAt": "backup role image identity validation; no downstream restore/update/rollback executed"
+    },
+    {
+      "command": "node scripts/p6e-atime2-control-restart.mjs",
+      "exitCode": 1,
+      "result": "fixture failed to collect stderr; original evidence preserved; supplemental logs show guard refusal, before-after marker hash NOT_VERIFIED"
+    },
+    {
+      "command": "node scripts/p6e-atime2-retain.mjs",
+      "exitCode": 0,
+      "note": "read-only evidence review and explicit control-only manual containment"
+    },
+    {
+      "command": "docker build --progress plain --build-arg REVIEW_SOURCE=bb05f6ad613fdf3507ff8a9c56696da85fa4a678 -f .cache/p6e-atime/Test2.Dockerfile -t xiaowork-homepage-go-check:p6e-atime2 <exact sourceExport>",
+      "exitCode": 0,
+      "tests": "Linux go test ./... and go vet ./..., network disabled for tests"
+    },
+    {
+      "command": "node --test scripts/v11-current-repair.test.mjs scripts/v11-maintenance.test.mjs scripts/v11-release-probe.test.mjs",
+      "exitCode": 0,
+      "tests": 12
+    },
+    {
+      "command": "npx eslint <changed source and test controllers>",
+      "exitCode": 0
+    },
+    {
+      "command": "npx prettier --check <changed source and documentation>",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/p6e-atime2-repository-secret-scan.mjs",
+      "exitCode": 1,
+      "result": "18 redacted generic-api-key findings preserved"
+    },
+    {
+      "command": "node scripts/p6e-atime2-secret-review.mjs",
+      "exitCode": 0,
+      "result": "exact public image ID/tag matches; original scan unchanged"
+    }
+  ],
+  "priorLintFailure": {
+    "exitCode": 1,
+    "kind": "unused execFileSync import in two test controllers",
+    "evidence": "Codex tool command/wait transcript; no standalone original raw log was captured",
+    "fix": "Removed unused imports only; runtime source unchanged after bb05 freeze"
+  },
+  "dataOperationsAfterFailure": "No backup/restore/update/rollback/apply; only read-only diagnosis and explicit host control marker writes",
+  "productionAccess": false,
+  "mainMerged": false,
+  "productionGateEnabled": false,
+  "fullFormalRuntimeChain": "NOT_PASSED",
+  "hostRebootPowerLoss": "NOT_RUN",
+  "currentVerdict": "P6-E PARTIAL, NOT_READY_FOR_PRODUCTION",
+  "proof": [
+    {
+      "file": "P6E-atime2-build-api.txt",
+      "bytes": 2131,
+      "sha256": "22c86a954db9b41addaa7bbfbcc5a74a4ac329f0c3db8fc93bd55df125addcc2"
+    },
+    {
+      "file": "P6E-atime2-build-command.txt",
+      "bytes": 7978,
+      "sha256": "11e5d89ec3d6dd3f44ecf143ad53f023d0ece96d684c785968fbb6c4fbda60f2"
+    },
+    {
+      "file": "P6E-atime2-build-frontend.txt",
+      "bytes": 8869,
+      "sha256": "7f5871be2cccf99054c1380dd0b2b8620bcbba8a0666f7248dd99713ad54e011"
+    },
+    {
+      "file": "P6E-atime2-build-gateway.txt",
+      "bytes": 5758,
+      "sha256": "57300f2bbe2301e64e92dab2879cb216077388a35539e0d477638865a444314d"
+    },
+    {
+      "file": "P6E-atime2-build-maintenance.txt",
+      "bytes": 2432,
+      "sha256": "abef02304a1a2cfff9db5f15096b0a7c1bc004416c598c629dd285e6ba2ac8f7"
+    },
+    {
+      "file": "P6E-atime2-build-static.txt",
+      "bytes": 1903,
+      "sha256": "a7ee62bf2a1e37510b0088c544353c5f0eaf62c00bed6f6467d3b71b3e81845e"
+    },
+    {
+      "file": "P6E-atime2-build-worker.txt",
+      "bytes": 3417,
+      "sha256": "a948ee5246b96e241d5495b368aeaa4c59c4dd4b9fa15fb3fbaa5c310706b405"
+    },
+    {
+      "file": "P6E-atime2-chain-command.txt",
+      "bytes": 3778,
+      "sha256": "503e443cc495af78f3d8885221711c343546869a2e9a62905fb211c2c2e5f374"
+    },
+    {
+      "file": "P6E-atime2-chain-retention.json",
+      "bytes": 8310,
+      "sha256": "ed8c212ad486d17fa81f91961dd21283b262bd06595d2ec103c7f29f17c2832e"
+    },
+    {
+      "file": "P6E-atime2-control-restart-command.txt",
+      "bytes": 33,
+      "sha256": "c0e314696e5eacf4181f9c3a9cdfe92f9d129f1dbaa328485bb49710b35635be"
+    },
+    {
+      "file": "P6E-atime2-control-restart-review.json",
+      "bytes": 1506,
+      "sha256": "d24803b28a3d828271e6bd6c4e2b9b8cde387f24b9fb85aac108ce8ffedc51f3"
+    },
+    {
+      "file": "P6E-atime2-control-restart.json",
+      "bytes": 529,
+      "sha256": "d97002909e4b35fc980db9884de6b39c57d6723d7c1b1ed2f2440e5bd5e3596f"
+    },
+    {
+      "file": "P6E-atime2-current-repair.json",
+      "bytes": 5580,
+      "sha256": "e783e2a44cd9a43855686d54c230f4cdbd566587d9e6dc3271daef19a9cff75c"
+    },
+    {
+      "file": "P6E-atime2-eslint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "P6E-atime2-fault-baseline-command.txt",
+      "bytes": 7126,
+      "sha256": "83484d63fbabd4b540ba67ac8dfa7951c7caf01e916a529feb07faaaae6fdbf0"
+    },
+    {
+      "file": "P6E-atime2-fault-before-switch-command.txt",
+      "bytes": 4125,
+      "sha256": "428ee1325421efc24adc43967c66a8f5782aef24baedb8264031f3e4302c666f"
+    },
+    {
+      "file": "P6E-atime2-faults-baseline.json",
+      "bytes": 14028,
+      "sha256": "8a93caa1c32100021322839170fd9a081d30629e71420308666f02f45d2897e4"
+    },
+    {
+      "file": "P6E-atime2-faults-before-switch-recovered-after-boundary.png",
+      "bytes": 324836,
+      "sha256": "4d49644db0183f46b26da8c268ad5989ccd9570d527b624e8bf7648638bb323a"
+    },
+    {
+      "file": "P6E-atime2-faults-before-switch.json",
+      "bytes": 21225,
+      "sha256": "823162d0cce84b862bbc8c7e7fb161cd471255260a55a91a8ac89962cd88ce52"
+    },
+    {
+      "file": "P6E-atime2-final-eslint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "P6E-atime2-final-format.txt",
+      "bytes": 68,
+      "sha256": "f20510a9da4717c51c4cffee6d0dd88d6c9a723d0a83711d01216f5b48961283"
+    },
+    {
+      "file": "P6E-atime2-final-node.txt",
+      "bytes": 984,
+      "sha256": "8c6b7936deb6c0b46cc96baa920ac766c2003bdd571b58ca2b162d2868da1128"
+    },
+    {
+      "file": "P6E-atime2-final-review-eslint.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "P6E-atime2-govuln-api-binary.txt",
+      "bytes": 1695,
+      "sha256": "ac13058eac45662073ed3f0f5ef25af9301dd4eed033e03fcc55921744f009ec"
+    },
+    {
+      "file": "P6E-atime2-govuln-linux-source.txt",
+      "bytes": 1505,
+      "sha256": "3a9aea38ed93669b2140b311a2d895c84ce346f478a1ddc0496fe386cd9cafa6"
+    },
+    {
+      "file": "P6E-atime2-govuln-maintenance-binary.txt",
+      "bytes": 1638,
+      "sha256": "b71234691e8ea91ac842252c77dbfdbf7b33d6e1c47ab31d7345f1ab38c45f0f"
+    },
+    {
+      "file": "P6E-atime2-govuln-worker-binary.txt",
+      "bytes": 451,
+      "sha256": "9e37416947a0d461a234770a382ac8424c20669b4c07e67429280c8fc6e52d66"
+    },
+    {
+      "file": "P6E-atime2-guard-unit.txt",
+      "bytes": 605,
+      "sha256": "943402f6abdb1bc952ac65c8c5b196015fc05b9596fc256b0e547aec26a051f6"
+    },
+    {
+      "file": "P6E-atime2-image-api.sarif.json",
+      "bytes": 2964,
+      "sha256": "1854247c794e4e27c8721bc3055369fa27ae769935e15778c2dac736f0c9a596"
+    },
+    {
+      "file": "P6E-atime2-image-frontend.sarif.json",
+      "bytes": 3581,
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6"
+    },
+    {
+      "file": "P6E-atime2-image-gateway.sarif.json",
+      "bytes": 3581,
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6"
+    },
+    {
+      "file": "P6E-atime2-image-maintenance.sarif.json",
+      "bytes": 2972,
+      "sha256": "8626b30534e40c7d21077aea99278c4e9df0abbae47354501e6b966970937188"
+    },
+    {
+      "file": "P6E-atime2-image-static.sarif.json",
+      "bytes": 3581,
+      "sha256": "419cc51c83c55ac0f4d1835d6ea24d6ec3b03abe885f12c9f906e321554234c6"
+    },
+    {
+      "file": "P6E-atime2-image-worker.sarif.json",
+      "bytes": 56654,
+      "sha256": "1255a1ec0adc0fed6752e2e379bb6d27e4435fe5b308644cf4a35fa91f232d07"
+    },
+    {
+      "file": "P6E-atime2-linux-tests.txt",
+      "bytes": 3685,
+      "sha256": "c525bf29ce27918875f71b20dd314f6a872da7f5f8553788a3c8b40c628e08f1"
+    },
+    {
+      "file": "P6E-atime2-readonly-command.txt",
+      "bytes": 456,
+      "sha256": "cf53b27de89e64b6f4677e763334642be0140d731c20f31c05ab3d657f801711"
+    },
+    {
+      "file": "P6E-atime2-readonly-matrix.json",
+      "bytes": 26083,
+      "sha256": "7d41560f0ca4baa62d72e5f5cd570212e4c7873ef8f364f479dcf361e06efbd2"
+    },
+    {
+      "file": "P6E-atime2-real-guards-command.txt",
+      "bytes": 186,
+      "sha256": "a4e6c7ec2112348db7d4eb2015fabdb3653e73b0de24d6e8d8d252ef59fb8c46"
+    },
+    {
+      "file": "P6E-atime2-real-guards.json",
+      "bytes": 7677,
+      "sha256": "87734640dc2a3794765c829bda4babc8fd1c71582d147fc68689c25bcc60e999"
+    },
+    {
+      "file": "P6E-atime2-repair-metadata-review.json",
+      "bytes": 279974,
+      "sha256": "d13b6004ade4743ed87c47ebd0baaeb7c99399632d84f29b1aabdfe1a5eb4322"
+    },
+    {
+      "file": "P6E-atime2-repository-secret-review.json",
+      "bytes": 4770,
+      "sha256": "5b44644e990bca251afabceff2dba44a7b64dbc2f2afa7577694ba335b84eef8"
+    },
+    {
+      "file": "P6E-atime2-repository-secret-scan-command.txt",
+      "bytes": 63,
+      "sha256": "813488fe660c675586c3dbdaedecb5e5d11e995924fed0dbbb20ece9f9185bd5"
+    },
+    {
+      "file": "P6E-atime2-repository-secret-scan.json",
+      "bytes": 6600,
+      "sha256": "f884919a87418c6948cecadc4820681fec71c007fe9f1df74a51a34d014df089"
+    },
+    {
+      "file": "P6E-atime2-retention-command.txt",
+      "bytes": 105,
+      "sha256": "590cf2053fd121d4af0d3816b4956c123f851f45d6a85e2c6a3c7c9004772065"
+    },
+    {
+      "file": "P6E-atime2-runtime-manifest.json",
+      "bytes": 7876,
+      "sha256": "66f8b9706e0129b30e559172827a951a19fb4494bbf11a4447d5445129c0131c"
+    },
+    {
+      "file": "P6E-atime2-secret-review-command.txt",
+      "bytes": 70,
+      "sha256": "b93c1d6e882e3f64e1b18713c915ad07dffb2b8a0415b98fc2d277faadb97a62"
+    },
+    {
+      "file": "P6E-atime2-security-audit.json",
+      "bytes": 13279,
+      "sha256": "f7d8b8f5274fe979367dc78190cff398812b6872c7b96e9ccd453b65cf0a24a7"
+    },
+    {
+      "file": "P6E-atime2-security-command.txt",
+      "bytes": 766,
+      "sha256": "656196787acc29e24a573458d29c2711190231ea2faa88adfff8f9b5cfbcccda"
+    }
+  ]
+}

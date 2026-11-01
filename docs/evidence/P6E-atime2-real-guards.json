@@ -1,0 +1,120 @@
+{
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "date": "2026-11-01T10:36:06.601Z",
+  "cases": [
+    {
+      "case": "external-writer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-external-writer",
+      "result": "PASS",
+      "beforeSHA256": "83e4cb15c65f80939d8f5490bc57e8416720aa41d39b38a002075970eb04b482",
+      "exitCode": 1,
+      "stderr": "A running container has writable access to this project data; stop and investigate it first",
+      "afterSHA256": "83e4cb15c65f80939d8f5490bc57e8416720aa41d39b38a002075970eb04b482",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-external-writer\\operation.lock'"
+    },
+    {
+      "case": "mount",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-mount",
+      "result": "PASS",
+      "beforeSHA256": "ef1a651e311e54f1ca5687a01e73c18e3845ba873e07ffb9a3eea56a20b02b65",
+      "exitCode": 1,
+      "stderr": "Maintenance mount access differs from requested scope\n\ntrue !== false",
+      "afterSHA256": "ef1a651e311e54f1ca5687a01e73c18e3845ba873e07ffb9a3eea56a20b02b65",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-mount\\operation.lock'"
+    },
+    {
+      "case": "outer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-outer",
+      "result": "PASS",
+      "beforeSHA256": "0be32a6f70555af3487ae6c5c68b0cd3000623675529c5c3fcde7bdc7108436e",
+      "exitCode": 1,
+      "stderr": "TEST_ONLY_OUTER_ASSERTION",
+      "afterSHA256": "0be32a6f70555af3487ae6c5c68b0cd3000623675529c5c3fcde7bdc7108436e",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-outer\\operation.lock'",
+      "manualReviewExit": 0,
+      "manualReviewError": "",
+      "explicitReviewedRecoveryAndRepeatPassed": true
+    },
+    {
+      "case": "wrapper",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-wrapper",
+      "result": "PASS",
+      "beforeSHA256": "b28b9921c8c7cd8028e2a168e46e81a9f9688e1e470018cdc29d5673aaa723d6",
+      "childExit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "stderr": "",
+      "afterSHA256": "b28b9921c8c7cd8028e2a168e46e81a9f9688e1e470018cdc29d5673aaa723d6",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-wrapper\\operation.lock'",
+      "manualReviewExit": 0,
+      "manualReviewError": "",
+      "explicitReviewedRecoveryAndRepeatPassed": true
+    },
+    {
+      "case": "maintainer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-maintainer",
+      "result": "PASS",
+      "beforeSHA256": "8d49ac31f547f65e904d6031cf65e3b4de122c1ece7607bb5514943e74a4fae0",
+      "exitCode": 1,
+      "stderr": "Maintenance exited nonzero\n\n'137' !== '0'",
+      "afterSHA256": "8d49ac31f547f65e904d6031cf65e3b4de122c1ece7607bb5514943e74a4fae0",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-maintainer\\operation.lock'"
+    },
+    {
+      "case": "delta",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-delta",
+      "result": "PASS",
+      "beforeSHA256": "404ac826efc6bb0c2c374afe5fa4269fbb0c1fb2632b845bcf642780d08db2cc",
+      "exitCode": 1,
+      "stderr": "Source metadata or file SHA256 changed\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      path: 'authority',\n      stat: {\n        Atim: {\n...\n        Ctim: {\n+         Nsec: 244022207,\n+         Sec: 1793529522\n-         Nsec: 296700770,\n-         Sec: 1793529510\n        },\n        Dev: 2096,\n        Gid: 10001,\n        Ino: 237590,\n        Mode: 16877,\n        Mtim: {\n+         Nsec: 244022207,\n+         Sec: 1793529522\n-         Nsec: 296632376,\n-         Sec: 1793529510\n        },\n        Nlink: 4,\n        Rdev: 0,\n        Size: 4096,\n        Uid: 10001,\n...\n    {\n+     path: 'uploads/controlled-metadata-fixture',\n+     sha256: '4f7ed8801fe094e5588a5dddc78366558e3d6d92464cf4847307eea30f9e4366',\n+     stat: {\n+       Atim: {\n+         Nsec: 244022207,\n+         Sec: 1793529522\n+       },\n+       Blksize: 4096,\n+       Blocks: 8,\n+       Ctim: {\n+         Nsec: 244022207,\n+         Sec: 1793529522\n+       },\n+       Dev: 2096,\n+       Gid: 10001,\n+       Ino: 238607,\n+       Mode: 33188,\n+       Mtim: {\n+         Nsec: 244022207,\n+         Sec: 1793529522\n+       },\n+       Nlink: 1,\n+       Rdev: 0,\n+       Size: 18,\n+       Uid: 10001,\n+       X__pad0: 0,\n+       X__unused: [\n+         0,\n+         0,\n+         0\n+       ]\n+     }\n+   },\n+   {\n      path: 'uploads/derived',\n      stat: {\n        Atim: {\n          Nsec: 296700770,\n          Sec: 1793529510",
+      "afterSHA256": "59e0560628ff5a41d19b4901e2551f57ea12be58a7ecc82b20c396f63091908a",
+      "deliberateTestOnlyMutation": true,
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-delta\\operation.lock'",
+      "changedSourceReviewRefused": true
+    },
+    {
+      "case": "marker-window",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxp2s7c-marker-window",
+      "result": "PASS",
+      "beforeSHA256": "ec4d919acbe58dcb6733c22276ee786f111aa13af2082c55165ee1a4bb7247c3",
+      "exitCode": 93,
+      "stderr": "",
+      "afterSHA256": "ec4d919acbe58dcb6733c22276ee786f111aa13af2082c55165ee1a4bb7247c3",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": false,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxp2s7c-marker-window\\operation.lock'"
+    }
+  ],
+  "result": "PASS",
+  "limitations": [
+    "Fresh process recovery tested; host OS/Docker daemon reboot and physical power loss NOT_RUN. Windows directory fsync unavailable; no claim of tested power-loss durability.",
+    "Intentional metadata mutation is confined to its new dedicated fault volume; no unexpected source delta is accepted."
+  ]
+}

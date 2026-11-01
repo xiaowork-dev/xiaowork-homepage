@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-01T10:46:06.534Z",
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "originalFailurePreserved": true,
+  "fixtureError": "docker logs writes the Node assertion stack to stderr; the old collector only captured stdout.",
+  "firstExit": 31,
+  "restartExit": 1,
+  "logs": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock\n    at assertNoRecovery (file:///workspace/scripts/v11-operation.mjs:29:12)\n    at guardedOperation (file:///workspace/scripts/v11-operation.mjs:67:3)\n    at file:///work/[eval1]:1:71\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:223:26\n    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:220:20)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v24.22.1\n",
+  "observedResult": "Controller restart was refused by the persistent operation.lock before any new data operation",
+  "markerPresent": true,
+  "markerSHA256": "5d8546800ea38f9e9d6bc3f914914446271a7b74550828a6f38b8cf6b60eda3e",
+  "exactBeforeAfterMarkerHash": "NOT_VERIFIED; original collector failed before recording its baseline hash",
+  "hostOSAndDaemonRestart": "NOT_RUN"
+}

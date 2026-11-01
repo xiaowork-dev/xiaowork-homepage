@@ -1,0 +1,10 @@
+PASS real guard external-writer
+PASS real guard mount
+PASS real guard outer
+PASS real guard wrapper
+The input did not match the regular expression /Maintenance exited nonzero/. Input:
+
+'Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error setting cgroup config for procHooks process: failed to write "100 100000": write /sys/fs/cgroup/docker/0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284/cpu.max: invalid argument\n' +
+  'failed to start containers: 0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284\n' +
+  '\n'
+

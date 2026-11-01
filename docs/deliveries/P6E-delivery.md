@@ -2,13 +2,46 @@
 
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
-## 2026-11-01 atime 与完整操作保护专项（候选待验收）
+## 2026-11-01 atime 与完整操作保护专项：两项专项通过，后续链阻塞
 
 已使用全新空卷隔离默认 Docker create、volume-nocopy、start、RO/RW readdir、目录/文件 O_NOATIME 和 stat。首次 atime 变化发生在默认 Docker create，维护器尚未启动；唯一切换 volume-nocopy 后同阶段无变化。RW readdir 更新根 atime，RO readdir、nocopy start、O_NOATIME 与 stat 不变。实际文件系统为 ext4、relatime。原始诊断和夹具 UID/Schema 参数失败均保留于 `P6E-atime-diagnosis*.json`，不作为正式只读矩阵失败或通过的替代。
 
 后继方案：所有源卷显式 volume-nocopy；独立 Linux 维护命令核对六个挂载均为 kernel RO，以 O_NOATIME 目录描述符遍历及哈希，记录完整 stat_t、文件 SHA 和链接；原库仍只通过有界私有副本读取。修复时只读核对视图与允许审计/unlink 的 publication 写入挂载分离。运行保护从任何源卷检查前开始，覆盖前后 metadata 和最终回调验收；持久 recovery-required 标记与互斥目录分开，不注册进程退出自动解除。任何异常保留现场，备份/更新/再次修复拒绝新任务。明确人工 review 仅可核对原 marker SHA、已退出的所属进程、原 baseline、任务/Schema/全部 SHA 后解除已知的纯检查阻塞；状态变化及未知 mutation 不自动解除。
 
-8ee候选已完成14项真实只读卷矩阵：所有前后元数据及SHA保持一致；真实外部RW写入者、挂载范围、外层断言失败与wrapper强杀保护已通过。维护器退出夹具设置0.001 CPU被cgroup拒绝，原失败保留，尚不能计为真实维护器退出通过。审查进一步补齐“仅存在operation.lock、标记尚未写入”的拒绝窗口；受信生命周期只能凭当前进程内取得的owner能力继续自己的备份核对，新进程不能继承此能力。该运行脚本变更需要再次冻结并重建六角色，后继候选的矩阵与完整链尚待验证，不能据8ee结果冒称后继通过。原9887与817失败证据及现场不改变。未连接生产、未合并main、未开启正式发布gate。
+最终候选运行源码为 **`bb05f6ad613fdf3507ff8a9c56696da85fa4a678`**，Schema3。选择理由：同时包含目录/文件 O_NOATIME、nocopy、完整内层元数据验收、持久化 recovery-required 和 marker 写入前锁窗口保护。六正式角色从同一 Git archive 重新构建；归档 SHA256 为 `4a767bfc545eca55b592af75441c73cd2a19ec5c28b116e0e08134a0c5ca4227`，完整镜像 ID、基础镜像、参数和逐角色日志见 [最终候选清单](../evidence/P6E-atime2-runtime-manifest.json)。后继仅改测试控制器、文档和证据，运行镜像仍是 bb05，不混用817/9887/8ee组。尚未完成该组正式镜像完整运行链，不能把构建成功写成发行验收成功。
+
+| 本轮实测                                        | 结果及证据                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 真实只读卷矩阵                                  | **14/14 PASS**：stable、已提交有效WAL、WAL无SHM、只读目录4项检查成功；未提交/截断/损坏WAL、不可读/缺失/损坏主库、Schema版本/校验和异常、孤立SHM、journal10项正确拒绝。全部文件SHA、完整目录/文件元数据前后不变。两次stable计划一致；已提交WAL的revision增加7被正确读取。[矩阵](../evidence/P6E-atime2-readonly-matrix.json) |
+| 历史原卷保护                                    | 原817故障源只作RO复制，原卷完整清单聚合SHA前后均 `ec37411f8e8b5a7e7f884a1cea15491f71a70736fdd42a978703231ce738b6c7`。未重设atime，未删除原候选/原锁。                                                                                                                                                                       |
+| 真实锁故障                                      | **7/7 PASS**：外部RW写者、实际挂载范围错、外层acceptance断言失败、wrapper SIGKILL、实际维护器SIGKILL、测试专属元数据变化、marker写入前进程退出。检查/备份/修复及update新请求均拒绝。仅已退出且完整baseline一致的纯检查可显式review后重复成功；变化状态review拒绝。[真实锁矩阵](../evidence/P6E-atime2-real-guards.json)     |
+| 控制服务重启                                    | 测试容器首次exit31，restart后exit1，stderr证明被持久锁拒绝。首次收集器只读stdout而失败，失败报告保留；[补充只读复核](../evidence/P6E-atime2-control-restart-review.json)不冒称已测marker前后字节一致。宿主OS/Docker引擎重启和断电 **NOT_RUN**；Windows Node不能目录fsync。                                                  |
+| 单对象修复                                      | 新候选专属真实Nuxt切换前退出任务已终结。精确计划→一次unlink→intent/result→全部SHA/业务/活动HTTP核对通过。六根目录Atim相同；仅删除候选、新建审计目录/两文件，以及publication根的预期Nlink/mtime/ctime变化。[完整前后清单](../evidence/P6E-atime2-repair-metadata-review.json)                                                |
+| 修复后完整备份                                  | **REFUSED，链停止**。故障API为派生测试镜像，api-init为正式API；控制器用一个API角色记录两者，备份身份检查正确拒绝。此前assert.throws未限定原因，不能算“因current.next拒绝备份”的通过证据。[原失败](../evidence/P6E-atime2-current-repair.json)、[只读归因与留场](../evidence/P6E-atime2-chain-retention.json)                |
+| 空卷恢复、更新/代码回退、内容恢复、再次备份恢复 | **NOT_RUN**。按任一环失败即停止的门槛，未续跑下游，未重试apply。链控制器的下游代码只是准备，不能当测试结果。                                                                                                                                                                                                                |
+| 正常/关键故障回归                               | 新组派生测试角色实际Nuxt正常基线、切换前Worker退出、可信HTTPS与真实Chromium通过，保存 `P6E-atime2-faults-baseline.json`、`P6E-atime2-faults-before-switch.json`。这不是六个正式角色完整运行/浏览器矩阵。                                                                                                                    |
+| 质量与安全                                      | 精确导出源码Linux Go全包/go vet退出0，Node锁专项8项通过；六正式镜像完成Scout和源码/模块复核，0 critical/high/medium，low/未定级保留。[扫描](../evidence/P6E-atime2-security-audit.json)、`P6E-atime2-linux-tests.txt`。最终样式/秘密扫描结果见下方本轮证据。                                                                |
+
+**已安全停止，P6-E 仍为部分完成，不具备正式上线条件。** 备份失败发生于成功修复之后的独立步骤，该测试控制器没有整链自动guard；已明确人工在新测试项目控制目录补建 `backup-chain-manual-containment` 锁和标记，验证新备份拒绝，不能写成整链自动恢复。源API/Worker/init保持停止，六公开HTTP/SEO响应与修复前相同，所有卷/镜像/审计保留。后续先修正隔离夹具的完整正式角色身份，在全新专属测试数据上重新验收完整链；不能改写已有描述符或删锁强行续跑。生产策略、运维、异地备份和风险确认门槛也未解除。
+
+实际命令（完整参数/退出码见各命令日志及机器报告）：
+
+```powershell
+node scripts/p6e-atime-probe.mjs
+node scripts/p6e-atime2-build.mjs bb05f6ad613fdf3507ff8a9c56696da85fa4a678
+node scripts/p6e-atime2-readonly-matrix.mjs docs/evidence/P6E-atime2-runtime-manifest.json
+node scripts/p6e-atime2-guards.mjs
+node scripts/p6e-atime2-acceptance.mjs fault baseline
+node scripts/p6e-atime2-acceptance.mjs fault before-switch
+node scripts/p6e-atime2-chain.mjs
+node scripts/p6e-atime2-retain.mjs
+```
+
+原8ee中间候选矩阵14项通过、旧root权限/夹具Schema/owner错误、0.001CPU配额错误、旧9887 atime失败和817 SQLite14失败全部保留。8ee运行源码为 `8eeeb31eaf57e579e48b747efaee31f2745f2d80`；其后发现无marker锁窗口，补齐后才冻结bb05并重新构建/验证，未用8ee成绩替代bb05。bb05源码里测试控制器unused import的ESLint首次失败保留为执行记录，冻结后仅删测试控制器无用import再查，不冒称正式镜像源码变化。
+
+本轮核心修改：`backend/internal/maintenance/{metadata.go,metadata_linux_test.go,readonly_linux.go,readonly_other.go,current_repair.go}`、`backend/cmd/homepage-maintenance/main.go`、`scripts/v11-{operation,current-repair,maintenance,release}.mjs`及锁测试；测试专属 `scripts/p6e-atime*.mjs`、原始机器证据、现有交付/进度/发行/只读修复/备份/生产检查文档。Git起点为用户给定 `94d0309668d7190bc6494dc461f2c09f6d2a64f0`，最终文档提交/推送以交付后的Git实查及最终回复为准，main基线保持 `14f9b1fba6504b1367aad6165a0b72c37e495927`。未连接生产、未合并main、未开启正式发布gate。
+
+最终ESLint与12项Node锁/真实HTTP探针退出0，见 `P6E-atime2-final-eslint.txt`、`P6E-atime2-final-node.txt`。提交前gitleaks扫描1005个非忽略文件，原exit1及18条命中保留；逐项以扫描字节、受审manifest镜像ID和公开本地tag精确重建，全部为镜像ID/tag误报，不排除路径/不抑制规则。[原扫描](../evidence/P6E-atime2-repository-secret-scan.json)、[精确复核](../evidence/P6E-atime2-repository-secret-review.json)。该结论不等于未知秘密不存在，后续新增的静态中文说明/复核控制器由差异审查覆盖。
 
 ## 2026-10-29 只读阻塞收尾：部分实现，真实卷验收失败
 

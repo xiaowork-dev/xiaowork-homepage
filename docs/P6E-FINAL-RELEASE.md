@@ -1,6 +1,25 @@
 # P6-E 最终六角色发行身份
 
-更新：2026-10-29。当前统一候选运行源码为 **`9887f6d456c5cdde79ec0689480684f905b7db2a`**，Schema **3**、manifest **1**。六角色已从该完整源码重新构建并完成镜像安全扫描，但**尚未通过整体验收，不具备正式发布条件**。完整六个镜像 ID、构建参数、源码归档 SHA256、基础镜像与 Schema 核对见 [本轮候选机器清单](evidence/P6E-ro-runtime-manifest.json)。没有把 817 组或后继单镜像混成新发行组；固定 builder identity 应使用本轮清单中的 Worker 精确镜像 ID。
+更新：2026-11-01。当前最终候选运行源码为 **`bb05f6ad613fdf3507ff8a9c56696da85fa4a678`**，Schema **3**、manifest **1**。六正式角色均从同一Git archive构建，归档SHA256为`4a767bfc545eca55b592af75441c73cd2a19ec5c28b116e0e08134a0c5ca4227`。选择该SHA是因为它包含atime保护、完整元数据验收与持久锁的marker早期窗口修复；此后仅文档/证据/测试控制器变动。仍未通过修复后完整备份恢复链，**不能正式发布**。
+
+| 角色               | 最终候选镜像 ID                                                           |
+| ------------------ | ------------------------------------------------------------------------- |
+| API                | `sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d` |
+| Worker             | `sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190` |
+| gateway            | `sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d` |
+| legacy frontend    | `sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa` |
+| publication-static | `sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949` |
+| maintenance        | `sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934` |
+
+基础镜像digest/ID、实际构建参数、平台linux/amd64、正式生成origin及Schema验证见[完整机器清单](evidence/P6E-atime2-runtime-manifest.json)。实际正式builder identity应为上述Worker完整ID；本轮故障任务使用独立测试派生Worker，其ID在任务证据另记，不能称正式Worker任务通过。故障入口只存在测试派生镜像，不属于此六角色。
+
+最终候选14项真实RO卷、7项真实锁故障、Linux Go全包/vet、镜像扫描及单对象修复已通过；仅计划内链接删除/审计增加改变publication父目录，六根atime/主库/无关文件保持。随后备份正确拒绝故障API与api-init描述符身份不一致，整链停止，下游恢复/跨源码更新回退/内容恢复/再次备份均NOT_RUN。[交付](deliveries/P6E-delivery.md)、[元数据](evidence/P6E-atime2-repair-metadata-review.json)、[失败留场](evidence/P6E-atime2-chain-retention.json)。不能把旧组通过项记到此候选。
+
+真实新组安全扫描0critical/high/medium，deepmerge low及musl/Go模块未定级告警保留：[精确镜像复核](evidence/P6E-atime2-security-audit.json)。没有放宽TLS/CSRF/Cookie，未访问生产、未合并main、正式gate关闭。宿主重启/断电、完整新正式组运行链等未验收，不具备上线条件。
+
+## 9887历史候选（以下原始失败保留）
+
+2026-10-29 的统一候选运行源码为 **`9887f6d456c5cdde79ec0689480684f905b7db2a`**，Schema **3**、manifest **1**。六角色已从该完整源码重新构建并完成镜像安全扫描，但**尚未通过整体验收，不具备正式发布条件**。完整六个镜像 ID、构建参数、源码归档 SHA256、基础镜像与 Schema 核对见 [当时候选机器清单](evidence/P6E-ro-runtime-manifest.json)。没有把 817 组或后继单镜像混成新发行组；固定 builder identity 应使用该清单中的 Worker 精确镜像 ID。
 
 选择该候选是因为它包含只读 SQLite 受控副本视图、WAL 完整性检查、错误分类和失败留锁等运行修复。后续控制器及文档提交不冒称运行镜像源码已经变化。新组的 Scout/source/binary 实测见 [安全复核](evidence/P6E-ro-security-audit.json)：六角色 0 critical/high/medium，deepmerge low、musl 与 Go 模块未定级告警保留；这不是整个系统零风险或生产放行的结论。
 

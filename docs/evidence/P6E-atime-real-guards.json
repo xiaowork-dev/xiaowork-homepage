@@ -1,0 +1,81 @@
+{
+  "source": "8eeeb31eaf57e579e48b747efaee31f2745f2d80",
+  "date": "2026-11-01T10:21:07.403Z",
+  "cases": [
+    {
+      "case": "external-writer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxojidl-external-writer",
+      "result": "PASS",
+      "beforeSHA256": "004b5ab1e0ee602e80c71955bf3b384309c9d0e0a5b4b034d3ef1ace6e8879e0",
+      "exitCode": 1,
+      "stderr": "A running container has writable access to this project data; stop and investigate it first",
+      "afterSHA256": "004b5ab1e0ee602e80c71955bf3b384309c9d0e0a5b4b034d3ef1ace6e8879e0",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxojidl-external-writer\\operation.lock'"
+    },
+    {
+      "case": "mount",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxojidl-mount",
+      "result": "PASS",
+      "beforeSHA256": "9eaae9412a8fc43c7a37230360eb360649947cedd7471bda2ebf25b24783c680",
+      "exitCode": 1,
+      "stderr": "Maintenance mount access differs from requested scope\n\ntrue !== false",
+      "afterSHA256": "9eaae9412a8fc43c7a37230360eb360649947cedd7471bda2ebf25b24783c680",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxojidl-mount\\operation.lock'"
+    },
+    {
+      "case": "outer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxojidl-outer",
+      "result": "PASS",
+      "beforeSHA256": "92a2b42ce2d4315e868c02c51715e7b4fd2a675d6f80da3f2a045ba4056d6946",
+      "exitCode": 1,
+      "stderr": "TEST_ONLY_OUTER_ASSERTION",
+      "afterSHA256": "92a2b42ce2d4315e868c02c51715e7b4fd2a675d6f80da3f2a045ba4056d6946",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxojidl-outer\\operation.lock'",
+      "manualReviewExit": 0,
+      "manualReviewError": "",
+      "explicitReviewedRecoveryAndRepeatPassed": true
+    },
+    {
+      "case": "wrapper",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxojidl-wrapper",
+      "result": "PASS",
+      "beforeSHA256": "f9d1d8b9dc0679d05ae65dd50eb5ca3632a6f7936b3404002f339375f53f8b1b",
+      "childExit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "stderr": "",
+      "afterSHA256": "f9d1d8b9dc0679d05ae65dd50eb5ca3632a6f7936b3404002f339375f53f8b1b",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "newProcessMaintenanceRepairBackupBlocked": true,
+      "lifecycleUpdateExit": 1,
+      "lifecycleUpdateError": "V1.1 lifecycle refused: EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-g-mvxojidl-wrapper\\operation.lock'",
+      "manualReviewExit": 0,
+      "manualReviewError": "",
+      "explicitReviewedRecoveryAndRepeatPassed": true
+    },
+    {
+      "case": "maintainer",
+      "project": "xiaowork-homepage-v11-p6e-g-mvxojidl-maintainer",
+      "result": "RUNNING",
+      "beforeSHA256": "2ce8146244624778bf2da295ffc57ef5c1cebf8361dc8b071f067ddb76ce46cb",
+      "exitCode": 1,
+      "stderr": "Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error setting cgroup config for procHooks process: failed to write \"100 100000\": write /sys/fs/cgroup/docker/0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284/cpu.max: invalid argument\nfailed to start containers: 0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284"
+    }
+  ],
+  "result": "FAIL",
+  "error": "The input did not match the regular expression /Maintenance exited nonzero/. Input:\n\n'Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error setting cgroup config for procHooks process: failed to write \"100 100000\": write /sys/fs/cgroup/docker/0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284/cpu.max: invalid argument\\n' +\n  'failed to start containers: 0d4e3b258f3da0e98dd149a636d4d1b332c75a192a699b1e34c88a0d79a70284\\n' +\n  '\\n'\n"
+}

@@ -1,19 +1,21 @@
 # XiaoWork Homepage 项目进度
 
-> 最后更新：2026-10-29（Asia/Shanghai）
-> 当前阶段：**P6-E 部分完成，9887新六角色已构建及扫描；SQLite读取成功，但真实只读卷的根目录atime保护验收失败。已停止自动修复，正式发布保持关闭。**
+> 最后更新：2026-11-01（Asia/Shanghai）
+> 当前阶段：**P6-E 部分完成。bb05六角色已统一构建/扫描；14项真实RO矩阵、7项真实锁故障及单对象修复通过。修复后备份因故障夹具镜像描述符不一致而拒绝，已停止下游并保留现场，不能上线。**
 
 最新记录：[P6-E交付](deliveries/P6E-delivery.md)、[最终发行身份](P6E-FINAL-RELEASE.md)、[真实故障矩阵](P6E-FAULT-TESTS.md)、[跨源码验收](P6E-CROSS-SOURCE-ACCEPTANCE.md)。本页是最新结论；旧基线报告保留作历史，不将旧组证据扩大到最终组。
 
-本轮仅收尾 SQLite 严格只读阻塞，已经停止自动修复尝试。已实施原文件只读取证与 WAL 私有副本方案、错误分类、所有源卷写入容器检查和维护器失败留锁；真实RO stable两次检查退出0、计划一致，但外层完整元数据断言FAIL。332普通文件SHA及主库全部元数据不变，六卷根目录仅atime变化；475/481条完全一致。[缓存独立复核](evidence/P6E-ro-readonly-metadata-review.json)、[原始失败](evidence/P6E-ro-readonly-matrix-r2.json)。没有执行apply或删除任何候选。
+本轮只处理根atime与外层验收锁。空卷分步对照证明默认Docker create即改变卷根atime，容器尚未启动；只增加volume-nocopy后不变。源挂载nocopy、kernel RO、目录/文件O_NOATIME及完整metadata比较均已实现并实测，无重设atime。[诊断](evidence/P6E-atime-diagnosis-r3.json)、[O_NOATIME补测](evidence/P6E-atime-diagnosis-r4.json)。原9887的475/481条相同、六根atime改变的[原始失败](evidence/P6E-ro-readonly-matrix-r2.json)完整保留。
 
-stable的维护器已返回成功，其临时操作锁随后按成功路径自动释放，外层断言失败未自动新建锁；不能写成整体失败后已自动留锁。原有故障锁、原817故障卷与两轮新夹具卷均不手工清理。Docker卷挂载/populate导致atime变化只是待证实机制，不重设元数据或换宽松条件重跑。
+最终组[真实只读矩阵](evidence/P6E-atime2-readonly-matrix.json)14/14通过：4个稳定/有效WAL/只读目录正例、10个不明WAL/权限/损坏/Schema等反例，全部SHA与完整元数据不变。[真实锁矩阵](evidence/P6E-atime2-real-guards.json)7/7通过，覆盖外层assert、wrapper/维护器强杀、错误挂载/写者、故意metadata变化和marker写前退出；新任务确实拒绝，已知纯检查可显式复核，未知状态拒绝复核。锁和持久marker独立于源卷，不以进程退出自动清除。
+
+新专属故障卷已完成真实单链接修复及双阶段审计，六根Atim、主库和无关文件元数据/SHA保持；publication父目录计划内Nlink/mtime/ctime变化保留。[完整前后清单](evidence/P6E-atime2-repair-metadata-review.json)。随后备份在复制前因故障派生API与正式api-init镜像ID不一致而拒绝，控制器此前宽泛assert.throws不能证明特定current.next拒绝原因。已经停止所有下游恢复/更新/回退，无自动重试apply；新源写者停止、旧公开6路HTTP/SHA保持。独立步骤失败后本轮明确人工补建控制阻塞，不冒称整链自动留锁。[留场](evidence/P6E-atime2-chain-retention.json)。
 
 ## 最终运行身份
 
-分支 `feat/v1.1-admin-p6a`，新候选运行源码 **`9887f6d456c5cdde79ec0689480684f905b7db2a`**，schema3、manifest1。API、Worker、gateway、legacy frontend、publication-static、maintenance全部从该SHA同一Git archive重建；完整ID/参数/日志见 [新候选机器清单](evidence/P6E-ro-runtime-manifest.json)。构建成功不等于具备发布资格，未与817组混用；冻结之后只修改测试控制器、证据和文档，不冒称镜像源码更新。
+分支 `feat/v1.1-admin-p6a`，最终候选运行源码 **`bb05f6ad613fdf3507ff8a9c56696da85fa4a678`**，schema3、manifest1。六正式角色从该SHA同一Git archive重建；完整ID/基础镜像/参数/日志见 [最终候选清单](evidence/P6E-atime2-runtime-manifest.json)。没有混用817/9887/8ee角色。此后只修改测试控制器、证据、文档，不冒称运行镜像源码变化。选择该SHA是因为它还补齐“锁已创建、marker未写入”的早期窗口。
 
-新候选Linux Go全包/vet退出0、Node边界8项通过、六镜像扫描完成；保留首次noexec/容量夹具错误与root复制EPERM失败证据。[预冻结检查](evidence/P6E-ro-prefreeze-checks.json)、[安全复核](evidence/P6E-ro-security-audit.json)。只读矩阵在stable外层失败后停止，其余WAL/异常库真实卷测试、apply、修复后备份/空卷恢复/更新/回退、新组预览/发布/关键故障/浏览器均 **NOT_RUN**，不能用旧817通过结果代替。
+新候选精确Linux Go全包/vet退出0、Node锁专项8项通过，六镜像0critical/high/medium，low及未定级保留。[安全复核](evidence/P6E-atime2-security-audit.json)。同源码派生测试角色的正常Nuxt基线和真实切换前退出/Chromium验证通过；**不能扩大为六正式镜像完整运行链或常规浏览器全矩阵**。修复后备份拒绝，下游空卷恢复/跨源码更新与回退/内容恢复/再次备份恢复均 **NOT_RUN**。原始夹具UID、CPU配额、restart日志采集错误及旧组失败均保留。
 
 保留 V1.0 视觉及静态架构，已具备真实中文后台、Go/SQLite草稿和媒体、私有预览、固定离线Nuxt构建、不可变版本和原子切换。未合并main、未连接生产、未改1Panel/OpenResty/Cloudflare/V1.0容器、数据库或`.env/.deploy`。
 
@@ -35,7 +37,7 @@ stable的维护器已返回成功，其临时操作锁随后按成功路径自�
 
 ## 风险与未完成边界
 
-历史817组十二项真实故障及正常基线13/13通过，[汇总](evidence/P6E-final-faults-summary.json)。当时残留修复读取失败，被误映射为Schema未初始化；新9887已能读取并生成一致计划，但完整元数据条件仍失败。有效/异常WAL真实卷和修复后完整链未执行，不能使用历史PASS掩盖。测试控制器重启、夹具权限等是操作者干预，不称所有故障自动恢复。
+历史817组十二项真实故障及正常基线13/13通过，[汇总](evidence/P6E-final-faults-summary.json)。当前bb05补齐元数据与操作锁专项，但修复后备份链尚未通过。控制服务restart实测exit1拒绝新任务，首份收集器遗漏stderr失败保留；[补充只读复核](evidence/P6E-atime2-control-restart-review.json)不虚构未记录的前后marker哈希。宿主OS/Docker引擎重启、断电未测，Windows Node无法目录fsync；测试和人工干预不能称全部故障自动恢复。
 
 musl来源差异已用官方分支相同补丁SHA512解释：实际3.24.3/r3，无edge混仓，原Scout未定级仍保留。deepmerge4.3.1构建链7low无官方修复；node-forge锁1.4.1与精确官方integrity一致；去符号Go二进制模块精度告警保留，精确Linux source无openpgp导入。残余风险需用户决定，不称工具零高危等于系统零风险。[处置](evidence/P6E-final-risk-disposition.json)
 
@@ -45,8 +47,8 @@ musl来源差异已用官方分支相同补丁SHA512解释：实际3.24.3/r3，�
 
 ## 下一步与生产门槛
 
-1. 保持现场停止，先解释并安全解决卷根atime及外层断言/锁生命周期缺口，再经审查完成真实RO矩阵→单链接修复→备份→空卷恢复→更新/回退。若再修改运行代码，须重新冻结完整六角色并验证，不能只替换maintenance。当前不能申请上线。
-2. 本轮起始远端为`8934c0df42c18c62f7564be5a2e2398f7947a817`，源码冻结提交为上述9887；本轮文档提交及最终推送/main复核以Git实测及最终回复为准。历史[Git回执](evidence/P6E-final-git-receipt.json)保留，不冒称本轮结果。
+1. 保留新旧现场和未知锁；先修正故障夹具与正式角色的描述符身份。在全新测试环境完整六正式角色启动并重新验收修复→备份→空卷恢复→更新/回退→内容恢复→再次备份恢复，不能在已阻塞现场改描述符/删锁强行续跑。任何运行代码变化需重新冻结六角色。当前不能申请上线。
+2. 本轮起始远端为`94d0309668d7190bc6494dc461f2c09f6d2a64f0`，最终运行源码为上述bb05；文档提交及最终推送/main核对以Git实测及最终回复为准。main保持`14f9b1fba6504b1367aad6165a0b72c37e495927`。历史Git回执不冒称本轮结果。
 3. 用户确认内容范围、残余依赖风险、异地备份/密钥/告警责任/RPO/RTO和维护窗口后，独立评审生产发布策略并申请上线授权。
 4. 当前实现明确拒绝正式origin开启localhost发布测试gate；生产发布授权尚需受审实现与测试，不能借部署脚本绕过。真实OpenResty/Cloudflare/TLS/源站保护、服务器端口和其他网站基线，只能在另行授权后只读预检及最小范围部署。
 

@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-01T10:41:57.922Z",
+  "project": "xiaowork-homepage-v11-p6e-restart-mvxpaba9",
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "result": "FAIL",
+  "scope": "Only a new dedicated controller container and host control directory; no application data volumes",
+  "container": "cdb845e3bea2e7c9c17a7a1a65a57975b9cf8b6b6cb6fd77e6944e7dd6ffbe28",
+  "firstExit": 31,
+  "restartExit": 1,
+  "logs": "",
+  "error": "The input did not match the regular expression /Persistent operation.lock/. Input:\n\n''\n"
+}

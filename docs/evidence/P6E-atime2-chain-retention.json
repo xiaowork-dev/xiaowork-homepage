@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-01T10:46:04.639Z",
+  "project": "xiaowork-homepage-v11-p6e-atime2-fault",
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "result": "STOPPED_AFTER_BACKUP_IDENTITY_REFUSAL",
+  "failure": "Actual project image differs from recorded release descriptor\n+ actual - expected\n\n+ 'sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d'\n- 'sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160'\n",
+  "containers": [
+    {
+      "id": "010f633d9ae3ba18d15de5bc81aae40fb4154d61abf1bcd490782d1d6c8c2b1e",
+      "service": "worker",
+      "image": "sha256:ef271f7faad3ba2d40c6f79abb2042c99e9ed4292c53380f0034657fd7ff149e",
+      "running": false,
+      "health": "unhealthy",
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publications",
+          "destination": "/publications",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-uploads",
+          "destination": "/uploads",
+          "writable": false
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "writable": true
+        }
+      ]
+    },
+    {
+      "id": "9a55fe0dfdff9897396ab2e36e0ce0a5b997589832778e02c9ba6e3acb18c955",
+      "service": "gateway",
+      "image": "sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d",
+      "running": true,
+      "health": "healthy",
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-tls",
+          "destination": "/tls",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/nginx.conf",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/xiaowork-admin-headers.conf",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/xiaowork-admin-locations.conf",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/xiaowork-locations.conf",
+          "writable": false
+        }
+      ]
+    },
+    {
+      "id": "ac10dd4be6c2191a75de65d3034e79eeac83f53d346a27be8060433bd150140c",
+      "service": "publication-static",
+      "image": "sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949",
+      "running": true,
+      "health": "healthy",
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publications",
+          "destination": "/publications",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/nginx.conf",
+          "writable": false
+        },
+        {
+          "destination": "/etc/nginx/security-headers.conf",
+          "writable": false
+        }
+      ]
+    },
+    {
+      "id": "588abf1afabc180c214b238e880774e90b3345cfd6dbe12f3e4fab286912d5bd",
+      "service": "api",
+      "image": "sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160",
+      "running": false,
+      "health": "unhealthy",
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-db",
+          "destination": "/data",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publications",
+          "destination": "/publications",
+          "writable": false
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-secrets",
+          "destination": "/secrets",
+          "writable": false
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-uploads",
+          "destination": "/uploads",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "writable": true
+        }
+      ]
+    },
+    {
+      "id": "e2dd7c4584edd2366b87b44ee112c7c848600b67956e57815727d522e26e9283",
+      "service": "api-init",
+      "image": "sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d",
+      "running": false,
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-authority",
+          "destination": "/authority",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-db",
+          "destination": "/data",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-secrets",
+          "destination": "/secrets",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-tls",
+          "destination": "/tls",
+          "writable": true
+        },
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publisher-socket",
+          "destination": "/run/publishing",
+          "writable": true
+        }
+      ]
+    },
+    {
+      "id": "28579c1408b63e7db18a528a905550b37e70016aa71fda1d988f36d85a87b2b2",
+      "service": "frontend",
+      "image": "sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa",
+      "running": true,
+      "health": "healthy",
+      "mounts": []
+    },
+    {
+      "id": "25dc5afd3e8242cb8c5127de36a0c580609ea1945edf7752a5704fa1b5ad8126",
+      "service": "publication-init",
+      "image": "sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190",
+      "running": false,
+      "mounts": [
+        {
+          "name": "xiaowork-homepage-v11-p6e-atime2-fault_admin-publications",
+          "destination": "/publications",
+          "writable": true
+        }
+      ]
+    }
+  ],
+  "rootCause": {
+    "kind": "TEST_CONTROLLER_DESCRIPTOR_ERROR",
+    "detail": "The fault API and normal api-init have different image IDs; one API role in the backup descriptor cannot truthfully identify both. Backup correctly refused before copying a backup payload.",
+    "faultAPI": "sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160",
+    "apiInit": "sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d",
+    "notProductDataCorruption": true
+  },
+  "overbroadPriorAssertion": "The first assert.throws(backupProject) did not assert the rejection reason. It cannot be counted as evidence that current.next itself caused backup refusal.",
+  "manualContainmentRequired": true,
+  "containment": {
+    "automatic": false,
+    "operationLockRetained": true,
+    "recoveryMarkerSHA256": "60769730e457520c939054278ed7383a202df8c79d361445a385d13eafe20e6e",
+    "newBackupBlocked": true,
+    "reason": "Explicit manual control-directory containment after the separate backup step refused; not misreported as automatic whole-pipeline recovery."
+  },
+  "volumes": [
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-db",
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-uploads",
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-publications",
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-secrets",
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-authority",
+    "xiaowork-homepage-v11-p6e-atime2-fault_admin-tls"
+  ],
+  "publicHTTP": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "b290c03a7a417b2404a9e607cf91296574f714b1f5e2d27baf3b1964154d6fab"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "66c29ff1dc27975a852d1fae707435cad5c443431dde5e740b535947318a69ea"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "3078cfbd8648d6eedaa1eee43f469cc3ff0632f2696841ad28dd7ae84969e7bd"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "4451006a489ab3d75f1f2b9eb1db58412038034659637f978e76b9bdc5a9ee08"
+    }
+  ],
+  "downstream": {
+    "backup": "REFUSED_BEFORE_PAYLOAD_COPY",
+    "emptyVolumeRestore": "NOT_RUN",
+    "update": "NOT_RUN",
+    "codeRollback": "NOT_RUN",
+    "contentRestore": "NOT_RUN",
+    "secondBackupRestore": "NOT_RUN"
+  }
+}

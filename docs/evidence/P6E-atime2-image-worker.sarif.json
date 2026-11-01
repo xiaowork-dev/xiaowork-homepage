@@ -1,0 +1,488 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Docker Scout",
+          "informationUri": "https://docker.com/products/docker-scout",
+          "name": "docker scout",
+          "rules": [
+            {
+              "id": "CVE-2026-107891",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-107891"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-107891?s=alpine&n=musl&ns=alpine&t=apk&osn=alpine&osv=3.24&vr=%3C1.2.6-r6",
+              "help": {
+                "text": "\n",
+                "markdown": "> \n\n|                                                                             |\n|Package         pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  |\n|Affected range  <1.2.6-r6                                                    |\n|Fixed version   1.2.6-r6                                                     |\n"
+              },
+              "properties": {
+                "affected_version": "<1.2.6-r6",
+                "cvssV3_severity": "UNSPECIFIED",
+                "fixed_version": "1.2.6-r6",
+                "purls": [
+                  "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+                ],
+                "security-severity": "3.1",
+                "tags": [
+                  "UNSPECIFIED"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-93753",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-93753: Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-93753?s=github&n=deepmerge&t=npm&vr=%3E%3D4.2.0%2C%3C%3D4.3.1",
+              "help": {
+                "text": "deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n",
+                "markdown": "> deepmerge through 4.3.1 contains a prototype poisoning vulnerability in the mergeObject() function that fails to properly validate keys being written to target objects. Attackers can supply malicious source objects in merge operations to inject attacker-controlled properties into the returned object's prototype, causing applications to inherit unintended values when accessing properties without own-property checks.\n\n|                                                                                                                               |\n|Package                                                                                               pkg:npm/deepmerge@4.3.1  |\n|Affected range                                                                                        >=4.2.0,<=4.3.1          |\n|Fixed version                                                                                         not fixed                |\n|[[CVSS Score 2.7] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U]]                           |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.2.0,<=4.3.1",
+                "cvssV3": 2.7,
+                "cvssV3_severity": "LOW",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U",
+                "fixed_version": "not fixed",
+                "purls": [
+                  "pkg:npm/deepmerge@4.3.1"
+                ],
+                "security-severity": "2.7",
+                "tags": [
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-119201",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-119201: Files or Directories Accessible to External Parties"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-119201?s=github&n=vite-builder&ns=%40nuxt&t=npm&vr=%3E%3D4.6.0%2C%3C4.6.3",
+              "help": {
+                "text": "### Impact\n\nWhen no `appSecret` is configured (via `NUXT_APP_SECRET`, `NITRO_APP_SECRET` or `runtimeConfig.appSecret`), `nuxt dev` generates a development secret and stores it in `<buildDir>/app-secret` (by default `.nuxt/app-secret`). The build directory is inside the directories that Nuxt passes to Vite's `server.fs.allow`, so the file can be fetched from the dev server:\n\n```bash\ncurl http://<dev-server>/_nuxt/@fs/<absolute-path-to-project>/.nuxt/app-secret\n```\n\nAnyone who can read it can compute every secret derived from it with `deriveSecret()`, including the default password used by `useSession`, and so can forge session cookies accepted by that dev server.\n\nExploitation requires direct HTTP access to the dev server. `nuxt dev` listens on localhost by default, so this mainly affects dev servers that are exposed to a network (for example with `--host`, a published container port or a tunnel). A malicious website cannot read the file through a developer's browser: Vite's CORS and host checks prevent pages on other origins from reading the response.\n\nProduction builds never generate an `appSecret` and are not affected. Dev servers with an explicitly configured `appSecret` do not use the generated file.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. The dev server now adds `app-secret` to Vite's `server.fs.deny`, keeping Vite's default deny list.\n\n### Workarounds\n\nSet `NUXT_APP_SECRET` in `.env` to a random value of at least 32 characters (for example the output of `openssl rand -base64 32`), or avoid exposing the dev server to untrusted networks.\n\nIf a dev server using a generated secret has been reachable by untrusted clients, delete `.nuxt/app-secret` (a new secret is generated on the next `nuxt dev`) or set `NUXT_APP_SECRET`. Either invalidates existing dev sessions.\n",
+                "markdown": "> ### Impact\n\nWhen no `appSecret` is configured (via `NUXT_APP_SECRET`, `NITRO_APP_SECRET` or `runtimeConfig.appSecret`), `nuxt dev` generates a development secret and stores it in `<buildDir>/app-secret` (by default `.nuxt/app-secret`). The build directory is inside the directories that Nuxt passes to Vite's `server.fs.allow`, so the file can be fetched from the dev server:\n\n```bash\ncurl http://<dev-server>/_nuxt/@fs/<absolute-path-to-project>/.nuxt/app-secret\n```\n\nAnyone who can read it can compute every secret derived from it with `deriveSecret()`, including the default password used by `useSession`, and so can forge session cookies accepted by that dev server.\n\nExploitation requires direct HTTP access to the dev server. `nuxt dev` listens on localhost by default, so this mainly affects dev servers that are exposed to a network (for example with `--host`, a published container port or a tunnel). A malicious website cannot read the file through a developer's browser: Vite's CORS and host checks prevent pages on other origins from reading the response.\n\nProduction builds never generate an `appSecret` and are not affected. Dev servers with an explicitly configured `appSecret` do not use the generated file.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. The dev server now adds `app-secret` to Vite's `server.fs.deny`, keeping Vite's default deny list.\n\n### Workarounds\n\nSet `NUXT_APP_SECRET` in `.env` to a random value of at least 32 characters (for example the output of `openssl rand -base64 32`), or avoid exposing the dev server to untrusted networks.\n\nIf a dev server using a generated secret has been reachable by untrusted clients, delete `.nuxt/app-secret` (a new secret is generated on the next `nuxt dev`) or set `NUXT_APP_SECRET`. Either invalidates existing dev sessions.\n\n|                                                                                                                   |\n|Package                                                                        pkg:npm/%40nuxt/vite-builder@4.6.2  |\n|Affected range                                                                 >=4.6.0,<4.6.3                      |\n|Fixed version                                                                  4.6.3                               |\n|[[CVSS Score 4.8] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N]]                                      |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.6.0,<4.6.3",
+                "cvssV3": 4.8,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+                "fixed_version": "4.6.3",
+                "purls": [
+                  "pkg:npm/%40nuxt/vite-builder@4.6.2"
+                ],
+                "security-severity": "4.8",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-119198",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-119198: External Control of File Name or Path"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-119198?s=github&n=vite-builder&ns=%40nuxt&t=npm&vr=%3E%3D4.6.0%2C%3C4.6.3",
+              "help": {
+                "text": "### Summary\n\nA client that can connect to the dev server's HMR socket can send a `nuxt:dev:client-error` event whose message ends in an absolute file path. The dev server reads that file while building the error report, and its contents are returned in the error overlay, on the dev error channel, and in the report shown in the terminal.\n\n### Impact\n\nThis affects the development server only; production builds contain none of this code. Affected versions are `4.6.0` to `4.6.2`.\n\nReading the file requires TCP access to the dev server, so the default localhost bind limits this to local processes, which can usually read the same files directly. With the dev server exposed to a network (`nuxt dev --host`, `nuxt dev --tunnel`, or a proxy onto the dev port), anyone who can reach the port can read any file the dev process can read: SSH keys, `.env` files, cloud credentials and other files outside the project. The same path is refused by Vite's `server.fs` allow list over `/_nuxt/@fs/`; the client error channel bypasses that check.\n\nNo user interaction is needed and no browser is involved: a plain WebSocket client is enough, as long as it does not send `Sec-Fetch-Site: cross-site`. A web page on another origin cannot retrieve the report: the overlay and channel endpoints reject browser requests from other origins.\n\nNuxt 3 is not affected.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. A client-reported error is no longer turned into a compile report, and report building for it no longer reads from the filesystem; file content now comes only from the dev server's module graph.\n\n### Workarounds\n\nDo not expose the dev server to untrusted networks: keep the default localhost bind, and avoid `nuxt dev --host`, `nuxt dev --tunnel` and proxies onto the dev port. If the dev port was reachable from an untrusted network while a vulnerable version was running, treat any file readable by the dev process on that machine as exposed, and rotate credentials such as SSH keys and `.env` secrets.\n\n### Credits\n\nThanks to [@samsulselfut](https://github.com/samsulselfut) for the report.\n",
+                "markdown": "> ### Summary\n\nA client that can connect to the dev server's HMR socket can send a `nuxt:dev:client-error` event whose message ends in an absolute file path. The dev server reads that file while building the error report, and its contents are returned in the error overlay, on the dev error channel, and in the report shown in the terminal.\n\n### Impact\n\nThis affects the development server only; production builds contain none of this code. Affected versions are `4.6.0` to `4.6.2`.\n\nReading the file requires TCP access to the dev server, so the default localhost bind limits this to local processes, which can usually read the same files directly. With the dev server exposed to a network (`nuxt dev --host`, `nuxt dev --tunnel`, or a proxy onto the dev port), anyone who can reach the port can read any file the dev process can read: SSH keys, `.env` files, cloud credentials and other files outside the project. The same path is refused by Vite's `server.fs` allow list over `/_nuxt/@fs/`; the client error channel bypasses that check.\n\nNo user interaction is needed and no browser is involved: a plain WebSocket client is enough, as long as it does not send `Sec-Fetch-Site: cross-site`. A web page on another origin cannot retrieve the report: the overlay and channel endpoints reject browser requests from other origins.\n\nNuxt 3 is not affected.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. A client-reported error is no longer turned into a compile report, and report building for it no longer reads from the filesystem; file content now comes only from the dev server's module graph.\n\n### Workarounds\n\nDo not expose the dev server to untrusted networks: keep the default localhost bind, and avoid `nuxt dev --host`, `nuxt dev --tunnel` and proxies onto the dev port. If the dev port was reachable from an untrusted network while a vulnerable version was running, treat any file readable by the dev process on that machine as exposed, and rotate credentials such as SSH keys and `.env` secrets.\n\n### Credits\n\nThanks to [@samsulselfut](https://github.com/samsulselfut) for the report.\n\n|                                                                                                                   |\n|Package                                                                        pkg:npm/%40nuxt/vite-builder@4.6.2  |\n|Affected range                                                                 >=4.6.0,<4.6.3                      |\n|Fixed version                                                                  4.6.3                               |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N]]                                      |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.6.0,<4.6.3",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                "fixed_version": "4.6.3",
+                "purls": [
+                  "pkg:npm/%40nuxt/vite-builder@4.6.2"
+                ],
+                "security-severity": "5.9",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-119199",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-119199: Exposure of Sensitive Information to an Unauthorized Actor"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-119199?s=github&n=vite-builder&ns=%40nuxt&t=npm&vr=%3E%3D3.0.0%2C%3C4.6.3",
+              "help": {
+                "text": "### Summary\n\nWith Nitro 2 (the default server engine in Nuxt 3 and Nuxt 4), the Nitro development server bundle written by `nuxt dev` can be fetched through the Vite dev server. Nitro inlines the resolved `runtimeConfig` into that bundle, so private runtime config values that were resolved at build time can be read by anyone with HTTP access to the dev server.\n\n### Impact\n\n`nuxt dev` writes the Nitro development server bundle to `<buildDir>/dev/index.mjs` (by default `.nuxt/dev/index.mjs`). The build directory is inside the directories Nuxt passes to Vite's `server.fs.allow`, so the bundle is served by the dev server:\n\n```bash\ncurl http://<dev-server>/_nuxt/@fs/<absolute-path-to-project>/.nuxt/dev/index.mjs\n```\n\nThe response contains every private (non-`public`) runtime config value that was resolved at build time. That includes values set in `nuxt.config`, such as a secret read from `.env`:\n\n```ts\nexport default defineNuxtConfig({\n  runtimeConfig: {\n    apiSecret: process.env.API_SECRET,\n  },\n})\n```\n\nFrom Nuxt 4.6.0, it also includes the generated development `appSecret`. Vite's default deny list blocks `.env` itself, but not the bundle containing values read from it.\n\nExploitation requires direct HTTP access to the dev server. `nuxt dev` listens on localhost by default, so this mainly affects dev servers that are exposed to a network (for example with `--host`, a published container port or a tunnel). As far as we can tell, a malicious website cannot read the file through a developer's browser: Vite's CORS and host checks prevent pages on other origins from reading the response.\n\nProduction builds are not affected, because the Vite dev server is not used and the server bundle is not served. Nuxt projects using Nitro 3 do not write the server bundle to disk in development and are not affected. Private runtime config values that are left empty in `nuxt.config` and supplied through `NUXT_*` environment variables are applied when the server starts, are not inlined into the bundle, and are not exposed.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. The dev server now adds Nitro's development output directory to Vite's `server.fs.deny`, keeping Vite's default deny list.\n\nNuxt 3 has reached end of life and will not receive a fix.\n\n### Workarounds\n\nAvoid exposing the dev server to untrusted networks. Alternatively, set private runtime config keys to an empty default in `nuxt.config` and provide their values with the matching `NUXT_*` environment variables (for example `runtimeConfig: { apiSecret: '' }` with `NUXT_API_SECRET` in `.env`).\n\nIf a dev server has been reachable by untrusted clients, rotate any credentials that were set through `runtimeConfig` in `nuxt.config`.\n",
+                "markdown": "> ### Summary\n\nWith Nitro 2 (the default server engine in Nuxt 3 and Nuxt 4), the Nitro development server bundle written by `nuxt dev` can be fetched through the Vite dev server. Nitro inlines the resolved `runtimeConfig` into that bundle, so private runtime config values that were resolved at build time can be read by anyone with HTTP access to the dev server.\n\n### Impact\n\n`nuxt dev` writes the Nitro development server bundle to `<buildDir>/dev/index.mjs` (by default `.nuxt/dev/index.mjs`). The build directory is inside the directories Nuxt passes to Vite's `server.fs.allow`, so the bundle is served by the dev server:\n\n```bash\ncurl http://<dev-server>/_nuxt/@fs/<absolute-path-to-project>/.nuxt/dev/index.mjs\n```\n\nThe response contains every private (non-`public`) runtime config value that was resolved at build time. That includes values set in `nuxt.config`, such as a secret read from `.env`:\n\n```ts\nexport default defineNuxtConfig({\n  runtimeConfig: {\n    apiSecret: process.env.API_SECRET,\n  },\n})\n```\n\nFrom Nuxt 4.6.0, it also includes the generated development `appSecret`. Vite's default deny list blocks `.env` itself, but not the bundle containing values read from it.\n\nExploitation requires direct HTTP access to the dev server. `nuxt dev` listens on localhost by default, so this mainly affects dev servers that are exposed to a network (for example with `--host`, a published container port or a tunnel). As far as we can tell, a malicious website cannot read the file through a developer's browser: Vite's CORS and host checks prevent pages on other origins from reading the response.\n\nProduction builds are not affected, because the Vite dev server is not used and the server bundle is not served. Nuxt projects using Nitro 3 do not write the server bundle to disk in development and are not affected. Private runtime config values that are left empty in `nuxt.config` and supplied through `NUXT_*` environment variables are applied when the server starts, are not inlined into the bundle, and are not exposed.\n\n### Patches\n\nFixed in `@nuxt/vite-builder` 4.6.3, which `nuxt` 4.6.3 depends on. The dev server now adds Nitro's development output directory to Vite's `server.fs.deny`, keeping Vite's default deny list.\n\nNuxt 3 has reached end of life and will not receive a fix.\n\n### Workarounds\n\nAvoid exposing the dev server to untrusted networks. Alternatively, set private runtime config keys to an empty default in `nuxt.config` and provide their values with the matching `NUXT_*` environment variables (for example `runtimeConfig: { apiSecret: '' }` with `NUXT_API_SECRET` in `.env`).\n\nIf a dev server has been reachable by untrusted clients, rotate any credentials that were set through `runtimeConfig` in `nuxt.config`.\n\n|                                                                                                                   |\n|Package                                                                        pkg:npm/%40nuxt/vite-builder@4.6.2  |\n|Affected range                                                                 >=3.0.0,<4.6.3                      |\n|Fixed version                                                                  4.6.3                               |\n|[[CVSS Score 5.9] [CVSS Vector CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N]]                                      |\n"
+              },
+              "properties": {
+                "affected_version": ">=3.0.0,<4.6.3",
+                "cvssV3": 5.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                "fixed_version": "4.6.3",
+                "purls": [
+                  "pkg:npm/%40nuxt/vite-builder@4.6.2"
+                ],
+                "security-severity": "5.9",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-118773",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-118773: Uncontrolled Resource Consumption"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-118773?s=github&n=glob&t=npm&vr=%3E%3D9.0.0%2C%3C%3D14.0.1",
+              "help": {
+                "text": "### Summary\n\nIn glob 13.0.6, an aborted async walk rejects or emits an error but continues recursively reading directories in the background.\n\nThe root cause is that abort branches in src/walker.ts call cb() without returning. As a result, callers that rely on signal or AbortSignal.timeout() to bound glob traversal cost can still incur filesystem I/O and CPU work after the request has already been rejected.\n\n### Details\n\nThis was reproduced on glob v13.0.6 (commit e80cb38ae60d6cbff9e75f39032a994858994d35).\n\nThe README documents that the signal option cancels the glob walk. However, in src/walker.ts, the following methods call cb() when this.signal?.aborted is true but do not return:\n\n- GlobUtil.walkCB()\n- GlobUtil.walkCB2()\n- GlobUtil.walkCBSync()\n- GlobUtil.walkCB2Sync()\n\nExample vulnerable pattern:\n\nif (this.signal?.aborted) cb()\n\nBecause execution continues after cb(), the walker still reaches processor.processPatterns(), readdirCB(), and recursive walkCB2() calls.\n\nThe issue was directly demonstrated against v13.0.6. A source-history review shows the same missing-return pattern is present in tagged releases from v9.0.0 through v13.0.6.\n\nThe issue affects both glob() and globStream().\n\nRecommended fix:\nChange each abort branch to return immediately:\n\nif (this.signal?.aborted) return cb()\n\n### Proof of concept\n\nEnvironment:\n- Linux x86_64\n- Node.js v22.23.3\n- npm 10.9.9\n- glob 13.0.6\n\nReproduction steps:\n\n1. Install the affected package:\n   npm init -y\n   npm install glob@13.0.6\n\n2. Run the attached PoC:\n   node poc/abort-continues-work.mjs\n\nThe PoC aborts after the first readdir() call, waits briefly, and counts how many more directory reads happen after the promise has already rejected.\n\nObserved output on the vulnerable version:\n\n{\n  \"rejection\": \"Error: probe-abort\",\n  \"readdirCalls\": 1365,\n  \"readdirCallsAtReject\": 5,\n  \"readdirCallsAfterReject\": 1360\n}\n\nExpected behavior:\nreaddirCallsAfterReject should be 0.\n\nA second PoC using AbortSignal.timeout() also reproduces the issue:\n\n{\n  \"rejection\": \"TimeoutError: The operation was aborted due to timeout\",\n  \"readdirCalls\": 133,\n  \"readdirCallsAtReject\": 1,\n  \"readdirCallsAfterReject\": 132\n}\n\nThe same test against a patched build with return cb() in the four abort branches stops immediately:\n\n{\n  \"readdirCalls\": 1,\n  \"readdirCallsAtReject\": 1,\n  \"readdirCallsAfterReject\": 0\n}\n\n### Impact\n\nThis is an availability issue.\n\nApplications that expose globbing over attacker-influenced patterns or attacker-controlled directory trees and use AbortSignal / AbortSignal.timeout() as a traversal budget can still perform significant filesystem I/O and CPU work after a request has already timed out or been canceled.\n\nRepeated timed-out requests can stack background glob walks and degrade worker throughput or service availability.\n\nNo confidentiality or integrity impact was observed.\n",
+                "markdown": "> ### Summary\n\nIn glob 13.0.6, an aborted async walk rejects or emits an error but continues recursively reading directories in the background.\n\nThe root cause is that abort branches in src/walker.ts call cb() without returning. As a result, callers that rely on signal or AbortSignal.timeout() to bound glob traversal cost can still incur filesystem I/O and CPU work after the request has already been rejected.\n\n### Details\n\nThis was reproduced on glob v13.0.6 (commit e80cb38ae60d6cbff9e75f39032a994858994d35).\n\nThe README documents that the signal option cancels the glob walk. However, in src/walker.ts, the following methods call cb() when this.signal?.aborted is true but do not return:\n\n- GlobUtil.walkCB()\n- GlobUtil.walkCB2()\n- GlobUtil.walkCBSync()\n- GlobUtil.walkCB2Sync()\n\nExample vulnerable pattern:\n\nif (this.signal?.aborted) cb()\n\nBecause execution continues after cb(), the walker still reaches processor.processPatterns(), readdirCB(), and recursive walkCB2() calls.\n\nThe issue was directly demonstrated against v13.0.6. A source-history review shows the same missing-return pattern is present in tagged releases from v9.0.0 through v13.0.6.\n\nThe issue affects both glob() and globStream().\n\nRecommended fix:\nChange each abort branch to return immediately:\n\nif (this.signal?.aborted) return cb()\n\n### Proof of concept\n\nEnvironment:\n- Linux x86_64\n- Node.js v22.23.3\n- npm 10.9.9\n- glob 13.0.6\n\nReproduction steps:\n\n1. Install the affected package:\n   npm init -y\n   npm install glob@13.0.6\n\n2. Run the attached PoC:\n   node poc/abort-continues-work.mjs\n\nThe PoC aborts after the first readdir() call, waits briefly, and counts how many more directory reads happen after the promise has already rejected.\n\nObserved output on the vulnerable version:\n\n{\n  \"rejection\": \"Error: probe-abort\",\n  \"readdirCalls\": 1365,\n  \"readdirCallsAtReject\": 5,\n  \"readdirCallsAfterReject\": 1360\n}\n\nExpected behavior:\nreaddirCallsAfterReject should be 0.\n\nA second PoC using AbortSignal.timeout() also reproduces the issue:\n\n{\n  \"rejection\": \"TimeoutError: The operation was aborted due to timeout\",\n  \"readdirCalls\": 133,\n  \"readdirCallsAtReject\": 1,\n  \"readdirCallsAfterReject\": 132\n}\n\nThe same test against a patched build with return cb() in the four abort branches stops immediately:\n\n{\n  \"readdirCalls\": 1,\n  \"readdirCallsAtReject\": 1,\n  \"readdirCallsAfterReject\": 0\n}\n\n### Impact\n\nThis is an availability issue.\n\nApplications that expose globbing over attacker-influenced patterns or attacker-controlled directory trees and use AbortSignal / AbortSignal.timeout() as a traversal budget can still perform significant filesystem I/O and CPU work after a request has already timed out or been canceled.\n\nRepeated timed-out requests can stack background glob walks and degrade worker throughput or service availability.\n\nNo confidentiality or integrity impact was observed.\n\n|                                                                                                                       |\n|Package                                                                                           pkg:npm/glob@10.5.0  |\n|Affected range                                                                                    >=9.0.0,<=14.0.1     |\n|Fixed version                                                                                     14.0.2               |\n|[[CVSS Score 6.3] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N]]                       |\n"
+              },
+              "properties": {
+                "affected_version": ">=9.0.0,<=14.0.1",
+                "cvssV3": 6.3,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "fixed_version": "14.0.2",
+                "purls": [
+                  "pkg:npm/glob@10.5.0",
+                  "pkg:npm/glob@13.0.6"
+                ],
+                "security-severity": "6.3",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-119200",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-119200: Improper Resolution of Path Equivalence"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-119200?s=github&n=nuxt&t=npm&vr=%3E%3D4.6.0%2C%3C4.6.3",
+              "help": {
+                "text": "### Summary\n\nSince `4.6.0`, Nuxt resolves `.` and `..` segments in the request path, including percent-encoded forms such as `%2e`, before rendering a page. Nitro's routing, Nitro's route rules and `server/middleware` see the path with those segments still in place. A request for `/%2e/admin` therefore renders the page at `/admin`, while server-side checks keyed on `/admin` do not apply.\n\n### Impact\n\nAn unauthenticated attacker can bypass server-side controls that match on the request path of a page route.\n\n`server/middleware` that checks `event.path` (or `event.node.req.url`) is skipped:\n\n```ts\nexport default defineEventHandler((event) => {\n  if (event.path.startsWith('/admin') && !isAuthenticated(event)) {\n    throw createError({ statusCode: 401 })\n  }\n})\n```\n\nWith this middleware, `/admin` returns 401, but `/%2e/admin`, `/.%2e/admin` and `/x/%2e%2e/admin` reach the middleware with `event.path` set to `/./admin`, `/../admin` and `/x/../admin`, and render `app/pages/admin.vue` along with the data it fetches during server rendering.\n\nServer-side `redirect` and `headers` route rules are skipped in the same way, so `'/admin/**': { redirect: '/login' }` does not redirect `/%2e/admin/secret`, and per-route security headers such as `Content-Security-Policy` are not sent.\n\nNot affected:\n\n- API handlers in `server/api` and `server/routes`. Nitro's router does not resolve dot segments, so these requests do not reach the handler.\n- `appMiddleware` route rules and middleware declared with `definePageMeta`, which are matched against the resolved route.\n- Nuxt `3.x` and `4.0.0` to `4.5.x`, which pass the path to the page router unchanged, so these requests 404.\n\nBrowsers resolve dot segments before sending a request, so exploitation requires a client that sends the path as written.\n\n### Patches\n\nFixed in `nuxt@4.6.3` and `@nuxt/nitro-server@4.6.3`. A page request whose path contains `.` or `..` segments now receives a 404 instead of rendering the page the path resolves to, and route-rule keys and lookup paths have their dot segments resolved, including percent-encoded spellings, before they are compared.\n\n### Workarounds\n\nReject dot segments in a server middleware that runs before your other middleware (middleware runs in file name order):\n\n```ts\n// server/middleware/0.dot-segments.ts\nexport default defineEventHandler((event) => {\n  if (/(?:^|\\/)\\.{1,2}(?:\\/|$)/.test(event.path.split('?')[0])) {\n    throw createError({ statusCode: 404 })\n  }\n})\n```\n\nChecking `getRequestURL(event).pathname` instead of `event.path` is not a sufficient workaround: it resolves dot segments, but keeps percent-encoding such as `%61` that the page router decodes. Path checks in server middleware should also account for the page router matching paths case-insensitively unless `router.options.sensitive` is set.\n\nA reverse proxy or CDN that normalises the request path before forwarding it also removes the mismatch.\n\n### Credits\n\nThanks to @vinzabe, @nikhilagrawalsf (Nikhil Agrawal, Mettle Labs), @0xjunwei and @kq5y, who reported this issue independently.\n",
+                "markdown": "> ### Summary\n\nSince `4.6.0`, Nuxt resolves `.` and `..` segments in the request path, including percent-encoded forms such as `%2e`, before rendering a page. Nitro's routing, Nitro's route rules and `server/middleware` see the path with those segments still in place. A request for `/%2e/admin` therefore renders the page at `/admin`, while server-side checks keyed on `/admin` do not apply.\n\n### Impact\n\nAn unauthenticated attacker can bypass server-side controls that match on the request path of a page route.\n\n`server/middleware` that checks `event.path` (or `event.node.req.url`) is skipped:\n\n```ts\nexport default defineEventHandler((event) => {\n  if (event.path.startsWith('/admin') && !isAuthenticated(event)) {\n    throw createError({ statusCode: 401 })\n  }\n})\n```\n\nWith this middleware, `/admin` returns 401, but `/%2e/admin`, `/.%2e/admin` and `/x/%2e%2e/admin` reach the middleware with `event.path` set to `/./admin`, `/../admin` and `/x/../admin`, and render `app/pages/admin.vue` along with the data it fetches during server rendering.\n\nServer-side `redirect` and `headers` route rules are skipped in the same way, so `'/admin/**': { redirect: '/login' }` does not redirect `/%2e/admin/secret`, and per-route security headers such as `Content-Security-Policy` are not sent.\n\nNot affected:\n\n- API handlers in `server/api` and `server/routes`. Nitro's router does not resolve dot segments, so these requests do not reach the handler.\n- `appMiddleware` route rules and middleware declared with `definePageMeta`, which are matched against the resolved route.\n- Nuxt `3.x` and `4.0.0` to `4.5.x`, which pass the path to the page router unchanged, so these requests 404.\n\nBrowsers resolve dot segments before sending a request, so exploitation requires a client that sends the path as written.\n\n### Patches\n\nFixed in `nuxt@4.6.3` and `@nuxt/nitro-server@4.6.3`. A page request whose path contains `.` or `..` segments now receives a 404 instead of rendering the page the path resolves to, and route-rule keys and lookup paths have their dot segments resolved, including percent-encoded spellings, before they are compared.\n\n### Workarounds\n\nReject dot segments in a server middleware that runs before your other middleware (middleware runs in file name order):\n\n```ts\n// server/middleware/0.dot-segments.ts\nexport default defineEventHandler((event) => {\n  if (/(?:^|\\/)\\.{1,2}(?:\\/|$)/.test(event.path.split('?')[0])) {\n    throw createError({ statusCode: 404 })\n  }\n})\n```\n\nChecking `getRequestURL(event).pathname` instead of `event.path` is not a sufficient workaround: it resolves dot segments, but keeps percent-encoding such as `%61` that the page router decodes. Path checks in server middleware should also account for the page router matching paths case-insensitively unless `router.options.sensitive` is set.\n\nA reverse proxy or CDN that normalises the request path before forwarding it also removes the mismatch.\n\n### Credits\n\nThanks to @vinzabe, @nikhilagrawalsf (Nikhil Agrawal, Mettle Labs), @0xjunwei and @kq5y, who reported this issue independently.\n\n|                                                                                                   |\n|Package                                                                        pkg:npm/nuxt@4.6.2  |\n|Affected range                                                                 >=4.6.0,<4.6.3      |\n|Fixed version                                                                  4.6.3               |\n|[[CVSS Score 6.5] [CVSS Vector CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N]]                      |\n"
+              },
+              "properties": {
+                "affected_version": ">=4.6.0,<4.6.3",
+                "cvssV3": 6.5,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+                "fixed_version": "4.6.3",
+                "purls": [
+                  "pkg:npm/%40nuxt/nitro-server@4.6.2",
+                  "pkg:npm/nuxt@4.6.2"
+                ],
+                "security-severity": "6.5",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-118764",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CVE-2026-118764: Asymmetric Resource Consumption (Amplification)"
+              },
+              "helpUri": "https://scout.docker.com/v/CVE-2026-118764?s=github&n=minimatch&t=npm&vr=%3C11.0.1",
+              "help": {
+                "text": "minimatch 10.2.6 contains an attacker-controlled pattern amplification in firstPhasePreProcess() when optimizationLevel >= 2.\n\nresearcher: Reid Downing (b1nv0id)\nfiles: \n\n- src/index.ts: 690-770\n- src/index.ts: 780-796\n\nissue:\ninput-controlled growth of globParts during first-phase preprocessing, followed by quadratic second-phase processing.\n\nthe **/../ transformation clones a globparts entry and appends the clone to the same globparts array:\n```\nparts.splice(gs, 1)\nconst other = parts.slice(0)\nother[gs] = '**'\nglobParts.push(other)\n```\nthis occurs inside a do...while (didSomething) fixpoint loop, allowing generated entries to be processed again.\n\nthe expanded globparts array is subsequently processed by secondPhasePreProcess(), which performs pairwise comparisons:\n```\nfor (let i = 0; i < globParts.length - 1; i++) {\n  for (let j = i + 1; j < globParts.length; j++) {\n    this.partsMatch(...)\n  }\n}\n```\nan attacker who can supply a glob pattern can therefore cause additional pattern entries to be generated during preprocessing, followed by quadratic pairwise processing, resulting in excessive cpu and memory consumption.\n",
+                "markdown": "> minimatch 10.2.6 contains an attacker-controlled pattern amplification in firstPhasePreProcess() when optimizationLevel >= 2.\n\nresearcher: Reid Downing (b1nv0id)\nfiles: \n\n- src/index.ts: 690-770\n- src/index.ts: 780-796\n\nissue:\ninput-controlled growth of globParts during first-phase preprocessing, followed by quadratic second-phase processing.\n\nthe **/../ transformation clones a globparts entry and appends the clone to the same globparts array:\n```\nparts.splice(gs, 1)\nconst other = parts.slice(0)\nother[gs] = '**'\nglobParts.push(other)\n```\nthis occurs inside a do...while (didSomething) fixpoint loop, allowing generated entries to be processed again.\n\nthe expanded globparts array is subsequently processed by secondPhasePreProcess(), which performs pairwise comparisons:\n```\nfor (let i = 0; i < globParts.length - 1; i++) {\n  for (let j = i + 1; j < globParts.length; j++) {\n    this.partsMatch(...)\n  }\n}\n```\nan attacker who can supply a glob pattern can therefore cause additional pattern entries to be generated during preprocessing, followed by quadratic pairwise processing, resulting in excessive cpu and memory consumption.\n\n|                                                                                                                           |\n|Package                                                                                           pkg:npm/minimatch@5.1.9  |\n|Affected range                                                                                    <11.0.1                  |\n|Fixed version                                                                                     11.0.1                   |\n|[[CVSS Score 6.9] [CVSS Vector CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N]]                           |\n"
+              },
+              "properties": {
+                "affected_version": "<11.0.1",
+                "cvssV3": 6.9,
+                "cvssV3_severity": "MEDIUM",
+                "cvssV3_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "fixed_version": "11.0.1",
+                "purls": [
+                  "pkg:npm/minimatch@10.2.6",
+                  "pkg:npm/minimatch@5.1.9",
+                  "pkg:npm/minimatch@9.0.9"
+                ],
+                "security-severity": "6.9",
+                "tags": [
+                  "MEDIUM"
+                ]
+              }
+            }
+          ],
+          "version": "1.26.0"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-107891",
+          "ruleIndex": 0,
+          "kind": "fail",
+          "level": "none",
+          "message": {
+            "text": "Vulnerability   :CVE-2026-107891                                              \nSeverity        :UNSPECIFIED                                                  \nPackage         :pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24  \nAffected range  :<1.2.6-r6                                                    \nFixed version   :1.2.6-r6                                                     \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/apk/db/installed"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/lib/ld-musl-x86_64.so.1"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/sbin/ldconfig"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getconf"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/getent"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/iconv"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/usr/bin/ldd"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-93753",
+          "ruleIndex": 1,
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-93753                                                       \nSeverity         :LOW                                                                  \nPackage          :pkg:npm/deepmerge@4.3.1                                              \nAffected range   :>=4.2.0,<=4.3.1                                                      \nFixed version    :not fixed                                                            \nCVSS Score       :2.7                                                                  \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U  \nEPSS Score       :0.005140                                                             \nEPSS Percentile  :0.438230                                                             \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/deepmerge/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-119201",
+          "ruleIndex": 2,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-119201                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/%40nuxt/vite-builder@4.6.2            \nAffected range   :>=4.6.0,<4.6.3                                \nFixed version    :4.6.3                                         \nCVSS Score       :4.8                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N  \nEPSS Score       :0.002050                                      \nEPSS Percentile  :0.104620                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/@nuxt/vite-builder/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-119198",
+          "ruleIndex": 3,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-119198                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/%40nuxt/vite-builder@4.6.2            \nAffected range   :>=4.6.0,<4.6.3                                \nFixed version    :4.6.3                                         \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N  \nEPSS Score       :0.002890                                      \nEPSS Percentile  :0.215050                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/@nuxt/vite-builder/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-119199",
+          "ruleIndex": 4,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-119199                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/%40nuxt/vite-builder@4.6.2            \nAffected range   :>=3.0.0,<4.6.3                                \nFixed version    :4.6.3                                         \nCVSS Score       :5.9                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N  \nEPSS Score       :0.003500                                      \nEPSS Percentile  :0.287130                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/@nuxt/vite-builder/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118773",
+          "ruleIndex": 5,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-118773                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/glob@13.0.6                                              \nAffected range   :>=9.0.0,<=14.0.1                                                 \nFixed version    :14.0.2                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.003500                                                         \nEPSS Percentile  :0.287090                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/glob/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118773",
+          "ruleIndex": 5,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-118773                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/glob@10.5.0                                              \nAffected range   :>=9.0.0,<=14.0.1                                                 \nFixed version    :14.0.2                                                           \nCVSS Score       :6.3                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.003500                                                         \nEPSS Percentile  :0.287090                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/archiver-utils/node_modules/glob/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-119200",
+          "ruleIndex": 6,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-119200                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/%40nuxt/nitro-server@4.6.2            \nAffected range   :>=4.6.0,<4.6.3                                \nFixed version    :4.6.3                                         \nCVSS Score       :6.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N  \nEPSS Score       :0.003390                                      \nEPSS Percentile  :0.273520                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/@nuxt/nitro-server/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-119200",
+          "ruleIndex": 6,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-119200                               \nSeverity         :MEDIUM                                        \nPackage          :pkg:npm/nuxt@4.6.2                            \nAffected range   :>=4.6.0,<4.6.3                                \nFixed version    :4.6.3                                         \nCVSS Score       :6.5                                           \nCVSS Vector      :CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N  \nEPSS Score       :0.003390                                      \nEPSS Percentile  :0.273520                                      \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/nuxt/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118764",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-118764                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/minimatch@9.0.9                                          \nAffected range   :<11.0.1                                                          \nFixed version    :11.0.1                                                           \nCVSS Score       :6.9                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.002910                                                         \nEPSS Percentile  :0.217530                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/archiver-utils/node_modules/minimatch/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118764",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-118764                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/minimatch@10.2.6                                         \nAffected range   :<11.0.1                                                          \nFixed version    :11.0.1                                                           \nCVSS Score       :6.9                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.002910                                                         \nEPSS Percentile  :0.217530                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/minimatch/package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118764",
+          "ruleIndex": 7,
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Vulnerability    :CVE-2026-118764                                                  \nSeverity         :MEDIUM                                                           \nPackage          :pkg:npm/minimatch@5.1.9                                          \nAffected range   :<11.0.1                                                          \nFixed version    :11.0.1                                                           \nCVSS Score       :6.9                                                              \nCVSS Vector      :CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  \nEPSS Score       :0.002910                                                         \nEPSS Percentile  :0.217530                                                         \n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/builder/node_modules/readdir-glob/node_modules/minimatch/package.json"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

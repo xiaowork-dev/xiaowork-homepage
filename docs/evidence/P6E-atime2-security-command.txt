@@ -1,0 +1,7 @@
+Scanned final api sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d {"UNSPECIFIED":1}
+Scanned final worker sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190 {"UNSPECIFIED":1,"LOW":1,"MEDIUM":10}
+Scanned final gateway sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d {"UNSPECIFIED":1}
+Scanned final frontend sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa {"UNSPECIFIED":1}
+Scanned final static sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949 {"UNSPECIFIED":1}
+Scanned final maintenance sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934 {"UNSPECIFIED":1}
+Collected final six-image and exact source/binary security evidence

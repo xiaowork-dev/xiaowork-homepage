@@ -1,0 +1,48 @@
+Scanning your binary for known vulnerabilities...
+
+Fetching vulnerabilities from the database...
+
+Checking the binary against the vulnerabilities...
+
+The package pattern matched the following root package:
+  github.com/xiaowork-dev/xiaowork-homepage/backend
+Govulncheck scanned the following 10 modules and the go1.27.3 standard library:
+  github.com/xiaowork-dev/xiaowork-homepage/backend@(devel)
+  github.com/dustin/go-humanize@v1.1.0
+  github.com/google/uuid@v1.6.0
+  github.com/remyoudompheng/bigfft@v0.0.0-20230129092748-24d4a6f8daec
+  golang.org/x/crypto@v0.58.0
+  golang.org/x/sys@v0.49.0
+  modernc.org/libc@v1.79.0
+  modernc.org/mathutil@v1.7.1
+  modernc.org/memory@v1.12.1
+  modernc.org/sqlite@v1.61.0
+
+=== Symbol Results ===
+
+Vulnerability #1: GO-2026-5932
+    The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design,
+    and has known security issues
+  More info: https://pkg.go.dev/vuln/GO-2026-5932
+  Module: golang.org/x/crypto
+    Found in: golang.org/x/crypto@v0.58.0
+    Fixed in: N/A
+    Vulnerable symbols found:
+      #1: armor.golang.org/x/crypto/openpgp/armor/*
+      #2: clearsign.golang.org/x/crypto/openpgp/clearsign/*
+      #3: elgamal.golang.org/x/crypto/openpgp/elgamal/*
+      #4: errors.golang.org/x/crypto/openpgp/errors/*
+      #5: openpgp.golang.org/x/crypto/openpgp/*
+      Use '-show traces' to see the other 2 found symbols
+
+=== Package Results ===
+
+No other vulnerabilities found.
+
+=== Module Results ===
+
+No other vulnerabilities found.
+
+Your code is affected by 1 vulnerability from 1 module.
+This scan found no other vulnerabilities in packages you import or modules you
+require.

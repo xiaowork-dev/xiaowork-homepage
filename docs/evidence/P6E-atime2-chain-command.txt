@@ -1,0 +1,53 @@
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Running 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-frontend-1 Running 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-static-1 Running 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-gateway-1 Running 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Starting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Started 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-frontend-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-static-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-gateway-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-frontend-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-static-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Exited 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-gateway-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Healthy 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Recreate 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Recreated 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Starting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Started 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Waiting 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Healthy 
+PASS trusted HTTPS account and persistent synthetic private upload prepared; current public version unchanged
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-worker-1 Stopped 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-1 Stopped 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-api-init-1 Stopped 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Stopping 
+ Container xiaowork-homepage-v11-p6e-atime2-fault-publication-init-1 Stopped 
+PASS read-only intent/job/receipt/history/full-SHA plan identifies exactly the real pre-switch residual; backup still refuses it
+PASS single-object repair persisted intent/result, all other file SHAs and active HTTP stayed identical
+Actual project image differs from recorded release descriptor
++ actual - expected
+
++ 'sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d'
+- 'sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160'
+

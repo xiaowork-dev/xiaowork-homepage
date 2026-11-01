@@ -1,0 +1,1 @@
+PASS read-only failure review; known new scene manually blocked, all downstream data operations stopped

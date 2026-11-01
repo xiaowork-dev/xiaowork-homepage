@@ -1,0 +1,715 @@
+{
+  "date": "2026-11-01T10:11:37.669Z",
+  "source": "8eeeb31eaf57e579e48b747efaee31f2745f2d80",
+  "maintenance": "sha256:6caea983145081ef170ca4bf8b42a9be7c48d941cff5157b90108dd8ddd52b0c",
+  "fixtureOnly": true,
+  "sourceProject": "xiaowork-homepage-v11-p6e-closure-fault",
+  "prefix": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju",
+  "cases": [
+    {
+      "case": "stable",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-stable",
+      "expected": "PASS_READ_ONLY_INSPECTION",
+      "beforeSHA256": "30b52a061a5288f657f84aefc3838259bfc35439d3536e5d1a4fdd0c2563d611",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 0,
+      "state": {
+        "schema": 3,
+        "workspaceRevision": 2,
+        "administrators": 1,
+        "projects": 3,
+        "uploads": 1,
+        "snapshots": 13,
+        "jobs": 14,
+        "releases": 9,
+        "unfinished": 0,
+        "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "sources": [
+          "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        ],
+        "builders": [
+          "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96"
+        ],
+        "contentSha256": "ff0af1f4f08c442a9568db0a49b97e07889c23f3ebf4b0f3ca1df90c25ec0b78"
+      },
+      "planSHA256": "73f7ddcbb7eac44325806490cc419c0faf220860ce0647a4ccc30e7be40c3c39",
+      "repeatedInspectionIdentical": true,
+      "afterSHA256": "30b52a061a5288f657f84aefc3838259bfc35439d3536e5d1a4fdd0c2563d611",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "227728",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793527903702031910",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        }
+      ]
+    },
+    {
+      "case": "committed",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-committed",
+      "expected": "PASS_READ_ONLY_INSPECTION",
+      "fixtureResult": {
+        "action": "valid-wal",
+        "baseRevision": 2,
+        "walBytes": 4152
+      },
+      "beforeSHA256": "1ba8d6b24885c7118f83afec56a6af56786225d2dd53604db29cfe543d271d98",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 0,
+      "state": {
+        "schema": 3,
+        "workspaceRevision": 9,
+        "administrators": 1,
+        "projects": 3,
+        "uploads": 1,
+        "snapshots": 13,
+        "jobs": 14,
+        "releases": 9,
+        "unfinished": 0,
+        "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "sources": [
+          "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        ],
+        "builders": [
+          "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96"
+        ],
+        "contentSha256": "ba28e17f4fa411ad2782c527720cb996d6599cb9eae4f7bbeb01c238bf18a244"
+      },
+      "planSHA256": "ee28116025341a572325074b1945ae8e00db6ba29597cc79623a176e76c2fa0f",
+      "repeatedInspectionIdentical": true,
+      "afterSHA256": "1ba8d6b24885c7118f83afec56a6af56786225d2dd53604db29cfe543d271d98",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "228218",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793527927422833072",
+          "atimeNs": "1793527928155237754",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-shm",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "227725",
+          "nlink": "1",
+          "bytes": "32768",
+          "mtimeNs": "1793527928163238494",
+          "ctimeNs": "1793527928163238494",
+          "atimeNs": "1793527928159687600",
+          "sha256": "59c88c87e70e014400c591c4188c04ccac90c4542bf62fa759829e5a9d910663"
+        },
+        {
+          "path": "db/content.sqlite-wal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "227718",
+          "nlink": "1",
+          "bytes": "4152",
+          "mtimeNs": "1793527928159687600",
+          "ctimeNs": "1793527928159687600",
+          "atimeNs": "1793527928155237754",
+          "sha256": "8830a835950d400319e832c4eab0284432e07b9ba7869176662cbba98e52a06b"
+        }
+      ]
+    },
+    {
+      "case": "wal-no-shm",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-wal-no-shm",
+      "expected": "PASS_READ_ONLY_INSPECTION",
+      "fixtureResult": {
+        "action": "valid-wal",
+        "baseRevision": 2,
+        "walBytes": 4152
+      },
+      "beforeSHA256": "f6c4cede15483d4f66d8b3c2df463940cb415961a08b79fdb1fd04b635896b86",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 0,
+      "state": {
+        "schema": 3,
+        "workspaceRevision": 9,
+        "administrators": 1,
+        "projects": 3,
+        "uploads": 1,
+        "snapshots": 13,
+        "jobs": 14,
+        "releases": 9,
+        "unfinished": 0,
+        "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "sources": [
+          "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        ],
+        "builders": [
+          "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96"
+        ],
+        "contentSha256": "ba28e17f4fa411ad2782c527720cb996d6599cb9eae4f7bbeb01c238bf18a244"
+      },
+      "planSHA256": "77a685b2f376a00fe34eb6bbff7eb997b8b4a1a987c64af0a8a221543a5ec6e2",
+      "repeatedInspectionIdentical": true,
+      "afterSHA256": "f6c4cede15483d4f66d8b3c2df463940cb415961a08b79fdb1fd04b635896b86",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "229013",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793527952618924337",
+          "atimeNs": "1793527951934327002",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-wal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "228993",
+          "nlink": "1",
+          "bytes": "4152",
+          "mtimeNs": "1793527951938861436",
+          "ctimeNs": "1793527952618924337",
+          "atimeNs": "1793527951934327002",
+          "sha256": "f50222209a11df42901d56661c167f016dc02241a8a724766b427c3928fcfeac"
+        }
+      ]
+    },
+    {
+      "case": "readonly-dir",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-readonly-dir",
+      "expected": "PASS_READ_ONLY_INSPECTION",
+      "beforeSHA256": "2510e5488e51efb7a52cde16e4bbafaf284675cadf02fb64f687012bea13da4e",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 0,
+      "state": {
+        "schema": 3,
+        "workspaceRevision": 2,
+        "administrators": 1,
+        "projects": 3,
+        "uploads": 1,
+        "snapshots": 13,
+        "jobs": 14,
+        "releases": 9,
+        "unfinished": 0,
+        "activeRelease": "rel_8b8819f3bd32692d246cacd8d4178817",
+        "sources": [
+          "817aa533741bdd5de23f322fa5e5171442cb28a9"
+        ],
+        "builders": [
+          "sha256:8e317baeae51423e85d67638f1fdd45fac0379e16946bc89e9e49a9f81058c96"
+        ],
+        "contentSha256": "ff0af1f4f08c442a9568db0a49b97e07889c23f3ebf4b0f3ca1df90c25ec0b78"
+      },
+      "planSHA256": "73f7ddcbb7eac44325806490cc419c0faf220860ce0647a4ccc30e7be40c3c39",
+      "repeatedInspectionIdentical": true,
+      "afterSHA256": "2510e5488e51efb7a52cde16e4bbafaf284675cadf02fb64f687012bea13da4e",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33060,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "229848",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793527977046610992",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        }
+      ]
+    },
+    {
+      "case": "uncommitted",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-uncommitted",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "fixtureResult": {
+        "action": "uncommitted",
+        "baseRevision": 2,
+        "walBytes": 1330792
+      },
+      "beforeSHA256": "0031f1be949e5a4610c11a0012238cc6b1118456aedd6608cf97995d183da731",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database wal-state-unproven: WAL does not end at a complete commit; manual recovery is required\n",
+      "expectedErrorCategory": "wal-state-unproven",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "0031f1be949e5a4610c11a0012238cc6b1118456aedd6608cf97995d183da731",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "230670",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528003405863087",
+          "atimeNs": "1793528004306378807",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-shm",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "230656",
+          "nlink": "1",
+          "bytes": "32768",
+          "mtimeNs": "1793528004317122008",
+          "ctimeNs": "1793528004317122008",
+          "atimeNs": "1793528004311517477",
+          "sha256": "00d6d17298a422f5d876d459b17e29ddafb3b07c39605faf856e165b5e52b6a9"
+        },
+        {
+          "path": "db/content.sqlite-wal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "229840",
+          "nlink": "1",
+          "bytes": "1330792",
+          "mtimeNs": "1793528004321122371",
+          "ctimeNs": "1793528004321122371",
+          "atimeNs": "1793528004317122008",
+          "sha256": "6f500e9ff636be25bc35f6bcc8fc9370a105eb5f2b093fa7e0225e021a5777d5"
+        }
+      ]
+    },
+    {
+      "case": "truncated-wal",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-truncated-wal",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "fixtureResult": {
+        "action": "valid-wal",
+        "baseRevision": 2,
+        "walBytes": 4152
+      },
+      "beforeSHA256": "fa25369e2c83cc3e591b94d35661d952309333d849cb478864886089537d3509",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database wal-state-unproven: truncated or unsupported WAL length\n",
+      "expectedErrorCategory": "wal-state-unproven",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "fa25369e2c83cc3e591b94d35661d952309333d849cb478864886089537d3509",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1462704",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528020936096562",
+          "atimeNs": "1793528020174051809",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-shm",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1462695",
+          "nlink": "1",
+          "bytes": "32768",
+          "mtimeNs": "1793528020192027637",
+          "ctimeNs": "1793528020936096562",
+          "atimeNs": "1793528020177322386",
+          "sha256": "0682f2d7a5783ee82b8ac8fc615848c5fc7eef98a18fedc78ed9a6e8f13a6286"
+        },
+        {
+          "path": "db/content.sqlite-wal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1462694",
+          "nlink": "1",
+          "bytes": "4151",
+          "mtimeNs": "1793528020936096562",
+          "ctimeNs": "1793528020936096562",
+          "atimeNs": "1793528020176026155",
+          "sha256": "bb95154f1385c6ebbaf0754d93b03b5d720b18d8bda2a207b2be4b754fea3806"
+        }
+      ]
+    },
+    {
+      "case": "bad-wal",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-bad-wal",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "fixtureResult": {
+        "action": "valid-wal",
+        "baseRevision": 2,
+        "walBytes": 4152
+      },
+      "beforeSHA256": "799b4a2be3a0002385f22d710f9fd55237994ed60e9cc0e2ffddf2c14248b741",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database wal-state-unproven: WAL frame checksum mismatch or unproven tail\n",
+      "expectedErrorCategory": "wal-state-unproven",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "799b4a2be3a0002385f22d710f9fd55237994ed60e9cc0e2ffddf2c14248b741",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1463225",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528035819509962",
+          "atimeNs": "1793528035144617934",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-shm",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1463215",
+          "nlink": "1",
+          "bytes": "32768",
+          "mtimeNs": "1793528035153411562",
+          "ctimeNs": "1793528035819509962",
+          "atimeNs": "1793528035149359375",
+          "sha256": "8f6809ff3fc726e66918a59c4493b7c4bfe815056907e53acd165e76ebe27698"
+        },
+        {
+          "path": "db/content.sqlite-wal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1463206",
+          "nlink": "1",
+          "bytes": "4152",
+          "mtimeNs": "1793528035819509962",
+          "ctimeNs": "1793528035819509962",
+          "atimeNs": "1793528035819509962",
+          "sha256": "8a128509eb2e65279bd6ed04af465ba187b15b4c0fd68de01e3cd1ca8c99daf9"
+        }
+      ]
+    },
+    {
+      "case": "unreadable",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-unreadable",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "beforeSHA256": "1c24dff30d4c4d04b85382f05acea921601544d504c14b819c101a50eb3c1be0",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database permission: database member cannot be read without changing access metadata\n",
+      "expectedErrorCategory": "permission",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "1c24dff30d4c4d04b85382f05acea921601544d504c14b819c101a50eb3c1be0",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 32768,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1463746",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528050212809738",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        }
+      ]
+    },
+    {
+      "case": "missing",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-missing",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "beforeSHA256": "95d84d30164a6875cc0e39bc4542b3af52c9601a580e98065a8bb0dee58391fe",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database absent: required database member does not exist\n",
+      "expectedErrorCategory": "absent",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "95d84d30164a6875cc0e39bc4542b3af52c9601a580e98065a8bb0dee58391fe",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite.retained",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1464265",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528060857655269",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        }
+      ]
+    },
+    {
+      "case": "corrupt",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-corrupt",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "beforeSHA256": "a73c111ee45fbd4c3e212cd25cb2eea0ee51c693a27b1fc43ec5d36a0bcd19bb",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database corrupt: invalid SQLite main file header\n",
+      "expectedErrorCategory": "corrupt",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "a73c111ee45fbd4c3e212cd25cb2eea0ee51c693a27b1fc43ec5d36a0bcd19bb",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1464784",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793528074797385922",
+          "ctimeNs": "1793528074801386277",
+          "atimeNs": "1793528074797385922",
+          "sha256": "baa2259a6aa7c406cb2eaf70764fbae60b6efe0734d1d7fc7eb5947add4d608e"
+        }
+      ]
+    },
+    {
+      "case": "schema",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-schema",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "fixtureResult": {
+        "action": "schema",
+        "baseRevision": 2
+      },
+      "beforeSHA256": "ff99cac8ab2992cfbb687a952d19c3eb7f1a3b60b8b8c5ef93b1b446d2bcff10",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database schema-incompatible: unsupported or incomplete migration history\n",
+      "expectedErrorCategory": "unsupported",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "ff99cac8ab2992cfbb687a952d19c3eb7f1a3b60b8b8c5ef93b1b446d2bcff10",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1465303",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793528088242599264",
+          "ctimeNs": "1793528088242599264",
+          "atimeNs": "1793528088230598172",
+          "sha256": "e7806c6dd75d8f002877a50847676695759da9585e1af9890f5e74160e764780"
+        }
+      ]
+    },
+    {
+      "case": "drift",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-drift",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "fixtureResult": {
+        "action": "drift",
+        "baseRevision": 2
+      },
+      "beforeSHA256": "8c57441874dabcf4634fecb6fba5a58ee1855f2bacc27a14fe8d3b64da8dccdb",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database schema-incompatible: migration checksum mismatch; refusing schema drift\n",
+      "expectedErrorCategory": "checksum mismatch",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "8c57441874dabcf4634fecb6fba5a58ee1855f2bacc27a14fe8d3b64da8dccdb",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1465822",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793528101421753020",
+          "ctimeNs": "1793528101421753020",
+          "atimeNs": "1793528101412503248",
+          "sha256": "3f9c3584a9faf2d5373c052768e8f03640fe2000e74dc96868ac441e83d41161"
+        }
+      ]
+    },
+    {
+      "case": "orphan-shm",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-orphan-shm",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "beforeSHA256": "10abd2d0cddc9615395839a3fcbfabf45ae782cb88ae4c63bed4fb738cae5444",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database wal-state-unproven: WAL index exists without nonempty WAL; do not assume checkpoint completion\n",
+      "expectedErrorCategory": "wal-state-unproven",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "10abd2d0cddc9615395839a3fcbfabf45ae782cb88ae4c63bed4fb738cae5444",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1466341",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528114918981349",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-shm",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1466314",
+          "nlink": "1",
+          "bytes": "32768",
+          "mtimeNs": "1793528114918981349",
+          "ctimeNs": "1793528114918981349",
+          "atimeNs": "1793528114918981349",
+          "sha256": "c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479"
+        }
+      ]
+    },
+    {
+      "case": "journal",
+      "project": "xiaowork-homepage-v11-p6e-a-8eeeb31-mvxo7aju-journal",
+      "expected": "REFUSE_AND_RETAIN_LOCK",
+      "beforeSHA256": "29c8379b2440fd44de12356000f4e6c63b25a7d3b9057fcc8a6d2fa2cc12ff73",
+      "mount": "all-six-volumes-readonly",
+      "result": "PASS",
+      "exitCode": 1,
+      "stderr": "maintenance refused: offline database journal-state-unproven: rollback journal requires separate recovery; source is preserved\n",
+      "expectedErrorCategory": "journal-state-unproven",
+      "operationLockRetained": true,
+      "recoveryRequiredRetained": true,
+      "repeatedAttemptBlocked": true,
+      "afterSHA256": "29c8379b2440fd44de12356000f4e6c63b25a7d3b9057fcc8a6d2fa2cc12ff73",
+      "allFileMetadataAndSHA256Unchanged": true,
+      "databaseFiles": [
+        {
+          "path": "db/content.sqlite",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1466861",
+          "nlink": "1",
+          "bytes": "438272",
+          "mtimeNs": "1793194302039999961",
+          "ctimeNs": "1793528130349728378",
+          "atimeNs": "1793193882946000099",
+          "sha256": "74da7e0999d6b495e0c131738f6208e570bede7c67844bfe5002817f875a13a9"
+        },
+        {
+          "path": "db/content.sqlite-journal",
+          "mode": 33188,
+          "uid": 10001,
+          "gid": 10001,
+          "dev": "2096",
+          "ino": "1466834",
+          "nlink": "1",
+          "bytes": "512",
+          "mtimeNs": "1793528130349728378",
+          "ctimeNs": "1793528130349728378",
+          "atimeNs": "1793528130349728378",
+          "sha256": "f93ac174acd97b23458c571f52c97347dd856ecdb64697e86f71fbe88bdfed19"
+        }
+      ]
+    }
+  ],
+  "result": "PASS",
+  "originalBeforeSHA256": "ec37411f8e8b5a7e7f884a1cea15491f71a70736fdd42a978703231ce738b6c7",
+  "fixtureImage": "sha256:7bb846e6e0be3f06a2db61f270c6e7d2dc29e15e7db65db3ef81eefcbc61efbf",
+  "originalAfterSHA256": "ec37411f8e8b5a7e7f884a1cea15491f71a70736fdd42a978703231ce738b6c7",
+  "retainedOriginalUnchanged": true,
+  "retention": "All dedicated fixture volumes and all failure operation locks retained; original historical source was only mounted readonly. No repair attempted by this matrix."
+}

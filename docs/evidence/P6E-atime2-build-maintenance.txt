@@ -1,0 +1,54 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from maintenance.Dockerfile
+#1 transferring dockerfile: 1.38kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.3-alpine
+#2 DONE 0.0s
+
+#3 [internal] load build context
+#3 DONE 0.0s
+
+#4 [build 1/7] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c
+#4 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done
+#4 DONE 0.0s
+
+#3 [internal] load build context
+#3 transferring context: 623.44kB 0.1s done
+#3 DONE 0.1s
+
+#5 [build 5/7] COPY backend/ ./
+#5 CACHED
+
+#6 [build 7/7] RUN mkdir -p /mounts/source/db /mounts/source/uploads /mounts/source/publications /mounts/source/secrets /mounts/source/authority /mounts/source/tls /mounts/target/db /mounts/target/uploads /mounts/target/publications /mounts/target/secrets /mounts/target/authority /mounts/target/tls /mounts/backup     && chown -R 10001:10001 /mounts     && find /mounts -type d -exec chmod 700 {} +
+#6 CACHED
+
+#7 [stage-1 1/2] COPY --from=build /homepage-maintenance /homepage-maintenance
+#7 CACHED
+
+#8 [build 2/7] WORKDIR /src
+#8 CACHED
+
+#9 [build 4/7] RUN GOPROXY=https://goproxy.cn go mod download
+#9 CACHED
+
+#10 [build 6/7] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -trimpath -ldflags="-s -w" -o /homepage-maintenance ./cmd/homepage-maintenance
+#10 CACHED
+
+#11 [build 3/7] COPY backend/go.mod backend/go.sum ./
+#11 CACHED
+
+#12 [stage-1 2/2] COPY --from=build --chown=10001:10001 /mounts/ /
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:80882d545db9f603c88a6e9e5f615901d611f15186e6850046f61ef24a6500f5 0.0s done
+#13 exporting config sha256:5d477b7888ce64d9ca424f057b8349a26a3e64ed3a940077e67bd6d95029c60d
+#13 exporting config sha256:5d477b7888ce64d9ca424f057b8349a26a3e64ed3a940077e67bd6d95029c60d 0.0s done
+#13 exporting attestation manifest sha256:1d1b9f2388049ef7c0adc1cfbc7d2e961eaa72252d8834618e82903a52f4933c 0.0s done
+#13 exporting manifest list sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934 0.0s done
+#13 naming to docker.io/library/xiaowork-homepage-maintenance:p6e-atime2-bb05f6ad613f done
+#13 unpacking to docker.io/library/xiaowork-homepage-maintenance:p6e-atime2-bb05f6ad613f 0.0s done
+#13 DONE 0.2s

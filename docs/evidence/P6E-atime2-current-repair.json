@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-01T10:40:50.459Z",
+  "project": "xiaowork-homepage-v11-p6e-atime2-fault",
+  "recovered": "xiaowork-homepage-v11-p6e-atime2-repair",
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "finalImages": {
+    "api": "sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d",
+    "worker": "sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190",
+    "gateway": "sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d",
+    "frontend": "sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa",
+    "static": "sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949",
+    "maintenance": "sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934"
+  },
+  "cases": [
+    {
+      "name": "trusted HTTPS account and persistent synthetic private upload prepared; current public version unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "read-only intent/job/receipt/history/full-SHA plan identifies exactly the real pre-switch residual; backup still refuses it",
+      "result": "PASS"
+    },
+    {
+      "name": "single-object repair persisted intent/result, all other file SHAs and active HTTP stayed identical",
+      "result": "PASS"
+    }
+  ],
+  "result": "FAIL",
+  "readonlyMatrix": {
+    "result": "PASS",
+    "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+    "cases": 14
+  },
+  "syntheticImage": {
+    "id": "med_0242719d3e7139a7c72f9e4192700b35",
+    "sha256": "f889324cf1cd6d904ac45783e5dd8244af388011edc2964065bfc0e310d4edfa",
+    "bytes": 125,
+    "note": "Locally generated test fixture; never a real project screenshot"
+  },
+  "publicBefore": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "b290c03a7a417b2404a9e607cf91296574f714b1f5e2d27baf3b1964154d6fab"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "66c29ff1dc27975a852d1fae707435cad5c443431dde5e740b535947318a69ea"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "3078cfbd8648d6eedaa1eee43f469cc3ff0632f2696841ad28dd7ae84969e7bd"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "4451006a489ab3d75f1f2b9eb1db58412038034659637f978e76b9bdc5a9ee08"
+    }
+  ],
+  "faultRuntimeImages": {
+    "api": "sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160",
+    "worker": "sha256:ef271f7faad3ba2d40c6f79abb2042c99e9ed4292c53380f0034657fd7ff149e",
+    "gateway": "sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d",
+    "frontend": "sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa",
+    "static": "sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949",
+    "maintenance": "sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934"
+  },
+  "plan": {
+    "format": 1,
+    "state": {
+      "schema": 3,
+      "workspaceRevision": 2,
+      "administrators": 1,
+      "projects": 3,
+      "uploads": 1,
+      "snapshots": 3,
+      "jobs": 3,
+      "releases": 3,
+      "unfinished": 0,
+      "activeRelease": "rel_2a9459f8149e0d14e18828ff415e8301",
+      "sources": [
+        "bb05f6ad613fdf3507ff8a9c56696da85fa4a678"
+      ],
+      "builders": [
+        "sha256:ef271f7faad3ba2d40c6f79abb2042c99e9ed4292c53380f0034657fd7ff149e"
+      ],
+      "contentSha256": "ef902217c3002e6087b7d5e6ee1759b4d3d2c9274bad40e7581f3a7e3565273c"
+    },
+    "candidates": [
+      {
+        "name": "current.next.db980a44a9b6255f1a4639db774829bb3792976d5daf90dcc0cafb07250ce611",
+        "target": "releases/rel_b8e7da3791ff007f2bdcdcc93d381c54",
+        "jobId": "job_298d850099ab3ac499e59cbdbc19d0fc",
+        "status": "failed",
+        "operation": "activation",
+        "manifestSha256": "4f931111fae15a62670a05f3f6d78f798aee98cc879c88a476404a7a77bab025",
+        "intentSha256": "a098460e0411e05b5115d9a7fc31ffb3911fcfa1a4ad26db4173fd602aa534bf",
+        "referencedByHistory": true
+      }
+    ],
+    "sha256": "a3994bda2e9a153a0090e227a853c6a62a1dcfb2de384cdc657bfbf3e667af0a",
+    "fileCount": 117
+  },
+  "repair": {
+    "id": "repair-1793529696447698179",
+    "outcome": "verified-redundant-link-removed",
+    "afterSHA256": "2b9752396cf42876a81255c410c53649f9a826ca160fa995c2531381a0935d00",
+    "afterFileCount": 116,
+    "completePerFileSHA256Comparison": true,
+    "fullManifestStorage": "Private local test-controller cache and persistent volume audit",
+    "state": {
+      "schema": 3,
+      "workspaceRevision": 2,
+      "administrators": 1,
+      "projects": 3,
+      "uploads": 1,
+      "snapshots": 3,
+      "jobs": 3,
+      "releases": 3,
+      "unfinished": 0,
+      "activeRelease": "rel_2a9459f8149e0d14e18828ff415e8301",
+      "sources": [
+        "bb05f6ad613fdf3507ff8a9c56696da85fa4a678"
+      ],
+      "builders": [
+        "sha256:ef271f7faad3ba2d40c6f79abb2042c99e9ed4292c53380f0034657fd7ff149e"
+      ],
+      "contentSha256": "ef902217c3002e6087b7d5e6ee1759b4d3d2c9274bad40e7581f3a7e3565273c"
+    }
+  },
+  "error": "Actual project image differs from recorded release descriptor\n+ actual - expected\n\n+ 'sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d'\n- 'sha256:1d7655cf5faab0b5ee858c70e78de6611369157a5ca0c33bb7c4534b83080160'\n"
+}

@@ -1,0 +1,153 @@
+BUILT api sha256:9f5dadf06f2e943d45d7eebee27fe69d176f53c43788b8e36c85ab5c74335b19
+BUILT worker sha256:bde08c3a78b520804d89ae6f2eee42ea93f549405d20477f725645547ca0f78e
+BUILT gateway sha256:887b18fad6afe4fe4776b3c5991e03e4b88482e1cb811beec8e47a184543d668
+BUILT frontend sha256:835d7f76ec22ce59bc0a7d2ee85289484fdd6c12c3ffd28ef03760d77d8e49fd
+BUILT static sha256:a877deb6b30efdd9c4986e6a6a3a9b0b284aa7d88c18600843b72fb07b3872f9
+BUILT maintenance sha256:6caea983145081ef170ca4bf8b42a9be7c48d941cff5157b90108dd8ddd52b0c
+FINAL_SIX_ROLE_GROUP_BUILT 8eeeb31eaf57e579e48b747efaee31f2745f2d80
+TEST_ONLY_FIXTURE_BUILT api-test
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from p6e-fault-worker.Dockerfile
+#1 transferring dockerfile: 1.23kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6b-test
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6e-atime-8eeeb31eaf57
+#3 DONE 0.1s
+
+#4 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#4 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 12.89kB 0.0s done
+#5 DONE 0.0s
+
+#6 [test-build 2/4] WORKDIR /src
+#6 CACHED
+
+#7 [api-test 1/2] FROM docker.io/library/xiaowork-homepage-api:p6e-atime-8eeeb31eaf57@sha256:9f5dadf06f2e943d45d7eebee27fe69d176f53c43788b8e36c85ab5c74335b19
+#7 resolve docker.io/library/xiaowork-homepage-api:p6e-atime-8eeeb31eaf57@sha256:9f5dadf06f2e943d45d7eebee27fe69d176f53c43788b8e36c85ab5c74335b19 0.0s done
+#7 DONE 0.1s
+
+#8 [test-build 3/4] COPY backend/ ./
+#8 DONE 0.1s
+
+#9 [test-build 4/4] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-worker ./cmd/p6e-fault-worker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-api ./cmd/homepage-api  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-data ./cmd/p6e-fault-data
+#9 DONE 20.8s
+
+#10 [api-test 2/2] COPY --from=test-build /p6e-fault-api /homepage-api
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 1.2s done
+#11 exporting manifest sha256:8258248da4f441284bbd0bc33d9387a3f147abbe634871187725d4126f593cdb 0.0s done
+#11 exporting config sha256:bad9a0a65b96c4d225a813c7ebac387b6b23a3b8edf62df76487425d16823339 0.0s done
+#11 exporting attestation manifest sha256:06f49866a66155385589c3fc8b1fd2e2acfd91220b2d881ac68ca40ccd177a9c 0.0s done
+#11 exporting manifest list sha256:20c7b5d58d01282e11350ffa40d41ec66cf26344132485e85c090bc0b8788457 0.0s done
+#11 naming to docker.io/library/xiaowork-homepage-api:p6e-atime-fault
+#11 naming to docker.io/library/xiaowork-homepage-api:p6e-atime-fault done
+#11 unpacking to docker.io/library/xiaowork-homepage-api:p6e-atime-fault
+#11 unpacking to docker.io/library/xiaowork-homepage-api:p6e-atime-fault 0.2s done
+#11 DONE 1.5s
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from p6e-fault-worker.Dockerfile
+#1 transferring dockerfile: 1.23kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6b-test
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/xiaowork-homepage-worker:p6e-atime-8eeeb31eaf57
+#3 DONE 0.1s
+
+#4 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#4 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a 0.1s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 7.05kB 0.0s done
+#5 DONE 0.0s
+
+#6 [worker-test 1/2] FROM docker.io/library/xiaowork-homepage-worker:p6e-atime-8eeeb31eaf57@sha256:bde08c3a78b520804d89ae6f2eee42ea93f549405d20477f725645547ca0f78e
+#6 resolve docker.io/library/xiaowork-homepage-worker:p6e-atime-8eeeb31eaf57@sha256:bde08c3a78b520804d89ae6f2eee42ea93f549405d20477f725645547ca0f78e 0.1s done
+#6 DONE 0.1s
+
+#7 [test-build 2/4] WORKDIR /src
+#7 CACHED
+
+#8 [test-build 3/4] COPY backend/ ./
+#8 CACHED
+
+#9 [test-build 4/4] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-worker ./cmd/p6e-fault-worker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-api ./cmd/homepage-api  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-data ./cmd/p6e-fault-data
+TEST_ONLY_FIXTURE_BUILT worker-test
+#9 CACHED
+
+#10 [worker-test 2/2] COPY --from=test-build /p6e-fault-worker /p6e-fault-worker
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.8s done
+#11 exporting manifest sha256:10d6febf6f62a636bb590da841fe2fafa9e45ad1395172491b890d580d7392dc 0.0s done
+#11 exporting config sha256:7dc3ffa708ab6eea5599cca8eb919e549f4aaf3a9357bed8974396f780a653ea 0.0s done
+#11 exporting attestation manifest sha256:eae15eab1bea2f9db1420de1d007e3b33d3d470b05afcc7e141b540d19cb50ed 0.0s done
+#11 exporting manifest list sha256:725905a99adfbffe30194744516b53f8f5e943a29d0c488aef39ced41d718514 0.0s done
+#11 naming to docker.io/library/xiaowork-homepage-worker:p6e-atime-fault
+#11 naming to docker.io/library/xiaowork-homepage-worker:p6e-atime-fault done
+#11 unpacking to docker.io/library/xiaowork-homepage-worker:p6e-atime-fault 0.1s done
+#11 DONE 1.1s
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from p6e-fault-worker.Dockerfile
+#1 transferring dockerfile: 1.23kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6b-test
+#2 DONE 0.1s
+
+#3 [internal] load build context
+#3 DONE 0.0s
+
+#4 [test-build 1/4] FROM docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#4 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a
+#4 resolve docker.io/library/xiaowork-homepage-api:p6b-test@sha256:d98c205bd2e0fa7e21cedd58e629c333b9f66e54a104c2e0942965c6f061c19a 0.2s done
+#4 DONE 0.2s
+
+#3 [internal] load build context
+#3 transferring context: 7.05kB 0.0s done
+#3 DONE 0.3s
+
+#5 [test-build 2/4] WORKDIR /src
+#5 CACHED
+
+#6 [test-build 3/4] COPY backend/ ./
+#6 CACHED
+
+TEST_ONLY_FIXTURE_BUILT data-test
+#7 [test-build 4/4] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-worker ./cmd/p6e-fault-worker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-api ./cmd/homepage-api  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -tags=p6e_fault -trimpath -o /p6e-fault-data ./cmd/p6e-fault-data
+#7 CACHED
+
+#8 [data-test 2/2] COPY --from=test-build /p6e-fault-data /p6e-fault-data
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers done
+#9 exporting manifest sha256:3b2d1c200127c5f2c89a6f26ef14f95a2fe74c2deeeaa14764eb26d29f9dea9b 0.1s done
+#9 exporting config sha256:3fbb0de316e43082361f010ee038987212db0d73e194fc19ff9dcb544b405756
+#9 exporting config sha256:3fbb0de316e43082361f010ee038987212db0d73e194fc19ff9dcb544b405756 0.0s done
+#9 exporting attestation manifest sha256:8d138763058a18bf7539971f82e733f15a78a10d7e4655f8bc549bdd71f88e7b
+#9 exporting attestation manifest sha256:8d138763058a18bf7539971f82e733f15a78a10d7e4655f8bc549bdd71f88e7b 0.9s done
+#9 exporting manifest list sha256:9770220338316a7e92d1aa893e45233ac0991a84e48eb09519ab2700271de440
+#9 exporting manifest list sha256:9770220338316a7e92d1aa893e45233ac0991a84e48eb09519ab2700271de440 1.3s done
+#9 naming to docker.io/library/xiaowork-homepage-fault-data:p6e-atime-test
+#9 naming to docker.io/library/xiaowork-homepage-fault-data:p6e-atime-test 0.6s done
+#9 unpacking to docker.io/library/xiaowork-homepage-fault-data:p6e-atime-test
+#9 unpacking to docker.io/library/xiaowork-homepage-fault-data:p6e-atime-test 0.5s done
+#9 DONE 4.3s

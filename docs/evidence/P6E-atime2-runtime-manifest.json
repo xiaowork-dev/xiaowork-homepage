@@ -1,0 +1,239 @@
+{
+  "format": 1,
+  "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+  "schema": 3,
+  "date": "2026-11-01T10:27:25.946Z",
+  "sourceExport": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-atime2-source-bb05f6ad613fdf3507ff8a9c56696da85fa4a678-1793528844481",
+  "archiveSha256": "4a767bfc545eca55b592af75441c73cd2a19ec5c28b116e0e08134a0c5ca4227",
+  "buildParameters": {
+    "platform": "linux/amd64",
+    "VCS_REF": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+    "NUXT_PUBLIC_SITE_URL": "https://xiaoworks.com",
+    "BUILDER_ID": "xiaowork-nuxt-p6d-v1",
+    "GOPROXY": "https://goproxy.cn"
+  },
+  "images": {
+    "api": {
+      "tag": "xiaowork-homepage-api:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:00638e6f712286a33e42415a0b6fa0770348755e6e0dd6dfcd85c91cb202176d",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "worker": {
+      "tag": "xiaowork-homepage-worker:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:e57ffe55071e224b709319b371f732ac752823d1884e6b191cd5919286cd5190",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "gateway": {
+      "tag": "xiaowork-homepage-admin-gateway:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:884c5ac073fd27110d6ece5db98be2e606a9edf712fb40f089197e7e37eb353d",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "frontend": {
+      "tag": "xiaowork-homepage:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:99e788b75db68ac9466eabdf8320811adb8cb5603adedebcb5241692406170aa",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "nginx",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "static": {
+      "tag": "xiaowork-homepage-publication-static:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:13bb7d474bbb9a8841d99cb9a443bf4aad833e419a6e85ea88ae011475d51949",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "maintenance": {
+      "tag": "xiaowork-homepage-maintenance:p6e-atime2-bb05f6ad613f",
+      "id": "sha256:ba2f51b02405ce6d1ec9bc3704dd0ffac270e5457dab806e3f94c31d212c3934",
+      "source": "bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    }
+  },
+  "builds": [
+    {
+      "role": "api",
+      "dockerfile": "backend/Dockerfile",
+      "startedAt": "2026-11-01T10:27:27.630Z",
+      "finishedAt": "2026-11-01T10:27:30.380Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage-api:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\backend\\Dockerfile",
+        "<exact-source-export>"
+      ]
+    },
+    {
+      "role": "worker",
+      "dockerfile": "backend/worker.Dockerfile",
+      "startedAt": "2026-11-01T10:27:30.384Z",
+      "finishedAt": "2026-11-01T10:27:35.765Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage-worker:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\backend\\worker.Dockerfile",
+        "<exact-source-export>"
+      ]
+    },
+    {
+      "role": "gateway",
+      "dockerfile": "admin/Dockerfile",
+      "startedAt": "2026-11-01T10:27:35.767Z",
+      "finishedAt": "2026-11-01T10:27:40.338Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage-admin-gateway:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\admin\\Dockerfile",
+        "<exact-source-export>"
+      ]
+    },
+    {
+      "role": "frontend",
+      "dockerfile": "Dockerfile",
+      "startedAt": "2026-11-01T10:27:40.340Z",
+      "finishedAt": "2026-11-01T10:27:59.487Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\Dockerfile",
+        "<exact-source-export>"
+      ]
+    },
+    {
+      "role": "static",
+      "dockerfile": "deploy/admin-publish/static.Dockerfile",
+      "startedAt": "2026-11-01T10:27:59.488Z",
+      "finishedAt": "2026-11-01T10:28:02.353Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage-publication-static:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\deploy\\admin-publish\\static.Dockerfile",
+        "<exact-source-export>"
+      ]
+    },
+    {
+      "role": "maintenance",
+      "dockerfile": "backend/maintenance.Dockerfile",
+      "startedAt": "2026-11-01T10:28:02.355Z",
+      "finishedAt": "2026-11-01T10:28:04.911Z",
+      "args": [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "VCS_REF=bb05f6ad613fdf3507ff8a9c56696da85fa4a678",
+        "--build-arg",
+        "NUXT_PUBLIC_SITE_URL=https://xiaoworks.com",
+        "--build-arg",
+        "BUILDER_ID=xiaowork-nuxt-p6d-v1",
+        "--build-arg",
+        "GOPROXY=https://goproxy.cn",
+        "-t",
+        "xiaowork-homepage-maintenance:p6e-atime2-bb05f6ad613f",
+        "-f",
+        "<exact-source-export>\\backend\\maintenance.Dockerfile",
+        "<exact-source-export>"
+      ]
+    }
+  ],
+  "baseImages": [
+    {
+      "tag": "node:24.22.1-alpine",
+      "identity": {
+        "id": "sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+        "digests": [
+          "node@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53"
+        ]
+      }
+    },
+    {
+      "tag": "golang:1.27.3-alpine",
+      "identity": {
+        "id": "sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c",
+        "digests": [
+          "golang@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c"
+        ]
+      }
+    },
+    {
+      "tag": "nginx:1.30.6-alpine",
+      "identity": {
+        "id": "sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+        "digests": [
+          "nginx@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951"
+        ]
+      }
+    }
+  ],
+  "engine": "29.8.2",
+  "compose": "5.6.0",
+  "schemaVerification": {
+    "compatible": true
+  }
+}
