@@ -1,6 +1,6 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发，中文Vue后台复用真实Go/SQLite API。P6-E当前候选运行源码为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`，六正式角色统一构建、Schema3。镜像身份交接、整链自动保护3/3、只读单对象修复及metadata/HTTP通过；完整备份在启动前被Docker Desktop bind来源路径核对拒绝，恢复/更新/回退和正式组完整功能验收未执行。P6-E仍部分完成，不具备上线条件，故障现场及锁保留。未连接生产、未合并main，正式发布gate关闭。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发，中文Vue后台复用真实Go/SQLite API。P6-E候选仍为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`六正式角色、Schema3；本轮未改运行源码或重建镜像。chain4实查只有Docker Desktop，无原生Linux验收环境，bind Source身份未证明，严格检查保持。活跃API/Worker尚未共享宿主维护屏障，六项并发测试与完整备份恢复链仍未完成，不能上线。六镜像身份、新安全审计和旧保护已复核，故障卷/锁/失败证据保留。下一步是准备独立本机Linux环境并补齐维护协作，见[当前进度](docs/PROGRESS.md)和[运维条件](docs/V1.1-RELEASE-OPERATIONS.md)。未连接生产、未合并main，正式gate关闭。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
 - [P6-D 交付与验收边界](docs/deliveries/P6D-delivery.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)、[故障矩阵](docs/P6D-FAULT-TESTS.md)

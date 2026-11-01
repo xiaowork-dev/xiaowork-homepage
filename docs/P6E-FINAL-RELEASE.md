@@ -1,5 +1,7 @@
 # P6-E 最终六角色发行身份
 
+chain4（2026-11-01）未改正式运行源码/依赖/构建参数，**没有新发行SHA或重建镜像**。以下4f18六ID已逐一实际核对，源码标签/linux/amd64匹配；builder仍为本组Worker完整ID。见[环境](evidence/P6E-chain4-environment.json)、[新扫描](evidence/P6E-chain4-security-audit.json)。bind身份未证明、无原生Linux验收环境；API/Worker维护屏障未实现。完整链仍受阻，**当前只是构建候选，不是已验收上线发行组**。新取证控制器/文档提交不改变运行身份。
+
 ## 当前候选：4f18（构建完成，整链受阻，非已验收发行）
 
 更新：2026-11-01。完整源码 **`4f18eaeaecb86baaca01f148f388e7e86eec68bf`**；Schema3/manifest1/linux/amd64，同一Git归档SHA256 `4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`。选择该源码是因为包含受信运维的异步整链持久保护及同进程生命周期入口；此后仅测试控制器、证据和文档变动。没有混用bb05与新单API。

@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-01T12:49:54.065Z",
+  "command": "node scripts/p6e-chain4-closure.mjs",
+  "exitCode": 1,
+  "result": "TEST_COLLECTOR_ASSERTION_FAILED_NOT_PRODUCT_ACCEPTANCE",
+  "stage": "update guard rejection message assertion",
+  "actualError": "EEXIST: file already exists, mkdir '<repository>/.v11-deploy/xiaowork-homepage-v11-p6e-chain3-fault/operation.lock'",
+  "assertion": "Expected /Persistent (operation.lock|recovery-required)/",
+  "reason": "生命周期入口先通过原子 mkdir 争用锁，真实拒绝为 EEXIST；收集器错误地要求与 backup/inspect 相同的提示。没有运行备份或更新下游。",
+  "correction": "仅对 update 核对 EEXIST code、精确 operation.lock path 和原保护前后 SHA；backup/inspect 仍要求持久保护错误，不接受任意异常。",
+  "originalToolChunk": "1933c7"
+}

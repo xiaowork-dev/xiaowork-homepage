@@ -1,0 +1,490 @@
+{
+  "date": "2026-11-01T12:41:50.921Z",
+  "scope": "只读环境、精确镜像身份和宿主保护检查；不运行整链或活跃发布实验",
+  "hostPlatform": "win32",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "schema": 3,
+  "manifestSHA256": "b8e5e55c0bac28003dbd2c7e2f2fc181a1b2ebd30d5f9bec976fbbc00e08951b",
+  "commands": [
+    {
+      "executable": "git",
+      "args": [
+        "branch",
+        "--show-current"
+      ],
+      "exitCode": 0,
+      "stdout": "feat/v1.1-admin-p6a"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "context",
+        "inspect"
+      ],
+      "exitCode": 0,
+      "stdout": "[\n    {\n        \"Name\": \"desktop-linux\",\n        \"Metadata\": {\n            \"Description\": \"Docker Desktop\",\n            \"GODEBUG\": \"x509negativeserial=1\",\n            \"otel\": {\n                \"OTEL_EXPORTER_OTLP_ENDPOINT\": \"unix:////./c:/Users/xiaow/AppData/Local/Docker/run/userAnalyticsOtlpHttp.sock\"\n            }\n        },\n        \"Endpoints\": {\n            \"docker\": {\n                \"Host\": \"npipe:////./pipe/dockerDesktopLinuxEngine\",\n                \"SkipTLSVerify\": false\n            }\n        },\n        \"TLSMaterial\": {},\n        \"Storage\": {\n            \"MetadataPath\": \"C:\\\\Users\\\\xiaow\\\\.docker\\\\contexts\\\\meta\\\\fe9c6bd7a66301f49ca9b6a70b217107cd1284598bfc254700c989b916da791e\",\n            \"TLSPath\": \"C:\\\\Users\\\\xiaow\\\\.docker\\\\contexts\\\\tls\\\\fe9c6bd7a66301f49ca9b6a70b217107cd1284598bfc254700c989b916da791e\"\n        }\n    }\n]"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "info",
+        "--format",
+        "{{json .}}"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ID\":\"960fce9c-a763-42d0-b849-fc1f38473b89\",\"OperatingSystem\":\"Docker Desktop\",\"KernelVersion\":\"6.18.54.1-microsoft-standard-WSL2\",\"OSType\":\"linux\",\"Architecture\":\"x86_64\",\"ServerVersion\":\"29.8.2\",\"NCPU\":16,\"MemTotal\":8166219776,\"Driver\":\"overlayfs\",\"DockerRootDir\":\"/var/lib/docker\"}"
+    },
+    {
+      "executable": "wsl.exe",
+      "args": [
+        "--list",
+        "--quiet"
+      ],
+      "exitCode": 0,
+      "stdout": "docker-desktop"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"10001:10001\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"10001:10001\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"10001:10001\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"nginx\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"10001:10001\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "--format",
+        "{\"id\":{{json .Id}},\"source\":{{json (index .Config.Labels \"org.opencontainers.image.revision\")}},\"user\":{{json .Config.User}},\"os\":{{json .Os}},\"architecture\":{{json .Architecture}}}",
+        "sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"id\":\"sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56\",\"source\":\"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\"user\":\"10001:10001\",\"os\":\"linux\",\"architecture\":\"amd64\"}"
+    }
+  ],
+  "images": [
+    {
+      "role": "api",
+      "id": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    {
+      "role": "worker",
+      "id": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    {
+      "role": "gateway",
+      "id": "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    {
+      "role": "frontend",
+      "id": "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "nginx",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    {
+      "role": "static",
+      "id": "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    {
+      "role": "maintenance",
+      "id": "sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56",
+      "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+      "user": "10001:10001",
+      "os": "linux",
+      "architecture": "amd64"
+    }
+  ],
+  "retainedGuards": [
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-fault",
+      "lockPresent": true,
+      "markerSHA256": "8ffeb5f9011d837e8b265c3cd3f85a257a3985e9d8e687d6c65ac7ff8c9d5a22"
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-repair",
+      "lockPresent": true,
+      "markerSHA256": "9058d7f0808b81311dfbfb6905b8ce8824f31aa74898cf9557ebf49e050494c2"
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-content",
+      "lockPresent": true,
+      "markerSHA256": "2f3b074bb35d5645db725d7f8f89c86b1cb36a299ae40546ffcb49f7800dbb14"
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-again",
+      "lockPresent": true,
+      "markerSHA256": "f072ab291d5b325d3e07e3e65d09ac2ea028307c3f1cad38fed38cfb74254d04"
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-atime2-fault",
+      "lockPresent": true,
+      "markerSHA256": "60769730e457520c939054278ed7383a202df8c79d361445a385d13eafe20e6e"
+    }
+  ],
+  "sourceReview": [
+    {
+      "file": "scripts/v11-maintenance.mjs",
+      "sha256": "a9ab30af1a2375c334f81729f3b1e5b191a5a5a81480e7a2a184075a505c32a3",
+      "references": [
+        {
+          "line": 103,
+          "text": "mount.type === 'volume' ? found.Name : found.Source,"
+        },
+        {
+          "line": 104,
+          "text": "mount.src,"
+        }
+      ]
+    },
+    {
+      "file": "scripts/v11-operation.mjs",
+      "sha256": "f49eb5a5081f22cc197205a2903f0402153d227f9036e5244ebc0df4ba0ef849",
+      "references": [
+        {
+          "line": 23,
+          "text": "fs.readFileSync(path.join(operationState(project), 'recovery-required.json'), 'utf8'),"
+        },
+        {
+          "line": 32,
+          "text": "const lock = path.join(state, 'operation.lock')"
+        },
+        {
+          "line": 35,
+          "text": "assert.ok(!fs.existsSync(path.join(state, 'recovery-required.json')))"
+        },
+        {
+          "line": 46,
+          "text": "const lock = path.join(state, 'operation.lock')"
+        },
+        {
+          "line": 50,
+          "text": "'Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock',"
+        },
+        {
+          "line": 52,
+          "text": "const file = path.join(state, 'recovery-required.json')"
+        },
+        {
+          "line": 59,
+          "text": "'Persistent recovery-required marker blocks new maintenance, repair and update tasks',"
+        },
+        {
+          "line": 75,
+          "text": "const lock = path.join(state, 'operation.lock')"
+        },
+        {
+          "line": 81,
+          "text": "const marker = path.join(state, 'recovery-required.json')"
+        },
+        {
+          "line": 185,
+          "text": "const lock = path.join(state, 'operation.lock')"
+        },
+        {
+          "line": 188,
+          "text": "const marker = path.join(state, 'recovery-required.json')"
+        },
+        {
+          "line": 248,
+          "text": "const markerFile = path.join(state, 'recovery-required.json')"
+        },
+        {
+          "line": 270,
+          "text": "const lock = path.join(state, 'operation.lock')"
+        }
+      ]
+    },
+    {
+      "file": "scripts/p6e-chain3-supervisor.mjs",
+      "sha256": "5ddd0362926857bfb8b3791205188eb2fea03daad77483acc0b0667a3c7728a3",
+      "references": [
+        {
+          "line": 28,
+          "text": "'.v11-deploy/xiaowork-homepage-v11-p6e-atime2-fault/recovery-required.json',"
+        },
+        {
+          "line": 61,
+          "text": "marker = path.join(dir, 'recovery-required.json')"
+        },
+        {
+          "line": 85,
+          "text": "lockPresent: fs.existsSync(path.join(dir, 'operation.lock')),"
+        },
+        {
+          "line": 93,
+          "text": "assert.ok(!fs.existsSync(path.resolve('.v11-deploy', p, 'operation.lock')))"
+        },
+        {
+          "line": 97,
+          "text": "fs.readFileSync('.v11-deploy/xiaowork-homepage-v11-p6e-atime2-fault/recovery-required.json'),"
+        }
+      ]
+    },
+    {
+      "file": "backend/internal/httpapi/publication.go",
+      "sha256": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829",
+      "references": [
+        {
+          "line": 56,
+          "text": "mux.HandleFunc(\"POST \"+apiPrefix+\"/\"+kind+\"-jobs\", func(w http.ResponseWriter, r *http.Request) { a.createPublicationJob(w, r, kind) })"
+        },
+        {
+          "line": 142,
+          "text": "func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind string) {"
+        }
+      ]
+    },
+    {
+      "file": "backend/internal/httpapi/publication_worker.go",
+      "sha256": "a00b4f6bed667cfde35deb4a237712962de650a52b788b98723598b5dceee5d6",
+      "references": [
+        {
+          "line": 31,
+          "text": "mux.HandleFunc(\"POST \"+publishmodel.InternalPrefix+\"/claim\", a.workerClaim)"
+        },
+        {
+          "line": 49,
+          "text": "func (a *App) workerClaim(w http.ResponseWriter, r *http.Request) {"
+        }
+      ]
+    },
+    {
+      "file": "backend/internal/publishworker/runner.go",
+      "sha256": "2353ae5c56baeed03afb229417a87de6238e2bd7b2626981b1617bffc747bbd3",
+      "references": [
+        {
+          "line": 35,
+          "text": "unlock, err := r.Store.Lock()"
+        }
+      ]
+    },
+    {
+      "file": "compose.admin-publish.yaml",
+      "sha256": "6b50dc7adf562fb8c22f7c580a933800dfc48c08f73a62765a8f00f42dbd2c5f",
+      "references": [
+        {
+          "line": 35,
+          "text": "volumes:"
+        },
+        {
+          "line": 43,
+          "text": "volume: { nocopy: true }"
+        },
+        {
+          "line": 58,
+          "text": "volumes:"
+        },
+        {
+          "line": 67,
+          "text": "volumes:"
+        },
+        {
+          "line": 117,
+          "text": "volumes:"
+        },
+        {
+          "line": 151,
+          "text": "volumes:"
+        },
+        {
+          "line": 156,
+          "text": "volume: { nocopy: true }"
+        },
+        {
+          "line": 183,
+          "text": "volumes:"
+        },
+        {
+          "line": 214,
+          "text": "volumes:"
+        }
+      ]
+    }
+  ],
+  "priorEvidence": {
+    "count": 691,
+    "listSHA256": "45859d65b1ef13cbd7fc7ddb784ec210fe364a4faca1b661288592f8e9395212",
+    "unchanged": true
+  },
+  "endpoint": "npipe:////./pipe/dockerDesktopLinuxEngine",
+  "engine": {
+    "ID": "960fce9c-a763-42d0-b849-fc1f38473b89",
+    "OperatingSystem": "Docker Desktop",
+    "KernelVersion": "6.18.54.1-microsoft-standard-WSL2",
+    "OSType": "linux",
+    "Architecture": "x86_64",
+    "ServerVersion": "29.8.2",
+    "NCPU": 16,
+    "MemTotal": 8166219776,
+    "Driver": "overlayfs",
+    "DockerRootDir": "/var/lib/docker"
+  },
+  "wslDistributions": [
+    "docker-desktop"
+  ],
+  "pathIdentity": {
+    "result": "BLOCKED_ENVIRONMENT_NO_NATIVE_LINUX",
+    "equivalenceProven": false,
+    "strictSourceCheckPreserved": true,
+    "conversionAttempted": false,
+    "nativeLinuxEnvironmentAvailable": false,
+    "reason": "本机只有 Docker Desktop WSL2；未发现独立 Linux 发行版/Engine，不能把 daemon VM shell 当成已验收的同命名空间 Linux 运维环境。"
+  },
+  "concurrency": {
+    "result": "BLOCKED_DESIGN_GAP_NOT_DYNAMICALLY_TESTED",
+    "observations": [
+      "operation.lock/recovery-required 只存在宿主 .v11-deploy，API 与 Worker 未挂载此目录。",
+      "createPublicationJob、workerClaim 和 Worker RunNext 未读取宿主 marker。",
+      "Worker 的 publications 内核锁避免第二个 Worker，并不等于宿主维护标记。",
+      "监督进程在子控制器退出后停止写者，存在检测与停止窗口。"
+    ],
+    "scenarios": [
+      {
+        "name": "发布/维护同时到达",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "父控制器 SIGKILL",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "父监督进程退出",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "锁建立但 API 未停",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "Worker 在途维护请求",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "持久标记存在时服务重启",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      }
+    ]
+  },
+  "chain": {
+    "result": "NOT_RUN_ENVIRONMENT_PREFLIGHT_BLOCKED",
+    "stages": [
+      {
+        "name": "新环境启动",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "真实故障及停写",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "只读检查",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "单对象修复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "metadata/SHA/HTTP",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "一致性备份",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "空卷恢复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "数据库/图片/页面",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "跨源码更新/代码回退",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "内容恢复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "再次备份/空卷恢复",
+        "result": "NOT_RUN"
+      }
+    ]
+  },
+  "result": "BLOCKED_NOT_A_RELEASE_ACCEPTANCE"
+}

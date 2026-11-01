@@ -1,11 +1,15 @@
 # XiaoWork Homepage 项目进度
 
-本轮实测及完整错误见[当前交付](deliveries/P6E-delivery.md)、[发行组](evidence/P6E-chain3-runtime-manifest.json)、[整链](evidence/P6E-chain3-current-repair.json)、[自动保护](evidence/P6E-chain3-supervisor.json)、[只读留场](evidence/P6E-chain3-retention.json)。新源码归档SHA256为`4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`。旧卷/锁/人工containment不动；本轮失败不需要人工补锁。备份容器保持created，不能当作已备份。下一步仅需验证Windows/Docker Desktop bind来源的安全身份等价，再在全新环境重新完成下游，不在当前留场卷继续尝试。新扫描Worker有10个MEDIUM，根npm37moderate/admin9moderate，0high/critical不是整体验收通过；生产gate继续关闭。
+本轮chain4只完成环境、六镜像身份、安全扫描及旧保护复核：[最新交付](deliveries/P6E-delivery.md)、[环境/并发代码审查](evidence/P6E-chain4-environment.json)、[收尾](evidence/P6E-chain4-closure.json)。本机只有Docker Desktop WSL2，没有原生Linux验收环境；未证明bind路径身份等价，严格Source检查保留，不再尝试路径转换。新完整链未启动，原chain3失败容器/卷/锁保持。宿主marker未被API/Worker实时读取，活跃发布与维护竞争仍为未修复的工程门槛，不能用停API后的502替代。
+
+运行源码没有变化，候选仍为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`六正式镜像；本轮未重建、不混用旧组。六ID/源码/平台吻合；691份原证据哈希不变、5组旧保护marker不变，新备份/修复/update被宿主工具拒绝。重新扫描Worker10MEDIUM/1LOW/1UNSPECIFIED，其余各1UNSPECIFIED；根npm37moderate/2low、后台9moderate。Nuxt4.6.3官方兼容补丁存在但未安装，musl分支相同补丁与Go入口无OpenPGP导入重新核对，告警及非零结果保留。详见[安全](V1.1-SECURITY-ACCEPTANCE.md)。
 
 > 最后更新：2026-11-01（Asia/Shanghai）
-> 当前阶段：**P6-E 部分完成并安全停止。新候选 4f18eaeaecb86baaca01f148f388e7e86eec68bf 六角色已构建；镜像身份交接、整链自动保护3/3、真实单对象修复及metadata/HTTP通过。备份被Docker Desktop bind来源路径身份核对拒绝，后续恢复/更新/回退与正式完整运行链NOT_RUN，不能上线。**
+> 当前阶段：**P6-E 受阻。4f18六角色身份复核通过，运行代码未变。本机缺少原生Linux验收环境；bind身份仍未证明，活跃API/Worker维护屏障仍未实现/验收。本轮不启动新整链，不申请上线。**
 
 最新记录：[P6-E交付](deliveries/P6E-delivery.md)、[最终发行身份](P6E-FINAL-RELEASE.md)、[真实故障矩阵](P6E-FAULT-TESTS.md)、[跨源码验收](P6E-CROSS-SOURCE-ACCEPTANCE.md)。本页是最新结论；旧基线报告保留作历史，不将旧组证据扩大到最终组。
+
+下一步：先确定独立本机Linux环境，再补齐API/Worker/维护程序共同的持久屏障及六种真实竞争测试；运行修改后重新冻结六角色，使用全新卷重跑修复→备份→空卷恢复→跨源码更新/回退→内容恢复→再次备份恢复。环境和门槛见[运维说明](V1.1-RELEASE-OPERATIONS.md)。最终推送状态由本轮Git实查及最终回复报告，main基线不变。
 
 ## 历史bb05专项（以下不替代新候选）
 

@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-01T12:43:10.117Z",
+  "originalFile": "scripts/p6e-chain3-security.mjs",
+  "originalSHA256": "a18bd8f818c2061d468729b9c6ce08485c1a1c486cfd12bec82ecdec31c1a696",
+  "generatedSHA256": "483b152200b8621b0b5300c3472db7b8842cd4887f5a25f7f07c66d4326373fb",
+  "replacements": [
+    [
+      "from './v11-maintenance.mjs'",
+      "from 'file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-maintenance.mjs'"
+    ],
+    [
+      ".cache/p6e-chain3-security",
+      ".cache/p6e-chain4-security"
+    ],
+    [
+      "P6E-chain3-security-audit.json",
+      "P6E-chain4-security-audit.json"
+    ],
+    [
+      "P6E-chain3-image-",
+      "P6E-chain4-image-"
+    ],
+    [
+      "P6E-chain3-govuln-",
+      "P6E-chain4-govuln-"
+    ]
+  ],
+  "note": "仅替换审计输出路径和 import 定位；发行 manifest、镜像/Schema/源码/权限断言保持原文。",
+  "operations": [
+    {
+      "executable": "node",
+      "args": [
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-chain4-review\\security.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "executable": "node npm-cli.js",
+      "cwd": ".",
+      "args": [
+        "audit",
+        "--json",
+        "--registry=https://registry.npmjs.org"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stderr": "",
+      "file": "docs/evidence/P6E-chain4-npm-audit.json",
+      "sha256": "ce7cb3a28a9ed4df60f47c3e15cc2aef628144ee96e09320c65ddfa09a9785c4",
+      "counts": {
+        "info": 0,
+        "low": 2,
+        "moderate": 37,
+        "high": 0,
+        "critical": 0,
+        "total": 39
+      }
+    },
+    {
+      "executable": "node npm-cli.js",
+      "cwd": "admin",
+      "args": [
+        "audit",
+        "--json",
+        "--registry=https://registry.npmjs.org"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stderr": "",
+      "file": "docs/evidence/P6E-chain4-admin-audit.json",
+      "sha256": "012cd5372eee8e18354d7dd0592740c742503d340ba4f89803ecc2a7bff7744e",
+      "counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 9,
+        "high": 0,
+        "critical": 0,
+        "total": 9
+      }
+    }
+  ],
+  "runtimeChanges": false,
+  "completedAt": "2026-11-01T12:44:34.314Z"
+}

@@ -2,6 +2,59 @@
 
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
+## 2026-11-01 chain4：环境与安全复核完成，两个工程门槛仍阻塞
+
+**本轮结论：受阻，不能申请正式上线。** 起始远端为 `86d577b412dabd61aefdb7ed1945a127cc94cbdc`；main 实查仍为 `14f9b1fba6504b1367aad6165a0b72c37e495927`。没有修改正式运行代码、依赖锁文件、Compose 或发布 gate，因此没有重新冻结/构建镜像；运行候选仍是 **`4f18eaeaecb86baaca01f148f388e7e86eec68bf`** 六角色，不称为已验收发行。完整 ID 仍见[发行清单](../P6E-FINAL-RELEASE.md)。新增四个 `p6e-chain4-*.mjs` 仅作本机只读取证/安全扫描控制器，不是新的产品功能。
+
+### Docker Source 身份：没有安全解决，不再尝试路径转换
+
+[环境机器证据](../evidence/P6E-chain4-environment.json)记录本机只有 `docker-desktop` WSL2 发行版；Engine `29.8.2`、OS `Docker Desktop`、内核 `6.18.54.1-microsoft-standard-WSL2`，当前 endpoint 为 `npipe:////./pipe/dockerDesktopLinuxEngine`。只读查看 Desktop VM 的 shell 不能把它认定为独立原生 Linux 验收环境；没有安装发行版、改变默认 context 或访问其他服务器。
+
+Windows 请求路径与 Desktop daemon 的 Source 尚未获得文件身份等价证明。`v11-maintenance.mjs` 的类型、来源、RW、目的地、数量及 nocopy 检查全部保持；没有字符串转换、跳过检查、扩大信任目录或使用 symlink 别名。环境取证脚本以阻塞状态退出（脚本设置 exit2，首次 PowerShell 工具回报 exit1）；该结果不是挂载身份通过。
+
+按用户“无法安全实现则明确 Linux 条件”的要求，**没有创建新整链项目、没有在旧故障卷继续执行**。本轮完整链 1～11 项全部 `NOT_RUN_ENVIRONMENT_PREFLIGHT_BLOCKED`，没有新的修复、备份、空卷恢复、跨源码更新/代码回退、内容恢复或正式 Worker 浏览器成绩。原 chain3 的成功和失败仅保留其原范围。所需 Linux 环境、固定备份根、路径/挂载身份及拒绝测试见[运维说明](../V1.1-RELEASE-OPERATIONS.md#原生-linux-隔离验收环境要求chain4)；这些是待执行条件，不能冒称已经验证 Linux bind 身份。
+
+### 活跃发布并发：代码审查确认缺口，尚未修复/动态验收
+
+现有宿主 `.v11-deploy/<project>/operation.lock` 与 `recovery-required.json` 没有挂载给 API/Worker。`createPublicationJob`、`workerClaim` 和 Worker `RunNext` 不查询该宿主状态；Worker 生命周期的 publications 内核锁只排除另一 Worker/离线发布写者，并不感知宿主控制 marker。父监督进程在检测子控制器退出后才停止写者，存在检测及停止窗口；父监督也退出时不能依赖该补救。准确文件 SHA 和行号在环境证据 `sourceReview` 中。
+
+因此“锁建立但 API 未停”期间不能承诺认证发布请求被拒绝，也不能证明服务重启后 marker 会约束 API。**本轮六项活跃并发场景均 NOT_RUN，不能用此前停 API 后的502或测试控制进程3/3代替。** 没有对已知不满足前提的候选启动活跃写入实验或临时改写运行协议。最小后继协议需在独立持久控制目录建立 API/Worker/维护程序共同读取的维护屏障，原子排除新任务、明确处理在途任务与激活、保留失败标记，并实测控制器/监督退出和重启；详见运维说明。此为设计待办，不是已实现功能。运行修改后必须重新冻结六角色并重验完整链。
+
+### 本轮实际复核和安全扫描
+
+| 项目                | 实际结果                                                                                                                                                                                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 六角色身份          | PASS：实际 ID/OCI SHA/平台全部匹配4f18；没有构建、重贴标签或混入故障镜像                                                                                                                                                                         |
+| 原证据与保护        | PASS：691个既有证据文件的 SHA256 清单聚合不变；四个chain3及一个旧atime2保护共5组仍在，marker前后SHA一致                                                                                                                                          |
+| 受信新任务拒绝      | PASS，限定宿主工具：backup、repair-inspect、update真实拒绝；update为精确operation.lock路径的EEXIST，其余为持久保护错误。源API/Worker/init仍停止，原失败backup容器仍created/未启动                                                                |
+| 六镜像重新Scout扫描 | Worker 10 MEDIUM、1 LOW、1 UNSPECIFIED；其他五角色各1 UNSPECIFIED。全部原SARIF保留，不是零风险结论                                                                                                                                               |
+| npm audit           | 根2low/37moderate，后台9moderate，均0high/critical，均exit1；锁文件与4f18逐字节匹配，未升级/降级                                                                                                                                                 |
+| Go复核              | 三正式入口98文件逐字节匹配冻结源码；Linux source govuln exit0，无OpenPGP导入；API/maintenance binary exit3，Worker binary exit0，非零原文保留                                                                                                    |
+| 官方来源            | 17次HTTPS获取均200；Nuxt4.6.3、glob14.0.2、minimatch11.0.1存在，兼容性/调用契约仍需测试；deepmerge最新4.3.1无公告修复；node-forge1.4.1 integrity匹配                                                                                             |
+| musl分支差异        | 重新获取官方3.24-stable r3与master r6的APKBUILD和补丁，补丁SHA512均为`df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e`；保留Scout未定级，不混仓或补装未知二进制 |
+
+证据：[安全扫描](../evidence/P6E-chain4-security-audit.json)、[执行/退出码](../evidence/P6E-chain4-security-invocation.json)、[官方公告/版本/补丁](../evidence/P6E-chain4-upstream.json)、[收尾核验](../evidence/P6E-chain4-closure.json)。逐风险的影响条件、缓解、是否阻塞和后继动作已更新[安全验收](../V1.1-SECURITY-ACCEPTANCE.md)。有兼容补丁不代表当前镜像已修复；本轮没有以风险接受替代工程测试。
+
+收尾收集器首次错误地要求update与backup同样的错误文案，实际生命周期入口在原子mkdir时已被EEXIST正确阻断。原[夹具失败记录](../evidence/P6E-chain4-closure-first-attempt.json)保留；仅将断言改为核对EEXIST code与精确锁路径后重新只读核验通过，没有放宽产品门槛、解锁或继续下游。
+
+本轮取证控制器ESLint、四项Node语法、变更文档/控制器Prettier及git diff检查共7项通过：[质量记录](../evidence/P6E-chain4-quality.json)。对当时32个变更/新文件副本进行Gitleaks扫描exit0、0已知命中；输入清单/SHA及固定命令见[秘密扫描](../evidence/P6E-chain4-secret-scan.json)，没有排除规则或用旧报告代替。本次扫描通过stdin复制到私有tmpfs，没有宿主bind或业务卷；此后补充的本段验收文字以人工diff复核覆盖。扫描不证明不存在未知秘密，不代替发布链验收。
+
+### 实际命令、文件与下一步
+
+```powershell
+wsl.exe --list --verbose
+docker context ls --format '{{json .}}'
+docker info --format '{{json .}}'
+node scripts/p6e-chain4-environment.mjs # 阻塞，非验收成功；重复运行会拒绝覆盖
+node scripts/p6e-chain4-security.mjs # exit0收集完成；内部npm exit1、binary exit3保留
+node scripts/p6e-chain4-upstream.mjs # exit0，17个官方响应200
+node scripts/p6e-chain4-closure.mjs # 首次夹具断言exit1；精确修正后exit0
+```
+
+修改范围为上述4个测试控制器、本轮新机器证据以及既有P6-E交付/进度/发行/修复/备份/运维/安全/生产清单和README。最终质量检查及提交/推送结果以收尾证据、Git和最终回复为准，不能把文档HEAD冒称运行SHA。
+
+下一步首先确定**独立本机Linux VM或独立WSL发行版内原生Engine**的准备方式，不借用德国生产服务器。然后实现并真实验证共同维护屏障，重新冻结六角色，在全新项目顺序验收完整链；任一步失败保留现场并停止。异地备份目标/密钥/告警责任人、RPO/RTO、内容与残余风险决定仍待用户确认，不能消除上述工程阻塞。Firefox/WebKit/Safari、真实移动设备、完整渗透及宿主重启/断电未在本轮测试。没有连接生产、修改反代/DNS/TLS/V1.0、合并main、开启正式gate、删除旧现场或进行全局Docker清理。
+
 ## 2026-11-01 完整链收尾：原两项修复通过，备份挂载身份新增阻塞
 
 发布请求的实测阻断发生在源API已停的备份失败场景。宿主持久marker不直接作为Go API的实时开关；父控制器停止写者存在检测/停止窗口。活跃发布阶段与控制器强杀竞争、父监督进程也退出时的行为尚未验收，不能由3个控制夹具或此次502推断全时段发布拒绝。此项保留到完整链及最终运行验收。

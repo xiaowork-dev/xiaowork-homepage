@@ -1,0 +1,339 @@
+{
+  "date": "2026-11-01T12:49:54.725Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "runtimeChanged": false,
+  "result": "BLOCKED_ENVIRONMENT_AND_RUNTIME_MAINTENANCE_COORDINATION",
+  "guards": [
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-fault",
+      "lockPresent": true,
+      "markerSHA256": "8ffeb5f9011d837e8b265c3cd3f85a257a3985e9d8e687d6c65ac7ff8c9d5a22",
+      "unchanged": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-repair",
+      "lockPresent": true,
+      "markerSHA256": "9058d7f0808b81311dfbfb6905b8ce8824f31aa74898cf9557ebf49e050494c2",
+      "unchanged": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-content",
+      "lockPresent": true,
+      "markerSHA256": "2f3b074bb35d5645db725d7f8f89c86b1cb36a299ae40546ffcb49f7800dbb14",
+      "unchanged": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-again",
+      "lockPresent": true,
+      "markerSHA256": "f072ab291d5b325d3e07e3e65d09ac2ea028307c3f1cad38fed38cfb74254d04",
+      "unchanged": true
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-atime2-fault",
+      "lockPresent": true,
+      "markerSHA256": "60769730e457520c939054278ed7383a202df8c79d361445a385d13eafe20e6e",
+      "unchanged": true
+    }
+  ],
+  "rejectedOperations": [
+    {
+      "name": "backup",
+      "result": "REFUSED_BY_EXISTING_PERSISTENT_GUARD",
+      "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock",
+      "code": "ERR_ASSERTION"
+    },
+    {
+      "name": "repair-inspect",
+      "result": "REFUSED_BY_EXISTING_PERSISTENT_GUARD",
+      "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock",
+      "code": "ERR_ASSERTION"
+    },
+    {
+      "name": "update",
+      "result": "REFUSED_BY_EXISTING_PERSISTENT_GUARD",
+      "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-chain3-fault\\operation.lock'",
+      "code": "EEXIST"
+    }
+  ],
+  "frozenInputs": [
+    {
+      "file": "package-lock.json",
+      "sha256": "df24a98e84f4709ed60135a23ff572080193140d9b8ba8101f087a90d73dec48",
+      "matchesCandidate": true
+    },
+    {
+      "file": "admin/package-lock.json",
+      "sha256": "db453ecb25368589a11cce222edd3dfc3ad175d1c3e5229d8dfcfae32ee6e5b1",
+      "matchesCandidate": true
+    },
+    {
+      "file": "backend/go.mod",
+      "sha256": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+      "matchesCandidate": true
+    },
+    {
+      "file": "backend/go.sum",
+      "sha256": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+      "matchesCandidate": true
+    }
+  ],
+  "containers": [
+    {
+      "id": "1b0ca5bd3a353de225a16f9f7824fe6f7767ed3dd92aeaac83614ec3cd58e408",
+      "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+      "service": "worker",
+      "running": false,
+      "status": "created"
+    },
+    {
+      "id": "884fe3b9dfd44a65387e70e275ce46b5cd23ffe4451e98c2bdf405bf2debdf49",
+      "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+      "service": "api",
+      "running": false,
+      "status": "created"
+    },
+    {
+      "id": "c23b37537234e84cb068884446347de83f6019146c6d81dd553f7bd77418a39c",
+      "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+      "service": "api-init",
+      "running": false,
+      "status": "created"
+    },
+    {
+      "id": "b9b8a68cde2880a4ac7c6a0d1a1dfab1186dd68d9a84fc03c40b0a6433af0017",
+      "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+      "service": "publication-init",
+      "running": false,
+      "status": "created"
+    },
+    {
+      "id": "b023bc0058c511c8acec9b9e43f7eb48cd9442271cbcbc392e8ccbaeebcfba85",
+      "image": "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358",
+      "service": "gateway",
+      "running": true,
+      "status": "running"
+    },
+    {
+      "id": "cf18df4b93e52f22d6a564183dd5e12a7630f22dc72887d1c3af2501e1563805",
+      "image": "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1",
+      "service": "publication-static",
+      "running": true,
+      "status": "running"
+    },
+    {
+      "id": "d69050278a2e7faff35a22c6fd2d72f84166e6e713f33b42ccfe48ba253bdf5b",
+      "image": "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3",
+      "service": "frontend",
+      "running": true,
+      "status": "running"
+    }
+  ],
+  "commands": [
+    {
+      "executable": "node",
+      "args": [
+        "scripts/p6e-chain4-environment.mjs"
+      ],
+      "exitCode": 1,
+      "purpose": "重复执行应拒绝覆盖，非重新验收",
+      "stderr": "node:internal/modules/run_main:107\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: 保留既有环境证据，禁止覆盖\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-chain4-environment.mjs:9:8\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\r\n    at async node:internal/modules/esm/loader:647:26\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '==',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.1\r\n",
+      "outputUnchanged": true
+    }
+  ],
+  "security": {
+    "images": [
+      {
+        "role": "api",
+        "imageId": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+        "counts": {
+          "UNSPECIFIED": 1
+        }
+      },
+      {
+        "role": "worker",
+        "imageId": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+        "counts": {
+          "UNSPECIFIED": 1,
+          "LOW": 1,
+          "MEDIUM": 10
+        }
+      },
+      {
+        "role": "gateway",
+        "imageId": "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358",
+        "counts": {
+          "UNSPECIFIED": 1
+        }
+      },
+      {
+        "role": "frontend",
+        "imageId": "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3",
+        "counts": {
+          "UNSPECIFIED": 1
+        }
+      },
+      {
+        "role": "static",
+        "imageId": "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1",
+        "counts": {
+          "UNSPECIFIED": 1
+        }
+      },
+      {
+        "role": "maintenance",
+        "imageId": "sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56",
+        "counts": {
+          "UNSPECIFIED": 1
+        }
+      }
+    ],
+    "binaries": [
+      {
+        "role": "api",
+        "scannerExit": 3
+      },
+      {
+        "role": "worker",
+        "scannerExit": 0
+      },
+      {
+        "role": "maintenance",
+        "scannerExit": 3
+      }
+    ],
+    "sourceExit": 0,
+    "importedOpenpgp": [],
+    "npm": [
+      {
+        "cwd": ".",
+        "exitCode": 1,
+        "counts": {
+          "info": 0,
+          "low": 2,
+          "moderate": 37,
+          "high": 0,
+          "critical": 0,
+          "total": 39
+        }
+      },
+      {
+        "cwd": "admin",
+        "exitCode": 1,
+        "counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 9,
+          "high": 0,
+          "critical": 0,
+          "total": 9
+        }
+      }
+    ]
+  },
+  "priorEvidence": {
+    "count": 691,
+    "listSHA256": "45859d65b1ef13cbd7fc7ddb784ec210fe364a4faca1b661288592f8e9395212",
+    "unchanged": true
+  },
+  "runtimeInputDiff": [],
+  "failedBackupContainer": {
+    "id": "263bf89779fc815c811c314bd814992ac4a7d01a5feb473e462e254621cf489a",
+    "status": "created",
+    "startedAt": "0001-01-01T00:00:00Z"
+  },
+  "upstream": {
+    "file": "P6E-chain4-upstream.json",
+    "fetched": 17,
+    "muslSamePatchSHA512": "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e",
+    "nodeForgeIntegrityMatches": true,
+    "nuxtCompatiblePatchAvailable": "4.6.3",
+    "installedNuxt": "4.6.2",
+    "deepmergeLatest": "4.3.1"
+  },
+  "chain": {
+    "result": "NOT_RUN_ENVIRONMENT_PREFLIGHT_BLOCKED",
+    "stages": [
+      {
+        "name": "新环境启动",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "真实故障及停写",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "只读检查",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "单对象修复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "metadata/SHA/HTTP",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "一致性备份",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "空卷恢复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "数据库/图片/页面",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "跨源码更新/代码回退",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "内容恢复",
+        "result": "NOT_RUN"
+      },
+      {
+        "name": "再次备份/空卷恢复",
+        "result": "NOT_RUN"
+      }
+    ]
+  },
+  "concurrency": {
+    "result": "BLOCKED_DESIGN_GAP_NOT_DYNAMICALLY_TESTED",
+    "observations": [
+      "operation.lock/recovery-required 只存在宿主 .v11-deploy，API 与 Worker 未挂载此目录。",
+      "createPublicationJob、workerClaim 和 Worker RunNext 未读取宿主 marker。",
+      "Worker 的 publications 内核锁避免第二个 Worker，并不等于宿主维护标记。",
+      "监督进程在子控制器退出后停止写者，存在检测与停止窗口。"
+    ],
+    "scenarios": [
+      {
+        "name": "发布/维护同时到达",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "父控制器 SIGKILL",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "父监督进程退出",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "锁建立但 API 未停",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "Worker 在途维护请求",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      },
+      {
+        "name": "持久标记存在时服务重启",
+        "result": "NOT_RUN_CURRENT_ROUND"
+      }
+    ]
+  },
+  "productionReady": false,
+  "productionTouched": false
+}

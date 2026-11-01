@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-01T13:01:01.471Z",
+  "scope": "Only changed test controllers/documents; no formal runtime rebuild or chain acceptance",
+  "results": [
+    {
+      "name": "eslint-new-evidence-controllers",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "scripts/p6e-chain4-environment.mjs",
+        "scripts/p6e-chain4-security.mjs",
+        "scripts/p6e-chain4-upstream.mjs",
+        "scripts/p6e-chain4-closure.mjs",
+        "--max-warnings",
+        "0"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "prettier-changed-docs-and-controllers",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "node_modules/prettier/bin/prettier.cjs",
+        "--check",
+        "scripts/p6e-chain4-environment.mjs",
+        "scripts/p6e-chain4-security.mjs",
+        "scripts/p6e-chain4-upstream.mjs",
+        "scripts/p6e-chain4-closure.mjs",
+        "README.md",
+        "docs/deliveries/P6E-delivery.md",
+        "docs/PROGRESS.md",
+        "docs/P6E-FINAL-RELEASE.md",
+        "docs/V1.1-CURRENT-REPAIR.md",
+        "docs/V1.1-BACKUP-RESTORE.md",
+        "docs/V1.1-RELEASE-OPERATIONS.md",
+        "docs/V1.1-SECURITY-ACCEPTANCE.md",
+        "docs/V1.1-PRODUCTION-CHECKLIST.md"
+      ],
+      "exitCode": 0,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "name": "syntax scripts/p6e-chain4-environment.mjs",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "--check",
+        "scripts/p6e-chain4-environment.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax scripts/p6e-chain4-security.mjs",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "--check",
+        "scripts/p6e-chain4-security.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax scripts/p6e-chain4-upstream.mjs",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "--check",
+        "scripts/p6e-chain4-upstream.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "syntax scripts/p6e-chain4-closure.mjs",
+      "cmd": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "--check",
+        "scripts/p6e-chain4-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "git-diff-whitespace",
+      "cmd": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "result": "PASS_LIMITED_SCOPE"
+}

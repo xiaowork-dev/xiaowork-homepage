@@ -1,0 +1,589 @@
+{
+  "date": "2026-11-01T12:45:40.367Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "scope": "官方版本、公告和发行分支补丁复核；未安装或升级任何依赖",
+  "results": [
+    {
+      "name": "GHSA-3xf4-9g3c-4h4w",
+      "url": "https://api.github.com/advisories/GHSA-3xf4-9g3c-4h4w",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:33.145Z",
+      "status": 200,
+      "bytes": 4548,
+      "sha256": "f1dcdd61824c218675e279347a8abf281a9651b0f3c3fa175ee48031648a0e7c",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-3xf4-9g3c-4h4w",
+        "cve_id": "CVE-2026-119201",
+        "summary": "Nuxt dev server exposes generated appSecret through Vite file serving",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:01:12Z",
+        "updated_at": "2026-10-30T23:01:13Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@nuxt/vite-builder"
+            },
+            "vulnerable_version_range": ">= 4.6.0, < 4.6.3",
+            "first_patched_version": "4.6.3",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/nuxt/nuxt/security/advisories/GHSA-3xf4-9g3c-4h4w",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-119201",
+          "https://github.com/nuxt/nuxt/commit/2981290f36d9c5412c022758f3d89ba21a845308",
+          "https://github.com/nuxt/nuxt/commit/545004cc350be7003dea4116ce6206d6f980b1fd",
+          "https://github.com/nuxt/nuxt/releases/tag/v4.6.3",
+          "https://github.com/advisories/GHSA-3xf4-9g3c-4h4w"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-x287-wcfc-q46c",
+      "url": "https://api.github.com/advisories/GHSA-x287-wcfc-q46c",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:33.937Z",
+      "status": 200,
+      "bytes": 4885,
+      "sha256": "cc6fa71e6872502f77e8c823403208423ff273baf650cd7718a54772e03c1313",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-x287-wcfc-q46c",
+        "cve_id": "CVE-2026-119198",
+        "summary": "Nuxt dev server arbitrary file read through client error reports",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:00:48Z",
+        "updated_at": "2026-10-30T23:00:49Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@nuxt/vite-builder"
+            },
+            "vulnerable_version_range": ">= 4.6.0, < 4.6.3",
+            "first_patched_version": "4.6.3",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/nuxt/nuxt/security/advisories/GHSA-x287-wcfc-q46c",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-119198",
+          "https://github.com/nuxt/nuxt/commit/35856eb148bf8d6f1ad753c5b8b337c52b4fd6b3",
+          "https://github.com/nuxt/nuxt/commit/aec8129f68e9b870ca919f8f60e65a4608c8a6d8",
+          "https://github.com/nuxt/nuxt/releases/tag/v4.6.3",
+          "https://github.com/advisories/GHSA-x287-wcfc-q46c"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-648h-gw55-m2g7",
+      "url": "https://api.github.com/advisories/GHSA-648h-gw55-m2g7",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:34.389Z",
+      "status": 200,
+      "bytes": 4664,
+      "sha256": "87c5f9bd9426f6a59895923d3b9fb0177ac5399b8c2a7ffa4fa7ed9136094982",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-648h-gw55-m2g7",
+        "cve_id": "CVE-2026-119199",
+        "summary": "Nuxt dev server exposes private runtime config through the Nitro dev bundle",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:00:43Z",
+        "updated_at": "2026-10-30T23:00:44Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@nuxt/vite-builder"
+            },
+            "vulnerable_version_range": ">= 3.0.0, < 4.6.3",
+            "first_patched_version": "4.6.3",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/nuxt/nuxt/security/advisories/GHSA-648h-gw55-m2g7",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-119199",
+          "https://github.com/nuxt/nuxt/commit/12b58f9d8768682611c3ad4ea4d403875129dbca",
+          "https://github.com/nuxt/nuxt/releases/tag/v4.6.3",
+          "https://github.com/advisories/GHSA-648h-gw55-m2g7"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-9v7c-q64q-vv33",
+      "url": "https://api.github.com/advisories/GHSA-9v7c-q64q-vv33",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:34.811Z",
+      "status": 200,
+      "bytes": 8954,
+      "sha256": "625fb039066f7ff4e15037b6140eaa8a58074f7f055a0adf4e27dc8a38d1b586",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-9v7c-q64q-vv33",
+        "cve_id": "CVE-2026-119200",
+        "summary": "Nuxt: Dot segments in the request path bypass `server/middleware` path checks and server route rules on page routes",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:00:53Z",
+        "updated_at": "2026-10-30T23:00:54Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "nuxt"
+            },
+            "vulnerable_version_range": ">= 4.6.0, < 4.6.3",
+            "first_patched_version": "4.6.3",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@nuxt/nitro-server"
+            },
+            "vulnerable_version_range": ">= 4.6.0, < 4.6.3",
+            "first_patched_version": "4.6.3",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/nuxt/nuxt/security/advisories/GHSA-9v7c-q64q-vv33",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-119200",
+          "https://github.com/nuxt/nuxt/commit/45463f8b58487e387149ebfb704d6a0834b3a450",
+          "https://github.com/nuxt/nuxt/releases/tag/v4.6.3",
+          "https://github.com/advisories/GHSA-9v7c-q64q-vv33"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-3g3m-2fjr-6pw4",
+      "url": "https://api.github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:35.200Z",
+      "status": 200,
+      "bytes": 4652,
+      "sha256": "ba661d336d2a6de3d418a317f4d1b298b845a14383842c68a1c0b994eb0454c8",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-3g3m-2fjr-6pw4",
+        "cve_id": "CVE-2026-118773",
+        "summary": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:09:11Z",
+        "updated_at": "2026-10-30T23:09:15Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "glob"
+            },
+            "vulnerable_version_range": ">= 9.0.0, <= 14.0.1",
+            "first_patched_version": "14.0.2",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/isaacs/node-glob/security/advisories/GHSA-3g3m-2fjr-6pw4",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-118773",
+          "https://github.com/isaacs/node-glob/commit/4682e8c9babee1b385202ede36389634e12076d7",
+          "https://github.com/isaacs/node-glob/releases/tag/v14.0.2",
+          "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-g3hv-75wg-m249",
+      "url": "https://api.github.com/advisories/GHSA-g3hv-75wg-m249",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:35.656Z",
+      "status": 200,
+      "bytes": 3773,
+      "sha256": "63dca14003146e37b4dc600e07c7a5bdbbce20399f895146192fa0461eb589fe",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-g3hv-75wg-m249",
+        "cve_id": "CVE-2026-118764",
+        "summary": "minimatch has potential denial of service via globparts amplification",
+        "severity": "medium",
+        "published_at": "2026-10-30T23:09:55Z",
+        "updated_at": "2026-10-30T23:09:56Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "minimatch"
+            },
+            "vulnerable_version_range": "< 11.0.1",
+            "first_patched_version": "11.0.1",
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://github.com/isaacs/minimatch/security/advisories/GHSA-g3hv-75wg-m249",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-118764",
+          "https://github.com/isaacs/minimatch/commit/77a0f5c4b80bdc641c3c930a1d9edf5ad2db57f8",
+          "https://github.com/isaacs/minimatch/releases/tag/v11.0.1",
+          "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+        ]
+      }
+    },
+    {
+      "name": "GHSA-gcqx-w48m-w2h4",
+      "url": "https://api.github.com/advisories/GHSA-gcqx-w48m-w2h4",
+      "kind": "advisory",
+      "at": "2026-11-01T12:45:36.072Z",
+      "status": 200,
+      "bytes": 2168,
+      "sha256": "8f1e44072526794fb8b1cb3556576422f06af948ef7715affd795438df507a03",
+      "result": "FETCHED",
+      "advisory": {
+        "ghsa_id": "GHSA-gcqx-w48m-w2h4",
+        "cve_id": "CVE-2026-93753",
+        "summary": "deepmerge mergeObject() allows prototype poisoning of returned objects",
+        "severity": "low",
+        "published_at": "2026-09-18T18:31:44Z",
+        "updated_at": "2026-10-27T21:34:58Z",
+        "withdrawn_at": null,
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "deepmerge"
+            },
+            "vulnerable_version_range": ">= 4.2.0, <= 4.3.1",
+            "first_patched_version": null,
+            "vulnerable_functions": []
+          }
+        ],
+        "references": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-93753",
+          "https://github.com/TehShrike/deepmerge/issues/273",
+          "https://github.com/TehShrike/deepmerge/blob/5b87756a5671635679001cbac72aa42f23472c81/index.js#L39-L60",
+          "https://www.vulncheck.com/advisories/deepmerge-through-4.3.1-prototype-poisoning-via-mergeobject",
+          "https://github.com/advisories/GHSA-gcqx-w48m-w2h4"
+        ]
+      }
+    },
+    {
+      "name": "nuxt/4.6.3",
+      "url": "https://registry.npmjs.org/nuxt/4.6.3",
+      "kind": "npm",
+      "at": "2026-11-01T12:45:36.485Z",
+      "status": 200,
+      "bytes": 5699,
+      "sha256": "caf5a6bba495ec8e19ef8ce79958d7813422687a1beae03cfc4876f8a0bfb982",
+      "result": "FETCHED",
+      "package": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "repository": {
+          "url": "git+https://github.com/nuxt/nuxt.git",
+          "type": "git",
+          "directory": "packages/nuxt"
+        },
+        "integrity": "sha512-I6Muez4OJg1fZnI7Rxl9tl9RVmpgGapVRvZcjeU+1B216jpPjGbHNt/QbUC3sZOFTV+z2WKcvPVXDADay3cIjw==",
+        "engines": {
+          "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+        },
+        "dependencies": {
+          "ufo": "^1.6.4",
+          "vue": "^3.5.44",
+          "defu": "^6.1.7",
+          "errx": "^0.2.2",
+          "jiti": "^2.7.0",
+          "rou3": "^0.9.2",
+          "destr": "^2.0.5",
+          "klona": "^2.0.6",
+          "ohash": "^2.0.12",
+          "pathe": "^2.0.3",
+          "scule": "^1.3.0",
+          "unctx": "^3.0.1",
+          "ignore": "^7.0.14",
+          "my-bad": "^0.2.11",
+          "ofetch": "^1.5.1",
+          "undici": "^8.12.3",
+          "unhead": "^3.4.3",
+          "verkit": "^0.5.0",
+          "compatx": "^0.2.0",
+          "consola": "^3.4.2",
+          "devalue": "^6.0.3",
+          "exsolve": "^1.1.3",
+          "impound": "^1.2.1",
+          "nanotar": "^0.3.0",
+          "nostics": "^1.3.0",
+          "std-env": "^4.3.0",
+          "untyped": "^2.0.0",
+          "chokidar": "^5.0.0",
+          "fetchdts": "^0.2.0",
+          "fnv1a-64": "^0.1.2",
+          "hookable": "^6.1.2",
+          "knitwork": "^1.3.0",
+          "uncrypto": "^0.1.3",
+          "unimport": "^7.0.2",
+          "unplugin": "^3.4.0",
+          "@nuxt/cli": "^4.0.1",
+          "@nuxt/kit": "4.6.3",
+          "cookie-es": "^3.1.1",
+          "on-change": "^6.0.2",
+          "picomatch": "^4.0.7",
+          "pkg-types": "^2.4.0",
+          "ultrahtml": "^1.7.0",
+          "unrouting": "^0.3.1",
+          "@dxup/nuxt": "^0.5.10",
+          "oxc-walker": "^1.1.1",
+          "tinyglobby": "^0.2.17",
+          "vue-router": "^5.4.0",
+          "@unhead/vue": "^3.4.3",
+          "@vue/shared": "^3.5.44",
+          "@nuxt/schema": "4.6.3",
+          "magic-string": "^1.4.3",
+          "@nuxt/devalue": "^2.0.2",
+          "@nuxt/devtools": "^3.4.4",
+          "clickable-path": "^0.1.1",
+          "iron-webcrypto": "^2.0.0",
+          "@nuxt/telemetry": "^2.9.1",
+          "object-identity": "^0.2.3",
+          "rolldown-string": "^0.3.1",
+          "perfect-debounce": "^2.1.0",
+          "@nuxt/vite-server": "4.6.3",
+          "@nuxt/nitro-server": "4.6.3",
+          "@nuxt/vite-builder": "4.6.3",
+          "vue-bundle-renderer": "^2.4.0",
+          "escape-string-regexp": "^5.0.0",
+          "@jridgewell/trace-mapping": "^0.3.31",
+          "vue-component-type-helpers": "^3.3.13"
+        }
+      }
+    },
+    {
+      "name": "glob/14.0.2",
+      "url": "https://registry.npmjs.org/glob/14.0.2",
+      "kind": "npm",
+      "at": "2026-11-01T12:45:37.062Z",
+      "status": 200,
+      "bytes": 3562,
+      "sha256": "078ca37696d50cee80320821670f4c1d59f320b79c90e60f836f93b0d3fa27c9",
+      "result": "FETCHED",
+      "package": {
+        "name": "glob",
+        "version": "14.0.2",
+        "gitHead": "93957bfedf11019063804027a7a5ad40d64cbe4f",
+        "repository": {
+          "url": "git+ssh://git@github.com/isaacs/node-glob.git",
+          "type": "git"
+        },
+        "integrity": "sha512-vfMgTR2djMHPUchsJMLpZlYQvtjVL+mHpEr5wPpoCbQs2vr/FBNK+3Gnl9Ara1DSs4Aeg4eG9HiADb5/rkY/ZA==",
+        "engines": {
+          "node": "18 || 20 || >=22"
+        },
+        "dependencies": {
+          "minipass": "^7.1.3",
+          "minimatch": "^11.0.0",
+          "path-scurry": "^3.0.0"
+        }
+      }
+    },
+    {
+      "name": "minimatch/11.0.1",
+      "url": "https://registry.npmjs.org/minimatch/11.0.1",
+      "kind": "npm",
+      "at": "2026-11-01T12:45:37.335Z",
+      "status": 200,
+      "bytes": 2642,
+      "sha256": "317a9b2b3a3cd201a5c1ca69489345ef09b25fda12ece07ea041225f5cec7faf",
+      "result": "FETCHED",
+      "package": {
+        "name": "minimatch",
+        "version": "11.0.1",
+        "gitHead": "47afe882784638ccdee8d30e0b7516aed2b589a9",
+        "repository": {
+          "url": "git+ssh://git@github.com/isaacs/minimatch.git",
+          "type": "git"
+        },
+        "integrity": "sha512-t+Vn6DX4wPCxS23y03C0uhF7S1jpi1GfqPrnlEipCJaA2ykiNbMkVlDutZtmvLfRcUN6R8AYVlzTsQrT4RZoLQ==",
+        "engines": {
+          "node": "18 || 20 || >=22"
+        },
+        "dependencies": {
+          "brace-expansion": "^5.0.12",
+          "@isaacs/nonrecursive-glob-match": "^1.0.1"
+        }
+      }
+    },
+    {
+      "name": "deepmerge/latest",
+      "url": "https://registry.npmjs.org/deepmerge/latest",
+      "kind": "npm",
+      "at": "2026-11-01T12:45:37.587Z",
+      "status": 200,
+      "bytes": 2856,
+      "sha256": "e59831a9bf2293e70f9c296253e7fad50116bc5bbea8078bcb2e3a1486014da0",
+      "result": "FETCHED",
+      "package": {
+        "name": "deepmerge",
+        "version": "4.3.1",
+        "gitHead": "5b87756a5671635679001cbac72aa42f23472c81",
+        "repository": {
+          "url": "git://github.com/TehShrike/deepmerge.git",
+          "type": "git"
+        },
+        "integrity": "sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==",
+        "engines": {
+          "node": ">=0.10.0"
+        }
+      }
+    },
+    {
+      "name": "node-forge/1.4.1",
+      "url": "https://registry.npmjs.org/node-forge/1.4.1",
+      "kind": "npm",
+      "at": "2026-11-01T12:45:37.851Z",
+      "status": 200,
+      "bytes": 3803,
+      "sha256": "515c26e1b4e2d21fe5afb850abcaa5de4b81c229d9b11bd5ac13a605a7796862",
+      "result": "FETCHED",
+      "package": {
+        "name": "node-forge",
+        "version": "1.4.1",
+        "gitHead": "8a917370ec51731e817c2d547b7329a58f8210af",
+        "repository": {
+          "url": "git+https://github.com/digitalbazaar/forge.git",
+          "type": "git"
+        },
+        "integrity": "sha512-w5/MfWaeMrpR/5ba6fZyAUTLSuE6aYz7H/3cYrqwZEmf5eQS3IaaLgJt4MBv7HglGFWmV22K8h4U18RJQmw/ow==",
+        "engines": {
+          "node": ">= 6.13.0"
+        }
+      }
+    },
+    {
+      "name": "musl-3.24-stable-APKBUILD",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/musl/APKBUILD",
+      "kind": "apkbuild",
+      "at": "2026-11-01T12:45:38.116Z",
+      "status": 200,
+      "bytes": 6495,
+      "sha256": "22c5adb3f3b68ab84e5ff7d20df68447063d1ecb5c7b39afd5a04a1dfd444a35",
+      "result": "FETCHED",
+      "versionAndFix": [
+        "pkgver=1.2.6",
+        "pkgrel=3",
+        "\tCVE-2026-107891.patch",
+        "#     - CVE-2026-107891",
+        "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e  CVE-2026-107891.patch"
+      ]
+    },
+    {
+      "name": "musl-3.24-stable-CVE-2026-107891.patch",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/main/musl/CVE-2026-107891.patch",
+      "kind": "patch",
+      "at": "2026-11-01T12:45:38.801Z",
+      "status": 200,
+      "bytes": 5943,
+      "sha256": "0cf0090ab433e8f9ed08ae03a0c93aff557c1d3e347260f62a61a10281f5333b",
+      "result": "FETCHED",
+      "sha512": "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e"
+    },
+    {
+      "name": "musl-master-APKBUILD",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/master/main/musl/APKBUILD",
+      "kind": "apkbuild",
+      "at": "2026-11-01T12:45:39.164Z",
+      "status": 200,
+      "bytes": 7092,
+      "sha256": "fb5ab4f3d497cf9060244ef5dc0d825896c60ea4f54f7a8ba3638850ccc33ca6",
+      "result": "FETCHED",
+      "versionAndFix": [
+        "pkgver=1.2.6",
+        "pkgrel=6",
+        "\tCVE-2026-107891.patch",
+        "#     - CVE-2026-107891",
+        "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e  CVE-2026-107891.patch"
+      ]
+    },
+    {
+      "name": "musl-master-CVE-2026-107891.patch",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/master/main/musl/CVE-2026-107891.patch",
+      "kind": "patch",
+      "at": "2026-11-01T12:45:39.569Z",
+      "status": 200,
+      "bytes": 5943,
+      "sha256": "0cf0090ab433e8f9ed08ae03a0c93aff557c1d3e347260f62a61a10281f5333b",
+      "result": "FETCHED",
+      "sha512": "df73a35b9da531021ad5b1a6aad12b9d8d69de2bed7fc91b1156d9727476ab25c0d3c2341d60488152ee8ccbddb83786e91fff950cdb177b9b04673da98fdc4e"
+    },
+    {
+      "name": "GO-2026-5932",
+      "url": "https://vuln.go.dev/ID/GO-2026-5932.json",
+      "kind": "go",
+      "at": "2026-11-01T12:45:39.950Z",
+      "status": 200,
+      "bytes": 1251,
+      "sha256": "f277b0400996200a7d5034c676661cd8cf18adeab1fdc5d0dc369e456ddf1fad",
+      "result": "FETCHED",
+      "advisory": {
+        "id": "GO-2026-5932",
+        "summary": "The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design, and has known security issues",
+        "affected": [
+          {
+            "package": {
+              "name": "golang.org/x/crypto",
+              "ecosystem": "Go"
+            },
+            "ranges": [
+              {
+                "type": "SEMVER",
+                "events": [
+                  {
+                    "introduced": "0"
+                  }
+                ]
+              }
+            ],
+            "ecosystem_specific": {
+              "imports": [
+                {
+                  "path": "golang.org/x/crypto/openpgp"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/packet"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/armor"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/clearsign"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/errors"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/elgamal"
+                },
+                {
+                  "path": "golang.org/x/crypto/openpgp/s2k"
+                }
+              ]
+            }
+          }
+        ],
+        "modified": "2026-07-07T22:15:29Z",
+        "references": [
+          {
+            "type": "REPORT",
+            "url": "https://go.dev/issue/44226"
+          }
+        ]
+      }
+    }
+  ]
+}
