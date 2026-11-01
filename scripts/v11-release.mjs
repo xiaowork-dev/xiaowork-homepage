@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { claimLifecycleLock } from './v11-operation.mjs'
 import {
   backupProject,
   docker,
@@ -296,6 +297,7 @@ try {
     const requestedLock = path.join(state, 'operation.lock')
     fs.mkdirSync(requestedLock, { mode: 0o700 })
     lock = requestedLock
+    claimLifecycleLock(project, lifecycleOwner)
     const currentFile = path.join(state, 'current.json')
     const previousFile = path.join(state, 'previous.json')
     assert.ok(
@@ -432,7 +434,12 @@ try {
         const destination = path.resolve(
           options.backup ?? path.join(root, '.cache', 'v11-backups', `${project}-${Date.now()}`),
         )
-        backup = backupProject(project, current.spec.images.maintenance, destination)
+        backup = backupProject(
+          project,
+          current.spec.images.maintenance,
+          destination,
+          lifecycleOwner,
+        )
         if (!replacement) {
           start(current, false)
           console.log(

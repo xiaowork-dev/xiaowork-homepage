@@ -153,8 +153,8 @@ export function inspectProject(project, image, lifecycleOwner) {
   )
   return tool(image, 'inspect', volumeMounts(project, '/source', true))
 }
-export function backupProject(project, image, destination) {
-  assertNoRecovery(project)
+export function backupProject(project, image, destination, lifecycleOwner) {
+  assertNoRecovery(project, lifecycleOwner)
   projectName(project)
   const absolute = path.resolve(destination)
   assert.ok(!fs.existsSync(absolute), 'Backup destination must be new')
@@ -197,7 +197,7 @@ export function backupProject(project, image, destination) {
     )
   }
   assert.equal(
-    inspectProject(project, image).unfinished,
+    inspectProject(project, image, lifecycleOwner).unfinished,
     0,
     'Reconcile unfinished tasks before taking a planned offline backup',
   )

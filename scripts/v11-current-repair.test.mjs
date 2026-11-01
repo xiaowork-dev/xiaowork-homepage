@@ -111,7 +111,22 @@ test('进程异常退出后持久标记阻断新的进程', () => {
     { encoding: 'utf8' },
   )
   assert.notEqual(again.status, 0)
-  assert.match(again.stderr, /Persistent recovery-required/)
+  assert.match(again.stderr, /Persistent (operation.lock|recovery-required)/)
   assert.ok(state.startsWith(path.resolve('.v11-deploy') + path.sep))
   fs.rmSync(state, { recursive: true }) // 仅删除本单测独占创建的无数据控制目录。
+})
+test('持久互斥目录已建立但标记尚未写入时仍阻止新任务', () => {
+  const project = 'xiaowork-homepage-v11-p6e-no-marker-' + Date.now().toString(36)
+  const state = path.resolve('.v11-deploy', project)
+  fs.mkdirSync(path.join(state, 'operation.lock'), { recursive: true })
+  try {
+    assert.throws(() => assertNoRecovery(project), /Persistent operation.lock/)
+    assert.throws(
+      () => backupProject(project, 'sha256:' + 'a'.repeat(64), 'unused'),
+      /Persistent operation.lock/,
+    )
+  } finally {
+    fs.rmdirSync(path.join(state, 'operation.lock'))
+    fs.rmdirSync(state)
+  }
 })

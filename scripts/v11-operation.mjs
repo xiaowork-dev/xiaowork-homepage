@@ -5,12 +5,32 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.v11-deploy')
+// In-process capability for an operator lifecycle that just acquired its own
+// atomic directory. A fresh process can never inherit this ownership.
+const ownedLifecycleLocks = new Map()
+export function claimLifecycleLock(project, owner) {
+  assert.match(owner ?? '', /^[0-9a-f-]{36}$/)
+  const state = operationState(project)
+  const lock = path.join(state, 'operation.lock')
+  assert.ok(fs.lstatSync(lock).isDirectory() && !fs.lstatSync(lock).isSymbolicLink())
+  assert.deepEqual(fs.readdirSync(lock), [])
+  assert.ok(!fs.existsSync(path.join(state, 'recovery-required.json')))
+  assert.ok(!ownedLifecycleLocks.has(project))
+  ownedLifecycleLocks.set(project, owner)
+}
 export function operationState(project) {
   assert.match(project ?? '', /^xiaowork-homepage-v11-[a-z0-9-]{1,40}$/)
   return path.join(root, project)
 }
 export function assertNoRecovery(project, lifecycleOwner) {
-  const file = path.join(operationState(project), 'recovery-required.json')
+  const state = operationState(project)
+  const lock = path.join(state, 'operation.lock')
+  if (fs.existsSync(lock))
+    assert.ok(
+      typeof lifecycleOwner === 'string' && ownedLifecycleLocks.get(project) === lifecycleOwner,
+      'Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock',
+    )
+  const file = path.join(state, 'recovery-required.json')
   if (!fs.existsSync(file)) return
   const marker = JSON.parse(fs.readFileSync(file, 'utf8'))
   assert.ok(
