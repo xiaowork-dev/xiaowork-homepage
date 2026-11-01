@@ -4,12 +4,14 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store"
 	"log"
 	"net/http"
 	"net/netip"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 	"sync/atomic"
 	"time"
@@ -18,6 +20,7 @@ import (
 const apiPrefix = "/api/admin/v1"
 
 type Config struct {
+	ControlDir           string
 	Origin               string
 	Secret               []byte
 	UploadDir            string
@@ -42,6 +45,9 @@ type App struct {
 }
 
 func New(db *sql.DB, config Config) (*App, error) {
+	if !filepath.IsAbs(config.ControlDir) {
+		return nil, errors.New("a dedicated absolute maintenance control directory is required")
+	}
 	u, err := url.Parse(config.Origin)
 	if err != nil || u.Scheme != "https" || u.Host == "" || u.User != nil || u.Path != "" || u.RawQuery != "" || u.Fragment != "" || u.String() != config.Origin {
 		return nil, errors.New("an exact approved HTTPS origin is required")
@@ -109,7 +115,7 @@ func (a *App) Handler() http.Handler {
 		}
 		writeData(w, r, 200, map[string]string{"status": "ready", "stage": "p6b-api"})
 	})
-	guarded := a.authorize(management)
+	guarded := a.maintenanceHandler(a.authorize(management))
 	mux.Handle(apiPrefix, guarded)
 	mux.Handle(apiPrefix+"/", guarded)
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -130,6 +136,19 @@ func (a *App) Handler() http.Handler {
 			}
 		}()
 		mux.ServeHTTP(w, r)
+	})
+}
+func (a *App) maintenanceHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		{
+			release, err := maintenancegate.Enter(a.config.ControlDir)
+			if err != nil {
+				writeError(w, r, problem(503, "MAINTENANCE_REQUIRED", "维护或恢复核验中，暂时停止管理操作。"))
+				return
+			}
+			defer release()
+		}
+		next.ServeHTTP(w, r)
 	})
 }
 func Server(address string, handler http.Handler) *http.Server {

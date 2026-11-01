@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
 )
 
@@ -67,6 +68,9 @@ func (c *UnixClient) call(ctx context.Context, endpoint string, body, target any
 		return errors.New("invalid publisher response")
 	}
 	if response.StatusCode != http.StatusOK {
+		if response.StatusCode == http.StatusServiceUnavailable && bytes.Contains(data, []byte(`"MAINTENANCE_REQUIRED"`)) {
+			return maintenancegate.ErrBlocked
+		}
 		return fmt.Errorf("publisher control status %d", response.StatusCode)
 	}
 	var envelope struct {

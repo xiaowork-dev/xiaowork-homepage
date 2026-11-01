@@ -8,6 +8,12 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { claimLifecycleLock, chainOwner, assertNoRecovery } from './v11-operation.mjs'
 import {
+  enterSharedBarrier,
+  completeSharedBarrier,
+  provisionControl,
+  sharedBarrierHeld,
+} from './v11-barrier.mjs'
+import {
   backupProject,
   docker,
   inspectProject,
@@ -109,6 +115,7 @@ function configuration(project, spec, state, topology, httpPort, httpsPort, subn
     XIAOWORK_BUILDER_ID: spec.images.worker,
   }
   const services = {
+    'control-init': { image: spec.images.maintenance },
     'publication-init': { image: spec.images.worker },
     'api-init': {
       image: spec.images.api,
@@ -218,6 +225,7 @@ function stopWriters(config) {
 function publicProbe(config, backupDirectory) {
   const state = path.join(root, '.v11-deploy', config.project)
   const plan = {
+    maintenance: sharedBarrierHeld(config.project),
     topology: config.topology,
     httpPort: config.httpPort,
     httpsPort: config.httpsPort,
@@ -259,6 +267,8 @@ export function runLifecycle(input) {
   const command = args.shift()
   let lifecycleOwner = randomUUID()
   let lock
+  let barrierProject
+  let operationAccepted = false
   const options = {}
   while (args.length) {
     const key = args.shift()
@@ -336,8 +346,6 @@ export function runLifecycle(input) {
           !present || options.restored === '1' || resuming,
           'Existing volumes cannot be adopted by first deployment without explicit independently restored-data mode',
         )
-        if (present && !resuming)
-          assert.equal(inspectProject(project, spec.images.maintenance).schema, spec.schema)
         const config = configuration(
           project,
           spec,
@@ -348,6 +356,14 @@ export function runLifecycle(input) {
           options.subnet ?? '192.168.245.0/28',
           options['local-publish'] === '1',
         )
+        if (options.restored !== '1') provisionControl(project, spec.images.maintenance)
+        enterSharedBarrier(project, spec.images.maintenance, lifecycleOwner)
+        barrierProject = project
+        if (present && !resuming)
+          assert.equal(
+            inspectProject(project, spec.images.maintenance, lifecycleOwner).schema,
+            spec.schema,
+          )
         if (resuming)
           assert.deepEqual(
             json(pendingFile).configuration,
@@ -382,6 +398,7 @@ export function runLifecycle(input) {
         save(currentFile, record)
         fs.unlinkSync(pendingFile)
         console.log(JSON.stringify({ result: 'healthy', state: currentFile, http: record.http }))
+        operationAccepted = true
       } else {
         assert.ok(fs.existsSync(currentFile), 'Initialize independent V1.1 deployment state first')
         const prior = json(currentFile)
@@ -397,11 +414,15 @@ export function runLifecycle(input) {
         )
         if (command === 'status') {
           console.log(compose(current, ['ps', '-a']))
+          operationAccepted = true
           return
         }
         if (command === 'stop') {
+          enterSharedBarrier(project, current.spec.images.maintenance, lifecycleOwner)
+          barrierProject = project
           compose(current, ['down'])
           console.log('Only the selected V1.1 project stopped; all volumes and images retained.')
+          operationAccepted = true
           return
         }
         assert.ok(
@@ -422,6 +443,8 @@ export function runLifecycle(input) {
             current.spec.schema,
             'Cross-schema update/rollback requires a reviewed migration plan; automatic downgrade is forbidden',
           )
+        enterSharedBarrier(project, current.spec.images.maintenance, lifecycleOwner)
+        barrierProject = project
         stopWriters(current)
         let backup
         try {
@@ -454,6 +477,7 @@ export function runLifecycle(input) {
                 state: backup.state,
               }),
             )
+            operationAccepted = true
             return
           }
           const next = configuration(
@@ -527,6 +551,7 @@ export function runLifecycle(input) {
               backup: destination,
             })
             releaseGuard()
+            operationAccepted = true
             console.log(
               JSON.stringify({
                 result: 'updated and verified',
@@ -616,7 +641,10 @@ export function runLifecycle(input) {
   } finally {
     // Only the command's own transient lock is released here. A parent chain
     // remains protected until its final acceptance, including HTTP checks.
-    if (lock && !inherited) fs.rmdirSync(lock)
+    if (lock && !inherited && operationAccepted) {
+      if (barrierProject) completeSharedBarrier(barrierProject, lifecycleOwner)
+      fs.rmdirSync(lock)
+    }
   }
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

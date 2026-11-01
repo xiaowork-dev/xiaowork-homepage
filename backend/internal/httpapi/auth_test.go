@@ -12,16 +12,33 @@ import (
 	"net/netip"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store"
 )
 
 const authTestPassword = "Test-only secure password 2026"
+
+func testControlDir(t *testing.T) string {
+	t.Helper()
+	if runtime.GOOS != "linux" {
+		t.Skip("the runtime maintenance protocol requires Linux")
+	}
+	root := t.TempDir()
+	if e := os.Chmod(root, 0700); e != nil {
+		t.Fatal(e)
+	}
+	if e := maintenancegate.Init(root); e != nil {
+		t.Fatal(e)
+	}
+	return root
+}
 
 type authFixture struct {
 	db     *sql.DB
@@ -57,7 +74,7 @@ func newAuthFixture(t *testing.T) *authFixture {
 	if err = os.Mkdir(uploadDir, 0700); err != nil {
 		t.Fatal(err)
 	}
-	f.app, err = New(f.db, Config{Origin: origin, Secret: bytes.Repeat([]byte{0x42}, 32), UploadDir: uploadDir, Clock: func() time.Time { return time.Unix(f.clock.Load(), 0).UTC() }})
+	f.app, err = New(f.db, Config{ControlDir: testControlDir(t), Origin: origin, Secret: bytes.Repeat([]byte{0x42}, 32), UploadDir: uploadDir, Clock: func() time.Time { return time.Unix(f.clock.Load(), 0).UTC() }})
 	if err != nil {
 		t.Fatal(err)
 	}

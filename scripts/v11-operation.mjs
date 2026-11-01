@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AsyncLocalStorage } from 'node:async_hooks'
+import { completeSharedBarrier } from './v11-barrier.mjs'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.v11-deploy')
 // In-process capability for an operator lifecycle that just acquired its own
 // atomic directory. A fresh process can never inherit this ownership.
@@ -108,6 +109,7 @@ export async function protectedChain(projects, kind, action) {
       })
     }
     for (const g of guards) {
+      completeSharedBarrier(g.project, g.owner)
       fs.unlinkSync(g.marker)
       syncDirectory(g.state)
       fs.rmdirSync(g.lock)
@@ -160,6 +162,7 @@ export function guardedOperation(project, kind, action) {
     const history = path.join(operationState(project), 'operations')
     const context = {
       id,
+      owner,
       record: (phase, value) =>
         durableRecord(path.join(history, id + '.' + phase + '.json'), {
           id,
@@ -202,6 +205,7 @@ export function guardedOperation(project, kind, action) {
   fs.mkdirSync(history, { recursive: true, mode: 0o700 })
   const context = {
     id,
+    owner: id,
     record: (phase, value) =>
       durableRecord(path.join(history, id + '.' + phase + '.json'), {
         id,
@@ -215,6 +219,7 @@ export function guardedOperation(project, kind, action) {
     assert.ok(!(result instanceof Promise), 'Offline guard requires synchronous operations')
     context.record('completed', { result: 'all-acceptance-conditions-passed' })
     assert.equal(JSON.parse(fs.readFileSync(marker, 'utf8')).id, id, 'Guard ownership changed')
+    completeSharedBarrier(project, id)
     fs.unlinkSync(marker)
     syncDirectory(state)
     fs.rmdirSync(lock)

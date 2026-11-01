@@ -216,7 +216,7 @@ func run() error {
 		}
 		proxies = append(proxies, p)
 	}
-	app, e := httpapi.New(db, httpapi.Config{Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies,
+	app, e := httpapi.New(db, httpapi.Config{ControlDir: env("XIAOWORK_CONTROL_DIR", "/control"), Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies,
 		LocalPublish: os.Getenv("XIAOWORK_LOCAL_PUBLISH") == "1", PublicationsDir: os.Getenv("XIAOWORK_PUBLICATIONS_DIR"), PublicationVerifyURL: os.Getenv("XIAOWORK_PUBLICATION_VERIFY_URL"), WorkerSocket: os.Getenv("XIAOWORK_WORKER_SOCKET"), SourceRevision: os.Getenv("XIAOWORK_SOURCE_REVISION"), BuilderID: os.Getenv("XIAOWORK_BUILDER_ID")})
 	if e != nil {
 		return e

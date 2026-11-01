@@ -1,0 +1,336 @@
+{
+  "startedAt": "2026-11-01T13:42:15.043Z",
+  "scope": "Docker Desktop Linux kernel isolated maintenance tests; NOT native Linux release acceptance",
+  "runID": "r4",
+  "commands": [
+    {
+      "executable": "git",
+      "args": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "19c58ddadccd43cc410a15a243f2ddc7802d80e5\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "context",
+        "show"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "desktop-linux\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "info",
+        "--format",
+        "{\"ID\":{{json .ID}},\"Name\":{{json .Name}},\"OperatingSystem\":{{json .OperatingSystem}},\"Kernel\":{{json .KernelVersion}},\"Memory\":{{json .MemTotal}}}"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "{\"ID\":\"960fce9c-a763-42d0-b849-fc1f38473b89\",\"Name\":\"docker-desktop\",\"OperatingSystem\":\"Docker Desktop\",\"Kernel\":\"6.18.54.1-microsoft-standard-WSL2\",\"Memory\":8166219776}\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "build",
+        "--network=none",
+        "-f",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-barrier-r4\\context\\gate-test.Dockerfile",
+        "-t",
+        "xiaowork-homepage-p6e-gate:test-r4",
+        "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-barrier-r4\\context"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from gate-test.Dockerfile\n#1 transferring dockerfile: 1.22kB 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/xiaowork-homepage-worker:p6e-chain3-4f18eaeaecb8\n#2 DONE 0.1s\n\n#3 [internal] load metadata for docker.io/library/golang:1.27.3-alpine\n#3 DONE 0.1s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 2B done\n#4 DONE 0.0s\n\n#5 [test-runtime 1/5] FROM docker.io/library/xiaowork-homepage-worker:p6e-chain3-4f18eaeaecb8@sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a\n#5 resolve docker.io/library/xiaowork-homepage-worker:p6e-chain3-4f18eaeaecb8@sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a 0.0s done\n#5 DONE 0.1s\n\n#6 [tests 1/6] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c\n#6 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done\n#6 DONE 0.1s\n\n#7 [internal] load build context\n#7 transferring context: 163.43kB 0.1s done\n#7 DONE 0.1s\n\n#8 [tests 2/6] WORKDIR /src\n#8 CACHED\n\n#9 [tests 3/6] COPY go.mod go.sum ./\n#9 CACHED\n\n#10 [tests 4/6] COPY vendor ./vendor\n#10 CACHED\n\n#11 [tests 5/6] COPY . ./\n#11 DONE 1.6s\n\n#12 [tests 6/6] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go test -c -o /tests/gate ./internal/maintenancegate  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go test -c -o /tests/httpapi ./internal/httpapi  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go test -c -o /tests/worker ./internal/publishworker  && CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -o /tests/control ./cmd/homepage-control  && go vet ./...\n#12 DONE 54.7s\n\n#13 [test-runtime 2/5] COPY --from=tests /tests /tests\n#13 CACHED\n\n#14 [test-runtime 3/5] COPY --from=tests /src/seed /tests/seed\n#14 DONE 0.0s\n\n#15 [test-runtime 4/5] RUN mkdir -p /control && chown 10001:10001 /control && chmod 700 /control\n#15 DONE 0.1s\n\n#16 [test-runtime 5/5] WORKDIR /tests/internal/httpapi\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.2s done\n#17 exporting manifest sha256:08ee826f9c7f001071b828b49d2f4271bdfd5ca4b875aee2006fe000879097c0 0.0s done\n#17 exporting config sha256:a1af9f5e4b6670c3656ad7b08a7f34607480660aef1544d189efa42e92c6b6a4 0.0s done\n#17 exporting attestation manifest sha256:15eac9c194b1c1ac6863c5af45680492ca16a1f4c398a9e4da959e77f557fc59 0.0s done\n#17 exporting manifest list sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad 0.0s done\n#17 naming to docker.io/library/xiaowork-homepage-p6e-gate:test-r4\n#17 naming to docker.io/library/xiaowork-homepage-p6e-gate:test-r4 done\n#17 unpacking to docker.io/library/xiaowork-homepage-p6e-gate:test-r4 0.1s done\n#17 DONE 0.5s\n"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "xiaowork-homepage-p6e-gate:test-r4"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "[\n    {\n        \"Id\": \"sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad\",\n        \"RepoTags\": [\n            \"xiaowork-homepage-p6e-gate:test-r4\"\n        ],\n        \"RepoDigests\": [\n            \"xiaowork-homepage-p6e-gate@sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad\"\n        ],\n        \"Comment\": \"buildkit.dockerfile.v0\",\n        \"Created\": \"2026-11-01T13:43:19.369526553Z\",\n        \"Config\": {\n            \"User\": \"10001:10001\",\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"NODE_VERSION=24.22.1\",\n                \"YARN_VERSION=1.22.22\"\n            ],\n            \"Entrypoint\": [\n                \"/tests/gate\"\n            ],\n            \"WorkingDir\": \"/tests/internal/httpapi\",\n            \"Labels\": {\n                \"io.xiaowork.builder\": \"xiaowork-nuxt-p6d-v1\",\n                \"io.xiaowork.p6e.test-only\": \"maintenance-barrier\",\n                \"org.opencontainers.image.revision\": \"4f18eaeaecb86baaca01f148f388e7e86eec68bf\",\n                \"org.opencontainers.image.source\": \"https://github.com/xiaowork-dev/xiaowork-homepage\"\n            }\n        },\n        \"Architecture\": \"amd64\",\n        \"Os\": \"linux\",\n        \"Size\": 755764175,\n        \"RootFS\": {\n            \"Type\": \"layers\",\n            \"Layers\": [\n                \"sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba\",\n                \"sha256:1e7c31449d3b67bab8f9bdb22fdd16ea983e167875bf91f9655583354477d417\",\n                \"sha256:a81b85a0b02f451fac1872d6f0abe015d010d800b457270409335029c55c474d\",\n                \"sha256:bda40d8c442bd04d0ebe75ffa571b1cefc1845146a081ffd7f642ecb24fefe1d\",\n                \"sha256:9d0e3662740d07bd0c7f43f7e2318297b400f562f8147d117757d5b819435f2f\",\n                \"sha256:d2e1b752c0fb47ffa2b1746f7e75be03555b1dcbd39f2b25b1418c5304dd5415\",\n                \"sha256:5180ff503bc55bab54ee4eb951ce1c4c9a07241ba6d86c1330a06f7759e82bc2\",\n                \"sha256:6e1614613a767ed2f4046c13291f609ce2d6d793df5665049906f760efd77179\",\n                \"sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef\",\n                \"sha256:25b3e4f3fe40584fc6dcf3b335a30e3687916ec57d2fce235f646761b8f3fb8a\",\n                \"sha256:f74f2a7895c970cd42ea54971510034c0a81a3e5440b0a0a365ddd3b3195d027\",\n                \"sha256:3ba67c003552aa6f154565288e1563bf43e99395a8ffc5f73e51da2314d7e045\",\n                \"sha256:8d832aaf6e1675d692c5541a896410188f3e38613ddad3a652f5e7f2560c0182\"\n            ]\n        },\n        \"Metadata\": {\n            \"LastTagTime\": \"2026-11-01T13:43:19.711820377Z\"\n        },\n        \"Descriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.index.v1+json\",\n            \"digest\": \"sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad\",\n            \"size\": 856\n        },\n        \"Identity\": {\n            \"Build\": [\n                {\n                    \"Ref\": \"wwnfcgfzz955n69c5820v5m08\",\n                    \"CreatedAt\": \"2026-11-01T13:43:19.806664999Z\"\n                }\n            ]\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "run",
+        "--name",
+        "xiaowork-homepage-v11-barrier-r4-kernel-process-locks",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--memory",
+        "4g",
+        "--cpus",
+        "2",
+        "--pids-limit",
+        "256",
+        "--tmpfs",
+        "/tmp:rw,size=384m,mode=1777,nosuid,nodev,noexec",
+        "--tmpfs",
+        "/work:rw,size=1536m,mode=0700,uid=10001,gid=10001,nosuid,nodev,noexec",
+        "--entrypoint",
+        "/tests/gate",
+        "xiaowork-homepage-p6e-gate:test-r4",
+        "-test.v",
+        "-test.timeout=10m",
+        "-test.run=TestGate"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "=== RUN   TestGateProcessHelper\n--- PASS: TestGateProcessHelper (0.00s)\n=== RUN   TestGateCrossProcessKillAndPersistentRecovery\n    gate_linux_test.go:109: controller=SIGKILL reader=SIGKILL state=recovery-required/draining; new admission/begin/complete all refused\n--- PASS: TestGateCrossProcessKillAndPersistentRecovery (0.03s)\n=== RUN   TestGateSupervisorExitAndNormalCompletion\n    gate_linux_test.go:140: supervisor exit=47; blocked until explicit verified-owner completion; publication admission restored\n--- PASS: TestGateSupervisorExitAndNormalCompletion (0.01s)\n=== RUN   TestGateRejectsUnknownControlState\n=== RUN   TestGateRejectsUnknownControlState/missing\n    gate_linux_test.go:184: case=missing admission=refused maintenance=refused\n=== RUN   TestGateRejectsUnknownControlState/corrupt\n    gate_linux_test.go:184: case=corrupt admission=refused maintenance=refused\n=== RUN   TestGateRejectsUnknownControlState/permissions\n    gate_linux_test.go:184: case=permissions admission=refused maintenance=refused\n=== RUN   TestGateRejectsUnknownControlState/symlink\n    gate_linux_test.go:184: case=symlink admission=refused maintenance=refused\n=== RUN   TestGateRejectsUnknownControlState/hardlink\n    gate_linux_test.go:184: case=hardlink admission=refused maintenance=refused\n=== RUN   TestGateRejectsUnknownControlState/unfinished-write\n    gate_linux_test.go:184: case=unfinished-write admission=refused maintenance=refused\n--- PASS: TestGateRejectsUnknownControlState (0.01s)\n    --- PASS: TestGateRejectsUnknownControlState/missing (0.00s)\n    --- PASS: TestGateRejectsUnknownControlState/corrupt (0.00s)\n    --- PASS: TestGateRejectsUnknownControlState/permissions (0.00s)\n    --- PASS: TestGateRejectsUnknownControlState/symlink (0.00s)\n    --- PASS: TestGateRejectsUnknownControlState/hardlink (0.00s)\n    --- PASS: TestGateRejectsUnknownControlState/unfinished-write (0.00s)\n=== RUN   TestGateReadonlyMount\n    gate_linux_test.go:191: explicit RO volume test only\n--- SKIP: TestGateReadonlyMount (0.00s)\nPASS\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "run",
+        "--name",
+        "xiaowork-homepage-v11-barrier-r4-https-and-real-worker",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges:true",
+        "--memory",
+        "4g",
+        "--cpus",
+        "2",
+        "--pids-limit",
+        "256",
+        "--tmpfs",
+        "/tmp:rw,size=384m,mode=1777,nosuid,nodev,noexec",
+        "--tmpfs",
+        "/work:rw,size=1536m,mode=0700,uid=10001,gid=10001,nosuid,nodev,noexec",
+        "--entrypoint",
+        "/tests/httpapi",
+        "xiaowork-homepage-p6e-gate:test-r4",
+        "-test.v",
+        "-test.timeout=10m",
+        "-test.run=TestMaintenance"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stdout": "=== RUN   TestMaintenanceProcessHelper\n--- PASS: TestMaintenanceProcessHelper (0.00s)\n=== RUN   TestMaintenanceHTTPOnlineDenialRestartAndRecovery\n    maintenance_linux_test.go:194: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:194: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:194: maintenance barrier unavailable or recovery required\n--- FAIL: TestMaintenanceHTTPOnlineDenialRestartAndRecovery (1.10s)\n=== RUN   TestMaintenancePublishArrivalRace\n=== RUN   TestMaintenancePublishArrivalRace/0\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/1\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/2\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/3\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/4\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/5\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/6\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenancePublishArrivalRace/7\n    maintenance_linux_test.go:235: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:235: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:235: maintenance barrier unavailable or recovery required\n--- FAIL: TestMaintenancePublishArrivalRace (3.19s)\n    --- FAIL: TestMaintenancePublishArrivalRace/0 (0.50s)\n    --- FAIL: TestMaintenancePublishArrivalRace/1 (0.43s)\n    --- FAIL: TestMaintenancePublishArrivalRace/2 (0.42s)\n    --- FAIL: TestMaintenancePublishArrivalRace/3 (0.38s)\n    --- FAIL: TestMaintenancePublishArrivalRace/4 (0.35s)\n    --- FAIL: TestMaintenancePublishArrivalRace/5 (0.36s)\n    --- FAIL: TestMaintenancePublishArrivalRace/6 (0.38s)\n    --- FAIL: TestMaintenancePublishArrivalRace/7 (0.38s)\n=== RUN   TestMaintenanceActualWorkerDrainsBuildAndActivation\n=== RUN   TestMaintenanceActualWorkerDrainsBuildAndActivation/building\n    maintenance_linux_test.go:292: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:292: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:292: maintenance barrier unavailable or recovery required\n=== RUN   TestMaintenanceActualWorkerDrainsBuildAndActivation/activating\n    maintenance_linux_test.go:292: HTTP GET /auth/login-challenge expected=200 actual=200\n    maintenance_linux_test.go:292: HTTP POST /auth/login expected=200 actual=200\n    maintenance_linux_test.go:292: maintenance barrier unavailable or recovery required\n--- FAIL: TestMaintenanceActualWorkerDrainsBuildAndActivation (0.69s)\n    --- FAIL: TestMaintenanceActualWorkerDrainsBuildAndActivation/building (0.36s)\n    --- FAIL: TestMaintenanceActualWorkerDrainsBuildAndActivation/activating (0.34s)\nFAIL\n",
+      "stderr": ""
+    }
+  ],
+  "steps": [
+    {
+      "name": "kernel-process-locks",
+      "container": "xiaowork-homepage-v11-barrier-r4-kernel-process-locks",
+      "status": "passed"
+    },
+    {
+      "name": "https-and-real-worker",
+      "container": "xiaowork-homepage-v11-barrier-r4-https-and-real-worker",
+      "status": "failed"
+    }
+  ],
+  "sourceFiles": {
+    "backend/cmd/homepage-api/main.go": "a0693dd6de6927276e5f382df51da6a305b033cd349974e6a2c258d7910f7d8d",
+    "backend/cmd/homepage-control/main.go": "adb650e8b4482014906d48bb7c2f88aacc6c91894eb279480f5ebd5f418ce179",
+    "backend/cmd/homepage-maintenance/main.go": "98ed0a96845e501483d4ea2c87e0e4fa918ff0dc2174d902ae7e70c3920cea90",
+    "backend/cmd/homepage-worker/main.go": "e7ee760c02f2b98e26e7cb72b444555632b9cdf13eafdfb030fce9720d287aea",
+    "backend/cmd/p6e-fault-data/main.go": "aa8dda8dddf8c2bba6876d09c805ae8916c2353e8ea5503676b80d84ed0f0816",
+    "backend/cmd/p6e-fault-worker/main.go": "655845ce1196de8a96aedc71ed3bb64211b8458aa8af6df4ffd40cad3e18cb3d",
+    "backend/Dockerfile": "69319a698a9e1140e19e3c4f218da012c4aa0e2ba78e783f4d9a16e0f2cb6066",
+    "backend/Dockerfile.dockerignore": "fd699256dcbfdc37aebf20d39331273718462b0047aa953a730a90390be765b6",
+    "backend/gate-test.Dockerfile": "8a94ac1be9e3a6aea64c3a7495c1545b346d8fcd04c5d43f024c586db750f038",
+    "backend/go.mod": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+    "backend/go.sum": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239",
+    "backend/internal/authn/authn.go": "da02c0f07857da61cfe5d24f9780ded951065741db56347eb5ff68945d40e719",
+    "backend/internal/authn/authn_test.go": "ed411898f86490cdc44b6c568d4cef63954023faa504f995e032201559ae6f60",
+    "backend/internal/contentdata/content_test.go": "5934fc5769c13b4b455e2d0bb60ef573b7d4eacc0835bfda7b7e75c4cd8a045e",
+    "backend/internal/contentdata/import.go": "583ebd5f6220b6ffba7bc6624f935df0f78a2aa398ade187d4552e75501d371e",
+    "backend/internal/contentdata/repository.go": "26fe1c4cc47ee445c4b2211370ecf75a173d5d37d26e073fd7b230e5d69b95fe",
+    "backend/internal/contentdata/types.go": "0c6cbea971bd93e3b1b340c928cb0a757f3e4c991de93b026a05ebb88a339e28",
+    "backend/internal/contentlimits/limits.go": "dc9a669b1de90e8fe7efdfe4d6236414afa149dc62166aee097df2fc3914c0d2",
+    "backend/internal/devtls/devtls.go": "454ddc9fab00c752f7464c4004c64750d49c2a1a50e205ac4c140fe8b5813024",
+    "backend/internal/devtls/devtls_test.go": "303f82bafefb0083590cf3137f53f1eaed73cbc4df2209b52f43169b194a58ff",
+    "backend/internal/httpapi/auth.go": "20348de2c1379f1665c0920deae31ee72ce2189f6616d33db90ff65dd1c4c8f2",
+    "backend/internal/httpapi/auth_test.go": "2ce6bd5cdf45d9758c0ba3f7a91f21387b2cf7d7218f90e998ee376d26d9816d",
+    "backend/internal/httpapi/common.go": "793b70189acc52a2eedf6725a502b4033e9056bb3b02761136323b664e5f94d5",
+    "backend/internal/httpapi/common_test.go": "14a6bf569bff5de61daa978a22d6583ccd1c996603e6a5611c856a5439dd405f",
+    "backend/internal/httpapi/content.go": "8d162687f3c27e4a0f15c394701c2d6d3e43161413478e707203e6e724b791e3",
+    "backend/internal/httpapi/content_test.go": "7904edda0a5641b58d1860c21267db01addd733dd53dc6d72bc88a6a70b84610",
+    "backend/internal/httpapi/maintenance_linux_test.go": "4f7bd765bafdd7acf9dc97efbc3b4012a0b6a7149ae1873599dcfad3c90c9520",
+    "backend/internal/httpapi/media.go": "07e71741c27ead76a70da369ae53bd49465c876ee32b9b3f2d8c660219a1e424",
+    "backend/internal/httpapi/media_http_test.go": "6302ef5f47fd86ba08505817e989de350930d1cb2390ec23fe5f7e9760cf8491",
+    "backend/internal/httpapi/media_storage_test.go": "52509a1fdcb6f2abc2ecd25000a685d414ead6fe12b691f2ac721428fb86e782",
+    "backend/internal/httpapi/p6e_fault_linux.go": "f68c36e0aadd17d48520fb856d79bb8b7f0f964204f74b320aeae6446882d97d",
+    "backend/internal/httpapi/publication.go": "5218285549cd3b055a572826ed3da2dc7d18f4efe13cf2028083102f0a63d829",
+    "backend/internal/httpapi/publication_failure_codes_test.go": "c80cb5a6ab2f6637c094e3b90fe903b0eb30737d980239946c610b108aa5c4dd",
+    "backend/internal/httpapi/publication_fault_integration_test.go": "efa82fd6d70f5357b8d60ebfe060037e9f1dd90e9a7aaf88c0285c049aecf938",
+    "backend/internal/httpapi/publication_recovery_diagnostics_linux_test.go": "f6042af3c02570d3e2217866aa83041fa40b1a1ddf725aa1bb0f4ce802ce616d",
+    "backend/internal/httpapi/publication_review.go": "f12cf96c5a0466eb3f86d0eaf279c76b7cf7e46652f58a92055817e47932d567",
+    "backend/internal/httpapi/publication_test.go": "7563bf84ff458345604572f49c920b97946d67a668a379f17c05acfe15791095",
+    "backend/internal/httpapi/publication_transport_linux_test.go": "6d2645bce80ab5056f74adc9d64dd46ccfca5f7b7fa6035d6c2f9323cc49def9",
+    "backend/internal/httpapi/publication_verify.go": "b9658af69b7097749b9c85d35c60ebd5d1a7d5e7db456531a60c6246e1b39fa6",
+    "backend/internal/httpapi/publication_worker.go": "8a08caf270c7bfa02ebd4dfdf1b7854ce4a75f82f89e27c2ed0c7b43ba123145",
+    "backend/internal/httpapi/server.go": "e6af48ab2d7aebd147937d9f3379cd5ab2cdd1fb1ab46d2a9230549b46dba5ae",
+    "backend/internal/httpapi/server_test.go": "dcbb3bf41dd79f2c4ca1148f156745dc94ee80b484cff52d77a25d0f7d50ab19",
+    "backend/internal/httpapi/storage.go": "87c6d0de3fbd60702d550e75365f388fad3bf243e930779de82ce6dd76b36daa",
+    "backend/internal/httpapi/storage_test.go": "def0e9e38de088a64d3a713875433c88098c818c5163047321f3056ba083b252",
+    "backend/internal/httpapi/worker_socket_linux.go": "2efce945a61312dde8168fb2b32f983e27ed6f7b26bcc5e4a2911696501bbc88",
+    "backend/internal/httpapi/worker_socket_linux_test.go": "f9a80fb8cb4d2df1d0237f186652484e070825781a637f83592b416df0af3ace",
+    "backend/internal/httpapi/worker_socket_other.go": "d69884df9b0ab3eaa3ba72cf27305c74d11285885d77d4916af776c9a73265f3",
+    "backend/internal/maintenance/backup.go": "b559cdd3620092bac6218aa942e90196afba2172a74576c2c248da05ad42bdf0",
+    "backend/internal/maintenance/backup_test.go": "3b791dca5b1c7f1199b5498245863c540dd9221752c3ecc6a78eb775648fd90e",
+    "backend/internal/maintenance/content_digest.go": "6aade705735acedc216a0e718f8b2c7e07d54872e9e3e68a1ac091ef6ece3f5d",
+    "backend/internal/maintenance/content_digest_test.go": "a2fec3e7f35de8264bd4db65bd2d650b48a2d40f7ff6f4b420582a20985df6ae",
+    "backend/internal/maintenance/current_repair.go": "75d78c01f60cd31e3c65f28fb0df477efcbc07f4ab39f4c8092c44b9a9a8d7f0",
+    "backend/internal/maintenance/current_repair_linux_test.go": "ae78d7e260ef2345cd88261f92264be090c897cc709cca968a909e69fdf09ca8",
+    "backend/internal/maintenance/current_repair_sync_linux.go": "d48598bc43a0df2f20f513389919791238364078ddb01ab250959ce82098bc9c",
+    "backend/internal/maintenance/current_repair_sync_other.go": "a52a1d051a6464e4e19c18e8f32ee022482aff6a1cc457d8c84781b8d549411e",
+    "backend/internal/maintenance/metadata.go": "9755869ce08700208c12f8790807206ed09be10ca56fedc3e78ff2d290a623fa",
+    "backend/internal/maintenance/metadata_linux_test.go": "fc453c0984ec1af3e5158ddfcb24760996eaf17b29f9177f99addb43987b2128",
+    "backend/internal/maintenance/readonly.go": "79b35d680e8b7b30378dbaa3e201f74f3c8a2fbdbb4976a74eca2272693f105d",
+    "backend/internal/maintenance/readonly_linux.go": "278dd8883797d18a873f7997cf24b5c4bee45b78fd74dcfe306945fe3188d340",
+    "backend/internal/maintenance/readonly_linux_test.go": "a45c374c160bb71c335ce699421d5bf3934a32ee176166fa9d56ad044b0a618d",
+    "backend/internal/maintenance/readonly_other.go": "78077dfc01535c92854625b0553778c94a87cb5533a39c8dde8f9f2232612339",
+    "backend/internal/maintenance/readonly_test.go": "69bc3f0e5bc4a4ef89b65e6cc2a60965fd64687d2526a54e4ba135149b6d5e3b",
+    "backend/internal/maintenancegate/gate.go": "740fcc3dd997a93b2a572058b4e20168739b446255b98f9951a17bd02afdbc9a",
+    "backend/internal/maintenancegate/gate_linux.go": "edb31c91c61fde29c7e7cec55f50ca56a782cf904ac425311e95240851866c36",
+    "backend/internal/maintenancegate/gate_linux_test.go": "7d32af8650605bcab5b9be35d52a12feaa34e02a3c051a8bf9405afb969c8966",
+    "backend/internal/maintenancegate/gate_other.go": "0c15c953fae2dd9c0a83f992c11d711bcd45e4615fc0ca36cb85a378be12abf7",
+    "backend/internal/mediautils/image.go": "deb5ecfc03ee473df283d12de73d5365b9284dbfd6ac5df7e9fef32adbc1b091",
+    "backend/internal/mediautils/image_test.go": "00b12b1f8dbe7154fb630d7ff44d734eb5a65896e0a6d5e16593be192abdb0a8",
+    "backend/internal/publishdata/snapshot.go": "0eb1ec91a137bddf4f02bebb1d67bfb9c83806f13460cfff48c695927a72642a",
+    "backend/internal/publishfs/crash_linux_test.go": "367b06b0d94f47572bf1cd0be75b5aef1d999a0c3302c3345a6ee52b0acd3b7f",
+    "backend/internal/publishfs/enospc_linux_test.go": "355816d7b18ee39646ddbb2866706cf448b7b8388f05c44a678263ed03df54b6",
+    "backend/internal/publishfs/platform_linux.go": "47017b10083befa2bc9ee63f80dbdb4bb82e2c0eace220bb4afc203a5bf2abed",
+    "backend/internal/publishfs/platform_other.go": "9a06a18967b95c1bed6ec6fca35462a6fdf1aebab6e5e1c411d30df9c55c8e9f",
+    "backend/internal/publishfs/platform_windows.go": "3740dd763a5d2dd92e748ea82945926703f69bf6f174baa67b3812e894c2da4e",
+    "backend/internal/publishfs/store.go": "600437e8c3621b8834ea44a9dbeeff49d2c7f59f0da8929ca13c0b5d53e5a4be",
+    "backend/internal/publishfs/store_test.go": "359e10f2458e661fd1cccdc5cbf3f6c7141da1e7766e2a771f7c6920dec47699",
+    "backend/internal/publishmodel/model.go": "39f169bb21050953435214efc4c93c1396c8608ac9890577d9718e66e9666e9e",
+    "backend/internal/publishworker/builder.go": "8b744482099a5044ebbe0c7eb1d59981fc830dec243b5b86932d2169c608a486",
+    "backend/internal/publishworker/client.go": "5321dee2b1dc797beb6c4d2c7f1ce91ca1fdaad70563b9cdfdd848e3b5beadfd",
+    "backend/internal/publishworker/process_linux.go": "256d5b1deda1601d4ce42c1e0061f4b8e133029469c0170d817ecae19f41b762",
+    "backend/internal/publishworker/process_linux_test.go": "fc08c411838b68500c902ac5f82e2bd2c1a4dbd1a4f0d3991f6631ace56dca9d",
+    "backend/internal/publishworker/process_other.go": "71c531d021c31e220132ac080315f522c101ab2e775b65bd9796998790fc4d2a",
+    "backend/internal/publishworker/public_seed_assignment_test.go": "0331177b097939292d75ade6f1c0d0d721943a7bf5d00310027f415819bada1b",
+    "backend/internal/publishworker/runner.go": "9243829593f8ccec5237f15e48171ab69d3c8963932287e370b158437468b815",
+    "backend/internal/publishworker/runner_linux_test.go": "e2cb93b5ea78547691e1dd7ef820f71564ac88980412ca230a2b1bed52fff413",
+    "backend/internal/publishworker/validate.go": "68fe374387f00137554566c8ce2c5cc07378ed1eee94e6c0cda6bab9e11e581d",
+    "backend/internal/publishworker/validate_test.go": "cdec2449cd807274a2b5eab3b35b445d807fedcf32a7079d56d7962fac5f9f55",
+    "backend/internal/storagehealth/disk_linux.go": "c6c494c306fe033b13b9ea9aa86f00767c7cda40c0b42acce7a523271b9da4f9",
+    "backend/internal/storagehealth/disk_other.go": "4b472a2f46b1d02c5a57a66291a4ce1ffc850d8b36190a9828f9b89bb39b966a",
+    "backend/internal/storagehealth/disk_windows.go": "bbb5fe36b464bdff5c311e0b8d70c38701ad2ea3e8c26b1c330a35220bbe67b5",
+    "backend/internal/storagehealth/storage.go": "e599fdfc9e90ea4e424243c8306d3d6aa956c16a46c41ecbc0a2f1386a93dcd4",
+    "backend/internal/storagehealth/storage_test.go": "dca557bb6e7928a1d7b5073f8a7a9a39de1b2683c17fc0469afdabd08b79bad9",
+    "backend/internal/store/publication_migration_test.go": "4be7844492275e5dde4f92d89739dc7e992ec0aaa127eec0643079e3b737423a",
+    "backend/internal/store/security_schema_test.go": "def48efb9eab2bf1853450f9937742c14dd3b7742ae506f8a812840d900be9a7",
+    "backend/internal/store/store.go": "f584f6d9b5ec21c692a3eab0f156a896d50fc59d0223c66a3b8e42a3d3550414",
+    "backend/internal/store/store_test.go": "d0cf803e22b7784d90ad46d2076f8c114e086bed1016b7945845c0066edbc34f",
+    "backend/maintenance.Dockerfile": "1dd7c640e65a768bad9664677ba846987f6ebf211b3fd4d811cff5b94bb966b8",
+    "backend/maintenance.Dockerfile.dockerignore": "a2d95ca5d2c4f96a11c95111ca6e191e22eb2b84b9d7943f6fa3724371dc3c4c",
+    "backend/migrations/001_initial.sql": "b8d130f9b634ce14415cda2ecb20e7111ac145af29ac9a359bd538d3d3f5db2f",
+    "backend/migrations/002_content_history.sql": "9a5a03b2828252a5853cb91aed25a0dd816abd7e314b38aebd0cde541bfad984",
+    "backend/migrations/003_publication_details.sql": "7761e5310bd7b6738f63b26c0f107f9b5be0dc9c902f42857d5bea00a06054d1",
+    "backend/migrations/embed.go": "3c12a656dd211e162b84e18afe601ea5dd0ece7d73b170668d08680be4d22ef7",
+    "backend/seed/v1.json": "530d7ddb64ab380c086d483f6084aa16cd52eeb077908054a09d40a9f24f8740",
+    "backend/worker.Dockerfile": "188a01a85a98fbd6fdb31c5580f34d79ca429bd0f22eb0aa8aa72b7024f18be8",
+    "backend/worker.Dockerfile.dockerignore": "215310270e1900eae5ea952b26cf7084dd99f111fc509156cddba22367a11cab"
+  },
+  "head": "19c58ddadccd43cc410a15a243f2ddc7802d80e5",
+  "context": "desktop-linux",
+  "daemon": {
+    "ID": "960fce9c-a763-42d0-b849-fc1f38473b89",
+    "Name": "docker-desktop",
+    "OperatingSystem": "Docker Desktop",
+    "Kernel": "6.18.54.1-microsoft-standard-WSL2",
+    "Memory": 8166219776
+  },
+  "image": {
+    "Id": "sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad",
+    "RepoTags": [
+      "xiaowork-homepage-p6e-gate:test-r4"
+    ],
+    "RepoDigests": [
+      "xiaowork-homepage-p6e-gate@sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad"
+    ],
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": "2026-11-01T13:43:19.369526553Z",
+    "Config": {
+      "User": "10001:10001",
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "NODE_VERSION=24.22.1",
+        "YARN_VERSION=1.22.22"
+      ],
+      "Entrypoint": [
+        "/tests/gate"
+      ],
+      "WorkingDir": "/tests/internal/httpapi",
+      "Labels": {
+        "io.xiaowork.builder": "xiaowork-nuxt-p6d-v1",
+        "io.xiaowork.p6e.test-only": "maintenance-barrier",
+        "org.opencontainers.image.revision": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+        "org.opencontainers.image.source": "https://github.com/xiaowork-dev/xiaowork-homepage"
+      }
+    },
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Size": 755764175,
+    "RootFS": {
+      "Type": "layers",
+      "Layers": [
+        "sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba",
+        "sha256:1e7c31449d3b67bab8f9bdb22fdd16ea983e167875bf91f9655583354477d417",
+        "sha256:a81b85a0b02f451fac1872d6f0abe015d010d800b457270409335029c55c474d",
+        "sha256:bda40d8c442bd04d0ebe75ffa571b1cefc1845146a081ffd7f642ecb24fefe1d",
+        "sha256:9d0e3662740d07bd0c7f43f7e2318297b400f562f8147d117757d5b819435f2f",
+        "sha256:d2e1b752c0fb47ffa2b1746f7e75be03555b1dcbd39f2b25b1418c5304dd5415",
+        "sha256:5180ff503bc55bab54ee4eb951ce1c4c9a07241ba6d86c1330a06f7759e82bc2",
+        "sha256:6e1614613a767ed2f4046c13291f609ce2d6d793df5665049906f760efd77179",
+        "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "sha256:25b3e4f3fe40584fc6dcf3b335a30e3687916ec57d2fce235f646761b8f3fb8a",
+        "sha256:f74f2a7895c970cd42ea54971510034c0a81a3e5440b0a0a365ddd3b3195d027",
+        "sha256:3ba67c003552aa6f154565288e1563bf43e99395a8ffc5f73e51da2314d7e045",
+        "sha256:8d832aaf6e1675d692c5541a896410188f3e38613ddad3a652f5e7f2560c0182"
+      ]
+    },
+    "Metadata": {
+      "LastTagTime": "2026-11-01T13:43:19.711820377Z"
+    },
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:6210f766d095659ad4effcee6273ec92baa661acaed32ff39d99801ed1b7f6ad",
+      "size": 856
+    },
+    "Identity": {
+      "Build": [
+        {
+          "Ref": "wwnfcgfzz955n69c5820v5m08",
+          "CreatedAt": "2026-11-01T13:43:19.806664999Z"
+        }
+      ]
+    }
+  },
+  "result": "failed",
+  "error": "docker failed; preserved docs/evidence/P6E-barrier-r4.json\n\n1 !== 0\n",
+  "completedAt": "2026-11-01T13:43:27.990Z"
+}

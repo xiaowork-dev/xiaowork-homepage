@@ -21,6 +21,9 @@ import (
 
 func publicationFixture(t *testing.T) (*authFixture, *http.Client, string) {
 	t.Helper()
+	if runtime.GOOS != "linux" {
+		t.Skip("shared maintenance barrier requires Linux")
+	}
 	f, c, csrf := seededContentFixture(t)
 	directory := t.TempDir()
 	s, e := publishfs.Open(directory)
@@ -49,6 +52,7 @@ func publicationFixture(t *testing.T) (*authFixture, *http.Client, string) {
 	}))
 	t.Cleanup(verify.Close)
 	f.app.config.LocalPublish = true
+	f.app.config.ControlDir = testControlDir(t)
 	f.app.config.PublicationsDir = directory
 	f.app.config.WorkerSocket = filepath.Join(t.TempDir(), "worker.sock")
 	f.app.config.PublicationVerifyURL = verify.URL

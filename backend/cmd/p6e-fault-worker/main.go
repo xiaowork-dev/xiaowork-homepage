@@ -75,7 +75,7 @@ func main() {
 	}
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
 	defer cancel()
-	runner := publishworker.Runner{Control: checkpointControl{control, *mode == "before-result-http"}, Store: store, Builder: publishworker.FixedBuilder{}, SourceRevision: *source, BuilderID: *builder}
+	runner := publishworker.Runner{ControlDir: "/control", Control: checkpointControl{control, *mode == "before-result-http"}, Store: store, Builder: publishworker.FixedBuilder{}, SourceRevision: *source, BuilderID: *builder}
 	if err = runner.Run(ctx); err != nil && ctx.Err() == nil {
 		fmt.Println("P6E_TEST_WORKER_STOPPED_RECOVERY_REQUIRED")
 		os.Exit(1)

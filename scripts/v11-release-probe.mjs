@@ -78,24 +78,35 @@ export async function verifyLocalRelease(plan) {
     'Admin shell must reference real JS and CSS',
   )
   for (const route of assets) await read(route)
-  const session = await read('/api/admin/v1/auth/session', true, 401)
+  const session = await read('/api/admin/v1/auth/session', true, plan.maintenance ? 503 : 401)
   assert.match(session.headers['cache-control'] ?? '', /no-store/)
   assert.ok(
     JSON.parse(session.raw).error?.code,
     'Unauthenticated management response must be an API error, not SPA HTML',
   )
-  const challenge = await read('/api/admin/v1/auth/login-challenge', true)
-  assert.ok(JSON.parse(challenge.raw).data?.loginNonce)
-  const cookie = (challenge.headers['set-cookie'] ?? []).find((value) =>
-    value.startsWith('__Host-xiaowork-login='),
+  const challenge = await read(
+    '/api/admin/v1/auth/login-challenge',
+    true,
+    plan.maintenance ? 503 : 200,
   )
-  assert.ok(
-    cookie &&
-      /; Secure(?:;|$)/i.test(cookie) &&
-      /; HttpOnly(?:;|$)/i.test(cookie) &&
-      /; SameSite=Strict(?:;|$)/i.test(cookie),
-    'Login challenge must retain secure Cookie boundaries',
-  )
+  if (plan.maintenance) {
+    assert.equal(JSON.parse(session.raw).error?.code, 'MAINTENANCE_REQUIRED')
+    assert.equal(JSON.parse(challenge.raw).error?.code, 'MAINTENANCE_REQUIRED')
+    assert.match(challenge.headers['cache-control'] ?? '', /no-store/)
+    assert.equal(challenge.headers['set-cookie'], undefined)
+  } else {
+    assert.ok(JSON.parse(challenge.raw).data?.loginNonce)
+    const cookie = (challenge.headers['set-cookie'] ?? []).find((value) =>
+      value.startsWith('__Host-xiaowork-login='),
+    )
+    assert.ok(
+      cookie &&
+        /; Secure(?:;|$)/i.test(cookie) &&
+        /; HttpOnly(?:;|$)/i.test(cookie) &&
+        /; SameSite=Strict(?:;|$)/i.test(cookie),
+      'Login challenge must retain secure Cookie boundaries',
+    )
+  }
   if (plan.artifact) {
     assert.equal(plan.artifact.schemaVersion, 1)
     assert.ok(Array.isArray(plan.artifact.files) && plan.artifact.files.length > 0)

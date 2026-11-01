@@ -5,7 +5,8 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { assertNoRecovery } from './v11-operation.mjs'
+import { assertNoRecovery, guardedOperation, chainOwner } from './v11-operation.mjs'
+import { assertSharedBarrier, enterSharedBarrier, provisionControl } from './v11-barrier.mjs'
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const roles = ['db', 'uploads', 'publications', 'secrets', 'authority', 'tls']
@@ -144,7 +145,14 @@ function ownedContainers(project) {
     )
 }
 export function inspectProject(project, image, lifecycleOwner) {
+  lifecycleOwner ??= chainOwner(project)
+  if (!lifecycleOwner)
+    return guardedOperation(project, 'inspect', (context) => {
+      enterSharedBarrier(project, image, context.owner)
+      return inspectProject(project, image, context.owner)
+    })
   assertNoRecovery(project, lifecycleOwner)
+  assertSharedBarrier(project, image, lifecycleOwner)
   assert.ok(
     ownedContainers(project).every(
       (c) => !c.running || !['api', 'worker', 'api-init'].includes(c.service),
@@ -154,7 +162,14 @@ export function inspectProject(project, image, lifecycleOwner) {
   return tool(image, 'inspect', volumeMounts(project, '/source', true))
 }
 export function backupProject(project, image, destination, lifecycleOwner) {
+  lifecycleOwner ??= chainOwner(project)
+  if (!lifecycleOwner)
+    return guardedOperation(project, 'backup', (context) => {
+      enterSharedBarrier(project, image, context.owner)
+      return backupProject(project, image, destination, context.owner)
+    })
   assertNoRecovery(project, lifecycleOwner)
+  assertSharedBarrier(project, image, lifecycleOwner)
   projectName(project)
   const absolute = path.resolve(destination)
   assert.ok(!fs.existsSync(absolute), 'Backup destination must be new')
@@ -287,9 +302,17 @@ export function verifyBackup(image, source) {
   assert.equal(manifest.state.schema, bundle.runtime.schema)
   return { ...manifest, runtime: bundle.runtime }
 }
-export function restoreProject(project, image, source) {
-  assertNoRecovery(project)
+export function restoreProject(project, image, source, lifecycleOwner) {
+  lifecycleOwner ??= chainOwner(project)
+  if (!lifecycleOwner)
+    return guardedOperation(project, 'restore', (context) =>
+      restoreProject(project, image, source, context.owner),
+    )
+  assertNoRecovery(project, lifecycleOwner)
   projectName(project)
+  provisionControl(project, image)
+  enterSharedBarrier(project, image, lifecycleOwner)
+  assertSharedBarrier(project, image, lifecycleOwner)
   assert.equal(ownedContainers(project).length, 0, 'Recovery target must have no containers')
   const names = volumeNames(project)
   const existing = new Set(docker(['volume', 'ls', '--format', '{{.Name}}']).split(/\s+/))

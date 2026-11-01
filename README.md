@@ -1,5 +1,7 @@
 # XiaoWork Homepage
 
+V1.1/P6-E 最新状态（2026-11-01）：API、Worker 与宿主共同维护屏障已实现，并通过真实跨进程/HTTPS/离线 Nuxt 专项及宿主异常保护测试；完整原生 Linux 修复备份链和新六角色发行仍未验收，**不能上线**。开发环境需先显式初始化独立控制卷，禁止启动时重设旧状态。见[最新交付](docs/deliveries/P6E-delivery.md)、[维护协议](docs/V1.1-RELEASE-OPERATIONS.md)、[专项证据](docs/P6E-MAINTENANCE-TESTS.md)、[待授权 Linux 准备方案](docs/V1.1-LINUX-ACCEPTANCE-ENV.md)。
+
 V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发，中文Vue后台复用真实Go/SQLite API。P6-E候选仍为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`六正式角色、Schema3；本轮未改运行源码或重建镜像。chain4实查只有Docker Desktop，无原生Linux验收环境，bind Source身份未证明，严格检查保持。活跃API/Worker尚未共享宿主维护屏障，六项并发测试与完整备份恢复链仍未完成，不能上线。六镜像身份、新安全审计和旧保护已复核，故障卷/锁/失败证据保留。下一步是准备独立本机Linux环境并补齐维护协作，见[当前进度](docs/PROGRESS.md)和[运维条件](docs/V1.1-RELEASE-OPERATIONS.md)。未连接生产、未合并main，正式gate关闭。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)

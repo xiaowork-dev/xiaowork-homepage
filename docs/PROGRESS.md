@@ -1,5 +1,15 @@
 # XiaoWork Homepage 项目进度
 
+## 最新：2026-11-01 共同维护屏障专项完成，P6-E 整链仍未完成
+
+API、Worker 和受信宿主已接入独立 RO/RW 控制卷及真实跨进程共享/独占锁，消除 marker 检查与任务创建/领取/激活之间的准入窗口。已准入任务排空后才允许离线数据检查；未知状态失败关闭，不依赖父进程活着。正常成功才清保护。
+
+已通过：实际可信 HTTPS、SQLite 事务等待、真实 Nuxt 构建/激活前排空、API/Worker 进程重启、控制目录失效、内核 RO 卷；宿主 SIGKILL/退出/外断言失败/正常完成 4/4；Go 包回归/vet、ESLint/Prettier、四入口 Go source 漏洞扫描。原 r3～r6 失败保留，其中 r6 errno 丢失属于已修正的真实实现问题。
+
+**运行源码已变，旧 4f18 六角色不含本修复。新正式组六角色尚未冻结/构建，不以测试派生镜像或旧组充数。** 原生 Linux 完整修复、备份恢复、跨源码升级回退和新组 E2E 仍未执行，安装环境等待授权。npm 根 37 moderate/2 low、后台 9 moderate；旧 Worker 10 MEDIUM 等未解决，不作安全全通过结论。
+
+见[本轮交付](deliveries/P6E-delivery.md)、[协议/运维](V1.1-RELEASE-OPERATIONS.md)、[实际专项](P6E-MAINTENANCE-TESTS.md)、[Linux 环境方案](V1.1-LINUX-ACCEPTANCE-ENV.md)。本轮不生产部署、不合并 main、不开 gate、不动旧故障卷/锁。以下 chain4 及更早内容为历史基线。
+
 本轮chain4只完成环境、六镜像身份、安全扫描及旧保护复核：[最新交付](deliveries/P6E-delivery.md)、[环境/并发代码审查](evidence/P6E-chain4-environment.json)、[收尾](evidence/P6E-chain4-closure.json)。本机只有Docker Desktop WSL2，没有原生Linux验收环境；未证明bind路径身份等价，严格Source检查保留，不再尝试路径转换。新完整链未启动，原chain3失败容器/卷/锁保持。宿主marker未被API/Worker实时读取，活跃发布与维护竞争仍为未修复的工程门槛，不能用停API后的502替代。
 
 运行源码没有变化，候选仍为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`六正式镜像；本轮未重建、不混用旧组。六ID/源码/平台吻合；691份原证据哈希不变、5组旧保护marker不变，新备份/修复/update被宿主工具拒绝。重新扫描Worker10MEDIUM/1LOW/1UNSPECIFIED，其余各1UNSPECIFIED；根npm37moderate/2low、后台9moderate。Nuxt4.6.3官方兼容补丁存在但未安装，musl分支相同补丁与Go入口无OpenPGP导入重新核对，告警及非零结果保留。详见[安全](V1.1-SECURITY-ACCEPTANCE.md)。

@@ -17,6 +17,7 @@ import (
 func main() {
 	socket := flag.String("socket", "/run/publishing/publisher.sock", "private API Unix socket")
 	root := flag.String("root", "/publications", "publication volume")
+	controlDir := flag.String("control", "/control", "read-only maintenance control volume")
 	source := flag.String("source-revision", "", "reviewed source commit SHA")
 	builder := flag.String("builder-id", "", "immutable reviewed builder identity")
 	flag.Parse()
@@ -37,7 +38,7 @@ func main() {
 	}
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
 	defer cancel()
-	runner := publishworker.Runner{Control: control, Store: store, Builder: publishworker.FixedBuilder{}, SourceRevision: *source, BuilderID: *builder}
+	runner := publishworker.Runner{ControlDir: *controlDir, Control: control, Store: store, Builder: publishworker.FixedBuilder{}, SourceRevision: *source, BuilderID: *builder}
 	if err = runner.Run(ctx); err != nil && ctx.Err() == nil {
 		fmt.Fprintln(os.Stderr, "worker stopped; publication gate requires reconciliation")
 		os.Exit(1)

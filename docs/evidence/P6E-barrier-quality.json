@@ -1,0 +1,1418 @@
+{
+  "at": "2026-11-01T14:04:36.246Z",
+  "commands": [
+    {
+      "executable": "git",
+      "args": [
+        "diff",
+        "--name-only"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "backend/Dockerfile\nbackend/cmd/homepage-api/main.go\nbackend/cmd/homepage-worker/main.go\nbackend/cmd/p6e-fault-worker/main.go\nbackend/internal/httpapi/auth_test.go\nbackend/internal/httpapi/publication_test.go\nbackend/internal/httpapi/publication_worker.go\nbackend/internal/httpapi/server.go\nbackend/internal/httpapi/server_test.go\nbackend/internal/publishworker/client.go\nbackend/internal/publishworker/runner.go\nbackend/internal/publishworker/runner_linux_test.go\nbackend/maintenance.Dockerfile\nbackend/worker.Dockerfile\ncompose.admin-dev.yaml\ncompose.admin-publish.yaml\nscripts/v11-current-repair.mjs\nscripts/v11-maintenance.mjs\nscripts/v11-operation.mjs\nscripts/v11-release-probe.mjs\nscripts/v11-release.mjs\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git",
+      "args": [
+        "ls-files",
+        "--others",
+        "--exclude-standard"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "backend/cmd/homepage-control/main.go\nbackend/gate-test.Dockerfile\nbackend/internal/httpapi/maintenance_linux_test.go\nbackend/internal/maintenancegate/gate.go\nbackend/internal/maintenancegate/gate_linux.go\nbackend/internal/maintenancegate/gate_linux_test.go\nbackend/internal/maintenancegate/gate_other.go\ndocs/V1.1-LINUX-ACCEPTANCE-ENV.md\ndocs/evidence/P6E-barrier-host-r1.json\ndocs/evidence/P6E-barrier-quality.json\ndocs/evidence/P6E-barrier-r3.json\ndocs/evidence/P6E-barrier-r4.json\ndocs/evidence/P6E-barrier-r5.json\ndocs/evidence/P6E-barrier-r6.json\ndocs/evidence/P6E-barrier-r7.json\ndocs/evidence/P6E-barrier-r8.json\ndocs/evidence/P6E-barrier-r9.json\nscripts/p6e-barrier-host-test.mjs\nscripts/p6e-barrier-quality.mjs\nscripts/p6e-maintenance-barrier.mjs\nscripts/v11-barrier.mjs\n",
+      "stderr": ""
+    },
+    {
+      "executable": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "node_modules/prettier/bin/prettier.cjs",
+        "--check",
+        "scripts/v11-current-repair.mjs",
+        "scripts/v11-maintenance.mjs",
+        "scripts/v11-operation.mjs",
+        "scripts/v11-release-probe.mjs",
+        "scripts/v11-release.mjs",
+        "scripts/p6e-barrier-host-test.mjs",
+        "scripts/p6e-barrier-quality.mjs",
+        "scripts/p6e-maintenance-barrier.mjs",
+        "scripts/v11-barrier.mjs",
+        "compose.admin-publish.yaml",
+        "compose.admin-dev.yaml"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "executable": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "scripts/v11-current-repair.mjs",
+        "scripts/v11-maintenance.mjs",
+        "scripts/v11-operation.mjs",
+        "scripts/v11-release-probe.mjs",
+        "scripts/v11-release.mjs",
+        "scripts/p6e-barrier-host-test.mjs",
+        "scripts/p6e-barrier-quality.mjs",
+        "scripts/p6e-maintenance-barrier.mjs",
+        "scripts/v11-barrier.mjs",
+        "--max-warnings",
+        "0"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "--test",
+        "scripts/v11-chain.test.mjs",
+        "scripts/v11-release.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "✔ async full-chain guard survives nested successful repair and rejects external processes (183.2944ms)\n✔ later assertion failure retains all project guards including completed stages (24.6926ms)\n✔ caught nested failure poisons the chain and cannot release or continue (9.2703ms)\n✔ controller process exit retains durable guards without cleanup handlers (127.5418ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 509.9937\n",
+      "stderr": ""
+    },
+    {
+      "executable": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "C:/dev/nodejs24/node_modules/npm/bin/npm-cli.js",
+        "audit",
+        "--json",
+        "--ignore-scripts"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stdout": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {\n    \"@eslint-community/eslint-utils\": {\n      \"name\": \"@eslint-community/eslint-utils\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@stylistic/eslint-plugin\",\n        \"@typescript-eslint/utils\",\n        \"eslint\",\n        \"eslint-plugin-regexp\",\n        \"eslint-plugin-unicorn\",\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@eslint-community/eslint-utils\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@eslint/compat\": {\n      \"name\": \"@eslint/compat\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"eslint-config-flat-gitignore\"\n      ],\n      \"range\": \">=1.2.0\",\n      \"nodes\": [\n        \"node_modules/@eslint/compat\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@eslint/config-array\": {\n      \"name\": \"@eslint/config-array\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"eslint\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@eslint/config-array\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@eslint/config-inspector\": {\n      \"name\": \"@eslint/config-inspector\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@eslint/config-inspector\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@eslint/js\": {\n      \"name\": \"@eslint/js\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \">=10.0.1\",\n      \"nodes\": [\n        \"node_modules/@eslint/js\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@nuxt/eslint\": {\n      \"name\": \"@nuxt/eslint\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@eslint/config-inspector\",\n        \"@nuxt/eslint-config\",\n        \"@nuxt/eslint-plugin\",\n        \"eslint\",\n        \"eslint-typegen\"\n      ],\n      \"effects\": [],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@nuxt/eslint\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@nuxt/eslint-config\": {\n      \"name\": \"@nuxt/eslint-config\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint/js\",\n        \"@nuxt/eslint-plugin\",\n        \"@stylistic/eslint-plugin\",\n        \"@typescript-eslint/eslint-plugin\",\n        \"@typescript-eslint/parser\",\n        \"eslint\",\n        \"eslint-config-flat-gitignore\",\n        \"eslint-plugin-import-lite\",\n        \"eslint-plugin-import-x\",\n        \"eslint-plugin-jsdoc\",\n        \"eslint-plugin-regexp\",\n        \"eslint-plugin-unicorn\",\n        \"eslint-plugin-vue\",\n        \"eslint-processor-vue-blocks\",\n        \"vue-eslint-parser\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint\"\n      ],\n      \"range\": \">=0.1.0\",\n      \"nodes\": [\n        \"node_modules/@nuxt/eslint-config\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@nuxt/eslint-plugin\": {\n      \"name\": \"@nuxt/eslint-plugin\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@typescript-eslint/utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint\",\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@nuxt/eslint-plugin\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@nuxt/nitro-server\": {\n      \"name\": \"@nuxt/nitro-server\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1244026,\n          \"name\": \"@nuxt/nitro-server\",\n          \"dependency\": \"@nuxt/nitro-server\",\n          \"title\": \"Nuxt: Dot segments in the request path bypass `server/middleware` path checks and server route rules on page routes\",\n          \"url\": \"https://github.com/advisories/GHSA-9v7c-q64q-vv33\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-41\",\n            \"CWE-436\",\n            \"CWE-863\"\n          ],\n          \"cvss\": {\n            \"score\": 6.5,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N\"\n          },\n          \"range\": \">=4.6.0 <4.6.3\"\n        },\n        \"nitropack\"\n      ],\n      \"effects\": [\n        \"nuxt\"\n      ],\n      \"range\": \">=3.20.0\",\n      \"nodes\": [\n        \"node_modules/@nuxt/nitro-server\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"@nuxt/vite-builder\": {\n      \"name\": \"@nuxt/vite-builder\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1244025,\n          \"name\": \"@nuxt/vite-builder\",\n          \"dependency\": \"@nuxt/vite-builder\",\n          \"title\": \"Nuxt dev server exposes generated appSecret through Vite file serving\",\n          \"url\": \"https://github.com/advisories/GHSA-3xf4-9g3c-4h4w\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-552\"\n          ],\n          \"cvss\": {\n            \"score\": 4.8,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N\"\n          },\n          \"range\": \">=4.6.0 <4.6.3\"\n        },\n        {\n          \"source\": 1244028,\n          \"name\": \"@nuxt/vite-builder\",\n          \"dependency\": \"@nuxt/vite-builder\",\n          \"title\": \"Nuxt dev server arbitrary file read through client error reports\",\n          \"url\": \"https://github.com/advisories/GHSA-x287-wcfc-q46c\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-73\"\n          ],\n          \"cvss\": {\n            \"score\": 5.9,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N\"\n          },\n          \"range\": \">=4.6.0 <4.6.3\"\n        },\n        {\n          \"source\": 1244029,\n          \"name\": \"@nuxt/vite-builder\",\n          \"dependency\": \"@nuxt/vite-builder\",\n          \"title\": \"Nuxt dev server exposes private runtime config through the Nitro dev bundle\",\n          \"url\": \"https://github.com/advisories/GHSA-648h-gw55-m2g7\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-200\",\n            \"CWE-538\",\n            \"CWE-552\"\n          ],\n          \"cvss\": {\n            \"score\": 5.9,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N\"\n          },\n          \"range\": \">=3.0.0 <4.6.3\"\n        },\n        \"nuxt\",\n        \"vite-plugin-checker\"\n      ],\n      \"effects\": [\n        \"nuxt\"\n      ],\n      \"range\": \">=3.0.0-rc.0\",\n      \"nodes\": [\n        \"node_modules/@nuxt/vite-builder\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"@rollup/plugin-node-resolve\": {\n      \"name\": \"@rollup/plugin-node-resolve\",\n      \"severity\": \"low\",\n      \"isDirect\": false,\n      \"via\": [\n        \"deepmerge\"\n      ],\n      \"effects\": [\n        \"nitropack\"\n      ],\n      \"range\": \">=8.0.0\",\n      \"nodes\": [\n        \"node_modules/@rollup/plugin-node-resolve\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"@stylistic/eslint-plugin\": {\n      \"name\": \"@stylistic/eslint-plugin\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\",\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \">=1.4.1\",\n      \"nodes\": [\n        \"node_modules/@stylistic/eslint-plugin\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@typescript-eslint/eslint-plugin\": {\n      \"name\": \"@typescript-eslint/eslint-plugin\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@typescript-eslint/parser\",\n        \"@typescript-eslint/type-utils\",\n        \"@typescript-eslint/utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/eslint-plugin\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@typescript-eslint/parser\": {\n      \"name\": \"@typescript-eslint/parser\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@typescript-eslint/typescript-estree\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\",\n        \"@typescript-eslint/eslint-plugin\",\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/parser\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@typescript-eslint/type-utils\": {\n      \"name\": \"@typescript-eslint/type-utils\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@typescript-eslint/typescript-estree\",\n        \"@typescript-eslint/utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@typescript-eslint/eslint-plugin\"\n      ],\n      \"range\": \">=5.62.1-alpha.0\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/type-utils\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@typescript-eslint/typescript-estree\": {\n      \"name\": \"@typescript-eslint/typescript-estree\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@typescript-eslint/parser\",\n        \"@typescript-eslint/type-utils\",\n        \"@typescript-eslint/utils\"\n      ],\n      \"range\": \">=6.16.0\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/typescript-estree\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@typescript-eslint/utils\": {\n      \"name\": \"@typescript-eslint/utils\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"@typescript-eslint/typescript-estree\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-plugin\",\n        \"@typescript-eslint/eslint-plugin\",\n        \"@typescript-eslint/type-utils\",\n        \"eslint-plugin-import-x\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/utils\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"@vercel/nft\": {\n      \"name\": \"@vercel/nft\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"glob\"\n      ],\n      \"effects\": [\n        \"nitropack\"\n      ],\n      \"range\": \">=0.29.2\",\n      \"nodes\": [\n        \"node_modules/@vercel/nft\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"archiver\": {\n      \"name\": \"archiver\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"archiver-utils\",\n        \"readdir-glob\",\n        \"zip-stream\"\n      ],\n      \"effects\": [\n        \"nitropack\"\n      ],\n      \"range\": \">=5.0.0\",\n      \"nodes\": [\n        \"node_modules/archiver\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"archiver-utils\": {\n      \"name\": \"archiver-utils\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"glob\"\n      ],\n      \"effects\": [\n        \"archiver\",\n        \"zip-stream\"\n      ],\n      \"range\": \">=5.0.1\",\n      \"nodes\": [\n        \"node_modules/archiver-utils\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"deepmerge\": {\n      \"name\": \"deepmerge\",\n      \"severity\": \"low\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1243505,\n          \"name\": \"deepmerge\",\n          \"dependency\": \"deepmerge\",\n          \"title\": \"deepmerge mergeObject() allows prototype poisoning of returned objects\",\n          \"url\": \"https://github.com/advisories/GHSA-gcqx-w48m-w2h4\",\n          \"severity\": \"low\",\n          \"cwe\": [\n            \"CWE-1321\"\n          ],\n          \"cvss\": {\n            \"score\": 5.3,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N\"\n          },\n          \"range\": \">=4.2.0 <=4.3.1\"\n        }\n      ],\n      \"effects\": [\n        \"@rollup/plugin-node-resolve\"\n      ],\n      \"range\": \">=4.2.0\",\n      \"nodes\": [\n        \"node_modules/deepmerge\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"eslint\": {\n      \"name\": \"eslint\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"@eslint/config-array\",\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@eslint-community/eslint-utils\",\n        \"@eslint/compat\",\n        \"@eslint/config-inspector\",\n        \"@eslint/js\",\n        \"@nuxt/eslint\",\n        \"@nuxt/eslint-config\",\n        \"@nuxt/eslint-plugin\",\n        \"@stylistic/eslint-plugin\",\n        \"@typescript-eslint/eslint-plugin\",\n        \"@typescript-eslint/parser\",\n        \"@typescript-eslint/type-utils\",\n        \"@typescript-eslint/utils\",\n        \"eslint-config-flat-gitignore\",\n        \"eslint-plugin-import-lite\",\n        \"eslint-plugin-import-x\",\n        \"eslint-plugin-jsdoc\",\n        \"eslint-plugin-regexp\",\n        \"eslint-plugin-unicorn\",\n        \"eslint-plugin-vue\",\n        \"eslint-processor-vue-blocks\",\n        \"eslint-typegen\",\n        \"vite-plugin-checker\",\n        \"vue-eslint-parser\"\n      ],\n      \"range\": \"0.7.1 - 2.0.0-rc.1 || >=4.1.0\",\n      \"nodes\": [\n        \"node_modules/eslint\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-config-flat-gitignore\": {\n      \"name\": \"eslint-config-flat-gitignore\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint/compat\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \">=0.3.0\",\n      \"nodes\": [\n        \"node_modules/eslint-config-flat-gitignore\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-import-lite\": {\n      \"name\": \"eslint-plugin-import-lite\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-import-lite\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-import-x\": {\n      \"name\": \"eslint-plugin-import-x\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@typescript-eslint/utils\",\n        \"eslint\",\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-import-x\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-jsdoc\": {\n      \"name\": \"eslint-plugin-jsdoc\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \">=3.7.2\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-jsdoc\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-regexp\": {\n      \"name\": \"eslint-plugin-regexp\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-regexp\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-unicorn\": {\n      \"name\": \"eslint-plugin-unicorn\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \">=5.0.0\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-unicorn\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-plugin-vue\": {\n      \"name\": \"eslint-plugin-vue\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"@stylistic/eslint-plugin\",\n        \"@typescript-eslint/parser\",\n        \"eslint\",\n        \"vue-eslint-parser\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"3.0.0 - 3.1.0 || >=5.0.0-beta.0\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-vue\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-processor-vue-blocks\": {\n      \"name\": \"eslint-processor-vue-blocks\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/eslint-processor-vue-blocks\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"eslint-typegen\": {\n      \"name\": \"eslint-typegen\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint\"\n      ],\n      \"range\": \">=0.2.1\",\n      \"nodes\": [\n        \"node_modules/eslint-typegen\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"glob\": {\n      \"name\": \"glob\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1244013,\n          \"name\": \"glob\",\n          \"dependency\": \"glob\",\n          \"title\": \"Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal\",\n          \"url\": \"https://github.com/advisories/GHSA-3g3m-2fjr-6pw4\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-400\"\n          ],\n          \"cvss\": {\n            \"score\": 0,\n            \"vectorString\": null\n          },\n          \"range\": \">=9.0.0 <=14.0.1\"\n        },\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@vercel/nft\",\n        \"archiver-utils\"\n      ],\n      \"range\": \"3.0.0 - 14.0.1\",\n      \"nodes\": [\n        \"node_modules/archiver-utils/node_modules/glob\",\n        \"node_modules/glob\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"minimatch\": {\n      \"name\": \"minimatch\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1244012,\n          \"name\": \"minimatch\",\n          \"dependency\": \"minimatch\",\n          \"title\": \"minimatch has potential denial of service via globparts amplification\",\n          \"url\": \"https://github.com/advisories/GHSA-g3hv-75wg-m249\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-405\"\n          ],\n          \"cvss\": {\n            \"score\": 0,\n            \"vectorString\": null\n          },\n          \"range\": \"<11.0.1\"\n        }\n      ],\n      \"effects\": [\n        \"@eslint/config-array\",\n        \"@typescript-eslint/typescript-estree\",\n        \"eslint\",\n        \"eslint-plugin-import-x\",\n        \"glob\",\n        \"readdir-glob\"\n      ],\n      \"range\": \"<11.0.1\",\n      \"nodes\": [\n        \"node_modules/archiver-utils/node_modules/minimatch\",\n        \"node_modules/minimatch\",\n        \"node_modules/readdir-glob/node_modules/minimatch\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"nitropack\": {\n      \"name\": \"nitropack\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"@rollup/plugin-node-resolve\",\n        \"@vercel/nft\",\n        \"archiver\"\n      ],\n      \"effects\": [\n        \"@nuxt/nitro-server\"\n      ],\n      \"range\": \">=0.1.0\",\n      \"nodes\": [\n        \"node_modules/nitropack\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"nuxt\": {\n      \"name\": \"nuxt\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@nuxt/nitro-server\",\n        \"@nuxt/vite-builder\",\n        {\n          \"source\": 1244027,\n          \"name\": \"nuxt\",\n          \"dependency\": \"nuxt\",\n          \"title\": \"Nuxt: Dot segments in the request path bypass `server/middleware` path checks and server route rules on page routes\",\n          \"url\": \"https://github.com/advisories/GHSA-9v7c-q64q-vv33\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-41\",\n            \"CWE-436\",\n            \"CWE-863\"\n          ],\n          \"cvss\": {\n            \"score\": 6.5,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N\"\n          },\n          \"range\": \">=4.6.0 <4.6.3\"\n        }\n      ],\n      \"effects\": [\n        \"@nuxt/vite-builder\"\n      ],\n      \"range\": \"4.6.0 - 4.6.2\",\n      \"nodes\": [\n        \"node_modules/nuxt\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"readdir-glob\": {\n      \"name\": \"readdir-glob\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"archiver\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/readdir-glob\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"vite-plugin-checker\": {\n      \"name\": \"vite-plugin-checker\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/vite-builder\"\n      ],\n      \"range\": \">=0.5.0-beta.1\",\n      \"nodes\": [\n        \"node_modules/vite-plugin-checker\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    },\n    \"vue-eslint-parser\": {\n      \"name\": \"vue-eslint-parser\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"@nuxt/eslint-config\",\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \">=3.0.0\",\n      \"nodes\": [\n        \"node_modules/vue-eslint-parser\"\n      ],\n      \"fixAvailable\": false\n    },\n    \"zip-stream\": {\n      \"name\": \"zip-stream\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"archiver-utils\"\n      ],\n      \"effects\": [\n        \"archiver\"\n      ],\n      \"range\": \"6.0.0 - 6.0.1\",\n      \"nodes\": [\n        \"node_modules/zip-stream\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"nuxt\",\n        \"version\": \"4.6.3\",\n        \"isSemVerMajor\": false\n      }\n    }\n  },\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 2,\n      \"moderate\": 37,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 39\n    },\n    \"dependencies\": {\n      \"prod\": 640,\n      \"dev\": 164,\n      \"optional\": 131,\n      \"peer\": 0,\n      \"peerOptional\": 0,\n      \"total\": 894\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "executable": "C:\\dev\\nodejs24\\node.exe",
+      "args": [
+        "C:/dev/nodejs24/node_modules/npm/bin/npm-cli.js",
+        "audit",
+        "--json",
+        "--ignore-scripts"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stdout": "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {\n    \"@eslint-community/eslint-utils\": {\n      \"name\": \"@eslint-community/eslint-utils\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"eslint\",\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@eslint-community/eslint-utils\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint\",\n        \"version\": \"4.0.0\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"@eslint/config-array\": {\n      \"name\": \"@eslint/config-array\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"eslint\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@eslint/config-array\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint\",\n        \"version\": \"4.0.0\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"@eslint/js\": {\n      \"name\": \"@eslint/js\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [],\n      \"range\": \">=10.0.1\",\n      \"nodes\": [\n        \"node_modules/@eslint/js\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"@eslint/js\",\n        \"version\": \"9.39.5\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"@typescript-eslint/parser\": {\n      \"name\": \"@typescript-eslint/parser\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@typescript-eslint/typescript-estree\",\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/parser\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-plugin-vue\",\n        \"version\": \"4.7.1\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"@typescript-eslint/typescript-estree\": {\n      \"name\": \"@typescript-eslint/typescript-estree\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@typescript-eslint/parser\"\n      ],\n      \"range\": \">=6.16.0\",\n      \"nodes\": [\n        \"node_modules/@typescript-eslint/typescript-estree\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-plugin-vue\",\n        \"version\": \"4.7.1\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"eslint\": {\n      \"name\": \"eslint\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"@eslint/config-array\",\n        \"minimatch\"\n      ],\n      \"effects\": [\n        \"@eslint-community/eslint-utils\",\n        \"@eslint/js\",\n        \"@typescript-eslint/parser\",\n        \"eslint-plugin-vue\",\n        \"vue-eslint-parser\"\n      ],\n      \"range\": \"0.7.1 - 2.0.0-rc.1 || >=4.1.0\",\n      \"nodes\": [\n        \"node_modules/eslint\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint\",\n        \"version\": \"4.0.0\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"eslint-plugin-vue\": {\n      \"name\": \"eslint-plugin-vue\",\n      \"severity\": \"moderate\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@eslint-community/eslint-utils\",\n        \"@typescript-eslint/parser\",\n        \"eslint\",\n        \"vue-eslint-parser\"\n      ],\n      \"effects\": [],\n      \"range\": \"3.0.0 - 3.1.0 || >=5.0.0-beta.0\",\n      \"nodes\": [\n        \"node_modules/eslint-plugin-vue\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-plugin-vue\",\n        \"version\": \"4.7.1\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"minimatch\": {\n      \"name\": \"minimatch\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1244012,\n          \"name\": \"minimatch\",\n          \"dependency\": \"minimatch\",\n          \"title\": \"minimatch has potential denial of service via globparts amplification\",\n          \"url\": \"https://github.com/advisories/GHSA-g3hv-75wg-m249\",\n          \"severity\": \"moderate\",\n          \"cwe\": [\n            \"CWE-405\"\n          ],\n          \"cvss\": {\n            \"score\": 0,\n            \"vectorString\": null\n          },\n          \"range\": \"<11.0.1\"\n        }\n      ],\n      \"effects\": [\n        \"@eslint/config-array\",\n        \"@typescript-eslint/typescript-estree\",\n        \"eslint\"\n      ],\n      \"range\": \"<11.0.1\",\n      \"nodes\": [\n        \"node_modules/minimatch\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint\",\n        \"version\": \"4.0.0\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"vue-eslint-parser\": {\n      \"name\": \"vue-eslint-parser\",\n      \"severity\": \"moderate\",\n      \"isDirect\": false,\n      \"via\": [\n        \"eslint\"\n      ],\n      \"effects\": [\n        \"eslint-plugin-vue\"\n      ],\n      \"range\": \">=3.0.0\",\n      \"nodes\": [\n        \"node_modules/vue-eslint-parser\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-plugin-vue\",\n        \"version\": \"4.7.1\",\n        \"isSemVerMajor\": true\n      }\n    }\n  },\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 9,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 9\n    },\n    \"dependencies\": {\n      \"prod\": 78,\n      \"dev\": 104,\n      \"optional\": 27,\n      \"peer\": 1,\n      \"peerOptional\": 0,\n      \"total\": 208\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "executable": "C:/dev/Go/go/bin/go.exe",
+      "args": [
+        "list",
+        "-deps",
+        "./cmd/homepage-api",
+        "./cmd/homepage-worker",
+        "./cmd/homepage-maintenance",
+        "./cmd/homepage-control"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "internal/goarch\nunsafe\ninternal/abi\ninternal/unsafeheader\ninternal/cpu\ninternal/bytealg\ninternal/byteorder\ninternal/chacha8rand\ninternal/coverage/rtcov\ninternal/godebugs\ninternal/goexperiment\ninternal/goos\ninternal/profilerecord\ninternal/runtime/atomic\ninternal/runtime/syscall/linux\nmath/bits\ninternal/strconv\ninternal/runtime/cgroup\ninternal/runtime/exithook\ninternal/runtime/gc\ninternal/runtime/sys\ninternal/runtime/gc/scan\ninternal/asan\ninternal/msan\ninternal/race\ninternal/runtime/math\ninternal/runtime/maps\ninternal/runtime/pprof/label\ninternal/stringslite\ninternal/trace/tracev2\nruntime\ninternal/reflectlite\nerrors\nsync/atomic\ninternal/sync\ninternal/synctest\nsync\nio\niter\nunicode\nunicode/utf8\nbytes\nstrings\nbufio\ninternal/oserror\ncmp\nslices\nsyscall\ntime\ncontext\nmath\nstrconv\nreflect\ninternal/fmtsort\npath\nio/fs\ninternal/filepathlite\ninternal/syscall/unix\ninternal/poll\ninternal/syscall/execenv\ninternal/testlog\nos\nfmt\nhash\ncrypto\ninternal/bisect\ninternal/godebug\ncrypto/internal/fips140deps/godebug\ncrypto/internal/fips140\ncrypto/internal/fips140/alias\ncrypto/internal/fips140deps/byteorder\ncrypto/internal/fips140deps/cpu\ncrypto/internal/impl\ncrypto/internal/fips140/sha256\ncrypto/internal/constanttime\ncrypto/internal/fips140/subtle\ncrypto/internal/fips140/sha3\ncrypto/internal/fips140/sha512\ncrypto/internal/fips140/hmac\ncrypto/internal/fips140/check\ncrypto/internal/fips140/aes\ncrypto/internal/fips140deps/time\ncrypto/internal/entropy/v1.0.0\ncrypto/internal/sysrand\ncrypto/internal/fips140/drbg\ncrypto/internal/fips140/aes/gcm\ncrypto/fips140\ncrypto/internal/fips140only\ncrypto/subtle\ncrypto/cipher\ncrypto/internal/boring/sig\ncrypto/internal/boring\nmath/rand/v2\ncrypto/internal/randutil\ncrypto/internal/rand\nmath/rand\nmath/big\ncrypto/rand\ndatabase/sql/internal\nencoding/binary\nencoding/hex\nuuid\ndatabase/sql/driver\nmaps\ndatabase/sql\nencoding/base64\ngolang.org/x/sys/cpu\ngolang.org/x/crypto/blake2b\ngolang.org/x/crypto/argon2\nsort\nregexp/syntax\nregexp\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn\ncrypto/sha256\nencoding\nencoding/json/internal\nencoding/json/internal/jsonflags\nencoding/json/internal/jsonopts\nunicode/utf16\nencoding/json/internal/jsonwire\nencoding/json/jsontext\nencoding/base32\nencoding/json/v2\nencoding/json\nvendor/golang.org/x/net/dns/dnsmessage\ninternal/nettrace\ninternal/singleflight\nweak\nunique\nnet/netip\nnet\nlog/internal\nlog\nmime\nnet/textproto\nnet/mail\nnet/url\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata\ncrypto/internal/fips140/nistec/fiat\ncrypto/internal/fips140/nistec\ncrypto/internal/fips140/ecdh\ncrypto/internal/fips140/edwards25519/field\ncrypto/ecdh\ncrypto/elliptic\ncrypto/internal/boring/bbig\ncrypto/internal/fips140/bigmod\ncrypto/internal/fips140/ecdsa\ncrypto/internal/fips140cache\ncrypto/sha3\ncrypto/internal/fips140hash\ncrypto/sha512\ninternal/saferio\nencoding/asn1\nvendor/golang.org/x/crypto/cryptobyte/asn1\nvendor/golang.org/x/crypto/cryptobyte\ncrypto/ecdsa\ncontainer/list\ncrypto/aes\ncrypto/des\ncrypto/internal/fips140/edwards25519\ncrypto/internal/fips140/ed25519\ncrypto/ed25519\ncrypto/internal/fips140/hkdf\ncrypto/hkdf\ncrypto/hmac\ncrypto/internal/fips140/mlkem\ncrypto/mlkem\nvendor/golang.org/x/crypto/internal/alias\nvendor/golang.org/x/crypto/chacha20\nvendor/golang.org/x/crypto/internal/poly1305\nvendor/golang.org/x/sys/cpu\nvendor/golang.org/x/crypto/chacha20poly1305\ncrypto/hpke\ncrypto/internal/fips140/tls12\ncrypto/internal/fips140/tls13\ncrypto/md5\ncrypto/internal/fips140/mldsa\ncrypto/mldsa\ncrypto/rc4\ncrypto/internal/fips140/rsa\ncrypto/rsa\ncrypto/sha1\ncrypto/tls/internal/fips140tls\ncrypto/dsa\ncrypto/x509/pkix\nencoding/pem\npath/filepath\ncrypto/x509\ncrypto/tls\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/devtls\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentlimits\ngolang.org/x/sys/unix\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate\nio/ioutil\ngolang.org/x/image/riff\nimage/color\nimage\ngolang.org/x/image/vp8\ngolang.org/x/image/vp8l\ngolang.org/x/image/webp\nimage/internal/imageutil\nimage/jpeg\ncompress/flate\nhash/adler32\ncompress/zlib\nhash/crc32\nimage/png\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/mediautils\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/storagehealth\nembed\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/migrations\ngithub.com/dustin/go-humanize\ngithub.com/google/uuid\nmodernc.org/libc/uuid/uuid\ngithub.com/remyoudompheng/bigfft\nmodernc.org/mathutil\nmodernc.org/memory\nos/exec\nos/signal\nruntime/debug\nmodernc.org/libc\nmodernc.org/libc/sys/types\nmodernc.org/sqlite/lib\nmodernc.org/sqlite/vtab\nmodernc.org/sqlite\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/store\ncompress/gzip\nvendor/golang.org/x/text/transform\nvendor/golang.org/x/text/unicode/bidi\nvendor/golang.org/x/text/secure/bidirule\nvendor/golang.org/x/text/unicode/norm\nvendor/golang.org/x/net/idna\nvendor/golang.org/x/net/http/httpguts\nvendor/golang.org/x/net/http/httpproxy\nmime/quotedprintable\nmime/multipart\nnet/http/httptrace\nnet/http/internal\nnet/http/internal/ascii\nvendor/golang.org/x/net/http2/hpack\nnet/http/internal/httpcommon\nnet/http/internal/httpsfv\nnet/http/internal/http2\nnet/http\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/httpapi\ngolang.org/x/term\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api\nflag\nhtml\ninternal/gate\ninternal/nettest\nnet/http/internal/testcert\ninternal/sysinfo\nruntime/trace\ntesting\nnet/http/httptest\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishworker\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenance\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance\ngithub.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-control\n",
+      "stderr": ""
+    },
+    {
+      "executable": "D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.cache\\p6e-go\\bin\\govulncheck.exe",
+      "args": [
+        "-show=verbose",
+        "./cmd/homepage-api",
+        "./cmd/homepage-worker",
+        "./cmd/homepage-maintenance",
+        "./cmd/homepage-control"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "Fetching vulnerabilities from the database...\n\nChecking the code against the vulnerabilities...\n\nThe package pattern matched the following 4 root packages:\n  github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-api\n  github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-worker\n  github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-maintenance\n  github.com/xiaowork-dev/xiaowork-homepage/backend/cmd/homepage-control\nGovulncheck scanned the following 12 modules and the go1.27.3 standard library:\n  github.com/xiaowork-dev/xiaowork-homepage/backend\n  github.com/dustin/go-humanize@v1.1.0\n  github.com/google/uuid@v1.6.0\n  github.com/remyoudompheng/bigfft@v0.0.0-20230129092748-24d4a6f8daec\n  golang.org/x/crypto@v0.58.0\n  golang.org/x/image@v0.47.0\n  golang.org/x/sys@v0.49.0\n  golang.org/x/term@v0.47.0\n  modernc.org/libc@v1.79.0\n  modernc.org/mathutil@v1.7.1\n  modernc.org/memory@v1.12.1\n  modernc.org/sqlite@v1.61.0\n\n=== Symbol Results ===\n\nNo vulnerabilities found.\n\n=== Package Results ===\n\nNo other vulnerabilities found.\n\n=== Module Results ===\n\nVulnerability #1: GO-2026-5932\n    The golang.org/x/crypto/openpgp package is unmaintained, unsafe by design,\n    and has known security issues\n  More info: https://pkg.go.dev/vuln/GO-2026-5932\n  Module: golang.org/x/crypto\n    Found in: golang.org/x/crypto@v0.58.0\n    Fixed in: N/A\n\nYour code is affected by 0 vulnerabilities.\nThis scan also found 0 vulnerabilities in packages you import and 1\nvulnerability in modules you require, but your code doesn't appear to call these\nvulnerabilities.\n",
+      "stderr": ""
+    }
+  ],
+  "risks": [
+    {
+      "scope": "root",
+      "package": "@eslint-community/eslint-utils",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@eslint-community/eslint-utils",
+          "version": "4.10.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@eslint/compat",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=1.2.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@eslint/compat",
+          "version": "2.1.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@eslint/config-array",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@eslint/config-array",
+          "version": "0.23.5"
+        }
+      ],
+      "advisories": [
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@eslint/config-inspector",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@eslint/config-inspector",
+          "version": "3.5.0"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@eslint/js",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=10.0.1",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@eslint/js",
+          "version": "10.0.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@nuxt/eslint",
+      "severity": "moderate",
+      "direct": true,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@nuxt/eslint",
+          "version": "1.17.0"
+        }
+      ],
+      "advisories": [
+        "@eslint/config-inspector",
+        "@nuxt/eslint-config",
+        "@nuxt/eslint-plugin",
+        "eslint",
+        "eslint-typegen"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@nuxt/eslint-config",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.1.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@nuxt/eslint-config",
+          "version": "1.17.0"
+        }
+      ],
+      "advisories": [
+        "@eslint/js",
+        "@nuxt/eslint-plugin",
+        "@stylistic/eslint-plugin",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "eslint-config-flat-gitignore",
+        "eslint-plugin-import-lite",
+        "eslint-plugin-import-x",
+        "eslint-plugin-jsdoc",
+        "eslint-plugin-regexp",
+        "eslint-plugin-unicorn",
+        "eslint-plugin-vue",
+        "eslint-processor-vue-blocks",
+        "vue-eslint-parser"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@nuxt/eslint-plugin",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@nuxt/eslint-plugin",
+          "version": "1.17.0"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@nuxt/nitro-server",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=3.20.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/@nuxt/nitro-server",
+          "version": "4.6.2"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1244026,
+          "name": "@nuxt/nitro-server",
+          "dependency": "@nuxt/nitro-server",
+          "title": "Nuxt: Dot segments in the request path bypass `server/middleware` path checks and server route rules on page routes",
+          "url": "https://github.com/advisories/GHSA-9v7c-q64q-vv33",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-41",
+            "CWE-436",
+            "CWE-863"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=4.6.0 <4.6.3"
+        },
+        "nitropack"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@nuxt/vite-builder",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=3.0.0-rc.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/@nuxt/vite-builder",
+          "version": "4.6.2"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1244025,
+          "name": "@nuxt/vite-builder",
+          "dependency": "@nuxt/vite-builder",
+          "title": "Nuxt dev server exposes generated appSecret through Vite file serving",
+          "url": "https://github.com/advisories/GHSA-3xf4-9g3c-4h4w",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-552"
+          ],
+          "cvss": {
+            "score": 4.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=4.6.0 <4.6.3"
+        },
+        {
+          "source": 1244028,
+          "name": "@nuxt/vite-builder",
+          "dependency": "@nuxt/vite-builder",
+          "title": "Nuxt dev server arbitrary file read through client error reports",
+          "url": "https://github.com/advisories/GHSA-x287-wcfc-q46c",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-73"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": ">=4.6.0 <4.6.3"
+        },
+        {
+          "source": 1244029,
+          "name": "@nuxt/vite-builder",
+          "dependency": "@nuxt/vite-builder",
+          "title": "Nuxt dev server exposes private runtime config through the Nitro dev bundle",
+          "url": "https://github.com/advisories/GHSA-648h-gw55-m2g7",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-200",
+            "CWE-538",
+            "CWE-552"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": ">=3.0.0 <4.6.3"
+        },
+        "nuxt",
+        "vite-plugin-checker"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@rollup/plugin-node-resolve",
+      "severity": "low",
+      "direct": false,
+      "range": ">=8.0.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/@rollup/plugin-node-resolve",
+          "version": "16.0.3"
+        }
+      ],
+      "advisories": [
+        "deepmerge"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "@stylistic/eslint-plugin",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=1.4.1",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@stylistic/eslint-plugin",
+          "version": "5.10.0"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@typescript-eslint/eslint-plugin",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/eslint-plugin",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/parser",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@typescript-eslint/parser",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/parser",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@typescript-eslint/type-utils",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=5.62.1-alpha.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/type-utils",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/typescript-estree",
+        "@typescript-eslint/utils",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@typescript-eslint/typescript-estree",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=6.16.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/typescript-estree",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@typescript-eslint/utils",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/utils",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "@vercel/nft",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.29.2",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/@vercel/nft",
+          "version": "1.11.0"
+        }
+      ],
+      "advisories": [
+        "glob"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "archiver",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=5.0.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/archiver",
+          "version": "7.0.1"
+        }
+      ],
+      "advisories": [
+        "archiver-utils",
+        "readdir-glob",
+        "zip-stream"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "archiver-utils",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=5.0.1",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/archiver-utils",
+          "version": "5.0.2"
+        }
+      ],
+      "advisories": [
+        "glob"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "deepmerge",
+      "severity": "low",
+      "direct": false,
+      "range": ">=4.2.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/deepmerge",
+          "version": "4.3.1"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1243505,
+          "name": "deepmerge",
+          "dependency": "deepmerge",
+          "title": "deepmerge mergeObject() allows prototype poisoning of returned objects",
+          "url": "https://github.com/advisories/GHSA-gcqx-w48m-w2h4",
+          "severity": "low",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=4.2.0 <=4.3.1"
+        }
+      ],
+      "disposition": "Build graph, no compatible official fix in chain4 source evidence. Restricted offline Worker and strict snapshot inputs mitigate; not fixed."
+    },
+    {
+      "scope": "root",
+      "package": "eslint",
+      "severity": "moderate",
+      "direct": true,
+      "range": "0.7.1 - 2.0.0-rc.1 || >=4.1.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint",
+          "version": "10.13.0"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "@eslint/config-array",
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-config-flat-gitignore",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.3.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-config-flat-gitignore",
+          "version": "2.4.0"
+        }
+      ],
+      "advisories": [
+        "@eslint/compat",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-import-lite",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-import-lite",
+          "version": "0.6.0"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-import-x",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-import-x",
+          "version": "4.17.1"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/utils",
+        "eslint",
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-jsdoc",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=3.7.2",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-jsdoc",
+          "version": "63.3.3"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-regexp",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-regexp",
+          "version": "3.3.1"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-unicorn",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=5.0.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-unicorn",
+          "version": "73.0.0"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-plugin-vue",
+      "severity": "moderate",
+      "direct": false,
+      "range": "3.0.0 - 3.1.0 || >=5.0.0-beta.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-vue",
+          "version": "10.11.1"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "@stylistic/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "vue-eslint-parser"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-processor-vue-blocks",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-processor-vue-blocks",
+          "version": "2.0.0"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "eslint-typegen",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.2.1",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/eslint-typegen",
+          "version": "2.3.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "glob",
+      "severity": "moderate",
+      "direct": false,
+      "range": "3.0.0 - 14.0.1",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/archiver-utils/node_modules/glob",
+          "version": "10.5.0"
+        },
+        {
+          "where": "node_modules/glob",
+          "version": "13.0.6"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1244013,
+          "name": "glob",
+          "dependency": "glob",
+          "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+          "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=9.0.0 <=14.0.1"
+        },
+        "minimatch"
+      ],
+      "disposition": "Build/lint graph. No public arbitrary pattern/script API. Suggested major-version fixes require contract and build tests; no force override, unresolved."
+    },
+    {
+      "scope": "root",
+      "package": "minimatch",
+      "severity": "moderate",
+      "direct": false,
+      "range": "<11.0.1",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/archiver-utils/node_modules/minimatch",
+          "version": "9.0.9"
+        },
+        {
+          "where": "node_modules/minimatch",
+          "version": "10.2.6"
+        },
+        {
+          "where": "node_modules/readdir-glob/node_modules/minimatch",
+          "version": "5.1.9"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1244012,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has potential denial of service via globparts amplification",
+          "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-405"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<11.0.1"
+        }
+      ],
+      "disposition": "Build/lint graph. No public arbitrary pattern/script API. Suggested major-version fixes require contract and build tests; no force override, unresolved."
+    },
+    {
+      "scope": "root",
+      "package": "nitropack",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.1.0",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/nitropack",
+          "version": "2.13.5"
+        }
+      ],
+      "advisories": [
+        "@rollup/plugin-node-resolve",
+        "@vercel/nft",
+        "archiver"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "nuxt",
+      "severity": "moderate",
+      "direct": true,
+      "range": "4.6.0 - 4.6.2",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/nuxt",
+          "version": "4.6.2"
+        }
+      ],
+      "advisories": [
+        "@nuxt/nitro-server",
+        "@nuxt/vite-builder",
+        {
+          "source": 1244027,
+          "name": "nuxt",
+          "dependency": "nuxt",
+          "title": "Nuxt: Dot segments in the request path bypass `server/middleware` path checks and server route rules on page routes",
+          "url": "https://github.com/advisories/GHSA-9v7c-q64q-vv33",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-41",
+            "CWE-436",
+            "CWE-863"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=4.6.0 <4.6.3"
+        }
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "readdir-glob",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/readdir-glob",
+          "version": "1.1.3"
+        }
+      ],
+      "advisories": [
+        "minimatch"
+      ],
+      "disposition": "Build/lint graph. No public arbitrary pattern/script API. Suggested major-version fixes require contract and build tests; no force override, unresolved."
+    },
+    {
+      "scope": "root",
+      "package": "vite-plugin-checker",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=0.5.0-beta.1",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/vite-plugin-checker",
+          "version": "0.14.5"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Builder actually runs fixed Nuxt generate; dev-server exploit reachability not proven absent. Compatible Nuxt patch needs new six-role build/browser/publish validation; unresolved, production remains blocked."
+    },
+    {
+      "scope": "root",
+      "package": "vue-eslint-parser",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=3.0.0",
+      "fixAvailable": false,
+      "installed": [
+        {
+          "where": "node_modules/vue-eslint-parser",
+          "version": "10.4.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "root",
+      "package": "zip-stream",
+      "severity": "moderate",
+      "direct": false,
+      "range": "6.0.0 - 6.0.1",
+      "fixAvailable": {
+        "name": "nuxt",
+        "version": "4.6.3",
+        "isSemVerMajor": false
+      },
+      "installed": [
+        {
+          "where": "node_modules/zip-stream",
+          "version": "6.0.1"
+        }
+      ],
+      "advisories": [
+        "archiver-utils"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "@eslint-community/eslint-utils",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/@eslint-community/eslint-utils",
+          "version": "4.10.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "@eslint/config-array",
+      "severity": "moderate",
+      "direct": false,
+      "range": "*",
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/@eslint/config-array",
+          "version": "0.23.5"
+        }
+      ],
+      "advisories": [
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "@eslint/js",
+      "severity": "moderate",
+      "direct": true,
+      "range": ">=10.0.1",
+      "fixAvailable": {
+        "name": "@eslint/js",
+        "version": "9.39.5",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/@eslint/js",
+          "version": "10.0.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "@typescript-eslint/parser",
+      "severity": "moderate",
+      "direct": true,
+      "range": "*",
+      "fixAvailable": {
+        "name": "eslint-plugin-vue",
+        "version": "4.7.1",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/parser",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "@typescript-eslint/typescript-estree",
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "@typescript-eslint/typescript-estree",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=6.16.0",
+      "fixAvailable": {
+        "name": "eslint-plugin-vue",
+        "version": "4.7.1",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/@typescript-eslint/typescript-estree",
+          "version": "8.72.0"
+        }
+      ],
+      "advisories": [
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "eslint",
+      "severity": "moderate",
+      "direct": true,
+      "range": "0.7.1 - 2.0.0-rc.1 || >=4.1.0",
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/eslint",
+          "version": "10.13.0"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "@eslint/config-array",
+        "minimatch"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "eslint-plugin-vue",
+      "severity": "moderate",
+      "direct": true,
+      "range": "3.0.0 - 3.1.0 || >=5.0.0-beta.0",
+      "fixAvailable": {
+        "name": "eslint-plugin-vue",
+        "version": "4.7.1",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/eslint-plugin-vue",
+          "version": "10.11.1"
+        }
+      ],
+      "advisories": [
+        "@eslint-community/eslint-utils",
+        "@typescript-eslint/parser",
+        "eslint",
+        "vue-eslint-parser"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    },
+    {
+      "scope": "admin",
+      "package": "minimatch",
+      "severity": "moderate",
+      "direct": false,
+      "range": "<11.0.1",
+      "fixAvailable": {
+        "name": "eslint",
+        "version": "4.0.0",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/minimatch",
+          "version": "10.2.6"
+        }
+      ],
+      "advisories": [
+        {
+          "source": 1244012,
+          "name": "minimatch",
+          "dependency": "minimatch",
+          "title": "minimatch has potential denial of service via globparts amplification",
+          "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-405"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<11.0.1"
+        }
+      ],
+      "disposition": "Build/lint graph. No public arbitrary pattern/script API. Suggested major-version fixes require contract and build tests; no force override, unresolved."
+    },
+    {
+      "scope": "admin",
+      "package": "vue-eslint-parser",
+      "severity": "moderate",
+      "direct": false,
+      "range": ">=3.0.0",
+      "fixAvailable": {
+        "name": "eslint-plugin-vue",
+        "version": "4.7.1",
+        "isSemVerMajor": true
+      },
+      "installed": [
+        {
+          "where": "node_modules/vue-eslint-parser",
+          "version": "10.4.1"
+        }
+      ],
+      "advisories": [
+        "eslint"
+      ],
+      "disposition": "Transitive build/lint dependency. Keep exact chain and advisory; cannot infer safe solely from static final Nginx."
+    }
+  ],
+  "images": "NOT_REBUILT; chain4 Scout findings retained, not a new candidate scan",
+  "rootAuditCounts": {
+    "info": 0,
+    "low": 2,
+    "moderate": 37,
+    "high": 0,
+    "critical": 0,
+    "total": 39
+  },
+  "adminAuditCounts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 9,
+    "high": 0,
+    "critical": 0,
+    "total": 9
+  },
+  "openPGPImported": false,
+  "inputs": {
+    "package.json": "4fd1428e4c365c84c4891210076564d11bc7a4bfb7768e26dd91d6781de6dc7c",
+    "package-lock.json": "df24a98e84f4709ed60135a23ff572080193140d9b8ba8101f087a90d73dec48",
+    "admin/package.json": "67bfd768571718e861d9e9cf411ea9ffa5b9fa1e92330c8bcd64ce58340b48c5",
+    "admin/package-lock.json": "db453ecb25368589a11cce222edd3dfc3ad175d1c3e5229d8dfcfae32ee6e5b1",
+    "backend/go.mod": "218100223955391239e1f348f8bf7636a4603466709e82763f85d5fe1413531f",
+    "backend/go.sum": "eb1a28d6211f2870df5db7eb16e503bb57585bda50dc3beca856bc9c500f2239"
+  },
+  "workerPriorFindings": {
+    "role": "worker",
+    "imageId": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+    "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+    "user": "10001:10001",
+    "osPackages": "10001\n3.24.3\nP:musl\nV:1.2.6-r3\nA:x86_64\nS:415466\nI:670312\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/main\nhttps://dl-cdn.alpinelinux.org/alpine/v3.24/community",
+    "startedAt": "2026-11-01T12:43:20.593Z",
+    "completedAt": "2026-11-01T12:43:25.808Z",
+    "scannerVersion": "1.26.0",
+    "file": "P6E-chain4-image-worker.sarif.json",
+    "sha256": "b9711a63d7cefea46f22e5c1a98f86fd23c7ec65b4396e8c465e57f75d7c72b0",
+    "counts": {
+      "UNSPECIFIED": 1,
+      "LOW": 1,
+      "MEDIUM": 10
+    },
+    "findings": 12,
+    "advisories": [
+      {
+        "id": "CVE-2026-107891",
+        "severity": "UNSPECIFIED",
+        "fixedVersion": "1.2.6-r6",
+        "packages": [
+          "pkg:apk/alpine/musl@1.2.6-r3?os_name=alpine&os_version=3.24"
+        ]
+      },
+      {
+        "id": "CVE-2026-93753",
+        "severity": "LOW",
+        "fixedVersion": "not fixed",
+        "packages": [
+          "pkg:npm/deepmerge@4.3.1"
+        ]
+      },
+      {
+        "id": "CVE-2026-119201",
+        "severity": "MEDIUM",
+        "fixedVersion": "4.6.3",
+        "packages": [
+          "pkg:npm/%40nuxt/vite-builder@4.6.2"
+        ]
+      },
+      {
+        "id": "CVE-2026-119198",
+        "severity": "MEDIUM",
+        "fixedVersion": "4.6.3",
+        "packages": [
+          "pkg:npm/%40nuxt/vite-builder@4.6.2"
+        ]
+      },
+      {
+        "id": "CVE-2026-119199",
+        "severity": "MEDIUM",
+        "fixedVersion": "4.6.3",
+        "packages": [
+          "pkg:npm/%40nuxt/vite-builder@4.6.2"
+        ]
+      },
+      {
+        "id": "CVE-2026-118773",
+        "severity": "MEDIUM",
+        "fixedVersion": "14.0.2",
+        "packages": [
+          "pkg:npm/glob@10.5.0",
+          "pkg:npm/glob@13.0.6"
+        ]
+      },
+      {
+        "id": "CVE-2026-119200",
+        "severity": "MEDIUM",
+        "fixedVersion": "4.6.3",
+        "packages": [
+          "pkg:npm/%40nuxt/nitro-server@4.6.2",
+          "pkg:npm/nuxt@4.6.2"
+        ]
+      },
+      {
+        "id": "CVE-2026-118764",
+        "severity": "MEDIUM",
+        "fixedVersion": "11.0.1",
+        "packages": [
+          "pkg:npm/minimatch@10.2.6",
+          "pkg:npm/minimatch@5.1.9",
+          "pkg:npm/minimatch@9.0.9"
+        ]
+      }
+    ]
+  },
+  "upstreamEvidence": "P6E-chain4-upstream.json (2026-11-01; retained evidence, not new network verification)",
+  "result": "CHECK_RESULTS_INDIVIDUALLY; npm findings and unbuilt final images remain blockers"
+}

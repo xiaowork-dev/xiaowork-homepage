@@ -32,9 +32,9 @@ LABEL org.opencontainers.image.source="https://github.com/xiaowork-dev/xiaowork-
       io.xiaowork.builder="${BUILDER_ID}"
 COPY --from=builder-source /builder /builder
 COPY --from=worker-build /homepage-worker /homepage-worker
-RUN mkdir -p /publications /uploads /run/publishing /work \
-    && chown -R 10001:10001 /publications /uploads /run/publishing /work \
-    && chmod 700 /publications /uploads /run/publishing /work
+RUN mkdir -p /control /publications /uploads /run/publishing /work \
+    && chown -R 10001:10001 /control /publications /uploads /run/publishing /work \
+    && chmod 700 /control /publications /uploads /run/publishing /work
 USER 10001:10001
 WORKDIR /work
 # Dependencies and reviewed source are installed in the image; the worker has no network.

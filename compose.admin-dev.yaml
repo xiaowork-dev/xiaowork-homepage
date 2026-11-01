@@ -9,6 +9,7 @@ x-api: &api
   tmpfs:
     - /tmp:size=32m,mode=1777
   environment:
+    XIAOWORK_CONTROL_DIR: /control
     XIAOWORK_ORIGIN: https://localhost:${V11_DEV_HTTPS_PORT:-3443}
     XIAOWORK_SECRET_PATH: /secrets/session.key
     XIAOWORK_UPLOAD_DIR: /uploads
@@ -17,6 +18,7 @@ x-api: &api
     XIAOWORK_IMPORT_PATH: /seed/v1.json
     XIAOWORK_TRUSTED_PROXY_CIDRS: 192.168.247.2/32
   volumes:
+    - admin-maintenance-control:/control:ro
     - admin-db:/data
     - admin-uploads:/uploads
     - admin-secrets:/secrets:ro
@@ -30,6 +32,18 @@ x-api: &api
       max-file: '3'
 
 services:
+  control-init:
+    image: xiaowork-homepage-maintenance:p6e-dev
+    profiles: [maintenance]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+    user: '10001:10001'
+    entrypoint: [/homepage-control]
+    command: [init]
+    volumes: [admin-maintenance-control:/control]
+    restart: 'no'
   api-init:
     <<: *api
     command: [prepare-dev]
@@ -124,6 +138,7 @@ networks:
         - subnet: 192.168.247.0/28
 
 volumes:
+  admin-maintenance-control:
   admin-db:
   admin-uploads:
   admin-secrets:

@@ -4,12 +4,14 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { docker, localEngine, projectName, tool, volumeNames } from './v11-maintenance.mjs'
 import { guardedOperation, evidenceHash, reviewInspection } from './v11-operation.mjs'
+import { enterSharedBarrier } from './v11-barrier.mjs'
 export function currentRepair(command, project, image, member, plan, reason, acceptance) {
   projectName(project)
   assert.ok(['inspect', 'apply'].includes(command), 'Use inspect or apply')
   assert.match(image ?? '', /^sha256:[0-9a-f]{64}$/)
   return guardedOperation(project, 'current-' + command, (context) => {
     localEngine()
+    enterSharedBarrier(project, image, context.owner)
     const names = volumeNames(project)
     const existing = new Set(docker(['volume', 'ls', '--format', '{{.Name}}']).split(/\s+/))
     for (const name of Object.values(names))

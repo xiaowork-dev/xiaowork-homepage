@@ -11,6 +11,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
@@ -43,6 +44,18 @@ func (a *App) WorkerHandler() http.Handler {
 			writeError(w, r, problem(400, "INVALID_REQUEST", "私有协议请求不合法。"))
 			return
 		}
+		var release func()
+		var err error
+		if r.URL.Path == publishmodel.InternalPrefix+"/claim" {
+			release, err = maintenancegate.Enter(a.config.ControlDir)
+		} else {
+			release, err = maintenancegate.Continue(a.config.ControlDir)
+		}
+		if err != nil {
+			writeError(w, r, problem(503, "MAINTENANCE_REQUIRED", "维护屏障已关闭。"))
+			return
+		}
+		defer release()
 		mux.ServeHTTP(w, r)
 	})
 }

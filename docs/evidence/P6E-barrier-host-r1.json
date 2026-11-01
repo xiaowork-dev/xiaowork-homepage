@@ -1,0 +1,83 @@
+{
+  "startedAt": "2026-11-01T13:59:59.699Z",
+  "image": "sha256:ff3862f6adad688fe423b27929694c80b8f1fee0d4343f28d91f852734e21ae3",
+  "scope": "Actual Node operator wrapper and persisted named control-volume; isolated Docker Desktop only",
+  "tests": [
+    {
+      "mode": "controller-kill",
+      "project": "xiaowork-homepage-v11-bh-4d24a31b",
+      "pid": 26300,
+      "exitCode": 1,
+      "signal": null,
+      "stdout": "",
+      "stderr": "",
+      "control": {
+        "format": 1,
+        "mode": "recovery-required",
+        "phase": "drained",
+        "owner": "e1d38b34-a383-48ab-8245-9906b12bedb0"
+      },
+      "markerSHA256": "1073194bb831ec3bc8b426fda9d6572d63df3d5e61a7ba5024b64a47e2751b82",
+      "runtimeProof": "=== RUN   TestGateBlockedMount\nPERSISTENT_BARRIER_PROOF: state={Format:1 Mode:recovery-required Phase:drained Owner:e1d38b34-a383-48ab-8245-9906b12bedb0}; new process Enter/Continue=refused\n--- PASS: TestGateBlockedMount (0.00s)\nPASS",
+      "hostGuard": "retained; new backup and runtime admission both refused",
+      "result": "passed"
+    },
+    {
+      "mode": "supervisor-exit",
+      "project": "xiaowork-homepage-v11-bh-130ac154",
+      "pid": 3984,
+      "exitCode": 47,
+      "signal": null,
+      "stdout": "",
+      "stderr": "",
+      "control": {
+        "format": 1,
+        "mode": "recovery-required",
+        "phase": "drained",
+        "owner": "5bf7b1e8-0eb6-46df-9e3e-1b986008b489"
+      },
+      "markerSHA256": "ed96c8545beef3e396233389bc5a631f2ba348c2c31503f7dfdae489533c5d79",
+      "runtimeProof": "=== RUN   TestGateBlockedMount\nPERSISTENT_BARRIER_PROOF: state={Format:1 Mode:recovery-required Phase:drained Owner:5bf7b1e8-0eb6-46df-9e3e-1b986008b489}; new process Enter/Continue=refused\n--- PASS: TestGateBlockedMount (0.00s)\nPASS",
+      "hostGuard": "retained; new backup and runtime admission both refused",
+      "result": "passed"
+    },
+    {
+      "mode": "outer-assertion-failure",
+      "project": "xiaowork-homepage-v11-bh-ed6503be",
+      "pid": 35588,
+      "exitCode": 1,
+      "signal": null,
+      "stdout": "",
+      "stderr": "file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/[eval1]:1\r\nimport {protectedChain} from \"file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs\";import {enterSharedBarrier} from \"file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-barrier.mjs\";await protectedChain([\"xiaowork-homepage-v11-bh-ed6503be\"],'maintenance-barrier-host-test',async()=>{enterSharedBarrier(\"xiaowork-homepage-v11-bh-ed6503be\",\"sha256:ff3862f6adad688fe423b27929694c80b8f1fee0d4343f28d91f852734e21ae3\",(await import(\"file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs\")).chainOwner(\"xiaowork-homepage-v11-bh-ed6503be\"));throw new Error('test-only outer metadata assertion failure')})\r\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^\r\n\r\nError: test-only outer metadata assertion failure\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/[eval1]:1:650\r\n    at async protectedChain (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs:99:20)\r\n    at async file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/[eval1]:1:253\r\n\r\nNode.js v24.22.1\r\n",
+      "control": {
+        "format": 1,
+        "mode": "recovery-required",
+        "phase": "drained",
+        "owner": "0768644f-131c-4395-8282-fb23d3101f65"
+      },
+      "markerSHA256": "f18a00de32d0e39c8b09484e4cb108cb6a9c967e432866d5e82bad8948fd8aec",
+      "runtimeProof": "=== RUN   TestGateBlockedMount\nPERSISTENT_BARRIER_PROOF: state={Format:1 Mode:recovery-required Phase:drained Owner:0768644f-131c-4395-8282-fb23d3101f65}; new process Enter/Continue=refused\n--- PASS: TestGateBlockedMount (0.00s)\nPASS",
+      "hostGuard": "retained; new backup and runtime admission both refused",
+      "result": "passed"
+    },
+    {
+      "mode": "normal-completion",
+      "project": "xiaowork-homepage-v11-bh-d8c2dea5",
+      "pid": 31340,
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "",
+      "stderr": "",
+      "control": {
+        "format": 1,
+        "mode": "ready",
+        "phase": "idle",
+        "owner": ""
+      },
+      "hostGuard": "released-after-final-acceptance",
+      "result": "passed"
+    }
+  ],
+  "result": "passed",
+  "completedAt": "2026-11-01T14:00:33.789Z"
+}

@@ -1,0 +1,92 @@
+{
+  "at": "2026-11-01T14:09:58.540Z",
+  "cpu": 16,
+  "memory": 16855646208,
+  "disk": {
+    "C:/": {
+      "available": 392493756416,
+      "total": 684098641920
+    },
+    "D:/": {
+      "available": 229556211712,
+      "total": 314572795904
+    }
+  },
+  "daemon": {
+    "ID": "960fce9c-a763-42d0-b849-fc1f38473b89",
+    "Name": "docker-desktop",
+    "OperatingSystem": "Docker Desktop",
+    "Memory": 8166219776,
+    "Kernel": "6.18.54.1-microsoft-standard-WSL2"
+  },
+  "context": "desktop-linux\n",
+  "commands": [
+    {
+      "executable": "docker",
+      "args": [
+        "info",
+        "--format",
+        "{\"ID\":{{json .ID}},\"Name\":{{json .Name}},\"OperatingSystem\":{{json .OperatingSystem}},\"Memory\":{{json .MemTotal}},\"Kernel\":{{json .KernelVersion}}}"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ID\":\"960fce9c-a763-42d0-b849-fc1f38473b89\",\"Name\":\"docker-desktop\",\"OperatingSystem\":\"Docker Desktop\",\"Memory\":8166219776,\"Kernel\":\"6.18.54.1-microsoft-standard-WSL2\"}\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "context",
+        "show"
+      ],
+      "exitCode": 0,
+      "stdout": "desktop-linux\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "context",
+        "inspect",
+        "--format",
+        "{{.Endpoints.docker.Host}}"
+      ],
+      "exitCode": 0,
+      "stdout": "npipe:////./pipe/dockerDesktopLinuxEngine\n",
+      "stderr": ""
+    },
+    {
+      "executable": "wsl",
+      "args": [
+        "--list",
+        "--verbose"
+      ],
+      "exitCode": 0,
+      "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Running         2\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "wsl",
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "WSL 版本: 3.0.3.0\r\n内核版本: 6.18.54.1-1\r\nWSLg 版本: 1.0.79\r\nMSRDC 版本: 1.2.7391\r\nDirect3D 版本: 1.611.1-81528511\r\nDXCore 版本: 10.0.26100.1-240331-1435.ge-release\r\nWindows 版本: 10.0.26300.9711\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "wsl",
+      "args": [
+        "--list",
+        "--online"
+      ],
+      "exitCode": 0,
+      "stdout": "以下是可安装的有效分发的列表。\r\n使用“wsl.exe --install <Distro>”安装。\r\n\r\nNAME                            FRIENDLY NAME\r\nUbuntu                          Ubuntu\r\nUbuntu-26.04                    Ubuntu 26.04 LTS\r\nUbuntu-24.04                    Ubuntu 24.04 LTS\r\nUbuntu-22.04                    Ubuntu 22.04 LTS\r\nopenSUSE-Tumbleweed             openSUSE Tumbleweed\r\nopenSUSE-Leap-16.0              openSUSE Leap 16.0\r\nRLCPlus-9                       Rocky Linux Plus 9 (CIQ)\r\nRLCPlus-10                      Rocky Linux Plus 10 (CIQ)\r\nSUSE-Linux-Enterprise-15-SP7    SUSE Linux Enterprise 15 SP7\r\nSUSE-Linux-Enterprise-16.0      SUSE Linux Enterprise 16.0\r\nkali-linux                      Kali Linux Rolling\r\nDebian                          Debian GNU/Linux\r\nAlmaLinux-8                     AlmaLinux OS 8\r\nAlmaLinux-9                     AlmaLinux OS 9\r\nAlmaLinux-Kitten-10             AlmaLinux OS Kitten 10\r\nAlmaLinux-10                    AlmaLinux OS 10\r\narchlinux                       Arch Linux\r\nFedoraLinux-44                  Fedora Linux 44\r\nFedoraLinux-43                  Fedora Linux 43\r\neLxr                            eLxr 12.12.0.0 GNU/Linux\r\nOracleLinux_7_9                 Oracle Linux 7.9\r\nOracleLinux_8_10                Oracle Linux 8.10\r\nOracleLinux_9_5                 Oracle Linux 9.5\r\nSUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6\r\n",
+      "stderr": ""
+    }
+  ],
+  "installedAnything": false,
+  "changedContext": false,
+  "nativeLinuxEngine": "NOT_AVAILABLE",
+  "volumeCIMProbe": "无法访问 CIM 资源；容量改用 fs.statfs 实查。",
+  "earlierInlineController": "PowerShell 引号导致 Node SyntaxError，未执行系统检查；本文件控制器替代该错误调用。"
+}

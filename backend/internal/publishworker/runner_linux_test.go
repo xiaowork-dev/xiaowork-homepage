@@ -14,6 +14,7 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
 )
@@ -85,7 +86,14 @@ func runFixture(t *testing.T) (*Runner, *fakeControl, *fakeBuilder, publishmodel
 	store, _ := runStore(t)
 	builder := &fakeBuilder{output: outputFixture(t, job, snapshot)}
 	control := &fakeControl{job: &job}
-	return &Runner{Control: control, Store: store, Builder: builder, SourceRevision: job.SourceRevision, BuilderID: job.BuilderID}, control, builder, job
+	controlDir := t.TempDir()
+	if e := os.Chmod(controlDir, 0700); e != nil {
+		t.Fatal(e)
+	}
+	if e := maintenancegate.Init(controlDir); e != nil {
+		t.Fatal(e)
+	}
+	return &Runner{ControlDir: controlDir, Control: control, Store: store, Builder: builder, SourceRevision: job.SourceRevision, BuilderID: job.BuilderID}, control, builder, job
 }
 
 func TestRunnerPublishRequiresActualPreparedAndReconciledResult(t *testing.T) {

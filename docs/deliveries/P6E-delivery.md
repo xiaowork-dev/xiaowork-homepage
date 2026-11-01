@@ -1,5 +1,41 @@
 # P6-E 交付：最终发行组、可靠性与上线准备
 
+## 最新收尾：共同维护屏障及 Linux 准备（2026-11-01）
+
+**本轮完成共同维护协议的实现和专项验收；P6-E 整体仍受阻，不能申请上线。** 本轮按用户范围不安装新系统，不在 Desktop 自动重跑完整链，不接触生产。下方 chain4 及更早阶段保留为历史，不能作为本轮改动已冻结/运行的结论。
+
+### 完成及修改范围
+
+- 新增 `backend/internal/maintenancegate/`：Linux admission/activity flock、持久 recovery-required、严格文件/状态校验、排空、显式完成及非 Linux 失败关闭。新增离线 `homepage-control`，只编入 maintenance 镜像。
+- API 管理请求和私有 Worker Claim、heartbeat/prepared/result 接入；Worker 的 RunNext 共享租约覆盖实际构建、原子激活和最终结果。未重写后台 CRUD/认证/发布算法，SQLite Schema 仍为 3。
+- 更新 API/Worker/maintenance Dockerfile 与两份独立 Compose，新增专属控制卷，API/Worker RO 挂载。非 root、只读根、最小权限、Worker 无网络/数据库/凭据/Docker Socket 的设计边界保持。
+- 宿主 `v11-barrier.mjs` 接入 operation/current-repair/maintenance/release。封门、排空先于源卷检查；内层成功不解除外层保护；生命周期异常不再在 finally 解锁。Source、nocopy、O_NOATIME、Schema/任务及全部 SHA/元数据门槛不变。
+- 增加测试专用 Dockerfile、真实跨进程/HTTPS/固定 Nuxt 专项、宿主强杀控制器；更新现有运维/安全/备份/生产清单，增加[Linux 准备说明](../V1.1-LINUX-ACCEPTANCE-ENV.md)。完整修改路径以正常 Git 提交及后继源码状态清单为准。
+
+### 实际验收
+
+[专项记录](../P6E-MAINTENANCE-TESTS.md)与 [r8](../evidence/P6E-barrier-r8.json)、[r9](../evidence/P6E-barrier-r9.json)：内核跨进程锁、真正 RO 控制卷、8 轮发布/维护竞争、真实 SQLite 连接阻塞期间的已准入请求、API 在线 503、实际 Nuxt 构建/激活前排空、API/Worker fork/exec 重启、控制目录失效、正常恢复准入均通过。Go HTTP/Worker 包回归和 go vet 通过。
+
+[宿主 4/4](../evidence/P6E-barrier-host-r1.json)：控制器 SIGKILL、监督 exit47、外层断言失败均保留宿主 operation.lock/marker 和共享 recovery-required；新 backup 与新运行进程准入真实拒绝。只有正常完成用例释放保护。旧现场未用于重试。
+
+首轮夹具错误及 **r6 真实 errno 包装错误**全部保留；修复保留 EWOULDBLOCK 错误链后 r7/r8 通过，不把失败删除或改写为通过。测试命令、退出码、源码文件 SHA、镜像 ID、SQLite 任务/current/文件 SHA 和进程记录见原 JSON。
+
+收尾独立 scratch 探针还定位并修正 maintenance Dockerfile 的空目录 COPY 问题：原 `/control` 实际 0755 导致初始化 exit1，改为将预先 chmod700 的子目录随父目录整体 COPY，复测实际 0700、UID10001、初始化 exit0。[双次原始结果](../evidence/P6E-barrier-control-directory.json)保留；这是 Dockerfile 权限修正，Go 核心未再变化，也不是新正式六角色构建结果。
+
+[质量与安全](../evidence/P6E-barrier-quality.json)：ESLint、Prettier、宿主锁回归、四个正式 Linux Go 入口（含新 control）的 source govulncheck exit0；未导入 OpenPGP。npm 实扫仍根 37 moderate/2 low、后台 9 moderate（均 exit1），未升级依赖。Worker 10 MEDIUM/low/未定级是 chain4 固定镜像的原扫描；新正式镜像尚未构建，不能继承它的通过结论。
+
+### 未执行及待授权
+
+- 原生 Linux bind Source 身份、完整修复/备份/空卷恢复/跨源码更新回退/内容恢复链：**未执行**，环境未准备。本轮没有对 Desktop 路径做字符串转换。
+- 本轮修改运行代码，旧 `4f18eaeaecb86baaca01f148f388e7e86eec68bf` 六角色不包含屏障，保留其 ID 作历史；新代码经专项验证，**没有冒称已经冻结并验收新六角色**。待独立 Linux 获确认后，从本轮正常提交的完整源码重新冻结同组六镜像，并重新扫描和运行整链。
+- 新正式组的浏览器、A→B→A、整组重建持久化/端口权限/OS CVE、断电/Daemon 重启以及未覆盖浏览器和渗透范围均不推断通过。
+- 安装 Ubuntu WSL2、原生 Docker Engine、修改新发行版服务等待用户明确授权。已给出命令、约 80 GiB 预算、端口、Daemon 身份证明和清理限制；不会更改 Desktop 默认 context 或使用德国服务器测试。
+- Nuxt 兼容补丁及 glob/minimatch 等处置须新锁文件、构建、发布和浏览器验证；本轮仅保留风险及逐依赖记录，未为降低扫描数字改版本。正式内容、异地备份账户/密钥、告警责任人及最终风险范围仍待确认。
+
+### Git 与边界
+
+继续在 `feat/v1.1-admin-p6a` 正常提交推送，不合并 main。运行代码冻结 SHA、后继交付 HEAD、推送和 main 实查由本轮末的源码状态机器证据及最终回复记录，避免在同一提交内循环写入自身 SHA。正式发布 gate 和 Worker 默认关闭；不连接德国生产，不改 OpenResty/Cloudflare/DNS/TLS/V1.0，不删除旧故障现场或执行全局清理。
+
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
 ## 2026-11-01 chain4：环境与安全复核完成，两个工程门槛仍阻塞

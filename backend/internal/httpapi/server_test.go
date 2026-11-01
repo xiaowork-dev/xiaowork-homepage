@@ -26,11 +26,12 @@ func TestManagementRequiresApprovedOriginSecretAndHTTPS(t *testing.T) {
 		{Origin: "https://xiaoworks.com:443", Secret: bytes.Repeat([]byte{1}, 32), UploadDir: t.TempDir()},
 		{Origin: "https://127.0.0.1:3210", Secret: nil, UploadDir: t.TempDir()},
 	} {
+		config.ControlDir = testControlDir(t)
 		if _, err = New(db, config); err == nil {
 			t.Fatal("unsafe origin or missing secret accepted")
 		}
 	}
-	app, err := New(db, Config{Origin: "https://127.0.0.1:3210", Secret: bytes.Repeat([]byte{1}, 32), UploadDir: t.TempDir()})
+	app, err := New(db, Config{ControlDir: testControlDir(t), Origin: "https://127.0.0.1:3210", Secret: bytes.Repeat([]byte{1}, 32), UploadDir: t.TempDir()})
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -8,11 +8,13 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/maintenancegate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
 )
 
 type Runner struct {
+	ControlDir     string
 	Control        Control
 	Store          *publishfs.Store
 	Builder        Builder
@@ -64,7 +66,17 @@ func (r *Runner) Run(ctx context.Context) error {
 
 // RunNext is also used by fault-injection tests, which explicitly hold Lock.
 func (r *Runner) RunNext(ctx context.Context) (bool, error) {
+	// One shared lease covers Claim, build, activation and final DB result.
+	// Maintenance drains this task before accessing source data.
+	release, err := maintenancegate.Enter(r.ControlDir)
+	if err != nil {
+		return false, nil
+	}
+	defer release()
 	job, err := r.Control.Claim(ctx)
+	if errors.Is(err, maintenancegate.ErrBlocked) {
+		return false, nil
+	}
 	if err != nil {
 		return false, err
 	}

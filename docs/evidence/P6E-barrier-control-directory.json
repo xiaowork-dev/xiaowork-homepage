@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-01T14:28:57.500Z",
+  "scope": "scratch directory COPY/bootstrap probe only; NOT a formal release image",
+  "attempts": [
+    {
+      "tag": "xiaowork-homepage-p6e-control-copy:test",
+      "image": "sha256:84f9cff9d181056bc16492c05cfa94a25bef95fcd0df8782f8f1c3f87f966db3",
+      "container": "xiaowork-homepage-v11-barrier-copy-probe",
+      "exitCode": 1,
+      "stat": "755 10001 10001",
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "xiaowork-homepage-v11-barrier-copy-probe",
+          "Source": "/var/lib/docker/volumes/xiaowork-homepage-v11-barrier-copy-probe/_data",
+          "Destination": "/control",
+          "Driver": "local",
+          "Mode": "z",
+          "RW": true,
+          "Propagation": ""
+        }
+      ],
+      "buildLog": "#0 building with \"desktop-linux\" instance using docker driver\r\n\r\n#1 [internal] load build definition from p6e-control-copy.Dockerfile\r\n#1 transferring dockerfile: 307B 0.0s done\r\n#1 DONE 0.1s\r\n\r\n#2 [internal] load metadata for docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8\r\n#2 DONE 0.1s\r\n\r\n#3 [internal] load metadata for docker.io/library/xiaowork-homepage-p6e-gate:test-r9\r\n#3 DONE 0.1s\r\n\r\n#4 [internal] load .dockerignore\r\n#4 transferring context: 2B done\r\n#4 DONE 0.0s\r\n\r\n#5 FROM docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8@sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d\r\n#5 resolve docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8@sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d 0.0s done\r\n#5 CACHED\r\n\r\n#6 FROM docker.io/library/xiaowork-homepage-p6e-gate:test-r9@sha256:f55684b8eb4137bdf890a2d0a52ae3fb0a19b9c68dad8a17b98bc67e6956f9a9\r\n#6 resolve docker.io/library/xiaowork-homepage-p6e-gate:test-r9@sha256:f55684b8eb4137bdf890a2d0a52ae3fb0a19b9c68dad8a17b98bc67e6956f9a9 0.0s done\r\n#6 DONE 0.2s\r\n\r\n#7 [stage-0 1/2] COPY --from=xiaowork-homepage-p6e-gate:test-r9 /tests/control /homepage-control\r\n#7 DONE 0.1s\r\n\r\n#8 [stage-0 2/2] COPY --from=xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8 --chown=10001:10001 /data/ /control/\r\n#8 DONE 0.1s\r\n\r\n#9 exporting to image\r\n#9 exporting layers\r\n#9 exporting layers 0.7s done\r\n#9 exporting manifest sha256:a76bf7b7334d3c07792e95355f560d2a7cc8d24104cf4c04e4f3370aea820967\r\n#9 exporting manifest sha256:a76bf7b7334d3c07792e95355f560d2a7cc8d24104cf4c04e4f3370aea820967 0.0s done\r\n#9 exporting config sha256:0a82c1b84753fba40d0f53c39f99b02d7dd2d79687fb48b5d4f9dc16dc6b611f 0.0s done\r\n#9 exporting attestation manifest sha256:230cbbed5b837f1edbb16b6708628bbce3248923fedc4237edf181d877cf4310 0.0s done\r\n#9 exporting manifest list sha256:84f9cff9d181056bc16492c05cfa94a25bef95fcd0df8782f8f1c3f87f966db3 0.0s done\r\n#9 naming to docker.io/library/xiaowork-homepage-p6e-control-copy:test\r\n#9 naming to docker.io/library/xiaowork-homepage-p6e-control-copy:test done\r\n#9 unpacking to docker.io/library/xiaowork-homepage-p6e-control-copy:test 0.1s done\r\n#9 DONE 1.2s\r\n",
+      "runLog": "maintenance barrier unavailable or recovery required\r\n"
+    },
+    {
+      "tag": "xiaowork-homepage-p6e-control-copy:test-r2",
+      "image": "sha256:87213661469fd4cda9da51f606b1c9e08b35e0fb3528f6ceb3b0e6da8d5b8f74",
+      "container": "xiaowork-homepage-v11-barrier-copy-probe-r2",
+      "exitCode": 0,
+      "stat": "700 10001 10001",
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "xiaowork-homepage-v11-barrier-copy-probe-r2",
+          "Source": "/var/lib/docker/volumes/xiaowork-homepage-v11-barrier-copy-probe-r2/_data",
+          "Destination": "/control",
+          "Driver": "local",
+          "Mode": "z",
+          "RW": true,
+          "Propagation": ""
+        }
+      ],
+      "buildLog": "#0 building with \"desktop-linux\" instance using docker driver\r\n\r\n#1 [internal] load build definition from p6e-control-copy-r2.Dockerfile\r\n#1 transferring dockerfile: 417B 0.0s done\r\n#1 DONE 0.0s\r\n\r\n#2 [internal] load metadata for docker.io/library/xiaowork-homepage-p6e-gate:test-r9\r\n#2 DONE 0.0s\r\n\r\n#3 [internal] load metadata for docker.io/library/golang:1.27.3-alpine\r\n#3 DONE 0.1s\r\n\r\n#4 [internal] load .dockerignore\r\n#4 transferring context: 2B done\r\n#4 DONE 0.0s\r\n\r\n#5 FROM docker.io/library/xiaowork-homepage-p6e-gate:test-r9@sha256:f55684b8eb4137bdf890a2d0a52ae3fb0a19b9c68dad8a17b98bc67e6956f9a9\r\n#5 resolve docker.io/library/xiaowork-homepage-p6e-gate:test-r9@sha256:f55684b8eb4137bdf890a2d0a52ae3fb0a19b9c68dad8a17b98bc67e6956f9a9 0.1s done\r\n#5 CACHED\r\n\r\n#6 [stage-1 1/2] COPY --from=xiaowork-homepage-p6e-gate:test-r9 /tests/control /homepage-control\r\n#6 CACHED\r\n\r\n#7 [directories 1/2] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c\r\n#7 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.1s done\r\n#7 CACHED\r\n\r\n#8 [directories 2/2] RUN mkdir -p /mounts/control && chown -R 10001:10001 /mounts && find /mounts -type d -exec chmod 700 {} +\r\n#8 DONE 0.3s\r\n\r\n#9 [stage-1 2/2] COPY --from=directories --chown=10001:10001 /mounts/ /\r\n#9 DONE 0.1s\r\n\r\n#10 exporting to image\r\n#10 exporting layers 0.1s done\r\n#10 exporting manifest sha256:7f23247e2a893340eb8c95e09c4bf7d5c258b669c0026c0bad1633765867db80 0.0s done\r\n#10 exporting config sha256:8ff027c3898ee27512a41a089877676240d152a5330a5446bf8c230e2eb45e80 0.0s done\r\n#10 exporting attestation manifest sha256:364d29efe66ef4a96b3a06edbc0d145b344f23ff3f42d66f3ea68fd17ae30099 0.0s done\r\n#10 exporting manifest list sha256:87213661469fd4cda9da51f606b1c9e08b35e0fb3528f6ceb3b0e6da8d5b8f74\r\n#10 exporting manifest list sha256:87213661469fd4cda9da51f606b1c9e08b35e0fb3528f6ceb3b0e6da8d5b8f74 0.0s done\r\n#10 naming to docker.io/library/xiaowork-homepage-p6e-control-copy:test-r2 done\r\n#10 unpacking to docker.io/library/xiaowork-homepage-p6e-control-copy:test-r2 0.0s done\r\n#10 DONE 0.4s\r\n",
+      "runLog": "{\"format\":1,\"mode\":\"ready\",\"phase\":\"idle\",\"owner\":\"\"}\r\n"
+    }
+  ],
+  "fixedDockerfile": "backend/maintenance.Dockerfile",
+  "fixedDockerfileSHA256": "9586efef67dffcc2234394043fe9e480a2791ca38ac2f53995097de499511864",
+  "reason": "COPY empty-directory contents created destination with 0755; copying parent /mounts containing explicitly chmod700 /mounts/control preserves child directory metadata.",
+  "result": "passed-after-fix; original failure retained"
+}
