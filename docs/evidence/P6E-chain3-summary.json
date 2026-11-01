@@ -1,0 +1,210 @@
+{
+  "date": "2026-11-01T11:52:31.086Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "schema": 3,
+  "archiveSHA256": "4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77",
+  "originalBlockers": {
+    "faultAPIAndInitIdentity": "FIXED_BY_STOPPED_FORMAL_CONTAINER_RECREATION_DESCRIPTOR_UNCHANGED",
+    "wholeChainProtection": "PASS_THREE_FAILURE_CASES_AND_REAL_CHAIN_FAILURE"
+  },
+  "currentBlocker": {
+    "phase": "backup-container-pre-start-mount-validation",
+    "error": "Wrong source mounted\n+ actual - expected\n\n+ '/run/desktop/mnt/host/d/Project/项目/xiaowork/xiaowork-homepage-v1/.cache/v11-backups'\n- 'D:\\\\Project\\\\项目\\\\xiaowork\\\\xiaowork-homepage-v1\\\\.cache\\\\v11-backups'\n",
+    "equivalenceProven": false,
+    "action": "STOP_RETAIN_GUARDS_AND_EVIDENCE_NO_DOWNSTREAM_RETRY"
+  },
+  "formalIdentity": {
+    "containers": [
+      {
+        "service": "api",
+        "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+        "running": false
+      },
+      {
+        "service": "api-init",
+        "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+        "running": false
+      },
+      {
+        "service": "worker",
+        "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+        "running": false
+      },
+      {
+        "service": "publication-init",
+        "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+        "running": false
+      },
+      {
+        "service": "gateway",
+        "image": "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358",
+        "running": true
+      },
+      {
+        "service": "frontend",
+        "image": "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3",
+        "running": true
+      },
+      {
+        "service": "publication-static",
+        "image": "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1",
+        "running": true
+      }
+    ],
+    "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+    "descriptorUnchanged": true,
+    "writersStopped": true,
+    "historicalBuilder": "sha256:4aef80d6610f26ec6e7a01850de58a9ce030af183a65a00e5ff155b623417b09",
+    "newBuilder": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a"
+  },
+  "readonlyRepair": {
+    "planSHA256": "ae537db47433bd505e12c45e7a64c10cf1c2e921c05848549712761d1a82a5d1",
+    "id": "repair-1793533476309069468",
+    "activeRelease": "rel_237b5b06b77ddd38f729ce27facb0e53",
+    "roots": [
+      {
+        "path": "authority",
+        "beforeAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251370629
+        },
+        "afterAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251370629
+        },
+        "unchanged": true
+      },
+      {
+        "path": "db",
+        "beforeAtim": {
+          "Sec": 1793533449,
+          "Nsec": 758332638
+        },
+        "afterAtim": {
+          "Sec": 1793533449,
+          "Nsec": 758332638
+        },
+        "unchanged": true
+      },
+      {
+        "path": "publications",
+        "beforeAtim": {
+          "Sec": 1793533306,
+          "Nsec": 116072410
+        },
+        "afterAtim": {
+          "Sec": 1793533306,
+          "Nsec": 116072410
+        },
+        "unchanged": true
+      },
+      {
+        "path": "secrets",
+        "beforeAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251707475
+        },
+        "afterAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251707475
+        },
+        "unchanged": true
+      },
+      {
+        "path": "tls",
+        "beforeAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251707475
+        },
+        "afterAtim": {
+          "Sec": 1793533212,
+          "Nsec": 251707475
+        },
+        "unchanged": true
+      },
+      {
+        "path": "uploads",
+        "beforeAtim": {
+          "Sec": 1793533268,
+          "Nsec": 100962628
+        },
+        "afterAtim": {
+          "Sec": 1793533268,
+          "Nsec": 100962628
+        },
+        "unchanged": true
+      }
+    ],
+    "database": {
+      "path": "db/content.sqlite",
+      "stat": {
+        "Dev": 2096,
+        "Ino": 233313,
+        "Nlink": 1,
+        "Mode": 33188,
+        "Uid": 10001,
+        "Gid": 10001,
+        "X__pad0": 0,
+        "Rdev": 0,
+        "Size": 331776,
+        "Blksize": 4096,
+        "Blocks": 648,
+        "Atim": {
+          "Sec": 1793533183,
+          "Nsec": 942629661
+        },
+        "Mtim": {
+          "Sec": 1793533445,
+          "Nsec": 770807975
+        },
+        "Ctim": {
+          "Sec": 1793533445,
+          "Nsec": 770807975
+        },
+        "X__unused": [
+          0,
+          0,
+          0
+        ]
+      },
+      "sha256": "ab7b0355102114fd8e1bb85b76f4e0305edc0afb62a6d19e949315f8de13c7a4"
+    },
+    "unchangedExistingEntries": 172,
+    "beforeEntries": 174,
+    "afterEntries": 176,
+    "removed": [
+      "publications/current.next.367e7052a0679873153a174507525f9988905b4bb3e8785b3a1dbbe946cbfa33"
+    ],
+    "added": [
+      "publications/maintenance-repairs",
+      "publications/maintenance-repairs/repair-1793533476309069468.intent.json",
+      "publications/maintenance-repairs/repair-1793533476309069468.result.json"
+    ],
+    "changedExistingPaths": [
+      "publications"
+    ],
+    "fullEvidenceSHA256": "9903eeed8617a30dac493df375740e0123e3b0aaf4814bc0b28b6c79af3db2ab",
+    "httpAllSixUnchanged": true
+  },
+  "guardMatrix": {
+    "passed": 3,
+    "signal": "SIGKILL",
+    "newProcessesBlocked": true
+  },
+  "downstream": {
+    "backup": "REFUSED_BEFORE_BACKUP_CONTAINER_START",
+    "emptyVolumeRestore": "NOT_RUN",
+    "crossSourceUpdate": "NOT_RUN",
+    "codeRollback": "NOT_RUN",
+    "contentRestore": "NOT_RUN",
+    "secondBackupRestore": "NOT_RUN",
+    "finalFormalRuntimeAcceptance": "NOT_RUN_CHAIN_PREREQUISITE_FAILED"
+  },
+  "limits": [
+    "bb05 的14/14与7/7是保留的历史前提，不计作新候选全矩阵重验。",
+    "正式组六角色健康启动已测，但正常发布/预览/A-B-A/空卷持久化/更新回退完整运行验收未执行。",
+    "原保护夹具第一轮没有shell导致启动失败，不能计为控制器强退通过；原机器记录中的第一项PASS标签无效，保留原FAIL不修改。",
+    "没有测试宿主OS或Docker引擎整体重启、断电、Firefox/WebKit、真实移动设备或完整渗透。"
+  ],
+  "productionReady": false
+}

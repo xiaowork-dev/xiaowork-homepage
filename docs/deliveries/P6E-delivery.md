@@ -2,13 +2,69 @@
 
 更新：2026-11-01，Asia/Shanghai。开发分支 `feat/v1.1-admin-p6a`。
 
-## 2026-11-01 完整链身份与持续保护收尾：正在验收
+## 2026-11-01 完整链收尾：原两项修复通过，备份挂载身份新增阻塞
 
-本轮从 `f956d7f80147a65d90d1c68252eb0b41f1a4d8fc` 继续。旧失败来自故障派生 API 与正式 api-init 的真实镜像 ID 不同，备份校验正确拒绝；旧描述符、故障卷和人工 containment 原样保留。不伪改描述符，不跳过备份身份检查。
+发布请求的实测阻断发生在源API已停的备份失败场景。宿主持久marker不直接作为Go API的实时开关；父控制器停止写者存在检测/停止窗口。活跃发布阶段与控制器强杀竞争、父监督进程也退出时的行为尚未验收，不能由3个控制夹具或此次502推断全时段发布拒绝。此项保留到完整链及最终运行验收。
 
-受信运维脚本新增同进程异步整链能力：预先保护全部声明的独立项目，内层检查/修复及生命周期命令复用进程内能力，最后全部验收通过才解除。外部进程、环境变量或 CLI 参数无法继承能力；子阶段失败后持久标记保留。生命周期入口增加可导入函数供受信本地控制器调用，不加入公网 API。正式发布 gate 仍关闭。因受信运维代码变化，接下来冻结新源码并构建六角色，不冒称 bb05 镜像已更新。
+**状态：部分完成并安全停止，不具备正式上线条件。** 本轮从 `f956d7f80147a65d90d1c68252eb0b41f1a4d8fc` 继续；受信运维脚本变化后冻结 **`4f18eaeaecb86baaca01f148f388e7e86eec68bf`**，六正式镜像重新构建，Schema3、manifest1、linux/amd64。选择理由是包含异步整链持久保护及同进程生命周期入口。归档 SHA256 为 `4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`；镜像 ID/基础镜像/构建参数见[新清单](../evidence/P6E-chain3-runtime-manifest.json)。后继测试控制器/文档不冒称运行源码更新，bb05/817旧成绩不计入新组。
 
-冻结前 Node 16项与 ESLint 已通过，见 `P6E-chain3-prefreeze-*.txt`。首次受限环境运行的4项本机 HTTP 探针因 `connect EACCES 127.0.0.1` 未通过；在允许本机回环的相同测试配置下16项通过，未关闭 TLS 或安全校验。整链、镜像、恢复与正式运行验收仍待执行，当前不具备上线条件。
+### 已修复的原始问题
+
+1. **镜像身份编排已实测修复。** 旧故障派生API与正式api-init具有不同ID，备份正确拒绝。新项目先从完整正式组启动，随后只在独立故障阶段使用派生API/Worker；故障任务终结后停止所有写入者，用正式ID重新创建API、Worker及两个init容器（不启动写者），逐个检查实际ID及源码。最初正式发行描述符始终不变，没有修改ID伪造一致或降低备份身份校验。[整链](../evidence/P6E-chain3-current-repair.json)同时记录正式/故障身份和handoff。测试历史builder为`sha256:4aef80d6610f26ec6e7a01850de58a9ce030af183a65a00e5ff155b623417b09`；正式builder为`sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a`。不改写旧manifest；这些故障产物不能冒称正式Worker构建或允许跨builder恢复。
+2. **整链失败保护已实现并实测。** `protectedChain`在任何源卷操作前对四个声明项目原子建锁并写入/fsync独立控制目录marker；异步上下文中的进程内能力才可复用。内层修复成功不解除外层锁；外部进程、CLI参数、环境变量不能继承能力。最终全部验收通过才释放，失败/退出保留；捕获过的内层失败也不能继续。`runLifecycle`可在同一受信进程执行，原镜像/Schema/内容/备份/HTTP检查保留，未新增公网入口。测试父进程在子控制器异常退出后只停本轮写者，不移除marker。[真实失败保护3/3](../evidence/P6E-chain3-protection-r2.json)：SIGKILL控制器、正式Worker进程异常停止、真实派生API与正式init身份不一致；每项marker字节不变，独立进程备份及再次修复/更新被拒绝。
+
+初版保护夹具错误地在scratch API镜像中启动`/bin/sh`，没有触发预期故障。原[FAIL](../evidence/P6E-chain3-protection.json)与容器/锁保留；其中第一项PASS标签不成立，不能计分。更正仅测试夹具为正式Worker的Node进程，在全新项目复测3/3通过，未修改产品安全边界。
+
+### 完整链实际执行结果
+
+新项目为`xiaowork-homepage-v11-p6e-chain3-fault`，后三个repair/content/again项目的控制保护也在开始前建立，未使用旧失败卷。可信localhost HTTPS3523、HTTP3273、专属网段；合成PNG只用于隔离测试，未作为项目截图。
+
+| 顺序                                                                                   | 实际结果                                                                                                                                                                                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 创建完整正式组                                                                       | PASS：API、Worker、gateway、legacy frontend、publication-static健康，两个init完成；maintenance实际执行Schema/只读工具，不伪称常驻服务                                                                                                                                                                                                               |
+| 2 真实发布故障                                                                         | PASS：新源码派生镜像真实Nuxt基线、切换前Worker强杀与终态恢复；可信Chromium登录/发布验证。仅该范围通过，不是正式Worker完整功能验收                                                                                                                                                                                                                   |
+| 3 安全停写及身份                                                                       | PASS：正式角色与init实际ID全部吻合原描述符；写者均停止                                                                                                                                                                                                                                                                                              |
+| 4 只读检查                                                                             | PASS：新维护镜像读取Schema3、业务摘要、终态任务、intent/历史及全文件SHA；bb05的14/14和7/7仅作历史前提，没有复制为新组矩阵成绩                                                                                                                                                                                                                       |
+| 5 单对象修复                                                                           | PASS：精确计划绑定SHA后仅移除一个冗余名称，保留target历史版本；双阶段审计及复核成功                                                                                                                                                                                                                                                                 |
+| 6 metadata/SHA/HTTP                                                                    | PASS：174→176条；172条既有记录完全不变，删除候选、新增审计目录和两文件；仅publication父目录有计划内变化，六根Atim与主库完整记录相同。主库SHA`ab7b0355102114fd8e1bb85b76f4e0305edc0afb62a6d19e949315f8de13c7a4`；六公开路径字节SHA相同。[完整metadata](../evidence/P6E-chain3-repair-metadata.json)、[独立汇总](../evidence/P6E-chain3-summary.json) |
+| 7 完整备份                                                                             | **REFUSED**：镜像身份校验已通过，但backup容器启动前的bind source核对不符，见下文                                                                                                                                                                                                                                                                    |
+| 8～13 空卷恢复、数据/图片/公开页验收、跨源码更新、代码回退、兼容内容恢复、再次备份恢复 | **NOT_RUN**；按失败即停要求，没有强行续跑或在留场卷重试                                                                                                                                                                                                                                                                                             |
+| 后续正式六角色管理编辑/预览/正式A→B→A/容器重建持久化/完整浏览器验收                    | **NOT_RUN_CHAIN_PREREQUISITE_FAILED**。不能将派生测试镜像或旧组结果当作此正式组通过                                                                                                                                                                                                                                                                 |
+
+修复计划SHA为`ae537db47433bd505e12c45e7a64c10cf1c2e921c05848549712761d1a82a5d1`，审计ID`repair-1793533476309069468`，活动版本`rel_237b5b06b77ddd38f729ce27facb0e53`，工作区revision2，管理员1/项目3/图片1/快照3/任务3/历史3/未完成0。全部真实记录见上述JSON，不仅依赖汇总结论。
+
+### 新的最小阻塞及自动留场
+
+`v11-maintenance.mjs:tool`对bind使用`found.Source === mount.src`严格核对。本轮请求Windows路径`D:\Project\项目\xiaowork\xiaowork-homepage-v1\.cache\v11-backups`，Docker Desktop实际报告`/run/desktop/mnt/host/d/Project/项目/xiaowork/xiaowork-homepage-v1/.cache/v11-backups`，触发`Wrong source mounted`。这是挂载来源表示跨命名空间不一致；**尚未证明安全的路径身份等价，不能直接删除检查或假定等价。** 失败容器`263bf89779fc815c811c314bd814992ac4a7d01a5feb473e462e254621cf489a`保持created，尚未start，没有备份载荷；不能算备份成功。
+
+[父控制器](../evidence/P6E-chain3-supervisor.json)自动保留四组operation.lock与recovery-required，后续备份/修复/更新均拒绝；没有人工补锁。源API/Worker/init停止，静态入口仍200；真实HTTPS POST发布返回502（API未运行，未发送凭据），没有假成功。[留场复核](../evidence/P6E-chain3-retention.json)证明marker未变、六HTTP/SHA保持、失败后两次纯RO metadata聚合SHA均`404b7926bd8db039e82a7d3ae2ed9bde2db918ef54c03402e79186bc31149ffe`。修复之后普通备份预检读过新增审计目录/文件，其atime变化另外保留，未倒写时间，也不冒称整段生命周期零元数据变化。旧atime2人工containment字节保持，旧故障现场不变。
+
+下一步最小工作仅是设计并验证Docker Desktop bind来源的严格身份核对（或在独立本地Linux控制环境运行），保留路径/访问范围校验，再在全新项目重验整链。**本轮已经停止，不自动发起下一轮重构/修复，不解除任何失败保护。**
+
+### 安全、质量与未完成门槛
+
+冻结前Node16/16与ESLint通过；首次受限网络HTTP探针4项EACCES失败保留为执行事实，在允许本机回环后相同配置16项通过，未禁用TLS。新候选六镜像Scout与Go源码/二进制扫描完成：[安全证据](../evidence/P6E-chain3-security-audit.json)。API/maintenance二进制govuln exit3、Worker exit0；精确Linux三入口源码扫描exit0，OpenPGP导入0，模块级未定级风险不抹除。
+
+**扫描出现新中危，不能沿用旧零中危结论。** Worker有10个MEDIUM发现（Nuxt4.6.2构建链、glob/minimatch等传播条目）、deepmerge1个LOW及1个未定级；其余五镜像各1个未定级。根npm为2low/37moderate/0high/0critical，admin为9moderate/0high/0critical，两个audit exit1原文保留。构建Worker无网络、固定源码/依赖、非root及资源限制只能缩小攻击面；本轮未升级依赖，风险未接受、未视为已修复。musl既有官方分支回补证据可参考历史记录，但本轮未重新获取上游补丁，不冒称新判定。node-forge既有锁文件修复保留，不回写旧告警结果。
+
+生产gate仍硬关闭；异地备份/密钥/告警责任、RPO/RTO和风险/内容确认仍独立待办。宿主OS/Docker引擎整体重启/断电、Firefox/WebKit/Safari、真实移动设备及完整渗透未测试。未连接德国生产、未改OpenResty/Cloudflare/DNS/TLS或V1.0，未合并main、未全局清理。
+
+核心修改为`scripts/v11-operation.mjs`、`v11-release.mjs`和`v11-chain.test.mjs`；冻结后仅新增`p6e-chain3-*.mjs`测试控制器/原始证据并更新现有交付、进度、发行、修复、备份、运维、安全及生产清单。实际命令如下，日志/退出码见对应证据；最终文档提交SHA及推送由最终回复和远端实查确认，运行SHA不随文档提交改变。
+
+```powershell
+node --test scripts/v11-chain.test.mjs scripts/v11-current-repair.test.mjs scripts/v11-maintenance.test.mjs scripts/v11-release-probe.test.mjs # 16 PASS
+node scripts/p6e-chain3-build.mjs 4f18eaeaecb86baaca01f148f388e7e86eec68bf # exit0
+node scripts/p6e-chain3-protection.mjs # 首次夹具FAIL；新项目r2 exit0，3/3
+node scripts/p6e-chain3-acceptance.mjs prepare
+node scripts/p6e-chain3-supervisor.mjs # exit1，自动持续保护
+node scripts/p6e-chain3-retention.mjs # exit0，仅只读留场复核
+node scripts/p6e-chain3-security.mjs # exit0，告警保留，不等于安全全通过
+npm audit --json # exit1
+npm --prefix admin audit --json # exit1
+node scripts/p6e-chain3-summary.mjs # exit0，只汇总已存在证据
+```
+
+提交前最后检查：新增测试控制器及受信运维代码ESLint退出0；更新Markdown和控制器Prettier通过。Gitleaks对1062个非忽略文件实际扫描exit1、30条generic-api-key命中；逐条用扫描时字节和公开镜像ID/tag重建后均为误报，不排除路径或抑制规则，原非零报告保持。[原扫描](../evidence/P6E-chain3-repository-secret-scan.json)、[精确复核](../evidence/P6E-chain3-repository-secret-review.json)。扫描不保证不存在未知秘密；复核控制器和随后静态说明按差异审查覆盖。
 
 ## 2026-11-01 atime 与完整操作保护专项：两项专项通过，后续链阻塞
 

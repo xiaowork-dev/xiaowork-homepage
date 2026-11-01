@@ -1,5 +1,9 @@
 # P6-E 最终发行组跨源码升级与回退验收
 
+## 当前4f18组：尚未执行跨源码验收
+
+2026-11-01，`4f18eaeaecb86baaca01f148f388e7e86eec68bf`六角色已统一构建。新的完整修复链在备份启动前被Docker Desktop bind source严格身份核对拒绝，按失败即停原则，空卷恢复/跨源码更新/代码回退全部NOT_RUN。[本轮整链](evidence/P6E-chain3-current-repair.json)、[持续保护](evidence/P6E-chain3-supervisor.json)。下方817/be5c历史成绩原样保留，不计为当前候选通过。
+
 本报告补充已有同源码重封装测试，不替换旧证据。范围仅为本机 Docker Desktop 的独立模拟项目 `xiaowork-homepage-v11-p6e-cross-source`，回环 HTTP `3226`、可信 HTTPS `3459`、内部网段 `192.168.241.0/28`；不连接正式德国服务器，不改 V1.0、OpenResty、Cloudflare、main 或旧 `.env/.deploy`。
 
 ## 兼容策略

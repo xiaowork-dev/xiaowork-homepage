@@ -1,0 +1,52 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.44kB 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/golang:1.27.3-alpine
+#2 DONE 0.4s
+
+#3 [build 1/6] FROM docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c
+#3 resolve docker.io/library/golang:1.27.3-alpine@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c 0.0s done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 623.44kB 0.1s done
+#4 DONE 0.1s
+
+#5 [build 6/6] RUN CGO_ENABLED=0 GOPROXY=off GOTOOLCHAIN=local go build -trimpath -ldflags="-s -w" -o /homepage-api ./cmd/homepage-api     && mkdir -p /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls /runtime/run/publishing     && chmod 700 /runtime/data /runtime/uploads /runtime/secrets /runtime/authority /runtime/tls /runtime/run/publishing
+#5 CACHED
+
+#6 [runtime 1/3] COPY --from=build /homepage-api /homepage-api
+#6 CACHED
+
+#7 [build 4/6] RUN GOPROXY=https://goproxy.cn go mod download
+#7 CACHED
+
+#8 [build 2/6] WORKDIR /src
+#8 CACHED
+
+#9 [build 3/6] COPY backend/go.mod backend/go.sum ./
+#9 CACHED
+
+#10 [build 5/6] COPY backend/ ./
+#10 CACHED
+
+#11 [runtime 2/3] COPY --from=build --chown=10001:10001 /runtime/ /
+#11 CACHED
+
+#12 [runtime 3/3] COPY backend/seed/v1.json /seed/v1.json
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:d2e2768efe8e560801dbe31909f3389e06fdaa824675e446dc169a9dd4e17059 0.0s done
+#13 exporting config sha256:4767f351b0bbab746485a02bc016a5bfbfc2e8c9ff832cdf78f36d0bea1941a3
+#13 exporting config sha256:4767f351b0bbab746485a02bc016a5bfbfc2e8c9ff832cdf78f36d0bea1941a3 0.0s done
+#13 exporting attestation manifest sha256:31ce369d98faa9eb462c3beb9b20ce86354895d4efbab15705239e465d6de14c 0.0s done
+#13 exporting manifest list sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d 0.0s done
+#13 naming to docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8
+#13 naming to docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8 done
+#13 unpacking to docker.io/library/xiaowork-homepage-api:p6e-chain3-4f18eaeaecb8 0.0s done
+#13 DONE 0.2s

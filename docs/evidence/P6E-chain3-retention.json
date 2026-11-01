@@ -1,0 +1,413 @@
+{
+  "date": "2026-11-01T11:48:27.497Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "result": "STOPPED_AFTER_BIND_SOURCE_IDENTITY_REFUSAL",
+  "error": "Wrong source mounted\n+ actual - expected\n\n+ '/run/desktop/mnt/host/d/Project/项目/xiaowork/xiaowork-homepage-v1/.cache/v11-backups'\n- 'D:\\\\Project\\\\项目\\\\xiaowork\\\\xiaowork-homepage-v1\\\\.cache\\\\v11-backups'\n",
+  "guards": [
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-fault",
+      "markerSHA256": "8ffeb5f9011d837e8b265c3cd3f85a257a3985e9d8e687d6c65ac7ff8c9d5a22",
+      "unchangedSinceFailure": true,
+      "lockPresent": true,
+      "containers": [
+        {
+          "id": "1b0ca5bd3a353de225a16f9f7824fe6f7767ed3dd92aeaac83614ec3cd58e408",
+          "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+          "service": "worker",
+          "status": "created",
+          "running": false
+        },
+        {
+          "id": "884fe3b9dfd44a65387e70e275ce46b5cd23ffe4451e98c2bdf405bf2debdf49",
+          "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+          "service": "api",
+          "status": "created",
+          "running": false
+        },
+        {
+          "id": "c23b37537234e84cb068884446347de83f6019146c6d81dd553f7bd77418a39c",
+          "image": "sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d",
+          "service": "api-init",
+          "status": "created",
+          "running": false
+        },
+        {
+          "id": "b9b8a68cde2880a4ac7c6a0d1a1dfab1186dd68d9a84fc03c40b0a6433af0017",
+          "image": "sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a",
+          "service": "publication-init",
+          "status": "created",
+          "running": false
+        },
+        {
+          "id": "b023bc0058c511c8acec9b9e43f7eb48cd9442271cbcbc392e8ccbaeebcfba85",
+          "image": "sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358",
+          "service": "gateway",
+          "status": "running",
+          "running": true,
+          "health": "healthy"
+        },
+        {
+          "id": "cf18df4b93e52f22d6a564183dd5e12a7630f22dc72887d1c3af2501e1563805",
+          "image": "sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1",
+          "service": "publication-static",
+          "status": "running",
+          "running": true,
+          "health": "healthy"
+        },
+        {
+          "id": "d69050278a2e7faff35a22c6fd2d72f84166e6e713f33b42ccfe48ba253bdf5b",
+          "image": "sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3",
+          "service": "frontend",
+          "status": "running",
+          "running": true,
+          "health": "healthy"
+        }
+      ]
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-repair",
+      "markerSHA256": "9058d7f0808b81311dfbfb6905b8ce8824f31aa74898cf9557ebf49e050494c2",
+      "unchangedSinceFailure": true,
+      "lockPresent": true,
+      "containers": []
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-content",
+      "markerSHA256": "2f3b074bb35d5645db725d7f8f89c86b1cb36a299ae40546ffcb49f7800dbb14",
+      "unchangedSinceFailure": true,
+      "lockPresent": true,
+      "containers": []
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-again",
+      "markerSHA256": "f072ab291d5b325d3e07e3e65d09ac2ea028307c3f1cad38fed38cfb74254d04",
+      "unchangedSinceFailure": true,
+      "lockPresent": true,
+      "containers": []
+    }
+  ],
+  "http": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "fce17a0ae48834465ae077bbef6597060c2aa5b2f0a739558d076fe4e1ca0b41"
+    },
+    {
+      "route": "/projects/",
+      "status": 200,
+      "sha256": "4551698d06b1355b1b49a7faf5c0dec032b9caceb7fc3b68ab5c84d93fdf16df"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "sha256": "29acdad4acaf5d33976e8e762fa603de45cb0d5712ef379df55e5c73be971a3b"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "sha256": "5b57369039de2f3912b6e017933d3843be574cb81b0457a94acb8753ea3f23d4"
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "sha256": "f101648a6bfffc5a77a1792947194975d09484f87c02a9f8726993775398e57e"
+    },
+    {
+      "route": "/__xiaowork-release.json",
+      "status": 200,
+      "sha256": "1fc4667fcc1e904aebf0c876615556b0235a21553fbf0195dc96c525e6036f83"
+    }
+  ],
+  "downstream": {
+    "backup": "REFUSED_BEFORE_BACKUP_CONTAINER_START",
+    "emptyVolumeRestore": "NOT_RUN",
+    "crossSourceUpdate": "NOT_RUN",
+    "codeRollback": "NOT_RUN",
+    "contentRestore": "NOT_RUN",
+    "secondBackupRestore": "NOT_RUN",
+    "finalFormalRuntimeAcceptance": "NOT_RUN_CHAIN_PREREQUISITE_FAILED"
+  },
+  "failedMaintenanceContainers": [
+    {
+      "id": "263bf89779fc815c811c314bd814992ac4a7d01a5feb473e462e254621cf489a",
+      "status": "created",
+      "startedAt": "0001-01-01T00:00:00Z",
+      "command": [
+        "backup",
+        "-target",
+        "/backup/p6e-chain3-repaired-1793533493786/content"
+      ],
+      "mounts": [
+        {
+          "type": "bind",
+          "source": "/run/desktop/mnt/host/d/Project/项目/xiaowork/xiaowork-homepage-v1/.cache/v11-backups",
+          "destination": "/backup",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-authority",
+          "destination": "/source/authority",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-db",
+          "destination": "/source/db",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-publications",
+          "destination": "/source/publications",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-secrets",
+          "destination": "/source/secrets",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-tls",
+          "destination": "/source/tls",
+          "writable": true
+        },
+        {
+          "type": "volume",
+          "name": "xiaowork-homepage-v11-p6e-chain3-fault_admin-uploads",
+          "destination": "/source/uploads",
+          "writable": true
+        }
+      ],
+      "image": "sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56"
+    }
+  ],
+  "publishAfterFailure": {
+    "status": 502,
+    "tlsVerified": true,
+    "credentialsSent": false
+  },
+  "forensicReadonlyMetadata": {
+    "count": 176,
+    "beforeSHA256": "404b7926bd8db039e82a7d3ae2ed9bde2db918ef54c03402e79186bc31149ffe",
+    "afterSHA256": "404b7926bd8db039e82a7d3ae2ed9bde2db918ef54c03402e79186bc31149ffe",
+    "unchanged": true
+  },
+  "deltaSinceRepair": [
+    {
+      "path": "publications/maintenance-repairs",
+      "before": {
+        "path": "publications/maintenance-repairs",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242371,
+          "Nlink": 2,
+          "Mode": 16832,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 4096,
+          "Blksize": 4096,
+          "Blocks": 8,
+          "Atim": {
+            "Sec": 1793533476,
+            "Nsec": 308094199
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "after": {
+        "path": "publications/maintenance-repairs",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242371,
+          "Nlink": 2,
+          "Mode": 16832,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 4096,
+          "Blksize": 4096,
+          "Blocks": 8,
+          "Atim": {
+            "Sec": 1793533493,
+            "Nsec": 78636578
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "publications/maintenance-repairs/repair-1793533476309069468.intent.json",
+      "before": {
+        "path": "publications/maintenance-repairs/repair-1793533476309069468.intent.json",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242378,
+          "Nlink": 1,
+          "Mode": 33152,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 26224,
+          "Blksize": 4096,
+          "Blocks": 56,
+          "Atim": {
+            "Sec": 1793533476,
+            "Nsec": 308094199
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 309240662
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 309240662
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sha256": "b39bb8be491c19436f9c7a139b21a97eb729eeb8fd95239e1a4f8b058ac59f08"
+      },
+      "after": {
+        "path": "publications/maintenance-repairs/repair-1793533476309069468.intent.json",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242378,
+          "Nlink": 1,
+          "Mode": 33152,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 26224,
+          "Blksize": 4096,
+          "Blocks": 56,
+          "Atim": {
+            "Sec": 1793533493,
+            "Nsec": 78636578
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 309240662
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 309240662
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sha256": "b39bb8be491c19436f9c7a139b21a97eb729eeb8fd95239e1a4f8b058ac59f08"
+      }
+    },
+    {
+      "path": "publications/maintenance-repairs/repair-1793533476309069468.result.json",
+      "before": {
+        "path": "publications/maintenance-repairs/repair-1793533476309069468.result.json",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242400,
+          "Nlink": 1,
+          "Mode": 33152,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 50769,
+          "Blksize": 4096,
+          "Blocks": 104,
+          "Atim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sha256": "9dcc275b1b926058d09f5c3ff44823da4edfeca6d0d5d1aa45c8f22e762e89be"
+      },
+      "after": {
+        "path": "publications/maintenance-repairs/repair-1793533476309069468.result.json",
+        "stat": {
+          "Dev": 2096,
+          "Ino": 242400,
+          "Nlink": 1,
+          "Mode": 33152,
+          "Uid": 10001,
+          "Gid": 10001,
+          "X__pad0": 0,
+          "Rdev": 0,
+          "Size": 50769,
+          "Blksize": 4096,
+          "Blocks": 104,
+          "Atim": {
+            "Sec": 1793533493,
+            "Nsec": 78636578
+          },
+          "Mtim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "Ctim": {
+            "Sec": 1793533476,
+            "Nsec": 344096537
+          },
+          "X__unused": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sha256": "9dcc275b1b926058d09f5c3ff44823da4edfeca6d0d5d1aa45c8f22e762e89be"
+      }
+    }
+  ],
+  "deletedSinceRepair": [],
+  "deltaScope": "修复 wrapper 的前后验收已通过。之后普通备份预检不是原卷只读检查；本字段如实记录这两个不同检查点间的变化，不恢复元数据。失败后本次两次纯RO取证完全相同。"
+}

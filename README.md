@@ -1,6 +1,6 @@
 # XiaoWork Homepage
 
-V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发。中文 Vue 后台复用真实 Go/SQLite API。P6-E 最终候选运行源码为 `bb05f6ad613fdf3507ff8a9c56696da85fa4a678`，六正式角色统一构建，schema3。真实只读卷14项、锁故障7项及单对象修复通过；修复后备份被故障夹具的镜像身份不一致阻塞，恢复/更新/回退链已停止，P6-E仍部分完成。正式发布保持关闭，仅能显式开启独立localhost HTTPS测试。保留V1.0设计和静态架构，未连接或修改生产。
+V1.1 在 `feat/v1.1-admin-p6a` 独立分支开发，中文Vue后台复用真实Go/SQLite API。P6-E当前候选运行源码为`4f18eaeaecb86baaca01f148f388e7e86eec68bf`，六正式角色统一构建、Schema3。镜像身份交接、整链自动保护3/3、只读单对象修复及metadata/HTTP通过；完整备份在启动前被Docker Desktop bind来源路径核对拒绝，恢复/更新/回退和正式组完整功能验收未执行。P6-E仍部分完成，不具备上线条件，故障现场及锁保留。未连接生产、未合并main，正式发布gate关闭。
 
 - [P6-C 交付](docs/deliveries/P6C-delivery.md)、[当前进度](docs/PROGRESS.md)、[后台操作说明](docs/V1.1-ADMIN-USAGE.md)
 - [P6-D 交付与验收边界](docs/deliveries/P6D-delivery.md)、[本地发布与恢复](docs/V1.1-PUBLISH-OPERATIONS.md)、[故障矩阵](docs/P6D-FAULT-TESTS.md)
@@ -32,7 +32,7 @@ V1.1 使用六个受审镜像、schema3 和独立 `.v11-deploy/` 状态；新脚
 
 上传限制为原图10 MiB、multipart11 MiB、8192单边/2500万像素、重编码派生图16 MiB；单快照媒体总量256 MiB。发布页显示图片/数据库/发布目录容量；余量少于512 MiB或2%、无法核实余量时拒绝新任务，少于1 GiB或10%警告。没有自动物理GC或总磁盘配额，历史成功资源继续保留。
 
-历史817组真实跨源码be5c→817→be5c主矩阵12项、新内容专项4项通过，不能计为当前bb05候选的成绩。当前只读验收通过nocopy、kernel RO和目录/文件O_NOATIME保持完整元数据；锁覆盖before/after及acceptance，异常留持久标记，未知锁不得删除。[本轮矩阵](docs/evidence/P6E-atime2-readonly-matrix.json)、[锁故障](docs/evidence/P6E-atime2-real-guards.json)。新候选单对象修复通过，但后续备份正确拒绝故障API与api-init描述符不一致，链停止并保留现场，尚未完成新候选全链。跨schema自动迁移/降级、正式origin发布授权策略仍未实现；异地目标、密钥/告警责任、RPO/RTO和残余风险待确认，不能借localhost测试gate上线。
+历史817组真实跨源码be5c→817→be5c主矩阵12项、新内容专项4项通过，不能计为当前4f18候选的成绩。当前只读验收通过nocopy、kernel RO和目录/文件O_NOATIME保持完整元数据；锁覆盖before/after及acceptance，异常留持久标记，未知锁不得删除。[本轮矩阵](docs/evidence/P6E-atime2-readonly-matrix.json)、[锁故障](docs/evidence/P6E-atime2-real-guards.json)。新候选修复通过；故障API与init身份问题已通过停写并重建正式角色解决。新备份在启动前被Windows/Docker Desktop bind来源表示差异阻塞，完整链自动保护已保留四组marker并拒绝新操作。见[本轮整链与留场](docs/evidence/P6E-chain3-summary.json)，尚未完成恢复/更新/回退。跨schema自动迁移/降级、正式origin发布授权策略仍未实现；异地目标、密钥/告警责任、RPO/RTO和残余风险待确认，不能借localhost测试gate上线。
 
 ## V1.0 当前状态
 

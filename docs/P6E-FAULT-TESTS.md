@@ -1,8 +1,14 @@
 # P6-E 真实故障集成验收
 
+## 当前4f18组的限定实测（2026-11-01）
+
+当前运行源码`4f18eaeaecb86baaca01f148f388e7e86eec68bf`。本轮只重验受影响的整链保护与修复：真实Nuxt基线及切换前Worker退出使用独立派生镜像，分别通过[baseline](evidence/P6E-chain3-faults-baseline.json)、[before-switch](evidence/P6E-chain3-faults-before-switch.json)。三个真实控制保护案例（控制器SIGKILL、正式Worker异常停止、备份派生API身份不一致）3/3通过：[r2](evidence/P6E-chain3-protection-r2.json)。首次scratch镜像无shell属于夹具错误，[原FAIL](evidence/P6E-chain3-protection.json)保留，内含首项PASS标签无效。
+
+新完整链在备份bind来源检查处失败后自动保留四组锁/marker，后续请求拒绝：[整链](evidence/P6E-chain3-current-repair.json)、[父控制器](evidence/P6E-chain3-supervisor.json)。其后恢复/更新/回退/正式组完整功能矩阵未执行。不能将下方817的13/13、bb05的14/14与7/7自动转成新候选成绩。
+
 ## 2026-10-28 最终统一发行组重新验收
 
-**本节是最新结论。** 最终源码为 `817aa533741bdd5de23f322fa5e5171442cb28a9`，六角色精确身份见 [最终发行清单](P6E-FINAL-RELEASE.md)。使用全新隔离项目 `xiaowork-homepage-v11-p6e-closure-fault`、HTTP3223/可信HTTPS3456、专属卷/网段，不操作下面保留的旧be5c故障现场。
+**本节是历史817组结论，不替代当前4f18候选。** 当时源码为 `817aa533741bdd5de23f322fa5e5171442cb28a9`，六角色精确身份见 [最终发行清单](P6E-FINAL-RELEASE.md)。使用全新隔离项目 `xiaowork-homepage-v11-p6e-closure-fault`、HTTP3223/可信HTTPS3456、专属卷/网段，不操作下面保留的旧be5c故障现场。
 
 十二项真实故障及正常基线 **13/13通过**。新证据逐一记录源码817、实际注入镜像ID、任务/current/SQLite/文件目录/HTTP与人工干预，见 `P6E-final-faults-<case>.json`；[汇总](evidence/P6E-final-faults-summary.json)仅索引原始报告，不用旧镜像结果充数。报告中的旧控制器 `variant: frozen-baseline` 是沿用的测试场景标签，实际身份由 `sourceRevision`、精确image ID及独立测试镜像清单判断。
 

@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-01T11:39:40.457Z",
+  "projects": [
+    "xiaowork-homepage-v11-p6e-chain3-fault",
+    "xiaowork-homepage-v11-p6e-chain3-repair",
+    "xiaowork-homepage-v11-p6e-chain3-content",
+    "xiaowork-homepage-v11-p6e-chain3-again"
+  ],
+  "result": "STOPPED_WITH_PERSISTENT_PROTECTION",
+  "stages": [
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-fault",
+      "stopped": [],
+      "markerPresent": true,
+      "markerSHA256": "8ffeb5f9011d837e8b265c3cd3f85a257a3985e9d8e687d6c65ac7ff8c9d5a22",
+      "lockPresent": true,
+      "blocked": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-chain3-fault\\operation.lock'"
+        }
+      }
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-repair",
+      "stopped": [],
+      "markerPresent": true,
+      "markerSHA256": "9058d7f0808b81311dfbfb6905b8ce8824f31aa74898cf9557ebf49e050494c2",
+      "lockPresent": true,
+      "blocked": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-chain3-repair\\operation.lock'"
+        }
+      }
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-content",
+      "stopped": [],
+      "markerPresent": true,
+      "markerSHA256": "2f3b074bb35d5645db725d7f8f89c86b1cb36a299ae40546ffcb49f7800dbb14",
+      "lockPresent": true,
+      "blocked": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-chain3-content\\operation.lock'"
+        }
+      }
+    },
+    {
+      "project": "xiaowork-homepage-v11-p6e-chain3-again",
+      "stopped": [],
+      "markerPresent": true,
+      "markerSHA256": "f072ab291d5b325d3e07e3e65d09ac2ea028307c3f1cad38fed38cfb74254d04",
+      "lockPresent": true,
+      "blocked": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-chain3-again\\operation.lock'"
+        }
+      }
+    }
+  ],
+  "child": {
+    "code": 1,
+    "signal": null
+  },
+  "oldManualContainmentUnchanged": true
+}

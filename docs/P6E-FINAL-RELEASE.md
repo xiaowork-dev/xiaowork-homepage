@@ -1,5 +1,24 @@
 # P6-E 最终六角色发行身份
 
+## 当前候选：4f18（构建完成，整链受阻，非已验收发行）
+
+更新：2026-11-01。完整源码 **`4f18eaeaecb86baaca01f148f388e7e86eec68bf`**；Schema3/manifest1/linux/amd64，同一Git归档SHA256 `4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`。选择该源码是因为包含受信运维的异步整链持久保护及同进程生命周期入口；此后仅测试控制器、证据和文档变动。没有混用bb05与新单API。
+
+| 角色        | 实际镜像ID                                                                |
+| ----------- | ------------------------------------------------------------------------- |
+| api         | `sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d` |
+| worker      | `sha256:ad7150d12b21c6be45cac5ad000d900199b56f3069f1b4e2654b409b3137a83a` |
+| gateway     | `sha256:6318ccc16d24d31efdc631174ea86dc5e48c362e918c6b5f6efdf8efde46d358` |
+| frontend    | `sha256:d94efdea344d1c556fb7906af312f267890a862ffe165455906ccf62165fd6a3` |
+| static      | `sha256:420126d93d6b93b0b9bf4fac1990d8166ce5b89ba653ec70a12166338e6c77d1` |
+| maintenance | `sha256:78525f54a60e1655d0e89d491256e7857f733ac965bddda57ac7e44de9011f56` |
+
+[完整参数、基础镜像、身份与构建日志](evidence/P6E-chain3-runtime-manifest.json)。五个常驻服务健康启动、init完成，maintenance实际执行Schema和只读检查；maintenance为离线工具，不称常驻healthy。正式Worker builder identity是上表Worker完整ID；故障阶段的API/Worker派生身份与任务builder另外记录于[整链](evidence/P6E-chain3-current-repair.json)，不可冒称正式任务。故障入口未加入正式Dockerfile/二进制。
+
+身份交接、单对象修复和持续保护通过；备份容器的bind来源核对被Desktop路径表示差异阻断，尚未start。空卷恢复/更新/代码回退/正式预览与A-B-A完整验收均NOT_RUN。新[安全扫描](evidence/P6E-chain3-security-audit.json)有Worker10MEDIUM及low/未定级，未接受、未修复，不能沿用旧零中危结论。当前不能申请正式上线。
+
+## 历史bb05候选（原始结论保留）
+
 更新：2026-11-01。当前最终候选运行源码为 **`bb05f6ad613fdf3507ff8a9c56696da85fa4a678`**，Schema **3**、manifest **1**。六正式角色均从同一Git archive构建，归档SHA256为`4a767bfc545eca55b592af75441c73cd2a19ec5c28b116e0e08134a0c5ca4227`。选择该SHA是因为它包含atime保护、完整元数据验收与持久锁的marker早期窗口修复；此后仅文档/证据/测试控制器变动。仍未通过修复后完整备份恢复链，**不能正式发布**。
 
 | 角色               | 最终候选镜像 ID                                                           |

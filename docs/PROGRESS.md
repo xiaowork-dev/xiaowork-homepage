@@ -1,11 +1,15 @@
 # XiaoWork Homepage 项目进度
 
+本轮实测及完整错误见[当前交付](deliveries/P6E-delivery.md)、[发行组](evidence/P6E-chain3-runtime-manifest.json)、[整链](evidence/P6E-chain3-current-repair.json)、[自动保护](evidence/P6E-chain3-supervisor.json)、[只读留场](evidence/P6E-chain3-retention.json)。新源码归档SHA256为`4328952c2ad9956413a920d563bc03f0c7d8795872ca6e3e697174c772ddfe77`。旧卷/锁/人工containment不动；本轮失败不需要人工补锁。备份容器保持created，不能当作已备份。下一步仅需验证Windows/Docker Desktop bind来源的安全身份等价，再在全新环境重新完成下游，不在当前留场卷继续尝试。新扫描Worker有10个MEDIUM，根npm37moderate/admin9moderate，0high/critical不是整体验收通过；生产gate继续关闭。
+
 > 最后更新：2026-11-01（Asia/Shanghai）
-> 当前阶段：**P6-E 部分完成，正在收尾整链身份与持续保护。旧bb05的14项RO矩阵、7项锁故障及单对象修复成绩保留；旧失败现场不动。受信运维链保护修改已通过16项Node测试和ESLint，待冻结新组六角色并执行全新完整链，不能上线。**
+> 当前阶段：**P6-E 部分完成并安全停止。新候选 4f18eaeaecb86baaca01f148f388e7e86eec68bf 六角色已构建；镜像身份交接、整链自动保护3/3、真实单对象修复及metadata/HTTP通过。备份被Docker Desktop bind来源路径身份核对拒绝，后续恢复/更新/回退与正式完整运行链NOT_RUN，不能上线。**
 
 最新记录：[P6-E交付](deliveries/P6E-delivery.md)、[最终发行身份](P6E-FINAL-RELEASE.md)、[真实故障矩阵](P6E-FAULT-TESTS.md)、[跨源码验收](P6E-CROSS-SOURCE-ACCEPTANCE.md)。本页是最新结论；旧基线报告保留作历史，不将旧组证据扩大到最终组。
 
-本轮只处理根atime与外层验收锁。空卷分步对照证明默认Docker create即改变卷根atime，容器尚未启动；只增加volume-nocopy后不变。源挂载nocopy、kernel RO、目录/文件O_NOATIME及完整metadata比较均已实现并实测，无重设atime。[诊断](evidence/P6E-atime-diagnosis-r3.json)、[O_NOATIME补测](evidence/P6E-atime-diagnosis-r4.json)。原9887的475/481条相同、六根atime改变的[原始失败](evidence/P6E-ro-readonly-matrix-r2.json)完整保留。
+## 历史bb05专项（以下不替代新候选）
+
+当轮只处理根atime与外层验收锁。空卷分步对照证明默认Docker create即改变卷根atime，容器尚未启动；只增加volume-nocopy后不变。源挂载nocopy、kernel RO、目录/文件O_NOATIME及完整metadata比较均已实现并实测，无重设atime。[诊断](evidence/P6E-atime-diagnosis-r3.json)、[O_NOATIME补测](evidence/P6E-atime-diagnosis-r4.json)。原9887的475/481条相同、六根atime改变的[原始失败](evidence/P6E-ro-readonly-matrix-r2.json)完整保留。
 
 最终组[真实只读矩阵](evidence/P6E-atime2-readonly-matrix.json)14/14通过：4个稳定/有效WAL/只读目录正例、10个不明WAL/权限/损坏/Schema等反例，全部SHA与完整元数据不变。[真实锁矩阵](evidence/P6E-atime2-real-guards.json)7/7通过，覆盖外层assert、wrapper/维护器强杀、错误挂载/写者、故意metadata变化和marker写前退出；新任务确实拒绝，已知纯检查可显式复核，未知状态拒绝复核。锁和持久marker独立于源卷，不以进程退出自动清除。
 

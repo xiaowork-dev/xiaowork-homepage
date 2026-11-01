@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-01T11:35:42.341Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "cases": [
+    {
+      "mode": "controller-exit",
+      "project": "xiaowork-homepage-v11-p6e-c3-controller-exit-mvxr7f9i",
+      "result": "PASS",
+      "outcome": {
+        "code": null,
+        "signal": "SIGKILL",
+        "stdout": "CONTROLLER_READY_FOR_KILL\n",
+        "stderr": ""
+      },
+      "recoveryMarkerSHA256": "04ad1453b32fb6fe217f217020b1b606fc198792d3e2c8e22c05569958e1215f",
+      "markerUnchanged": true,
+      "lockRetained": true,
+      "writersStopped": true,
+      "publishing": "REFUSED_API_NOT_RUNNING",
+      "refusals": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-c3-controller-exit-mvxr7f9i\\operation.lock'"
+        }
+      },
+      "newProcessExit": 1,
+      "manualRecoveryRequired": true
+    },
+    {
+      "mode": "container-exit",
+      "project": "xiaowork-homepage-v11-p6e-c3-container-exit-mvxr7kru",
+      "result": "PASS",
+      "outcome": {
+        "code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "node:internal/modules/run_main:107\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Required API container stopped unexpectedly\r\n\r\n'false' !== 'true'\r\n\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-chain3-protection.mjs:32:14\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs:98:50\r\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:65:14)\r\n    at protectedChain (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs:98:33)\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-chain3-protection.mjs:22:9\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\r\n    at async node:internal/modules/esm/loader:647:26\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 'false',\r\n  expected: 'true',\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+      },
+      "recoveryMarkerSHA256": "cde63efe4a3ba8c18e4752115f19022d2919656acd44b798c81db43871e39f77",
+      "markerUnchanged": true,
+      "lockRetained": true,
+      "writersStopped": true,
+      "publishing": "REFUSED_API_NOT_RUNNING",
+      "refusals": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-c3-container-exit-mvxr7kru\\operation.lock'"
+        }
+      },
+      "newProcessExit": 1,
+      "manualRecoveryRequired": true
+    },
+    {
+      "mode": "identity",
+      "project": "xiaowork-homepage-v11-p6e-c3-identity-mvxr7mob",
+      "result": "PASS",
+      "outcome": {
+        "code": 1,
+        "signal": null,
+        "stdout": "",
+        "stderr": "node:internal/modules/run_main:107\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Actual project image differs from recorded release descriptor\r\n+ actual - expected\r\n\r\n+ 'sha256:05a67cf7383afeed67603b4a91abfb8a62742fe6d99957952541155d1cf3e19d'\r\n- 'sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d'\r\n\r\n    at backupProject (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-maintenance.mjs:193:12)\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-chain3-protection.mjs:37:7\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs:98:50\r\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:65:14)\r\n    at protectedChain (file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/v11-operation.mjs:98:33)\r\n    at file:///D:/Project/%E9%A1%B9%E7%9B%AE/xiaowork/xiaowork-homepage-v1/scripts/p6e-chain3-protection.mjs:22:9\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\r\n    at async node:internal/modules/esm/loader:647:26\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 'sha256:05a67cf7383afeed67603b4a91abfb8a62742fe6d99957952541155d1cf3e19d',\r\n  expected: 'sha256:6adb4b80d02a2db825b27efce2e2ab839c038676638a54feec0303a3ca0b404d',\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.22.1\r\n"
+      },
+      "recoveryMarkerSHA256": "a231dbf1f2125feaee3b78a3c1a20c029c63dd895f9a203c135d18e91a51a4ef",
+      "markerUnchanged": true,
+      "lockRetained": true,
+      "writersStopped": true,
+      "publishing": "REFUSED_API_NOT_RUNNING",
+      "refusals": {
+        "backup": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "repair": {
+          "refused": true,
+          "error": "Persistent operation.lock blocks new tasks; missing recovery marker is not an unlock"
+        },
+        "update": {
+          "refused": true,
+          "error": "EEXIST: file already exists, mkdir 'D:\\Project\\项目\\xiaowork\\xiaowork-homepage-v1\\.v11-deploy\\xiaowork-homepage-v11-p6e-c3-identity-mvxr7mob\\operation.lock'"
+        }
+      },
+      "newProcessExit": 1,
+      "manualRecoveryRequired": true
+    }
+  ],
+  "result": "PASS"
+}

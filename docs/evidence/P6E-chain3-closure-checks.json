@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-01T12:08:30.890Z",
+  "source": "4f18eaeaecb86baaca01f148f388e7e86eec68bf",
+  "runtimeSourceChangedAfterFreeze": false,
+  "nodeTests": {
+    "file": "P6E-chain3-prefreeze-node.txt",
+    "exitCode": 0,
+    "passed": 16,
+    "firstRestrictedAttempt": "12/16; four local HTTP EACCES failures in tool output, not counted as product passes"
+  },
+  "eslint": {
+    "file": "P6E-chain3-final-eslint.txt",
+    "exitCode": 0
+  },
+  "format": {
+    "file": "P6E-chain3-final-format.txt",
+    "exitCode": 0
+  },
+  "faultProtection": {
+    "passed": 3,
+    "firstFixture": "FAIL_PRESERVED_NOT_VALID_CONTROLLER_EXIT_EVIDENCE",
+    "actualChainFailure": "PERSISTENT_GUARDS_AUTOMATICALLY_RETAINED",
+    "apiActiveRace": "NOT_RUN"
+  },
+  "backup": {
+    "result": "REFUSED_BIND_SOURCE_IDENTITY_BEFORE_CONTAINER_START",
+    "exitCode": 1
+  },
+  "downstream": "NOT_RUN_STOPPED",
+  "productionReady": false,
+  "ledger": [
+    {
+      "file": "P6E-chain3-runtime-manifest.json",
+      "bytes": 7876,
+      "sha256": "b8e5e55c0bac28003dbd2c7e2f2fc181a1b2ebd30d5f9bec976fbbc00e08951b"
+    },
+    {
+      "file": "P6E-chain3-current-repair.json",
+      "bytes": 305521,
+      "sha256": "e3778adffdf0aff5bcb12f60aa3dc9fecfff7e3e6c84ec9739786d97f51af6f2"
+    },
+    {
+      "file": "P6E-chain3-repair-metadata.json",
+      "bytes": 273436,
+      "sha256": "0d8c52d2eae16084d413ca98bb93714a79f97bafe86b4326f499fd164c219b40"
+    },
+    {
+      "file": "P6E-chain3-protection.json",
+      "bytes": 7312,
+      "sha256": "16b974938dd70c954852366680ba9e789f77692d6ba2fb96d1b0481f80662cc9"
+    },
+    {
+      "file": "P6E-chain3-protection-r2.json",
+      "bytes": 6387,
+      "sha256": "6e2c11e6c60be3359c3cc6a2cd171da3ed212aebdf37f88b13f0b51c8a697a39"
+    },
+    {
+      "file": "P6E-chain3-supervisor.json",
+      "bytes": 3735,
+      "sha256": "b52cace959751183daaae8322d95fedbbf500a90e8b1693059b9dbd2bb705c9b"
+    },
+    {
+      "file": "P6E-chain3-retention.json",
+      "bytes": 12410,
+      "sha256": "b456e6d8f30e498177531d14bdba9c95209309ccd743cb0db3447091222bd5b5"
+    },
+    {
+      "file": "P6E-chain3-summary.json",
+      "bytes": 6463,
+      "sha256": "6e1410d86f16efdb14eb6e5021e41dbbd2222c1bed84d39af1bbe114109426f1"
+    },
+    {
+      "file": "P6E-chain3-security-audit.json",
+      "bytes": 13279,
+      "sha256": "9f1fb318a08547365d5ce9d2c3435ae3f3947bdee8c7b15d7f9fada3108496fe"
+    },
+    {
+      "file": "P6E-chain3-repository-secret-scan.json",
+      "bytes": 9984,
+      "sha256": "2eb98d109207316c0e81a5a180bcef2e3fd4eb2d2b41fa71e4be6d6f8c7856cd"
+    },
+    {
+      "file": "P6E-chain3-repository-secret-review.json",
+      "bytes": 7527,
+      "sha256": "01f8cfe151489e3e31af2126d06ac708cbf8aeb5ed43844c1c4fff98453de86f"
+    }
+  ]
+}
