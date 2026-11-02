@@ -1,0 +1,277 @@
+{
+  "at": "2026-11-02T07:28:06.132Z",
+  "localDate": "2026-11-02",
+  "timezone": "Asia/Shanghai",
+  "scope": "用户已授权安装独立 Ubuntu WSL2 和原生 Docker Engine；本次仅完成安装前只读预检，因可用物理内存不足而停止",
+  "sourceHeadAtStart": "dc88634995691f388504aeb172c2530f000763d0",
+  "runtimeSourceUnchanged": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+  "authorization": {
+    "installation": true,
+    "fullSixRoleBuild": false,
+    "fullAcceptanceChain": false,
+    "productionOperations": false
+  },
+  "target": {
+    "distribution": "Ubuntu-24.04",
+    "location": "D:/WSL/XiaoWork-P6E",
+    "before": [
+      {
+        "path": "D:/WSL",
+        "exists": false
+      },
+      {
+        "path": "D:/WSL/XiaoWork-P6E",
+        "exists": false
+      }
+    ],
+    "after": [
+      {
+        "path": "D:/WSL",
+        "exists": false
+      },
+      {
+        "path": "D:/WSL/XiaoWork-P6E",
+        "exists": false
+      }
+    ]
+  },
+  "resources": {
+    "initial": {
+      "cpu": 16,
+      "totalMemory": 16855646208,
+      "freeMemory": 475922432,
+      "disk": {
+        "C:/": {
+          "available": 392154083328,
+          "total": 684098641920
+        },
+        "D:/": {
+          "available": 229549596672,
+          "total": 314572795904
+        }
+      }
+    },
+    "confirmation": {
+      "at": "2026-11-02T07:25:15.7912100+00:00",
+      "source": "Windows kernel32 GlobalMemoryStatusEx",
+      "samples": [
+        {
+          "at": "2026-11-02T07:25:01.2658654+00:00",
+          "memoryLoadPercent": 91,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 1445441536,
+          "totalCommitLimitBytes": 52363927552,
+          "availableCommitBytes": 6513647616
+        },
+        {
+          "at": "2026-11-02T07:25:06.3325000+00:00",
+          "memoryLoadPercent": 90,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 1598279680,
+          "totalCommitLimitBytes": 52363927552,
+          "availableCommitBytes": 6532792320
+        },
+        {
+          "at": "2026-11-02T07:25:11.3474331+00:00",
+          "memoryLoadPercent": 92,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 1306038272,
+          "totalCommitLimitBytes": 52363927552,
+          "availableCommitBytes": 6437699584
+        }
+      ],
+      "plannedPortListeners": [],
+      "wslService": [
+        {
+          "Name": "WslService",
+          "Status": 4
+        }
+      ],
+      "requiredValidationBudgetBytes": 4294967296,
+      "mutatedSystem": false
+    },
+    "interpretation": "4 GiB 是仓库准备方案的验收任务规划预算，不是声称 Ubuntu 官方安装最低要求。初查仅约 454 MiB 可用，内核复核仅约 1.22～1.49 GiB；无法证明启动新环境不挤压现有服务，按用户要求安全停止。页面文件可用提交空间不作为充足物理内存证明。"
+  },
+  "wsl": {
+    "commands": [
+      {
+        "cmd": "wsl.exe",
+        "args": [
+          "--version"
+        ],
+        "exitCode": 0,
+        "stdout": "WSL 版本: 3.0.3.0\r\n内核版本: 6.18.54.1-1\r\nWSLg 版本: 1.0.79\r\nMSRDC 版本: 1.2.7391\r\nDirect3D 版本: 1.611.1-81528511\r\nDXCore 版本: 10.0.26100.1-240331-1435.ge-release\r\nWindows 版本: 10.0.26300.9711\r\n",
+        "stderr": ""
+      },
+      {
+        "cmd": "wsl.exe",
+        "args": [
+          "--list",
+          "--verbose"
+        ],
+        "exitCode": 0,
+        "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Running         2\r\n",
+        "stderr": ""
+      },
+      {
+        "cmd": "wsl.exe",
+        "args": [
+          "--help"
+        ],
+        "exitCode": 4294967295,
+        "stdout": "版权所有 (c) Microsoft Corporation。保留所有权利。\r\n有关此产品的隐私信息，请访问 https://aka.ms/privacy。\r\n\r\n用法: wsl.exe [Argument][Options...][CommandLine]\r\n\r\n运行 Linux 二进制文件的参数:\r\n\r\n    如果未提供命令行，wsl.exe 将启动默认 shell。\r\n\r\n    --exec, -e <CommandLine>\r\n        在不使用默认 Linux shell 的情况下执行指定的命令。\r\n\r\n    --shell-type <standard|login|none>\r\n        使用提供的 shell 类型执行指定的命令。\r\n\r\n    --\r\n        按原样传递剩余的命令行。\r\n\r\n选项:\r\n    --cd <Directory>\r\n        将指定目录设置为当前工作目录。\r\n        如果使用 ~，则将使用 Linux 用户的主路径。如果路径以\r\n        / 字符开始，它将被解释为绝对 Linux 路径。\r\n        否则，该值必须是绝对 Windows 路径。\r\n\r\n    --distribution, -d <DistroName>\r\n        运行指定的分发。\r\n\r\n    --distribution-id <DistroGuid>\r\n        运行指定的分发 ID。\r\n\r\n    --user, -u <UserName>\r\n        以指定用户身份运行。\r\n\r\n    --system\r\n        为系统分发启动 shell。\r\n\r\n用于管理适用于 Linux 的 Windows 子系统的参数:\r\n\r\n    --help\r\n        显示使用情况信息。\r\n\r\n    --debug-shell\r\n        出于诊断目的打开 WSL2 调试 shell。\r\n\r\n    --install [Distro] [Options...]\r\n        安装适用于 Linux 的 Windows 子系统分发。\r\n        有关有效分发的列表，请使用 'wsl.exe --list --online'。\r\n\r\n        选项:\r\n            --enable-wsl1\r\n                启用 WSL1 支持。\r\n\r\n            --fixed-vhd\r\n                创建固定大小的磁盘来存储分发。\r\n\r\n            --from-file <Path>\r\n                从本地文件安装分发。\r\n\r\n            --legacy\r\n                使用旧分发清单。\r\n\r\n            --location <Location>\r\n                设置分发的安装路径。\r\n\r\n            --name <Name>\r\n                设置分发的名称。\r\n\r\n            --no-distribution\r\n                仅安装所需的可选组件，不安装分发。\r\n\r\n            --no-launch, -n\r\n                安装后不要启动分发。\r\n\r\n            --version <Version>\r\n                指定要用于新分发的版本。\r\n\r\n            --vhd-size <MemoryString>\r\n                指定用于存储分发的磁盘的大小。\r\n\r\n            --web-download\r\n                从 Internet 而不是 Microsoft Store 下载分发。\r\n\r\n    --manage <Distro> <Options...>\r\n        更改发行版特定选项。\r\n\r\n        选项:\r\n            --move <Location>\r\n                将分发移到新位置。\r\n\r\n            --set-sparse, -s <true|false>\r\n                将发行版的 VHD 设置为稀疏，从而允许自动回收磁盘空间。\r\n\r\n            --set-default-user <Username>\r\n                设置分发的默认用户。\r\n\r\n            --resize <MemoryString>\r\n                将分发的磁盘大小调整为指定大小。\r\n\r\n            --compact\r\n        压缩 WSL 2 发行版的 VHDX 文件。\r\n\r\n    --mount <Disk>\r\n        在所有 WSL 2 发行版中附加和装载物理磁盘或虚拟磁盘。\r\n\r\n        选项:\r\n            --vhd\r\n                指定 <Disk> 是指虚拟硬盘。\r\n\r\n            --bare\r\n                将磁盘附加到 WSL2，但不要装载它。\r\n\r\n            --name <Name>\r\n                使用装入点的自定义名称装载磁盘。\r\n\r\n            --type <Type>\r\n                装载磁盘时要使用的文件系统(如果未指定)默认为 ext4。\r\n\r\n            --options <Options>\r\n                其他装载选项。\r\n\r\n            --partition <Index>\r\n                要装载的分区的索引(如果未指定)默认为整个磁盘。\r\n\r\n    --set-default-version <Version>\r\n        更改新发行版的默认安装版本。\r\n\r\n    --shutdown\r\n        立即终止所有正在运行的发行版和 WSL 2\r\n        轻型实用工具虚拟机。\r\n\r\n        选项:\r\n            --force\r\n                即使正在执行操作，也终止 WSL 2 虚拟机。可能导致数据丢失。\r\n\r\n    --status\r\n        显示适用于 Linux 的 Windows 子系统状态。\r\n\r\n    --unmount [磁盘]\r\n        从所有 WSL2 分发中卸载和分离磁盘。\r\n        如果在没有参数的情况下调用，则卸载和分离所有磁盘。\r\n\r\n    --uninstall\r\n        从此计算机卸载适用于 Linux 的 Windows 子系统包。\r\n\r\n    --update\r\n        更新适用于 Linux 的 Windows 子系统包。\r\n\r\n        选项:\r\n            --pre-release\r\n                下载预发行版本(如果可用)。\r\n\r\n    --version, -v\r\n        显示版本信息。\r\n\r\n用于在适用于 Linux 的 Windows 子系统中管理分发的参数:\r\n\r\n    --export <Distro> <FileName> [选项]\r\n        将分发导出到 tar 文件。\r\n        文件名可以是 - for stdout。\r\n\r\n        选项:\r\n            --format <Format>\r\n                指定导出格式。支持的值: tar、tar.gz、tar.xz、vhd。\r\n\r\n    --import <Distro> <InstallLocation> <FileName> [选项]\r\n        将指定的 tar 文件作为新分发导入。\r\n        文件名可以是 - for stdin。\r\n\r\n        选项:\r\n            --version <Version>\r\n                指定要用于新分发的版本。\r\n\r\n            --vhd\r\n                指定所提供的文件是 .vhd 还是 .vhdx 文件，而不是 tar 文件。\r\n                此操作在指定的安装位置创建 VHD 文件的副本。\r\n\r\n    --import-in-place <Distro> <FileName>\r\n        将指定的 VHD 文件作为新分发导入。\r\n        必须使用 ext4 文件系统类型设置此虚拟硬盘的格式。\r\n\r\n    --list, -l [选项]\r\n        列出分发。\r\n\r\n        选项:\r\n            --all\r\n                列出所有分发，包括当前\r\n                正在安装或卸载的分发。\r\n\r\n            --running\r\n                仅列出当前正在运行的分发。\r\n\r\n            --quiet, -q\r\n                仅显示分发名称。\r\n\r\n            --verbose, -v\r\n                显示有关所有分发的详细信息。\r\n\r\n            --online, -o\r\n                显示适合通过 'wsl --install' 安装的可用分发列表。\r\n\r\n    --set-default, -s <Distro>\r\n        将分发设置为默认值。\r\n\r\n    --set-version <Distro> <Version>\r\n        更改指定分发的版本。\r\n\r\n    --terminate, -t <Distro>\r\n        终止指定的分发。\r\n\r\n    --unregister <Distro>\r\n        取消注册分发并删除根文件系统。\r\n",
+        "stderr": ""
+      }
+    ],
+    "installOptionsPresent": [
+      "--location",
+      "--name",
+      "--no-launch",
+      "--version",
+      "--vhd-size"
+    ],
+    "helpExitNote": "wsl --help 输出完整选项但返回 unsigned -1（4294967295）；按原值记录，不把它解释成安装成功。--version 和 --list --verbose 返回 0。"
+  },
+  "desktopBaseline": {
+    "id": "960fce9c-a763-42d0-b849-fc1f38473b89",
+    "operatingSystem": "Docker Desktop",
+    "serverVersion": "29.8.2",
+    "totalContainers": 140,
+    "runningContainers": 25,
+    "context": "desktop-linux",
+    "nativeIndependentEngine": "NOT_INSTALLED_NOT_VERIFIED",
+    "containerIdentityAndStateDigest": {
+      "beforeCount": 140,
+      "afterCount": 140,
+      "beforeSha256": "5a00e5c66dd3562cc082d131e9db9c0c64cc7de17170346fc27d91a2bdec9d13",
+      "afterSha256": "5a00e5c66dd3562cc082d131e9db9c0c64cc7de17170346fc27d91a2bdec9d13",
+      "unchanged": true
+    },
+    "scope": "全量容器 ID/镜像/状态排序后哈希相同；不复制其他项目的标签、配置或秘密路径进交付。不是对全量容器配置做完整取证。"
+  },
+  "closure": {
+    "at": "2026-11-02T07:26:50.981Z",
+    "commands": [
+      {
+        "executable": "wsl.exe",
+        "args": [
+          "--list",
+          "--online"
+        ],
+        "exitCode": 0,
+        "stdout": "以下是可安装的有效分发的列表。\r\n使用“wsl.exe --install <Distro>”安装。\r\n\r\nNAME                            FRIENDLY NAME\r\nUbuntu                          Ubuntu\r\nUbuntu-26.04                    Ubuntu 26.04 LTS\r\nUbuntu-24.04                    Ubuntu 24.04 LTS\r\nUbuntu-22.04                    Ubuntu 22.04 LTS\r\nopenSUSE-Tumbleweed             openSUSE Tumbleweed\r\nopenSUSE-Leap-16.0              openSUSE Leap 16.0\r\nRLCPlus-9                       Rocky Linux Plus 9 (CIQ)\r\nRLCPlus-10                      Rocky Linux Plus 10 (CIQ)\r\nSUSE-Linux-Enterprise-15-SP7    SUSE Linux Enterprise 15 SP7\r\nSUSE-Linux-Enterprise-16.0      SUSE Linux Enterprise 16.0\r\nkali-linux                      Kali Linux Rolling\r\nDebian                          Debian GNU/Linux\r\nAlmaLinux-8                     AlmaLinux OS 8\r\nAlmaLinux-9                     AlmaLinux OS 9\r\nAlmaLinux-Kitten-10             AlmaLinux OS Kitten 10\r\nAlmaLinux-10                    AlmaLinux OS 10\r\narchlinux                       Arch Linux\r\nFedoraLinux-44                  Fedora Linux 44\r\nFedoraLinux-43                  Fedora Linux 43\r\neLxr                            eLxr 12.12.0.0 GNU/Linux\r\nOracleLinux_7_9                 Oracle Linux 7.9\r\nOracleLinux_8_10                Oracle Linux 8.10\r\nOracleLinux_9_5                 Oracle Linux 9.5\r\nSUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6\r\n",
+        "stderr": ""
+      },
+      {
+        "executable": "wsl.exe",
+        "args": [
+          "--list",
+          "--verbose"
+        ],
+        "exitCode": 0,
+        "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Running         2\r\n",
+        "stderr": ""
+      },
+      {
+        "executable": "docker",
+        "args": [
+          "context",
+          "show"
+        ],
+        "exitCode": 0,
+        "stdout": "desktop-linux\n",
+        "stderr": ""
+      },
+      {
+        "executable": "docker",
+        "args": [
+          "info",
+          "--format",
+          "{{json .ID}}"
+        ],
+        "exitCode": 0,
+        "stdout": "\"960fce9c-a763-42d0-b849-fc1f38473b89\"\n",
+        "stderr": ""
+      },
+      {
+        "executable": "docker",
+        "args": [
+          "ps",
+          "-a",
+          "--format",
+          "{{.ID}} {{.Image}} {{.State}}"
+        ],
+        "exitCode": 0,
+        "stdout": "保留在本地缓存；交付只记录规范化哈希及数量",
+        "stderr": ""
+      }
+    ],
+    "paths": [
+      {
+        "path": "D:/WSL",
+        "exists": false
+      },
+      {
+        "path": "D:/WSL/XiaoWork-P6E",
+        "exists": false
+      }
+    ]
+  },
+  "executionNotes": [
+    "初次受限 shell 读取 WSL 返回 Wsl/E_ACCESSDENIED，Docker 管道返回 permission denied，CIM 也不可访问；原只读命令退出后使用已授权提升权限复核成功。没有执行任何安装命令。",
+    "内存确认使用 Windows kernel32 GlobalMemoryStatusEx，不依赖失败的 CIM，也不混淆 totalPhysical 和 availablePhysical。",
+    "计划端口 3228/3461 未发现监听；没有实际占用端口、创建网络或测试业务容器。",
+    "没有尝试停止现有容器、调整 WSL 全局内存、增加页面文件或终止用户进程来满足门槛。"
+  ],
+  "localRawEvidenceHashes": {
+    "preflight.json": "322ef4b780884b1992557481c7b0795ef7e0329c4a602a0f474acdbed5666289",
+    "resource-confirmation.json": "affab8e9c9c3c2f8c97cc7e682b2edecc5cce6776fa59ba80fe3bf4a3731ca60",
+    "safe-closure.json": "2debb044a7e151fee57f539a41461b7fc2714a61f0b7193b3416a65b9f6bf026",
+    "memory-probe.cs": "8f20f471903b3342e9fc643818ac980baee0158fd4f4e3667e9be367652cfacd"
+  },
+  "installation": {
+    "attempted": false,
+    "distributionCreated": false,
+    "dockerEngineInstalled": false,
+    "composeInstalled": false,
+    "serviceChanged": false,
+    "defaultContextChanged": false,
+    "nativeSocketVerified": false,
+    "nativeMountVerified": false,
+    "fullSixRoleBuildRun": false,
+    "fullChainRun": false
+  },
+  "cases": [
+    {
+      "name": "目标路径无冲突",
+      "result": "PASS"
+    },
+    {
+      "name": "D 盘可用空间满足 80 GiB 规划",
+      "result": "PASS"
+    },
+    {
+      "name": "WSL2 与安装选项",
+      "result": "PASS_WITH_HELP_EXIT_RECORDED"
+    },
+    {
+      "name": "Ubuntu-24.04 在线可用",
+      "result": "PASS"
+    },
+    {
+      "name": "计划端口无监听",
+      "result": "PASS"
+    },
+    {
+      "name": "当前可用物理内存满足准备方案预算",
+      "result": "BLOCKED"
+    },
+    {
+      "name": "独立发行版、原生 Daemon/Socket 身份及最小挂载",
+      "result": "NOT_RUN_RESOURCE_PREFLIGHT_BLOCKED"
+    }
+  ],
+  "result": "BLOCKED_AVAILABLE_PHYSICAL_MEMORY",
+  "environmentReadyForFullP6E": false,
+  "nextStep": "用户释放闲置应用内存后重新只读预检，达到 4 GiB 验收预算且有宿主余量时，在本次已授权范围内继续安装；不重复请求相同安装授权，不自动开始六角色或完整链。"
+}
