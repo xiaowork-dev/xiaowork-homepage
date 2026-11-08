@@ -117,6 +117,15 @@ export function gatewayRealIpConfig(edgeSubnet) {
     '',
   ].join('\n')
 }
+// Read-only presence check of the session key on first openresty deployment.
+// Like every maintenance tool mount it must not populate the original volume.
+export function secretStatusMount(project) {
+  assert.match(project, /^xiaowork-homepage-v11-[a-z0-9-]{1,40}$/)
+  return [
+    '--mount',
+    `type=volume,src=${project}_admin-secrets,dst=/source/secrets,readonly,volume-nocopy`,
+  ]
+}
 export function configuration(
   project,
   spec,
@@ -234,10 +243,11 @@ function start(config, first) {
   compose(config, ['config', '--quiet'])
   compose(config, ['up', '-d', '--no-build', 'publication-init', 'api-init'])
   if (first && config.topology === 'openresty') {
-    const secret = tool(config.spec.images.maintenance, 'secret-status', [
-      '--mount',
-      `type=volume,src=${config.project}_admin-secrets,dst=/source/secrets,readonly`,
-    ])
+    const secret = tool(
+      config.spec.images.maintenance,
+      'secret-status',
+      secretStatusMount(config.project),
+    )
     if (!secret.ready) compose(config, ['run', '--rm', '--no-deps', 'api-init', 'init-secret'])
   }
   compose(config, ['up', '-d', '--no-build', '--wait', '--wait-timeout', '120'])

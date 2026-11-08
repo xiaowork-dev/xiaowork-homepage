@@ -3,7 +3,12 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { test } from 'node:test'
-import { configuration, edgeSubnetFor, gatewayRealIpConfig } from './v11-release.mjs'
+import {
+  configuration,
+  edgeSubnetFor,
+  gatewayRealIpConfig,
+  secretStatusMount,
+} from './v11-release.mjs'
 
 const id = (c) => 'sha256:' + c.repeat(64)
 const spec = {
@@ -107,4 +112,16 @@ test('production publishing remains hard-disabled', () => {
       ),
     /Production publishing remains hard-disabled/,
   )
+})
+
+test('first-deployment secret check mounts the secrets volume read-only without populate', () => {
+  const [flag, value] = secretStatusMount('xiaowork-homepage-v11-unit')
+  assert.equal(flag, '--mount')
+  const parts = value.split(',')
+  assert.ok(parts.includes('type=volume'))
+  assert.ok(parts.includes('src=xiaowork-homepage-v11-unit_admin-secrets'))
+  assert.ok(parts.includes('dst=/source/secrets'))
+  assert.ok(parts.includes('readonly'), 'must be read-only')
+  assert.ok(parts.includes('volume-nocopy'), 'tool() refuses populate on original volumes')
+  assert.throws(() => secretStatusMount('other'))
 })
