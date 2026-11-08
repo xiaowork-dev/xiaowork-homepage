@@ -1,5 +1,9 @@
 # XiaoWork Homepage 项目进度
 
+## 最新：2026-11-08 Nuxt 4.6.4 安全升级
+
+`9e3d4db` 把 `nuxt` 升级到 4.6.4（同时带入 nitropack 2.13.6），修复 4 个 Nuxt 公告，包括 GHSA-9v7c-q64q-vv33。生成产物内容与升级前一致；在主服务器隔离环境重建六角色后，Worker 真实发布通过。剩余 minimatch、glob、deepmerge 三项构建期公告没有不跨大版本的上游修复，需要用户确认接受。见[本次交付](deliveries/20261108-v11-npm-dependency-upgrade.md)。
+
 ## 最新：2026-11-08 生产发布 gate 实现并通过生产拓扑隔离验收
 
 按推荐决策 D1–D6 实现了运维授权型生产发布 gate：授权记录只能由维护镜像写入只读控制卷，绑定已验收的源码 SHA 和 Worker 镜像，默认有效期 7 天，可随时撤销；生产环境要求先预览后发布，每小时最多 6 个发布或恢复任务。运行源码为 `b3550b2d30c79b8a08e6001b2b972dd6b60ff3b4`，宿主工具为 `161d2ceae5e6e1fff02b8477f30f3d0d8bb0742c`。
