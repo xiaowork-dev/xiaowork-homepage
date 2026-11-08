@@ -122,7 +122,7 @@ func TestProductionGateRequiresPreviewLimitsRateAndAudits(t *testing.T) {
 	if errorCode(t, res) != "PREVIEW_REQUIRED" {
 		t.Fatal("publish without preview must be refused")
 	}
-	queuePublication(t, f, c, csrf, "preview", "gate-preview-1")
+	queuePublication(t, f, c, csrf, "preview", "gate-preview-one-1")
 	completePreview(t, f)
 	jobID := queuePublication(t, f, c, csrf, "publish", "gate-publish-after-preview-1")
 	var meta string
@@ -146,7 +146,7 @@ func TestProductionGateRequiresPreviewLimitsRateAndAudits(t *testing.T) {
 	prior := productionJobsPerHour
 	productionJobsPerHour = 1
 	t.Cleanup(func() { productionJobsPerHour = prior })
-	queuePublication(t, f, c, csrf, "preview", "gate-preview-2")
+	queuePublication(t, f, c, csrf, "preview", "gate-preview-two-1")
 	completePreview(t, f)
 	res, _ = contentHTTP(t, f, c, "POST", "/publish-jobs", body, csrf, publicationRevision(t, f), "gate-rate-limited-1", 429)
 	if errorCode(t, res) != "PUBLISH_RATE_LIMITED" {
