@@ -738,14 +738,21 @@ export function createHarness({ project, secret: secretFile, out }) {
     await login()
     compose('up', '-d', '--no-build', '--no-deps', '--force-recreate', 'worker')
     await waitAvailable()
-    const pending = (await read('/jobs')).items.filter((j) =>
-      ['queued', 'running', 'reconciling'].includes(j.status),
-    )
-    assert.equal(pending.length, 0, 'An existing uncertain task must be reconciled first')
+    // Setup has its own report so helper events never touch an undefined case report.
+    report = { case: 'setup', project, events: [], result: 'RUNNING' }
+    // An in-flight task (e.g. from an interrupted harness run) is allowed to
+    // finish normally; a task still unfinished after the bound fails setup.
+    for (const j of (await read('/jobs')).items.filter((x) =>
+      ['queued', 'running', 'reconciling'].includes(x.status),
+    )) {
+      const done = await waitTerminal(j.id, 420000)
+      await event('pre-existing-task-finished', { jobId: j.id, status: done.status })
+    }
     if (!(await read('/publishing-status')).activeReleaseId) {
       const id = await submitOk('publish')
       assert.equal((await waitTerminal(id)).status, 'succeeded')
     }
+    fs.writeFileSync(path.join(out, 'setup.json'), JSON.stringify(report, null, 2), { mode: 0o600 })
     const summary = []
     for (const name of names) {
       console.log('CASE', name)
