@@ -29,7 +29,7 @@
     "check": "npm run lint && npm run format:check && npm run typecheck"
   },
   "dependencies": {
-    "nuxt": "4.6.2",
+    "nuxt": "4.6.4",
     "vue": "3.5.44",
     "vue-router": "5.4.0"
   },
