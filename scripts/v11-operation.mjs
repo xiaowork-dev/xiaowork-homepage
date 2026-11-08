@@ -190,11 +190,16 @@ export function guardedOperation(project, kind, action) {
   syncDirectory(state)
   const marker = path.join(state, 'recovery-required.json')
   const id = randomUUID()
+  // Register this process as the in-memory owner of the lock it just created
+  // atomically, and record the same owner in the durable marker. Nested
+  // assertNoRecovery(project, context.owner) otherwise refuses our own guard.
+  claimLifecycleLock(project, id)
   // No exit/finally handler removes guards. A failed marker write leaves the
   // atomic lock. Process death is never interpreted as successful recovery.
   durableRecord(marker, {
     format: 1,
     id,
+    owner: id,
     project,
     kind,
     pid: process.pid,
@@ -219,11 +224,13 @@ export function guardedOperation(project, kind, action) {
     assert.ok(!(result instanceof Promise), 'Offline guard requires synchronous operations')
     context.record('completed', { result: 'all-acceptance-conditions-passed' })
     assert.equal(JSON.parse(fs.readFileSync(marker, 'utf8')).id, id, 'Guard ownership changed')
+    assert.equal(ownedLifecycleLocks.get(project), id, 'Guard ownership changed')
     completeSharedBarrier(project, id)
     fs.unlinkSync(marker)
     syncDirectory(state)
     fs.rmdirSync(lock)
     syncDirectory(state)
+    ownedLifecycleLocks.delete(project)
     return result
   } catch (error) {
     try {

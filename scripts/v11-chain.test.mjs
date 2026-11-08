@@ -76,6 +76,41 @@ test('caught nested failure poisons the chain and cannot release or continue', a
   protectedState(p)
 })
 
+// Standalone CLI path (v11-maintenance.mjs inspect|backup|restore): the guard it
+// creates must be recognised as its own by nested owner checks, and nobody else's.
+test('standalone guarded operation owns its guard for nested checks and releases on success', () => {
+  const p = fresh('standalone')
+  const result = guardedOperation(p, 'restore', (context) => {
+    assertNoRecovery(p, context.owner)
+    assert.equal(protectedState(p).owner, context.owner)
+    assert.throws(
+      () => assertNoRecovery(p, '00000000-0000-4000-8000-000000000000'),
+      /blocks new tasks/,
+    )
+    assert.throws(() => assertNoRecovery(p), /blocks new tasks/)
+    return 'restored'
+  })
+  assert.equal(result, 'restored')
+  assert.ok(!fs.existsSync(path.join(operationState(p), 'operation.lock')))
+  assert.ok(!fs.existsSync(path.join(operationState(p), 'recovery-required.json')))
+  assertNoRecovery(p)
+})
+
+test('standalone guarded failure retains its guard and refuses the next operation', () => {
+  const p = fresh('standalone-fail')
+  assert.throws(
+    () =>
+      guardedOperation(p, 'restore', (context) => {
+        assertNoRecovery(p, context.owner)
+        throw Error('restore verification failed')
+      }),
+    /restore verification failed/,
+  )
+  protectedState(p)
+  assert.throws(() => assertNoRecovery(p), /blocks new tasks/)
+  assert.throws(() => guardedOperation(p, 'restore', () => 'must not run'), /blocks new tasks/)
+})
+
 test('controller process exit retains durable guards without cleanup handlers', () => {
   const p = fresh('exit')
   const module = pathToFileURL(path.resolve('scripts/v11-operation.mjs')).href
