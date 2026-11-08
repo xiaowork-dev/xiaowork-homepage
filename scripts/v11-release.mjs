@@ -364,6 +364,9 @@ export function runLifecycle(input) {
   let lock
   let barrierProject
   let operationAccepted = false
+  // True only while a command is still checking preconditions and has changed
+  // nothing; a refusal then releases its own fresh lock instead of retaining it.
+  let releaseOnRefusal = false
   const options = {}
   while (args.length) {
     const key = args.shift()
@@ -545,6 +548,7 @@ export function runLifecycle(input) {
           return
         }
         if (command === 'authorize-publishing') {
+          releaseOnRefusal = true
           assert.equal(
             prior.topology,
             'openresty',
@@ -569,6 +573,8 @@ export function runLifecycle(input) {
             last.contentManifestSHA256,
             'Backup bundle changed since it was recorded',
           )
+          // From here on state may change: any failure retains the lifecycle lock.
+          releaseOnRefusal = false
           // Start the publication machinery FIRST: without an authorization the
           // API keeps the gate closed, so any failure here leaves publishing off.
           const next = configuration(
@@ -853,7 +859,7 @@ export function runLifecycle(input) {
   } finally {
     // Only the command's own transient lock is released here. A parent chain
     // remains protected until its final acceptance, including HTTP checks.
-    if (lock && !inherited && operationAccepted) {
+    if (lock && !inherited && (operationAccepted || releaseOnRefusal)) {
       if (barrierProject) completeSharedBarrier(barrierProject, lifecycleOwner)
       fs.rmdirSync(lock)
     }
