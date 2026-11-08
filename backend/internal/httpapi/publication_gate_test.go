@@ -72,7 +72,8 @@ func errorCode(t *testing.T, envelope map[string]any) string {
 func completePreview(t *testing.T, f *authFixture) publishmodel.Assignment {
 	t.Helper()
 	j := claimJob(t, f)
-	s, _, hash := prepareArtifact(t, f, j)
+	s, unlock, hash := prepareArtifact(t, f, j)
+	defer unlock() // release the publisher lock so a later artifact can be prepared
 	prepareWorker(t, f, j, hash)
 	receipt := publishmodel.Receipt{SchemaVersion: 1, JobID: j.ID, ReleaseID: j.ReleaseID, SnapshotID: j.SnapshotID, SnapshotSHA256: j.SnapshotSHA256, ManifestSHA256: hash, ActivatedAt: publicationTime(f.clock.Load()), Outcome: "preview-ready"}
 	if e := s.WritePreviewReceipt(receipt); e != nil {
