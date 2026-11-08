@@ -2,7 +2,7 @@
 
 ## 最新：2026-11-08 Nuxt 4.6.4 安全升级
 
-`9e3d4db` 把 `nuxt` 升级到 4.6.4（同时带入 nitropack 2.13.6），修复 4 个 Nuxt 公告，包括 GHSA-9v7c-q64q-vv33。生成产物内容与升级前一致；在主服务器隔离环境重建六角色后，Worker 真实发布通过。剩余 minimatch、glob、deepmerge 三项构建期公告没有不跨大版本的上游修复，需要用户确认接受。见[本次交付](deliveries/20261108-v11-npm-dependency-upgrade.md)。
+`9e3d4db` 把 `nuxt` 升级到 4.6.4（同时带入 nitropack 2.13.6），修复 4 个 Nuxt 公告，包括 GHSA-9v7c-q64q-vv33。生成产物内容与升级前一致；在主服务器隔离环境重建六角色后，Worker 真实发布通过。随后按用户选择，用限定范围的 overrides 把 minimatch 升到 11.0.5、glob 升到 14.0.4，并在范围内把 eslint-plugin-import-x 升到 4.18.0（`b1080eb`）。根目录和后台都已没有 moderate 及以上公告，只剩没有修复版本的 deepmerge（low）；生成的 JS/CSS 字节与覆盖前一致，Worker 真实发布通过。见[本次交付](deliveries/20261108-v11-npm-dependency-upgrade.md)。
 
 ## 最新：2026-11-08 生产发布 gate 实现并通过生产拓扑隔离验收
 

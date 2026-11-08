@@ -43,3 +43,32 @@
 - 第 1 节的残余构建期风险需要用户确认接受，或者等上游修复。
 
 本文件是文档提交，不是运行源码版本。
+
+## 5. 补充：强制覆盖 minimatch / glob（用户选择"尝试强制覆盖"）
+
+**变更**（提交 `b1080eb065490fe8d6d5afe53fd419861f09e324`）：
+
+- 根目录 `overrides`：`minimatch@^10.0.0 → 11.0.5`（GHSA-g3hv-75wg-m249），`glob@^13.0.0 → 14.0.4`（GHSA-3g3m-2fjr-6pw4）。只替换受影响的大版本，其他版本不受影响。
+- 后台 `overrides`：`minimatch@^10.0.0 → 11.0.5`。
+- `eslint-plugin-import-x` 4.17.1 → 4.18.0：仍在 `@nuxt/eslint-config` 声明的 `^4.17.1` 范围内，2026-11-06 发布，官方已声明支持 `minimatch ^11.0.1`。
+
+**发现并解决的兼容问题**：第一次覆盖后，根目录 ESLint 加载时崩溃。原因是 `eslint-plugin-import-x` 4.17.1 使用了 minimatch 11 已移除的具名导出 `makeRe`。升级到 4.18.0 后恢复。逐个核对其余使用方的调用：`@eslint/config-array` 和 readdir-glob 使用 `Minimatch` 类，`@vercel/nft` 使用 `glob()`，这些在新大版本中都仍然导出。
+
+**验证**：
+
+| 检查                                  | 结果                                                                                                                   |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `npm ls --all`（根目录、后台）        | 依赖树有效                                                                                                             |
+| `npm audit`                           | 根目录：0 moderate / 0 high，只剩 deepmerge 的 low（GHSA-gcqx-w48m-w2h4，没有修复版本；按受牵连包计为 7 low）；后台：0 |
+| 根目录 `npm run check`、`npm test`    | check 退出码 0；测试 41/42（已知过时的测试夹具失败，与本次无关）                                                       |
+| `nuxt generate`                       | 文件集合一致；**JS/CSS 字节与覆盖前的 4.6.4 基线完全相同**；HTML、sitemap、robots 一致                                 |
+| 后台 lint、类型检查、35/35 测试、构建 | 全部通过                                                                                                               |
+| 服务器重建六角色（`b1080eb`）         | revision 正确；Worker 镜像内为 minimatch 11.0.5、glob 14.0.4、`@vercel/nft` 1.11.1                                     |
+| Worker 真实发布（隔离项目 acc8）      | 发布成功；6 个公开路径返回 200，响应大小与覆盖前的 acc7 一致；版本化资源 immutable；canonical 正确                     |
+| 影响核对                              | 其他容器、启动时间、OpenResty 配置、其他数据卷均与基线一致；同机站点状态码不变                                         |
+
+**残余与维护提示**：
+
+- deepmerge（low）没有上游修复，继续保留。
+- overrides 会让 eslint、`@vercel/nft` 等运行在它们没有声明支持的大版本上；本次在已覆盖的路径（lint、类型检查、生成、Worker 构建发布）上验证通过。以后升级 Nuxt、ESLint 或这些包时，要先检查上游是否已原生支持 minimatch 11 / glob 14；支持后应移除对应的 override，并重跑本节的验证。
+- 最新运行组源码：`b1080eb065490fe8d6d5afe53fd419861f09e324`。
