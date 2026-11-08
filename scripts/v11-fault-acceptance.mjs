@@ -182,7 +182,7 @@ export function createHarness({ project, secret: secretFile, out }) {
     try {
       json = await r.json()
     } catch {
-      json = null // non-JSON body (e.g. gateway 502); status alone is evaluated
+      // non-JSON body (e.g. gateway 502): json stays null and only status is evaluated
     }
     return { status: r.status, json, set }
   }
