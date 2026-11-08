@@ -33,7 +33,8 @@ export const CASES = [
 ]
 export function parseArgs(argv) {
   const [name, ...rest] = argv
-  assert.ok(name === 'all' || CASES.includes(name), 'Unknown fault case')
+  const names = name === 'all' ? CASES : String(name).split(',')
+  assert.ok(names.length > 0 && names.every((n) => CASES.includes(n)), 'Unknown fault case')
   const options = {}
   while (rest.length) {
     const key = rest.shift()
@@ -42,7 +43,7 @@ export function parseArgs(argv) {
   }
   assert.match(options.project ?? '', /^xiaowork-homepage-v11-ft[a-z0-9-]{0,30}$/)
   assert.ok(options.secret && options.out)
-  return { cases: name === 'all' ? CASES : [name], ...options }
+  return { cases: names, ...options }
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -777,6 +778,9 @@ export function createHarness({ project, secret: secretFile, out }) {
         report.originalActive = before.status.activeReleaseId
         report.originalHttp = httpBody(await http())
         await cases[name]()
+        // Every case leaves a fresh, normal worker (clean /work tmpfs, no checkpoint);
+        // otherwise e.g. the ENOSPC filler would starve the next case's build.
+        if (name !== 'before-switch') await setWorker()
         report.result = 'PASS'
       } catch (error) {
         report.result = 'FAIL'

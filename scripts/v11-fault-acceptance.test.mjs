@@ -29,6 +29,29 @@ test('fault harness only targets dedicated ft projects and fixed cases', () => {
   assert.throws(() =>
     parseArgs(['baseline', '--project', 'xiaowork-homepage-v11-ft', '--cmd', 'x']),
   )
+  assert.deepEqual(
+    parseArgs([
+      'api-restart,before-switch',
+      '--project',
+      'xiaowork-homepage-v11-ft',
+      '--secret',
+      's',
+      '--out',
+      'o',
+    ]).cases,
+    ['api-restart', 'before-switch'],
+  )
+  assert.throws(() =>
+    parseArgs([
+      'api-restart,evil',
+      '--project',
+      'xiaowork-homepage-v11-ft',
+      '--secret',
+      's',
+      '--out',
+      'o',
+    ]),
+  )
   assert.equal(CASES.at(-1), 'before-switch', 'the case leaving a current.next link runs last')
 })
 
