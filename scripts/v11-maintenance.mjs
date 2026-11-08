@@ -172,6 +172,24 @@ function ownedContainers(project) {
       ),
     )
 }
+// Every existing container of the project must run exactly the recorded image
+// of its role (init containers share the API/Worker images).
+export function assertProjectImages(project, images) {
+  const imageRoles = ['api', 'worker', 'gateway', 'frontend', 'static', 'maintenance']
+  for (const role of imageRoles) assert.match(images[role] ?? '', /^sha256:[a-f0-9]{64}$/)
+  for (const container of ownedContainers(project)) {
+    const role =
+      { 'api-init': 'api', 'publication-init': 'worker', 'publication-static': 'static' }[
+        container.service
+      ] ?? container.service
+    if (!imageRoles.includes(role)) continue
+    assert.equal(
+      docker(['inspect', '--format', '{{.Image}}', container.id]),
+      images[role],
+      'Actual project image differs from recorded release descriptor',
+    )
+  }
+}
 export function inspectProject(project, image, lifecycleOwner) {
   lifecycleOwner ??= chainOwner(project)
   if (!lifecycleOwner)
@@ -227,18 +245,7 @@ export function backupProject(project, image, destination, lifecycleOwner) {
   const imageRoles = ['api', 'worker', 'gateway', 'frontend', 'static', 'maintenance']
   assert.deepEqual(Object.keys(runtime.images).sort(), [...imageRoles].sort())
   for (const role of imageRoles) assert.match(runtime.images[role], /^sha256:[a-f0-9]{64}$/)
-  for (const container of ownedContainers(project)) {
-    const role =
-      { 'api-init': 'api', 'publication-init': 'worker', 'publication-static': 'static' }[
-        container.service
-      ] ?? container.service
-    if (!imageRoles.includes(role)) continue
-    assert.equal(
-      docker(['inspect', '--format', '{{.Image}}', container.id]),
-      runtime.images[role],
-      'Actual project image differs from recorded release descriptor',
-    )
-  }
+  assertProjectImages(project, runtime.images)
   assert.equal(
     inspectProject(project, image, lifecycleOwner).unfinished,
     0,

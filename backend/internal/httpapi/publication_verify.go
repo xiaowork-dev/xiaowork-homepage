@@ -181,7 +181,7 @@ func (a *App) releases(ctx context.Context) ([]releaseView, error) {
 	return items, nil
 }
 func (a *App) listReleases(w http.ResponseWriter, r *http.Request) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		a.publishingUnavailable(w, r)
 		return
 	}
@@ -197,7 +197,7 @@ func (a *App) listReleases(w http.ResponseWriter, r *http.Request) {
 	writeData(w, r, 200, map[string]any{"items": items})
 }
 func (a *App) getRelease(w http.ResponseWriter, r *http.Request) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		a.publishingUnavailable(w, r)
 		return
 	}
@@ -220,7 +220,7 @@ func (a *App) getRelease(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) servePreview(w http.ResponseWriter, r *http.Request) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		a.publishingUnavailable(w, r)
 		return
 	}

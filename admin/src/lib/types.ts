@@ -203,9 +203,18 @@ export interface PublishedRelease {
   verified: boolean
   previewUrl: string | null
 }
+export interface PublishingGate {
+  open: boolean
+  code: string
+  message: string
+  authorizationId: string | null
+  expiresAt: string | null
+}
 export interface PublishingStatus {
   enabled: boolean
   localOnly: boolean
+  mode?: 'off' | 'local' | 'production'
+  gate?: PublishingGate
   workerAvailable: boolean
   activeReleaseId: string | null
   activeVerified: boolean

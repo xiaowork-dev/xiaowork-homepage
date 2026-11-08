@@ -10,16 +10,19 @@ import { claimLifecycleLock, chainOwner, assertNoRecovery } from './v11-operatio
 import {
   enterSharedBarrier,
   completeSharedBarrier,
+  controlPublish,
   provisionControl,
   sharedBarrierHeld,
 } from './v11-barrier.mjs'
 import {
+  assertProjectImages,
   backupProject,
   docker,
   inspectProject,
   localEngine,
   projectName,
   tool,
+  verifyBackup,
   volumeNames,
 } from './v11-maintenance.mjs'
 
@@ -141,13 +144,16 @@ export function configuration(
   assert.ok(Number.isInteger(httpsPort) && httpsPort >= 1024 && httpsPort <= 65535)
   assert.match(subnet, /^192\.168\.(?:2[0-4][0-9]|25[0-4])\.0\/28$/)
   const prefix = subnet.split('.').slice(0, 3).join('.')
-  assert.ok(!publish || topology === 'simulation', 'Production publishing remains hard-disabled')
+  assert.equal(typeof publish, 'boolean')
+  const mode = publishModeFor(topology, publish)
   const origin =
     topology === 'simulation' ? `https://localhost:${httpsPort}` : 'https://xiaoworks.com'
   const env = {
     XIAOWORK_ORIGIN: origin,
     XIAOWORK_TRUSTED_PROXY_CIDRS: `${prefix}.2/32`,
-    XIAOWORK_LOCAL_PUBLISH: publish ? '1' : '0',
+    XIAOWORK_LOCAL_PUBLISH: mode === 'local' ? '1' : '0',
+    XIAOWORK_PUBLISH_MODE: mode,
+    XIAOWORK_PROJECT: project,
     XIAOWORK_SOURCE_REVISION: spec.source,
     XIAOWORK_BUILDER_ID: spec.images.worker,
   }
@@ -156,7 +162,7 @@ export function configuration(
     'publication-init': { image: spec.images.worker },
     'api-init': {
       image: spec.images.api,
-      environment: { ...env, XIAOWORK_LOCAL_PUBLISH: '0' },
+      environment: { ...env, XIAOWORK_LOCAL_PUBLISH: '0', XIAOWORK_PUBLISH_MODE: 'off' },
       networks: { control: { ipv4_address: `${prefix}.4` } },
     },
     api: {
@@ -226,9 +232,55 @@ export function configuration(
     env: {
       V11_SOURCE_REVISION: spec.source,
       V11_BUILDER_ID: spec.images.worker,
-      V11_LOCAL_PUBLISH: publish ? '1' : '0',
+      V11_LOCAL_PUBLISH: mode === 'local' ? '1' : '0',
     },
   }
+}
+// Worker/publication machinery: simulation uses the loopback-only local gate;
+// openresty uses production mode, which the API opens only with a valid
+// operator authorization in the control volume. Only authorize-publishing may
+// turn openresty publishing on; deploy/update/rollback never do.
+export function publishModeFor(topology, publish) {
+  assert.ok(['simulation', 'openresty'].includes(topology))
+  if (!publish) return 'off'
+  return topology === 'simulation' ? 'local' : 'production'
+}
+export function deployPublishFlag(topology, flag) {
+  assert.ok(flag === undefined || flag === '0' || flag === '1', '--local-publish must be 0 or 1')
+  assert.ok(
+    !(flag === '1' && topology === 'openresty'),
+    'Production publishing is enabled only by authorize-publishing after acceptance',
+  )
+  return flag === '1'
+}
+const notePattern = /^[^\r\n\0]{8,500}$/
+// Lifecycle record of the last backup verified by this tool for this project.
+export function lastBackupRecord(destination, spec, verifiedAt, contentManifestSHA256) {
+  assert.ok(path.isAbsolute(destination))
+  assert.match(contentManifestSHA256, /^[a-f0-9]{64}$/)
+  return {
+    format: 1,
+    path: destination,
+    contentManifestSHA256,
+    verifiedAt,
+    source: spec.source,
+    maintenance: spec.images.maintenance,
+  }
+}
+// Authorization requires a backup of THIS release identity verified within 24h.
+export function assertFreshBackup(record, spec, now = Date.now()) {
+  assert.equal(record.format, 1)
+  assert.equal(record.source, spec.source, 'Latest verified backup belongs to another release')
+  assert.equal(
+    record.maintenance,
+    spec.images.maintenance,
+    'Latest verified backup was made by another maintenance image; take a new backup',
+  )
+  const age = now - Date.parse(record.verifiedAt)
+  assert.ok(
+    Number.isFinite(age) && age >= -5 * 60_000 && age <= 24 * 3600_000,
+    'Production publishing authorization requires a backup verified within the last 24 hours',
+  )
 }
 const composeArgs = (config) => [
   'compose',
@@ -345,6 +397,30 @@ export function runLifecycle(input) {
       const project = projectName(options.project)
       const state = path.join(root, '.v11-deploy', project)
       fs.mkdirSync(state, { recursive: true, mode: 0o700 })
+      if (command === 'revoke-publishing' || command === 'publishing-status') {
+        // Emergency/observability path: never takes or needs the lifecycle lock,
+        // so revocation works even while an unresolved recovery blocks others.
+        const prior = json(path.join(state, 'current.json'))
+        assert.equal(prior.project, project)
+        assert.match(prior.spec?.images?.maintenance ?? '', imageID)
+        const flags = []
+        if (command === 'revoke-publishing') {
+          assert.match(
+            options.reason ?? '',
+            /^[^\r\n\0]{4,500}$/,
+            'A non-secret revocation reason (4-500 characters) is required',
+          )
+          flags.push('-note', options.reason)
+        }
+        const result = controlPublish(
+          project,
+          prior.spec.images.maintenance,
+          command === 'revoke-publishing' ? 'revoke-publish' : 'publish-status',
+          flags,
+        )
+        console.log(JSON.stringify(result, null, 2))
+        return
+      }
       const requestedLock = path.join(state, 'operation.lock')
       const parentOwner = chainOwner(project)
       inherited = Boolean(parentOwner)
@@ -397,7 +473,7 @@ export function runLifecycle(input) {
           Number(options['http-port'] ?? 3216),
           Number(options['https-port'] ?? 3449),
           options.subnet ?? '192.168.245.0/28',
-          options['local-publish'] === '1',
+          deployPublishFlag(options.topology ?? 'simulation', options['local-publish']),
         )
         if (options.restored !== '1') provisionControl(project, spec.images.maintenance)
         enterSharedBarrier(project, spec.images.maintenance, lifecycleOwner)
@@ -468,9 +544,89 @@ export function runLifecycle(input) {
           operationAccepted = true
           return
         }
+        if (command === 'authorize-publishing') {
+          assert.equal(
+            prior.topology,
+            'openresty',
+            'Only the production (openresty) topology uses the operator publishing gate',
+          )
+          const note = options['approval-note']
+          assert.match(
+            note ?? '',
+            notePattern,
+            'A non-secret approval note (8-500 characters) is required',
+          )
+          const days = Number(options.days ?? '7')
+          assert.ok(Number.isInteger(days) && days >= 1 && days <= 30, '--days must be 1-30')
+          const spec = current.spec
+          assertProjectImages(project, spec.images)
+          const last = json(path.join(state, 'last-backup.json'))
+          assertFreshBackup(last, spec)
+          const verified = verifyBackup(spec.images.maintenance, last.path)
+          assert.equal(verified.runtime.source, spec.source)
+          assert.equal(
+            json(path.join(last.path, 'bundle.json')).contentManifestSHA256,
+            last.contentManifestSHA256,
+            'Backup bundle changed since it was recorded',
+          )
+          // Start the publication machinery FIRST: without an authorization the
+          // API keeps the gate closed, so any failure here leaves publishing off.
+          const next = configuration(
+            project,
+            spec,
+            state,
+            prior.topology,
+            prior.httpPort,
+            prior.httpsPort,
+            prior.subnet,
+            true,
+          )
+          const containers = start(next, false)
+          const http = publicProbe(next)
+          const gate = controlPublish(project, spec.images.maintenance, 'authorize-publish', [
+            '-project',
+            project,
+            '-source',
+            spec.source,
+            '-schema',
+            String(spec.schema),
+            '-worker-image',
+            spec.images.worker,
+            '-api-image',
+            spec.images.api,
+            '-days',
+            String(days),
+            '-backup-path',
+            last.path,
+            '-backup-manifest-sha256',
+            last.contentManifestSHA256,
+            '-backup-verified-at',
+            last.verifiedAt,
+            '-note',
+            note,
+          ])
+          assert.ok(gate.authorization && !gate.revocation && !gate.problem)
+          const authorization = {
+            id: gate.authorization.id,
+            expiresAt: gate.authorization.expiresAt,
+          }
+          save(currentFile, {
+            ...next,
+            env: undefined,
+            createdAt: prior.createdAt,
+            containers,
+            http,
+            publishAuthorization: authorization,
+          })
+          console.log(
+            JSON.stringify({ result: 'production publishing authorized', authorization, http }),
+          )
+          operationAccepted = true
+          return
+        }
         assert.ok(
           ['backup', 'update', 'rollback'].includes(command),
-          'Expected attest|deploy|status|stop|backup|update|rollback',
+          'Expected attest|deploy|status|stop|backup|update|rollback|authorize-publishing|revoke-publishing|publishing-status',
         )
         const replacement =
           command === 'rollback'
@@ -512,6 +668,17 @@ export function runLifecycle(input) {
             lifecycleOwner,
           )
           if (!replacement) {
+            // Recorded only for a verified backup of the CURRENT release identity;
+            // authorize-publishing requires it to be at most 24 hours old.
+            save(
+              path.join(state, 'last-backup.json'),
+              lastBackupRecord(
+                destination,
+                current.spec,
+                new Date().toISOString(),
+                json(path.join(destination, 'bundle.json')).contentManifestSHA256,
+              ),
+            )
             start(current, false)
             console.log(
               JSON.stringify({
@@ -523,6 +690,8 @@ export function runLifecycle(input) {
             operationAccepted = true
             return
           }
+          // A production authorization is bound to the replaced identity; the
+          // candidate starts with publishing off until re-accepted and re-authorized.
           const next = configuration(
             project,
             replacement,
@@ -531,7 +700,7 @@ export function runLifecycle(input) {
             current.httpPort,
             current.httpsPort,
             current.subnet,
-            current.publish,
+            current.topology === 'openresty' ? false : current.publish,
           )
           // Retain the already-created lock BEFORE attempting the durable intent.
           // ENOSPC, a failed stop, a metadata error, or process death must not make

@@ -31,7 +31,14 @@ type Config struct {
 	WorkerSocket         string
 	SourceRevision       string
 	BuilderID            string
-	LocalPublish         bool
+	// LocalPublish enables the publication machinery for an isolated loopback
+	// origin only. ProductionPublish enables it for the fixed production origin
+	// and additionally requires the operator authorization in ControlDir on
+	// every job creation and worker claim. The two modes are mutually exclusive.
+	LocalPublish      bool
+	ProductionPublish bool
+	// Project is the exact V1.1 deployment name an authorization must name.
+	Project string
 }
 type App struct {
 	db         *sql.DB

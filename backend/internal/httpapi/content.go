@@ -124,7 +124,7 @@ func (a *App) getDashboard(w http.ResponseWriter, r *http.Request) {
 	}
 	current := ""
 	verified := false
-	if a.config.LocalPublish {
+	if a.publishEnabled() {
 		current, _ = a.currentRelease()
 		if current != "" {
 			verified = a.verifyActive(r.Context(), current) == nil
@@ -132,11 +132,21 @@ func (a *App) getDashboard(w http.ResponseWriter, r *http.Request) {
 	}
 	a.contentRead(w, r, func(ctx context.Context, tx *sql.Tx, revision int64) (map[string]any, error) {
 		data, err := contentdata.Dashboard(ctx, tx)
-		if err != nil || !a.config.LocalPublish {
+		if err != nil || !a.publishEnabled() {
 			return data, err
 		}
 		data["workerAvailable"] = a.workerAvailable()
 		data["publicationState"] = "local-only"
+		if a.config.ProductionPublish {
+			switch {
+			case current == "":
+				data["publicationState"] = "not-integrated"
+			case verified:
+				data["publicationState"] = "verified"
+			default:
+				data["publicationState"] = "recovery-required"
+			}
+		}
 		data["activeVerified"] = verified
 		if current != "" {
 			data["activeReleaseId"] = current

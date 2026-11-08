@@ -22,7 +22,7 @@ const workerLeaseSeconds = 120
 // WorkerListener is a separate, same-UID Unix socket. The public HTTP handler
 // never routes this protocol, even when a caller supplies internal paths.
 func (a *App) WorkerListener() (net.Listener, error) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		return nil, errors.New("offline worker is disabled")
 	}
 	return listenPrivateWorker(a.config.WorkerSocket)
@@ -36,7 +36,7 @@ func (a *App) WorkerHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		if !a.config.LocalPublish {
+		if !a.publishEnabled() {
 			writeError(w, r, problem(503, "WORKER_UNAVAILABLE", "发布服务关闭。"))
 			return
 		}
@@ -89,6 +89,27 @@ func (a *App) workerClaim(w http.ResponseWriter, r *http.Request) {
 	if j.Status != "queued" && j.LeaseExpiry > now {
 		writeData(w, r, 200, publishmodel.ClaimResponse{})
 		return
+	}
+	// A revoked/expired/mismatched production gate stops NEW work: a job that
+	// has not started is failed (public site untouched) instead of running or
+	// lingering until a later authorization. In-flight jobs (running or
+	// reconciling) are still handed out so they can finish or be recovered.
+	if j.Status == "queued" {
+		if _, gateErr := a.publishGate(); gateErr != nil {
+			_, e = tx.ExecContext(r.Context(), `UPDATE publish_jobs SET status='failed',phase=NULL,completed_at=?,error_code='PUBLISH_GATE_CLOSED',error_summary=? WHERE id=? AND status='queued'`, now, "生产发布授权已关闭，任务未执行，公开版本未改变。", j.ID)
+			if e == nil {
+				e = publicationAudit(r.Context(), tx, nil, j.ID, "publication.gate.closed", "denied", now)
+			}
+			if e == nil {
+				e = tx.Commit()
+			}
+			if e != nil {
+				writeError(w, r, e)
+				return
+			}
+			writeData(w, r, 200, publishmodel.ClaimResponse{})
+			return
+		}
 	}
 	token, e := authToken()
 	if e != nil {

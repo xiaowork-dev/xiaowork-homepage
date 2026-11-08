@@ -3,10 +3,15 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { test } from 'node:test'
+import { publishControlArgs } from './v11-barrier.mjs'
 import {
+  assertFreshBackup,
   configuration,
+  deployPublishFlag,
   edgeSubnetFor,
   gatewayRealIpConfig,
+  lastBackupRecord,
+  publishModeFor,
   secretStatusMount,
 } from './v11-release.mjs'
 
@@ -96,10 +101,39 @@ test('gateway production config includes the snippet and forwards only the resto
   assert.ok(!/real_ip_header X-Forwarded-For|set_real_ip_from 0\.0\.0\.0/.test(conf))
 })
 
-test('production publishing remains hard-disabled', () => {
+test('deploy can never enable openresty publishing; only the authorization path can', () => {
+  assert.equal(deployPublishFlag('simulation', '1'), true)
+  assert.equal(deployPublishFlag('openresty', undefined), false)
+  assert.equal(deployPublishFlag('openresty', '0'), false)
+  assert.throws(() => deployPublishFlag('openresty', '1'), /authorize-publishing/)
+  assert.throws(() => deployPublishFlag('simulation', 'yes'))
+  assert.equal(publishModeFor('openresty', false), 'off')
+  assert.equal(publishModeFor('openresty', true), 'production')
+  assert.equal(publishModeFor('simulation', true), 'local')
+})
+
+test('production mode env names the project and never sets the local gate', () => {
   const state = fs.mkdtempSync(path.join(os.tmpdir(), 'v11-topology-'))
-  assert.throws(
-    () =>
+  const config = configuration(
+    'xiaowork-homepage-v11-unit',
+    spec,
+    state,
+    'openresty',
+    3290,
+    3291,
+    '192.168.248.0/28',
+    true,
+  )
+  const generated = JSON.parse(fs.readFileSync(config.files[1], 'utf8'))
+  const env = generated.services.api.environment
+  assert.equal(env.XIAOWORK_PUBLISH_MODE, 'production')
+  assert.equal(env.XIAOWORK_LOCAL_PUBLISH, '0')
+  assert.equal(env.XIAOWORK_PROJECT, 'xiaowork-homepage-v11-unit')
+  assert.equal(env.XIAOWORK_BUILDER_ID, spec.images.worker)
+  assert.equal(generated.services['api-init'].environment.XIAOWORK_PUBLISH_MODE, 'off')
+  assert.equal(config.env.V11_LOCAL_PUBLISH, '0')
+  const off = JSON.parse(
+    fs.readFileSync(
       configuration(
         'xiaowork-homepage-v11-unit',
         spec,
@@ -108,10 +142,100 @@ test('production publishing remains hard-disabled', () => {
         3290,
         3291,
         '192.168.248.0/28',
-        true,
-      ),
-    /Production publishing remains hard-disabled/,
+        false,
+      ).files[1],
+      'utf8',
+    ),
   )
+  assert.equal(off.services.api.environment.XIAOWORK_PUBLISH_MODE, 'off')
+  const sim = JSON.parse(
+    fs.readFileSync(
+      configuration(
+        'xiaowork-homepage-v11-unit',
+        spec,
+        state,
+        'simulation',
+        3290,
+        3291,
+        '192.168.248.0/28',
+        true,
+      ).files[1],
+      'utf8',
+    ),
+  )
+  assert.equal(sim.services.api.environment.XIAOWORK_PUBLISH_MODE, 'local')
+  assert.equal(sim.services.api.environment.XIAOWORK_LOCAL_PUBLISH, '1')
+})
+
+test('authorization requires a fresh backup of exactly the current release identity', () => {
+  const now = Date.parse('2026-11-08T12:00:00Z')
+  const record = lastBackupRecord(
+    '/srv/backups/unit',
+    spec,
+    '2026-11-08T02:00:00.000Z',
+    'e'.repeat(64),
+  )
+  assertFreshBackup(record, spec, now)
+  assert.throws(
+    () => assertFreshBackup({ ...record, verifiedAt: '2026-11-07T11:00:00.000Z' }, spec, now),
+    /24 hours/,
+  )
+  assert.throws(
+    () => assertFreshBackup({ ...record, source: 'b'.repeat(40) }, spec, now),
+    /another release/,
+  )
+  assert.throws(
+    () => assertFreshBackup({ ...record, maintenance: id('9') }, spec, now),
+    /another maintenance image/,
+  )
+  assert.throws(() => lastBackupRecord('relative', spec, record.verifiedAt, 'e'.repeat(64)))
+})
+
+test('publishing control runs the maintenance image offline with only validated flags', () => {
+  const args = publishControlArgs(
+    'xiaowork-homepage-v11-unit_admin-maintenance-control',
+    id('6'),
+    'authorize-publish',
+    ['-project', 'xiaowork-homepage-v11-unit', '-days', '7', '-note', '验收通过，批准生产发布'],
+  )
+  for (const v of [
+    '--network',
+    'none',
+    '--read-only',
+    '--user',
+    '10001:10001',
+    'ALL',
+    'no-new-privileges:true',
+  ])
+    assert.ok(args.includes(v), v)
+  assert.ok(
+    args.includes(
+      'type=volume,src=xiaowork-homepage-v11-unit_admin-maintenance-control,dst=/control,volume-nocopy',
+    ),
+  )
+  assert.equal(args.at(-1), 'authorize-publish')
+  assert.throws(
+    () => publishControlArgs('v', id('6'), 'authorize-publish', ['-root', '/etc']),
+    /Unexpected/,
+  )
+  assert.throws(
+    () => publishControlArgs('v', id('6'), 'authorize-publish', ['-days', '31']),
+    /Invalid value/,
+  )
+  assert.throws(
+    () =>
+      publishControlArgs('v', id('6'), 'authorize-publish', [
+        '-note',
+        'line' + String.fromCharCode(10) + 'break',
+      ]),
+    /Invalid value/,
+  )
+  assert.throws(
+    () => publishControlArgs('v', id('6'), 'authorize-publish', ['-days', '7', '-days', '8']),
+    /Unexpected/,
+  )
+  assert.throws(() => publishControlArgs('v', id('6'), 'shell', []))
+  assert.throws(() => publishControlArgs('v', 'latest', 'publish-status', []))
 })
 
 test('first-deployment secret check mounts the secrets volume read-only without populate', () => {

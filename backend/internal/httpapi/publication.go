@@ -19,18 +19,40 @@ import (
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/contentdata"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishdata"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishfs"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishgate"
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/publishmodel"
+	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/store"
 )
 
 var builderPattern = regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9._:@+-]{0,159}$`)
 
+var projectPattern = regexp.MustCompile(`^xiaowork-homepage-v11-[a-z0-9-]{1,40}$`)
+var imageIDPattern = regexp.MustCompile(`^sha256:[0-9a-f]{64}$`)
+
+// Production publication limits (operator-approved recommendations D2, D6).
+const (
+	productionPreviewWindow   = 24 * 60 * 60
+	productionRateLimitWindow = 60 * 60
+)
+
+// productionJobsPerHour is a variable only so tests can exercise the limit.
+var productionJobsPerHour = 6
+
 func validatePublicationConfig(c Config) error {
-	if !c.LocalPublish {
+	if c.LocalPublish && c.ProductionPublish {
+		return errors.New("local and production publication modes are mutually exclusive")
+	}
+	if !c.LocalPublish && !c.ProductionPublish {
 		return nil
 	}
 	u, e := url.Parse(c.Origin)
-	if e != nil || (u.Hostname() != "localhost" && u.Hostname() != "127.0.0.1" && u.Hostname() != "::1") {
+	if c.LocalPublish && (e != nil || (u.Hostname() != "localhost" && u.Hostname() != "127.0.0.1" && u.Hostname() != "::1")) {
 		return errors.New("local publication gate cannot enable production publishing")
+	}
+	// Production mode only enables the machinery; every job still requires a
+	// valid operator authorization bound to this exact project and identity.
+	if c.ProductionPublish && (c.Origin != publishgate.ProductionOrigin || !projectPattern.MatchString(c.Project) || !imageIDPattern.MatchString(c.BuilderID)) {
+		return errors.New("production publication requires the fixed origin, exact project and worker image identity")
 	}
 	v, e := url.Parse(c.PublicationVerifyURL)
 	if e != nil || v.Scheme != "http" || v.User != nil || v.RawQuery != "" || v.Fragment != "" || v.Path != "" || (v.Hostname() != "publication-static" && v.Hostname() != "127.0.0.1" && v.Hostname() != "localhost" && v.Hostname() != "::1") {
@@ -41,10 +63,30 @@ func validatePublicationConfig(c Config) error {
 	}
 	return nil
 }
+func (a *App) publishEnabled() bool { return a.config.LocalPublish || a.config.ProductionPublish }
+
+// publishGate is open in local mode; in production it is open only while the
+// operator authorization matches this API's project, origin, source, worker
+// image and schema, is unexpired and has not been revoked.
+func (a *App) publishGate() (publishgate.Authorization, error) {
+	if !a.config.ProductionPublish {
+		return publishgate.Authorization{}, nil
+	}
+	// validatePublicationConfig (always run by New) already pins the production
+	// origin, so the expected origin is the fixed production value.
+	return publishgate.Check(a.config.ControlDir, publishgate.Expect{Project: a.config.Project, Origin: publishgate.ProductionOrigin, Source: a.config.SourceRevision, WorkerImage: a.config.BuilderID, Schema: store.SchemaVersion}, a.now())
+}
+func gateProblem(err error) error {
+	var c *publishgate.Closed
+	if errors.As(err, &c) {
+		return problem(503, "PUBLISH_GATE_CLOSED", c.Message)
+	}
+	return problem(503, "PUBLISH_GATE_CLOSED", "生产发布授权无法核验，保持关闭。")
+}
 func (a *App) workerAvailable() bool {
 	seen := a.workerSeen.Load()
 	now := a.now().Unix()
-	return a.config.LocalPublish && seen > 0 && now >= seen && now-seen < 45
+	return a.publishEnabled() && seen > 0 && now >= seen && now-seen < 45
 }
 func (a *App) publishingUnavailable(w http.ResponseWriter, r *http.Request) {
 	writeError(w, r, problem(503, "WORKER_UNAVAILABLE", "静态发布服务尚未启用或不可用；保存草稿不会发布网站。"))
@@ -140,8 +182,13 @@ func (a *App) publicationProofToken(job string) string {
 }
 
 func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind string) {
-	if !a.config.LocalPublish || !a.workerAvailable() {
+	if !a.publishEnabled() || !a.workerAvailable() {
 		a.publishingUnavailable(w, r)
+		return
+	}
+	gate, gateErr := a.publishGate()
+	if gateErr != nil {
+		writeError(w, r, gateProblem(gateErr))
 		return
 	}
 	if err := queryOnly(r); err != nil {
@@ -264,6 +311,29 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 		writeError(w, r, problem(409, "JOB_CONFLICT", "已有未完成任务或需要恢复核对的任务。"))
 		return
 	}
+	if a.config.ProductionPublish && kind != "preview" {
+		var recent int
+		if e = tx.QueryRowContext(r.Context(), `SELECT count(*) FROM publish_jobs WHERE kind IN ('publish','rollback') AND created_at>?`, now-productionRateLimitWindow).Scan(&recent); e != nil {
+			writeError(w, r, e)
+			return
+		}
+		if recent >= productionJobsPerHour {
+			w.Header().Set("Retry-After", "600")
+			writeError(w, r, problem(429, "PUBLISH_RATE_LIMITED", "生产环境每小时最多 6 个发布或恢复任务，请稍后再试。"))
+			return
+		}
+	}
+	if a.config.ProductionPublish && kind == "publish" {
+		var previews int
+		if e = tx.QueryRowContext(r.Context(), `SELECT count(*) FROM publish_jobs j JOIN snapshots s ON s.id=j.snapshot_id WHERE j.kind='preview' AND j.status='succeeded' AND s.source_revision=? AND j.completed_at>=?`, current, now-productionPreviewWindow).Scan(&previews); e != nil {
+			writeError(w, r, e)
+			return
+		}
+		if previews == 0 {
+			writeError(w, r, problem(422, "PREVIEW_REQUIRED", "生产环境发布前须先成功预览当前草稿（同一修订号、24 小时内）。"))
+			return
+		}
+	}
 	if previous != "" {
 		var n int
 		if e = tx.QueryRowContext(r.Context(), `SELECT count(*) FROM publish_jobs WHERE reconciled_release_id=? AND status='succeeded' AND kind IN ('publish','rollback')`, previous).Scan(&n); e != nil || n == 0 {
@@ -322,6 +392,10 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 	if e == nil {
 		e = publicationAudit(r.Context(), tx, p.ID, id, "publication."+kind+".queued", "success", now)
 	}
+	if e == nil && a.config.ProductionPublish {
+		meta, _ := json.Marshal(map[string]string{"authorization": gate.ID})
+		_, e = tx.ExecContext(r.Context(), `INSERT INTO audit_events(actor_administrator_id,request_id,action,resource_type,resource_id,outcome,metadata_json,created_at) VALUES(?,?,'publication.gate.authorized','publish_job',?,'success',?,?)`, p.ID, requestID(r), id, string(meta), now)
+	}
 	if e == nil {
 		e = tx.Commit()
 	}
@@ -334,7 +408,7 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 }
 
 func (a *App) listPublicationJobs(w http.ResponseWriter, r *http.Request) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		a.publishingUnavailable(w, r)
 		return
 	}
@@ -364,7 +438,7 @@ func (a *App) listPublicationJobs(w http.ResponseWriter, r *http.Request) {
 	writeData(w, r, 200, map[string]any{"items": items})
 }
 func (a *App) getPublicationJob(w http.ResponseWriter, r *http.Request) {
-	if !a.config.LocalPublish {
+	if !a.publishEnabled() {
 		a.publishingUnavailable(w, r)
 		return
 	}
@@ -392,9 +466,34 @@ func (a *App) publishingStatus(w http.ResponseWriter, r *http.Request) {
 		writeError(w, r, e)
 		return
 	}
-	data := map[string]any{"enabled": a.config.LocalPublish, "localOnly": true, "workerAvailable": a.workerAvailable(), "activeReleaseId": nil, "activeVerified": false, "blockingJob": nil, "reason": "仅允许独立本地环境，生产发布安全门槛尚未解除。"}
+	mode := "off"
+	gate := map[string]any{"open": false, "code": "PUBLISH_DISABLED", "message": "发布功能未启用。", "authorizationId": nil, "expiresAt": nil}
+	reason := "仅允许独立本地环境，生产发布安全门槛尚未解除。"
+	enabled := a.publishEnabled()
+	switch {
+	case a.config.LocalPublish:
+		mode = "local"
+		gate = map[string]any{"open": true, "code": "LOCAL_ONLY", "message": "独立本地验收环境。", "authorizationId": nil, "expiresAt": nil}
+	case a.config.ProductionPublish:
+		mode = "production"
+		if auth, err := a.publishGate(); err == nil {
+			gate = map[string]any{"open": true, "code": "AUTHORIZED", "message": "已获服务器运维授权。", "authorizationId": auth.ID, "expiresAt": auth.ExpiresAt.UTC().Format(time.RFC3339)}
+			reason = "生产发布已获服务器授权，有效期至 " + auth.ExpiresAt.UTC().Format(time.RFC3339) + "；发布前须先预览，每小时最多 6 个发布或恢复任务。"
+		} else {
+			enabled = false
+			var c *publishgate.Closed
+			message := "生产发布授权无法核验，保持关闭。"
+			code := "GATE_INVALID"
+			if errors.As(err, &c) {
+				message, code = c.Message, c.Code
+			}
+			gate = map[string]any{"open": false, "code": code, "message": message, "authorizationId": nil, "expiresAt": nil}
+			reason = message
+		}
+	}
+	data := map[string]any{"enabled": enabled, "mode": mode, "localOnly": a.config.LocalPublish, "gate": gate, "workerAvailable": a.workerAvailable(), "activeReleaseId": nil, "activeVerified": false, "blockingJob": nil, "reason": reason}
 	data["storage"] = a.observeStorage(r.Context(), true)
-	if a.config.LocalPublish {
+	if a.publishEnabled() {
 		current, currentErr := a.currentRelease()
 		verified := currentErr == nil && current == ""
 		if currentErr == nil && current != "" {
@@ -411,7 +510,7 @@ func (a *App) publishingStatus(w http.ResponseWriter, r *http.Request) {
 		if e == nil {
 			data["blockingJob"] = j
 		}
-		if a.workerAvailable() {
+		if a.config.LocalPublish && a.workerAvailable() {
 			data["reason"] = "仅独立本地发布可用；正式服务器未连接，生产门槛保持关闭。"
 		}
 	}

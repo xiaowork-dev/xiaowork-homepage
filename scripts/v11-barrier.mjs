@@ -132,3 +132,60 @@ export function completeSharedBarrier(project, owner) {
   owners.delete(project)
 }
 export const sharedBarrierHeld = (project) => owners.get(project)?.drained === true
+
+// Production publishing authorization records are written ONLY here, by the
+// maintenance image's homepage-control into the project control volume, which
+// API and Worker mount read-only. Every flag value is pattern-checked.
+const imageRe = /^sha256:[a-f0-9]{64}$/
+export const publishFlagPatterns = new Map([
+  ['-project', /^xiaowork-homepage-v11-[a-z0-9-]{1,40}$/],
+  ['-source', /^[a-f0-9]{40}$/],
+  ['-schema', /^[1-9][0-9]{0,3}$/],
+  ['-worker-image', imageRe],
+  ['-api-image', imageRe],
+  ['-days', /^(?:[1-9]|[12][0-9]|30)$/],
+  ['-backup-path', /^\/[^\r\n\0]{1,511}$/],
+  ['-backup-manifest-sha256', /^[a-f0-9]{64}$/],
+  ['-backup-verified-at', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?Z$/],
+  ['-note', /^[^\r\n\0]{4,500}$/],
+])
+export function publishControlArgs(volume, image, action, flags = []) {
+  assert.ok(['authorize-publish', 'revoke-publish', 'publish-status'].includes(action))
+  assert.match(image, imageRe)
+  assert.ok(flags.length % 2 === 0)
+  const seen = new Set()
+  for (let i = 0; i < flags.length; i += 2) {
+    const pattern = publishFlagPatterns.get(flags[i])
+    assert.ok(pattern && !seen.has(flags[i]), `Unexpected publishing control flag ${flags[i]}`)
+    assert.match(String(flags[i + 1]), pattern, `Invalid value for ${flags[i]}`)
+    seen.add(flags[i])
+  }
+  return [
+    'run',
+    '--rm',
+    '--network',
+    'none',
+    '--read-only',
+    '--user',
+    '10001:10001',
+    '--cap-drop',
+    'ALL',
+    '--security-opt',
+    'no-new-privileges:true',
+    '--memory',
+    '64m',
+    '--pids-limit',
+    '32',
+    '--entrypoint',
+    '/homepage-control',
+    '--mount',
+    `type=volume,src=${volume},dst=/control,volume-nocopy`,
+    image,
+    ...flags,
+    action,
+  ]
+}
+export function controlPublish(project, image, action, flags = []) {
+  const volume = validate(project, image)
+  return JSON.parse(run(publishControlArgs(volume, image, action, flags)))
+}

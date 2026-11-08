@@ -216,8 +216,12 @@ func run() error {
 		}
 		proxies = append(proxies, p)
 	}
+	mode, e := publishMode(os.Getenv("XIAOWORK_PUBLISH_MODE"), os.Getenv("XIAOWORK_LOCAL_PUBLISH"))
+	if e != nil {
+		return e
+	}
 	app, e := httpapi.New(db, httpapi.Config{ControlDir: env("XIAOWORK_CONTROL_DIR", "/control"), Origin: origin, Secret: secret, UploadDir: env("XIAOWORK_UPLOAD_DIR", ".data/v11-dev/uploads"), TrustedProxyCIDRs: proxies,
-		LocalPublish: os.Getenv("XIAOWORK_LOCAL_PUBLISH") == "1", PublicationsDir: os.Getenv("XIAOWORK_PUBLICATIONS_DIR"), PublicationVerifyURL: os.Getenv("XIAOWORK_PUBLICATION_VERIFY_URL"), WorkerSocket: os.Getenv("XIAOWORK_WORKER_SOCKET"), SourceRevision: os.Getenv("XIAOWORK_SOURCE_REVISION"), BuilderID: os.Getenv("XIAOWORK_BUILDER_ID")})
+		LocalPublish: mode == "local", ProductionPublish: mode == "production", Project: os.Getenv("XIAOWORK_PROJECT"), PublicationsDir: os.Getenv("XIAOWORK_PUBLICATIONS_DIR"), PublicationVerifyURL: os.Getenv("XIAOWORK_PUBLICATION_VERIFY_URL"), WorkerSocket: os.Getenv("XIAOWORK_WORKER_SOCKET"), SourceRevision: os.Getenv("XIAOWORK_SOURCE_REVISION"), BuilderID: os.Getenv("XIAOWORK_BUILDER_ID")})
 	if e != nil {
 		return e
 	}
@@ -226,7 +230,7 @@ func run() error {
 	defer done()
 	errs := make(chan error, 2)
 	var workerServer *http.Server
-	if os.Getenv("XIAOWORK_LOCAL_PUBLISH") == "1" {
+	if mode != "off" {
 		listener, err := app.WorkerListener()
 		if err != nil {
 			return err
@@ -237,7 +241,7 @@ func run() error {
 		go func() { errs <- workerServer.Serve(listener) }()
 	}
 	go func() { errs <- server.ListenAndServe() }()
-	log.Print("private draft API started; production publishing disabled")
+	log.Printf("private draft API started; publish mode=%s (production additionally requires operator authorization)", mode)
 	select {
 	case e := <-errs:
 		return e
@@ -252,6 +256,28 @@ func run() error {
 		return server.Shutdown(ctx)
 	}
 }
+
+// publishMode resolves XIAOWORK_PUBLISH_MODE (off|local|production). The legacy
+// XIAOWORK_LOCAL_PUBLISH=1 means local; any contradiction refuses to start.
+func publishMode(mode, legacy string) (string, error) {
+	if legacy != "" && legacy != "0" && legacy != "1" {
+		return "", errors.New("XIAOWORK_LOCAL_PUBLISH must be 0 or 1")
+	}
+	switch mode {
+	case "":
+		if legacy == "1" {
+			return "local", nil
+		}
+		return "off", nil
+	case "off", "local", "production":
+		if legacy == "1" && mode != "local" {
+			return "", errors.New("XIAOWORK_LOCAL_PUBLISH=1 contradicts XIAOWORK_PUBLISH_MODE")
+		}
+		return mode, nil
+	}
+	return "", errors.New("XIAOWORK_PUBLISH_MODE must be off, local or production")
+}
+
 func env(key, fallback string) string {
 	if value := os.Getenv(key); value != "" {
 		return value

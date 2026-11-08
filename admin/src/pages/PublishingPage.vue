@@ -6,6 +6,8 @@ import {
   canCreatePublication,
   pendingJob,
   publicationJobLabel,
+  publicationModeLabel,
+  publicationOperable,
   safePreviewURL,
   isReviewCurrent,
   isActiveReviewCurrent,
@@ -160,7 +162,7 @@ async function load() {
     status.value = capability
     workspace.value = draft
     refreshRequired.value = false
-    if (capability.enabled === true && capability.localOnly === true) {
+    if (publicationOperable(capability)) {
       const [jobList, releaseList] = await Promise.all([
         admin.get<{ items: PublicationJob[] }>('/jobs'),
         admin.get<{ items: PublishedRelease[] }>('/releases'),
@@ -361,9 +363,7 @@ onBeforeUnmount(() => {
     <section class="panel form-section" aria-labelledby="publication-gate-title">
       <div class="section-heading">
         <h2 id="publication-gate-title">发布门槛</h2>
-        <span class="badge">{{
-          status?.enabled && status.localOnly ? '独立本地环境' : '操作未启用'
-        }}</span>
+        <span class="badge">{{ publicationModeLabel(status) }}</span>
       </div>
       <p class="muted">
         {{ status?.reason ?? '尚未获得后端可用状态。预览、发布和恢复保持禁用。' }}

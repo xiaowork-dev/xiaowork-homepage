@@ -1,9 +1,20 @@
 import type { PublicationJob, PublishingStatus } from './types.ts'
 
+// Operable only in the isolated local mode, or in production while the server
+// reports an open operator authorization. Anything else stays closed.
+export function publicationOperable(status: PublishingStatus | null): boolean {
+  if (status?.enabled !== true) return false
+  if (status.localOnly === true) return true
+  return status.mode === 'production' && status.gate?.open === true
+}
+export function publicationModeLabel(status: PublishingStatus | null): string {
+  if (!publicationOperable(status)) return '操作未启用'
+  return status?.localOnly === true ? '独立本地环境' : '生产发布已授权'
+}
 export function canCreatePublication(status: PublishingStatus | null): boolean {
   return (
-    status?.enabled === true &&
-    status.localOnly === true &&
+    publicationOperable(status) &&
+    status !== null &&
     status.workerAvailable === true &&
     (status.storage?.state === 'ok' || status.storage?.state === 'warning') &&
     status.blockingJob === null &&

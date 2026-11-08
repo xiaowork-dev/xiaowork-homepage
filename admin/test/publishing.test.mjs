@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
   canCreatePublication,
+  publicationModeLabel,
+  publicationOperable,
   safePreviewURL,
   publicationJobLabel,
   pendingJob,
@@ -34,6 +36,34 @@ test('publication actions default closed and require the explicit isolated backe
     { ...status, activeReleaseId: 'rel_a', activeVerified: false },
   ])
     assert.equal(canCreatePublication(value), false)
+})
+
+test('production publication is operable only while the server reports an open authorization', () => {
+  const production = {
+    enabled: true,
+    localOnly: false,
+    mode: 'production',
+    gate: { open: true, code: 'AUTHORIZED', message: '', authorizationId: 'x', expiresAt: null },
+    workerAvailable: true,
+    blockingJob: null,
+    activeReleaseId: null,
+    activeVerified: false,
+    storage: { state: 'ok' },
+  }
+  assert.equal(canCreatePublication(production), true)
+  assert.equal(publicationModeLabel(production), '生产发布已授权')
+  for (const value of [
+    { ...production, gate: { ...production.gate, open: false, code: 'GATE_REVOKED' } },
+    { ...production, gate: undefined },
+    { ...production, mode: 'off' },
+    { ...production, mode: undefined },
+    { ...production, enabled: false },
+  ]) {
+    assert.equal(publicationOperable(value), false)
+    assert.equal(canCreatePublication(value), false)
+    assert.equal(publicationModeLabel(value), '操作未启用')
+  }
+  assert.equal(publicationModeLabel({ enabled: true, localOnly: true }), '独立本地环境')
 })
 
 test('a complete server review must match the exact reviewed workspace before publishing', () => {
