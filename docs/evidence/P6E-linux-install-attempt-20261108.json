@@ -1,0 +1,461 @@
+{
+  "recordedAt": "2026-11-08T06:46:40.764Z",
+  "localDate": "2026-11-08",
+  "timezone": "Asia/Shanghai",
+  "result": "BLOCKED_WSL_SERVICE_CRASH",
+  "scope": "独立 Ubuntu WSL2 / 原生 Docker 环境安装；本轮不执行六角色构建、完整 P6-E 测试链或生产操作",
+  "sourceHeadAtStart": "ef93777d548854f11b8ac3f181ff1de04bb91720",
+  "runtimeSourceUnchanged": "c7edb2f7d23cdecaf493370d8d62446907c67e67",
+  "branch": "feat/v1.1-admin-p6a",
+  "authorization": {
+    "originalInstallation": true,
+    "originalLocation": "D:/WSL/XiaoWork-P6E",
+    "locationOverrideReply": "授权改用 C:\\WSL\\XiaoWork-P6E 独立目录",
+    "memoryRecheckReply": "已释放内存，重新检查并继续安装",
+    "approvedLocation": "C:/WSL/XiaoWork-P6E",
+    "fullSixRoleBuild": false,
+    "fullAcceptanceChain": false,
+    "globalWslRepair": false,
+    "productionOperations": false
+  },
+  "preflight": {
+    "initial": {
+      "at": "2026-11-08T06:33:32.189Z",
+      "cpu": 16,
+      "totalMemory": 16855646208,
+      "availableMemory": 4084588544,
+      "disks": {
+        "C:/": {
+          "available": 392874348544,
+          "total": 685506879488
+        },
+        "D:/": {
+          "available": 56714551296,
+          "total": 314572795904
+        }
+      },
+      "paths": [
+        {
+          "path": "D:/WSL",
+          "exists": false
+        },
+        {
+          "path": "D:/WSL/XiaoWork-P6E",
+          "exists": false
+        }
+      ],
+      "commands": [
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--list",
+            "--verbose"
+          ],
+          "exitCode": 0,
+          "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Stopped         2\r\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "docker",
+          "args": [
+            "context",
+            "show"
+          ],
+          "exitCode": 0,
+          "stdout": "desktop-linux\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "docker",
+          "args": [
+            "info",
+            "--format",
+            "{\"ID\":{{json .ID}},\"OS\":{{json .OperatingSystem}},\"Version\":{{json .ServerVersion}},\"Containers\":{{.Containers}},\"Running\":{{.ContainersRunning}}}"
+          ],
+          "exitCode": null,
+          "error": "spawnSync docker ETIMEDOUT",
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "diskConfirmation": {
+      "at": "2026-11-08T06:34:55.9097657+00:00",
+      "DAvailable": 56714481664,
+      "CAvailable": 392872894464,
+      "CAlternativeExists": false,
+      "CParentExists": false,
+      "DTargetExists": false
+    },
+    "memoryBeforeRelease": {
+      "at": "2026-11-08T06:35:45.4269961+00:00",
+      "samples": [
+        {
+          "at": "2026-11-08T06:35:35.4105172+00:00",
+          "memoryLoadPercent": 75,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 4060078080,
+          "availableCommitBytes": 15375425536
+        },
+        {
+          "at": "2026-11-08T06:35:40.4255746+00:00",
+          "memoryLoadPercent": 75,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 4077596672,
+          "availableCommitBytes": 15390203904
+        },
+        {
+          "at": "2026-11-08T06:35:45.4268687+00:00",
+          "memoryLoadPercent": 75,
+          "totalPhysicalBytes": 16855646208,
+          "availablePhysicalBytes": 4113350656,
+          "availableCommitBytes": 15445180416
+        }
+      ],
+      "ports": [],
+      "requiredValidationBudgetBytes": 4294967296,
+      "systemChanged": false
+    },
+    "locationAuthorizedCheck": {
+      "at": "2026-11-08T06:37:57.8633191+00:00",
+      "availablePhysicalBytes": 4182638592,
+      "memoryLoadPercent": 75,
+      "CAvailable": 392869818368,
+      "CTargetExists": false
+    },
+    "readyMemory": {
+      "source": "Windows kernel32 GlobalMemoryStatusEx",
+      "samples": [
+        {
+          "at": "2026-11-08T06:39:35.0807529+00:00",
+          "availablePhysicalBytes": 5407199232,
+          "memoryLoadPercent": 67
+        },
+        {
+          "at": "2026-11-08T06:39:38.0936002+00:00",
+          "availablePhysicalBytes": 5402783744,
+          "memoryLoadPercent": 67
+        },
+        {
+          "at": "2026-11-08T06:39:41.0957226+00:00",
+          "availablePhysicalBytes": 5402066944,
+          "memoryLoadPercent": 67
+        }
+      ],
+      "requiredAvailablePhysicalBytes": 4294967296,
+      "result": "PASS",
+      "note": "4 GiB 为仓库验收任务规划预算，不是 Ubuntu 官方最低安装要求；释放后每次约 5.03 GiB"
+    },
+    "commands": {
+      "at": "2026-11-08T06:38:41.549Z",
+      "commands": [
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--version"
+          ],
+          "exitCode": 0,
+          "stdout": "WSL 版本: 3.0.3.0\r\n内核版本: 6.18.54.1-1\r\nWSLg 版本: 1.0.79\r\nMSRDC 版本: 1.2.7391\r\nDirect3D 版本: 1.611.1-81528511\r\nDXCore 版本: 10.0.26100.1-240331-1435.ge-release\r\nWindows 版本: 10.0.26300.9711\r\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--help"
+          ],
+          "exitCode": 4294967295,
+          "stdout": "版权所有 (c) Microsoft Corporation。保留所有权利。\r\n有关此产品的隐私信息，请访问 https://aka.ms/privacy。\r\n\r\n用法: wsl.exe [Argument][Options...][CommandLine]\r\n\r\n运行 Linux 二进制文件的参数:\r\n\r\n    如果未提供命令行，wsl.exe 将启动默认 shell。\r\n\r\n    --exec, -e <CommandLine>\r\n        在不使用默认 Linux shell 的情况下执行指定的命令。\r\n\r\n    --shell-type <standard|login|none>\r\n        使用提供的 shell 类型执行指定的命令。\r\n\r\n    --\r\n        按原样传递剩余的命令行。\r\n\r\n选项:\r\n    --cd <Directory>\r\n        将指定目录设置为当前工作目录。\r\n        如果使用 ~，则将使用 Linux 用户的主路径。如果路径以\r\n        / 字符开始，它将被解释为绝对 Linux 路径。\r\n        否则，该值必须是绝对 Windows 路径。\r\n\r\n    --distribution, -d <DistroName>\r\n        运行指定的分发。\r\n\r\n    --distribution-id <DistroGuid>\r\n        运行指定的分发 ID。\r\n\r\n    --user, -u <UserName>\r\n        以指定用户身份运行。\r\n\r\n    --system\r\n        为系统分发启动 shell。\r\n\r\n用于管理适用于 Linux 的 Windows 子系统的参数:\r\n\r\n    --help\r\n        显示使用情况信息。\r\n\r\n    --debug-shell\r\n        出于诊断目的打开 WSL2 调试 shell。\r\n\r\n    --install [Distro] [Options...]\r\n        安装适用于 Linux 的 Windows 子系统分发。\r\n        有关有效分发的列表，请使用 'wsl.exe --list --online'。\r\n\r\n        选项:\r\n            --enable-wsl1\r\n                启用 WSL1 支持。\r\n\r\n            --fixed-vhd\r\n                创建固定大小的磁盘来存储分发。\r\n\r\n            --from-file <Path>\r\n                从本地文件安装分发。\r\n\r\n            --legacy\r\n                使用旧分发清单。\r\n\r\n            --location <Location>\r\n                设置分发的安装路径。\r\n\r\n            --name <Name>\r\n                设置分发的名称。\r\n\r\n            --no-distribution\r\n                仅安装所需的可选组件，不安装分发。\r\n\r\n            --no-launch, -n\r\n                安装后不要启动分发。\r\n\r\n            --version <Version>\r\n                指定要用于新分发的版本。\r\n\r\n            --vhd-size <MemoryString>\r\n                指定用于存储分发的磁盘的大小。\r\n\r\n            --web-download\r\n                从 Internet 而不是 Microsoft Store 下载分发。\r\n\r\n    --manage <Distro> <Options...>\r\n        更改发行版特定选项。\r\n\r\n        选项:\r\n            --move <Location>\r\n                将分发移到新位置。\r\n\r\n            --set-sparse, -s <true|false>\r\n                将发行版的 VHD 设置为稀疏，从而允许自动回收磁盘空间。\r\n\r\n            --set-default-user <Username>\r\n                设置分发的默认用户。\r\n\r\n            --resize <MemoryString>\r\n                将分发的磁盘大小调整为指定大小。\r\n\r\n            --compact\r\n        压缩 WSL 2 发行版的 VHDX 文件。\r\n\r\n    --mount <Disk>\r\n        在所有 WSL 2 发行版中附加和装载物理磁盘或虚拟磁盘。\r\n\r\n        选项:\r\n            --vhd\r\n                指定 <Disk> 是指虚拟硬盘。\r\n\r\n            --bare\r\n                将磁盘附加到 WSL2，但不要装载它。\r\n\r\n            --name <Name>\r\n                使用装入点的自定义名称装载磁盘。\r\n\r\n            --type <Type>\r\n                装载磁盘时要使用的文件系统(如果未指定)默认为 ext4。\r\n\r\n            --options <Options>\r\n                其他装载选项。\r\n\r\n            --partition <Index>\r\n                要装载的分区的索引(如果未指定)默认为整个磁盘。\r\n\r\n    --set-default-version <Version>\r\n        更改新发行版的默认安装版本。\r\n\r\n    --shutdown\r\n        立即终止所有正在运行的发行版和 WSL 2\r\n        轻型实用工具虚拟机。\r\n\r\n        选项:\r\n            --force\r\n                即使正在执行操作，也终止 WSL 2 虚拟机。可能导致数据丢失。\r\n\r\n    --status\r\n        显示适用于 Linux 的 Windows 子系统状态。\r\n\r\n    --unmount [磁盘]\r\n        从所有 WSL2 分发中卸载和分离磁盘。\r\n        如果在没有参数的情况下调用，则卸载和分离所有磁盘。\r\n\r\n    --uninstall\r\n        从此计算机卸载适用于 Linux 的 Windows 子系统包。\r\n\r\n    --update\r\n        更新适用于 Linux 的 Windows 子系统包。\r\n\r\n        选项:\r\n            --pre-release\r\n                下载预发行版本(如果可用)。\r\n\r\n    --version, -v\r\n        显示版本信息。\r\n\r\n用于在适用于 Linux 的 Windows 子系统中管理分发的参数:\r\n\r\n    --export <Distro> <FileName> [选项]\r\n        将分发导出到 tar 文件。\r\n        文件名可以是 - for stdout。\r\n\r\n        选项:\r\n            --format <Format>\r\n                指定导出格式。支持的值: tar、tar.gz、tar.xz、vhd。\r\n\r\n    --import <Distro> <InstallLocation> <FileName> [选项]\r\n        将指定的 tar 文件作为新分发导入。\r\n        文件名可以是 - for stdin。\r\n\r\n        选项:\r\n            --version <Version>\r\n                指定要用于新分发的版本。\r\n\r\n            --vhd\r\n                指定所提供的文件是 .vhd 还是 .vhdx 文件，而不是 tar 文件。\r\n                此操作在指定的安装位置创建 VHD 文件的副本。\r\n\r\n    --import-in-place <Distro> <FileName>\r\n        将指定的 VHD 文件作为新分发导入。\r\n        必须使用 ext4 文件系统类型设置此虚拟硬盘的格式。\r\n\r\n    --list, -l [选项]\r\n        列出分发。\r\n\r\n        选项:\r\n            --all\r\n                列出所有分发，包括当前\r\n                正在安装或卸载的分发。\r\n\r\n            --running\r\n                仅列出当前正在运行的分发。\r\n\r\n            --quiet, -q\r\n                仅显示分发名称。\r\n\r\n            --verbose, -v\r\n                显示有关所有分发的详细信息。\r\n\r\n            --online, -o\r\n                显示适合通过 'wsl --install' 安装的可用分发列表。\r\n\r\n    --set-default, -s <Distro>\r\n        将分发设置为默认值。\r\n\r\n    --set-version <Distro> <Version>\r\n        更改指定分发的版本。\r\n\r\n    --terminate, -t <Distro>\r\n        终止指定的分发。\r\n\r\n    --unregister <Distro>\r\n        取消注册分发并删除根文件系统。\r\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--list",
+            "--online"
+          ],
+          "exitCode": 0,
+          "stdout": "以下是可安装的有效分发的列表。\r\n使用“wsl.exe --install <Distro>”安装。\r\n\r\nNAME                            FRIENDLY NAME\r\nUbuntu                          Ubuntu\r\nUbuntu-26.04                    Ubuntu 26.04 LTS\r\nUbuntu-24.04                    Ubuntu 24.04 LTS\r\nUbuntu-22.04                    Ubuntu 22.04 LTS\r\nopenSUSE-Tumbleweed             openSUSE Tumbleweed\r\nopenSUSE-Leap-16.1              openSUSE Leap 16.1\r\nRLCPlus-9                       Rocky Linux Plus 9 (CIQ)\r\nRLCPlus-10                      Rocky Linux Plus 10 (CIQ)\r\nSUSE-Linux-Enterprise-15-SP7    SUSE Linux Enterprise 15 SP7\r\nSUSE-Linux-Enterprise-16.0      SUSE Linux Enterprise 16.0\r\nkali-linux                      Kali Linux Rolling\r\nDebian                          Debian GNU/Linux\r\nAlmaLinux-8                     AlmaLinux OS 8\r\nAlmaLinux-9                     AlmaLinux OS 9\r\nAlmaLinux-Kitten-10             AlmaLinux OS Kitten 10\r\nAlmaLinux-10                    AlmaLinux OS 10\r\narchlinux                       Arch Linux\r\nFedoraLinux-45                  Fedora Linux 45\r\nFedoraLinux-44                  Fedora Linux 44\r\neLxr                            eLxr 12.12.0.0 GNU/Linux\r\nOracleLinux_7_9                 Oracle Linux 7.9\r\nOracleLinux_8_10                Oracle Linux 8.10\r\nOracleLinux_9_5                 Oracle Linux 9.5\r\nSUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6\r\n",
+          "stderr": ""
+        }
+      ],
+      "requiredOptions": [
+        "--location",
+        "--no-launch",
+        "--version"
+      ]
+    },
+    "result": "PASS_AFTER_AUTHORIZED_LOCATION_CHANGE_AND_MEMORY_RELEASE",
+    "ports": {
+      "checked": [
+        3228,
+        3461
+      ],
+      "listenersBeforeInstall": [],
+      "boundByThisTask": []
+    }
+  },
+  "installation": {
+    "attempted": true,
+    "attempts": 1,
+    "command": "wsl.exe --install --distribution Ubuntu-24.04 --location C:/WSL/XiaoWork-P6E --no-launch --version 2",
+    "rawResult": {
+      "startedAt": "2026-11-08T06:40:16.801Z",
+      "executable": "wsl.exe",
+      "args": [
+        "--install",
+        "--distribution",
+        "Ubuntu-24.04",
+        "--location",
+        "C:/WSL/XiaoWork-P6E",
+        "--no-launch",
+        "--version",
+        "2"
+      ],
+      "completedAt": "2026-11-08T06:40:48.550Z",
+      "exitCode": 4294967295,
+      "signal": null,
+      "stdout": "正在下载: Ubuntu 24.04 LTS\r\n正在安装: Ubuntu 24.04 LTS\r\n远程过程调用失败。 \r\n错误代码： Wsl/InstallDistro/Service/RPC_S_CALL_FAILED\r\n如果此错误是意外错误，请考虑搜索现有问题或在 https://github.com/microsoft/WSL/issues 提交新问题。\r\n",
+      "stderr": ""
+    },
+    "unsignedExitCode": 4294967295,
+    "signedExitCodeEquivalent": -1,
+    "result": "FAIL"
+  },
+  "failureEvidence": {
+    "collectedAt": "2026-11-08T06:43:30.0926064+00:00",
+    "events": [
+      {
+        "at": "2026-11-08T06:40:47.9339234Z",
+        "recordId": 9863,
+        "provider": "Windows Error Reporting",
+        "eventId": 1001,
+        "eventData": {
+          "Rechecking": "0",
+          "Response": "不可用",
+          "ReportId": "26f92a92-53b3-4d64-8181-05438df3ad86",
+          "BucketType": "4",
+          "P1": "wslservice.exe",
+          "AnalysisSymbol": "",
+          "ReportStatus": "268435456",
+          "CabGuid": "0",
+          "CabId": "0",
+          "EventName": "APPCRASH",
+          "P9": "",
+          "P2": "3.0.3.0",
+          "P10": "",
+          "HashedBucket": "4036264c5288820bf257dbb0ca6caf89",
+          "Bucket": "1321766568013377417",
+          "P5": "10.0.26100.9711",
+          "P7": "c00000fd",
+          "P3": "6ac6b790",
+          "P4": "ntdll.dll",
+          "P6": "5fd39a05",
+          "P8": "000000000004c330"
+        }
+      },
+      {
+        "at": "2026-11-08T06:40:36.7839424Z",
+        "recordId": 9862,
+        "provider": "Application Error",
+        "eventId": 1000,
+        "eventData": {
+          "ProcessCreationTime": "0x1dd5fabf724199b",
+          "FaultingOffset": "000000000004c330",
+          "ProcessId": "0x1908",
+          "AppName": "wslservice.exe",
+          "ModuleName": "ntdll.dll",
+          "AppTimeStamp": "6ac6b790",
+          "PackageFullName": "",
+          "AppPath": "C:\\Program Files\\WSL\\wslservice.exe",
+          "ModuleVersion": "10.0.26100.9711",
+          "IntegratorReportId": "26f92a92-53b3-4d64-8181-05438df3ad86",
+          "ModuleTimeStamp": "5fd39a05",
+          "ExceptionCode": "c00000fd",
+          "PackageRelativeAppId": "",
+          "AppVersion": "3.0.3.0",
+          "ModulePath": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll"
+        }
+      }
+    ],
+    "confirmed": "安装期间 Windows Application Event 1000/1001 记录 wslservice.exe 3.0.3.0 崩溃；命令随后返回 RPC_S_CALL_FAILED",
+    "triggerRootCause": "UNKNOWN",
+    "excludedUnsupportedConclusions": [
+      "不将崩溃归因为已通过复核的内存预算",
+      "不将 C:/ 路径分隔符认定为原因，也未证明与此无关",
+      "不将 RPC 错误单独解释成下载、代理或发行版损坏"
+    ],
+    "redaction": "不提交 WER 转储附件路径；没有读取或复制内存转储内容。其他必要事件数据保留。",
+    "crashDumpCollected": false
+  },
+  "observedAfterFailure": {
+    "commandEvidence": {
+      "at": "2026-11-08T06:41:31.292Z",
+      "target": "C:/WSL/XiaoWork-P6E",
+      "exists": false,
+      "files": [],
+      "commands": [
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--list",
+            "--verbose"
+          ],
+          "exitCode": 0,
+          "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Stopped         2\r\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "wsl.exe",
+          "args": [
+            "--status"
+          ],
+          "exitCode": 0,
+          "stdout": "默认分发: docker-desktop\r\n默认版本: 2\r\n",
+          "stderr": ""
+        },
+        {
+          "cmd": "docker",
+          "args": [
+            "context",
+            "show"
+          ],
+          "exitCode": 0,
+          "stdout": "desktop-linux\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "registrations": [
+      {
+        "DistributionName": "docker-desktop",
+        "BasePath": "\\\\?\\C:\\Users\\xiaow\\AppData\\Local\\Docker\\wsl\\main",
+        "Version": 2,
+        "State": 1,
+        "DefaultUid": 0
+      }
+    ],
+    "service": {
+      "observations": [
+        {
+          "Name": "WslService",
+          "Status": 4
+        }
+      ],
+      "status4Meaning": "Running",
+      "manuallyRestarted": false
+    },
+    "targets": [
+      {
+        "path": "C:\\WSL",
+        "exists": false
+      },
+      {
+        "path": "C:\\WSL\\XiaoWork-P6E",
+        "exists": false
+      },
+      {
+        "path": "D:\\WSL\\XiaoWork-P6E",
+        "exists": false
+      }
+    ],
+    "installationRetried": false,
+    "distributionRegistered": false,
+    "dockerEngine": {
+      "status": "NOT_INSTALLED",
+      "version": null
+    },
+    "compose": {
+      "status": "NOT_INSTALLED",
+      "version": null
+    },
+    "linuxNativeDirectories": "NOT_CREATED",
+    "isolatedDockerNetwork": "NOT_CREATED",
+    "daemonIdentity": "NOT_RUN_INSTALLATION_FAILED",
+    "unixSocketIdentity": "NOT_RUN_INSTALLATION_FAILED",
+    "nativeFilesystemAndBindSource": "NOT_RUN_INSTALLATION_FAILED",
+    "minimalDockerMountTest": "NOT_RUN_INSTALLATION_FAILED",
+    "resourceConsumptionOfNewEnvironment": "NOT_MEASURED_NO_REGISTERED_ENVIRONMENT",
+    "readyForFullP6E": false
+  },
+  "boundaries": {
+    "desktopStateBeforeAndAfter": "Stopped",
+    "desktopContextBeforeAndAfter": "desktop-linux",
+    "desktopDaemonReached": false,
+    "desktopDaemonIdReverified": false,
+    "desktopContainersFullInventoryReverified": false,
+    "desktopObservationLimit": "本轮开始时 Desktop 已停止，docker info 超时；没有启动 Desktop，未对既有容器发出修改命令。不能沿用 11 月 2 日完整容器哈希作为今天的新验收。",
+    "globalWslManuallyRestarted": false,
+    "globalWslUpdatedOrReset": false,
+    "anyDistributionUnregistered": false,
+    "existingFaultVolumesOrLocksModified": false,
+    "productionConnected": false,
+    "productionGateOpened": false,
+    "sixRoleBuildExecuted": false,
+    "fullAcceptanceChainExecuted": false,
+    "downloadCacheNote": "安装命令可能留下内部下载临时缓存；未查删，不能据目标目录不存在声称系统完全无变化。"
+  },
+  "evidenceExitCodeNotes": [
+    "wsl --help 输出完整参数，但原始退出码 4294967295 保留，不当作 exit0 或安装成功",
+    "安装步骤控制器将非零子进程结果映射为外层 exit1；原始 wsl 退出码仍为 4294967295",
+    "drive-confirmation.json 已写入，但该次外层 PowerShell 随后的不存在路径查询使整体退出码为 1，不宣称整条 shell exit0",
+    "docker info 在初查时 ETIMEDOUT，exitCode 为 null，不代表 Docker 独立性测试通过"
+  ],
+  "sourceEvidence": [
+    {
+      "path": ".cache/p6e-linux-20261108/after-install-failure.json",
+      "bytes": 738,
+      "sha256": "b7a8108cfccab38cde84a2e4a16e7186c7609187fa05788ebab7ec662a66d70d"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/c-authorized-check.json",
+      "bytes": 178,
+      "sha256": "fa6ec293f084c1bd6df917b4e3a307461599bbb7d19e571a4edaa7c245614ae1"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/command-options.json",
+      "bytes": 9181,
+      "sha256": "47b6b65db02ba26ad73e15e0aa4b061d462267e7a8389a2378c077363a59e2f5"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/crash-events.json",
+      "bytes": 3205,
+      "sha256": "2ffcbf8332a6f6988f2e3658fe260fe630420028b85ea752775fec8eaec9e114"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/drive-confirmation.json",
+      "bytes": 198,
+      "sha256": "fba25902194d4d6120343e22bd8906af8b1e5549e07abdb2edda15c4e7be7eec"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/initial.json",
+      "bytes": 1251,
+      "sha256": "3b5f146019490a35d580e23d14c5e12ceee4f0d7dc934dc99fe7f17be46bcd70"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/install-ubuntu.json",
+      "bytes": 651,
+      "sha256": "2355b703ec459473591f320583e21bd1191ff16cbb6e349dad56100fc3eb1eb6"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/ready-memory.json",
+      "bytes": 398,
+      "sha256": "6ec6bd7f8844c9a54a59b5686da176d1a83ea471d2bd03d01ea1fbf47ba843f0"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/resource-confirmation.json",
+      "bytes": 844,
+      "sha256": "0122fd6b1554cf94a8a61a4cc233c1b54ea95578b8fa8dc73544a333726a82a8"
+    },
+    {
+      "path": ".cache/p6e-linux-20261108/run-step.mjs",
+      "bytes": 1851,
+      "sha256": "8921e74838bc8691d84459c37ffa986b5425d069e6160224c377b082f365f924"
+    },
+    {
+      "path": ".cache/p6e-linux/memory-probe.cs",
+      "bytes": 578,
+      "sha256": "8f20f471903b3342e9fc643818ac980baee0158fd4f4e3667e9be367652cfacd"
+    }
+  ],
+  "nextStep": "先受控排查宿主 WSL 服务崩溃；如需重启、升级或重置全局 WSL，必须先说明具体影响并另获授权。原安装和 C 盘授权继续有效。"
+}
