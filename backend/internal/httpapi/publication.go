@@ -175,6 +175,14 @@ func (a *App) currentRelease() (string, error) {
 	defer s.Close()
 	return s.Current()
 }
+func (a *App) pendingActivationLinks() ([]string, error) {
+	s, e := publishfs.OpenReadOnly(a.config.PublicationsDir)
+	if e != nil {
+		return nil, e
+	}
+	defer s.Close()
+	return s.PendingActivationLinks()
+}
 func (a *App) publicationProofToken(job string) string {
 	m := hmac.New(sha256.New, a.config.Secret)
 	m.Write([]byte("publication-activation-v1\x00" + job))
@@ -310,6 +318,18 @@ func (a *App) createPublicationJob(w http.ResponseWriter, r *http.Request, kind 
 	if unfinished != 0 {
 		writeError(w, r, problem(409, "JOB_CONFLICT", "已有未完成任务或需要恢复核对的任务。"))
 		return
+	}
+	// With no task in flight, a current.next.* member is a crash leftover from an
+	// interrupted activation. A further publication would change current and
+	// invalidate the audited repair's precondition (current == the failed task's
+	// previous release), leaving a link that blocks every consistent backup.
+	// Previews never touch current and stay available.
+	if kind != "preview" {
+		links, linkErr := a.pendingActivationLinks()
+		if linkErr != nil || len(links) != 0 {
+			writeError(w, r, problem(503, "RECOVERY_REQUIRED", "检测到中断切换遗留的 current.next 链接，需先由运维执行受审修复（v11-current-repair），之后才能发布或恢复。"))
+			return
+		}
 	}
 	if a.config.ProductionPublish && kind != "preview" {
 		var recent int

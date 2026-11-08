@@ -2,6 +2,8 @@ package httpapi
 
 import (
 	"encoding/json"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -190,4 +192,26 @@ func TestProductionAuthorizationExpiryClosesGate(t *testing.T) {
 		t.Fatal("expired authorization must close the gate")
 	}
 	contentHTTP(t, f, c, "POST", "/preview-jobs", map[string]any{}, csrf, publicationRevision(t, f), "gate-expired-preview-1", 503)
+}
+
+// A crash between symlink creation and rename leaves current.next.*; with no
+// task in flight, publish/rollback must wait for the audited offline repair
+// (otherwise current changes and the repair precondition is lost forever).
+func TestLeftoverActivationLinkBlocksPublishButNotPreview(t *testing.T) {
+	f, c, csrf := publicationFixture(t) // skips on non-Linux
+	link := filepath.Join(f.app.config.PublicationsDir, "current.next."+strings.Repeat("e", 64))
+	if err := os.Symlink("releases/rel_"+strings.Repeat("f", 32), link); err != nil {
+		t.Fatal(err)
+	}
+	f.request(t, c, "POST", "/auth/reauth", map[string]string{"password": authTestPassword}, csrf, 200)
+	body := map[string]any{"confirmAllChanges": true, "reviewedActiveReleaseId": nil}
+	res, _ := contentHTTP(t, f, c, "POST", "/publish-jobs", body, csrf, publicationRevision(t, f), "leftover-link-publish-1", 503)
+	if errorCode(t, res) != "RECOVERY_REQUIRED" {
+		t.Fatal("publication with a leftover activation link must be refused")
+	}
+	contentHTTP(t, f, c, "POST", "/preview-jobs", map[string]any{}, csrf, publicationRevision(t, f), "leftover-link-preview-1", 202)
+	var n int
+	if err := f.db.QueryRow(`SELECT count(*) FROM publish_jobs WHERE kind='publish'`).Scan(&n); err != nil || n != 0 {
+		t.Fatalf("refused publication must not be queued: %d %v", n, err)
+	}
 }

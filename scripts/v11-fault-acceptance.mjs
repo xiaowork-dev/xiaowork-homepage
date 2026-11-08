@@ -698,9 +698,20 @@ export function createHarness({ project, secret: secretFile, out }) {
       assert.deepEqual(httpBody(await http()), report.originalHttp)
       const fsState = JSON.parse(pubfs())
       report.leftoverCurrentNext = fsState.currentNext
+      assert.equal(
+        report.leftoverCurrentNext.length,
+        1,
+        'exactly one leftover activation link expected',
+      )
+      // The leftover must block publication until the audited repair runs.
       const next = await submit('publish')
       report.newTaskWithLeftoverLink = { status: next.status, error: next.json?.error?.code }
-      if (next.status === 202) await waitTerminal(next.json.data.jobId)
+      assert.equal(next.status, 503, 'publication must be refused while a leftover link exists')
+      assert.equal(next.json?.error?.code, 'RECOVERY_REQUIRED')
+      const preview = await submit('preview')
+      report.previewWithLeftoverLink = preview.status
+      assert.equal(preview.status, 202)
+      assert.equal((await waitTerminal(preview.json.data.jobId)).status, 'succeeded')
       await snapshot('failed-with-leftover-link', id)
     },
   }

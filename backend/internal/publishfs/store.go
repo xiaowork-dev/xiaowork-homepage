@@ -565,6 +565,29 @@ func (s *Store) copyTree(source, destination string) error {
 	})
 }
 
+// PendingActivationLinks lists current.next.* members of the publication root.
+// They exist only for an instant inside an activation; with no task in flight
+// any such member is a crash leftover that only the audited offline repair may
+// remove (and that consistent backups refuse until it is removed).
+func (s *Store) PendingActivationLinks() ([]string, error) {
+	dir, err := s.root.Open(".")
+	if err != nil {
+		return nil, err
+	}
+	defer dir.Close()
+	names, err := dir.Readdirnames(-1)
+	if err != nil {
+		return nil, err
+	}
+	var links []string
+	for _, name := range names {
+		if strings.HasPrefix(name, "current.next.") {
+			links = append(links, name)
+		}
+	}
+	return links, nil
+}
+
 // Current validates the sole allowed symlink rather than following an arbitrary
 // target. Absence is only allowed for a first publication.
 func (s *Store) Current() (string, error) {
