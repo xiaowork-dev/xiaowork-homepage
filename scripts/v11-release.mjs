@@ -98,7 +98,35 @@ function validateSpec(spec) {
   tool(spec.images.maintenance, 'compatible', [], ['-schema', String(spec.schema)])
   return spec
 }
-function configuration(project, spec, state, topology, httpPort, httpsPort, subnet, publish) {
+// Production (openresty) topology: host OpenResty reaches the gateway through a
+// loopback-published port, so every connection arrives from the pinned edge
+// bridge address. Only that edge /28 may assert the client address, and only
+// via X-Real-IP, which 1Panel OpenResty overwrites with its own $remote_addr.
+// Containers on the internal control/isolated networks are never trusted.
+export function edgeSubnetFor(subnet) {
+  assert.match(subnet, /^192\.168\.(?:2[0-4][0-9]|25[0-4])\.0\/28$/)
+  return `${subnet.split('.').slice(0, 3).join('.')}.16/28`
+}
+export function gatewayRealIpConfig(edgeSubnet) {
+  assert.match(edgeSubnet, /^192\.168\.(?:2[0-4][0-9]|25[0-4])\.16\/28$/)
+  return [
+    '# Generated per project. Trust X-Real-IP only from the pinned edge bridge.',
+    `set_real_ip_from ${edgeSubnet};`,
+    'real_ip_header X-Real-IP;',
+    'real_ip_recursive off;',
+    '',
+  ].join('\n')
+}
+export function configuration(
+  project,
+  spec,
+  state,
+  topology,
+  httpPort,
+  httpsPort,
+  subnet,
+  publish,
+) {
   assert.ok(['simulation', 'openresty'].includes(topology))
   assert.ok(Number.isInteger(httpPort) && httpPort >= 1024 && httpPort <= 65535)
   assert.ok(Number.isInteger(httpsPort) && httpsPort >= 1024 && httpsPort <= 65535)
@@ -150,21 +178,26 @@ function configuration(project, spec, state, topology, httpPort, httpsPort, subn
       networks: { control: { ipv4_address: `${prefix}.2` }, isolated: {}, edge: {} },
     },
   }
+  const networks = { control: { ipam: { config: [{ subnet }] } } }
+  fs.mkdirSync(state, { recursive: true, mode: 0o700 })
   if (topology === 'openresty') {
+    const edgeSubnet = edgeSubnetFor(subnet)
+    networks.edge = { ipam: { config: [{ subnet: edgeSubnet }] } }
+    // Bind-mounted single file read by the gateway's UID 10001: world-readable,
+    // contains no secret (only the project's own edge CIDR).
+    const realIp = path.join(state, 'gateway-realip.generated.conf')
+    fs.writeFileSync(realIp, gatewayRealIpConfig(edgeSubnet))
+    fs.chmodSync(realIp, 0o644)
     services['api-init'].command = ['migrate']
     services.gateway.volumes = [
       `${path.join(root, 'deploy/v11/gateway-openresty.conf').replaceAll('\\', '/')}:/etc/nginx/nginx.conf:ro`,
       `${path.join(root, 'deploy/v11/locations-openresty.conf').replaceAll('\\', '/')}:/etc/nginx/xiaowork-locations.conf:ro`,
+      `${realIp.replaceAll('\\', '/')}:/etc/nginx/xiaowork-realip.conf:ro`,
     ]
   }
   const override = path.join(state, 'compose.generated.yaml')
   // JSON is YAML-compatible. !override is needed only for replacing host ports.
-  const rendered = JSON.stringify(
-    { services, networks: { control: { ipam: { config: [{ subnet }] } } } },
-    null,
-    2,
-  )
-  fs.mkdirSync(state, { recursive: true, mode: 0o700 })
+  const rendered = JSON.stringify({ services, networks }, null, 2)
   fs.writeFileSync(override, rendered, { mode: 0o600 })
   const ports = path.join(state, 'ports.generated.yaml')
   fs.writeFileSync(
