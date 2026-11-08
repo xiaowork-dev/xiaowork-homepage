@@ -291,8 +291,37 @@ const composeArgs = (config) => [
 ]
 const compose = (config, args) =>
   docker([...composeArgs(config), ...args], { env: { ...process.env, ...config.env } })
+// With publishing off (production default, and every candidate after an
+// openresty update/rollback) the project must have no publisher container.
+// A previously authorized release leaves its stopped worker behind; it would
+// otherwise fail every later image-identity check (backup/update/rollback).
+// Only a STOPPED worker is removed (stateless; data lives in volumes); a
+// running one means writers were not stopped and the operation is refused.
+export function removeStalePublisher(project) {
+  projectName(project)
+  const ids = docker([
+    'ps',
+    '-aq',
+    '--filter',
+    `label=com.docker.compose.project=${project}`,
+    '--filter',
+    'label=com.docker.compose.service=worker',
+  ])
+    .split(/\s+/)
+    .filter(Boolean)
+  for (const id of ids) {
+    assert.equal(
+      docker(['inspect', '--format', '{{.State.Running}}', id]),
+      'false',
+      'A running publisher exists while publishing is disabled; stop writers first',
+    )
+    docker(['rm', id])
+  }
+  return ids.length
+}
 function start(config, first) {
   compose(config, ['config', '--quiet'])
+  if (!config.publish) removeStalePublisher(config.project)
   compose(config, ['up', '-d', '--no-build', 'publication-init', 'api-init'])
   if (first && config.topology === 'openresty') {
     const secret = tool(

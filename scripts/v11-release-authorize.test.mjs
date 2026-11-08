@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import { syncBuiltinESMExports } from 'node:module'
 import path from 'node:path'
 import { test } from 'node:test'
-import { runLifecycle } from './v11-release.mjs'
+import { removeStalePublisher, runLifecycle } from './v11-release.mjs'
 
 const id = (c) => 'sha256:' + c.repeat(64)
 const spec = {
@@ -129,4 +129,45 @@ test('authorize-publishing is refused outright for the simulation topology', () 
   }
   assert.ok(!fs.existsSync(path.join(state, 'operation.lock')))
   fs.rmSync(state, { recursive: true })
+})
+
+test('a stopped publisher left by an authorized release is removed when publishing is off', () => {
+  const calls = []
+  const original = childProcess.execFileSync
+  childProcess.execFileSync = (file, args) => {
+    calls.push(args.join(' '))
+    if (args[0] === 'ps') return 'deadbeef\n'
+    if (args[0] === 'inspect') return 'false\n'
+    if (args[0] === 'rm') return ''
+    throw new Error('unexpected docker call: ' + args.join(' '))
+  }
+  syncBuiltinESMExports()
+  try {
+    assert.equal(removeStalePublisher('xiaowork-homepage-v11-unit'), 1)
+  } finally {
+    childProcess.execFileSync = original
+    syncBuiltinESMExports()
+  }
+  assert.ok(calls[0].includes('label=com.docker.compose.project=xiaowork-homepage-v11-unit'))
+  assert.ok(calls[0].includes('label=com.docker.compose.service=worker'))
+  assert.deepEqual(calls.at(-1), 'rm deadbeef')
+})
+
+test('a running publisher is never removed while publishing is off', () => {
+  const calls = []
+  const original = childProcess.execFileSync
+  childProcess.execFileSync = (file, args) => {
+    calls.push(args.join(' '))
+    if (args[0] === 'ps') return 'deadbeef\n'
+    if (args[0] === 'inspect') return 'true\n'
+    throw new Error('unexpected docker call: ' + args.join(' '))
+  }
+  syncBuiltinESMExports()
+  try {
+    assert.throws(() => removeStalePublisher('xiaowork-homepage-v11-unit'), /running publisher/)
+  } finally {
+    childProcess.execFileSync = original
+    syncBuiltinESMExports()
+  }
+  assert.ok(!calls.some((c) => c.startsWith('rm')))
 })
