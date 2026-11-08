@@ -386,6 +386,19 @@ function publicProbe(config, backupDirectory) {
     }),
   )
 }
+// The command's own fresh lock (never a parent chain's) is released only for an
+// accepted operation, a refusal before any change, or a verified safe restore.
+export function lifecycleLockReleasable({
+  lock,
+  inherited,
+  operationAccepted,
+  releaseOnRefusal,
+  safelyRestored,
+}) {
+  return (
+    Boolean(lock) && !inherited && Boolean(operationAccepted || releaseOnRefusal || safelyRestored)
+  )
+}
 export function runLifecycle(input) {
   const args = [...input]
   const command = args.shift()
@@ -396,6 +409,12 @@ export function runLifecycle(input) {
   // True only while a command is still checking preconditions and has changed
   // nothing; a refusal then releases its own fresh lock instead of retaining it.
   let releaseOnRefusal = false
+  // True once a failed candidate was fully undone: old writers stopped, old and
+  // new checkers accept unchanged data, the old service restarted and passed the
+  // HTTP probe, and the old current record was restored. The documented contract
+  // then lifts the block (barrier completed, lock released) while the command
+  // still reports failure.
+  let safelyRestored = false
   const options = {}
   while (args.length) {
     const key = args.shift()
@@ -845,6 +864,7 @@ export function runLifecycle(input) {
               // A recovered old service must also have the old current record.
               save(currentFile, prior)
               releaseGuard()
+              safelyRestored = true
               throw Object.assign(
                 new Error('Candidate failed; previous service restored and HTTP verified'),
                 { safelyRestored: true },
@@ -888,7 +908,15 @@ export function runLifecycle(input) {
   } finally {
     // Only the command's own transient lock is released here. A parent chain
     // remains protected until its final acceptance, including HTTP checks.
-    if (lock && !inherited && (operationAccepted || releaseOnRefusal)) {
+    if (
+      lifecycleLockReleasable({
+        lock,
+        inherited,
+        operationAccepted,
+        releaseOnRefusal,
+        safelyRestored,
+      })
+    ) {
       if (barrierProject) completeSharedBarrier(barrierProject, lifecycleOwner)
       fs.rmdirSync(lock)
     }

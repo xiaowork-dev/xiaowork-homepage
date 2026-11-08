@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import { syncBuiltinESMExports } from 'node:module'
 import path from 'node:path'
 import { test } from 'node:test'
-import { removeStalePublisher, runLifecycle } from './v11-release.mjs'
+import { lifecycleLockReleasable, removeStalePublisher, runLifecycle } from './v11-release.mjs'
 
 const id = (c) => 'sha256:' + c.repeat(64)
 const spec = {
@@ -170,4 +170,32 @@ test('a running publisher is never removed while publishing is off', () => {
     syncBuiltinESMExports()
   }
   assert.ok(!calls.some((c) => c.startsWith('rm')))
+})
+
+test('a verified safe restore releases the lock; unconfirmed recovery and chains never do', () => {
+  const base = {
+    lock: '/state/operation.lock',
+    inherited: false,
+    operationAccepted: false,
+    releaseOnRefusal: false,
+    safelyRestored: false,
+  }
+  assert.equal(lifecycleLockReleasable(base), false, 'plain failure keeps the lock')
+  assert.equal(
+    lifecycleLockReleasable({ ...base, safelyRestored: true }),
+    true,
+    'documented safe restore lifts the block',
+  )
+  assert.equal(lifecycleLockReleasable({ ...base, operationAccepted: true }), true)
+  assert.equal(lifecycleLockReleasable({ ...base, releaseOnRefusal: true }), true)
+  assert.equal(
+    lifecycleLockReleasable({ ...base, safelyRestored: true, lock: undefined }),
+    false,
+    'manual-recovery path cleared the lock variable',
+  )
+  assert.equal(
+    lifecycleLockReleasable({ ...base, safelyRestored: true, inherited: true }),
+    false,
+    'a parent chain stays protected',
+  )
 })
