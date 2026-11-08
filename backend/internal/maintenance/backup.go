@@ -358,7 +358,12 @@ func Backup(ctx context.Context, source, destination string) (Manifest, error) {
 		return result, err
 	}
 	if err = os.Mkdir(destination, 0700); err != nil {
-		return result, errors.New("backup destination must not exist")
+		// Only an existing destination is a "must be new" refusal. Permission,
+		// missing-parent and read-only errors must stay diagnosable for operators.
+		if errors.Is(err, fs.ErrExist) {
+			return result, errors.New("backup destination must not exist")
+		}
+		return result, fmt.Errorf("backup destination cannot be created: %w", err)
 	}
 	for _, name := range []string{"db", "uploads", "publications", "secrets"} {
 		if err = os.Mkdir(filepath.Join(destination, name), 0700); err != nil {

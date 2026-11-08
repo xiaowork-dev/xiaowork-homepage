@@ -18,6 +18,9 @@ const suffix = {
   authority: 'admin-authority',
   tls: 'admin-tls',
 }
+// Fixed non-root identity of the maintenance image (backend/maintenance.Dockerfile).
+export const MAINTENANCE_UID = 10001
+export const MAINTENANCE_GID = 10001
 export function docker(args, options = {}) {
   return execFileSync('docker', args, {
     cwd: repository,
@@ -26,6 +29,31 @@ export function docker(args, options = {}) {
     stdio: ['ignore', 'pipe', 'pipe'],
     ...options,
   }).trim()
+}
+// Ownership grants below are computed from this identity, so verify it on the
+// exact image ID rather than trusting a constant alone.
+export function assertMaintenanceIdentity(image) {
+  assert.match(image, /^sha256:[a-f0-9]{64}$/)
+  assert.equal(
+    docker(['image', 'inspect', '--format', '{{.Config.User}}', image]),
+    `${MAINTENANCE_UID}:${MAINTENANCE_GID}`,
+    'Maintenance image must run as the reviewed fixed UID/GID 10001:10001',
+  )
+}
+// Bind only the NEW backup directory itself, never its (operator-owned) parent.
+// On native Linux a root-owned 0700 parent is not traversable by UID 10001.
+export function backupMountPlan(absolute) {
+  assert.ok(path.isAbsolute(absolute), 'Backup destination must be absolute')
+  assert.ok(!/[,=]/.test(absolute), 'Backup destination must not contain mount separators')
+  return { mount: ['--mount', `type=bind,src=${absolute},dst=/backup`], target: '/backup/content' }
+}
+// One-time ownership initialisation of brand-new, empty restore volumes. This is
+// the only place populate (no volume-nocopy) is used, and never on source data.
+export function restorePopulateMounts(project) {
+  return Object.entries(volumeNames(project)).flatMap(([role, name]) => [
+    '--mount',
+    `type=volume,src=${name},dst=/target/${role}`,
+  ])
 }
 export function localEngine() {
   const allowed = ['npipe:////./pipe/dockerDesktopLinuxEngine', 'unix:///var/run/docker.sock']
@@ -216,16 +244,17 @@ export function backupProject(project, image, destination, lifecycleOwner) {
     0,
     'Reconcile unfinished tasks before taking a planned offline backup',
   )
-  const mount = [
-    ...volumeMounts(project, '/source', true),
-    '--mount',
-    `type=bind,src=${path.dirname(absolute)},dst=/backup`,
-  ]
+  const plan = backupMountPlan(absolute)
+  const mount = [...volumeMounts(project, '/source', true), ...plan.mount]
   fs.mkdirSync(absolute, { mode: 0o700 })
-  const manifest = tool(image, 'backup', mount, [
-    '-target',
-    `/backup/${path.basename(absolute)}/content`,
-  ])
+  if (process.platform !== 'win32') {
+    assertMaintenanceIdentity(image)
+    // Grant only this new, empty 0700 directory to the non-root maintenance UID
+    // so it can create content/; ownership returns to the operator afterwards.
+    fs.chownSync(absolute, MAINTENANCE_UID, MAINTENANCE_GID)
+  }
+  const manifest = tool(image, 'backup', mount, ['-target', plan.target])
+  if (process.platform !== 'win32') fs.chownSync(absolute, process.getuid(), process.getgid())
   const contentManifestSHA256 = createHash('sha256')
     .update(fs.readFileSync(path.join(absolute, 'content', 'manifest.json')))
     .digest('hex')
@@ -293,6 +322,12 @@ export function verifyBackup(image, source) {
     bundle.contentManifestSHA256,
     'Content manifest SHA does not match independent runtime bundle',
   )
+  if (process.platform !== 'win32')
+    assert.equal(
+      fs.statSync(path.join(absolute, 'content')).uid,
+      MAINTENANCE_UID,
+      'Backup content must keep owner UID 10001 (copy with ownership preserved); permissions are never changed automatically',
+    )
   const manifest = tool(
     image,
     'verify',
@@ -301,6 +336,50 @@ export function verifyBackup(image, source) {
   )
   assert.equal(manifest.state.schema, bundle.runtime.schema)
   return { ...manifest, runtime: bundle.runtime }
+}
+// Fresh `docker volume create` roots are root:root 0755 and volume-nocopy skips
+// the image mount-point ownership, so UID 10001 could not write the restore.
+// Creating (never starting) one container without nocopy copies the reviewed
+// 10001:10001 0700 mount points into the just-created empty volumes only.
+function populateRestoreTargets(project, image) {
+  assertMaintenanceIdentity(image)
+  const names = volumeNames(project)
+  const id = docker([
+    'create',
+    '--network',
+    'none',
+    '--read-only',
+    '--cap-drop',
+    'ALL',
+    '--security-opt',
+    'no-new-privileges:true',
+    ...restorePopulateMounts(project),
+    image,
+    'verify',
+  ])
+  try {
+    const actual = JSON.parse(docker(['inspect', '--format', '{{json .Mounts}}', id]))
+    assert.equal(actual.length, Object.keys(names).length, 'Unexpected restore target mount count')
+    for (const [role, name] of Object.entries(names)) {
+      const found = actual.find((m) => m.Destination === `/target/${role}`)
+      assert.ok(
+        found && found.Type === 'volume' && found.Name === name && found.RW === true,
+        'Restore target initialisation mounted an unexpected volume',
+      )
+    }
+  } finally {
+    // Never started: removing it cannot interrupt any data access.
+    docker(['rm', id])
+  }
+  if (process.platform !== 'win32')
+    for (const name of Object.values(names)) {
+      const mountpoint = docker(['volume', 'inspect', '--format', '{{.Mountpoint}}', name])
+      assert.equal(
+        fs.statSync(mountpoint).uid,
+        MAINTENANCE_UID,
+        'New restore volume was not initialised for the maintenance UID',
+      )
+    }
 }
 export function restoreProject(project, image, source, lifecycleOwner) {
   lifecycleOwner ??= chainOwner(project)
@@ -332,6 +411,7 @@ export function restoreProject(project, image, source, lifecycleOwner) {
       name,
     ])
   }
+  populateRestoreTargets(project, image)
   return tool(
     image,
     'restore',

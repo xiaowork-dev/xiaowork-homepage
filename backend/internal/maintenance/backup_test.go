@@ -2,8 +2,11 @@ package maintenance
 
 import (
 	"context"
+	"errors"
+	"io/fs"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/xiaowork-dev/xiaowork-homepage/backend/internal/authn"
@@ -95,6 +98,35 @@ func makeHex(ch byte) []byte {
 		b[i] = ch
 	}
 	return b
+}
+
+// A destination that cannot be created (e.g. EACCES on a native Linux bind
+// mount, or a missing parent) must not be misreported as an existing one.
+func TestBackupDestinationErrorsAreDistinguished(t *testing.T) {
+	ctx := context.Background()
+	root := t.TempDir()
+	source := filepath.Join(root, "source")
+	emptyRoots(t, source)
+	db, err := store.Open(filepath.Join(source, "db", "content.sqlite"), true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	if err = store.Migrate(ctx, db); err != nil {
+		t.Fatal(err)
+	}
+	existing := filepath.Join(root, "existing")
+	if err = os.Mkdir(existing, 0700); err != nil {
+		t.Fatal(err)
+	}
+	if _, err = Backup(ctx, source, existing); err == nil || err.Error() != "backup destination must not exist" {
+		t.Fatalf("existing destination: %v", err)
+	}
+	missingParent := filepath.Join(root, "absent-parent", "content")
+	_, err = Backup(ctx, source, missingParent)
+	if err == nil || !strings.HasPrefix(err.Error(), "backup destination cannot be created: ") || !errors.Is(err, fs.ErrNotExist) {
+		t.Fatalf("uncreatable destination must keep its cause: %v", err)
+	}
 }
 
 func TestBackupRejectsUnfinishedAndSymlink(t *testing.T) {
