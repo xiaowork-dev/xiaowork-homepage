@@ -2,7 +2,7 @@
 # Production shadow deployment of V1.1 (openresty topology, loopback only). Does NOT touch OpenResty or V1.0.
 set -Eeuo pipefail
 PT=/opt/xiaowork-homepage-v11; T=/opt/xiaowork-homepage-v11-test
-S=c81af02da2c40104804cba33fd0146de3dd0980b; G=${S:0:12}; P=xiaowork-homepage-v11
+S=c81af02da2c40104804cba33fd0146de3dd0980b; G=${S:0:12}; P=xiaowork-homepage-v11-prod
 NODE=node-v24.22.1-linux-x64.tar.xz
 unset DOCKER_HOST DOCKER_CONTEXT
 [ -e $PT ] && { echo "REFUSE: $PT already exists"; exit 1; }

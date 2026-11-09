@@ -1,7 +1,7 @@
 #!/bin/bash
 # Daily consistent local backup of the production V1.1 project. Never deletes old backups.
 set -Eeuo pipefail
-PT=/opt/xiaowork-homepage-v11; P=xiaowork-homepage-v11
+PT=/opt/xiaowork-homepage-v11; P=xiaowork-homepage-v11-prod
 export PATH=$PT/.tools/node/bin:/usr/sbin:/usr/bin:/sbin:/bin; unset DOCKER_HOST DOCKER_CONTEXT
 umask 077
 TS=$(date -u +%Y%m%dT%H%M%SZ); B=$PT/backups/$TS; LOG=$PT/logs/backup-$TS.log
