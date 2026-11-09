@@ -1,5 +1,14 @@
 # XiaoWork Homepage 项目进度
 
+## 最新：2026-11-09 V1.1 正式上线
+
+xiaoworks.com 已在 09:00 UTC 切换到 V1.1（c81af02），项目为 `xiaowork-homepage-v11-prod`，在服务器上监听回环 `127.0.0.1:3110`。
+
+- **核验**：外网核验全部通过，公开内容与 V1.0 完全一致，后台入口为 `https://xiaoworks.com/admin/`。
+- **默认设置**：后台发布 gate 默认关闭；每日本地备份已在运行。
+- **回退**：V1.0 容器保留，可用 `/root/v11-launch/rollback-v10.sh` 回退。
+- **详细记录**：见[上线记录](deliveries/20261109-v11-launch-readiness.md)。
+
 ## 最新：2026-11-09 c81af02 发行组验收通过，上线脚本就绪
 
 - **发行组验收**：c81af02（61b7b32 加后台文案修复）的完整验收全部通过：

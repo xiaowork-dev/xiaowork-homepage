@@ -86,11 +86,30 @@
    - 资源占用：约 2% CPU、不到 1 MiB 内存，与业务无关。
    - 现状：Agent 尝试停止时被权限审查拦下，等待用户处理（`docker stop youthful_haibt`）。
 
-## 5. 未完成 / 需要用户处理
+## 5. 正式切换（2026-11-09 09:00 UTC，用户确认"切换"后执行）
 
-1. **切换上游**：等待用户最终确认，按手册第 5 节执行。
-2. 停止遗留探测容器 `youthful_haibt`。
-3. 切换回退没有在正式上游上预先演练。`cutover.sh` 在任一核验失败时会自动恢复原配置；`rollback-v10.sh` 已就绪，V1.0 容器保留。
-4. 异地备份和告警：按用户决定，上线后再补。
+- **执行**：`cutover.sh`。
+  - 原配置保存为 `/opt/xiaowork-homepage-v11/release/root.conf.v10-20261109T090014Z`（SHA256 前 16 位 `4990719062b38c90`）；
+  - `root.conf` 中的 `proxy_pass` 从 `127.0.0.1:3100` 改为 `127.0.0.1:3110`；
+  - `openresty -t` 通过后平滑重载，没有停机。
+- **服务器本机核验**：`/`、`/projects/`、`/about/`、`/robots.txt`、`/sitemap.xml`、`/admin/` 返回 200，会话接口返回 401，输出 `CUTOVER_OK`。
+- **外网核验**（从 Agent 所在电脑访问 `https://xiaoworks.com`）：
+  - 结果同上；
+  - `/admin/` 带有 CSP（`default-src 'none'`）、`X-Content-Type-Options: nosniff` 和 HSTS；
+  - 切换后 3 分钟内网关没有 5xx 错误。
+- **真实客户端地址**：生产网关只信任 `192.168.240.16/28`（edge 网关 `.17`）传来的 `X-Real-IP`，OpenResty 用 `$remote_addr` 设置这个请求头。网站没有经过 Cloudflare 代理。
+- **影响核对**：
+  - blog/nav/erp/dav/jijian 返回 200，inbox 返回 302；
+  - V1.0 容器仍在运行且健康（`Up 2 weeks`），作为回退目标；
+  - 切换后再次比对 V1.0 和 V1.1，仍然 `CONTENT_IDENTICAL`。
+- **回退**：`bash /root/v11-launch/rollback-v10.sh`，用保存的原配置恢复并重载。
+
+## 6. 未完成 / 需要用户处理
+
+1. 停止遗留探测容器 `youthful_haibt`（Agent 尝试时被权限审查拦下）。
+2. **后台发布默认关闭**：要从后台发布新内容，先执行 `v11-release.mjs backup`，再执行 `authorize-publishing`（手册第 6 节），需要用户另行授权。
+3. 异地备份和告警：按用户决定，上线后再补。目前只有服务器本机每日备份，需要定期查看 `/opt/xiaowork-homepage-v11/logs/backup-status.log`。
+4. 合并 main：当前线上运行的是 `feat/v1.1-admin-p6a` 上的 c81af02，main 仍是 V1.0 的 `14f9b1f`，需要用户另行决定是否合并。
+5. 测试目录 `/opt/xiaowork-homepage-v11-test` 中的测试项目数据卷、镜像和锁现场都保留着，清理需要另行批准。
 
 本文件是文档提交；`deploy/v11-production/` 与测试属于运维脚本，不改变运行镜像。
