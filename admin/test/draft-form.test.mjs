@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { createRenderer, nextTick } from 'vue'
 import { admin } from '../src/lib/admin.ts'
 import { ApiError } from '../src/lib/api.ts'
-import { useDraftDocument } from '../src/composables/useDraftDocument.ts'
+import { DRAFT_SAVED_MESSAGE, useDraftDocument } from '../src/composables/useDraftDocument.ts'
 import {
   allowNextNavigation,
   confirmUnsavedChanges,
@@ -185,6 +185,13 @@ test('pending document saves and reloads exclude duplicate or overlapping operat
   await pendingSave
   assert.equal(draft.saving.value, false)
   assert.equal(draft.dirty.value, false)
+  assert.equal(draft.success.value, DRAFT_SAVED_MESSAGE)
+  assert.doesNotMatch(
+    DRAFT_SAVED_MESSAGE,
+    /后续|接入/,
+    'publishing is live; saved-draft copy must not describe it as a future phase',
+  )
+  assert.match(DRAFT_SAVED_MESSAGE, /发布后/)
   let finishRead
   admin.get = async () => {
     reads++

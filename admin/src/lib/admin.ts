@@ -13,6 +13,13 @@ function validSession(value: Session): boolean {
   )
 }
 
+// Header label: a null session while the first /auth/session check is still
+// pending is not an expired session, so it must not be reported as one.
+export function sessionUserLabel(session: Session | null, authExpired: boolean): string {
+  if (session) return session.administrator.username
+  return authExpired ? '会话失效' : '读取会话…'
+}
+
 export function createAdmin(client = new ApiClient()) {
   const session = shallowRef<Session | null>(null)
   const workspace = shallowRef<Workspace | null>(null)

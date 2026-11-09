@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
-import { admin } from './lib/admin'
+import { admin, sessionUserLabel } from './lib/admin'
 import {
   allowNextNavigation,
   confirmUnsavedChanges,
@@ -168,7 +168,7 @@ onBeforeUnmount(() => window.removeEventListener('beforeunload', beforeUnload))
             ><span class="user-avatar" aria-hidden="true">{{
               admin.session.value?.administrator.username.slice(0, 1).toUpperCase() ?? 'X'
             }}</span
-            ><span>{{ admin.session.value?.administrator.username ?? '会话失效' }}</span></span
+            ><span>{{ sessionUserLabel(admin.session.value, admin.authExpired.value) }}</span></span
           ><button
             class="button button--ghost logout-button"
             :disabled="logoutBusy"

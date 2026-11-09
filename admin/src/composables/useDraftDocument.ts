@@ -5,6 +5,7 @@ import { useUnsavedChanges } from './useUnsavedChanges.ts'
 
 type DocumentResponse<T> = { revision: string } & Record<string, T | string | boolean | null>
 const copy = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T
+export const DRAFT_SAVED_MESSAGE = '草稿已保存。公开网站只会在核对并发布后改变。'
 
 export function useDraftDocument<T extends object>(path: string, key: string) {
   const value = shallowRef<T | null>(null)
@@ -54,7 +55,7 @@ export function useDraftDocument<T extends object>(path: string, key: string) {
     success.value = ''
     try {
       apply(await admin.write<DocumentResponse<T>>('PUT', path, copy(value.value), revision.value))
-      success.value = '草稿已保存。公开网站将在后续发布阶段接入，当前未改变。'
+      success.value = DRAFT_SAVED_MESSAGE
     } catch (cause) {
       conflict.value = cause instanceof ApiError && cause.status === 409
       remote.value = null

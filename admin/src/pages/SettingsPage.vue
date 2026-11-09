@@ -103,7 +103,7 @@ const pages = [
           /><label class="field"
             >页脚文字（可选）<textarea v-model="form.footerText" rows="2" maxlength="300" /><span
               class="help-text"
-              >使用纯文本。年份由后续静态渲染器生成。</span
+              >使用纯文本。版权年份会在发布构建时自动生成，无需填写。</span
             ></label
           >
         </section>

@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { ApiClient } from '../src/lib/api.ts'
-import { createAdmin } from '../src/lib/admin.ts'
+import { createAdmin, sessionUserLabel } from '../src/lib/admin.ts'
 
 const session = {
   administrator: { id: 1, username: 'test-admin' },
@@ -32,6 +32,13 @@ test('initial missing session is login state rather than a false expiry warning'
   assert.equal(await admin.restore(), false)
   assert.equal(admin.session.value, null)
   assert.equal(admin.authExpired.value, false)
+})
+
+test('header label does not claim an expired session while the first session check is pending', () => {
+  assert.equal(sessionUserLabel(null, false), '读取会话…')
+  assert.equal(sessionUserLabel(null, true), '会话失效')
+  assert.equal(sessionUserLabel(session, false), 'test-admin')
+  assert.equal(sessionUserLabel(session, true), 'test-admin')
 })
 
 test('login always requests a fresh challenge and keeps credentials only in memory', async () => {
