@@ -1,0 +1,10 @@
+[Unit]
+Description=Run XiaoWork Homepage V1.1 backup daily at 19:30 UTC (03:30 Asia/Shanghai)
+
+[Timer]
+OnCalendar=*-*-* 19:30:00 UTC
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

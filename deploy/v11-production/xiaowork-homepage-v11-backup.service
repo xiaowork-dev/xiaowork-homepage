@@ -1,0 +1,10 @@
+[Unit]
+Description=XiaoWork Homepage V1.1 daily consistent local backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/xiaowork-homepage-v11/bin/v11-backup.sh
+TimeoutStartSec=30min
+Nice=10
